@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <core:Specification signature="/1">
+    <graph id="c11aa1dd-7b25-4bfa-90d5-93a3fd5e8827">
+      <nodes id="952acc6c-1cdd-4628-a281-2076d326ad03" name="Link" outgoings="/0/@graph/@arrows.0 /0/@graph/@arrows.1 /0/@graph/@arrows.2 /0/@graph/@arrows.3 /0/@graph/@arrows.4 /0/@graph/@arrows.5 /0/@graph/@arrows.6 /0/@graph/@arrows.7 /0/@graph/@arrows.8 /0/@graph/@arrows.9 /0/@graph/@arrows.10 /0/@graph/@arrows.11 /0/@graph/@arrows.12 /0/@graph/@arrows.13 /0/@graph/@arrows.14 /0/@graph/@arrows.15 /0/@graph/@arrows.16 /0/@graph/@arrows.17 /0/@graph/@arrows.18 /0/@graph/@arrows.19 /0/@graph/@arrows.20 /0/@graph/@arrows.21 /0/@graph/@arrows.22 /0/@graph/@arrows.23 /0/@graph/@arrows.24 /0/@graph/@arrows.25 /0/@graph/@arrows.26 /0/@graph/@arrows.27 /0/@graph/@arrows.28 /0/@graph/@arrows.29 /0/@graph/@arrows.30 /0/@graph/@arrows.31 /0/@graph/@arrows.32 /0/@graph/@arrows.33"/>
+      <nodes id="02ed8f0c-9939-4fe4-b9a3-f49486c663af" name="P" incomings="/0/@graph/@arrows.0 /0/@graph/@arrows.17"/>
+      <nodes id="8bf0fdb5-9efc-4780-a055-09b46d4b1f0d" name="F2" incomings="/0/@graph/@arrows.1 /0/@graph/@arrows.18"/>
+      <nodes id="756124a1-6d6c-4439-bc23-c19206ad0d51" name="F1" incomings="/0/@graph/@arrows.2 /0/@graph/@arrows.19"/>
+      <nodes id="3b28a1db-6593-4f9a-afe3-890577d24bae" name="T" incomings="/0/@graph/@arrows.3 /0/@graph/@arrows.20"/>
+      <nodes id="7be635cb-6101-44ef-a696-d7c227b12fca" name="R" incomings="/0/@graph/@arrows.4 /0/@graph/@arrows.21"/>
+      <nodes id="0010da80-bf3e-4f32-82f9-5f3e673c38ed" name="nonActive" incomings="/0/@graph/@arrows.5 /0/@graph/@arrows.22"/>
+      <nodes id="33322bbd-b37d-4b67-a77b-69b1497ac9fd" name="active" incomings="/0/@graph/@arrows.6 /0/@graph/@arrows.23"/>
+      <nodes id="dfab6199-93b8-433c-8c1e-d411d10602c1" name="setTurn" incomings="/0/@graph/@arrows.7 /0/@graph/@arrows.24"/>
+      <nodes id="42e4c3ce-6679-4f94-b6f7-2fca7635382b" name="start" incomings="/0/@graph/@arrows.8 /0/@graph/@arrows.25"/>
+      <nodes id="cadab403-20ef-451f-b5b9-a3f5a366b543" name="crit" incomings="/0/@graph/@arrows.9 /0/@graph/@arrows.26"/>
+      <nodes id="231beac7-5dd9-4dbc-852f-cf4b57cbff60" name="check" incomings="/0/@graph/@arrows.10 /0/@graph/@arrows.27"/>
+      <nodes id="928266f5-5cd8-4229-9d78-72a09485786c" name="PF2" incomings="/0/@graph/@arrows.11 /0/@graph/@arrows.28"/>
+      <nodes id="86a32c9d-5411-4d6f-8060-b5b2ba10f572" name="PF1" incomings="/0/@graph/@arrows.12 /0/@graph/@arrows.29"/>
+      <nodes id="130849f5-6d4d-46a9-b2db-e7d75516aef3" name="TP" incomings="/0/@graph/@arrows.13 /0/@graph/@arrows.30"/>
+      <nodes id="595771d8-b25d-48a5-a52b-d22f8e1a4829" name="TR" incomings="/0/@graph/@arrows.14 /0/@graph/@arrows.31"/>
+      <nodes id="8528b1ca-d013-4e02-ad76-3490005d5dc1" name="F2R" incomings="/0/@graph/@arrows.15 /0/@graph/@arrows.32"/>
+      <nodes id="ed18c68b-a0c8-4b0d-b75d-585b5e9a832b" name="F1R" incomings="/0/@graph/@arrows.16 /0/@graph/@arrows.33"/>
+      <arrows id="642b2894-0372-48bd-889d-104c51e76de1" name="sourceP" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1"/>
+      <arrows id="b3c25321-8394-4a84-bf8c-138b0287de39" name="sourceF2" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.2"/>
+      <arrows id="f59027c8-38de-4f1b-850e-0f03574a5d71" name="sourceF1" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.3"/>
+      <arrows id="ef1c838d-88b1-45aa-9300-76ba768d42ae" name="sourceT" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.4"/>
+      <arrows id="d786b720-4080-4e9a-919b-7d531d9e2ad5" name="sourceR" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.5"/>
+      <arrows id="c1efeb2d-e183-460d-9708-0dc690517e86" name="sourcenonActive" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.6"/>
+      <arrows id="28f55bbc-22e4-43c2-9378-7719db273650" name="sourceactive" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.7"/>
+      <arrows id="ff077c38-6c83-4477-a2e6-1fadbc55483d" name="sourcesetTurn" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.8"/>
+      <arrows id="8eb1e2a1-d559-4288-bd4e-bf39fb1a6114" name="sourcestart" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.9"/>
+      <arrows id="c5b6f0da-22bf-4341-9c40-222f64350c85" name="sourcecrit" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.10"/>
+      <arrows id="632862eb-766d-4b69-b2f2-8256cf3269be" name="sourcecheck" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.11"/>
+      <arrows id="3613856e-c9cf-422e-9d34-e354bc595618" name="sourcePF2" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.12"/>
+      <arrows id="9042964f-7008-4195-ad88-ab992a5704b3" name="sourcePF1" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.13"/>
+      <arrows id="c6ee87d7-9a61-431b-97c1-e2410caf2fd1" name="sourceTP" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.14"/>
+      <arrows id="9fc66210-3376-45c7-9177-e11117edaa7f" name="sourceTR" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.15"/>
+      <arrows id="6c4a1222-4a21-4e80-ad0d-ed533b98161b" name="sourceF2R" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.16"/>
+      <arrows id="d65dc12b-d7ba-4297-8a43-8615008a8d96" name="sourceF1R" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.17"/>
+      <arrows id="2bd9ea6b-5aaa-420c-9993-4f823541fe59" name="targetP" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1"/>
+      <arrows id="27f1442f-aeef-4c37-a8c1-7b9dde90e3aa" name="targetF2" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.2"/>
+      <arrows id="014343ec-6c21-4a04-a390-b456010a9350" name="targetF1" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.3"/>
+      <arrows id="85a97cf7-e43c-40a3-abfd-c9eeb62bf4df" name="targetT" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.4"/>
+      <arrows id="31b985a4-2521-4c29-a3e1-423bb912908f" name="targetR" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.5"/>
+      <arrows id="236b7ce3-c5e2-4b5c-94fb-2e9b3b3c882d" name="targetnonActive" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.6"/>
+      <arrows id="12801008-196c-4195-813e-1fd5ac93bf92" name="targetactive" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.7"/>
+      <arrows id="0c036d37-ddeb-4b66-a8f4-58d0640a963c" name="targetsetTurn" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.8"/>
+      <arrows id="33f6001e-70bc-4d2a-b038-9a2ef3db26a5" name="targetstart" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.9"/>
+      <arrows id="e44e659b-1655-48a1-8712-c0998b0c997b" name="targetcrit" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.10"/>
+      <arrows id="5564e7e4-83e0-4b43-a421-0f0b5803f621" name="targetcheck" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.11"/>
+      <arrows id="7f168255-ec25-4f8e-b4a0-ec4bad0f56b6" name="targetPF2" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.12"/>
+      <arrows id="7cc79e55-4a80-4cbe-8266-345c44f31d42" name="targetPF1" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.13"/>
+      <arrows id="5f07977d-ef5d-4a2f-84f9-d3e13c9f62f4" name="targetTP" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.14"/>
+      <arrows id="17d34a52-a43e-4289-82d0-27f80d896d08" name="targetTR" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.15"/>
+      <arrows id="ea905eea-e1a1-4e2e-91df-3f6921384fb8" name="targetF2R" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.16"/>
+      <arrows id="1173c2ae-faf5-4576-a92c-6494e865692b" name="targetF1R" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.17"/>
+    </graph>
+  </core:Specification>
+  <core:Signature/>
+</xmi:XMI>

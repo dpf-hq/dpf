@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service
+    xmlns="http://smodl.org/v1" name="repositoryService">
+  <method name="loginUser">
+    <arg type="string" name="userName"/>
+    <arg type="string" name="password"/>
+    <result type="bool"/>
+  </method>
+  <method name="logoffUser">
+    <result type="bool"/>
+  </method>
+  <method name="createNewUser">
+    <arg type="" name="userInfo"/>
+    <result type="bool"/>
+  </method>
+  <method name="getProfile">
+    <result type="Profile"/>
+  </method>
+  <method name="updateProfile">
+    <arg type="Profile" name="userInfo"/>
+    <result type="bool"/>
+  </method>
+  <method name="getCurrentUsername">
+    <result type="string"/>
+  </method>
+  <struct name="Profile">
+    <field type="string" name="userName"/>
+    <field type="string" name="password"/>
+    <field type="string" name="email"/>
+    <field type="dateTime" name="birthdate"/>
+  </struct>
+</service>

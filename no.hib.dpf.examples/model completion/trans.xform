@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core" xmlns:transform="http://no.hib.dpf.transform">
+  <transform:Transform sourceLocation="/home/wxlfrank/runtime-EclipseApplication/no.hib.dpf.examples/model completion/mm.dpf" targetLocation="/home/wxlfrank/runtime-EclipseApplication/no.hib.dpf.examples/model completion/mm.dpf" correspondanceLocation="/no.hib.dpf.examples/model completion/generated_models/mm2mm.dpf">
+    <sourceMetaModel href="mm.dpf#/"/>
+    <targetMetaModel href="mm.dpf#/"/>
+    <rules leftNodes="/0/@rules.0/@sum/@dGraph/@dNodes.0 /0/@rules.0/@sum/@dGraph/@dNodes.1" rightNodes="/0/@rules.0/@sum/@dGraph/@dNodes.0 /0/@rules.0/@sum/@dGraph/@dNodes.1" rightArrows="/0/@rules.0/@sum/@dGraph/@dArrows.1" leftArrows="/0/@rules.0/@sum/@dGraph/@dArrows.0" commonNodes="/0/@rules.0/@sum/@dGraph/@dNodes.0 /0/@rules.0/@sum/@dGraph/@dNodes.1" name="fix1">
+      <sum specification="/1" gridVisible="false">
+        <dType href="generated_models/trans.dpf#/"/>
+        <dGraph graph="/1/@graph">
+          <dType href="generated_models/trans.dpf#//@dGraph"/>
+          <dNodes node="/1/@graph/@nodes.0" dOutgoings="/0/@rules.0/@sum/@dGraph/@dArrows.0 /0/@rules.0/@sum/@dGraph/@dArrows.1" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.0" location="53 130" size="100 30">
+            <dType href="generated_models/trans.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/1/@graph/@nodes.1" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.1" location="228 134" size="100 30">
+            <dType href="generated_models/trans.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dArrows arrow="/1/@graph/@arrows.0" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.0">
+            <dType href="generated_models/trans.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+            <bendpoints offset="-15 0" len="30"/>
+            <bendpoints offset="-15 100" len="30"/>
+            <bendpoints offset="45 100" len="30"/>
+            <bendpoints offset="45 0" len="30"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.1" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.1">
+            <dType href="generated_models/trans.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules leftNodes="/0/@rules.1/@sum/@dGraph/@dNodes.0" rightNodes="/0/@rules.1/@sum/@dGraph/@dNodes.0" leftArrows="/0/@rules.1/@sum/@dGraph/@dArrows.0" commonNodes="/0/@rules.1/@sum/@dGraph/@dNodes.0" name="fix2">
+      <sum specification="/2" gridVisible="false">
+        <dType href="generated_models/trans.dpf#/"/>
+        <dGraph graph="/2/@graph">
+          <dType href="generated_models/trans.dpf#//@dGraph"/>
+          <dNodes node="/2/@graph/@nodes.0" dOutgoings="/0/@rules.1/@sum/@dGraph/@dArrows.0" dIncomings="/0/@rules.1/@sum/@dGraph/@dArrows.0" location="52 147" size="100 30">
+            <dType href="generated_models/trans.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dArrows arrow="/2/@graph/@arrows.0" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.0">
+            <dType href="generated_models/trans.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+            <bendpoints offset="-15 0" len="30"/>
+            <bendpoints offset="-15 100" len="30"/>
+            <bendpoints offset="45 100" len="30"/>
+            <bendpoints offset="45 0" len="30"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <elementTypeGraph href="generated_models/trans.dpf#/"/>
+    <correspondanceGraph href="generated_models/mm2mm.dpf#/0"/>
+  </transform:Transform>
+  <core:Specification>
+    <graph id="029e8474-4fde-47e2-9b87-08631df2811e">
+      <type href="generated_models/trans.xmi#//@graph"/>
+      <nodes id="a0348691-e45b-49ae-bdba-28fa85c3840f" name="X0" outgoings="/1/@graph/@arrows.0 /1/@graph/@arrows.1" incomings="/1/@graph/@arrows.0">
+        <typeNode href="generated_models/trans.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="c3b18924-009c-49a2-a312-b381694fcd4d" name="X1" incomings="/1/@graph/@arrows.1">
+        <typeNode href="generated_models/trans.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <arrows id="5bd0e885-77b8-416f-84cb-603a7bdc9757" name="f0" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.0">
+        <typeArrow href="generated_models/trans.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="57d40a22-2aea-4976-9105-86c05483d205" name="f1" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.1">
+        <typeArrow href="generated_models/trans.xmi#//@graph/@arrows.0"/>
+      </arrows>
+    </graph>
+    <type href="generated_models/trans.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph id="2fb0ad48-9208-4448-a93e-b4d3f1630371">
+      <type href="generated_models/trans.xmi#//@graph"/>
+      <nodes id="86ec1eef-9afb-48f7-b863-0692fe32c021" name="X0" outgoings="/2/@graph/@arrows.0" incomings="/2/@graph/@arrows.0">
+        <typeNode href="generated_models/trans.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <arrows id="5b5baea8-c115-46e9-9855-ace84f38495c" name="f0" source="/2/@graph/@nodes.0" target="/2/@graph/@nodes.0">
+        <typeArrow href="generated_models/trans.xmi#//@graph/@arrows.0"/>
+      </arrows>
+    </graph>
+    <type href="generated_models/trans.xmi#/"/>
+  </core:Specification>
+</xmi:XMI>

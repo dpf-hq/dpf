@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<transform:Transform xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:transform="http://no.hib.dpf.transform">
+  <elementTypeGraph href="trans.dpf#/"/>
+</transform:Transform>

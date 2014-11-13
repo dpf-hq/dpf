@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <graph id="a1f1128d-5f96-49a0-a4a5-ce04a4d7f320">
+    <nodes id="c9abfd6f-7c19-4271-ac79-3b65d9967981" name="Task" outgoings="//@graph/@arrows.0 //@graph/@arrows.1" incomings="//@graph/@arrows.0"/>
+    <nodes id="7afe4781-682f-420e-a364-842be208a222" name="Att" incomings="//@graph/@arrows.1"/>
+    <arrows id="8fda2139-971b-46d6-8110-0616099e1726" name="Flow" source="//@graph/@nodes.0" target="//@graph/@nodes.0"/>
+    <arrows id="0dc6fb13-6de1-446c-b9e0-114f0f3f3e05" name="att" source="//@graph/@nodes.0" target="//@graph/@nodes.1"/>
+  </graph>
+</core:Specification>

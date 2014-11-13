@@ -1,0 +1,49 @@
+«IMPORT dpf»
+«EXTENSION extensions::dpfplay»
+«EXTENSION org::eclipse::xtend::util::stdlib::io»
+
+«DEFINE main FOR dpf::Specification»
+	«syserr(printSymbols(this))»
+	«EXPAND graph FOR this.graph»
+«ENDDEFINE»
+
+«DEFINE graph FOR dpf::Graph»
+	«EXPAND domainclasses FOREACH this.getDomainClassNodes()»
+«ENDDEFINE»
+
+«DEFINE domainclasses FOR dpf::DomainClass»
+	«FILE "models/"+this.name.toFirstUpper() + ".java"»
+		package models;
+		«printArrayImport(this)»
+		«EXPAND imports FOR this.getAttributeArrows()»
+		import javax.persistence.Entity;
+		import play.db.jpa.Model;
+		@Entity
+		public class «this.name.toFirstUpper()» extends Model {
+			«FOREACH getDomainClassAttrRef(this.getAttributeArrows(), this.getReferenceArrows()) AS e»
+				«e-»
+			«ENDFOREACH»
+		public «this.name.toFirstUpper()»(«paramList(this.getAttributeArrows(), this.getReferenceArrows())») {
+			«FOREACH constructorSetAttributes(this.getAttributeArrows(), this.getReferenceArrows()) AS e»
+				«e-»
+			«ENDFOREACH»
+			}
+		}
+		«ENDFILE»
+	«FILE "controllers/"+this.name.toFirstUpper() + "s.java"»
+		package controllers;
+		import play.mvc.*;
+		import play.*;
+	
+		public class «this.name.toFirstUpper()+"s"» extends CRUD {
+		}
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE imports FOR List[dpf::Attribute]»
+	«FOREACH this AS e»
+		«IF e.target.name == "Date"»
+			import java.util.Date;
+		«ENDIF»
+	«ENDFOREACH»
+«ENDDEFINE»

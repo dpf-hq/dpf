@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <core:Specification metaFile="m1.xmi" type="/1">
+    <graph id="0bb0ceee-a981-4beb-acee-be93b3c994c8" type="/1/@graph">
+      <nodes id="53125fa2-733e-4b3c-8201-2cd219533841" name="CS" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.3"/>
+      <nodes id="b41a1bbe-2a51-4c75-8b05-e507bf08828c" name="Pickup Goods" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.0" incomings="/0/@graph/@arrows.2 /0/@graph/@arrows.3"/>
+      <nodes id="58dbdd82-a3ba-4512-ba5e-a846e82a5b9d" name="SS" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.5"/>
+      <nodes id="5dc05110-8200-462f-9100-7ccee9e725c5" name="Pay?" typeNode="/1/@graph/@nodes.1" outgoings="/0/@graph/@arrows.1 /0/@graph/@arrows.4" incomings="/0/@graph/@arrows.0"/>
+      <nodes id="ac3f0ee8-4013-47e4-8d51-f71db9f81c98" name="No" typeNode="/1/@graph/@nodes.2" outgoings="/0/@graph/@arrows.2" incomings="/0/@graph/@arrows.1"/>
+      <nodes id="bea93360-5948-4c7e-bc60-94e80989e3a6" name="Yes" typeNode="/1/@graph/@nodes.2" outgoings="/0/@graph/@arrows.6" incomings="/0/@graph/@arrows.4"/>
+      <nodes id="37d85bea-080d-4184-80fa-860d40ea100e" name="Receive needPay" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.8" incomings="/0/@graph/@arrows.5 /0/@graph/@arrows.7 /0/@graph/@arrows.42"/>
+      <nodes id="9b569968-5c8f-4a84-85f2-7a1d2c74ea07" name="Send NeedPay" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.7 /0/@graph/@arrows.9" incomings="/0/@graph/@arrows.6"/>
+      <nodes id="ebe735b7-4d5a-4d35-8d22-e5de67e95f9f" name="Receive Notification" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.12" incomings="/0/@graph/@arrows.9 /0/@graph/@arrows.10"/>
+      <nodes id="863d66ea-026f-47d2-bb94-decdab37620c" name="Send notification" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.10 /0/@graph/@arrows.11" incomings="/0/@graph/@arrows.8 /0/@graph/@arrows.43"/>
+      <nodes id="4ff58111-349d-489a-879c-6c6932506649" name="Send Goods" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.13 /0/@graph/@arrows.15" incomings="/0/@graph/@arrows.12 /0/@graph/@arrows.44"/>
+      <nodes id="414d06a8-994d-4cb8-bf04-ce4d3bf79b5d" name="Receive Goods" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.14" incomings="/0/@graph/@arrows.11 /0/@graph/@arrows.13"/>
+      <nodes id="cd1fb438-b186-4127-beeb-aed6aaba3842" name="Receive Question" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.18" incomings="/0/@graph/@arrows.15 /0/@graph/@arrows.16"/>
+      <nodes id="8ce639de-3f22-499f-bb18-959e22e3905e" name="Send Question" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.16 /0/@graph/@arrows.17" incomings="/0/@graph/@arrows.14"/>
+      <nodes id="b187269a-4442-4321-890f-448ae0f752c2" name="Send Answer" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.19 /0/@graph/@arrows.21" incomings="/0/@graph/@arrows.18"/>
+      <nodes id="e323794a-a699-4adb-9238-6d6fd253c719" name="Receive Answer" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.20" incomings="/0/@graph/@arrows.17 /0/@graph/@arrows.19"/>
+      <nodes id="ffba8830-744a-468d-a82a-38a68a2237f2" name="More Goods?" typeNode="/1/@graph/@nodes.1" outgoings="/0/@graph/@arrows.22 /0/@graph/@arrows.23" incomings="/0/@graph/@arrows.21"/>
+      <nodes id="d8c95f7e-7eae-49a6-8eb7-5d9f4884b868" name="More Goods?" typeNode="/1/@graph/@nodes.1" outgoings="/0/@graph/@arrows.24 /0/@graph/@arrows.25" incomings="/0/@graph/@arrows.20"/>
+      <nodes id="9d840476-1c1d-4bf5-836e-fca40aa5b4a1" name="Yes" typeNode="/1/@graph/@nodes.2" outgoings="/0/@graph/@arrows.44" incomings="/0/@graph/@arrows.22"/>
+      <nodes id="429572a9-c39c-44de-837d-8d2058bd0110" name="No" typeNode="/1/@graph/@nodes.2" outgoings="/0/@graph/@arrows.27" incomings="/0/@graph/@arrows.23"/>
+      <nodes id="55cb7a11-4e59-4a0a-8a58-16ed4dcf99e7" name="No" typeNode="/1/@graph/@nodes.2" outgoings="/0/@graph/@arrows.26" incomings="/0/@graph/@arrows.24"/>
+      <nodes id="78deb106-8db7-4f64-9a9c-6f969903cdb8" name="Yes" typeNode="/1/@graph/@nodes.2" outgoings="/0/@graph/@arrows.43" incomings="/0/@graph/@arrows.25"/>
+      <nodes id="05ba7c2f-9278-4510-b761-c9b933fb57af" name="Receive Money" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.30" incomings="/0/@graph/@arrows.27 /0/@graph/@arrows.28"/>
+      <nodes id="83a6d9b0-568d-4985-a535-0ee7d05169e1" name="Send Money" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.28 /0/@graph/@arrows.29" incomings="/0/@graph/@arrows.26"/>
+      <nodes id="b6b657df-bf9d-434c-910d-9278c3d2234f" name="Send Money" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.31 /0/@graph/@arrows.33" incomings="/0/@graph/@arrows.30"/>
+      <nodes id="7d6a4470-ed4f-4d47-ad1e-f1ba7f3a0b6b" name="Receive Money" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.32" incomings="/0/@graph/@arrows.29 /0/@graph/@arrows.31"/>
+      <nodes id="8b7a9ffa-0f31-401c-9a47-d37fedcd009e" name="Receive receipt" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.35" incomings="/0/@graph/@arrows.33 /0/@graph/@arrows.34"/>
+      <nodes id="c4a1240d-ce66-44cd-bba9-4044b3803640" name="Send receipt" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.34 /0/@graph/@arrows.36" incomings="/0/@graph/@arrows.32"/>
+      <nodes id="b7918ccf-7adf-4a47-b447-1cd6f1191489" name="Send Leave" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.37 /0/@graph/@arrows.38" incomings="/0/@graph/@arrows.35"/>
+      <nodes id="599f026b-a33d-4cd7-80d5-c1143390d730" name="Receive Leave" typeNode="/1/@graph/@nodes.0" outgoings="/0/@graph/@arrows.45" incomings="/0/@graph/@arrows.36 /0/@graph/@arrows.37"/>
+      <nodes id="165a53ad-fa50-4ef2-b868-06fa26479656" name="CE" typeNode="/1/@graph/@nodes.0" incomings="/0/@graph/@arrows.38"/>
+      <nodes id="571f2665-ef3b-419f-9c44-ce707063d3e9" name="SE" typeNode="/1/@graph/@nodes.0" incomings="/0/@graph/@arrows.40"/>
+      <nodes id="5e884bd5-7f53-4c40-b012-d9041cd3dbd3" name="Time Off?" typeNode="/1/@graph/@nodes.1" outgoings="/0/@graph/@arrows.39 /0/@graph/@arrows.41" incomings="/0/@graph/@arrows.45"/>
+      <nodes id="8a88004f-2c85-48ee-b6fc-1ade13b98358" name="Yes" typeNode="/1/@graph/@nodes.2" outgoings="/0/@graph/@arrows.40" incomings="/0/@graph/@arrows.39"/>
+      <nodes id="b288271e-3eea-4442-9a12-68cbb3d61252" name="No" typeNode="/1/@graph/@nodes.2" outgoings="/0/@graph/@arrows.42" incomings="/0/@graph/@arrows.41"/>
+      <arrows id="2e864244-07ae-467e-88b4-a22685c00518" name="" source="/0/@graph/@nodes.1" target="/0/@graph/@nodes.3" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="9d940c8f-7640-4b5e-92c7-1a5d47d737f1" name="" source="/0/@graph/@nodes.3" target="/0/@graph/@nodes.4" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="99b67a54-49b5-4450-bdd0-4a1aa266052b" name="" source="/0/@graph/@nodes.4" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="d990c861-b209-4477-8503-cd1238d2fdd3" name="" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="1d6958c2-3d1b-45d3-943c-a121fe67279a" name="" source="/0/@graph/@nodes.3" target="/0/@graph/@nodes.5" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="9cc37d2f-b5bc-4f7b-bc5e-4ea740bd4dff" name="" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.6" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="374ed99d-d152-4b36-9670-ef9224c4d51d" name="" source="/0/@graph/@nodes.5" target="/0/@graph/@nodes.7" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="52f3894b-1928-4164-a3c4-5654c3c4b774" name="NeedPay" source="/0/@graph/@nodes.7" target="/0/@graph/@nodes.6" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="f8709e3d-5c03-4c37-83d1-2c55f709194a" name="" source="/0/@graph/@nodes.6" target="/0/@graph/@nodes.9" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="e844ed1e-4063-4f17-a432-6c4ffcaa4880" name="" source="/0/@graph/@nodes.7" target="/0/@graph/@nodes.8" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="c55391db-448d-40c1-bde8-018f142b6fdc" name="Notification" source="/0/@graph/@nodes.9" target="/0/@graph/@nodes.8" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="333b16fa-1564-4390-b4ca-33a76ab38b21" name="" source="/0/@graph/@nodes.9" target="/0/@graph/@nodes.11" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="77ed485c-7f25-4ef6-97d9-0ca5b8f57c45" name="" source="/0/@graph/@nodes.8" target="/0/@graph/@nodes.10" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="2e5edee7-b8f1-44b8-9abf-61d7235b224e" name="Goods" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.11" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="55646e07-ce1c-48cd-a9dc-e26eb940dec8" name="" source="/0/@graph/@nodes.11" target="/0/@graph/@nodes.13" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="a1818b86-b696-4ab2-a1e5-ff093191e1c2" name="" source="/0/@graph/@nodes.10" target="/0/@graph/@nodes.12" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="31839161-600a-4aac-9022-cafa02347e45" name="Question" source="/0/@graph/@nodes.13" target="/0/@graph/@nodes.12" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="47d88507-7979-426a-8ac6-43edd8578eac" name="" source="/0/@graph/@nodes.13" target="/0/@graph/@nodes.15" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="758c34d3-412e-473a-bcb3-1cff886850e3" name="" source="/0/@graph/@nodes.12" target="/0/@graph/@nodes.14" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="95ae6a8e-26e2-4153-844c-3ebdabff59ec" name="Answer" source="/0/@graph/@nodes.14" target="/0/@graph/@nodes.15" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="715620c9-e527-49ac-a298-a2ec9ff0e4fa" name="" source="/0/@graph/@nodes.15" target="/0/@graph/@nodes.17" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="c7d5d496-4a1e-4a2a-9ae4-7f7544cca4dc" name="" source="/0/@graph/@nodes.14" target="/0/@graph/@nodes.16" typeArrow="/1/@graph/@arrows.0"/>
+      <arrows id="2d4a64ec-d81e-4c42-adf4-fb45fd6c8142" name="" source="/0/@graph/@nodes.16" target="/0/@graph/@nodes.18" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="ca393653-c100-4469-a524-c984814b338c" name="" source="/0/@graph/@nodes.16" target="/0/@graph/@nodes.19" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="3aedb9d1-10b8-4443-bc3b-2a1c11d9ba99" name="" source="/0/@graph/@nodes.17" target="/0/@graph/@nodes.20" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="738c91dc-8ee6-43ab-a331-27e35a30da29" name="" source="/0/@graph/@nodes.17" target="/0/@graph/@nodes.21" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="3cdd7eed-57d1-4835-b85d-9a346b8bbfb8" name="" source="/0/@graph/@nodes.20" target="/0/@graph/@nodes.23" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="46a884d0-c80d-4e83-8069-98d0259d5363" name="" source="/0/@graph/@nodes.19" target="/0/@graph/@nodes.22" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="eebcb3a7-a49f-4584-aafb-2b2c561ef549" name="Money To Pay" source="/0/@graph/@nodes.23" target="/0/@graph/@nodes.22" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="75ebddd0-59da-4cb8-87dc-809ca98fb223" name="" source="/0/@graph/@nodes.23" target="/0/@graph/@nodes.25" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="e11f5ba2-24c1-4ac4-b5cc-5d478a910097" name="" source="/0/@graph/@nodes.22" target="/0/@graph/@nodes.24" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="8f2139a1-2463-4aae-a7d3-591a55ff3a27" name="Money" source="/0/@graph/@nodes.24" target="/0/@graph/@nodes.25" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="3bb5ce98-a240-45b4-ba80-71f1ce3270ae" name="" source="/0/@graph/@nodes.25" target="/0/@graph/@nodes.27" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="360138e7-2398-4e43-acdd-47b776045c41" name="" source="/0/@graph/@nodes.24" target="/0/@graph/@nodes.26" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="03817271-d725-4e67-8c8c-6337d5528ccb" name="Receipt&amp;Change" source="/0/@graph/@nodes.27" target="/0/@graph/@nodes.26" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="52555826-0c5a-4c3e-aad5-81ce69e446a0" name="" source="/0/@graph/@nodes.26" target="/0/@graph/@nodes.28" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="e47cab00-d6dd-4336-a173-cf8a0381ffa7" name="" source="/0/@graph/@nodes.27" target="/0/@graph/@nodes.29" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="21228674-31b5-47cb-b237-44cab47a4cf3" name="Leave" source="/0/@graph/@nodes.28" target="/0/@graph/@nodes.29" typeArrow="/1/@graph/@arrows.4"/>
+      <arrows id="870c7efc-e10d-4587-8cb7-33bd5bb83a7f" name="" source="/0/@graph/@nodes.28" target="/0/@graph/@nodes.30" typeArrow="/1/@graph/@arrows.3"/>
+      <arrows id="e2fc7884-aadd-40e0-bfc1-dfc93920dc50" name="" source="/0/@graph/@nodes.32" target="/0/@graph/@nodes.33" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="3e69fc90-cf4c-4008-8c1c-13804589b71a" name="" source="/0/@graph/@nodes.33" target="/0/@graph/@nodes.31" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="d56c6916-7ba1-4138-98e8-466f400c36cb" name="" source="/0/@graph/@nodes.32" target="/0/@graph/@nodes.34" typeArrow="/1/@graph/@arrows.2"/>
+      <arrows id="86a6a028-af62-4c41-9fe2-e4cc9e26e234" name="" source="/0/@graph/@nodes.34" target="/0/@graph/@nodes.6" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="76b15bb3-1568-4aba-8d8b-18221dbd648a" name="" source="/0/@graph/@nodes.21" target="/0/@graph/@nodes.9" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="677d1fa5-fba1-49c9-91de-4be63f404a3f" name="" source="/0/@graph/@nodes.18" target="/0/@graph/@nodes.10" typeArrow="/1/@graph/@arrows.1"/>
+      <arrows id="0a5a8715-d044-4de9-9869-9d97cfa3ee95" name="" source="/0/@graph/@nodes.29" target="/0/@graph/@nodes.32" typeArrow="/1/@graph/@arrows.0"/>
+    </graph>
+  </core:Specification>
+  <core:Specification metaFile="m1.xmi" type="/2">
+    <graph id="b3eb297a-cf27-46c5-ac70-0d45dbbed94e" type="/2/@graph">
+      <nodes id="3a484ee8-5634-4b08-a9a2-216120495c3f" name="Activity" typeNode="/2/@graph/@nodes.0" outgoings="/1/@graph/@arrows.0 /1/@graph/@arrows.3 /1/@graph/@arrows.4" incomings="/1/@graph/@arrows.1 /1/@graph/@arrows.3 /1/@graph/@arrows.4" constraints="/1/@constraints.0 /1/@constraints.1 /1/@constraints.2 /1/@constraints.4 /1/@constraints.5 /1/@constraints.7"/>
+      <nodes id="ed904bfd-e8f7-4c0c-b4e2-9a9f2c8e519f" name="Choice" typeNode="/2/@graph/@nodes.1" outgoings="/1/@graph/@arrows.2" incomings="/1/@graph/@arrows.0" constraints="/1/@constraints.2 /1/@constraints.3 /1/@constraints.6 /1/@constraints.7"/>
+      <nodes id="14933f57-1101-4cb7-89c7-c5d3ab0de03e" name="Condition" typeNode="/2/@graph/@nodes.1" outgoings="/1/@graph/@arrows.1" incomings="/1/@graph/@arrows.2" constraints="/1/@constraints.3 /1/@constraints.4 /1/@constraints.5 /1/@constraints.6"/>
+      <arrows id="0a1ab5c3-ecad-44ec-890a-beaa1564d5a7" name="ChoiceIn" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.1" typeArrow="/2/@graph/@arrows.1" constraints="/1/@constraints.2 /1/@constraints.7"/>
+      <arrows id="f0dfb906-7163-420b-821f-6174d400f165" name="ChoiceOut" source="/1/@graph/@nodes.2" target="/1/@graph/@nodes.0" typeArrow="/2/@graph/@arrows.0" constraints="/1/@constraints.4 /1/@constraints.5"/>
+      <arrows id="da1cdeba-4e7c-4cc3-a7f0-e0db27036f77" name="ChoiceCondition" source="/1/@graph/@nodes.1" target="/1/@graph/@nodes.2" typeArrow="/2/@graph/@arrows.2" constraints="/1/@constraints.3 /1/@constraints.6"/>
+      <arrows id="8d263e44-9353-4b89-bb39-7f287dd768df" name="Sequence" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.0" typeArrow="/2/@graph/@arrows.3" constraints="/1/@constraints.0 /1/@constraints.7"/>
+      <arrows id="28a0157d-4c64-4d53-a917-fb1aa318acfa" name="Message" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.0" typeArrow="/2/@graph/@arrows.3" constraints="/1/@constraints.1"/>
+    </graph>
+    <constraints id="cb8b7c61-fd61-4084-9372-0da208e4ea13" nodes="/1/@graph/@nodes.0" arrows="/1/@graph/@arrows.3">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.3">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="624997af-d6d7-40c6-8726-bf63a3a70958" nodes="/1/@graph/@nodes.0" arrows="/1/@graph/@arrows.4">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.4">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.2/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="2bc614d3-c6d3-41b2-8b3c-475948d61ca2" nodes="/1/@graph/@nodes.0 /1/@graph/@nodes.1" arrows="/1/@graph/@arrows.0">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="71d8e213-3cee-470b-a960-84005e2d1c42" nodes="/1/@graph/@nodes.1 /1/@graph/@nodes.2" arrows="/1/@graph/@arrows.2" parameters="min:2;max:*">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="5ff087c5-6f8f-42f3-bc8a-3c0dd9c4c2bc" nodes="/1/@graph/@nodes.2 /1/@graph/@nodes.0" arrows="/1/@graph/@arrows.1" parameters="min:1;max:*">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="10dc5111-6eba-485a-ac2d-f12441f12a50" nodes="/1/@graph/@nodes.2 /1/@graph/@nodes.0" arrows="/1/@graph/@arrows.1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.0"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.0/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.0/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.0/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="d22a9472-2d6b-4a8f-80c7-2456aa408d2a" nodes="/1/@graph/@nodes.1 /1/@graph/@nodes.2" arrows="/1/@graph/@arrows.2">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.1/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="45930103-8bc7-4c1a-8aca-7e9233ca39fc" nodes="/1/@graph/@nodes.0 /1/@graph/@nodes.1" arrows="/1/@graph/@arrows.0 /1/@graph/@arrows.3">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8"/>
+      <mappings>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@nodes.2"/>
+        </nodeMapping>
+        <nodeMapping value="/1/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@nodes.1"/>
+        </nodeMapping>
+        <arrowMapping value="/1/@graph/@arrows.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@arrows.1"/>
+        </arrowMapping>
+        <arrowMapping value="/1/@graph/@arrows.3">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+  </core:Specification>
+  <core:Specification>
+    <graph id="b8039467-b117-40f4-869d-46ad6da71767">
+      <nodes id="fea1f861-f84c-484d-ac92-dec72f2aa3b7" name="Element" outgoings="/2/@graph/@arrows.1 /2/@graph/@arrows.3" incomings="/2/@graph/@arrows.0 /2/@graph/@arrows.3" constraints="/2/@constraints.0 /2/@constraints.1 /2/@constraints.2"/>
+      <nodes id="fdc8ece4-f772-4253-af7b-d21a986f2c18" name="Control" outgoings="/2/@graph/@arrows.0 /2/@graph/@arrows.2" incomings="/2/@graph/@arrows.1 /2/@graph/@arrows.2" constraints="/2/@constraints.0 /2/@constraints.1 /2/@constraints.2"/>
+      <arrows id="a2c11f6d-7b3e-4eff-ad2b-b639a983b47a" name="ControlOut" source="/2/@graph/@nodes.1" target="/2/@graph/@nodes.0" constraints="/2/@constraints.0 /2/@constraints.2"/>
+      <arrows id="03796061-d6dd-4f17-bd35-4ee8efe7f1ce" name="ControlIn" source="/2/@graph/@nodes.0" target="/2/@graph/@nodes.1" constraints="/2/@constraints.1"/>
+      <arrows id="b650417b-1af8-420d-be8e-acea06a2a9bd" name="NextControl" source="/2/@graph/@nodes.1" target="/2/@graph/@nodes.1" constraints="/2/@constraints.0 /2/@constraints.1"/>
+      <arrows id="0a09b89b-ba4f-4e56-8851-da24bf7b16bf" name="Flow" source="/2/@graph/@nodes.0" target="/2/@graph/@nodes.0"/>
+    </graph>
+    <constraints id="1117cf1f-bf5a-4f5a-8b89-0838cf379cd5" nodes="/2/@graph/@nodes.1 /2/@graph/@nodes.0" arrows="/2/@graph/@arrows.0 /2/@graph/@arrows.2">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7"/>
+      <mappings>
+        <nodeMapping value="/2/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="/2/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="/2/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@nodes.2"/>
+        </nodeMapping>
+        <arrowMapping value="/2/@graph/@arrows.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@arrows.0"/>
+        </arrowMapping>
+        <arrowMapping value="/2/@graph/@arrows.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@arrows.1"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="73e25759-77b1-4d56-8907-66467b751f48" nodes="/2/@graph/@nodes.0 /2/@graph/@nodes.1" arrows="/2/@graph/@arrows.1 /2/@graph/@arrows.2">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.5"/>
+      <mappings>
+        <nodeMapping value="/2/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.5/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="/2/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.5/@shape/@nodes.2"/>
+        </nodeMapping>
+        <nodeMapping value="/2/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.5/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="/2/@graph/@arrows.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.5/@shape/@arrows.1"/>
+        </arrowMapping>
+        <arrowMapping value="/2/@graph/@arrows.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.5/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="f174fb39-1c44-4a88-8dae-130db5e0ed58" nodes="/2/@graph/@nodes.1 /2/@graph/@nodes.0" arrows="/2/@graph/@arrows.0" parameters="min:0;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3"/>
+      <mappings>
+        <nodeMapping value="/2/@graph/@nodes.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="/2/@graph/@nodes.1">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="/2/@graph/@arrows.0">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.3/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+  </core:Specification>
+</xmi:XMI>

@@ -1,0 +1,26 @@
+import dpf;
+extension org::eclipse::xtend::util::stdlib::io;
+packageName(DomainClass d):
+	d.getClassBelongsToArrows().get(0).target.name.replaceAll("\\.", "/") + "/";
+	
+String printArrayImport(DomainClass d):
+	JAVA extensions.TemplateHelper.printArrayImport(no.hib.dpf.core.Node);
+
+getDomainClassAttrRef(List[Attribute] attr, List[Reference] ref):
+	let attrRet = attr.collect(e|getAttr(e)) :
+		attrRet.addAll(ref.collect(e|getRef(e)));
+		
+String getAttr(Attribute a):
+	JAVA extensions.TemplateHelper.getAttr(no.hib.dpf.core.Arrow);
+String getRef(Reference r):
+	JAVA extensions.TemplateHelper.getAttr(no.hib.dpf.core.Arrow);
+	
+String paramList(List[Attribute] attr, List[Reference] ref):
+	JAVA extensions.TemplateHelper.getParamList(java.util.List, java.util.List);
+	
+constructorSetAttributes(List[Attribute] attr, List[Reference] ref):
+	let constructorInitList = attr.collect(e|"this." + e.name + " = " + e.name + ";") :
+		constructorInitList.addAll(ref.collect(e|"this." + e.name + " = " + e.name + ";"));
+
+String printSymbols(Specification spec):
+	JAVA extensions.TemplateHelper.printSymbols(no.hib.dpf.core.Specification);

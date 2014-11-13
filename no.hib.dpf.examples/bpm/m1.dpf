@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://no.hib.dpf.diagram">
+  <diagram:DSpecification dType="/1" gridVisible="false" metaFile="m2.dpf">
+    <dGraph dType="/1/@dGraph">
+      <dNodes dType="/1/@dGraph/@dNodes.0" configureString="" dOutgoings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.3 /0/@dGraph/@dArrows.4" dIncomings="/0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.3 /0/@dGraph/@dArrows.4" dConstraints="/0/@dConstraints.0 /0/@dConstraints.1 /0/@dConstraints.2 /0/@dConstraints.4 /0/@dConstraints.5 /0/@dConstraints.7" location="312 60" size="123 30">
+        <node href="m1.xmi#/0/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.1" configureString="Choice" dOutgoings="/0/@dGraph/@dArrows.2" dIncomings="/0/@dGraph/@dArrows.0" dConstraints="/0/@dConstraints.2 /0/@dConstraints.3 /0/@dConstraints.6 /0/@dConstraints.7" location="176 254" size="100 30">
+        <node href="m1.xmi#/0/@graph/@nodes.1"/>
+      </dNodes>
+      <dNodes dType="/1/@dGraph/@dNodes.1" configureString="Ellipse" dOutgoings="/0/@dGraph/@dArrows.1" dIncomings="/0/@dGraph/@dArrows.2" dConstraints="/0/@dConstraints.3 /0/@dConstraints.4 /0/@dConstraints.5 /0/@dConstraints.6" location="516 254" size="121 30">
+        <node href="m1.xmi#/0/@graph/@nodes.2"/>
+      </dNodes>
+      <dArrows constraintsTo="/0/@dConstraints.7" dType="/1/@dGraph/@dArrows.1" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.1" dConstraints="/0/@dConstraints.2 /0/@dConstraints.7">
+        <arrow href="m1.xmi#/0/@graph/@arrows.0"/>
+        <nameOffset offset="225 52" len="250"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.0" dSource="/0/@dGraph/@dNodes.2" dTarget="/0/@dGraph/@dNodes.0" dConstraints="/0/@dConstraints.4 /0/@dConstraints.5">
+        <arrow href="m1.xmi#/0/@graph/@arrows.1"/>
+        <nameOffset offset="114 -44" len="265"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.2" dSource="/0/@dGraph/@dNodes.1" dTarget="/0/@dGraph/@dNodes.2" dConstraints="/0/@dConstraints.3 /0/@dConstraints.6">
+        <arrow href="m1.xmi#/0/@graph/@arrows.2"/>
+        <nameOffset offset="90 -8" len="340"/>
+      </dArrows>
+      <dArrows constraintsFrom="/0/@dConstraints.7" dType="/1/@dGraph/@dArrows.3" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.0" dConstraints="/0/@dConstraints.0 /0/@dConstraints.7">
+        <arrow href="m1.xmi#/0/@graph/@arrows.3"/>
+        <nameOffset offset="-243 18" len="-152" index="1"/>
+        <bendpoints offset="-48 3" len="30"/>
+        <bendpoints offset="-48 155" len="30" index="1"/>
+        <bendpoints offset="15 158" len="30" index="2"/>
+      </dArrows>
+      <dArrows dType="/1/@dGraph/@dArrows.3" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.0" dConstraints="/0/@dConstraints.1">
+        <arrow href="m1.xmi#/0/@graph/@arrows.4"/>
+        <nameOffset offset="21 -12" len="61" index="2"/>
+        <bendpoints offset="-45 -35" len="30"/>
+        <bendpoints offset="-45 -134" len="30" index="1"/>
+        <bendpoints offset="16 -133" len="30" index="2"/>
+      </dArrows>
+      <graph href="m1.xmi#/0/@graph"/>
+    </dGraph>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0" dArrows="/0/@dGraph/@dArrows.3" source="/0/@dGraph/@dArrows.3">
+      <constraint href="m1.xmi#/0/@constraints.0"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.2"/>
+      <offset offset="-75 -23" len="-63" index="2"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0" dArrows="/0/@dGraph/@dArrows.4" source="/0/@dGraph/@dArrows.4">
+      <constraint href="m1.xmi#/0/@constraints.1"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.2"/>
+      <offset offset="41 18" len="99" index="1"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.1" dArrows="/0/@dGraph/@dArrows.0" source="/0/@dGraph/@dArrows.0">
+      <constraint href="m1.xmi#/0/@constraints.2"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.1"/>
+      <offset offset="169 17" len="250"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.1 /0/@dGraph/@dNodes.2" dArrows="/0/@dGraph/@dArrows.2" source="/0/@dGraph/@dArrows.2">
+      <constraint href="m1.xmi#/0/@constraints.3"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="71 14" len="350"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.2 /0/@dGraph/@dNodes.0" dArrows="/0/@dGraph/@dArrows.1" source="/0/@dGraph/@dArrows.1">
+      <constraint href="m1.xmi#/0/@constraints.4"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="137 -19" len="265"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.2 /0/@dGraph/@dNodes.0" dArrows="/0/@dGraph/@dArrows.1" source="/0/@dGraph/@dArrows.1">
+      <constraint href="m1.xmi#/0/@constraints.5"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.0"/>
+      <offset offset="190 -4" len="265"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.1 /0/@dGraph/@dNodes.2" dArrows="/0/@dGraph/@dArrows.2" source="/0/@dGraph/@dArrows.2">
+      <constraint href="m1.xmi#/0/@constraints.6"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.1"/>
+      <offset offset="226 14" len="350"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.1" dArrows="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.3" source="/0/@dGraph/@dArrows.3" target="/0/@dGraph/@dArrows.0">
+      <constraint href="m1.xmi#/0/@constraints.7"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.8"/>
+    </dConstraints>
+    <specification href="m1.xmi#/0"/>
+  </diagram:DSpecification>
+  <diagram:DSpecification gridVisible="false">
+    <dGraph>
+      <dNodes dOutgoings="/1/@dGraph/@dArrows.1 /1/@dGraph/@dArrows.3" dIncomings="/1/@dGraph/@dArrows.0 /1/@dGraph/@dArrows.3" dConstraints="/1/@dConstraints.0 /1/@dConstraints.1 /1/@dConstraints.2" location="70 149" size="100 30">
+        <node href="m1.xmi#/1/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dOutgoings="/1/@dGraph/@dArrows.0 /1/@dGraph/@dArrows.2" dIncomings="/1/@dGraph/@dArrows.1 /1/@dGraph/@dArrows.2" dConstraints="/1/@dConstraints.0 /1/@dConstraints.1 /1/@dConstraints.2" location="396 149" size="100 30">
+        <node href="m1.xmi#/1/@graph/@nodes.1"/>
+      </dNodes>
+      <dArrows constraintsTo="/1/@dConstraints.0" dSource="/1/@dGraph/@dNodes.1" dTarget="/1/@dGraph/@dNodes.0" dConstraints="/1/@dConstraints.0 /1/@dConstraints.2">
+        <arrow href="m1.xmi#/1/@graph/@arrows.0"/>
+        <nameOffset offset="35 42" len="99" index="1"/>
+        <bendpoints offset="183 43" len="326"/>
+      </dArrows>
+      <dArrows constraintsTo="/1/@dConstraints.1" dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.1" dConstraints="/1/@dConstraints.1">
+        <arrow href="m1.xmi#/1/@graph/@arrows.1"/>
+        <nameOffset offset="67 15" len="107"/>
+        <bendpoints offset="154 33" len="326"/>
+      </dArrows>
+      <dArrows constraintsFrom="/1/@dConstraints.0 /1/@dConstraints.1" dSource="/1/@dGraph/@dNodes.1" dTarget="/1/@dGraph/@dNodes.1" dConstraints="/1/@dConstraints.0 /1/@dConstraints.1">
+        <arrow href="m1.xmi#/1/@graph/@arrows.2"/>
+        <nameOffset offset="118 -57" len="43" index="4"/>
+        <bendpoints offset="-54 41" len="30"/>
+        <bendpoints offset="-57 -79" len="30"/>
+        <bendpoints offset="59 -87" len="30"/>
+        <bendpoints offset="71 18" len="30"/>
+      </dArrows>
+      <dArrows dSource="/1/@dGraph/@dNodes.0" dTarget="/1/@dGraph/@dNodes.0">
+        <arrow href="m1.xmi#/1/@graph/@arrows.3"/>
+        <nameOffset offset="65 -89" len="15" index="4"/>
+        <bendpoints offset="-15 0" len="30"/>
+        <bendpoints offset="-15 100" len="30"/>
+        <bendpoints offset="45 100" len="30"/>
+        <bendpoints offset="45 0" len="30"/>
+      </dArrows>
+      <graph href="m1.xmi#/1/@graph"/>
+    </dGraph>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="/1/@dGraph/@dNodes.1 /1/@dGraph/@dNodes.0" dArrows="/1/@dGraph/@dArrows.0 /1/@dGraph/@dArrows.2" source="/1/@dGraph/@dArrows.2" target="/1/@dGraph/@dArrows.0">
+      <constraint href="m1.xmi#/1/@constraints.0"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.7"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="/1/@dGraph/@dNodes.0 /1/@dGraph/@dNodes.1" dArrows="/1/@dGraph/@dArrows.1 /1/@dGraph/@dArrows.2" source="/1/@dGraph/@dArrows.2" target="/1/@dGraph/@dArrows.1">
+      <constraint href="m1.xmi#/1/@constraints.1"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.5"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/1/@dGraph/@dNodes.1 /1/@dGraph/@dNodes.0" dArrows="/1/@dGraph/@dArrows.0" source="/1/@dGraph/@dArrows.0">
+      <constraint href="m1.xmi#/1/@constraints.2"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+      <offset offset="72 39" len="99" index="1"/>
+    </dConstraints>
+    <specification href="m1.xmi#/1"/>
+  </diagram:DSpecification>
+</xmi:XMI>

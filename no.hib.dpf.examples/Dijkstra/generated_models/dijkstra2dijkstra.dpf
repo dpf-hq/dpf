@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram">
+  <diagram:DSpecification gridVisible="false" dSignature="/1">
+    <dGraph>
+      <dNodes dOutgoings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.2 /0/@dGraph/@dArrows.3 /0/@dGraph/@dArrows.4 /0/@dGraph/@dArrows.5 /0/@dGraph/@dArrows.6 /0/@dGraph/@dArrows.7 /0/@dGraph/@dArrows.8 /0/@dGraph/@dArrows.9 /0/@dGraph/@dArrows.10 /0/@dGraph/@dArrows.11 /0/@dGraph/@dArrows.12 /0/@dGraph/@dArrows.13 /0/@dGraph/@dArrows.14 /0/@dGraph/@dArrows.15 /0/@dGraph/@dArrows.16 /0/@dGraph/@dArrows.17 /0/@dGraph/@dArrows.18 /0/@dGraph/@dArrows.19 /0/@dGraph/@dArrows.20 /0/@dGraph/@dArrows.21 /0/@dGraph/@dArrows.22 /0/@dGraph/@dArrows.23 /0/@dGraph/@dArrows.24 /0/@dGraph/@dArrows.25 /0/@dGraph/@dArrows.26 /0/@dGraph/@dArrows.27 /0/@dGraph/@dArrows.28 /0/@dGraph/@dArrows.29 /0/@dGraph/@dArrows.30 /0/@dGraph/@dArrows.31 /0/@dGraph/@dArrows.32 /0/@dGraph/@dArrows.33" location="640 147" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.0"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.17" location="132 165" size="85 37">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.1"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.18" location="336 60" size="100 30">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.2"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.2 /0/@dGraph/@dArrows.19" location="336 169" size="100 30">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.3"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.3 /0/@dGraph/@dArrows.20" location="336 264" size="100 30">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.4"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.4 /0/@dGraph/@dArrows.21" location="540 169" size="100 30">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.5"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.5 /0/@dGraph/@dArrows.22" location="132 165" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.6"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.6 /0/@dGraph/@dArrows.23" location="132 165" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.7"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.7 /0/@dGraph/@dArrows.24" location="132 165" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.8"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.8 /0/@dGraph/@dArrows.25" location="132 165" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.9"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.9 /0/@dGraph/@dArrows.26" location="132 165" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.10"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.10 /0/@dGraph/@dArrows.27" location="132 165" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.11"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.11 /0/@dGraph/@dArrows.28" location="234 112" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.12"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.12 /0/@dGraph/@dArrows.29" location="234 167" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.13"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.13 /0/@dGraph/@dArrows.30" location="234 214" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.14"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.14 /0/@dGraph/@dArrows.31" location="438 216" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.15"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.15 /0/@dGraph/@dArrows.32" location="438 114" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.16"/>
+      </dNodes>
+      <dNodes dIncomings="/0/@dGraph/@dArrows.16 /0/@dGraph/@dArrows.33" location="438 169" size="100 50">
+        <node href="dijkstra2dijkstra.xmi#/0/@graph/@nodes.17"/>
+      </dNodes>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.1">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.0"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.2">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.1"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.3">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.2"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.4">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.3"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.5">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.4"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.6">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.5"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.7">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.6"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.8">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.7"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.9">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.8"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.10">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.9"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.11">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.10"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.12">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.11"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.13">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.12"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.14">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.13"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.15">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.14"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.16">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.15"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.17">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.16"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.1">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.17"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.2">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.18"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.3">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.19"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.4">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.20"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.5">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.21"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.6">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.22"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.7">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.23"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.8">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.24"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.9">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.25"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.10">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.26"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.11">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.27"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.12">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.28"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.13">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.29"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.14">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.30"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.15">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.31"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.16">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.32"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.17">
+        <arrow href="dijkstra2dijkstra.xmi#/0/@graph/@arrows.33"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <graph href="dijkstra2dijkstra.xmi#/0/@graph"/>
+    </dGraph>
+    <specification href="dijkstra2dijkstra.xmi#/0"/>
+  </diagram:DSpecification>
+  <diagram:DSignature>
+    <signature href="dijkstra2dijkstra.xmi#/1"/>
+  </diagram:DSignature>
+</xmi:XMI>

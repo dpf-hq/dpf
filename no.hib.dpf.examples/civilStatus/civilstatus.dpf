@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false">
+  <dGraph>
+    <dNodes dOutgoings="//@dGraph/@dArrows.0 //@dGraph/@dArrows.1 //@dGraph/@dArrows.2 //@dGraph/@dArrows.3" dIncomings="//@dGraph/@dArrows.0 //@dGraph/@dArrows.1" location="163 109" size="100 30">
+      <node href="civilstatus.xmi#//@graph/@nodes.0"/>
+    </dNodes>
+    <dNodes dOutgoings="//@dGraph/@dArrows.4 //@dGraph/@dArrows.5 //@dGraph/@dArrows.6 //@dGraph/@dArrows.7" dIncomings="//@dGraph/@dArrows.2" location="383 90" size="100 30">
+      <node href="civilstatus.xmi#//@graph/@nodes.1"/>
+    </dNodes>
+    <dNodes dOutgoings="//@dGraph/@dArrows.8 //@dGraph/@dArrows.9" dIncomings="//@dGraph/@dArrows.3" location="360 240" size="100 30">
+      <node href="civilstatus.xmi#//@graph/@nodes.2"/>
+    </dNodes>
+    <dNodes dIncomings="//@dGraph/@dArrows.4" location="573 18" size="100 30">
+      <node href="civilstatus.xmi#//@graph/@nodes.3"/>
+    </dNodes>
+    <dNodes dIncomings="//@dGraph/@dArrows.5" location="577 85" size="100 30">
+      <node href="civilstatus.xmi#//@graph/@nodes.4"/>
+    </dNodes>
+    <dNodes dIncomings="//@dGraph/@dArrows.6" location="575 137" size="100 30">
+      <node href="civilstatus.xmi#//@graph/@nodes.5"/>
+    </dNodes>
+    <dNodes dIncomings="//@dGraph/@dArrows.7" location="579 183" size="100 30">
+      <node href="civilstatus.xmi#//@graph/@nodes.6"/>
+    </dNodes>
+    <dNodes dIncomings="//@dGraph/@dArrows.9" location="352 329" size="100 30">
+      <node href="civilstatus.xmi#//@graph/@nodes.7"/>
+    </dNodes>
+    <dNodes dIncomings="//@dGraph/@dArrows.8" location="483 281" size="100 30">
+      <node href="civilstatus.xmi#//@graph/@nodes.8"/>
+    </dNodes>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0">
+      <arrow href="civilstatus.xmi#//@graph/@arrows.0"/>
+      <nameOffset offset="-59 -21" len="-100" index="1"/>
+      <bendpoints offset="-15 0" len="30"/>
+      <bendpoints offset="-15 100" len="30"/>
+      <bendpoints offset="45 100" len="30"/>
+      <bendpoints offset="45 0" len="30"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0">
+      <arrow href="civilstatus.xmi#//@graph/@arrows.1"/>
+      <nameOffset offset="-116 -17" len="-59" index="2"/>
+      <bendpoints offset="94 -41" len="30"/>
+      <bendpoints offset="144 30" len="30" index="1"/>
+      <bendpoints offset="115 82" len="30" index="2"/>
+      <bendpoints offset="45 0" len="30"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.1">
+      <arrow href="civilstatus.xmi#//@graph/@arrows.2"/>
+      <nameOffset offset="86 -33" len="220"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.2">
+      <arrow href="civilstatus.xmi#//@graph/@arrows.3"/>
+      <nameOffset offset="87 26" len="248"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.1" dTarget="//@dGraph/@dNodes.3">
+      <arrow href="civilstatus.xmi#//@graph/@arrows.4"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.1" dTarget="//@dGraph/@dNodes.4">
+      <arrow href="civilstatus.xmi#//@graph/@arrows.5"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.1" dTarget="//@dGraph/@dNodes.5">
+      <arrow href="civilstatus.xmi#//@graph/@arrows.6"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.1" dTarget="//@dGraph/@dNodes.6">
+      <arrow href="civilstatus.xmi#//@graph/@arrows.7"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.2" dTarget="//@dGraph/@dNodes.8">
+      <arrow href="civilstatus.xmi#//@graph/@arrows.8"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.2" dTarget="//@dGraph/@dNodes.7">
+      <arrow href="civilstatus.xmi#//@graph/@arrows.9"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <graph href="civilstatus.xmi#//@graph"/>
+  </dGraph>
+  <specification href="civilstatus.xmi#/"/>
+</diagram:DSpecification>

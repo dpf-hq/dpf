@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false">
+  <dGraph>
+    <dNodes dOutgoings="//@dGraph/@dArrows.0" dIncomings="//@dGraph/@dArrows.0" location="307 136" size="100 30">
+      <node href="mm.xmi#//@graph/@nodes.0"/>
+    </dNodes>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0">
+      <arrow href="mm.xmi#//@graph/@arrows.0"/>
+      <nameOffset offset="10 -3" len="16"/>
+      <bendpoints offset="-15 0" len="30"/>
+      <bendpoints offset="-15 100" len="30"/>
+      <bendpoints offset="45 100" len="30"/>
+      <bendpoints offset="45 0" len="30"/>
+    </dArrows>
+    <graph href="mm.xmi#//@graph"/>
+  </dGraph>
+  <specification href="mm.xmi#/"/>
+</diagram:DSpecification>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <graph id="0d16b3c5-04b1-45eb-a2e2-d3aa1e684e17">
+    <nodes id="fbae44d8-b0d9-45c1-af91-ddbcd0e85850" name="Person" outgoings="//@graph/@arrows.0 //@graph/@arrows.1 //@graph/@arrows.2 //@graph/@arrows.3" incomings="//@graph/@arrows.0 //@graph/@arrows.1"/>
+    <nodes id="830a24c5-463a-451b-8bad-bfb33a768332" name="CivilStatus" outgoings="//@graph/@arrows.4 //@graph/@arrows.5 //@graph/@arrows.6 //@graph/@arrows.7" incomings="//@graph/@arrows.2"/>
+    <nodes id="2e08b79f-4323-47a1-80e4-116968752b6c" name="Gender" outgoings="//@graph/@arrows.8 //@graph/@arrows.9" incomings="//@graph/@arrows.3"/>
+    <nodes id="1edda71b-63a6-487a-853a-29929b7691f4" name="single" incomings="//@graph/@arrows.4"/>
+    <nodes id="225facbb-1e1d-4dc3-bb16-37510320c886" name="married" incomings="//@graph/@arrows.5"/>
+    <nodes id="2f7d59ec-ef16-45ea-a711-6a719ef450e0" name="divorced" incomings="//@graph/@arrows.6"/>
+    <nodes id="26e4b652-3c37-45e0-93bc-a7cee25b0929" name="widowed" incomings="//@graph/@arrows.7"/>
+    <nodes id="689d0122-dcb6-4c5b-89b0-587080a7858a" name="male" incomings="//@graph/@arrows.9"/>
+    <nodes id="1d748765-d765-48cf-aed2-3ec2999d9b77" name="female" incomings="//@graph/@arrows.8"/>
+    <arrows id="05296bc0-7711-4cad-bc2a-626112129bad" name="wife" source="//@graph/@nodes.0" target="//@graph/@nodes.0"/>
+    <arrows id="991b1221-fe26-4d1e-9a6e-3d8e441f6668" name="husband" source="//@graph/@nodes.0" target="//@graph/@nodes.0"/>
+    <arrows id="83ab102e-0d58-4cc2-9349-674fa50aae77" name="civstat" source="//@graph/@nodes.0" target="//@graph/@nodes.1"/>
+    <arrows id="50009c8d-8af5-4ecd-af7a-363aa500a098" name="gender" source="//@graph/@nodes.0" target="//@graph/@nodes.2"/>
+    <arrows id="a1dda7de-3722-4ead-bab5-60e237275675" name="Arrow0" source="//@graph/@nodes.1" target="//@graph/@nodes.3"/>
+    <arrows id="7c1d8ce3-c269-4634-ba78-8281070a9375" name="Arrow1" source="//@graph/@nodes.1" target="//@graph/@nodes.4"/>
+    <arrows id="6383e9c7-89db-4bfe-b078-91e3fe1ba4dd" name="Arrow2" source="//@graph/@nodes.1" target="//@graph/@nodes.5"/>
+    <arrows id="953aea46-adbc-4193-ace6-bb1205a16bca" name="Arrow3" source="//@graph/@nodes.1" target="//@graph/@nodes.6"/>
+    <arrows id="a1ddcbfe-4d90-4568-9493-673dfd02415a" name="Arrow4" source="//@graph/@nodes.2" target="//@graph/@nodes.8"/>
+    <arrows id="f4667c91-debb-4d84-944c-05ff6577829f" name="Arrow5" source="//@graph/@nodes.2" target="//@graph/@nodes.7"/>
+  </graph>
+</core:Specification>

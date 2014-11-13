@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <graph id="b8039467-b117-40f4-869d-46ad6da71767">
+    <nodes id="fea1f861-f84c-484d-ac92-dec72f2aa3b7" name="Element" outgoings="//@graph/@arrows.0 //@graph/@arrows.2" incomings="//@graph/@arrows.2 //@graph/@arrows.3" constraints="//@constraints.0 //@constraints.1"/>
+    <nodes id="fdc8ece4-f772-4253-af7b-d21a986f2c18" name="Control" outgoings="//@graph/@arrows.1 //@graph/@arrows.3" incomings="//@graph/@arrows.0 //@graph/@arrows.1" constraints="//@constraints.0 //@constraints.1"/>
+    <arrows id="03796061-d6dd-4f17-bd35-4ee8efe7f1ce" name="ControlIn" source="//@graph/@nodes.0" target="//@graph/@nodes.1" constraints="//@constraints.0"/>
+    <arrows id="b650417b-1af8-420d-be8e-acea06a2a9bd" name="NextControl" source="//@graph/@nodes.1" target="//@graph/@nodes.1" constraints="//@constraints.0 //@constraints.1"/>
+    <arrows id="0a09b89b-ba4f-4e56-8851-da24bf7b16bf" name="Flow" source="//@graph/@nodes.0" target="//@graph/@nodes.0"/>
+    <arrows id="f6ea3a76-bc3c-455a-8ed1-3961b9b3e4a2" name="ControlOut" source="//@graph/@nodes.1" target="//@graph/@nodes.0" constraints="//@constraints.1"/>
+  </graph>
+  <constraints id="73e25759-77b1-4d56-8907-66467b751f48" nodes="//@graph/@nodes.0 //@graph/@nodes.1" arrows="//@graph/@arrows.0 //@graph/@arrows.1">
+    <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.5"/>
+    <mappings>
+      <nodeMapping value="//@graph/@nodes.0">
+        <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.5/@shape/@nodes.1"/>
+      </nodeMapping>
+      <nodeMapping value="//@graph/@nodes.1">
+        <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.5/@shape/@nodes.2"/>
+      </nodeMapping>
+      <nodeMapping value="//@graph/@nodes.1">
+        <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.5/@shape/@nodes.0"/>
+      </nodeMapping>
+      <arrowMapping value="//@graph/@arrows.1">
+        <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.5/@shape/@arrows.1"/>
+      </arrowMapping>
+      <arrowMapping value="//@graph/@arrows.0">
+        <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.5/@shape/@arrows.0"/>
+      </arrowMapping>
+    </mappings>
+  </constraints>
+  <constraints id="58351c3a-bb69-4c9e-a0db-59e0fbbaa3fc" nodes="//@graph/@nodes.1 //@graph/@nodes.0" arrows="//@graph/@arrows.3 //@graph/@arrows.1">
+    <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7"/>
+    <mappings>
+      <nodeMapping value="//@graph/@nodes.0">
+        <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@nodes.1"/>
+      </nodeMapping>
+      <nodeMapping value="//@graph/@nodes.1">
+        <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@nodes.0"/>
+      </nodeMapping>
+      <nodeMapping value="//@graph/@nodes.1">
+        <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@nodes.2"/>
+      </nodeMapping>
+      <arrowMapping value="//@graph/@arrows.3">
+        <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@arrows.1"/>
+      </arrowMapping>
+      <arrowMapping value="//@graph/@arrows.1">
+        <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@arrows.0"/>
+      </arrowMapping>
+    </mappings>
+  </constraints>
+</core:Specification>

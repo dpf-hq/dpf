@@ -1,0 +1,1124 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core" xmlns:transform="http://no.hib.dpf.transform">
+  <transform:Transform>
+    <rules leftNodes="/0/@rules.0/@sum/@dGraph/@dNodes.0 /0/@rules.0/@sum/@dGraph/@dNodes.2 /0/@rules.0/@sum/@dGraph/@dNodes.3 /0/@rules.0/@sum/@dGraph/@dNodes.4 /0/@rules.0/@sum/@dGraph/@dNodes.5 /0/@rules.0/@sum/@dGraph/@dNodes.6" rightNodes="/0/@rules.0/@sum/@dGraph/@dNodes.1 /0/@rules.0/@sum/@dGraph/@dNodes.0 /0/@rules.0/@sum/@dGraph/@dNodes.2 /0/@rules.0/@sum/@dGraph/@dNodes.3 /0/@rules.0/@sum/@dGraph/@dNodes.4 /0/@rules.0/@sum/@dGraph/@dNodes.5 /0/@rules.0/@sum/@dGraph/@dNodes.6" rightArrows="/0/@rules.0/@sum/@dGraph/@dArrows.0 /0/@rules.0/@sum/@dGraph/@dArrows.4 /0/@rules.0/@sum/@dGraph/@dArrows.7 /0/@rules.0/@sum/@dGraph/@dArrows.9 /0/@rules.0/@sum/@dGraph/@dArrows.1 /0/@rules.0/@sum/@dGraph/@dArrows.2 /0/@rules.0/@sum/@dGraph/@dArrows.3 /0/@rules.0/@sum/@dGraph/@dArrows.5 /0/@rules.0/@sum/@dGraph/@dArrows.8 /0/@rules.0/@sum/@dGraph/@dArrows.10 /0/@rules.0/@sum/@dGraph/@dArrows.12 /0/@rules.0/@sum/@dGraph/@dArrows.13" leftArrows="/0/@rules.0/@sum/@dGraph/@dArrows.6 /0/@rules.0/@sum/@dGraph/@dArrows.11 /0/@rules.0/@sum/@dGraph/@dArrows.1 /0/@rules.0/@sum/@dGraph/@dArrows.2 /0/@rules.0/@sum/@dGraph/@dArrows.3 /0/@rules.0/@sum/@dGraph/@dArrows.5 /0/@rules.0/@sum/@dGraph/@dArrows.8 /0/@rules.0/@sum/@dGraph/@dArrows.10 /0/@rules.0/@sum/@dGraph/@dArrows.12 /0/@rules.0/@sum/@dGraph/@dArrows.13" commonNodes="/0/@rules.0/@sum/@dGraph/@dNodes.0 /0/@rules.0/@sum/@dGraph/@dNodes.2 /0/@rules.0/@sum/@dGraph/@dNodes.3 /0/@rules.0/@sum/@dGraph/@dNodes.4 /0/@rules.0/@sum/@dGraph/@dNodes.5 /0/@rules.0/@sum/@dGraph/@dNodes.6" commonArrows="/0/@rules.0/@sum/@dGraph/@dArrows.1 /0/@rules.0/@sum/@dGraph/@dArrows.2 /0/@rules.0/@sum/@dGraph/@dArrows.3 /0/@rules.0/@sum/@dGraph/@dArrows.5 /0/@rules.0/@sum/@dGraph/@dArrows.8 /0/@rules.0/@sum/@dGraph/@dArrows.10 /0/@rules.0/@sum/@dGraph/@dArrows.12 /0/@rules.0/@sum/@dGraph/@dArrows.13" name="//mulitplicity on PF1:P->F1[0,1] violated by setFlag">
+      <sum specification="/1" gridVisible="false">
+        <dType href="dijkstra.dpf#/"/>
+        <dGraph graph="/1/@graph">
+          <dType href="dijkstra.dpf#//@dGraph"/>
+          <dNodes node="/1/@graph/@nodes.0" dOutgoings="/0/@rules.0/@sum/@dGraph/@dArrows.5" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.8" location="100 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.3"/>
+          </dNodes>
+          <dNodes node="/1/@graph/@nodes.1" dOutgoings="/0/@rules.0/@sum/@dGraph/@dArrows.4" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.7" location="300 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.3"/>
+          </dNodes>
+          <dNodes node="/1/@graph/@nodes.2" dOutgoings="/0/@rules.0/@sum/@dGraph/@dArrows.2 /0/@rules.0/@sum/@dGraph/@dArrows.10" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.2 /0/@rules.0/@sum/@dGraph/@dArrows.10" location="500 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/1/@graph/@nodes.3" dOutgoings="/0/@rules.0/@sum/@dGraph/@dArrows.1 /0/@rules.0/@sum/@dGraph/@dArrows.3" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.1 /0/@rules.0/@sum/@dGraph/@dArrows.3" location="100 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/1/@graph/@nodes.4" dOutgoings="/0/@rules.0/@sum/@dGraph/@dArrows.0 /0/@rules.0/@sum/@dGraph/@dArrows.6 /0/@rules.0/@sum/@dGraph/@dArrows.7 /0/@rules.0/@sum/@dGraph/@dArrows.8 /0/@rules.0/@sum/@dGraph/@dArrows.9 /0/@rules.0/@sum/@dGraph/@dArrows.11" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.0 /0/@rules.0/@sum/@dGraph/@dArrows.6 /0/@rules.0/@sum/@dGraph/@dArrows.9 /0/@rules.0/@sum/@dGraph/@dArrows.11 /0/@rules.0/@sum/@dGraph/@dArrows.12" location="300 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/1/@graph/@nodes.5" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.4 /0/@rules.0/@sum/@dGraph/@dArrows.5 /0/@rules.0/@sum/@dGraph/@dArrows.13" location="500 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/1/@graph/@nodes.6" dOutgoings="/0/@rules.0/@sum/@dGraph/@dArrows.12 /0/@rules.0/@sum/@dGraph/@dArrows.13" location="100 150" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/1/@graph/@arrows.0" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.1" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.2" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.3" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.4"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.4" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.5">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.11"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.5" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.5">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.11"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.6" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.7" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.1">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.7"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.8" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.0">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.7"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.9" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.2"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.10" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.2"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.11" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.3"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.12" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/1/@graph/@arrows.13" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.5">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.9"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules leftNodes="/0/@rules.1/@sum/@dGraph/@dNodes.1 /0/@rules.1/@sum/@dGraph/@dNodes.2 /0/@rules.1/@sum/@dGraph/@dNodes.3 /0/@rules.1/@sum/@dGraph/@dNodes.4 /0/@rules.1/@sum/@dGraph/@dNodes.5 /0/@rules.1/@sum/@dGraph/@dNodes.6" rightNodes="/0/@rules.1/@sum/@dGraph/@dNodes.0 /0/@rules.1/@sum/@dGraph/@dNodes.1 /0/@rules.1/@sum/@dGraph/@dNodes.2 /0/@rules.1/@sum/@dGraph/@dNodes.3 /0/@rules.1/@sum/@dGraph/@dNodes.4 /0/@rules.1/@sum/@dGraph/@dNodes.5 /0/@rules.1/@sum/@dGraph/@dNodes.6" rightArrows="/0/@rules.1/@sum/@dGraph/@dArrows.0 /0/@rules.1/@sum/@dGraph/@dArrows.5 /0/@rules.1/@sum/@dGraph/@dArrows.8 /0/@rules.1/@sum/@dGraph/@dArrows.10 /0/@rules.1/@sum/@dGraph/@dArrows.1 /0/@rules.1/@sum/@dGraph/@dArrows.2 /0/@rules.1/@sum/@dGraph/@dArrows.3 /0/@rules.1/@sum/@dGraph/@dArrows.4 /0/@rules.1/@sum/@dGraph/@dArrows.6 /0/@rules.1/@sum/@dGraph/@dArrows.9 /0/@rules.1/@sum/@dGraph/@dArrows.12 /0/@rules.1/@sum/@dGraph/@dArrows.13" leftArrows="/0/@rules.1/@sum/@dGraph/@dArrows.7 /0/@rules.1/@sum/@dGraph/@dArrows.11 /0/@rules.1/@sum/@dGraph/@dArrows.1 /0/@rules.1/@sum/@dGraph/@dArrows.2 /0/@rules.1/@sum/@dGraph/@dArrows.3 /0/@rules.1/@sum/@dGraph/@dArrows.4 /0/@rules.1/@sum/@dGraph/@dArrows.6 /0/@rules.1/@sum/@dGraph/@dArrows.9 /0/@rules.1/@sum/@dGraph/@dArrows.12 /0/@rules.1/@sum/@dGraph/@dArrows.13" commonNodes="/0/@rules.1/@sum/@dGraph/@dNodes.1 /0/@rules.1/@sum/@dGraph/@dNodes.2 /0/@rules.1/@sum/@dGraph/@dNodes.3 /0/@rules.1/@sum/@dGraph/@dNodes.4 /0/@rules.1/@sum/@dGraph/@dNodes.5 /0/@rules.1/@sum/@dGraph/@dNodes.6" commonArrows="/0/@rules.1/@sum/@dGraph/@dArrows.1 /0/@rules.1/@sum/@dGraph/@dArrows.2 /0/@rules.1/@sum/@dGraph/@dArrows.3 /0/@rules.1/@sum/@dGraph/@dArrows.4 /0/@rules.1/@sum/@dGraph/@dArrows.6 /0/@rules.1/@sum/@dGraph/@dArrows.9 /0/@rules.1/@sum/@dGraph/@dArrows.12 /0/@rules.1/@sum/@dGraph/@dArrows.13" name="//NAND constraint between F1R:F1->R and F2R:F2->R violated by setFlag">
+      <sum specification="/2" gridVisible="false">
+        <dType href="dijkstra.dpf#/"/>
+        <dGraph graph="/2/@graph">
+          <dType href="dijkstra.dpf#//@dGraph"/>
+          <dNodes node="/2/@graph/@nodes.0" dOutgoings="/0/@rules.1/@sum/@dGraph/@dArrows.5" dIncomings="/0/@rules.1/@sum/@dGraph/@dArrows.8" location="100 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.3"/>
+          </dNodes>
+          <dNodes node="/2/@graph/@nodes.1" dOutgoings="/0/@rules.1/@sum/@dGraph/@dArrows.6" dIncomings="/0/@rules.1/@sum/@dGraph/@dArrows.9" location="300 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.2"/>
+          </dNodes>
+          <dNodes node="/2/@graph/@nodes.2" dOutgoings="/0/@rules.1/@sum/@dGraph/@dArrows.2 /0/@rules.1/@sum/@dGraph/@dArrows.4" dIncomings="/0/@rules.1/@sum/@dGraph/@dArrows.2 /0/@rules.1/@sum/@dGraph/@dArrows.4" location="500 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/2/@graph/@nodes.3" dOutgoings="/0/@rules.1/@sum/@dGraph/@dArrows.1 /0/@rules.1/@sum/@dGraph/@dArrows.3" dIncomings="/0/@rules.1/@sum/@dGraph/@dArrows.1 /0/@rules.1/@sum/@dGraph/@dArrows.3" location="100 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/2/@graph/@nodes.4" dOutgoings="/0/@rules.1/@sum/@dGraph/@dArrows.0 /0/@rules.1/@sum/@dGraph/@dArrows.7 /0/@rules.1/@sum/@dGraph/@dArrows.8 /0/@rules.1/@sum/@dGraph/@dArrows.9 /0/@rules.1/@sum/@dGraph/@dArrows.10 /0/@rules.1/@sum/@dGraph/@dArrows.11" dIncomings="/0/@rules.1/@sum/@dGraph/@dArrows.0 /0/@rules.1/@sum/@dGraph/@dArrows.7 /0/@rules.1/@sum/@dGraph/@dArrows.10 /0/@rules.1/@sum/@dGraph/@dArrows.11 /0/@rules.1/@sum/@dGraph/@dArrows.12" location="300 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/2/@graph/@nodes.5" dIncomings="/0/@rules.1/@sum/@dGraph/@dArrows.5 /0/@rules.1/@sum/@dGraph/@dArrows.6 /0/@rules.1/@sum/@dGraph/@dArrows.13" location="500 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/2/@graph/@nodes.6" dOutgoings="/0/@rules.1/@sum/@dGraph/@dArrows.12 /0/@rules.1/@sum/@dGraph/@dArrows.13" location="100 150" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/2/@graph/@arrows.0" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.1" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.2" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.3" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.4"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.4" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.4"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.5" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.5">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.11"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.6" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.5">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.10"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.7" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.8" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.0">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.7"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.9" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.1">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.6"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.10" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.2"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.11" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.3"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.12" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/2/@graph/@arrows.13" dSource="/0/@rules.1/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.1/@sum/@dGraph/@dNodes.5">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.9"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules leftNodes="/0/@rules.2/@sum/@dGraph/@dNodes.1 /0/@rules.2/@sum/@dGraph/@dNodes.2 /0/@rules.2/@sum/@dGraph/@dNodes.3 /0/@rules.2/@sum/@dGraph/@dNodes.4 /0/@rules.2/@sum/@dGraph/@dNodes.5 /0/@rules.2/@sum/@dGraph/@dNodes.6" rightNodes="/0/@rules.2/@sum/@dGraph/@dNodes.0 /0/@rules.2/@sum/@dGraph/@dNodes.1 /0/@rules.2/@sum/@dGraph/@dNodes.2 /0/@rules.2/@sum/@dGraph/@dNodes.3 /0/@rules.2/@sum/@dGraph/@dNodes.4 /0/@rules.2/@sum/@dGraph/@dNodes.5 /0/@rules.2/@sum/@dGraph/@dNodes.6" rightArrows="/0/@rules.2/@sum/@dGraph/@dArrows.0 /0/@rules.2/@sum/@dGraph/@dArrows.3 /0/@rules.2/@sum/@dGraph/@dArrows.6 /0/@rules.2/@sum/@dGraph/@dArrows.8 /0/@rules.2/@sum/@dGraph/@dArrows.1 /0/@rules.2/@sum/@dGraph/@dArrows.2 /0/@rules.2/@sum/@dGraph/@dArrows.4 /0/@rules.2/@sum/@dGraph/@dArrows.7 /0/@rules.2/@sum/@dGraph/@dArrows.10 /0/@rules.2/@sum/@dGraph/@dArrows.11 /0/@rules.2/@sum/@dGraph/@dArrows.12 /0/@rules.2/@sum/@dGraph/@dArrows.13" leftArrows="/0/@rules.2/@sum/@dGraph/@dArrows.5 /0/@rules.2/@sum/@dGraph/@dArrows.9 /0/@rules.2/@sum/@dGraph/@dArrows.1 /0/@rules.2/@sum/@dGraph/@dArrows.2 /0/@rules.2/@sum/@dGraph/@dArrows.4 /0/@rules.2/@sum/@dGraph/@dArrows.7 /0/@rules.2/@sum/@dGraph/@dArrows.10 /0/@rules.2/@sum/@dGraph/@dArrows.11 /0/@rules.2/@sum/@dGraph/@dArrows.12 /0/@rules.2/@sum/@dGraph/@dArrows.13" commonNodes="/0/@rules.2/@sum/@dGraph/@dNodes.1 /0/@rules.2/@sum/@dGraph/@dNodes.2 /0/@rules.2/@sum/@dGraph/@dNodes.3 /0/@rules.2/@sum/@dGraph/@dNodes.4 /0/@rules.2/@sum/@dGraph/@dNodes.5 /0/@rules.2/@sum/@dGraph/@dNodes.6" commonArrows="/0/@rules.2/@sum/@dGraph/@dArrows.1 /0/@rules.2/@sum/@dGraph/@dArrows.2 /0/@rules.2/@sum/@dGraph/@dArrows.4 /0/@rules.2/@sum/@dGraph/@dArrows.7 /0/@rules.2/@sum/@dGraph/@dArrows.10 /0/@rules.2/@sum/@dGraph/@dArrows.11 /0/@rules.2/@sum/@dGraph/@dArrows.12 /0/@rules.2/@sum/@dGraph/@dArrows.13" name="//NAND constraint between PF2:P->F2 and PF1:P->F1 violated by setFlag">
+      <sum specification="/3" gridVisible="false">
+        <dType href="dijkstra.dpf#/"/>
+        <dGraph graph="/3/@graph">
+          <dType href="dijkstra.dpf#//@dGraph"/>
+          <dNodes node="/3/@graph/@nodes.0" dOutgoings="/0/@rules.2/@sum/@dGraph/@dArrows.3" dIncomings="/0/@rules.2/@sum/@dGraph/@dArrows.6" location="100 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.3"/>
+          </dNodes>
+          <dNodes node="/3/@graph/@nodes.1" dOutgoings="/0/@rules.2/@sum/@dGraph/@dArrows.4" dIncomings="/0/@rules.2/@sum/@dGraph/@dArrows.7" location="300 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.2"/>
+          </dNodes>
+          <dNodes node="/3/@graph/@nodes.2" dOutgoings="/0/@rules.2/@sum/@dGraph/@dArrows.2 /0/@rules.2/@sum/@dGraph/@dArrows.11" dIncomings="/0/@rules.2/@sum/@dGraph/@dArrows.2 /0/@rules.2/@sum/@dGraph/@dArrows.11" location="500 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/3/@graph/@nodes.3" dOutgoings="/0/@rules.2/@sum/@dGraph/@dArrows.1 /0/@rules.2/@sum/@dGraph/@dArrows.10" dIncomings="/0/@rules.2/@sum/@dGraph/@dArrows.1 /0/@rules.2/@sum/@dGraph/@dArrows.10 /0/@rules.2/@sum/@dGraph/@dArrows.12" location="100 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/3/@graph/@nodes.4" dOutgoings="/0/@rules.2/@sum/@dGraph/@dArrows.0 /0/@rules.2/@sum/@dGraph/@dArrows.5 /0/@rules.2/@sum/@dGraph/@dArrows.6 /0/@rules.2/@sum/@dGraph/@dArrows.7 /0/@rules.2/@sum/@dGraph/@dArrows.8 /0/@rules.2/@sum/@dGraph/@dArrows.9" dIncomings="/0/@rules.2/@sum/@dGraph/@dArrows.0 /0/@rules.2/@sum/@dGraph/@dArrows.5 /0/@rules.2/@sum/@dGraph/@dArrows.8 /0/@rules.2/@sum/@dGraph/@dArrows.9" location="300 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/3/@graph/@nodes.5" dIncomings="/0/@rules.2/@sum/@dGraph/@dArrows.3 /0/@rules.2/@sum/@dGraph/@dArrows.4 /0/@rules.2/@sum/@dGraph/@dArrows.13" location="500 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/3/@graph/@nodes.6" dOutgoings="/0/@rules.2/@sum/@dGraph/@dArrows.12 /0/@rules.2/@sum/@dGraph/@dArrows.13" location="100 150" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/3/@graph/@arrows.0" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.1" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.2" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.3" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.5">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.11"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.4" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.5">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.10"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.5" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.6" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.0">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.7"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.7" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.1">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.6"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.8" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.2"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.9" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.3"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.10" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.3"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.11" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.3"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.12" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/3/@graph/@arrows.13" dSource="/0/@rules.2/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.2/@sum/@dGraph/@dNodes.5">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.9"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules leftNodes="/0/@rules.3/@sum/@dGraph/@dNodes.0 /0/@rules.3/@sum/@dGraph/@dNodes.2 /0/@rules.3/@sum/@dGraph/@dNodes.3 /0/@rules.3/@sum/@dGraph/@dNodes.4 /0/@rules.3/@sum/@dGraph/@dNodes.5 /0/@rules.3/@sum/@dGraph/@dNodes.6" rightNodes="/0/@rules.3/@sum/@dGraph/@dNodes.1 /0/@rules.3/@sum/@dGraph/@dNodes.0 /0/@rules.3/@sum/@dGraph/@dNodes.2 /0/@rules.3/@sum/@dGraph/@dNodes.3 /0/@rules.3/@sum/@dGraph/@dNodes.4 /0/@rules.3/@sum/@dGraph/@dNodes.5 /0/@rules.3/@sum/@dGraph/@dNodes.6" rightArrows="/0/@rules.3/@sum/@dGraph/@dArrows.0 /0/@rules.3/@sum/@dGraph/@dArrows.3 /0/@rules.3/@sum/@dGraph/@dArrows.8 /0/@rules.3/@sum/@dGraph/@dArrows.10 /0/@rules.3/@sum/@dGraph/@dArrows.1 /0/@rules.3/@sum/@dGraph/@dArrows.2 /0/@rules.3/@sum/@dGraph/@dArrows.4 /0/@rules.3/@sum/@dGraph/@dArrows.6 /0/@rules.3/@sum/@dGraph/@dArrows.7 /0/@rules.3/@sum/@dGraph/@dArrows.9 /0/@rules.3/@sum/@dGraph/@dArrows.12 /0/@rules.3/@sum/@dGraph/@dArrows.13" leftArrows="/0/@rules.3/@sum/@dGraph/@dArrows.5 /0/@rules.3/@sum/@dGraph/@dArrows.11 /0/@rules.3/@sum/@dGraph/@dArrows.1 /0/@rules.3/@sum/@dGraph/@dArrows.2 /0/@rules.3/@sum/@dGraph/@dArrows.4 /0/@rules.3/@sum/@dGraph/@dArrows.6 /0/@rules.3/@sum/@dGraph/@dArrows.7 /0/@rules.3/@sum/@dGraph/@dArrows.9 /0/@rules.3/@sum/@dGraph/@dArrows.12 /0/@rules.3/@sum/@dGraph/@dArrows.13" commonNodes="/0/@rules.3/@sum/@dGraph/@dNodes.0 /0/@rules.3/@sum/@dGraph/@dNodes.2 /0/@rules.3/@sum/@dGraph/@dNodes.3 /0/@rules.3/@sum/@dGraph/@dNodes.4 /0/@rules.3/@sum/@dGraph/@dNodes.5 /0/@rules.3/@sum/@dGraph/@dNodes.6" commonArrows="/0/@rules.3/@sum/@dGraph/@dArrows.1 /0/@rules.3/@sum/@dGraph/@dArrows.2 /0/@rules.3/@sum/@dGraph/@dArrows.4 /0/@rules.3/@sum/@dGraph/@dArrows.6 /0/@rules.3/@sum/@dGraph/@dArrows.7 /0/@rules.3/@sum/@dGraph/@dArrows.9 /0/@rules.3/@sum/@dGraph/@dArrows.12 /0/@rules.3/@sum/@dGraph/@dArrows.13" name="Run run$31 for 3 but exactly 1 Trans, exactly 2 Graph, exactly 1 Rule, exactly 1 setFlag by rule setFlag">
+      <sum specification="/4" gridVisible="false">
+        <dType href="dijkstra.dpf#/"/>
+        <dGraph graph="/4/@graph">
+          <dType href="dijkstra.dpf#//@dGraph"/>
+          <dNodes node="/4/@graph/@nodes.0" dOutgoings="/0/@rules.3/@sum/@dGraph/@dArrows.4" dIncomings="/0/@rules.3/@sum/@dGraph/@dArrows.9" location="100 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.3"/>
+          </dNodes>
+          <dNodes node="/4/@graph/@nodes.1" dOutgoings="/0/@rules.3/@sum/@dGraph/@dArrows.3" dIncomings="/0/@rules.3/@sum/@dGraph/@dArrows.8" location="300 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.3"/>
+          </dNodes>
+          <dNodes node="/4/@graph/@nodes.2" dOutgoings="/0/@rules.3/@sum/@dGraph/@dArrows.2 /0/@rules.3/@sum/@dGraph/@dArrows.7" dIncomings="/0/@rules.3/@sum/@dGraph/@dArrows.2 /0/@rules.3/@sum/@dGraph/@dArrows.7" location="500 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/4/@graph/@nodes.3" dOutgoings="/0/@rules.3/@sum/@dGraph/@dArrows.1 /0/@rules.3/@sum/@dGraph/@dArrows.6" dIncomings="/0/@rules.3/@sum/@dGraph/@dArrows.1 /0/@rules.3/@sum/@dGraph/@dArrows.6 /0/@rules.3/@sum/@dGraph/@dArrows.12" location="100 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/4/@graph/@nodes.4" dOutgoings="/0/@rules.3/@sum/@dGraph/@dArrows.0 /0/@rules.3/@sum/@dGraph/@dArrows.5 /0/@rules.3/@sum/@dGraph/@dArrows.8 /0/@rules.3/@sum/@dGraph/@dArrows.9 /0/@rules.3/@sum/@dGraph/@dArrows.10 /0/@rules.3/@sum/@dGraph/@dArrows.11" dIncomings="/0/@rules.3/@sum/@dGraph/@dArrows.0 /0/@rules.3/@sum/@dGraph/@dArrows.5 /0/@rules.3/@sum/@dGraph/@dArrows.10 /0/@rules.3/@sum/@dGraph/@dArrows.11" location="300 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/4/@graph/@nodes.5" dIncomings="/0/@rules.3/@sum/@dGraph/@dArrows.3 /0/@rules.3/@sum/@dGraph/@dArrows.4 /0/@rules.3/@sum/@dGraph/@dArrows.13" location="500 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/4/@graph/@nodes.6" dOutgoings="/0/@rules.3/@sum/@dGraph/@dArrows.12 /0/@rules.3/@sum/@dGraph/@dArrows.13" location="100 150" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/4/@graph/@arrows.0" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.1" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.5"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.2" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.4"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.3" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.5">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.11"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.4" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.5">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.11"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.5" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.6" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.7" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.8" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.1">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.7"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.9" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.0">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.7"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.10" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.2"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.11" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.3"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.12" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/4/@graph/@arrows.13" dSource="/0/@rules.3/@sum/@dGraph/@dNodes.6" dTarget="/0/@rules.3/@sum/@dGraph/@dNodes.5">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.9"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules leftNodes="/0/@rules.4/@sum/@dGraph/@dNodes.0 /0/@rules.4/@sum/@dGraph/@dNodes.1 /0/@rules.4/@sum/@dGraph/@dNodes.2 /0/@rules.4/@sum/@dGraph/@dNodes.3 /0/@rules.4/@sum/@dGraph/@dNodes.4 /0/@rules.4/@sum/@dGraph/@dNodes.5" rightNodes="/0/@rules.4/@sum/@dGraph/@dNodes.0 /0/@rules.4/@sum/@dGraph/@dNodes.1 /0/@rules.4/@sum/@dGraph/@dNodes.2 /0/@rules.4/@sum/@dGraph/@dNodes.3 /0/@rules.4/@sum/@dGraph/@dNodes.4 /0/@rules.4/@sum/@dGraph/@dNodes.5" rightArrows="/0/@rules.4/@sum/@dGraph/@dArrows.1 /0/@rules.4/@sum/@dGraph/@dArrows.10 /0/@rules.4/@sum/@dGraph/@dArrows.0 /0/@rules.4/@sum/@dGraph/@dArrows.2 /0/@rules.4/@sum/@dGraph/@dArrows.3 /0/@rules.4/@sum/@dGraph/@dArrows.4 /0/@rules.4/@sum/@dGraph/@dArrows.5 /0/@rules.4/@sum/@dGraph/@dArrows.6 /0/@rules.4/@sum/@dGraph/@dArrows.7 /0/@rules.4/@sum/@dGraph/@dArrows.11" leftArrows="/0/@rules.4/@sum/@dGraph/@dArrows.8 /0/@rules.4/@sum/@dGraph/@dArrows.9 /0/@rules.4/@sum/@dGraph/@dArrows.0 /0/@rules.4/@sum/@dGraph/@dArrows.2 /0/@rules.4/@sum/@dGraph/@dArrows.3 /0/@rules.4/@sum/@dGraph/@dArrows.4 /0/@rules.4/@sum/@dGraph/@dArrows.5 /0/@rules.4/@sum/@dGraph/@dArrows.6 /0/@rules.4/@sum/@dGraph/@dArrows.7 /0/@rules.4/@sum/@dGraph/@dArrows.11" commonNodes="/0/@rules.4/@sum/@dGraph/@dNodes.0 /0/@rules.4/@sum/@dGraph/@dNodes.1 /0/@rules.4/@sum/@dGraph/@dNodes.2 /0/@rules.4/@sum/@dGraph/@dNodes.3 /0/@rules.4/@sum/@dGraph/@dNodes.4 /0/@rules.4/@sum/@dGraph/@dNodes.5" commonArrows="/0/@rules.4/@sum/@dGraph/@dArrows.0 /0/@rules.4/@sum/@dGraph/@dArrows.2 /0/@rules.4/@sum/@dGraph/@dArrows.3 /0/@rules.4/@sum/@dGraph/@dArrows.4 /0/@rules.4/@sum/@dGraph/@dArrows.5 /0/@rules.4/@sum/@dGraph/@dArrows.6 /0/@rules.4/@sum/@dGraph/@dArrows.7 /0/@rules.4/@sum/@dGraph/@dArrows.11" name="Run run$32 for 3 but exactly 1 Trans, exactly 2 Graph, exactly 1 Rule, exactly 1 setTurn1 by rule setTurn1">
+      <sum specification="/5" gridVisible="false">
+        <dType href="dijkstra.dpf#/"/>
+        <dGraph graph="/5/@graph">
+          <dType href="dijkstra.dpf#//@dGraph"/>
+          <dNodes node="/5/@graph/@nodes.0" dOutgoings="/0/@rules.4/@sum/@dGraph/@dArrows.3" dIncomings="/0/@rules.4/@sum/@dGraph/@dArrows.6" location="100 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.3"/>
+          </dNodes>
+          <dNodes node="/5/@graph/@nodes.1" dOutgoings="/0/@rules.4/@sum/@dGraph/@dArrows.2 /0/@rules.4/@sum/@dGraph/@dArrows.5" dIncomings="/0/@rules.4/@sum/@dGraph/@dArrows.2 /0/@rules.4/@sum/@dGraph/@dArrows.5" location="300 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/5/@graph/@nodes.2" dOutgoings="/0/@rules.4/@sum/@dGraph/@dArrows.0 /0/@rules.4/@sum/@dGraph/@dArrows.1 /0/@rules.4/@sum/@dGraph/@dArrows.8" dIncomings="/0/@rules.4/@sum/@dGraph/@dArrows.0 /0/@rules.4/@sum/@dGraph/@dArrows.1 /0/@rules.4/@sum/@dGraph/@dArrows.8 /0/@rules.4/@sum/@dGraph/@dArrows.10" location="500 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/5/@graph/@nodes.3" dOutgoings="/0/@rules.4/@sum/@dGraph/@dArrows.4 /0/@rules.4/@sum/@dGraph/@dArrows.6 /0/@rules.4/@sum/@dGraph/@dArrows.7" dIncomings="/0/@rules.4/@sum/@dGraph/@dArrows.4 /0/@rules.4/@sum/@dGraph/@dArrows.7 /0/@rules.4/@sum/@dGraph/@dArrows.9" location="100 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/5/@graph/@nodes.4" dIncomings="/0/@rules.4/@sum/@dGraph/@dArrows.3 /0/@rules.4/@sum/@dGraph/@dArrows.11" location="300 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/5/@graph/@nodes.5" dOutgoings="/0/@rules.4/@sum/@dGraph/@dArrows.9 /0/@rules.4/@sum/@dGraph/@dArrows.10 /0/@rules.4/@sum/@dGraph/@dArrows.11" location="500 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/5/@graph/@arrows.0" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.1" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.5"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.2" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.1">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.5"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.3" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.11"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.4" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.5" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.1">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.6" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.0">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.7"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.7" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.2"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.8" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.2"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.9" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.5" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.10" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.5" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/5/@graph/@arrows.11" dSource="/0/@rules.4/@sum/@dGraph/@dNodes.5" dTarget="/0/@rules.4/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.9"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules leftNodes="/0/@rules.5/@sum/@dGraph/@dNodes.0 /0/@rules.5/@sum/@dGraph/@dNodes.1 /0/@rules.5/@sum/@dGraph/@dNodes.2 /0/@rules.5/@sum/@dGraph/@dNodes.3 /0/@rules.5/@sum/@dGraph/@dNodes.4 /0/@rules.5/@sum/@dGraph/@dNodes.5" rightNodes="/0/@rules.5/@sum/@dGraph/@dNodes.0 /0/@rules.5/@sum/@dGraph/@dNodes.1 /0/@rules.5/@sum/@dGraph/@dNodes.2 /0/@rules.5/@sum/@dGraph/@dNodes.3 /0/@rules.5/@sum/@dGraph/@dNodes.4 /0/@rules.5/@sum/@dGraph/@dNodes.5" rightArrows="/0/@rules.5/@sum/@dGraph/@dArrows.0 /0/@rules.5/@sum/@dGraph/@dArrows.1 /0/@rules.5/@sum/@dGraph/@dArrows.2 /0/@rules.5/@sum/@dGraph/@dArrows.3 /0/@rules.5/@sum/@dGraph/@dArrows.4 /0/@rules.5/@sum/@dGraph/@dArrows.5 /0/@rules.5/@sum/@dGraph/@dArrows.6 /0/@rules.5/@sum/@dGraph/@dArrows.7 /0/@rules.5/@sum/@dGraph/@dArrows.9 /0/@rules.5/@sum/@dGraph/@dArrows.10" leftArrows="/0/@rules.5/@sum/@dGraph/@dArrows.8 /0/@rules.5/@sum/@dGraph/@dArrows.1 /0/@rules.5/@sum/@dGraph/@dArrows.2 /0/@rules.5/@sum/@dGraph/@dArrows.3 /0/@rules.5/@sum/@dGraph/@dArrows.4 /0/@rules.5/@sum/@dGraph/@dArrows.5 /0/@rules.5/@sum/@dGraph/@dArrows.6 /0/@rules.5/@sum/@dGraph/@dArrows.7 /0/@rules.5/@sum/@dGraph/@dArrows.9 /0/@rules.5/@sum/@dGraph/@dArrows.10" commonNodes="/0/@rules.5/@sum/@dGraph/@dNodes.0 /0/@rules.5/@sum/@dGraph/@dNodes.1 /0/@rules.5/@sum/@dGraph/@dNodes.2 /0/@rules.5/@sum/@dGraph/@dNodes.3 /0/@rules.5/@sum/@dGraph/@dNodes.4 /0/@rules.5/@sum/@dGraph/@dNodes.5" commonArrows="/0/@rules.5/@sum/@dGraph/@dArrows.1 /0/@rules.5/@sum/@dGraph/@dArrows.2 /0/@rules.5/@sum/@dGraph/@dArrows.3 /0/@rules.5/@sum/@dGraph/@dArrows.4 /0/@rules.5/@sum/@dGraph/@dArrows.5 /0/@rules.5/@sum/@dGraph/@dArrows.6 /0/@rules.5/@sum/@dGraph/@dArrows.7 /0/@rules.5/@sum/@dGraph/@dArrows.9 /0/@rules.5/@sum/@dGraph/@dArrows.10" name="Run run$33 for 3 but exactly 1 Trans, exactly 2 Graph, exactly 1 Rule, exactly 1 setTurn2 by rule setTurn2">
+      <sum specification="/6" gridVisible="false">
+        <dType href="dijkstra.dpf#/"/>
+        <dGraph graph="/6/@graph">
+          <dType href="dijkstra.dpf#//@dGraph"/>
+          <dNodes node="/6/@graph/@nodes.0" dOutgoings="/0/@rules.5/@sum/@dGraph/@dArrows.3" dIncomings="/0/@rules.5/@sum/@dGraph/@dArrows.7" location="100 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.3"/>
+          </dNodes>
+          <dNodes node="/6/@graph/@nodes.1" dOutgoings="/0/@rules.5/@sum/@dGraph/@dArrows.2 /0/@rules.5/@sum/@dGraph/@dArrows.6" dIncomings="/0/@rules.5/@sum/@dGraph/@dArrows.2 /0/@rules.5/@sum/@dGraph/@dArrows.6" location="300 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/6/@graph/@nodes.2" dOutgoings="/0/@rules.5/@sum/@dGraph/@dArrows.1 /0/@rules.5/@sum/@dGraph/@dArrows.5" dIncomings="/0/@rules.5/@sum/@dGraph/@dArrows.1 /0/@rules.5/@sum/@dGraph/@dArrows.5" location="500 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/6/@graph/@nodes.3" dOutgoings="/0/@rules.5/@sum/@dGraph/@dArrows.0 /0/@rules.5/@sum/@dGraph/@dArrows.4 /0/@rules.5/@sum/@dGraph/@dArrows.7 /0/@rules.5/@sum/@dGraph/@dArrows.8" dIncomings="/0/@rules.5/@sum/@dGraph/@dArrows.0 /0/@rules.5/@sum/@dGraph/@dArrows.4 /0/@rules.5/@sum/@dGraph/@dArrows.8 /0/@rules.5/@sum/@dGraph/@dArrows.9" location="100 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/6/@graph/@nodes.4" dIncomings="/0/@rules.5/@sum/@dGraph/@dArrows.3 /0/@rules.5/@sum/@dGraph/@dArrows.10" location="300 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/6/@graph/@nodes.5" dOutgoings="/0/@rules.5/@sum/@dGraph/@dArrows.9 /0/@rules.5/@sum/@dGraph/@dArrows.10" location="500 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/6/@graph/@arrows.0" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.5"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.1" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.5"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.2" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.1">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.5"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.3" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.11"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.4" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.5" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.6" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.1">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.7" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.0">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.7"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.8" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.2"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.9" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.5" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/6/@graph/@arrows.10" dSource="/0/@rules.5/@sum/@dGraph/@dNodes.5" dTarget="/0/@rules.5/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.9"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules leftNodes="/0/@rules.6/@sum/@dGraph/@dNodes.0 /0/@rules.6/@sum/@dGraph/@dNodes.2 /0/@rules.6/@sum/@dGraph/@dNodes.3 /0/@rules.6/@sum/@dGraph/@dNodes.4" rightNodes="/0/@rules.6/@sum/@dGraph/@dNodes.1 /0/@rules.6/@sum/@dGraph/@dNodes.2 /0/@rules.6/@sum/@dGraph/@dNodes.3 /0/@rules.6/@sum/@dGraph/@dNodes.4" rightArrows="/0/@rules.6/@sum/@dGraph/@dArrows.1 /0/@rules.6/@sum/@dGraph/@dArrows.3 /0/@rules.6/@sum/@dGraph/@dArrows.6 /0/@rules.6/@sum/@dGraph/@dArrows.4 /0/@rules.6/@sum/@dGraph/@dArrows.7 /0/@rules.6/@sum/@dGraph/@dArrows.8" leftArrows="/0/@rules.6/@sum/@dGraph/@dArrows.0 /0/@rules.6/@sum/@dGraph/@dArrows.2 /0/@rules.6/@sum/@dGraph/@dArrows.5 /0/@rules.6/@sum/@dGraph/@dArrows.4 /0/@rules.6/@sum/@dGraph/@dArrows.7 /0/@rules.6/@sum/@dGraph/@dArrows.8" commonNodes="/0/@rules.6/@sum/@dGraph/@dNodes.2 /0/@rules.6/@sum/@dGraph/@dNodes.3 /0/@rules.6/@sum/@dGraph/@dNodes.4" commonArrows="/0/@rules.6/@sum/@dGraph/@dArrows.4 /0/@rules.6/@sum/@dGraph/@dArrows.7 /0/@rules.6/@sum/@dGraph/@dArrows.8" name="Run run$34 for 3 but exactly 1 Trans, exactly 2 Graph, exactly 1 Rule, exactly 1 enter by rule enter">
+      <sum specification="/7" gridVisible="false">
+        <dType href="dijkstra.dpf#/"/>
+        <dGraph graph="/7/@graph">
+          <dType href="dijkstra.dpf#//@dGraph"/>
+          <dNodes node="/7/@graph/@nodes.0" dOutgoings="/0/@rules.6/@sum/@dGraph/@dArrows.2" dIncomings="/0/@rules.6/@sum/@dGraph/@dArrows.5" location="100 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.3"/>
+          </dNodes>
+          <dNodes node="/7/@graph/@nodes.1" dOutgoings="/0/@rules.6/@sum/@dGraph/@dArrows.3" dIncomings="/0/@rules.6/@sum/@dGraph/@dArrows.6" location="300 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.2"/>
+          </dNodes>
+          <dNodes node="/7/@graph/@nodes.2" dOutgoings="/0/@rules.6/@sum/@dGraph/@dArrows.0 /0/@rules.6/@sum/@dGraph/@dArrows.1 /0/@rules.6/@sum/@dGraph/@dArrows.4 /0/@rules.6/@sum/@dGraph/@dArrows.5 /0/@rules.6/@sum/@dGraph/@dArrows.6" dIncomings="/0/@rules.6/@sum/@dGraph/@dArrows.0 /0/@rules.6/@sum/@dGraph/@dArrows.1 /0/@rules.6/@sum/@dGraph/@dArrows.4 /0/@rules.6/@sum/@dGraph/@dArrows.7" location="500 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/7/@graph/@nodes.3" dIncomings="/0/@rules.6/@sum/@dGraph/@dArrows.2 /0/@rules.6/@sum/@dGraph/@dArrows.3 /0/@rules.6/@sum/@dGraph/@dArrows.8" location="100 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/7/@graph/@nodes.4" dOutgoings="/0/@rules.6/@sum/@dGraph/@dArrows.7 /0/@rules.6/@sum/@dGraph/@dArrows.8" location="300 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/7/@graph/@arrows.0" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.5"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.1" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.4"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.2" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.11"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.3" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.10"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.4" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.5" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.0">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.7"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.6" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.1">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.6"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.7" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/7/@graph/@arrows.8" dSource="/0/@rules.6/@sum/@dGraph/@dNodes.4" dTarget="/0/@rules.6/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.9"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules leftNodes="/0/@rules.7/@sum/@dGraph/@dNodes.0 /0/@rules.7/@sum/@dGraph/@dNodes.1 /0/@rules.7/@sum/@dGraph/@dNodes.2 /0/@rules.7/@sum/@dGraph/@dNodes.3 /0/@rules.7/@sum/@dGraph/@dNodes.4 /0/@rules.7/@sum/@dGraph/@dNodes.5" rightNodes="/0/@rules.7/@sum/@dGraph/@dNodes.1 /0/@rules.7/@sum/@dGraph/@dNodes.2 /0/@rules.7/@sum/@dGraph/@dNodes.3 /0/@rules.7/@sum/@dGraph/@dNodes.4 /0/@rules.7/@sum/@dGraph/@dNodes.5" rightArrows="/0/@rules.7/@sum/@dGraph/@dArrows.7 /0/@rules.7/@sum/@dGraph/@dArrows.9 /0/@rules.7/@sum/@dGraph/@dArrows.1 /0/@rules.7/@sum/@dGraph/@dArrows.2 /0/@rules.7/@sum/@dGraph/@dArrows.3 /0/@rules.7/@sum/@dGraph/@dArrows.5 /0/@rules.7/@sum/@dGraph/@dArrows.10 /0/@rules.7/@sum/@dGraph/@dArrows.11" leftArrows="/0/@rules.7/@sum/@dGraph/@dArrows.0 /0/@rules.7/@sum/@dGraph/@dArrows.4 /0/@rules.7/@sum/@dGraph/@dArrows.6 /0/@rules.7/@sum/@dGraph/@dArrows.8 /0/@rules.7/@sum/@dGraph/@dArrows.1 /0/@rules.7/@sum/@dGraph/@dArrows.2 /0/@rules.7/@sum/@dGraph/@dArrows.3 /0/@rules.7/@sum/@dGraph/@dArrows.5 /0/@rules.7/@sum/@dGraph/@dArrows.10 /0/@rules.7/@sum/@dGraph/@dArrows.11" commonNodes="/0/@rules.7/@sum/@dGraph/@dNodes.1 /0/@rules.7/@sum/@dGraph/@dNodes.2 /0/@rules.7/@sum/@dGraph/@dNodes.3 /0/@rules.7/@sum/@dGraph/@dNodes.4 /0/@rules.7/@sum/@dGraph/@dNodes.5" commonArrows="/0/@rules.7/@sum/@dGraph/@dArrows.1 /0/@rules.7/@sum/@dGraph/@dArrows.2 /0/@rules.7/@sum/@dGraph/@dArrows.3 /0/@rules.7/@sum/@dGraph/@dArrows.5 /0/@rules.7/@sum/@dGraph/@dArrows.10 /0/@rules.7/@sum/@dGraph/@dArrows.11" name="Run run$35 for 3 but exactly 1 Trans, exactly 2 Graph, exactly 1 Rule, exactly 1 exit by rule exit">
+      <sum specification="/8" gridVisible="false">
+        <dType href="dijkstra.dpf#/"/>
+        <dGraph graph="/8/@graph">
+          <dType href="dijkstra.dpf#//@dGraph"/>
+          <dNodes node="/8/@graph/@nodes.0" dOutgoings="/0/@rules.7/@sum/@dGraph/@dArrows.6" dIncomings="/0/@rules.7/@sum/@dGraph/@dArrows.8" location="100 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.2"/>
+          </dNodes>
+          <dNodes node="/8/@graph/@nodes.1" dOutgoings="/0/@rules.7/@sum/@dGraph/@dArrows.2 /0/@rules.7/@sum/@dGraph/@dArrows.5" dIncomings="/0/@rules.7/@sum/@dGraph/@dArrows.2 /0/@rules.7/@sum/@dGraph/@dArrows.5" location="300 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/8/@graph/@nodes.2" dOutgoings="/0/@rules.7/@sum/@dGraph/@dArrows.1 /0/@rules.7/@sum/@dGraph/@dArrows.3" dIncomings="/0/@rules.7/@sum/@dGraph/@dArrows.1 /0/@rules.7/@sum/@dGraph/@dArrows.3 /0/@rules.7/@sum/@dGraph/@dArrows.10" location="500 30" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/8/@graph/@nodes.3" dOutgoings="/0/@rules.7/@sum/@dGraph/@dArrows.0 /0/@rules.7/@sum/@dGraph/@dArrows.4 /0/@rules.7/@sum/@dGraph/@dArrows.7 /0/@rules.7/@sum/@dGraph/@dArrows.8 /0/@rules.7/@sum/@dGraph/@dArrows.9" dIncomings="/0/@rules.7/@sum/@dGraph/@dArrows.0 /0/@rules.7/@sum/@dGraph/@dArrows.4 /0/@rules.7/@sum/@dGraph/@dArrows.7 /0/@rules.7/@sum/@dGraph/@dArrows.9" location="100 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.0"/>
+          </dNodes>
+          <dNodes node="/8/@graph/@nodes.4" dIncomings="/0/@rules.7/@sum/@dGraph/@dArrows.6 /0/@rules.7/@sum/@dGraph/@dArrows.11" location="300 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.5"/>
+          </dNodes>
+          <dNodes node="/8/@graph/@nodes.5" dOutgoings="/0/@rules.7/@sum/@dGraph/@dArrows.10 /0/@rules.7/@sum/@dGraph/@dArrows.11" location="500 90" size="100 30">
+            <dType href="dijkstra.dpf#//@dGraph/@dNodes.4"/>
+          </dNodes>
+          <dArrows arrow="/8/@graph/@arrows.0" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.1" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.2" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.1">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.3" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.2" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.5"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.4" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.4"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.5" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.1" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.1">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.4"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.6" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.10"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.7" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.0"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.8" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.0">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.6"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.9" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.3" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.3">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.3"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.10" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.5" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.2">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows arrow="/8/@graph/@arrows.11" dSource="/0/@rules.7/@sum/@dGraph/@dNodes.5" dTarget="/0/@rules.7/@sum/@dGraph/@dNodes.4">
+            <dType href="dijkstra.dpf#//@dGraph/@dArrows.9"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <elementTypeGraph href="dijkstra.dpf#/"/>
+  </transform:Transform>
+  <core:Specification>
+    <graph id="e1ca1136-d91b-4cb3-8879-293062f6bf3a">
+      <type href="dijkstra.xmi#//@graph"/>
+      <nodes id="eeb3ad5f-6ee3-4595-8543-e3256301436d" name="F10" outgoings="/1/@graph/@arrows.5" incomings="/1/@graph/@arrows.8">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="56cc6684-75a4-4d79-8888-29cb9fb359cd" name="F11" outgoings="/1/@graph/@arrows.4" incomings="/1/@graph/@arrows.7">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="f8f8d70f-08a1-4f04-a814-32aa315e1a48" name="P0" outgoings="/1/@graph/@arrows.2 /1/@graph/@arrows.10" incomings="/1/@graph/@arrows.2 /1/@graph/@arrows.10">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="f48c4456-b6cf-4ae5-bdb5-9117d3c1ca63" name="P1" outgoings="/1/@graph/@arrows.1 /1/@graph/@arrows.3" incomings="/1/@graph/@arrows.1 /1/@graph/@arrows.3">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="4e9639ad-0dc1-4b38-a0f8-db10951f4e98" name="P2" outgoings="/1/@graph/@arrows.0 /1/@graph/@arrows.6 /1/@graph/@arrows.7 /1/@graph/@arrows.8 /1/@graph/@arrows.9 /1/@graph/@arrows.11" incomings="/1/@graph/@arrows.0 /1/@graph/@arrows.6 /1/@graph/@arrows.9 /1/@graph/@arrows.11 /1/@graph/@arrows.12">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="01db3488-823f-4152-bc83-84678e08b1d8" name="R" incomings="/1/@graph/@arrows.4 /1/@graph/@arrows.5 /1/@graph/@arrows.13">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.4"/>
+      </nodes>
+      <nodes id="1b56f6ef-3f97-472c-8713-56935da34ecd" name="T" outgoings="/1/@graph/@arrows.12 /1/@graph/@arrows.13">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.3"/>
+      </nodes>
+      <arrows id="1dbedba8-84f9-4622-95a5-a6877abec2d6" name="active0" source="/1/@graph/@nodes.4" target="/1/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="ffaea04f-0281-4a09-b282-01b694a648ec" name="active1" source="/1/@graph/@nodes.3" target="/1/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="d3e4a9c5-89b6-4d83-b288-f1076a755f24" name="active2" source="/1/@graph/@nodes.2" target="/1/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="43f3f3a6-ff1f-4389-9094-601e8bd09966" name="crit" source="/1/@graph/@nodes.3" target="/1/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="8f292805-21b1-4e26-90d5-6615e043d0b4" name="F1R0" source="/1/@graph/@nodes.1" target="/1/@graph/@nodes.5">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.11"/>
+      </arrows>
+      <arrows id="fd32291e-f19f-4539-8d15-508b1c0c80b3" name="F1R1" source="/1/@graph/@nodes.0" target="/1/@graph/@nodes.5">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.11"/>
+      </arrows>
+      <arrows id="4da05b97-62f4-44c2-9d70-cc1a8f170d3e" name="nonActive" source="/1/@graph/@nodes.4" target="/1/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="1b2bbbd4-a67c-4130-8da3-02a09122646d" name="PF10" source="/1/@graph/@nodes.4" target="/1/@graph/@nodes.1">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.7"/>
+      </arrows>
+      <arrows id="e149138a-9863-4184-89d6-fd58809c9821" name="PF11" source="/1/@graph/@nodes.4" target="/1/@graph/@nodes.0">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.7"/>
+      </arrows>
+      <arrows id="3695829b-0aac-4476-a441-1fa290ec7b48" name="setTurn0" source="/1/@graph/@nodes.4" target="/1/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="87ad461e-4810-4067-b3cf-28ff227287e7" name="setTurn1" source="/1/@graph/@nodes.2" target="/1/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="3a1f21fc-0716-4f1e-ac69-a21cecdadd09" name="start" source="/1/@graph/@nodes.4" target="/1/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.3"/>
+      </arrows>
+      <arrows id="b39e3825-8cb1-43ce-91a6-16772725912a" name="TP" source="/1/@graph/@nodes.6" target="/1/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.8"/>
+      </arrows>
+      <arrows id="bc73b341-28ce-423d-bd06-5a5797a5fd30" name="TR" source="/1/@graph/@nodes.6" target="/1/@graph/@nodes.5">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.9"/>
+      </arrows>
+    </graph>
+    <type href="dijkstra.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph id="6b758514-bb35-4abb-b6ce-c1240d768e46">
+      <type href="dijkstra.xmi#//@graph"/>
+      <nodes id="0b11a164-4390-414b-89b8-a421dae51068" name="F1" outgoings="/2/@graph/@arrows.5" incomings="/2/@graph/@arrows.8">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="965c5221-86b7-44f4-881b-947f696d3e8c" name="F2" outgoings="/2/@graph/@arrows.6" incomings="/2/@graph/@arrows.9">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="a4e85b02-3030-483e-be50-354484bfa73d" name="P0" outgoings="/2/@graph/@arrows.2 /2/@graph/@arrows.4" incomings="/2/@graph/@arrows.2 /2/@graph/@arrows.4">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="a9ea8f55-aedc-4fc6-86a8-aa6a72821873" name="P1" outgoings="/2/@graph/@arrows.1 /2/@graph/@arrows.3" incomings="/2/@graph/@arrows.1 /2/@graph/@arrows.3">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="777bb1be-60d6-4c6e-9112-a7ab10579e6e" name="P2" outgoings="/2/@graph/@arrows.0 /2/@graph/@arrows.7 /2/@graph/@arrows.8 /2/@graph/@arrows.9 /2/@graph/@arrows.10 /2/@graph/@arrows.11" incomings="/2/@graph/@arrows.0 /2/@graph/@arrows.7 /2/@graph/@arrows.10 /2/@graph/@arrows.11 /2/@graph/@arrows.12">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="e2b78ea1-1105-4fdb-8421-f8a56a1708ae" name="R" incomings="/2/@graph/@arrows.5 /2/@graph/@arrows.6 /2/@graph/@arrows.13">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.4"/>
+      </nodes>
+      <nodes id="3091c962-3494-4ca0-8f3d-0bd55f90241e" name="T" outgoings="/2/@graph/@arrows.12 /2/@graph/@arrows.13">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.3"/>
+      </nodes>
+      <arrows id="0cff72a0-dbc5-45a2-af59-20a9f866ea80" name="active0" source="/2/@graph/@nodes.4" target="/2/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="d23a14a8-96fb-4c0a-928b-47242c12947c" name="active1" source="/2/@graph/@nodes.3" target="/2/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="547a6b85-ab00-4133-9815-95876259fbd4" name="active2" source="/2/@graph/@nodes.2" target="/2/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="43e92092-0d08-4080-81e0-0ef1ad6c2e8e" name="crit0" source="/2/@graph/@nodes.3" target="/2/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="e5fe8a1d-7d0f-4502-a1fd-6f5f0184956f" name="crit1" source="/2/@graph/@nodes.2" target="/2/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="cf687fb8-e34f-449d-871b-4a1f7383ef7e" name="F1R" source="/2/@graph/@nodes.0" target="/2/@graph/@nodes.5">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.11"/>
+      </arrows>
+      <arrows id="a9ffe9a6-08a3-4d76-b676-c225143e919e" name="F2R" source="/2/@graph/@nodes.1" target="/2/@graph/@nodes.5">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.10"/>
+      </arrows>
+      <arrows id="efcdad14-e1ed-4d90-aaa7-65b55aed9545" name="nonActive" source="/2/@graph/@nodes.4" target="/2/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="b48f1176-b4fe-42af-a39d-19360261e6f5" name="PF1" source="/2/@graph/@nodes.4" target="/2/@graph/@nodes.0">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.7"/>
+      </arrows>
+      <arrows id="be9968bd-5aa3-4d0a-a6fb-1a32ba2dc996" name="PF2" source="/2/@graph/@nodes.4" target="/2/@graph/@nodes.1">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.6"/>
+      </arrows>
+      <arrows id="8b197565-b396-49c2-b5b9-3e45de23056e" name="setTurn" source="/2/@graph/@nodes.4" target="/2/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="cf3b9547-881b-4bba-af1f-9c492aec0053" name="start" source="/2/@graph/@nodes.4" target="/2/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.3"/>
+      </arrows>
+      <arrows id="90adbe04-742e-4888-a2de-a17f3f81b50b" name="TP" source="/2/@graph/@nodes.6" target="/2/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.8"/>
+      </arrows>
+      <arrows id="8d292e8e-fc07-45f2-aaf4-f9a1aa71d1ad" name="TR" source="/2/@graph/@nodes.6" target="/2/@graph/@nodes.5">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.9"/>
+      </arrows>
+    </graph>
+    <type href="dijkstra.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph id="550fde2c-d83e-46bd-ac8f-08f09ae9a962">
+      <type href="dijkstra.xmi#//@graph"/>
+      <nodes id="4dbcbd94-3ea7-4187-8d60-400ef6aad6ee" name="F1" outgoings="/3/@graph/@arrows.3" incomings="/3/@graph/@arrows.6">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="1da0737e-172b-4469-af71-78ec21447228" name="F2" outgoings="/3/@graph/@arrows.4" incomings="/3/@graph/@arrows.7">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="0b6994d4-1e8d-4b16-aebb-e742550b985f" name="P0" outgoings="/3/@graph/@arrows.2 /3/@graph/@arrows.11" incomings="/3/@graph/@arrows.2 /3/@graph/@arrows.11">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="f9a2e357-fb7e-4cd8-b807-f0c8e89b035c" name="P1" outgoings="/3/@graph/@arrows.1 /3/@graph/@arrows.10" incomings="/3/@graph/@arrows.1 /3/@graph/@arrows.10 /3/@graph/@arrows.12">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="0973ac85-3422-439a-a93e-d3aa758da8b9" name="P2" outgoings="/3/@graph/@arrows.0 /3/@graph/@arrows.5 /3/@graph/@arrows.6 /3/@graph/@arrows.7 /3/@graph/@arrows.8 /3/@graph/@arrows.9" incomings="/3/@graph/@arrows.0 /3/@graph/@arrows.5 /3/@graph/@arrows.8 /3/@graph/@arrows.9">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="178faa7b-dba5-4b10-8fa0-25f899b6a544" name="R" incomings="/3/@graph/@arrows.3 /3/@graph/@arrows.4 /3/@graph/@arrows.13">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.4"/>
+      </nodes>
+      <nodes id="f4386fc3-bdae-4a88-aa89-53c685de1629" name="T" outgoings="/3/@graph/@arrows.12 /3/@graph/@arrows.13">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.3"/>
+      </nodes>
+      <arrows id="b256244e-823a-4ad5-9e33-b881a0575f63" name="active0" source="/3/@graph/@nodes.4" target="/3/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="e42b5cde-391d-4d55-aa6b-f9bccecd4010" name="active1" source="/3/@graph/@nodes.3" target="/3/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="634f9256-5d26-4d6b-9dd9-aee0d03094ba" name="active2" source="/3/@graph/@nodes.2" target="/3/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="fed173b0-7cdf-48e5-95cc-2b2c0801758b" name="F1R" source="/3/@graph/@nodes.0" target="/3/@graph/@nodes.5">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.11"/>
+      </arrows>
+      <arrows id="d584a2a5-9ff0-4c52-83ef-c2f10f987629" name="F2R" source="/3/@graph/@nodes.1" target="/3/@graph/@nodes.5">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.10"/>
+      </arrows>
+      <arrows id="2eb3eee3-1e86-462c-b151-c5e62e7f6a64" name="nonActive" source="/3/@graph/@nodes.4" target="/3/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="e4508451-21a1-40db-9fcc-e56020aa38ac" name="PF1" source="/3/@graph/@nodes.4" target="/3/@graph/@nodes.0">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.7"/>
+      </arrows>
+      <arrows id="4382eea2-8e44-4483-80af-0611569a1fd3" name="PF2" source="/3/@graph/@nodes.4" target="/3/@graph/@nodes.1">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.6"/>
+      </arrows>
+      <arrows id="687415f9-93c0-43e2-a00b-c0e2c44ee39f" name="setTurn" source="/3/@graph/@nodes.4" target="/3/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="9de76f26-d646-441d-b4ae-0ec232cea306" name="start0" source="/3/@graph/@nodes.4" target="/3/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.3"/>
+      </arrows>
+      <arrows id="c86d1714-e0d8-4c83-a784-62f3a4e0d3ac" name="start1" source="/3/@graph/@nodes.3" target="/3/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.3"/>
+      </arrows>
+      <arrows id="d2d93eee-4763-4aea-90a9-d4948ffdd61f" name="start2" source="/3/@graph/@nodes.2" target="/3/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.3"/>
+      </arrows>
+      <arrows id="cadbd1de-881e-4964-8918-0857ad5dd9c9" name="TP" source="/3/@graph/@nodes.6" target="/3/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.8"/>
+      </arrows>
+      <arrows id="3d06733e-a61e-4c8c-8ee2-32d6bfc4ddec" name="TR" source="/3/@graph/@nodes.6" target="/3/@graph/@nodes.5">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.9"/>
+      </arrows>
+    </graph>
+    <type href="dijkstra.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph id="6991b610-101e-4c98-8bfb-343a070d19d9">
+      <type href="dijkstra.xmi#//@graph"/>
+      <nodes id="6bac36a1-69b8-4d72-a8cc-cc3bd8b2920f" name="F10" outgoings="/4/@graph/@arrows.4" incomings="/4/@graph/@arrows.9">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="6bfaf76c-f3a7-4f6e-924f-226508dee41c" name="F11" outgoings="/4/@graph/@arrows.3" incomings="/4/@graph/@arrows.8">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="133bd378-e6c0-47b5-b0b2-ab25fa37b157" name="P0" outgoings="/4/@graph/@arrows.2 /4/@graph/@arrows.7" incomings="/4/@graph/@arrows.2 /4/@graph/@arrows.7">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="6c51fe47-ad9e-4f07-89ea-13a8744f0719" name="P1" outgoings="/4/@graph/@arrows.1 /4/@graph/@arrows.6" incomings="/4/@graph/@arrows.1 /4/@graph/@arrows.6 /4/@graph/@arrows.12">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="bc4a2ed1-02e3-46d0-b42a-206b639030c4" name="P2" outgoings="/4/@graph/@arrows.0 /4/@graph/@arrows.5 /4/@graph/@arrows.8 /4/@graph/@arrows.9 /4/@graph/@arrows.10 /4/@graph/@arrows.11" incomings="/4/@graph/@arrows.0 /4/@graph/@arrows.5 /4/@graph/@arrows.10 /4/@graph/@arrows.11">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="bc4bcc52-9c5d-48b5-892c-28c39d27f994" name="R" incomings="/4/@graph/@arrows.3 /4/@graph/@arrows.4 /4/@graph/@arrows.13">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.4"/>
+      </nodes>
+      <nodes id="828bd36c-7e57-4e71-aec8-3b6e32ee783c" name="T" outgoings="/4/@graph/@arrows.12 /4/@graph/@arrows.13">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.3"/>
+      </nodes>
+      <arrows id="e0735c19-b7ae-4a5a-9748-a8e468231c63" name="active" source="/4/@graph/@nodes.4" target="/4/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="76053cf6-5a9f-444f-ade8-f224e3a151d3" name="check" source="/4/@graph/@nodes.3" target="/4/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.5"/>
+      </arrows>
+      <arrows id="05e5b154-39c6-45e8-8c9f-79f0f95f4527" name="crit" source="/4/@graph/@nodes.2" target="/4/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="83790874-f2c2-4ada-8192-71218e9a210d" name="F1R0" source="/4/@graph/@nodes.1" target="/4/@graph/@nodes.5">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.11"/>
+      </arrows>
+      <arrows id="75cba038-aa54-4963-aaa0-50d093d5e46d" name="F1R1" source="/4/@graph/@nodes.0" target="/4/@graph/@nodes.5">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.11"/>
+      </arrows>
+      <arrows id="1c935f43-d6be-4467-8fe8-55e8b7f986c8" name="nonActive0" source="/4/@graph/@nodes.4" target="/4/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="dfd65707-bcbc-4b84-91a3-57c3392bf334" name="nonActive1" source="/4/@graph/@nodes.3" target="/4/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="fdf8874e-1071-45f1-a34d-3f6b6bdb1001" name="nonActive2" source="/4/@graph/@nodes.2" target="/4/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="640d567c-c89b-4938-9af0-091f565f97f8" name="PF10" source="/4/@graph/@nodes.4" target="/4/@graph/@nodes.1">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.7"/>
+      </arrows>
+      <arrows id="206ba921-3134-452e-91dd-e2c464386e7f" name="PF11" source="/4/@graph/@nodes.4" target="/4/@graph/@nodes.0">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.7"/>
+      </arrows>
+      <arrows id="b3cc2da7-9ba8-41d5-9581-e5da255b48f6" name="setTurn" source="/4/@graph/@nodes.4" target="/4/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="9bdb92ed-8996-429a-b22c-e89c1dc8f1fc" name="start" source="/4/@graph/@nodes.4" target="/4/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.3"/>
+      </arrows>
+      <arrows id="45f2eb58-8e0a-4ca3-ae1b-67aec20ab0bf" name="TP" source="/4/@graph/@nodes.6" target="/4/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.8"/>
+      </arrows>
+      <arrows id="d5414b75-0c2e-477c-9c7c-7dfabfa701ff" name="TR" source="/4/@graph/@nodes.6" target="/4/@graph/@nodes.5">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.9"/>
+      </arrows>
+    </graph>
+    <type href="dijkstra.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph id="92e95f6c-cfb8-4d38-b9f9-6e913e7a3f29">
+      <type href="dijkstra.xmi#//@graph"/>
+      <nodes id="c58b058d-482a-4712-a3f8-cac22852a29d" name="F1" outgoings="/5/@graph/@arrows.3" incomings="/5/@graph/@arrows.6">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="bc6fdf82-c076-4987-bf33-dec03d1644f4" name="P0" outgoings="/5/@graph/@arrows.2 /5/@graph/@arrows.5" incomings="/5/@graph/@arrows.2 /5/@graph/@arrows.5">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="bd0e3dc8-9470-4a3f-9504-8df61142f998" name="P1" outgoings="/5/@graph/@arrows.0 /5/@graph/@arrows.1 /5/@graph/@arrows.8" incomings="/5/@graph/@arrows.0 /5/@graph/@arrows.1 /5/@graph/@arrows.8 /5/@graph/@arrows.10">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="95b404c7-6f14-4862-b579-e0a4c28b237c" name="P2" outgoings="/5/@graph/@arrows.4 /5/@graph/@arrows.6 /5/@graph/@arrows.7" incomings="/5/@graph/@arrows.4 /5/@graph/@arrows.7 /5/@graph/@arrows.9">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="dcb04a7e-71e6-4863-8d32-9828a042e7e8" name="R" incomings="/5/@graph/@arrows.3 /5/@graph/@arrows.11">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.4"/>
+      </nodes>
+      <nodes id="caf33ca1-af1a-4db5-af00-0a2cb478b153" name="T" outgoings="/5/@graph/@arrows.9 /5/@graph/@arrows.10 /5/@graph/@arrows.11">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.3"/>
+      </nodes>
+      <arrows id="322d0079-3708-4dcb-aa88-6e6fb36ad13c" name="active" source="/5/@graph/@nodes.2" target="/5/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="6a1e1eee-58d0-486c-84d5-ed4fcedcb551" name="check0" source="/5/@graph/@nodes.2" target="/5/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.5"/>
+      </arrows>
+      <arrows id="59d36a5e-4550-49a8-9271-c763b0d20943" name="check1" source="/5/@graph/@nodes.1" target="/5/@graph/@nodes.1">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.5"/>
+      </arrows>
+      <arrows id="cd07a794-6f42-4094-a29a-39b5636d345e" name="F1R" source="/5/@graph/@nodes.0" target="/5/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.11"/>
+      </arrows>
+      <arrows id="35007d67-9365-49c7-92e4-3f7938ac622e" name="nonActive0" source="/5/@graph/@nodes.3" target="/5/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="029b6adf-ed7f-45d4-a42c-c624a5298b23" name="nonActive1" source="/5/@graph/@nodes.1" target="/5/@graph/@nodes.1">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="717f127d-f132-4230-bcf7-ace020552940" name="PF1" source="/5/@graph/@nodes.3" target="/5/@graph/@nodes.0">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.7"/>
+      </arrows>
+      <arrows id="7f76e7c8-a099-44fb-9b79-1ba676d71980" name="setTurn0" source="/5/@graph/@nodes.3" target="/5/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="0355bf85-1e88-4b33-abfb-1a2dab8a8b94" name="setTurn1" source="/5/@graph/@nodes.2" target="/5/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="5b084774-186c-43f5-b7f7-6908084c3c91" name="TP0" source="/5/@graph/@nodes.5" target="/5/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.8"/>
+      </arrows>
+      <arrows id="03875d12-6398-40ae-bf2f-80ecd2189d33" name="TP1" source="/5/@graph/@nodes.5" target="/5/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.8"/>
+      </arrows>
+      <arrows id="ba122a3c-c00f-45cf-8065-3858230b10a4" name="TR" source="/5/@graph/@nodes.5" target="/5/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.9"/>
+      </arrows>
+    </graph>
+    <type href="dijkstra.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph id="ec0a9efb-9d7e-4d00-a35c-a7809d902254">
+      <type href="dijkstra.xmi#//@graph"/>
+      <nodes id="c1505099-3740-4ae2-a3ec-98bb2926865a" name="F1" outgoings="/6/@graph/@arrows.3" incomings="/6/@graph/@arrows.7">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="deb7364e-8725-4391-997e-0c73504e1bfb" name="P0" outgoings="/6/@graph/@arrows.2 /6/@graph/@arrows.6" incomings="/6/@graph/@arrows.2 /6/@graph/@arrows.6">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="dcbc0b90-8fec-4d21-8cf6-25e64aa9c2e5" name="P1" outgoings="/6/@graph/@arrows.1 /6/@graph/@arrows.5" incomings="/6/@graph/@arrows.1 /6/@graph/@arrows.5">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="eb6ef806-f88d-46df-89fc-e7c8f3d4017b" name="P2" outgoings="/6/@graph/@arrows.0 /6/@graph/@arrows.4 /6/@graph/@arrows.7 /6/@graph/@arrows.8" incomings="/6/@graph/@arrows.0 /6/@graph/@arrows.4 /6/@graph/@arrows.8 /6/@graph/@arrows.9">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="7a95a5e5-e325-4685-9fb1-d51f497e52cd" name="R" incomings="/6/@graph/@arrows.3 /6/@graph/@arrows.10">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.4"/>
+      </nodes>
+      <nodes id="3baa2a2e-e6d7-4962-ab7d-9c9d4bfd9981" name="T" outgoings="/6/@graph/@arrows.9 /6/@graph/@arrows.10">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.3"/>
+      </nodes>
+      <arrows id="127bf473-3371-4cb0-8752-2a2f9831dde0" name="check0" source="/6/@graph/@nodes.3" target="/6/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.5"/>
+      </arrows>
+      <arrows id="dcdca2b6-3636-4ccc-90c1-b7843fd34de3" name="check1" source="/6/@graph/@nodes.2" target="/6/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.5"/>
+      </arrows>
+      <arrows id="42ee8c68-6da2-4c92-b0bb-74194f0b7b25" name="check2" source="/6/@graph/@nodes.1" target="/6/@graph/@nodes.1">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.5"/>
+      </arrows>
+      <arrows id="de4e9aed-0848-4ae6-814f-9c8739dcf582" name="F1R" source="/6/@graph/@nodes.0" target="/6/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.11"/>
+      </arrows>
+      <arrows id="26d5bdcb-3b57-461d-9184-1a03b490b7a0" name="nonActive0" source="/6/@graph/@nodes.3" target="/6/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="2493fdbf-804e-437f-8821-917e6ffa0846" name="nonActive1" source="/6/@graph/@nodes.2" target="/6/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="2bd5476e-35e3-477a-8e79-f15711e0e2f1" name="nonActive2" source="/6/@graph/@nodes.1" target="/6/@graph/@nodes.1">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="f9bcc510-3992-431c-af5d-7944bfff09d6" name="PF1" source="/6/@graph/@nodes.3" target="/6/@graph/@nodes.0">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.7"/>
+      </arrows>
+      <arrows id="c83692a8-6652-48bf-ad0f-82503c101293" name="setTurn" source="/6/@graph/@nodes.3" target="/6/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.2"/>
+      </arrows>
+      <arrows id="36717193-0d9c-4fb5-b719-ffe05f95eaa4" name="TP" source="/6/@graph/@nodes.5" target="/6/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.8"/>
+      </arrows>
+      <arrows id="812fe2af-3c3d-46b2-96e2-5bfd1ea3b670" name="TR" source="/6/@graph/@nodes.5" target="/6/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.9"/>
+      </arrows>
+    </graph>
+    <type href="dijkstra.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph id="8a1933a7-7175-410d-8de6-193b5b820f39">
+      <type href="dijkstra.xmi#//@graph"/>
+      <nodes id="550a450c-99ef-4442-aa5b-e1507f0e7ffc" name="F1" outgoings="/7/@graph/@arrows.2" incomings="/7/@graph/@arrows.5">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.2"/>
+      </nodes>
+      <nodes id="3f320ed4-3729-424b-be62-697ffb1b40f1" name="F2" outgoings="/7/@graph/@arrows.3" incomings="/7/@graph/@arrows.6">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="59469b68-d83d-403b-a2c2-f704573e5fb4" name="P" outgoings="/7/@graph/@arrows.0 /7/@graph/@arrows.1 /7/@graph/@arrows.4 /7/@graph/@arrows.5 /7/@graph/@arrows.6" incomings="/7/@graph/@arrows.0 /7/@graph/@arrows.1 /7/@graph/@arrows.4 /7/@graph/@arrows.7">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="f489ced7-4f8d-417e-82d4-68ac0b261e96" name="R" incomings="/7/@graph/@arrows.2 /7/@graph/@arrows.3 /7/@graph/@arrows.8">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.4"/>
+      </nodes>
+      <nodes id="54f6820c-562c-4d70-8f0b-3f4b7bec0bef" name="T" outgoings="/7/@graph/@arrows.7 /7/@graph/@arrows.8">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.3"/>
+      </nodes>
+      <arrows id="c0fe3d9c-b67e-42e2-9ee1-99356e065754" name="check" source="/7/@graph/@nodes.2" target="/7/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.5"/>
+      </arrows>
+      <arrows id="bc01940f-88e6-48ad-b1d2-233f94095d7d" name="crit" source="/7/@graph/@nodes.2" target="/7/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="367de358-4bf9-4f43-9fc5-e5487504beb1" name="F1R" source="/7/@graph/@nodes.0" target="/7/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.11"/>
+      </arrows>
+      <arrows id="3841c475-4690-4fd4-9190-ffc245868a9c" name="F2R" source="/7/@graph/@nodes.1" target="/7/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.10"/>
+      </arrows>
+      <arrows id="777e4c0b-7390-429c-93c1-91933afe2dd1" name="nonActive" source="/7/@graph/@nodes.2" target="/7/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="4aff567e-73c9-4e61-b5df-fa2a2cb0e084" name="PF1" source="/7/@graph/@nodes.2" target="/7/@graph/@nodes.0">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.7"/>
+      </arrows>
+      <arrows id="297a7310-efa2-4500-a16e-67b21c6fd35b" name="PF2" source="/7/@graph/@nodes.2" target="/7/@graph/@nodes.1">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.6"/>
+      </arrows>
+      <arrows id="0279fcfc-8677-43c3-ae1c-a654401a8856" name="TP" source="/7/@graph/@nodes.4" target="/7/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.8"/>
+      </arrows>
+      <arrows id="d90b704e-d18e-498f-ac30-d5bd025a47a5" name="TR" source="/7/@graph/@nodes.4" target="/7/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.9"/>
+      </arrows>
+    </graph>
+    <type href="dijkstra.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph id="959e4d6f-2f46-4a00-9d63-4119ec0de511">
+      <type href="dijkstra.xmi#//@graph"/>
+      <nodes id="4d49ccc9-d6a0-4746-bb99-fc87a5c6abfc" name="F2" outgoings="/8/@graph/@arrows.6" incomings="/8/@graph/@arrows.8">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.1"/>
+      </nodes>
+      <nodes id="6e632a89-c848-46ce-a04c-c2c13ec3dc79" name="P0" outgoings="/8/@graph/@arrows.2 /8/@graph/@arrows.5" incomings="/8/@graph/@arrows.2 /8/@graph/@arrows.5">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="da22c46c-9612-4a30-8678-978805993269" name="P1" outgoings="/8/@graph/@arrows.1 /8/@graph/@arrows.3" incomings="/8/@graph/@arrows.1 /8/@graph/@arrows.3 /8/@graph/@arrows.10">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="dc16ea72-74a6-4100-ac5c-78d078c446fd" name="P2" outgoings="/8/@graph/@arrows.0 /8/@graph/@arrows.4 /8/@graph/@arrows.7 /8/@graph/@arrows.8 /8/@graph/@arrows.9" incomings="/8/@graph/@arrows.0 /8/@graph/@arrows.4 /8/@graph/@arrows.7 /8/@graph/@arrows.9">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="e4d59315-0786-479a-b105-2bcd64f129ed" name="R" incomings="/8/@graph/@arrows.6 /8/@graph/@arrows.11">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.4"/>
+      </nodes>
+      <nodes id="53fc1450-d57b-4d61-afd9-1076014e23b0" name="T" outgoings="/8/@graph/@arrows.10 /8/@graph/@arrows.11">
+        <typeNode href="dijkstra.xmi#//@graph/@nodes.3"/>
+      </nodes>
+      <arrows id="973f93a9-04bb-4790-a67b-6a9bf403e532" name="active0" source="/8/@graph/@nodes.3" target="/8/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="552d5cc4-1795-4e22-9a29-0ca87c52993c" name="active1" source="/8/@graph/@nodes.2" target="/8/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="27d4a7b7-e1ac-4d9b-b7c4-039f49a76f8c" name="active2" source="/8/@graph/@nodes.1" target="/8/@graph/@nodes.1">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      </arrows>
+      <arrows id="389ad64b-54b4-4b64-8d1a-089d2c1775b2" name="check" source="/8/@graph/@nodes.2" target="/8/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.5"/>
+      </arrows>
+      <arrows id="5033bbd0-65f8-4c89-a667-e65defec057d" name="crit0" source="/8/@graph/@nodes.3" target="/8/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="bcd88f71-acf0-4d6e-aa8b-5a5da8700757" name="crit1" source="/8/@graph/@nodes.1" target="/8/@graph/@nodes.1">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.4"/>
+      </arrows>
+      <arrows id="44e82387-39c7-433d-80e3-e2ceac146a5d" name="F2R" source="/8/@graph/@nodes.0" target="/8/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.10"/>
+      </arrows>
+      <arrows id="387f3e47-7bb0-4530-9ade-1ae5d973830b" name="nonActive" source="/8/@graph/@nodes.3" target="/8/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="a30513a2-48bd-4159-9958-eaf9b8f5a9fb" name="PF2" source="/8/@graph/@nodes.3" target="/8/@graph/@nodes.0">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.6"/>
+      </arrows>
+      <arrows id="8f536ede-bdae-4a21-a3b1-dfabaa60e6b4" name="start" source="/8/@graph/@nodes.3" target="/8/@graph/@nodes.3">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.3"/>
+      </arrows>
+      <arrows id="de5e8d29-9d12-4ad3-9970-0a4b5071ebe5" name="TP" source="/8/@graph/@nodes.5" target="/8/@graph/@nodes.2">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.8"/>
+      </arrows>
+      <arrows id="3e390392-eb41-4b5c-b59b-376ecade2282" name="TR" source="/8/@graph/@nodes.5" target="/8/@graph/@nodes.4">
+        <typeArrow href="dijkstra.xmi#//@graph/@arrows.9"/>
+      </arrows>
+    </graph>
+    <type href="dijkstra.xmi#/"/>
+  </core:Specification>
+</xmi:XMI>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ASCII"?>
+<no.hib.dpf.core:Specification xmlns:no.hib.dpf.core="http://no.hib.dpf.core" signatureFile="../Default.sig">
+  <graph id="ffdfb146-583f-449d-aef0-c64bcac9dc62" name="Default name">
+    <nodes id="a2669a00-febb-4a96-b718-c4f3257181fb" name="SYXB 1" typeNode="//@typeGraph/@nodes.1"/>
+    <nodes id="84937993-f109-48e3-a9c0-fc5a2799ab03" name="SX 2" typeNode="//@typeGraph/@nodes.0"/>
+    <nodes id="cfb62f3c-d659-4d4c-a654-7956214b288b" name="XC 3" typeNode="//@typeGraph/@nodes.2"/>
+    <nodes id="e62f808b-7fc4-484c-b372-ee913b13690b" name="SX 4" typeNode="//@typeGraph/@nodes.0"/>
+    <nodes id="8965641a-2dd9-4e77-9801-535465e157a5" name="XC 5" typeNode="//@typeGraph/@nodes.2"/>
+    <arrows id="77d31bca-6fcc-4df3-aa58-061436fd0c49" target="//@graph/@nodes.0" typeArrow="//@typeGraph/@arrows.0" source="//@graph/@nodes.1" name="SXY 1"/>
+    <arrows id="eae96af1-767e-4591-8947-0d10e62a14ed" target="//@graph/@nodes.0" typeArrow="//@typeGraph/@arrows.1" source="//@graph/@nodes.2" name="XCB 2"/>
+  </graph>
+  <typeGraph id="68b29fbe-c32d-442b-a093-9cd6ae9d3025" name="Default name">
+    <nodes id="0402ba44-8b02-431a-8496-faf7699b9299" name="SX">
+      <typeNode href="platform:/resource/DefaultGraph.xmi#//@nodes.0"/>
+    </nodes>
+    <nodes id="34c0b5d4-aadd-4898-88dd-46165c239696" name="SYXB">
+      <typeNode href="platform:/resource/DefaultGraph.xmi#//@nodes.0"/>
+    </nodes>
+    <nodes id="4f7e1d7d-56a8-4eb4-85fa-0c0156313aab" name="XC">
+      <typeNode href="platform:/resource/DefaultGraph.xmi#//@nodes.0"/>
+    </nodes>
+    <nodes id="95e07d28-d358-4357-b7e6-bd91fe4a80e9" name="XA">
+      <typeNode href="platform:/resource/DefaultGraph.xmi#//@nodes.0"/>
+    </nodes>
+    <arrows id="95d4568f-da78-43dc-9d51-2c407e2d8156" target="//@typeGraph/@nodes.1" source="//@typeGraph/@nodes.0" name="SXY">
+      <typeArrow href="platform:/resource/DefaultGraph.xmi#//@arrows.0"/>
+    </arrows>
+    <arrows id="182a0cef-5ed8-42c7-aec3-abf39738c363" target="//@typeGraph/@nodes.1" source="//@typeGraph/@nodes.2" name="XCB">
+      <typeArrow href="platform:/resource/DefaultGraph.xmi#//@arrows.0"/>
+    </arrows>
+    <arrows id="12354b22-677e-4477-8180-1ec5438ef8fb" target="//@typeGraph/@nodes.3" source="//@typeGraph/@nodes.2" name="XCA">
+      <typeArrow href="platform:/resource/DefaultGraph.xmi#//@arrows.0"/>
+    </arrows>
+    <constraints id="eb4aa6ca-a7a8-4615-94ea-8a87a250c4f1">
+      <predicate href="../Default.sig#//@predicates.0"/>
+      <mappings>
+        <nodeMapping value="//@typeGraph/@nodes.1">
+          <key href="../Default.sig#//@predicates.0/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="//@typeGraph/@nodes.0">
+          <key href="../Default.sig#//@predicates.0/@shape/@nodes.0"/>
+        </nodeMapping>
+        <arrowMapping value="//@typeGraph/@arrows.0">
+          <key href="../Default.sig#//@predicates.0/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints id="3444a27a-3779-4b96-96a7-bcb7a0af82c9">
+      <predicate href="../Default.sig#//@predicates.1"/>
+      <mappings>
+        <nodeMapping value="//@typeGraph/@nodes.1">
+          <key href="../Default.sig#//@predicates.1/@shape/@nodes.0"/>
+        </nodeMapping>
+        <nodeMapping value="//@typeGraph/@nodes.3">
+          <key href="../Default.sig#//@predicates.1/@shape/@nodes.1"/>
+        </nodeMapping>
+        <nodeMapping value="//@typeGraph/@nodes.2">
+          <key href="../Default.sig#//@predicates.1/@shape/@nodes.2"/>
+        </nodeMapping>
+        <arrowMapping value="//@typeGraph/@arrows.2">
+          <key href="../Default.sig#//@predicates.1/@shape/@arrows.1"/>
+        </arrowMapping>
+        <arrowMapping value="//@typeGraph/@arrows.1">
+          <key href="../Default.sig#//@predicates.1/@shape/@arrows.0"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+  </typeGraph>
+  <signature href="../Default.sig#/"/>
+</no.hib.dpf.core:Specification>

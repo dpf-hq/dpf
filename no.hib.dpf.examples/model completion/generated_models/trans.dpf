@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false">
+  <dGraph>
+    <dNodes dOutgoings="//@dGraph/@dArrows.0" dIncomings="//@dGraph/@dArrows.0" location="307 136" size="100 30">
+      <node href="trans.xmi#//@graph/@nodes.0"/>
+    </dNodes>
+    <dArrows dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0">
+      <arrow href="trans.xmi#//@graph/@arrows.0"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <graph href="trans.xmi#//@graph"/>
+  </dGraph>
+  <specification href="trans.xmi#/"/>
+</diagram:DSpecification>

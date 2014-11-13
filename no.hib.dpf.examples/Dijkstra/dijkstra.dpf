@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false">
+  <dGraph>
+    <dNodes dOutgoings="//@dGraph/@dArrows.0 //@dGraph/@dArrows.1 //@dGraph/@dArrows.2 //@dGraph/@dArrows.3 //@dGraph/@dArrows.4 //@dGraph/@dArrows.5 //@dGraph/@dArrows.6 //@dGraph/@dArrows.7" dIncomings="//@dGraph/@dArrows.0 //@dGraph/@dArrows.1 //@dGraph/@dArrows.2 //@dGraph/@dArrows.3 //@dGraph/@dArrows.4 //@dGraph/@dArrows.5 //@dGraph/@dArrows.8" dConstraints="//@dConstraints.0 //@dConstraints.1 //@dConstraints.3 //@dConstraints.4 //@dConstraints.5 //@dConstraints.6 //@dConstraints.7 //@dConstraints.8 //@dConstraints.9 //@dConstraints.10" location="132 165" size="85 37">
+      <node href="dijkstra.xmi#//@graph/@nodes.0"/>
+    </dNodes>
+    <dNodes xsi:type="diagram:DConstraintNode" constraintsFrom="//@dConstraints.1/@children.0 //@dConstraints.1/@children.1 //@dConstraints.1/@children.2 //@dConstraints.1/@children.3" location="120 287" dConstraint="//@dConstraints.1"/>
+    <dNodes dOutgoings="//@dGraph/@dArrows.10" dIncomings="//@dGraph/@dArrows.6" dConstraints="//@dConstraints.2 //@dConstraints.3" location="336 60" size="100 30">
+      <node href="dijkstra.xmi#//@graph/@nodes.1"/>
+    </dNodes>
+    <dNodes dOutgoings="//@dGraph/@dArrows.11" dIncomings="//@dGraph/@dArrows.7" dConstraints="//@dConstraints.2 //@dConstraints.3" location="336 169" size="100 30">
+      <node href="dijkstra.xmi#//@graph/@nodes.2"/>
+    </dNodes>
+    <dNodes constraintsTo="//@dConstraints.13/@children.0" dOutgoings="//@dGraph/@dArrows.8 //@dGraph/@dArrows.9" dConstraints="//@dConstraints.10 //@dConstraints.11 //@dConstraints.12 //@dConstraints.13" location="336 264" size="100 30">
+      <node href="dijkstra.xmi#//@graph/@nodes.3"/>
+    </dNodes>
+    <dNodes constraintsTo="//@dConstraints.14/@children.0" dIncomings="//@dGraph/@dArrows.9 //@dGraph/@dArrows.10 //@dGraph/@dArrows.11" dConstraints="//@dConstraints.2 //@dConstraints.11 //@dConstraints.12 //@dConstraints.14" location="540 169" size="100 30">
+      <node href="dijkstra.xmi#//@graph/@nodes.4"/>
+    </dNodes>
+    <dNodes xsi:type="diagram:DConstraintNode" constraintsFrom="//@dConstraints.13/@children.0" location="313 216" dConstraint="//@dConstraints.13"/>
+    <dNodes xsi:type="diagram:DConstraintNode" constraintsFrom="//@dConstraints.14/@children.0" location="588 132" dConstraint="//@dConstraints.14"/>
+    <dArrows constraintsTo="//@dConstraints.0" dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0" dConstraints="//@dConstraints.0 //@dConstraints.4">
+      <arrow href="dijkstra.xmi#//@graph/@arrows.0"/>
+      <nameOffset offset="-60 -21" len="-71" index="1"/>
+      <bendpoints offset="-33 -49" len="37"/>
+      <bendpoints offset="-34 4" len="37" index="1"/>
+    </dArrows>
+    <dArrows constraintsFrom="//@dConstraints.0" dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0" dConstraints="//@dConstraints.0 //@dConstraints.5">
+      <arrow href="dijkstra.xmi#//@graph/@arrows.1"/>
+      <nameOffset offset="-119 32" len="-83"/>
+      <bendpoints offset="-46 69" len="37"/>
+      <bendpoints offset="-11 67" len="37" index="1"/>
+    </dArrows>
+    <dArrows constraintsTo="//@dConstraints.1/@children.0" dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0" dConstraints="//@dConstraints.1 //@dConstraints.6">
+      <arrow href="dijkstra.xmi#//@graph/@arrows.2"/>
+      <nameOffset offset="-146 27" len="-96"/>
+      <bendpoints offset="-4 96" len="37"/>
+      <bendpoints offset="56 85" len="37"/>
+    </dArrows>
+    <dArrows constraintsTo="//@dConstraints.1/@children.1" dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0" dConstraints="//@dConstraints.1 //@dConstraints.7">
+      <arrow href="dijkstra.xmi#//@graph/@arrows.3"/>
+      <nameOffset offset="-134 -12" len="-118"/>
+      <bendpoints offset="98 66" len="37"/>
+      <bendpoints offset="54 68" len="37" index="1"/>
+    </dArrows>
+    <dArrows constraintsTo="//@dConstraints.1/@children.2" dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0" dConstraints="//@dConstraints.1 //@dConstraints.8">
+      <arrow href="dijkstra.xmi#//@graph/@arrows.4"/>
+      <nameOffset offset="45 21" len="53" index="1"/>
+      <bendpoints offset="59 28" len="37"/>
+      <bendpoints offset="101 -5" len="37" index="2"/>
+    </dArrows>
+    <dArrows constraintsTo="//@dConstraints.1/@children.3" dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.0" dConstraints="//@dConstraints.1 //@dConstraints.9">
+      <arrow href="dijkstra.xmi#//@graph/@arrows.5"/>
+      <nameOffset offset="10 -3" len="16"/>
+      <bendpoints offset="57 -75" len="37"/>
+      <bendpoints offset="84 -46" len="37" index="1"/>
+    </dArrows>
+    <dArrows constraintsFrom="//@dConstraints.3" dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.2" dConstraints="//@dConstraints.3">
+      <arrow href="dijkstra.xmi#//@graph/@arrows.6"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <dArrows constraintsTo="//@dConstraints.3" dSource="//@dGraph/@dNodes.0" dTarget="//@dGraph/@dNodes.3" dConstraints="//@dConstraints.3">
+      <arrow href="dijkstra.xmi#//@graph/@arrows.7"/>
+      <nameOffset offset="101 -27" len="212"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.4" dTarget="//@dGraph/@dNodes.0" dConstraints="//@dConstraints.10">
+      <arrow href="dijkstra.xmi#//@graph/@arrows.8"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <dArrows dSource="//@dGraph/@dNodes.4" dTarget="//@dGraph/@dNodes.5" dConstraints="//@dConstraints.11 //@dConstraints.12">
+      <arrow href="dijkstra.xmi#//@graph/@arrows.9"/>
+      <nameOffset offset="128 11" len="256"/>
+    </dArrows>
+    <dArrows constraintsTo="//@dConstraints.2" dSource="//@dGraph/@dNodes.2" dTarget="//@dGraph/@dNodes.5" dConstraints="//@dConstraints.2">
+      <arrow href="dijkstra.xmi#//@graph/@arrows.10"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <dArrows constraintsFrom="//@dConstraints.2" dSource="//@dGraph/@dNodes.3" dTarget="//@dGraph/@dNodes.5" dConstraints="//@dConstraints.2">
+      <arrow href="dijkstra.xmi#//@graph/@arrows.11"/>
+      <nameOffset offset="90 -20" len="233"/>
+    </dArrows>
+    <graph href="dijkstra.xmi#//@graph"/>
+  </dGraph>
+  <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="//@dGraph/@dNodes.0" dArrows="//@dGraph/@dArrows.1 //@dGraph/@dArrows.0" source="//@dGraph/@dArrows.1" target="//@dGraph/@dArrows.0">
+    <constraint href="dijkstra.xmi#//@constraints.0"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.7"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="//@dGraph/@dNodes.0" dArrows="//@dGraph/@dArrows.2 //@dGraph/@dArrows.3 //@dGraph/@dArrows.4 //@dGraph/@dArrows.5" fakeNode="//@dGraph/@dNodes.1">
+    <constraint href="dijkstra.xmi#//@constraints.1"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.12"/>
+    <children xsi:type="diagram:DGenericArrowConstraint" source="//@dGraph/@dNodes.1" target="//@dGraph/@dArrows.2"/>
+    <children xsi:type="diagram:DGenericArrowConstraint" source="//@dGraph/@dNodes.1" target="//@dGraph/@dArrows.3"/>
+    <children xsi:type="diagram:DGenericArrowConstraint" source="//@dGraph/@dNodes.1" target="//@dGraph/@dArrows.4"/>
+    <children xsi:type="diagram:DGenericArrowConstraint" source="//@dGraph/@dNodes.1" target="//@dGraph/@dArrows.5"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="//@dGraph/@dNodes.2 //@dGraph/@dNodes.5 //@dGraph/@dNodes.3" dArrows="//@dGraph/@dArrows.10 //@dGraph/@dArrows.11" source="//@dGraph/@dArrows.11" target="//@dGraph/@dArrows.10">
+    <constraint href="dijkstra.xmi#//@constraints.2"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.9"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DGenericArrowConstraint" dNodes="//@dGraph/@dNodes.0 //@dGraph/@dNodes.2 //@dGraph/@dNodes.3" dArrows="//@dGraph/@dArrows.6 //@dGraph/@dArrows.7" source="//@dGraph/@dArrows.6" target="//@dGraph/@dArrows.7">
+    <constraint href="dijkstra.xmi#//@constraints.3"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.8"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="//@dGraph/@dNodes.0" dArrows="//@dGraph/@dArrows.0" source="//@dGraph/@dArrows.0">
+    <constraint href="dijkstra.xmi#//@constraints.4"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.11"/>
+    <offset offset="-44 -32" len="-53" index="1"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="//@dGraph/@dNodes.0" dArrows="//@dGraph/@dArrows.1" source="//@dGraph/@dArrows.1">
+    <constraint href="dijkstra.xmi#//@constraints.5"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.11"/>
+    <offset offset="-125 12" len="-83"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="//@dGraph/@dNodes.0" dArrows="//@dGraph/@dArrows.2" source="//@dGraph/@dArrows.2">
+    <constraint href="dijkstra.xmi#//@constraints.6"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.11"/>
+    <offset offset="-146 11" len="-96"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="//@dGraph/@dNodes.0" dArrows="//@dGraph/@dArrows.3" source="//@dGraph/@dArrows.3">
+    <constraint href="dijkstra.xmi#//@constraints.7"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.11"/>
+    <offset offset="-150 -10" len="-118"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="//@dGraph/@dNodes.0" dArrows="//@dGraph/@dArrows.4" source="//@dGraph/@dArrows.4">
+    <constraint href="dijkstra.xmi#//@constraints.8"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.11"/>
+    <offset offset="64 20" len="54" index="1"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="//@dGraph/@dNodes.0" dArrows="//@dGraph/@dArrows.5" source="//@dGraph/@dArrows.5">
+    <constraint href="dijkstra.xmi#//@constraints.9"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.11"/>
+    <offset offset="-29 32" len="-40" index="1"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="//@dGraph/@dNodes.4 //@dGraph/@dNodes.0" dArrows="//@dGraph/@dArrows.8" source="//@dGraph/@dArrows.8">
+    <constraint href="dijkstra.xmi#//@constraints.10"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
+    <offset offset="-137 82" len="-233"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="//@dGraph/@dNodes.4 //@dGraph/@dNodes.5" dArrows="//@dGraph/@dArrows.9" source="//@dGraph/@dArrows.9">
+    <constraint href="dijkstra.xmi#//@constraints.11"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.0"/>
+    <offset offset="77 7" len="229"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="//@dGraph/@dNodes.4 //@dGraph/@dNodes.5" dArrows="//@dGraph/@dArrows.9" source="//@dGraph/@dArrows.9">
+    <constraint href="dijkstra.xmi#//@constraints.12"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.1"/>
+    <offset offset="141 12" len="229"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="//@dGraph/@dNodes.4" fakeNode="//@dGraph/@dNodes.6">
+    <constraint href="dijkstra.xmi#//@constraints.13"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.10"/>
+    <children xsi:type="diagram:DGenericArrowConstraint" source="//@dGraph/@dNodes.6" target="//@dGraph/@dNodes.4"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="//@dGraph/@dNodes.5" fakeNode="//@dGraph/@dNodes.7">
+    <constraint href="dijkstra.xmi#//@constraints.14"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.10"/>
+    <children xsi:type="diagram:DGenericArrowConstraint" source="//@dGraph/@dNodes.7" target="//@dGraph/@dNodes.5"/>
+  </dConstraints>
+  <specification href="dijkstra.xmi#/"/>
+</diagram:DSpecification>
