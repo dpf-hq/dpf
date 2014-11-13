@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/no.hib.dpf.diagram/src" editDirectory="/no.hib.dpf.editor/src"
+    modelPluginID="no.hib.dpf.diagram" modelName="DiagramMetamodel" editPluginClass="no.hib.dpf.editor.DPFPlugin"
+    testsDirectory="/no.hib.dpf.tests/src" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="no.hib.dpf.editor"
+    testsPluginID="no.hib.dpf.tests" usedGenPackages="../../no.hib.dpf.core/model/Metamodel.genmodel#//core">
+  <foreignModel>DiagramMetamodel.ecore</foreignModel>
+  <genPackages prefix="Diagram" basePackage="no.hib.dpf" disposableProviderFactory="true"
+      ecorePackage="DiagramMetamodel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="DiagramMetamodel.ecore#//VisualizationType">
+      <genEnumLiterals ecoreEnumLiteral="DiagramMetamodel.ecore#//VisualizationType/ArrowLabel"/>
+      <genEnumLiterals ecoreEnumLiteral="DiagramMetamodel.ecore#//VisualizationType/NodeToNode"/>
+      <genEnumLiterals ecoreEnumLiteral="DiagramMetamodel.ecore#//VisualizationType/NodeToArrow"/>
+      <genEnumLiterals ecoreEnumLiteral="DiagramMetamodel.ecore#//VisualizationType/ArrowToNode"/>
+      <genEnumLiterals ecoreEnumLiteral="DiagramMetamodel.ecore#//VisualizationType/ArrowToArrow"/>
+      <genEnumLiterals ecoreEnumLiteral="DiagramMetamodel.ecore#//VisualizationType/Composed"/>
+      <genEnumLiterals ecoreEnumLiteral="DiagramMetamodel.ecore#//VisualizationType/OnNode"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="DiagramMetamodel.ecore#//EDimension"/>
+    <genDataTypes ecoreDataType="DiagramMetamodel.ecore#//ELocation"/>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DSpecification">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DSpecification/dType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DSpecification/dGraph"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DSpecification/dConstraints"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DSpecification/specification"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DSpecification/grid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DSpecification/snap"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DSpecification/zoom"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DSpecification/gridVisible"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DSpecification/dSignature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DSpecification/metaFile"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DSpecification/signatureFile"/>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DSpecification/createDGraph">
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DSpecification/createDGraph/graph"/>
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DSpecification/createDGraph/dType"/>
+      </genOperations>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DSpecification/createDConstraint">
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DSpecification/createDConstraint/constraint"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DGraph">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DGraph/dType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DGraph/dNodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DGraph/dArrows"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DGraph/graph"/>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DGraph/getDNode">
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DGraph/getDNode/node"/>
+      </genOperations>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DGraph/getDArrow">
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DGraph/getDArrow/arrow"/>
+      </genOperations>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DGraph/createDNode">
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DGraph/createDNode/name"/>
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DGraph/createDNode/dType"/>
+      </genOperations>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DGraph/createDArrow">
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DGraph/createDArrow/name"/>
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DGraph/createDArrow/dSource"/>
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DGraph/createDArrow/dTarget"/>
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DGraph/createDArrow/dType"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DNode/dType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DNode/node"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DNode/configureString"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DNode/dOutgoings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DNode/dIncomings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DNode/dConstraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DNode/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DNode/size"/>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DNode/getName"/>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DNode/getTypeName"/>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DConstraintNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DConstraintNode/dConstraint"/>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DArrow">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrow/dType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrow/arrow"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DArrow/configureString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DArrow/lineStyle"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrow/dSource"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrow/dTarget"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrow/dConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrow/nameOffset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrow/bendpoints"/>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DArrow/reconnect">
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DArrow/reconnect/source"/>
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DArrow/reconnect/target"/>
+      </genOperations>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DArrow/disconnect"/>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DArrow/getName"/>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DArrow/getTypeName"/>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DConstraint/constraint"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DConstraint/dNodes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DConstraint/dArrows"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DConstraint/dPredicate"/>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DConstraint/reconnect">
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DConstraint/reconnect/nodes"/>
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DConstraint/reconnect/arrows"/>
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DConstraint/reconnect/specification"/>
+      </genOperations>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DConstraint/disconnect"/>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DConstraint/addDArrow">
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DConstraint/addDArrow/dArrow"/>
+      </genOperations>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DConstraint/addDNode">
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DConstraint/addDNode/dNode"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DArrowLabelConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrowLabelConstraint/offset"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DArrowLabelConstraint/source"/>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DGenericArrowConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DGenericArrowConstraint/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DGenericArrowConstraint/target"/>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DComposedConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DComposedConstraint/children"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DComposedConstraint/fakeNode"/>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DPredicate">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DPredicate/predicate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DPredicate/simpleName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DPredicate/dGraph"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DPredicate/visualization"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DPredicate/icon"/>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DOffset">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DOffset/offset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DOffset/len"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//DOffset/index"/>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DSignature">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DSignature/signature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DSignature/dPredicates"/>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DSignature/addDPredicate">
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DSignature/addDPredicate/dPredicate"/>
+      </genOperations>
+      <genOperations ecoreOperation="DiagramMetamodel.ecore#//DSignature/removeDPredicate">
+        <genParameters ecoreParameter="DiagramMetamodel.ecore#//DSignature/removeDPredicate/dPredicate"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//Visualization">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DiagramMetamodel.ecore#//Visualization/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//Visualization/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//Visualization/target"/>
+    </genClasses>
+    <genClasses ecoreClass="DiagramMetamodel.ecore#//DElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DElement/constraintsFrom"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DiagramMetamodel.ecore#//DElement/constraintsTo"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
