@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<visual:Visuals xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:visual="http://no.hib.dpf.visual">
-  <items xsi:type="visual:VNode" name="Composite" composite="true" color="255 255 253" rounded="true"/>
-  <items xsi:type="visual:VArrow" name="ComposedArrow" composed="true"/>
-  <items xsi:type="visual:VArrow" name="UnComposedArrow" icon="../specifications/mousepointer.JPG"/>
-  <items xsi:type="visual:VNode" name="UnComposite" color="255 255 255" rounded="true"/>
-</visual:Visuals>
