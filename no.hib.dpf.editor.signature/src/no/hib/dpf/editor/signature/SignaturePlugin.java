@@ -32,7 +32,6 @@ public final class SignaturePlugin extends AbstractUIPlugin {
 
 	/** Single plugin instance. */
 	private static SignaturePlugin INSTANCE;
-	public static String PLUGIN_ID = "no.hib.dpf.editor.signature";
 
 	/**
 	 * This method is called upon plug-in activation.

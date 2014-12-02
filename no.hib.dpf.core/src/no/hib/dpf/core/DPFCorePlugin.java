@@ -5,13 +5,9 @@ import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
 public class DPFCorePlugin extends Plugin{
-	public static final String PLUGIN_ID = "no.hib.dpf.core";
 
 	/** Single plugin instance. */
 	private static DPFCorePlugin INSTANCE;
-	public DPFCorePlugin(){
-		super();
-	}
 	/**
 	 * This method is called upon plug-in activation.
 	 */

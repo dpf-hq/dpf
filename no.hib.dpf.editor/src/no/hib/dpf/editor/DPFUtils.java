@@ -5,9 +5,6 @@ import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
 import static no.hib.dpf.utils.DPFConstants.DefaultDSpecification;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
@@ -27,8 +24,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -46,7 +43,6 @@ import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.views.navigator.ResourceComparator;
 
 public class DPFUtils extends DPFCoreUtil {
@@ -60,9 +56,9 @@ public class DPFUtils extends DPFCoreUtil {
 	 * @param resourceToDiagnosticMap : used as analyzing exception shown up during saving
 	 */
 	public static void saveDSpecification(ResourceSetImpl resourceSet, DSpecification newSpec,
-			URI createFileURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		DPFCoreUtil.saveSpecification(resourceSet, getModelURI(createFileURI), newSpec.getSpecification(), resourceToDiagnosticMap);
-		Resource diagram = createResource(resourceSet, createFileURI, resourceToDiagnosticMap);
+			URI createFileURI) {
+		DPFCoreUtil.saveSpecification(resourceSet, getModelURI(createFileURI), newSpec.getSpecification());
+		Resource diagram = createResource(resourceSet, createFileURI);
 		EcoreUtil.resolveAll(newSpec.getDType().eResource());
 		DSpecification iter = newSpec;
 		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
@@ -78,7 +74,6 @@ public class DPFUtils extends DPFCoreUtil {
 		try {
 			diagram.save(null);
 		} catch (IOException e) {
-			analyzeResourceProblems(diagram, e, resourceToDiagnosticMap);
 			logError(e);
 		}
 	}
@@ -87,9 +82,9 @@ public class DPFUtils extends DPFCoreUtil {
 	 * Load a DSpecification. If no model is loaded, a default DSpecification is created and return.
 	 */
 	public static DSpecification loadDSpecification(ResourceSetImpl resourceSet,
-			URI diagramURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		loadSpecification(resourceSet, getModelURI(diagramURI), resourceToDiagnosticMap);
-		Resource diagram = createResource(resourceSet, diagramURI, resourceToDiagnosticMap);
+			URI diagramURI) {
+		loadSpecification(resourceSet, getModelURI(diagramURI));
+		Resource diagram = createResource(resourceSet, diagramURI);
 		Object result = getObjectFromResource(diagram);
 		if(result instanceof DSpecification)
 			return (DSpecification) result;
@@ -98,19 +93,19 @@ public class DPFUtils extends DPFCoreUtil {
 	/*
 	 * load a DSpecification
 	 */
-	public static DSpecification loadDModel(ResourceSetImpl resourceSet,
-			URI diagramURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		return loadDSpecification(resourceSet, diagramURI, resourceToDiagnosticMap);
-	}
-	public static DSpecification loadDSpecification(URI createFileURI) {
-		return loadDSpecification(getResourceSet(), createFileURI, new HashMap<Resource, Diagnostic>());
-	}
-	
-	public static DSpecification loadDModel(URI createFileURI) {
-		return loadDModel(getResourceSet(), createFileURI, new HashMap<Resource, Diagnostic>());
-	}
-	public static DSignature loadDSignature(ResourceSetImpl resourceSet, URI createFileURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
-		Resource signature = createResource(resourceSet, createFileURI, resourceToDiagnosticMap);
+//	public static DSpecification loadDModel(ResourceSetImpl resourceSet,
+//			URI diagramURI) {
+//		return loadDSpecification(resourceSet, diagramURI);
+//	}
+//	public static DSpecification loadDSpecification(URI createFileURI) {
+//		return loadDSpecification(getResourceSet(), createFileURI);
+//	}
+//	
+//	public static DSpecification loadDModel(URI createFileURI) {
+//		return loadDModel(getResourceSet(), createFileURI);
+//	}
+	public static DSignature loadDSignature(ResourceSetImpl resourceSet, URI createFileURI) {
+		Resource signature = createResource(resourceSet, createFileURI);
 		Object result = getObjectFromResource(signature);
 		if(result instanceof DSignature)
 			return (DSignature) result;
@@ -146,13 +141,12 @@ public class DPFUtils extends DPFCoreUtil {
 	public static final String DEFAULT_DIAGRAM_MODEL_EXTENSION = ".dpf";
 	public static final String DEFAULT_MODEL_EXTENSION = ".xmi";
 	public static DSignature loadDSignature(URI createFileURI) {
-		return loadDSignature(new ResourceSetImpl(), createFileURI, new LinkedHashMap<Resource, Diagnostic>());
+		return loadDSignature(new ResourceSetImpl(), createFileURI);
 	}
 
 	public static ResourceSetImpl getResourceSet() {
 		ResourceSetImpl resourceSet = DPFCoreUtil.getResourceSet();
-		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("dpf", new XMIResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMIResourceFactoryImpl());
 		
 		Resource resource = resourceSet.createResource(DefaultDSpecification);
 		resource.getContents().add(REFLEXIVE_DSPECIFICATION);
@@ -161,13 +155,10 @@ public class DPFUtils extends DPFCoreUtil {
 		return resourceSet;
 	}
 
-	public static AbstractUIPlugin getPlugin() {
+	public static Plugin getPlugin() {
 		return DPFPlugin.getDefault();
 	}
 
-	public static String getPluginID() {
-		return DPFPlugin.PLUGIN_ID;
-	}
 	public static URI getFileURI(IFile file){
 		return URI.createFileURI(file.getLocation().toOSString());
 	}
@@ -230,15 +221,15 @@ public class DPFUtils extends DPFCoreUtil {
 
 				String errorMessage = validErrorMessage == null ? "" : validErrorMessage;
 				if (selection == null || selection.length != 1 || !(selection[0] instanceof IFile) )
-					return new Status(IStatus.ERROR, DPFPlugin.PLUGIN_ID, IStatus.ERROR, errorMessage, null);
+					return new Status(IStatus.ERROR, getPluginID(), IStatus.ERROR, errorMessage, null);
 				IFile file = (IFile) selection[0];
 				String ext = file.getFullPath().getFileExtension();
 				if(suffixs == null)
-					return new Status(IStatus.OK, DPFPlugin.PLUGIN_ID, IStatus.OK, "", null);
+					return new Status(IStatus.OK, getPluginID(), IStatus.OK, "", null);
 				for (int i = 0; i < suffixs.length; i++) 
 					if(suffixs[i].equals(ext))
-						return new Status(IStatus.OK, DPFPlugin.PLUGIN_ID, IStatus.OK, "", null);
-				return new Status(IStatus.ERROR, DPFPlugin.PLUGIN_ID, IStatus.ERROR, errorMessage, null);
+						return new Status(IStatus.OK, getPluginID(), IStatus.OK, "", null);
+				return new Status(IStatus.ERROR, getPluginID(), IStatus.ERROR, errorMessage, null);
 			}
 		});
 		dialog.setStatusLineAboveButtons(true);
@@ -297,25 +288,25 @@ public class DPFUtils extends DPFCoreUtil {
 		}
 		return false;
 	}
-	public static DSpecification createDSpecificationFromSpecification(ResourceSetImpl resourceSet, URI modelUri, Specification specification, DSpecification dType, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
+	public static DSpecification createDSpecificationFromSpecification(ResourceSetImpl resourceSet, URI modelUri, Specification specification, DSpecification dType) {
 		if(dType == null && specification.getType() == DPFConstants.REFLEXIVE_SPECIFICATION)
-			return createDSpecificationFromSpecification(resourceSet, modelUri, specification, DPFConstants.REFLEXIVE_DSPECIFICATION, resourceToDiagnosticMap);
+			return createDSpecificationFromSpecification(resourceSet, modelUri, specification, DPFConstants.REFLEXIVE_DSPECIFICATION);
 		URI diagramURI = URI.createURI(DPFUtils.getDiagramFromModel(modelUri.toString()));
 		DSpecification model = null;
 		if(isFileExist(diagramURI))
-			model = DPFUtils.loadDSpecification(resourceSet, diagramURI, resourceToDiagnosticMap);
+			model = DPFUtils.loadDSpecification(resourceSet, diagramURI);
 		if(model != null)
 			return model;
 		if(dType == null){
 			URI typeFileAbsoluteURI = URI.createURI(specification.getMetaFile()).resolve(modelUri);
-			Specification type = DPFUtils.loadSpecification(resourceSet, typeFileAbsoluteURI, resourceToDiagnosticMap);
-			dType = createDSpecificationFromSpecification(resourceSet, typeFileAbsoluteURI, type, null, resourceToDiagnosticMap);
+			Specification type = DPFUtils.loadSpecification(resourceSet, typeFileAbsoluteURI);
+			dType = createDSpecificationFromSpecification(resourceSet, typeFileAbsoluteURI, type, null);
 		}
 		DSpecification result = new GenerateDiagramFromModel(specification, dType).result;
 		result.setMetaFile(dType.eResource().getURI().deresolve(diagramURI).toFileString());
 		if(specification.eResource() != null)
 			specification.eResource().getContents().clear();
-		DPFUtils.saveDSpecification(resourceSet, result, diagramURI, resourceToDiagnosticMap);
+		DPFUtils.saveDSpecification(resourceSet, result, diagramURI);
 		return result;
 	}
 
@@ -326,5 +317,4 @@ public class DPFUtils extends DPFCoreUtil {
 		else
 			return fileName.substring(0, index);
 	}
-
 }

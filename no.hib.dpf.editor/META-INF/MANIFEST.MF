@@ -42,6 +42,3 @@ Export-Package: no.hib.dpf.core.provider,
  no.hib.dpf.editor.parts.listeners,
  no.hib.dpf.editor.policies,
  no.hib.dpf.editor.wizards
-Bundle-ClassPath: alloy4.2.jar,
- .
-

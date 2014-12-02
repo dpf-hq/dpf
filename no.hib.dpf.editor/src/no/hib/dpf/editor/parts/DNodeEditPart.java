@@ -25,6 +25,7 @@ import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.DPFEditor;
@@ -207,7 +208,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		if(nodePaint == null)
 			try {
 				String name = null;
-				if(getDNode() instanceof DNode)
+				if(getDNode() instanceof DNode && (getDNode() instanceof DFakeNode))
 					name = getDNode().getDType().getConfigureString();
 				if(name == null || name.isEmpty())
 					return null;
@@ -277,10 +278,6 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 					}
 				}
 				break;
-			case DiagramPackage.DNODE__LOCATION:
-			case DiagramPackage.DNODE__SIZE:
-				refresh();
-				break;
 			}
 
 		}
@@ -336,7 +333,9 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 			if(figure.getErrorImageFlag() != flag)
 				figure.setErrorImageFlag(flag);
 		}
-		getFigure().setBounds(new Rectangle(getDiagramModel().getLocation(), getDiagramModel().getSize()));
+		figure.setBounds(new Rectangle(getDiagramModel().getLocation(), getDiagramModel().getSize()));
+		figure.repaint();
+		figure.invalidate();
 		refreshLabel();
 		//			((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), bounds);
 		// notify parent container of changed position & location

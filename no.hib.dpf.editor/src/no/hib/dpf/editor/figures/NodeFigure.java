@@ -82,14 +82,14 @@ public class NodeFigure extends Figure implements RoutableFigure {
 	public NodeFigure(EditableLabel name, List colums) {
 		nameLabel = name;
 		GridLayout layout = new GridLayout(1, true);
-		layout.setConstraint(nameLabel, new GridData(SWT.CENTER, SWT.CENTER, true, true));
 		setLayoutManager(layout);
 		setBorder(new LineBorder(ColorConstants.black, 1));
 		setBackgroundColor(DPFEditorPreferences.getDefault().getNodeBackgroundColor());
 		setForegroundColor(DPFEditorPreferences.getDefault().getNodeForegroundColor());
 		setOpaque(true);
 		name.setForegroundColor(DPFEditorPreferences.getDefault().getNodeForegroundColor());
-		add(name);
+		add(nameLabel);
+		layout.setConstraint(nameLabel, new GridData(SWT.CENTER, SWT.CENTER, true, true));
 	}
 
 	/**
@@ -117,11 +117,18 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		if(valid != bool){
 			valid = bool;
 			revalidate();
-			repaint();
 		}
 	}
 
 	public boolean getErrorImageFlag() {
 		return valid;
+	}
+	
+	public void setBounds(Rectangle rect) {
+		boolean resize = (rect.width != bounds.width)
+				|| (rect.height != bounds.height);
+		super.setBounds(rect);
+		if(resize)
+			revalidate();
 	}
 }

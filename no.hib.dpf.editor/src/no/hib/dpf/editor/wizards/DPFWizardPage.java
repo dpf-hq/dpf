@@ -19,6 +19,7 @@ import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFUtils;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
@@ -51,6 +52,7 @@ public class DPFWizardPage extends WizardPage {
 
 	private DSignature sig;
 
+	private ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
 
 	private static final String DEFAULTMETAMODEL = "Default Metamodel";
 
@@ -97,7 +99,7 @@ public class DPFWizardPage extends WizardPage {
 				
 				public void widgetSelected(SelectionEvent event) {
 					handleModelBrowseButtonPressed(metaModelFileText, "*.dpf");
-					metaModel = DPFUtils.loadDModel(URI.createFileURI(metaModelFileText.getText()));
+					metaModel = DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(metaModelFileText.getText()));
 					setPageComplete(validatePage());
 				}
 			});
@@ -113,7 +115,10 @@ public class DPFWizardPage extends WizardPage {
 				}else{
 					metaModelFileText.setEnabled(true);
 					metaModelFileChooser.setEnabled(true);
-					metaModel = DPFUtils.loadDModel(URI.createFileURI(metaModelFileText.getText()));
+					if(metaModelFileText.getText() != null && !metaModelFileText.getText().isEmpty())
+						metaModel = DPFUtils.loadDSpecification(resourceSet,URI.createFileURI(metaModelFileText.getText()));
+					else
+						metaModel = null;
 				}
 				setPageComplete(validatePage());
 			}

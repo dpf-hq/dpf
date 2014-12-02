@@ -96,7 +96,6 @@ import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.gef.ui.properties.UndoablePropertySheetEntry;
 import org.eclipse.gef.ui.properties.UndoablePropertySheetPage;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.widgets.Composite;
@@ -105,11 +104,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
@@ -139,7 +136,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	protected DPFEditPartFactory shapesEditPartFactory;
 	protected DPFEditorPaletteFactory paletteFactory;
-	private static final String Marker_ID = DPFPlugin.PLUGIN_ID	+ ".validationmarker";
+	private static final String Marker_ID = DPFUtils.getPluginID()	+ ".validationmarker";
 
 	protected PropertySheetPage propertySheetPage;
 
@@ -185,6 +182,10 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			if(signature != DEFAULT_DSIGNATURE){
 				for (DPredicate predicate : DEFAULT_DSIGNATURE.getDPredicates())
 					addActionForPredicate(predicate);
+			}
+			if(partListener == null){
+				partListener = new EditorPartListener(this, constraintActions);
+				getSite().getPage().addPartListener(partListener);
 			}
 		}
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.LEFT));
@@ -392,7 +393,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			@Override
 			public void execute(IProgressMonitor monitor) {
 				// Save the resources to the file system.
-				DPFUtils.saveDSpecification(resourceSet, dSpecification, uri, resourceToDiagnosticMap);
+				DPFUtils.saveDSpecification(resourceSet, dSpecification, uri);
 			}
 		};
 
@@ -552,7 +553,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	protected void setInput(IEditorInput input) {
 		super.setInput(input);
 		IFile file = ((IFileEditorInput) input).getFile();
-		dSpecification = DPFUtils.loadDSpecification(resourceSet, DPFUtils.getFileURI(file), resourceToDiagnosticMap);
+		dSpecification = DPFUtils.loadDSpecification(resourceSet, DPFUtils.getFileURI(file));
 		Assert.isTrue(dSpecification != null);
 		setPartName(file.getName());
 
@@ -560,51 +561,13 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		shapesEditPartFactory = new DPFEditPartFactory();
 	}
 
-	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-		super.init(site, input);
-		getSite().getPage().addPartListener(partListener);
-	}
-
 	List<IAction> constraintActions = new ArrayList<IAction>();
 
-	protected IPartListener partListener = new IPartListener() {
-		public void partActivated(IWorkbenchPart p) {
-			DPFEditor editor = DPFEditor.this;
-			if (p != editor)
-				return;
-			IActionBars actionBars = editor.getEditorSite().getActionBars();
-			if(actionBars == null) return;
-			IToolBarManager toolbar = actionBars.getToolBarManager();
-			if(toolbar == null) return;
-			for (IAction action : constraintActions)
-				toolbar.add(action);
-			toolbar.update(true);
-			actionBars.updateActionBars();
-		}
-
-		public void partBroughtToTop(IWorkbenchPart p) { }
-
-		public void partClosed(IWorkbenchPart p) { }
-
-		public void partDeactivated(IWorkbenchPart p) {
-			DPFEditor editor = DPFEditor.this;
-			if (p != editor)
-				return;
-			IActionBars actionBars = editor.getEditorSite().getActionBars();
-			if(actionBars == null) return;
-			IToolBarManager toolbar = actionBars.getToolBarManager();
-			if(toolbar == null) return;
-			for (IAction action : constraintActions)
-				toolbar.remove(action.getId());
-			toolbar.update(true);
-			actionBars.updateActionBars();
-		}
-
-		public void partOpened(IWorkbenchPart p) { }
-	};
+	protected IPartListener partListener = null;;
 
 	public void dispose() {
-		getSite().getPage().removePartListener(partListener);
+		if(partListener != null)
+			getSite().getPage().removePartListener(partListener);
 		super.dispose();
 	}
 	/**
