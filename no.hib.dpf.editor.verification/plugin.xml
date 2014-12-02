@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="no.hib.dpf.editor.verification.ValidateModelHandler"
+            id="no.hib.dpf.editor.validateModel"
+            name="Validate Model Consistence">
+      </command>
+      <command
+            defaultHandler="no.hib.dpf.editor.verification.GetUnsatCoreHandler"
+            id="no.hib.dpf.editor.unsat.core"
+            name="Get Unsat Core">
+      </command>
+      <command
+            defaultHandler="no.hib.dpf.editor.verification.RunAlloyHandler"
+            id="no.hib.dpf.editor.verification.runAlloy"
+            name="Run Alloy">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:no.hib.dpf.editor.model_editor?after=additions">
+         <command
+               commandId="no.hib.dpf.editor.validateModel"
+               label="Validate Model Consistence"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+               <reference
+                     definitionId="no.hib.dpf.editor.verification.definition.isAlloyFile">
+               </reference>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="no.hib.dpf.editor.unsat.core"
+               label="Unsat Core"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="no.hib.dpf.editor.verification.IsAlloyFile"
+            id="no.hib.dpf.editor.verification.propertyTester2"
+            namespace="no.hib.dpf.editor.verification"
+            properties="isAlloyFile"
+            type="org.eclipse.ui.IWorkbenchPart">
+      </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="no.hib.dpf.editor.verification.definition.isAlloyFile">
+         <with
+               variable="activePart">
+            <test
+                  property="no.hib.dpf.editor.verification.isAlloyFile">
+            </test>
+         </with>
+      </definition>
+   </extension>
+</plugin>
