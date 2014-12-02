@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="uconstraint" nsURI="http://no.hib.dpf.uconstraint" nsPrefix="UConstraint">
+  <eClassifiers xsi:type="ecore:EClass" name="Constraints">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
+        eType="#//UConstraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dSignature" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSignature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypeGraph" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSpecification"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sum" eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DSpecification"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftNodes" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightNodes" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightArrows" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DArrow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftArrows" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DArrow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commonNodes" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commonArrows" upperBound="-1"
+        eType="ecore:EClass ../../no.hib.dpf.diagram/model/DiagramMetamodel.ecore#//DArrow"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//UCType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="UCType">
+    <eLiterals name="ALL_LEFT_EXIST_RIGHT"/>
+    <eLiterals name="ALL_LEFT_NOT_EXIST_RIGHT" value="1"/>
+    <eLiterals name="ALL_LEFT_IFF_RIGHT" value="2"/>
+    <eLiterals name="ALL_LEFT_IFF_NOT_RIGHT" value="3"/>
+  </eClassifiers>
+</ecore:EPackage>
