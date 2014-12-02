@@ -1,18 +1,13 @@
 package no.hib.dpf.transform.henshin;
 
 import java.io.File;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
-import no.hib.dpf.transform.presentation.TransformEditor;
 import no.hib.dpf.transform.rules.TransformModule;
 import no.hib.dpf.transform.util.TransformUtils;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 
@@ -26,9 +21,8 @@ public class TranslateToHenshinRules {
 	public static void generateHenshinModule(boolean save){
 		
 		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformUtils.activeWorkingDirectory());
-		Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 
-		Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()), resourceToDiagnosticMap);
+		Transform transform = TransformUtils.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()));
 		TransformModule translateHenshinRules = new TransformModule(transform, resourceSet);
 		
 		Module result = (Module) translateHenshinRules.createModule();

@@ -18,8 +18,10 @@ import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
@@ -67,7 +69,7 @@ public class TransformWizardPage extends WizardPage {
 	public TransformWizardPage(String pageId) {
 		super(pageId);
 	}
-
+	private ResourceSetImpl resourceSet = TransformUtils.getResourceSet();
 	public void createControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE); {
 			GridLayout layout = new GridLayout();
@@ -113,7 +115,7 @@ public class TransformWizardPage extends WizardPage {
 				public void widgetSelected(SelectionEvent event) {
 					handleModelBrowseButtonPressed(sourceMetaModelFileText, "*.dpf");
 					//metaModel = DPFUtils.loadDSpecification(TransformEditor.getResourceSet(), URI.createFileURI(metaModelFileText.getText()), resourceToDiagnosticMap);
-					sourceMetaModel = DPFUtils.loadDModel(URI.createFileURI(sourceMetaModelFileText.getText()));
+					sourceMetaModel = DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(sourceMetaModelFileText.getText()));
 					sourceURIMetamodel = sourceMetaModelFileText.getText();
 					if(endogenous.getSelection()){
 						targetMetaModel = sourceMetaModel;
@@ -146,7 +148,7 @@ public class TransformWizardPage extends WizardPage {
 				public void widgetSelected(SelectionEvent event) {
 					handleModelBrowseButtonPressed(targetMetaModelFileText, "*.dpf");
 					//metaModel = DPFUtils.loadDSpecification(TransformEditor.getResourceSet(), URI.createFileURI(metaModelFileText.getText()), resourceToDiagnosticMap);
-					targetMetaModel = DPFUtils.loadDModel(URI.createFileURI(targetMetaModelFileText.getText()));
+					targetMetaModel = DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(targetMetaModelFileText.getText()));
 					targetURIMetamodel = targetMetaModelFileText.getText();
 					setPageComplete(validatePage());
 				}
@@ -157,7 +159,7 @@ public class TransformWizardPage extends WizardPage {
 				boolean useDefault = sourceMetaModelButton.getSelection();
 				sourceMetaModelFileText.setEnabled(!useDefault);
 				sourceMetaModelFileChooser.setEnabled(!useDefault);
-				sourceMetaModel = useDefault ? DPFConstants.REFLEXIVE_DSPECIFICATION : DPFUtils.loadDModel(URI.createFileURI(sourceMetaModelFileText.getText()));
+				sourceMetaModel = useDefault ? DPFConstants.REFLEXIVE_DSPECIFICATION : DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(sourceMetaModelFileText.getText()));
 				sourceURIMetamodel = useDefault ? null : sourceMetaModelFileText.getText();
 				if(endogenous.getSelection()){
 					targetMetaModel = sourceMetaModel;
@@ -184,7 +186,7 @@ public class TransformWizardPage extends WizardPage {
 				boolean useDefault = targetMetaModelButton.getSelection();
 				targetMetaModelFileText.setEnabled(!useDefault);
 				targetMetaModelFileChooser.setEnabled(!useDefault);
-				targetMetaModel = useDefault ? DPFConstants.REFLEXIVE_DSPECIFICATION : DPFUtils.loadDModel(URI.createFileURI(targetMetaModelFileText.getText()));
+				targetMetaModel = useDefault ? DPFConstants.REFLEXIVE_DSPECIFICATION : DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(targetMetaModelFileText.getText()));
 				targetURIMetamodel = useDefault ? null : targetMetaModelFileText.getText();
 				setPageComplete(validatePage());
 			}

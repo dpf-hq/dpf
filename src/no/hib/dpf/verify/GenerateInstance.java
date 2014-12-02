@@ -2,13 +2,11 @@ package no.hib.dpf.verify;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.editor.DPFUtils;
-import no.hib.dpf.transform.presentation.TransformEditor;
+import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -17,9 +15,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import edu.mit.csail.sdg.alloy4.A4Reporter;
@@ -44,14 +40,13 @@ public class GenerateInstance extends RunAlloy {
 		if(file != null){
 			String fileName = file.getName();
 			DSpecification diagramModel = null;
-			ResourceSetImpl resourceSet = TransformEditor.getResourceSet();
-			Map<Resource, Diagnostic> diagnose = new LinkedHashMap<Resource, Diagnostic>();
+			ResourceSetImpl resourceSet = TransformUtils.getResourceSet();
 			URI fileURI = URI.createFileURI(file.getLocation().toOSString());
 			if(fileName.endsWith(".dpf"))
-				diagramModel = DPFUtils.loadDModel(resourceSet, fileURI, diagnose);
+				diagramModel = TransformUtils.loadDSpecification(resourceSet, fileURI);
 			else if(fileName.endsWith(".xmi")){
-				Specification model = DPFUtils.loadSpecification(resourceSet, fileURI, diagnose);
-				diagramModel = DPFUtils.createDSpecificationFromSpecification(resourceSet, fileURI, model, null, diagnose);
+				Specification model = DPFUtils.loadSpecification(resourceSet, fileURI);
+				diagramModel = DPFUtils.createDSpecificationFromSpecification(resourceSet, fileURI, model, null);
 			}
 			if(diagramModel != null){
 				TranslateToAlloy translate = new TranslateToAlloy(diagramModel);
@@ -61,7 +56,7 @@ public class GenerateInstance extends RunAlloy {
 					IContainer folder = file.getParent();
 					String alloyFile = DPFUtils.getFileNameWithExtension(file.getLocation().toOSString());
 					DSpecification dSpecification = generateInstance(diagramModel, translate.getBuffer().toString());
-					DPFUtils.saveDSpecification(resourceSet, dSpecification, URI.createFileURI(alloyFile + "_instance.dpf"), diagnose);
+					DPFUtils.saveDSpecification(resourceSet, dSpecification, URI.createFileURI(alloyFile + "_instance.dpf"));
 					folder.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
 				} catch (CoreException e) {
 					DPFUtils.logError(e);

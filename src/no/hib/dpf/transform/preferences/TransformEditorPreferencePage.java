@@ -12,7 +12,7 @@ public class TransformEditorPreferencePage extends FieldEditorPreferencePage imp
 		IWorkbenchPreferencePage {
 
 	private Composite fieldEditorParent;
-	private ColorFieldEditor nodebg, nodefg, preservebg, insertbg, deletebg, arrowbg, arrowfg, arrowSource, arrowTarget, arrowLabelSelected, arrowValidationError;
+	private ColorFieldEditor nodebg, nodefg, preservebg, insertbg, deletebg; //, arrowbg, arrowfg, arrowSource, arrowTarget, arrowLabelSelected, arrowValidationError;
 	
 	public TransformEditorPreferencePage() {
 		super(GRID);

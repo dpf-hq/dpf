@@ -8,7 +8,6 @@ import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.util.TransformConstants;
@@ -48,7 +47,7 @@ public class TransformModule {
 	private Transform transform = null;
 	private DSpecification correspondance = null;
 	
-	private HenshinResourceSet resourceSet = null;
+//	private HenshinResourceSet resourceSet = null;
 	private HenshinFactory henshinFac = HenshinFactoryImpl.eINSTANCE;
 	
 	private TracePackage tracePackage = null;
@@ -68,15 +67,15 @@ public class TransformModule {
 	
 	private static final String BRIDGEELEMENT = "Link";
 	
-	private static final String DEFAULT_ARROW = "Arrow";
-	private static final String DEFAULT_NODE = "Node";
+//	private static final String DEFAULT_ARROW = "Arrow";
+//	private static final String DEFAULT_NODE = "Node";
 	private static final String ARROWTYPE = "ArrowType";	
 	private static final String NODETYPE = "DNodeType";
-	private static final String NODE = "Node";
+//	private static final String NODE = "Node";
 	private static final String MAPARROW = "->";
 	
 	public TransformModule(Transform transform, HenshinResourceSet resourceSet){
-		this.resourceSet = resourceSet;
+//		this.resourceSet = resourceSet;
 		this.transform = transform;
 		
 		tracePackage = TracePackageImpl.init();
@@ -99,7 +98,7 @@ public class TransformModule {
 				target.lastSegment());
 		
 		//correspondance = DPFUtils.loadDSpecification(URI.createFileURI(TransformUtils.activeWorkingDirectory()+"/"+TransformConstants.GENERATE_FOLDER+"/metamodel2petriNetMetaModel.dpf"));
-		correspondance = DPFUtils.loadDSpecification(URI.createFileURI(dpfFilename));
+		correspondance = TransformUtils.loadDSpecification(TransformUtils.getResourceSet(), URI.createFileURI(dpfFilename));
 		//DPFUtils.load
 //		System.out.println("corresp" + correspondance.getDGraph().getDNodes());
 		
@@ -240,7 +239,7 @@ public class TransformModule {
 		for(int i = 0; i<production.getCommonArrows().size();i++){
 //			String dArrowType = TransformUtils.trimNumber(production.getCommonArrows().get(i).getName());
 			String dArrowType = production.getCommonArrows().get(i).getTypeName();
-			boolean hasMappedItem = false;
+//			boolean hasMappedItem = false;
 			String mappedItem = "";
 			
 			EClass arrow = specificationPackage.getArrow();
@@ -251,7 +250,7 @@ public class TransformModule {
 			String name = production.getCommonArrows().get(i).getName();
 //			System.out.println("Pelle " + name + " " + name.length());
 			if(name.contains(MAPARROW)){
-				hasMappedItem = true;
+//				hasMappedItem = true;
 				int index = name.indexOf(MAPARROW);
 				mappedItem = name.substring(index+MAPARROW.length(), name.length());
 				
@@ -401,10 +400,10 @@ public class TransformModule {
 					
 					DArrow dArrow = production.getSum().getDGraph().getDArrows().get(i);
 					String target_id = "";
-					DNode sourceNode = corrNode;
+//					DNode sourceNode = corrNode;
 					String sourceType = dArrow.getTypeName();
 //					System.out.println("Type to change " +  sourceType);
-					String linkNode = corrNode.getDIncomings().get(0).getDSource().getTypeName();
+//					String linkNode = corrNode.getDIncomings().get(0).getDSource().getTypeName();
 					DNode link = corrNode.getDIncomings().get(0).getDSource();
 					String targetType = "";
 					for(int j = 0;j<link.getDOutgoings().size();j++){
@@ -650,11 +649,11 @@ public class TransformModule {
 		}
 	}
 	
-	private void insertTraces(HashMap<String, DNode> insertTraces, Rule rule){
-		Graph lhs = rule.getLhs();
-		Graph rhs = rule.getRhs();
-		
-	}
+//	private void insertTraces(HashMap<String, DNode> insertTraces, Rule rule){
+//		Graph lhs = rule.getLhs();
+//		Graph rhs = rule.getRhs();
+//		
+//	}
 	
 	private boolean hasTraceObject(DElement dElement){
 		if(dElement instanceof DNode){
@@ -670,19 +669,19 @@ public class TransformModule {
 		return false;
 	}
 	
-	private DNode getCorrespondType(String dNodeType){
-		DNode correspondType = null;
-		for(DNode correspondNode : correspond.values()){
-			if(correspondNode.getTypeName().equals(BRIDGEELEMENT)){
-				for(int j = 0; j<correspondNode.getDOutgoings().size();j++){
-					if(correspondNode.getDOutgoings().get(j).getDTarget().getTypeName().equals(dNodeType)){
-						correspondType = correspondNode;
-					}
-				}
-			}
-		}
-		return correspondType;
-	}
+//	private DNode getCorrespondType(String dNodeType){
+//		DNode correspondType = null;
+//		for(DNode correspondNode : correspond.values()){
+//			if(correspondNode.getTypeName().equals(BRIDGEELEMENT)){
+//				for(int j = 0; j<correspondNode.getDOutgoings().size();j++){
+//					if(correspondNode.getDOutgoings().get(j).getDTarget().getTypeName().equals(dNodeType)){
+//						correspondType = correspondNode;
+//					}
+//				}
+//			}
+//		}
+//		return correspondType;
+//	}
 	
 	private boolean hasCorrespondancePart(String type) {
 		for(DNode node : correspond.values()){
@@ -701,8 +700,8 @@ public class TransformModule {
 	private void setTargetTrace(Rule rule, Node insertionNode, DNode dNode,
 			Production production) {
 		
-		Graph lhs = rule.getLhs();
-		Graph rhs = rule.getRhs();
+//		Graph lhs = rule.getLhs();
+//		Graph rhs = rule.getRhs();
 		
 		DNode sourceNode = null;
 		DNode targetNode = dNode;
@@ -730,8 +729,8 @@ public class TransformModule {
 		EReference source_node = specificationPackage.getArrow_Source();
 		EReference target_node = specificationPackage.getArrow_Target();
 		
-		Graph lhs = rule.getLhs();
-		Graph rhs = rule.getRhs();
+//		Graph lhs = rule.getLhs();
+//		Graph rhs = rule.getRhs();
 		
 		for(int i = 0;i<dArrows.size();i++){
 			DNode dNode_source = dArrows.get(i).getDSource();

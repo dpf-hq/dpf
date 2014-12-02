@@ -18,9 +18,7 @@ package no.hib.dpf.transform.presentation;
 import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DConstraint;
@@ -32,6 +30,7 @@ import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.editor.EditorPartListener;
 import no.hib.dpf.editor.parts.DConstraintEditPart;
 import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.transform.Production;
@@ -48,9 +47,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
@@ -61,10 +58,8 @@ import org.eclipse.gef.ui.palette.FlyoutPaletteComposite;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite.FlyoutPreferences;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
@@ -86,7 +81,6 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 
 	protected Production production;
 	protected Transform transform = null;
-	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 
 	protected PaletteRoot paletteRoot;
 
@@ -176,7 +170,7 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 			@Override
 			public void execute(IProgressMonitor monitor) {
 				// Save the resources to the file system.
-				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), dspec, uri, resourceToDiagnosticMap);
+				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), dspec, uri);
 			}
 		};
 
@@ -228,6 +222,10 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 				for (DPredicate predicate : DEFAULT_DSIGNATURE.getDPredicates())
 					addActionForPredicate(predicate);
 			}
+			if(partListener == null){
+				partListener = new EditorPartListener(this, constraintActions);
+				getSite().getPage().addPartListener(partListener);
+			}
 		}
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.LEFT));
 		registerAction(new AlignmentAction((IWorkbenchPart)this, PositionConstants.RIGHT));
@@ -251,37 +249,10 @@ public abstract class ProductionEditor extends GraphicalEditorWithFlyoutPalette{
 
 	List<IAction> constraintActions = new ArrayList<IAction>();
 
-	protected IPartListener partListener = new IPartListener() {
-		public void partActivated(IWorkbenchPart p) {
-			ProductionEditor editor = ProductionEditor.this;
-			if (p != editor)
-				return;
-			IActionBars actionBars = editor.getEditorSite().getActionBars();
-			IToolBarManager toolbar = actionBars.getToolBarManager();
-			for (IAction action : constraintActions)
-				toolbar.add(action);
-			toolbar.update(true);
-			actionBars.updateActionBars();
-		}
-
-		public void partBroughtToTop(IWorkbenchPart p) { }
-
-		public void partClosed(IWorkbenchPart p) { }
-
-		public void partDeactivated(IWorkbenchPart p) {
-			ProductionEditor editor = ProductionEditor.this;
-			if (p != editor)
-				return;
-			IActionBars actionBars = editor.getEditorSite().getActionBars();
-			IToolBarManager toolbar = actionBars.getToolBarManager();
-			for (IAction action : constraintActions)
-				toolbar.remove(action.getId());
-			toolbar.update(true);
-			actionBars.updateActionBars();
-		}
-
-		public void partOpened(IWorkbenchPart p) { }
-	};
-
-
+	protected IPartListener partListener = null;
+	public void dispose() {
+		if(partListener != null)
+			getSite().getPage().removePartListener(partListener);
+		super.dispose();
+	}
 };

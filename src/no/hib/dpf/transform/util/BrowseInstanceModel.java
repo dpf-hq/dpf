@@ -1,7 +1,6 @@
 package no.hib.dpf.transform.util;
 
 import no.hib.dpf.core.Specification;
-import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
 
@@ -34,12 +33,12 @@ public class BrowseInstanceModel extends Dialog {
 	private Button instanceModelFileChooser;
 	private Label errorSourceMessage;
 	
-	private Transform transform = null;
-	
-	private DSpecification sourceDSpecification = null;
-	private DSpecification targetDSpecification = null;
-	
-	private Specification sourcespecification = null;
+//	private Transform transform = null;
+//	
+//	private DSpecification sourceDSpecification = null;
+//	private DSpecification targetDSpecification = null;
+//	
+//	private Specification sourcespecification = null;
 	private Specification targetspecification = null;
 	
 	private String sourceDSpec = "";
@@ -55,10 +54,10 @@ public class BrowseInstanceModel extends Dialog {
 	public BrowseInstanceModel(Shell parent, Transform transform) {
 		super(parent);
 		
-		this.transform = transform;
-		
-		sourceDSpecification = transform.getSourceMetaModel();
-		targetDSpecification = transform.getTargetMetaModel();
+//		this.transform = transform;
+//		
+//		sourceDSpecification = transform.getSourceMetaModel();
+//		targetDSpecification = transform.getTargetMetaModel();
 
 		sourceDSpec = transform.getSourceLocation();
 		targetDSpec = transform.getTargetLocation();
@@ -95,8 +94,8 @@ public class BrowseInstanceModel extends Dialog {
 				public void widgetSelected(SelectionEvent event) {
 					handleModelBrowseButtonPressed(modelInstance, "*.dpf");
 					
-					String uri = modelInstance.getText();
-					DSpecification newTargetDSpec = DPFUtils.loadDSpecification(URI.createFileURI(uri));
+//					String uri = modelInstance.getText();
+//					DSpecification newTargetDSpec = TransformUtils.loadDSpecification(TransformUtils.getResourceSet(), URI.createFileURI(uri));
 					
 				}
 			});

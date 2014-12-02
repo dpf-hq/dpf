@@ -7,15 +7,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
 import no.hib.dpf.transform.presentation.TransformEditor;
+import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -26,9 +25,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -65,9 +62,8 @@ public class RunAlloy extends AbstractHandler {
 				if(!xformFile.exists())
 					return null;
 				URI dpfFileURI = URI.createFileURI(xformFile.getLocation().toOSString());
-				ResourceSetImpl resourceSet = TransformEditor.getResourceSet();
-				Map<Resource, Diagnostic> diagnose = new LinkedHashMap<Resource, Diagnostic>();
-				Transform transform = TransformEditor.loadTransform(resourceSet, dpfFileURI, diagnose);
+				ResourceSetImpl resourceSet = TransformUtils.getResourceSet();
+				Transform transform = TransformUtils.loadTransform(resourceSet, dpfFileURI);
 				/*
 				 * read the command file to load the commands
 				 */
@@ -84,7 +80,7 @@ public class RunAlloy extends AbstractHandler {
 				}
 				reader.close();
 				Transform instance = generateInstance(transform, alsFile.getLocation().toOSString(), commands);
-				TransformEditor.saveTransform(resourceSet, URI.createFileURI(folder.getFile(new Path(dpfFileName + "_counter.xform")).getLocation().toOSString()), instance, diagnose);
+				TransformEditor.saveTransform(resourceSet, URI.createFileURI(folder.getFile(new Path(dpfFileName + "_counter.xform")).getLocation().toOSString()), instance);
 				folder.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
 			} catch (CoreException | IOException e) {
 				DPFUtils.logError(e);

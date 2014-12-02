@@ -1,13 +1,22 @@
 package no.hib.dpf.transform.util;
 
+import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.transform.Transform;
+import no.hib.dpf.transform.provider.TransformEditPlugin;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -19,7 +28,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 
-public class TransformUtils {
+public class TransformUtils extends DPFUtils{
 
 		
 	public static String activeTransformModel(){
@@ -123,6 +132,30 @@ public class TransformUtils {
 				}
 			}
 		}
+	}
+
+	public static ResourceSetImpl getResourceSet() {
+		ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("sig", new XMIResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xform", new XMIResourceFactoryImpl());
+		return resourceSet;
+	}
+
+	public static Transform loadTransform(ResourceSetImpl resourceSet,	URI createFileURI) {
+		Assert.isNotNull(resourceSet);
+		Resource transform = createResource(resourceSet, createFileURI);
+		Object transfoObject = getObjectFromResource(transform);
+		if(transfoObject instanceof Transform)
+			return (Transform)transfoObject;
+		return null;
+	}
+	
+	public static Plugin getPlugin() {
+		return TransformEditPlugin.getPlugin();
+	}
+
+	public static String getPluginID() {
+		return TransformEditPlugin.getPlugin().getSymbolicName();
 	}
 }
 

@@ -15,13 +15,13 @@ public class DefineNameVariableDialog extends Dialog {
 	
 	private Text variableName;
 	private Shell shell=null; 
-	private Object variable;
+//	private Object variable;
 	private String name;
 	
 	public DefineNameVariableDialog( Shell parent, EditPart editPart) { 
 		super(parent); 
 		variableName = null;
-		variable = editPart;
+//		variable = editPart;
 	} 
 
 	protected Control createDialogArea(Composite parent) { 

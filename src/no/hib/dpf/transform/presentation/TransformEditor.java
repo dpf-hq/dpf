@@ -13,15 +13,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Production;
 import no.hib.dpf.transform.Transform;
-import no.hib.dpf.utils.DPFCoreUtil;
+import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -30,12 +28,10 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.SnapToGeometry;
@@ -121,11 +117,10 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 	}
 
 	
-	private ResourceSetImpl resourceSet = getResourceSet();
-	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
+	private ResourceSetImpl resourceSet = TransformUtils.getResourceSet();
 	
 	private void saveTransform() {
-		saveTransform(resourceSet, URI.createFileURI(transformFile), transform, resourceToDiagnosticMap);
+		saveTransform(resourceSet, URI.createFileURI(transformFile), transform);
 	}
 	
 	public boolean isDirty() {
@@ -168,7 +163,7 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 		IFile file = ((IFileEditorInput)input).getFile();
 		transformFile = file.getLocation().toOSString();
 		setPartName(file.getName());
-		transform = loadTransform(resourceSet, URI.createFileURI(transformFile), resourceToDiagnosticMap);
+		transform = TransformUtils.loadTransform(resourceSet, URI.createFileURI(transformFile));
 	}
 
 	protected CommandStack getCommandStack() {
@@ -268,16 +263,7 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 		return super.getAdapter(type);
 	}
 	
-	public static ResourceSetImpl getResourceSet(){
-		ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
-		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("sig", new XMIResourceFactoryImpl());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xform", new XMIResourceFactoryImpl());
-		return resourceSet;
-	}
-	
-	public static void saveTransform(ResourceSetImpl resourceSet, URI osString, Transform transform, 
-			Map<Resource, Diagnostic> resourceToDiagnosticMap) {
+	public static void saveTransform(ResourceSetImpl resourceSet, URI osString, Transform transform) {
 		Assert.isNotNull(resourceSet);
 		Resource tranfromResource = resourceSet.getResource(osString, false);
 		if(tranfromResource == null){
@@ -301,8 +287,7 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 				
 			tranfromResource.save(null);
 		} catch (IOException e) {
-			DPFCoreUtil.analyzeResourceProblems(tranfromResource, e, resourceToDiagnosticMap);
-			System.out.println(e);
+			DPFUtils.logError(e);
 		}
 	}
 	
@@ -319,19 +304,5 @@ public class TransformEditor extends FormEditor implements CommandStackListener,
 //			manager.setZoom(diagram.getZoom());
 //		}
 	}
-	public static Transform loadTransform(ResourceSetImpl resourceSet,
-			URI diagramURI,
-			Map<Resource, Diagnostic> resourceToDiagnosticMap2) {
-		Assert.isNotNull(resourceSet);
-		Resource transform = resourceSet.createResource(diagramURI);
-		try {
-			transform.load(null);
-		} catch (IOException e) {
-			DPFUtils.logError(e);
-		}
-		return (Transform) transform.getContents().get(0);
-	}	
-	
-	
 }
 

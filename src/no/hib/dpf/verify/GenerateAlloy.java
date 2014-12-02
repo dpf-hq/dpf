@@ -3,15 +3,14 @@ package no.hib.dpf.verify;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.TransformFactory;
 import no.hib.dpf.transform.presentation.TransformEditor;
 import no.hib.dpf.transform.util.TransformConstants;
+import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -21,9 +20,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 /**
@@ -41,9 +38,8 @@ public class GenerateAlloy extends RunAlloy {
 				 * load transform and translate it into Alloy specification
 				 */
 				URI transformFileURI = URI.createFileURI(transformFile.getLocation().toOSString());
-				ResourceSetImpl resourceSet = TransformEditor.getResourceSet();
-				Map<Resource, Diagnostic> diagnose = new LinkedHashMap<Resource, Diagnostic>();
-				Transform transform = TransformEditor.loadTransform(resourceSet, transformFileURI, diagnose);
+				ResourceSetImpl resourceSet = TransformUtils.getResourceSet();
+				Transform transform = TransformUtils.loadTransform(resourceSet, transformFileURI);
 				TranslateToAlloy translate = new TranslateToAlloy(transform);
 				translate.translate();
 				/*
@@ -59,7 +55,7 @@ public class GenerateAlloy extends RunAlloy {
 				 * Verify the Alloy Specification and write the generated counterexamples into a transform file.
 				 */
 				Transform instance = generateInstance(transform, alloyFile.getAbsolutePath(), translate.commands);
-				TransformEditor.saveTransform(resourceSet, URI.createFileURI(folder.getFile(fileName + "_counter.xform").getLocation().toOSString()), instance,  diagnose);
+				TransformEditor.saveTransform(resourceSet, URI.createFileURI(folder.getFile(fileName + "_counter.xform").getLocation().toOSString()), instance);
 				folder.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
 			} catch (CoreException | IOException e) {
 				DPFUtils.logError(e);

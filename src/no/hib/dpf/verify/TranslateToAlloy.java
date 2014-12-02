@@ -1,7 +1,7 @@
 package no.hib.dpf.verify;
 
-import java.io.FileWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -74,7 +74,7 @@ public class TranslateToAlloy {
 		buffer.append("one abstract " + SIG + "Rule{}" + LINE);
 		buffer.append("lone " + SIG);
 		for (Iterator<Production> iterator = rules.iterator(); iterator.hasNext();) {
-			Production production = (Production) iterator.next();
+			Production production = iterator.next();
 			buffer.append(production.getName());
 			if(iterator.hasNext())
 				buffer.append(", ");
@@ -636,7 +636,7 @@ public class TranslateToAlloy {
 		buffer.append("\tGraph.es=" + edgeUniv() + LINE);
 		buffer.append("\tall t:Trans | trans_general[t] and valid[t.sm] and (" + LINE + "\t");
 		for (Iterator<Production> iterator = rules.iterator(); iterator.hasNext();) {
-			Production rule = (Production) iterator.next();
+			Production rule = iterator.next();
 			buffer.append("rule_" + rule.getName() + "[t]");
 			if(iterator.hasNext())
 				buffer.append(" or ");
@@ -705,7 +705,7 @@ public class TranslateToAlloy {
 		if(!derivedBySource.isEmpty() || !derivedByTarget.isEmpty())
 			buffer.append(" |" + LINE + "let ");
 		for (Iterator<Entry<DNode, DArrow>> iterator = derivedBySource.entrySet().iterator(); iterator.hasNext();) {
-			Entry<DNode, DArrow> entry = (Entry<DNode, DArrow>) iterator.next();
+			Entry<DNode, DArrow> entry = iterator.next();
 			DNode node = entry.getKey();
 			DArrow edge = entry.getValue();
 			buffer.append(vvpre + node.getName() + " = " + evpre + edge.getName() + ".src");
@@ -715,7 +715,7 @@ public class TranslateToAlloy {
 		if(!derivedBySource.isEmpty() && !derivedByTarget.isEmpty())
 			buffer.append(", ");
 		for (Iterator<Entry<DNode, DArrow>> iterator = derivedByTarget.entrySet().iterator(); iterator.hasNext();) {
-			Entry<DNode, DArrow> entry = (Entry<DNode, DArrow>) iterator.next();
+			Entry<DNode, DArrow> entry = iterator.next();
 			DNode node = entry.getKey();
 			DArrow edge = entry.getValue();
 			buffer.append(vvpre + node.getName() + " = " + evpre + edge.getName() + ".trg");
@@ -848,6 +848,7 @@ public class TranslateToAlloy {
 				ues.add(iter.get(0));
 		}
 	}
+	@SuppressWarnings("unused")
 	private void translateSubMatch(List<DNode> leftNodes, List<DArrow> leftEdges, 
 			  List<DNode> commonNodes, List<DArrow> commonEdges, 
 			  List<DNode> rightNodes, List<DArrow> rightEdges){
@@ -1054,7 +1055,7 @@ public class TranslateToAlloy {
 			List<DArrow> suba = (List<DArrow>) uniqueSubgraphs.get(index + 1);
 			if(suba.isEmpty() || (suba.size() == 1 && subgs.containsKey(suba.get(0)))) continue;
 			Set<Integer> hash = new HashSet<Integer>();
-			Iterator iterator = suba.iterator();
+			Iterator<DArrow> iterator = suba.iterator();
 			for (; iterator.hasNext();) {
 				DArrow a = (DArrow) iterator.next();
 				if(!subgs.containsKey(a)) break;
@@ -1448,7 +1449,7 @@ public class TranslateToAlloy {
 		}
 		buffer.append(" |" + LINE + "let ");
 		for (Iterator<Entry<DNode, DArrow>> iterator = derivedBySource.entrySet().iterator(); iterator.hasNext();) {
-			Entry<DNode, DArrow> entry = (Entry<DNode, DArrow>) iterator.next();
+			Entry<DNode, DArrow> entry = iterator.next();
 			buffer.append("n_" + entry.getKey().getName() + " = e_" + entry.getValue().getName() + ".src");
 			if(iterator.hasNext()) 
 				buffer.append(", ");
@@ -1456,7 +1457,7 @@ public class TranslateToAlloy {
 		if(!derivedBySource.isEmpty() && !derivedByTarget.isEmpty())
 			buffer.append(", ");
 		for (Iterator<Entry<DNode, DArrow>> iterator = derivedByTarget.entrySet().iterator(); iterator.hasNext();) {
-			Entry<DNode, DArrow> entry = (Entry<DNode, DArrow>) iterator.next();
+			Entry<DNode, DArrow> entry = iterator.next();
 			buffer.append("n_" + entry.getKey().getName() + " = e_" + entry.getValue().getName() + ".trg");
 			if(iterator.hasNext())
 				buffer.append(", ");
@@ -1543,7 +1544,7 @@ public class TranslateToAlloy {
 		}
 		buffer.append(" |" + LINE + "let ");
 		for (Iterator<Entry<DNode, DArrow>> iterator = derivedBySource.entrySet().iterator(); iterator.hasNext();) {
-			Entry<DNode, DArrow> entry = (Entry<DNode, DArrow>) iterator.next();
+			Entry<DNode, DArrow> entry = iterator.next();
 			String key = entry.getKey() == replaced ? "_n" : entry.getKey().getName();
 			String value = entry.getValue() == replaced? "_e" : entry.getValue().getName();
 			buffer.append("n_" + key + " = e_" + value + ".src");
@@ -1553,7 +1554,7 @@ public class TranslateToAlloy {
 		if(!derivedBySource.isEmpty() && !derivedByTarget.isEmpty())
 			buffer.append(", ");
 		for (Iterator<Entry<DNode, DArrow>> iterator = derivedByTarget.entrySet().iterator(); iterator.hasNext();) {
-			Entry<DNode, DArrow> entry = (Entry<DNode, DArrow>) iterator.next();
+			Entry<DNode, DArrow> entry = iterator.next();
 			String key = entry.getKey() == replaced ? "_n" : entry.getKey().getName();
 			String value = entry.getValue() == replaced? "_e" : entry.getValue().getName();
 			buffer.append("n_" + key + " = e_" + value + ".trg");

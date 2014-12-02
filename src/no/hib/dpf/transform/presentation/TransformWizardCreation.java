@@ -16,9 +16,6 @@
 
 package no.hib.dpf.transform.presentation;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
@@ -37,9 +34,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -159,7 +154,6 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 			Transform transform = TransformFactory.eINSTANCE.createTransform();
 
 			ResourceSetImpl resourceSet = DPFUtils.getResourceSet();
-			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 
 			generateModelsFolder = newDiagramFile.getParent().getFolder(new Path(TransformConstants.GENERATE_FOLDER));
 
@@ -186,7 +180,7 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 			String dspecTypes_name = getFileName().replace(".xform", "") + ".dpf";
 			IFile dspecTypes  = generateModelsFolder.getFile(dspecTypes_name);
 
-			DPFUtils.saveDSpecification(resourceSet, elementTypeGraph, DPFUtils.getFileURI(dspecTypes), resourceToDiagnosticMap);
+			DPFUtils.saveDSpecification(resourceSet, elementTypeGraph, DPFUtils.getFileURI(dspecTypes));
 			transform.setElementTypeGraph(elementTypeGraph);
 
 			URI source = transform.getSourceLocation() == null ? DPFConstants.DefaultDSpecification : URI.createFileURI(transform.getSourceLocation());
@@ -198,12 +192,12 @@ public class TransformWizardCreation extends Wizard implements INewWizard {
 			DSpecification correspondenceGraph = generate_models.generateCorrespondanceGraph();
 			correspondenceGraph.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());
 
-			DPFUtils.saveDSpecification(resourceSet, correspondenceGraph, DPFUtils.getFileURI(correspondenceGraph_file), new LinkedHashMap<Resource, Diagnostic>());
+			DPFUtils.saveDSpecification(resourceSet, correspondenceGraph, DPFUtils.getFileURI(correspondenceGraph_file));
 			transform.setCorrespondanceGraph(correspondenceGraph);
 			transform.setCorrespondanceLocation(correspondenceGraph_file.getFullPath().toString());
 
 			try {
-				TransformEditor.saveTransform(resourceSet, newDiagarmURI, transform, resourceToDiagnosticMap);
+				TransformEditor.saveTransform(resourceSet, newDiagarmURI, transform);
 				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_INFINITE, null);
 			} catch (CoreException e1) {
 				DPFUtils.logError("Error happens when store new create DPF Specification", e1);

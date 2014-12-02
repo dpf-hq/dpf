@@ -22,12 +22,10 @@ import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 @SuppressWarnings("unused")
 public class TranslateDPFModel {
 	
-	private HenshinResourceSet resourceSet = null;
 	private List<EObject> matches = null;
 	private Rule currentRule = null;
 	private URI dSpecificationURI = null;
 	private URI specificationURI = null;
-	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 	
 	private Specification specification = null;
 	private DSpecification dSpecification = null;
@@ -59,6 +57,6 @@ public class TranslateDPFModel {
 			file.delete();
 		}
 		DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), 
-				dspec, URI.createFileURI("C:/Users/Petter/runtime-EclipseApplication/Activity2PetriNet_old/PetriNet/targetModelInstance.dpf"), resourceToDiagnosticMap);
+				dspec, URI.createFileURI("C:/Users/Petter/runtime-EclipseApplication/Activity2PetriNet_old/PetriNet/targetModelInstance.dpf"));
 	}
 }

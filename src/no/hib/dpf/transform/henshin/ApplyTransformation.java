@@ -1,8 +1,5 @@
 package no.hib.dpf.transform.henshin;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
@@ -13,10 +10,8 @@ import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
-import no.hib.dpf.transform.presentation.TransformEditor;
 import no.hib.dpf.transform.util.TransformUtils;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.henshin.interpreter.EGraph;
@@ -39,8 +34,7 @@ public class ApplyTransformation {
 		String transformFile = TransformUtils.activeWindowFileLocation(); 
 		
 		HenshinResourceSet resourceSet = new HenshinResourceSet(TransformUtils.activeWorkingDirectory());
-		Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-		Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(transformFile), resourceToDiagnosticMap);
+		Transform transform = TransformUtils.loadTransform(TransformUtils.getResourceSet(), URI.createFileURI(transformFile));
 		
 		String newPath = path.replace(".dpf", ".xmi");
 		
@@ -57,7 +51,7 @@ public class ApplyTransformation {
 		RuleApplication ruleApplication = new RuleApplicationImpl(engine);
 		ruleApplication.setEGraph(graph);
 		
-		DSpecification dType = DPFUtils.loadDSpecification(URI.createFileURI(transform.getTargetLocation()));
+		DSpecification dType = DPFUtils.loadDSpecification(resourceSet, URI.createFileURI(transform.getTargetLocation()));
 		
 		DSpecification dSpecification = DiagramFactory.eINSTANCE.createDefaultDSpecification();
 		dSpecification.setDSignature(DiagramFactory.eINSTANCE.createDefaultDSignature());

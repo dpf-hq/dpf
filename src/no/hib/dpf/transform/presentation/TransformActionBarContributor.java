@@ -1,9 +1,5 @@
 package no.hib.dpf.transform.presentation;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.transform.Transform;
 import no.hib.dpf.transform.execute.TranslateDPFModel;
 import no.hib.dpf.transform.henshin.ApplyTransformation;
@@ -14,10 +10,9 @@ import no.hib.dpf.transform.util.TransformConstants;
 import no.hib.dpf.transform.util.TransformUtils;
 
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.ui.actions.ActionBarContributor;
+import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.AlignmentRetargetAction;
 import org.eclipse.gef.ui.actions.DeleteRetargetAction;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
@@ -38,8 +33,6 @@ import org.eclipse.ui.actions.ActionFactory;
  * @generate NOT
  */
 public class TransformActionBarContributor extends ActionBarContributor {
-
-	protected IEditorPart activeEditorPart;
 
 	protected IAction generateToHenshin = new Action(TransformConstants.GENERATE_HENSHIN, ImageSettings.IMG_GENERATE_HENSHIN.getImageDescriptor()) {
 		@Override
@@ -74,8 +67,7 @@ public class TransformActionBarContributor extends ActionBarContributor {
 
 		@Override
 		public void run() {
-			Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-			Transform transform = TransformEditor.loadTransform(DPFUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()), resourceToDiagnosticMap);
+			Transform transform = TransformUtils.loadTransform(TransformUtils.getResourceSet(), URI.createFileURI(TransformUtils.activeWindowFileLocation()));
 			BrowseInstanceModel br = new BrowseInstanceModel(TransformUtils.getActiveWorkBenchWindow().getShell(), transform);
 			if(br.open() == Window.OK){
 				ApplyTransformation.exeucteTransformation(br.getModelInstanceFilePath(), true, br.getTargetModelName());
@@ -85,9 +77,8 @@ public class TransformActionBarContributor extends ActionBarContributor {
 
 	@Override
 	public void setActiveEditor(IEditorPart part) {
-		if(getActionBars() != null)
+		if(getActionBars() != null && part.getAdapter(ActionRegistry.class) != null)
 			super.setActiveEditor(part);
-		activeEditorPart = part;
 	}
 
 	@Override
