@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DComposedConstraint;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DGraph;
@@ -167,7 +168,11 @@ public class ValidateModelHandler extends AbstractHandler {
 								}
 							}
 							for(DConstraint con: atms){
-								Object value = graphicalViewer.getEditPartRegistry().get(con);
+								Object key = con;
+								if(con instanceof DComposedConstraint){
+									key = ((DComposedConstraint)con).getFakeNode();
+								}
+								Object value = graphicalViewer.getEditPartRegistry().get(key);
 								if(value instanceof GraphicalEditPart)
 									((GraphicalEditPart)value).getFigure().setForegroundColor(ColorConstants.red);
 							}

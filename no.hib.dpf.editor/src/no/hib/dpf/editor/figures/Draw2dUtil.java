@@ -8,7 +8,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
-import org.eclipse.draw2d.geometry.Transform;
 
 public class Draw2dUtil {
 
@@ -18,34 +17,118 @@ public class Draw2dUtil {
 	 */
 	public static Transform getTransform(Point start, Point end){
 		Transform transform = new Transform();
-		PrecisionPoint line = new PrecisionPoint(end.getTranslated(start.getNegated()));
-		transform.setRotation(-Math.atan(line.preciseY()/line.preciseX()));
+		Point line = new Point(end.getTranslated(start.getNegated()));
+		transform.setRotation(-Math.atan((double)line.y/(double)line.x));
 		Point axis = transform.getTransformed(start);
-		transform.setTranslation(-axis.x, -axis.y);
+		transform.setTranslation(-axis.preciseX(), -axis.preciseY());
 		return transform;
+	}
+	public static class Transform {
+		public double scaleX = 1.0, scaleY = 1.0, dx, dy, cos = 1.0, sin;
+		public Point getTransformed(Point p) {
+			double x = p.preciseX();
+			double y = p.preciseY();
+			double temp;
+			x *= scaleX;
+			y *= scaleY;
+
+			temp = x * cos - y * sin;
+			y = x * sin + y * cos;
+			x = temp;
+			return new PrecisionPoint(x + dx, y + dy);
+		}
+		public Transform(){
+			super();
+		}
+		public Point getTransformBack(Point p) {
+			double x = p.preciseX() - dx;
+			double y = p.preciseY() - dy;
+
+			double temp;
+			temp = x * cos + y * sin;
+			y =  -x * sin + y * cos;
+			x = temp;
+
+			x /= scaleX;
+			y /= scaleY;
+
+			return new PrecisionPoint(x, y);
+		}
+
+		/**
+		 * Sets the value for the amount of scaling to be done along both axes.
+		 * 
+		 * @param scale
+		 *            Scale factor
+		 * @since 2.0
+		 */
+		public void setScale(double scale) {
+			scaleX = scaleY = scale;
+		}
+
+		/**
+		 * Sets the value for the amount of scaling to be done along X and Y axes
+		 * individually.
+		 * 
+		 * @param x
+		 *            Amount of scaling on X axis
+		 * @param y
+		 *            Amount of scaling on Y axis
+		 * @since 2.0
+		 */
+		public void setScale(double x, double y) {
+			scaleX = x;
+			scaleY = y;
+		}
+
+		/**
+		 * Sets the rotation angle.
+		 * 
+		 * @param angle
+		 *            Angle of rotation
+		 * @since 2.0
+		 */
+		public void setRotation(double angle) {
+			cos = Math.cos(angle);
+			sin = Math.sin(angle);
+		}
+
+		/**
+		 * Sets the translation amounts for both axes.
+		 * 
+		 * @param x
+		 *            Amount of shift on X axis
+		 * @param y
+		 *            Amount of shift on Y axis
+		 * @since 2.0
+		 */
+		public void setTranslation(double x, double y) {
+			dx = x;
+			dy = y;
+		}
 	}
 	/*
 	 * get a transform which transforms back to the old coordinate
 	 */
-	public static Transform getTransform(Transform transform){
-		return getTransform(transform.getTransformed(new Point()), transform.getTransformed(new Point(1000, 0)));
+
+	public static PrecisionPoint mid(Point start, Point end){
+		return new PrecisionPoint((start.preciseX() + end.preciseX())/2.0, (start.preciseY() + end.preciseY())/2.0);
 	}
-	
-	public static Point mid(Point start, Point end){
-		return new PrecisionPoint((start.x + end.x)/2, (start.y + end.y)/2);
-	}
+
 	public static Point getAbsoluteBendPoint(Point start, Point end, DOffset p) {
 		Transform transform = getTransform(start, end);
-		int len = transform.getTransformed(end).x;
+		double len = transform.getTransformed(end).preciseX();
 		double ration = (double)len / (double)p.getLen();
-		PrecisionPoint result = new PrecisionPoint(ration * p.getOffset().x, ration * p.getOffset().y);
-		return getTransform(transform).getTransformed(result);
+		PrecisionPoint result = new PrecisionPoint(ration * p.getOffset().preciseX(), ration * p.getOffset().preciseY());
+		return transform.getTransformBack(result);
 	}
-	
+
 	public static DOffset getDOffset(Point start, Point end, Point p){
 		Transform transform = getTransform(start, end);
 		return new DOffsetImpl(transform.getTransformed(p), transform.getTransformed(end).x);
+		
 	}
+
 	/*
 	 * Get Doffset for a bendpoint
 	 */
@@ -66,7 +149,8 @@ public class Draw2dUtil {
 		Transform transform = getTransform(start, end);
 		double pre = Integer.MAX_VALUE;
 		int min = 0;
-		for(int index = 0; index < points.size() - 2; ++index){
+		if(points.size() > 2)
+		for(int index = 0; index + 1 < points.size(); ++index){
 			Point first = points.getPoint(index), secondPoint = points.getPoint(index + 1);
 			transform = getTransform(first, secondPoint);
 			double distance = Math.pow(Math.pow(p.getDistance(first), 2) - Math.pow(transform.getTransformed(p).x, 2), 0.5);
@@ -87,14 +171,13 @@ public class Draw2dUtil {
 	public static Point getAbsolutePoint(IFigure source, IFigure target, PointList points, DOffset offset){
 		Point start, end;
 		int index = offset.getIndex();
-		if(index == 0)
-			start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
-		else
-			start = points.getPoint(index);
-		if(index == points.size() - 2)
-			end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
-		else
-			end = points.getPoint(index + 1);
+		PointList copied = points.getCopy();
+		start = source == target ? source.getBounds().getTop() : source.getBounds().getCenter();
+		end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
+		copied.setPoint(start, 0);
+		copied.setPoint(end, copied.size() - 1);
+		start = copied.getPoint(index);
+		end = copied.getPoint(index + 1);
 		return getAbsoluteBendPoint(start, end, offset);
 	}
 

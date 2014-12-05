@@ -45,8 +45,22 @@ public class SingleArrowConstraintEditPart extends ArrowLabelEditPart {
 	protected String getFullName() {
 		DConstraint dConstraint = getDConstraint();
 		String result = dConstraint.getDPredicate().getSimpleName();
-		result = "[" + result + "]";
 		String parameter = dConstraint.getConstraint().getParameters();
+		if(result.startsWith("multi")){
+			String min = "", max = "";
+			if(parameter != null && !parameter.isEmpty()){
+				String[] paras1 = parameter.split(";");
+				for (int i = 0; i < paras1.length; i++) {
+					String[] pair = paras1[i].split(":");
+					if(pair.length != 2) return "";
+					if(pair[0].equals("min")) min = pair[1];
+					else if(pair[0].equals("max")) max = pair[1];
+				}
+				result = "[" + min + ".." + max + "]";
+				return result;
+			}
+		}
+		result = "[" + result + "]";
 		if(parameter != null && !parameter.isEmpty()){
 			result += "(" + parameter + ")";
 		}

@@ -34,4 +34,10 @@ public class ArrowLabelLocator implements Locator {
 		figure.setSize(minimum);
 		figure.setLocation(point);
 	}
+
+	public void setName(String arrowName) {
+		if(text.equals(arrowName)) return;
+		text = arrowName;
+		connection.getFigure().revalidate();
+	}
 }

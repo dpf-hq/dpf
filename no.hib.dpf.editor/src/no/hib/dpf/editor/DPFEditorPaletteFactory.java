@@ -16,18 +16,34 @@
 package no.hib.dpf.editor;
 
 
+import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DPredicate;
+import no.hib.dpf.diagram.DSignature;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.editor.actions.CreateConstraintToolEntry;
 import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
 import no.hib.dpf.editor.displaymodel.factories.DNodeFactory;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.icons.ImageSettings;
+import no.hib.dpf.editor.parts.DArrowEditPart;
+import no.hib.dpf.editor.parts.DNodeEditPart;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.MarqueeToolEntry;
@@ -40,11 +56,15 @@ import org.eclipse.gef.palette.PanningSelectionToolEntry;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.tools.MarqueeSelectionTool;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 
 /**
  * Utility class that can create a GEF Palette.
  */
-public class DPFEditorPaletteFactory {
+public class DPFEditorPaletteFactory implements ISelectionChangedListener {
 	
 	public static final String ARROWS = "Arrows";
 	public static final String NODES = "Nodes";
@@ -56,6 +76,7 @@ public class DPFEditorPaletteFactory {
 	
 	protected PaletteGroup arrowGroup = new PaletteGroup(ARROWS);
 	protected PaletteGroup nodeGroup = new PaletteGroup(NODES);
+	protected PaletteGroup constraintGroup = new PaletteGroup("Constraints");
 	protected PaletteRoot palette;
 	/**
 	 * Creates the PaletteRoot and adds all palette elements. Use this factory
@@ -71,6 +92,8 @@ public class DPFEditorPaletteFactory {
 			 palette.add(arrowGroup);
 			 palette.add(new PaletteSeparator());
 			 palette.add(nodeGroup);
+			 palette.add(new PaletteSeparator());
+			 palette.add(constraintGroup);
 		}
 		return palette;
 	}
@@ -119,4 +142,93 @@ public class DPFEditorPaletteFactory {
 		}
 	}
 
+	@Override
+	public void selectionChanged(SelectionChangedEvent event) {
+		ISelection selection = event.getSelection();
+		if(selection instanceof StructuredSelection){
+			StructuredSelection str = (StructuredSelection)selection;
+			Object[] selectedParObjects = str.toArray();
+			if(selectedParObjects.length == 0) return;
+			EList<DArrow> selectionDArrows = new BasicEList<DArrow>();
+			EList<DNode> selectionDNodes = new BasicEList<DNode>();
+			getSelectElements(Arrays.asList(str.toArray()), selectionDNodes, selectionDArrows);
+			for(CreateConstraintToolEntry entry : entries){
+				EList<Arrow> selectionArrows = getArrows(selectionDArrows);
+				EList<Node> selectionNodes = getNodes(selectionDNodes);
+				boolean keep = true;
+				for(Node node : selectionNodes){
+					for(Constraint constraint : node.getConstraints())
+						if(constraint.getPredicate() == entry.getDPredicate().getPredicate()){
+							boolean repeat = constraint.getArrows().equals(selectionArrows) && constraint.getNodes().equals(selectionNodes);
+							if(repeat)
+								keep = false;
+						}
+				}
+				GraphHomomorphism graphHomomorphism;
+				if(keep){
+					graphHomomorphism = entry.getDPredicate().getPredicate().createGraphHomomorphism(selectionNodes, selectionArrows);
+					entry.setGraphHomorphism(graphHomomorphism);
+					if(graphHomomorphism != null){
+						entry.setNodes(selectionDNodes);
+						entry.setArrows(selectionDArrows);
+					}
+					
+					keep = graphHomomorphism != null;
+				}
+				boolean in = constraintGroup.getChildren().contains(entry);
+				if(keep && !in ) constraintGroup.add(entry);
+				if(!keep && in) constraintGroup.remove(entry);
+			}
+		}
+	}
+	
+
+	public void updatePalette(DSpecification dSpecification) {
+		DSignature signature = dSpecification.getDSignature();
+		if (signature != null) {
+			for (DPredicate predicate : signature.getDPredicates())
+				entries.add(new CreateConstraintToolEntry(dSpecification, predicate));
+			if(signature != DEFAULT_DSIGNATURE){
+				for (DPredicate predicate : DEFAULT_DSIGNATURE.getDPredicates())
+					entries.add(new CreateConstraintToolEntry(dSpecification, predicate));
+			}
+		}
+	}
+	List<CreateConstraintToolEntry> entries = new ArrayList<CreateConstraintToolEntry>();
+
+	private void getSelectElements(List<Object> selectedParts, EList<DNode> nodes, EList<DArrow> arrows){
+		for(Object object : selectedParts){
+			if(object instanceof DNodeEditPart)
+				addDNode(nodes, ((DNodeEditPart)object).getDNode());
+			if(object instanceof DArrowEditPart)
+				addDArrow(nodes, arrows, ((DArrowEditPart)object).getDArrow());
+		}
+	}
+
+	private EList<Node> getNodes(List<DNode> nodes){
+		EList<Node> result = new BasicEList<Node>();
+		for(DNode node : nodes)
+			if(node.getNode() != null)
+				result.add(node.getNode());
+		return result;
+	}
+
+	private EList<Arrow> getArrows(List<DArrow> arrows){
+		EList<Arrow> result = new BasicEList<Arrow>();
+		for(DArrow arrow : arrows)
+			if(arrow.getArrow() != null)
+				result.add(arrow.getArrow());
+		return result;
+	}
+	private  void addDNode(EList<DNode> nodes, DNode node){
+		if(node != null && !nodes.contains(node))
+			nodes.add(node);
+	}
+
+	private void addDArrow(EList<DNode> nodes, EList<DArrow> arrows, DArrow arrow){
+		if(arrow != null && !arrows.contains(arrow))
+			arrows.add(arrow);
+		addDNode(nodes, arrow.getDSource());
+		addDNode(nodes, arrow.getDTarget());
+	}
 }

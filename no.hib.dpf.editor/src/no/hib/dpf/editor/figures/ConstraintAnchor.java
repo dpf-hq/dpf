@@ -21,6 +21,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 
 public class ConstraintAnchor implements ConnectionAnchor {
 
@@ -80,23 +81,28 @@ public class ConstraintAnchor implements ConnectionAnchor {
 	 * this implementation.
 	 */
 	public Point getLocation(Point reference) {
+		PrecisionPoint loc = null;
 		if(connectionFigure != null){
 			PointList points = connectionFigure.getPoints();
-			if(points.size() == 2)
-				return points.getMidpoint();
+			if(points.size() == 2){
+				PrecisionPoint start = new PrecisionPoint(points.getFirstPoint()), end = new PrecisionPoint(points.getLastPoint());
+				loc = Draw2dUtil.mid(start, end);
+			}
 			else{
-				Point small = null;
+				PrecisionPoint ref = new PrecisionPoint(reference);
+				connectionFigure.translateToRelative(ref);
 				double len = Integer.MAX_VALUE;
 				for (int i = 0; i < points.size() - 1; i++) {
-					Point middle = Draw2dUtil.mid(points.getPoint(i), points.getPoint(i+1));
-					double temp = middle.getDistance(reference);
+					PrecisionPoint middle = Draw2dUtil.mid(points.getPoint(i), points.getPoint(i+1));
+					double temp = middle.getDistance(ref);
 					if(temp < len){
 						len = temp;
-						small = middle;
+						loc = middle;
 					}
 				}
-				return small;
 			}
+			connectionFigure.translateToAbsolute(loc);
+			return loc;
 		}
 		return null;
 	}

@@ -13,7 +13,7 @@ import no.hib.dpf.utils.Checker;
 public abstract class AbstractBasePredicate extends PredicateImpl{
 	public static final String INJECTIVE = "inj",
 							   SURJECTIVE = "surj",
-							   IRREFLEXIVE = "irref",
+							   IRREFLEXIVE = "irr",
 							   ARROW_MULTIPLICITY = "multi1",
 							   NODE_MULTIPLICITY = "multi2",
 							   INVERSE = "inv",

@@ -12,12 +12,12 @@
 package no.hib.dpf.editor.figures;
 
 
+import no.hib.dpf.editor.figures.Draw2dUtil.Transform;
 import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.editor.parts.DConstraintEditPart;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.draw2d.geometry.Transform;
 import org.eclipse.gef.EditPart;
 
 /**
@@ -120,9 +120,8 @@ public class TwoArrowsOneNodeConstraintConnection extends LabelConstraintConnect
 		result[0].x = -result[0].x;
 		result[1].y = -result[1].y;
 		result[1].x = -result[1].x;
-		transform = Draw2dUtil.getTransform(transform);
-		Point temp = transform.getTransformed(result[0]);
-		result[0] = transform.getTransformed(result[1]);
+		Point temp = transform.getTransformBack(result[0]);
+		result[0] = transform.getTransformBack(result[1]);
 		result[1] = temp;
 		return result;
 	}
