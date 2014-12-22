@@ -55,8 +55,8 @@ public class DConstraintCreateCommand extends AbstractCreateCommand {
 		case NODE_TO_NODE:
 		case ARROW_TO_NODE:
 		case ARROW_TO_ARROW:
-			result = DiagramFactory.eINSTANCE.createDGenericArrowConstraint();
-			break;
+//			result = DiagramFactory.eINSTANCE.createDGenericArrowConstraint();
+//			break;
 		case COMPOSED:
 		case ON_NODE:
 			DComposedConstraint newComposedConstraint = DiagramFactory.eINSTANCE.createDComposedConstraint();

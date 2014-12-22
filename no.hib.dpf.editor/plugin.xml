@@ -170,11 +170,18 @@
             id="no.hib.dpf.editor.exportimage"
             name="Export Image">
       </command>
-      <command
-            defaultHandler="no.hib.dpf.editor.commands.ValidateModelHandler"
-            id="no.hib.dpf.editor.validateModel"
-            name="Validate Model Consistence">
-      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:no.hib.dpf.editor.model_editor?after=additions">
+         <command
+               commandId="no.hib.dpf.editor.exportimage"
+               label="Export Image"
+               style="push">
+         </command>
+      </menuContribution>
    </extension>
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated Metamodel -->

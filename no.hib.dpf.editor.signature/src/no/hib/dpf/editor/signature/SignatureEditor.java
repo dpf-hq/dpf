@@ -3,9 +3,7 @@ package no.hib.dpf.editor.signature;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
@@ -16,10 +14,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.SnapToGeometry;
@@ -104,11 +99,8 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 		}
 	}
 
-	private ResourceSetImpl resourceSet = SignatureUtils.getResourceSet();
-	private Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
-	
 	private void saveSignature() {
-		SignatureUtils.saveDSignature(resourceSet, URI.createFileURI(signatureFile), dSignature, resourceToDiagnosticMap);
+		SignatureUtils.saveDSignature(SignatureUtils.getResourceSet(), URI.createFileURI(signatureFile), dSignature);
 	}
 	
 	public boolean isDirty() {
@@ -158,7 +150,7 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 		IFile file = ((IFileEditorInput)input).getFile();
 		signatureFile = file.getLocation().toOSString();
 		setPartName(file.getName());
-		dSignature = SignatureUtils.loadDSignature(resourceSet, URI.createFileURI(signatureFile), resourceToDiagnosticMap);
+		dSignature = SignatureUtils.loadDSignature(SignatureUtils.getResourceSet(), URI.createFileURI(signatureFile));
 	}
 
 	protected CommandStack getCommandStack() {

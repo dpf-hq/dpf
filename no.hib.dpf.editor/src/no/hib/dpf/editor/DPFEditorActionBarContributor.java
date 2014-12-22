@@ -22,6 +22,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.internal.GEFMessages;
 import org.eclipse.gef.ui.actions.ActionBarContributor;
+import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.AlignmentRetargetAction;
 import org.eclipse.gef.ui.actions.DeleteRetargetAction;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
@@ -34,6 +35,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.RetargetAction;
@@ -46,6 +48,11 @@ import org.eclipse.ui.actions.RetargetAction;
 @SuppressWarnings("restriction")
 public class DPFEditorActionBarContributor extends ActionBarContributor {
 
+	@Override
+	public void setActiveEditor(IEditorPart part) {
+		if(getActionBars() != null && part.getAdapter(ActionRegistry.class) != null)
+			super.setActiveEditor(part);
+	}
 	/**
 	 * Create actions managed by this contributor.
 	 * @see org.eclipse.gef.ui.actions.ActionBarContributor#buildActions()

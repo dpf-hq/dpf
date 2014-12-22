@@ -33,7 +33,7 @@ public class ExportImageHandler extends AbstractHandler {
 			final GraphicalViewer graphicalViewer = (GraphicalViewer) editor.getAdapter(GraphicalViewer.class); // get it from your editor
 			if(graphicalViewer == null) return null;
 
-			final String saveLocation = ((IFileEditorInput)editor.getEditorInput()).getFile().getLocation().toOSString() + ".jpeg"; // get it thru a FileDialog 
+			final String saveLocation = ((IFileEditorInput)editor.getEditorInput()).getFile().getLocation().toOSString() + ".png"; // get it thru a FileDialog 
 			RootEditPart rootEditPart = graphicalViewer.getRootEditPart();
 			if(rootEditPart instanceof LayerManager){
 				final IFigure printFigure = ((LayerManager)rootEditPart).getLayer(LayerConstants.PRINTABLE_LAYERS);
@@ -42,7 +42,7 @@ public class ExportImageHandler extends AbstractHandler {
 					final Image img = new Image(Display.getDefault(), bounds.width, bounds.height); 
 					SWTGraphics graphic = new SWTGraphics(new GC(img));
 					printFigure.paint(graphic);
-					saveImage(img, saveLocation, SWT.IMAGE_JPEG);
+					saveImage(img, saveLocation, SWT.IMAGE_PNG);
 					graphic.dispose();
 					img.dispose();
 					try {

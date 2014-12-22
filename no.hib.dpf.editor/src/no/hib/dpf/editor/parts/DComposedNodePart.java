@@ -131,8 +131,17 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 	protected String getFullName() {
 		DConstraint dConstraint = getDConstraint();
 		String result = dConstraint.getDPredicate().getSimpleName();
-		result = "[" + result + "]";
 		String parameter = dConstraint.getConstraint().getParameters();
+		if(result.endsWith("enum")){
+			result = "[" + result;
+			if(parameter != null && !parameter.isEmpty()){
+				String[] pair = parameter.split(":");
+				if(pair.length != 2) return "";
+				result += pair[1];
+			}
+			return result + "]";
+		}
+		result = "[" + result + "]";
 		if(parameter != null && !parameter.isEmpty()){
 			result += "(" + parameter + ")";
 		}

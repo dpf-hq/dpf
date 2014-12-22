@@ -18,8 +18,8 @@ public class DPFEditor2 extends DPFEditor {
 	protected void setInput(IEditorInput input) {
 		IFile file = ((IFileEditorInput) input).getFile();
 		URI modelURI = URI.createFileURI(file.getLocation().toOSString());
-		Specification specification = DPFUtils.loadSpecification(resourceSet, modelURI, resourceToDiagnosticMap);
-		dSpecification = DPFUtils.createDSpecificationFromSpecification(resourceSet, modelURI, specification, null, resourceToDiagnosticMap);
+		Specification specification = DPFUtils.loadSpecification(resourceSet, modelURI);
+		dSpecification = DPFUtils.createDSpecificationFromSpecification(resourceSet, modelURI, specification, null);
 		IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(new Path(dSpecification.eResource().getURI().toFileString()));
 		try {
 			ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());

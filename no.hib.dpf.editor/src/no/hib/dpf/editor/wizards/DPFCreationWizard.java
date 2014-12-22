@@ -15,8 +15,6 @@
  *******************************************************************************/
 package no.hib.dpf.editor.wizards;
 
-import java.util.LinkedHashMap;
-
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
@@ -27,9 +25,7 @@ import no.hib.dpf.editor.DPFUtils;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IEditorPart;
@@ -155,7 +151,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 
 			// Gets null value when user does not check checkbox
 			try {
-				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), newSpec, newDiagarmURI, new LinkedHashMap<Resource, Diagnostic>());
+				DPFUtils.saveDSpecification(DPFUtils.getResourceSet(), newSpec, newDiagarmURI);
 				newDiagramFile.getParent().refreshLocal(IResource.DEPTH_ONE, null);
 			} catch (CoreException e1) {
 				DPFUtils.logError("Error happens when store new create DPF Specification", e1);

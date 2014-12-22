@@ -238,35 +238,35 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		}
 	}
 
-	private void processStaleConstraints() {
-		for(Connection conn : constraints){
-			processStaleConstraints(conn);
-		}
-	}
-	private void processStaleConstraints(Connection conn){
-		if(conn.getSourceAnchor() == null || conn.getTargetAnchor() == null) return;
-		Path path = (Path) connectionToPaths.get(conn);
-		if (path == null) {
-			path = new Path(conn);
-			connectionToPaths.put(conn, path);
-			algorithm.addPath(path);
-		}
-
-		List constraint = (List) getConstraint(conn);
-		if (constraint == null)
-			constraint = Collections.EMPTY_LIST;
-
-		Point start = conn.getSourceAnchor().getReferencePoint().getCopy();
-		Point end = conn.getTargetAnchor().getReferencePoint().getCopy();
-
-		container.translateToRelative(start);
-		container.translateToRelative(end);
-
-		path.setStartPoint(start);
-		path.setEndPoint(end);
-
-		isDirty |= path.isDirty;
-	}
+//	private void processStaleConstraints() {
+//		for(Connection conn : constraints){
+//			processStaleConstraints(conn);
+//		}
+//	}
+//	private void processStaleConstraints(Connection conn){
+//		if(conn.getSourceAnchor() == null || conn.getTargetAnchor() == null) return;
+//		Path path = (Path) connectionToPaths.get(conn);
+//		if (path == null) {
+//			path = new Path(conn);
+//			connectionToPaths.put(conn, path);
+//			algorithm.addPath(path);
+//		}
+//
+//		List constraint = (List) getConstraint(conn);
+//		if (constraint == null)
+//			constraint = Collections.EMPTY_LIST;
+//
+//		Point start = conn.getSourceAnchor().getReferencePoint().getCopy();
+//		Point end = conn.getTargetAnchor().getReferencePoint().getCopy();
+//
+//		container.translateToRelative(start);
+//		container.translateToRelative(end);
+//
+//		path.setStartPoint(start);
+//		path.setEndPoint(end);
+//
+//		isDirty |= path.isDirty;
+//	}
 	private void processStaleConnections(Connection conn) {
 		Path path = (Path) connectionToPaths.get(conn);
 		if (path == null) {
@@ -343,11 +343,10 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		}
 	}
 
-	private void update(List updated){
+	private void updateConnection(List updated){
 		Connection current;
 		for (int i = 0; i < updated.size(); i++) {
 				Path path = (Path) updated.get(i);
-			
 			current = (Connection) path.data;
 			current.revalidate();
 
@@ -367,6 +366,27 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 			current.setPoints(points);
 		}
 	}
+	private void updateConstraint(){
+		Connection current;
+		for (int i = 0; i < constraints.size(); i++) {
+			current = (Connection) constraints.get(i);
+			current.revalidate();
+
+			PointList points = current.getPoints();
+			Point ref1, ref2, start, end;
+			ref1 = new PrecisionPoint(points.getPoint(1));
+			ref2 = new PrecisionPoint(points.getPoint(points.size() - 2));
+			
+			current.translateToAbsolute(ref1);
+			current.translateToAbsolute(ref2);
+			start = current.getSourceAnchor().getLocation(ref1).getCopy();
+			end = current.getTargetAnchor().getLocation(ref2).getCopy();
+			current.translateToRelative(start);
+			current.translateToRelative(end);
+			points.setPoint(start, 0);
+			points.setPoint(end, points.size() - 1);
+		}
+	}
 	/**
 	 * router connection firstly and then router related constraint connection.
 	 * Because constraint connection is dependent on connection.
@@ -375,9 +395,10 @@ public final class DPFShortestPathConnectionRouter extends AbstractRouter {
 		if (isDirty) {
 			ignoreInvalidate = true;
 			processStaleConnections();
-			update(algorithm.solve());
-			processStaleConstraints();
-			update(algorithm.solve());
+			updateConnection(algorithm.solve());
+//			processStaleConstraints();
+			updateConstraint();
+			constraints.clear();
 			staleConnections.clear();
 			isDirty = false;
 			ignoreInvalidate = false;

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated uconstraint -->
+      <package
+            uri="http://no.hib.dpf.uconstraint"
+            class="no.hib.dpf.uconstraint.UConstraintPackage"
+            genModel="model/uconstraint.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated uconstraint -->
+      <factory
+            uri="http://no.hib.dpf.uconstraint"
+            class="no.hib.dpf.uconstraint.provider.UConstraintItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated uconstraint -->
+      <wizard
+            id="no.hib.dpf.uconstraint.presentation.UConstraintModelWizardID"
+            name="%_UI_UConstraintModelWizard_label"
+            class="no.hib.dpf.uconstraint.presentation.UConstraintModelWizard"
+            category="no.hib.dpf.editor"
+            icon="icons/full/obj16/UConstraintModelFile.gif">
+         <description>%_UI_UConstraintModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated uconstraint -->
+      <editor
+            id="no.hib.dpf.uconstraint.presentation.UConstraintEditorID"
+            name="%_UI_UConstraintEditor_label"
+            icon="icons/full/obj16/UConstraintModelFile.gif"
+            extensions="uc"
+            class="no.hib.dpf.uconstraint.presentation.ConstraintsEditor"
+            contributorClass="no.hib.dpf.uconstraint.presentation.ConstraintsActionBarContributor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="no.hib.dpf.uconstraint.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="no.hib.dpf.uconstraint.preferences.ConstraintsEditorPreferencePage"
+            id="no.hib.dpf.uconstraint.preferences.TransformEditorPreferencePage"
+            name="UConstraint Editor Preferences">
+      </page>
+   </extension>
+
+</plugin>

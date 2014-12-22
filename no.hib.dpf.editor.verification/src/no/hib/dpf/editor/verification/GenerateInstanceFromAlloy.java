@@ -1,4 +1,5 @@
-package no.hib.dpf.editor.commands;
+package no.hib.dpf.editor.verification;
+
 
 import java.io.File;
 import java.util.HashMap;
@@ -45,8 +46,10 @@ public class GenerateInstanceFromAlloy {
 			return null;
 		}
 		solution.writeXML("instance.xml");
-		AlloyInstance inst = StaticInstanceReader.parseInstance(new File("instance.xml"));
-
+		File sf = new File("instance.xml");
+		AlloyInstance inst = StaticInstanceReader.parseInstance(sf);
+		sf.delete();
+		
 		Specification instance = CoreFactory.eINSTANCE.createDefaultSpecification();
 		instance.setType(type.getSpecification());
 		instance.getGraph().setType(type.getSpecification().getGraph());
@@ -68,7 +71,6 @@ public class GenerateInstanceFromAlloy {
 						maps.put(alloyAtom, _new);
 					}
 				} catch (Exception e) {
-					System.out.println(e);
 				}
 			} else if(alloyTypeName.startsWith("E")){
 				Arrow dpfType = graphType.getArrowByName(typeName);

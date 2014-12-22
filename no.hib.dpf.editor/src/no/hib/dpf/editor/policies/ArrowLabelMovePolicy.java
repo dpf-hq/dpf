@@ -46,7 +46,7 @@ import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -61,12 +61,15 @@ public class ArrowLabelMovePolicy extends NonResizableEditPolicy {
 		ArrowLabelMoveCommand command = null;
 		ArrowLabelEditPart editpart = (ArrowLabelEditPart)getHost();
 		DOffset model = editpart.getDOffset();
-		IFigure label = editpart.getFigure();
+		Figure label = (Figure) editpart.getFigure();
 		ConnectionEditPart connection = (ConnectionEditPart) editpart.getParent();
-		IFigure source = ((DNodeEditPart) connection.getSource()).getFigure();
-		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
-		Point p = label.getBounds().getTopLeft().getTranslated(request.getMoveDelta());
-		DOffset offset = Draw2dUtil.getDOffset(source, target, ((Connection)connection.getFigure()).getPoints(), p);
+		Figure source = (Figure) ((DNodeEditPart) connection.getSource()).getFigure();
+		Figure target = (Figure) ((DNodeEditPart) connection.getTarget()).getFigure();
+		Point location = label.getLocation();
+		label.translateToAbsolute(location);
+		location.translate(request.getMoveDelta());
+		label.translateToRelative(location);
+		DOffset offset = Draw2dUtil.getDOffset(source, target, ((Connection)connection.getFigure()).getPoints(), location);
 		command = new ArrowLabelMoveCommand(model, offset);
 		return command;
 	}

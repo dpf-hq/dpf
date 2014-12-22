@@ -120,6 +120,7 @@ public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 			case DiagramPackage.DOFFSET__INDEX:
 			case DiagramPackage.DOFFSET__LEN:
 				refreshVisuals();
+				getFigure().revalidate();
 				break;
 			}
 		}
@@ -142,6 +143,7 @@ public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 		}
 	}
 
+	ArrowLabelLocator locator = null;
 	@Override
 	protected void refreshVisuals() {
 		String arrowName = getFullName();
@@ -149,8 +151,13 @@ public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 		figure.setText(arrowName);
 		figure.setVisible(DPFEditorPreferences.getDefault().getDisplayArrows());
 		DArrowEditPart parent = (DArrowEditPart) getParent();
-		ArrowLabelLocator constraint = new ArrowLabelLocator(arrowName, getDOffset(), parent);
-		parent.setLayoutConstraint(this, getFigure(), constraint);
+		if(locator == null){
+			locator = new ArrowLabelLocator(arrowName, getDOffset(), parent);
+			parent.getFigure().getLayoutManager().setConstraint(figure, locator);
+			figure.revalidate();
+		}else{
+			locator.setName(arrowName);
+		}
 	}
 	protected void unlisten(){
 		DPFEditorPreferences.getDefault().getPreferenceStore().removePropertyChangeListener(propertyListener);

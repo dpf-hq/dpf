@@ -51,6 +51,7 @@ public class ArrowBendpointEditPolicy extends BendpointEditPolicy {
 			}
 		}
 		Point newPoint = request.getLocation();
+		source.translateToRelative(newPoint);
 		com.setArrow(arrow);
 		com.setLabel("Create BendPoint at " + newPoint);
 		DOffset newOffset = Draw2dUtil.getDOffset(source, target, newPoint);
@@ -66,6 +67,7 @@ public class ArrowBendpointEditPolicy extends BendpointEditPolicy {
 		ConnectionEditPart connection = request.getSource();
 		IFigure source = ((DNodeEditPart) connection.getSource()).getFigure();
 		IFigure target = ((DNodeEditPart) connection.getTarget()).getFigure();
+		source.translateToRelative(p);
 		com.setArrow(arrow);
 		com.setOldBendpoint(arrow.getBendpoints().get(request.getIndex()));
 		com.setLabel("Move BendPoint to " + p);
