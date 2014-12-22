@@ -30,7 +30,7 @@ import no.hib.dpf.core.CoreFactory;
  *   <li>{@link no.hib.dpf.core.Constraint#disconnect() <em>Disconnect</em>}</li>
  *   <li>{@link no.hib.dpf.core.Constraint#addArrow(no.hib.dpf.core.Arrow) <em>Add Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.core.Constraint#addNode(no.hib.dpf.core.Node) <em>Add Node</em>}</li>
- *   <li>{@link no.hib.dpf.core.Constraint#validate(no.hib.dpf.core.Graph) <em>Validate</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Constraint#validate(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Validate</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -127,6 +127,19 @@ public class ConstraintTest extends IDObjectTest {
 	 * @generated NOT
 	 */
 	public void testAddNode__Node() {
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.core.Constraint#validate(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Validate</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.Constraint#validate(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	public void testValidate__EList_EList() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 	/**

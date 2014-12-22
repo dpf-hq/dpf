@@ -38,6 +38,7 @@ import no.hib.dpf.diagram.util.DPFConstants;
  *   <li>{@link no.hib.dpf.core.Node#generateUniqueName() <em>Generate Unique Name</em>}</li>
  *   <li>{@link no.hib.dpf.core.Node#canCreateTypedArrow(no.hib.dpf.core.Node) <em>Can Create Typed Arrow</em>}</li>
  *   <li>{@link no.hib.dpf.core.Node#getTypeArrow(no.hib.dpf.core.Node) <em>Get Type Arrow</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Node#getTemplateElementType() <em>Get Template Element Type</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -288,6 +289,19 @@ public class NodeTest extends IDObjectTest {
 		assertEquals(typeGraph.getArrowByName("ta_1"), typeArrow);
 		typeArrow = source.getTypeArrow(source);
 		assertEquals(typeGraph.getArrowByName("ta_4"), typeArrow);	
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.core.Node#getTemplateElementType() <em>Get Template Element Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.Node#getTemplateElementType()
+	 * @generated
+	 */
+	public void testGetTemplateElementType() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 	/**

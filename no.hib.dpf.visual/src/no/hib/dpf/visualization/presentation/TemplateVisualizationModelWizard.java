@@ -96,6 +96,7 @@ public class TemplateVisualizationModelWizard extends Wizard implements INewWiza
 				initialLocation = DPFModelPersistanceUtils.getDiagramFromModel(initialLocation);
 		} else
 			initialLocation = VisualizationEditor.getWorkspaceDirectory();
+		System.out.println("setting initial location: "+ initialLocation);
 		configPage.setInitialLocation(initialLocation);
 	}
 

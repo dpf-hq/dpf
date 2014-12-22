@@ -6,6 +6,7 @@ package no.hib.dpf.visualization.provider;
 import java.util.Collection;
 import java.util.List;
 
+import no.hib.dpf.visual.VisualPlugin;
 import no.hib.dpf.visual.provider.VElementItemProvider;
 import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.VisualizationFactory;
@@ -31,13 +32,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class VCompartmentItemProvider
-	extends VElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends VElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

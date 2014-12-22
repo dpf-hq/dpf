@@ -34,27 +34,23 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following operations are tested:
  * <ul>
- * <li>
- * {@link no.hib.dpf.core.SemanticValidator#validateSemantics(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
- * <em>Validate Semantics</em>}</li>
+ *   <li>{@link no.hib.dpf.core.SemanticValidator#validateSemantics(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Validate Semantics</em>}</li>
  * </ul>
  * </p>
- * 
  * @generated
  */
 public class SemanticValidatorTest extends TestCase {
 
 	/**
-	 * The fixture for this Semantic Validator test case. <!-- begin-user-doc
+	 * The fixture for this Semantic Validator test case.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SemanticValidator fixture = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static void main(String[] args) {
@@ -93,7 +89,6 @@ public class SemanticValidatorTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
@@ -104,7 +99,6 @@ public class SemanticValidatorTest extends TestCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */

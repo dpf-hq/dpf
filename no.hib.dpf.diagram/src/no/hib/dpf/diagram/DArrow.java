@@ -287,4 +287,12 @@ public interface DArrow extends DElement {
 	 */
 	String getTypeName();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	DArrow getTemplateDArrow();
+
 } // DArrow

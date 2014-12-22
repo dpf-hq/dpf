@@ -36,25 +36,26 @@ public class VGraphEditPart extends DGraphEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new VGraphXYLayoutEditPolicy(maps, compartments));
 	}
 	
-	@Override
-	protected List<DElement> getModelChildren() {
-		EList<DElement> child = new BasicEList<DElement>();
-		DGraph dgraph = getDGraph();
-		Assert.isNotNull(dgraph);
-		
-		for (DNode dNode : dgraph.getDNodes()) {
-			
-			// Hide compartment elements etc..
-			if(canAdd(dNode)){
-				child.add(dNode);
-			}
-		}
-		return child;
-	}
+//	@Override
+//	protected List<DElement> getModelChildren() {
+//		EList<DElement> child = new BasicEList<DElement>();
+//		DGraph dgraph = getDGraph();
+//		Assert.isNotNull(dgraph);
+//		
+//		for (DNode dNode : dgraph.getDNodes()) {
+//			
+//			// Hide compartment elements etc..
+//			if(canAdd(dNode)){
+//				child.add(dNode);
+//			}
+//		}
+//		return child;
+//	}
 
 	private boolean canAdd(DNode dNode) {	
 		ArrayList<String> templateNodes = DPFTemplateUtils.getTemplateNodes((DGraph)dNode.eContainer());
 		
-		return !VisualizationModelUtils.isVCompartmentElement(dNode.getDType(), maps) && !templateNodes.contains(dNode.getName());
+		return true;
+//		return !VisualizationModelUtils.isVCompartmentElement(dNode.getDType(), maps) && !templateNodes.contains(dNode.getName());
 	}
 }

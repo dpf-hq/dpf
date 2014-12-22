@@ -18,10 +18,10 @@ package no.hib.dpf.visualization.policies;
  * Created on Jul 18, 2004
  */
 
-import no.hib.dpf.core.DataNode;
+//import no.hib.dpf.core.DataNode;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
+//import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
 import no.hib.dpf.editor.policies.NameDirectEditPolicy;
 import no.hib.dpf.editor.utilities.DPFMetaLanguageUtils;
 import no.hib.dpf.editor.utilities.DynamicNodeAttributeDialog;  

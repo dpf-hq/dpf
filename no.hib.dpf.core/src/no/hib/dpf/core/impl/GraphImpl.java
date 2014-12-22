@@ -672,5 +672,23 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		
 	}
 
+	@Override
+	public IDObject getTemplateElement() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isTemplateElement() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public IDObject getElement(int metaLevel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 } //GraphImpl

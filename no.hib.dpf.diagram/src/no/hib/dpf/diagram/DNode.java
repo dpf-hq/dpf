@@ -191,6 +191,14 @@ public interface DNode extends DElement {
 	String getTypeName();
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	DNode getTemplateDNode();
+
+	/**
 	 * Sets the value of the '{@link no.hib.dpf.diagram.DNode#getConfigureString <em>Configure String</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

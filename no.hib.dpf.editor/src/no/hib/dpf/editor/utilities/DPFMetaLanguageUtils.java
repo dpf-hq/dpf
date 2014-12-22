@@ -3,11 +3,11 @@ package no.hib.dpf.editor.utilities;
 import java.util.ArrayList;
 
 import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.ArrowAttribute;
+//import no.hib.dpf.core.ArrowAttribute;
 import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.DataNode;
+//import no.hib.dpf.core.DataNode;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.core.NodeAttribute;
+//import no.hib.dpf.core.NodeAttribute;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.utils.DPFCoreConstants;
@@ -56,13 +56,13 @@ public class DPFMetaLanguageUtils {
 	 * @return
 	 */
 	public static String getVisualizationData(Node node){
-		for (NodeAttribute nodeAttr : node.getOutgoingAttributes()) {
-			NodeAttribute metaAttribute = (NodeAttribute) nodeAttr.getElement(DPFCoreConstants.ENRICHED_GRAPH_METALEVEL);
-			if(metaAttribute != null && metaAttribute.getName().equals(NODE_VISUALIZATION)){
-				DataNode target = nodeAttr.getTarget();
-				return target.getValue();
-			}
-		}
+//		for (NodeAttribute nodeAttr : node.getOutgoingAttributes()) {
+//			NodeAttribute metaAttribute = (NodeAttribute) nodeAttr.getElement(DPFCoreConstants.ENRICHED_GRAPH_METALEVEL);
+//			if(metaAttribute != null && metaAttribute.getName().equals(NODE_VISUALIZATION)){
+//				DataNode target = nodeAttr.getTarget();
+//				return target.getValue();
+//			}
+//		}
 		
 		return "";
 	}
@@ -73,16 +73,16 @@ public class DPFMetaLanguageUtils {
 	 * @return
 	 */
 	public static String getVisualizationData(Arrow arrow){
-		for (ArrowAttribute arrowAttr : arrow.getOutgoingAttributes()) {
-			ArrowAttribute metaAttribute = (ArrowAttribute) arrowAttr.getElement(DPFCoreConstants.ENRICHED_GRAPH_METALEVEL);
-			if(metaAttribute != null && metaAttribute.getName().equals(ARROW_VISUALIZATION)){
-				ArrowAttribute templateAttribute = (ArrowAttribute) arrowAttr.getElement(DPFCoreConstants.TEMPLATE_METALEVEL);
-				if(templateAttribute != null){
-					DataNode target = arrowAttr.getTarget();
-					return target.getValue();
-				}
-			}
-		}
+//		for (ArrowAttribute arrowAttr : arrow.getOutgoingAttributes()) {
+//			ArrowAttribute metaAttribute = (ArrowAttribute) arrowAttr.getElement(DPFCoreConstants.ENRICHED_GRAPH_METALEVEL);
+//			if(metaAttribute != null && metaAttribute.getName().equals(ARROW_VISUALIZATION)){
+//				ArrowAttribute templateAttribute = (ArrowAttribute) arrowAttr.getElement(DPFCoreConstants.TEMPLATE_METALEVEL);
+//				if(templateAttribute != null){
+//					DataNode target = arrowAttr.getTarget();
+//					return target.getValue();
+//				}
+//			}
+//		}
 		
 		return "";
 	}
@@ -93,16 +93,16 @@ public class DPFMetaLanguageUtils {
 	 * @return
 	 */
 	public static boolean isContainment(Arrow arrow){
-		for (ArrowAttribute arrowAttr : arrow.getOutgoingAttributes()) {
-			ArrowAttribute metaAttribute = (ArrowAttribute) arrowAttr.getElement(DPFCoreConstants.ENRICHED_GRAPH_METALEVEL);
-			if(metaAttribute != null && metaAttribute.getName().equals(ARROW_CONTAINMENT)){
-				ArrowAttribute templateAttribute = (ArrowAttribute) arrowAttr.getElement(DPFCoreConstants.TEMPLATE_METALEVEL);
-				if(templateAttribute != null){
-					DataNode target = arrowAttr.getTarget();
-					return Boolean.parseBoolean(target.getValue().trim());
-				}
-			}
-		}
+//		for (ArrowAttribute arrowAttr : arrow.getOutgoingAttributes()) {
+//			ArrowAttribute metaAttribute = (ArrowAttribute) arrowAttr.getElement(DPFCoreConstants.ENRICHED_GRAPH_METALEVEL);
+//			if(metaAttribute != null && metaAttribute.getName().equals(ARROW_CONTAINMENT)){
+//				ArrowAttribute templateAttribute = (ArrowAttribute) arrowAttr.getElement(DPFCoreConstants.TEMPLATE_METALEVEL);
+//				if(templateAttribute != null){
+//					DataNode target = arrowAttr.getTarget();
+//					return Boolean.parseBoolean(target.getValue().trim());
+//				}
+//			}
+//		}
 		
 		return false;
 	}
@@ -130,15 +130,15 @@ public class DPFMetaLanguageUtils {
 	 * @param arrow
 	 * @return
 	 */
-	public static DataNode getValueNode(Node node){
-		for (NodeAttribute nodeAttr : node.getOutgoingAttributes()) {
-			NodeAttribute metaAttribute = (NodeAttribute) nodeAttr.getElement(DPFCoreConstants.ENRICHED_GRAPH_METALEVEL);
-			if(metaAttribute != null && metaAttribute.getName().equals(NODE_VALUE)){
-				return nodeAttr.getTarget();
-			}
-		}
+	public static Node getValueNode(Node node){
+//		for (Arrow nodeAttr : node.getOutgoings()) {
+//			NodeAttribute metaAttribute = (NodeAttribute) nodeAttr.getElement(DPFCoreConstants.ENRICHED_GRAPH_METALEVEL);
+//			if(metaAttribute != null && metaAttribute.getName().equals(NODE_VALUE)){
+//				return nodeAttr.getTarget();
+//			}
+//		}
 		
-		return null;
+		return node;
 	}
 	
 	
@@ -174,11 +174,11 @@ public class DPFMetaLanguageUtils {
 			if(templateType != null && templateType.getTypeArrow() != null){
 				String metaLanguageType = templateType.getTypeArrow().getName();
 				
-				if(metaLanguageType.equals(DPFMetaLanguageUtils.INHERITANCE)){
-					if(arrow.eIsSet(CorePackage.Literals.DEEP_ELEMENT__POTENCY)){
-						superTypes.add(darrow.getDTarget());
-					}
-				}
+//				if(metaLanguageType.equals(DPFMetaLanguageUtils.INHERITANCE)){
+//					if(arrow.eIsSet(CorePackage.Literals.DEEP_ELEMENT__POTENCY)){
+//						superTypes.add(darrow.getDTarget());
+//					}
+//				}
 			}
 		}
 		return superTypes;

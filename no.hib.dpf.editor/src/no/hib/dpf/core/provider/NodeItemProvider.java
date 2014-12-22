@@ -12,6 +12,7 @@ import java.util.List;
 
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -71,8 +72,8 @@ public class NodeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Node_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Node_name_feature", "_UI_Node_type"),
+				 "Node Name",//getString("_UI_Node_name_feature"),
+				 "Node Name2",//getString("_UI_PropertyDescriptor_description", "_UI_Node_name_feature", "_UI_Node_type"),
 				 CorePackage.Literals.NODE__NAME,
 				 true,
 				 false,
@@ -93,8 +94,8 @@ public class NodeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Node_typeNode_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Node_typeNode_feature", "_UI_Node_type"),
+				 "Type node",//getString("_UI_Node_typeNode_feature"),
+				 "type node",//getString("_UI_PropertyDescriptor_description", "_UI_Node_typeNode_feature", "_UI_Node_type"),
 				 CorePackage.Literals.NODE__TYPE_NODE,
 				 false,
 				 false,
@@ -115,8 +116,8 @@ public class NodeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Node_outgoings_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Node_outgoings_feature", "_UI_Node_type"),
+				 "_UI_Node_outgoings_feature",//getString("_UI_Node_outgoings_feature"),
+				 "_UI_Node_outgoings_feature2", //getString("_UI_PropertyDescriptor_description", "_UI_Node_outgoings_feature", "_UI_Node_type"),
 				 CorePackage.Literals.NODE__OUTGOINGS,
 				 false,
 				 false,
@@ -137,8 +138,8 @@ public class NodeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Node_incomings_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Node_incomings_feature", "_UI_Node_type"),
+				 "_UI_Node_incomings_feature", //getString("_UI_Node_incomings_feature"),
+				 "_UI_Node_incomings_feature2",// getString("_UI_PropertyDescriptor_description", "_UI_Node_incomings_feature", "_UI_Node_type"),
 				 CorePackage.Literals.NODE__INCOMINGS,
 				 false,
 				 false,
@@ -159,8 +160,8 @@ public class NodeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Node_constraints_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Node_constraints_feature", "_UI_Node_type"),
+				 "_UI_Node_constraints_feature",//getString("_UI_Node_constraints_feature"),
+				 "_UI_Node_constraints_feature2",//getString("_UI_PropertyDescriptor_description", "_UI_Node_constraints_feature", "_UI_Node_type"),
 				 CorePackage.Literals.NODE__CONSTRAINTS,
 				 false,
 				 false,
@@ -178,7 +179,9 @@ public class NodeItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Node"));
+		//return overlayImage(object, getResourceLocator().getImage("full/obj16/Node"));
+		return overlayImage(object, DPFPlugin.INSTANCE.getImageRegistry().get("full/obj16/Node"));
+		
 	}
 
 	/**

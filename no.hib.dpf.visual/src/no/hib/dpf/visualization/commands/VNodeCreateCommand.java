@@ -1,10 +1,10 @@
 package no.hib.dpf.visualization.commands;
 
-import no.hib.dpf.core.DataNode;
+//import no.hib.dpf.core.DataNode;
 import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.editor.commands.node.DNodeCreateCommand;
+import no.hib.dpf.editor.commands.DNodeCreateCommand;
 import no.hib.dpf.editor.utilities.DPFMetaLanguageUtils; 
 import no.hib.dpf.utils.DPFCoreConstants;
 import no.hib.dpf.visual.VElement;

@@ -9,6 +9,7 @@
     <eOperations name="createDConstraint" eType="#//DConstraint">
       <eParameters name="constraint" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Constraint"/>
     </eOperations>
+    <eOperations name="getTemplateDSpecification" eType="#//DSpecification"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dType" eType="#//DSpecification"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dGraph" eType="#//DGraph"
         containment="true"/>
@@ -45,6 +46,7 @@
       <eParameters name="dTarget" eType="#//DNode"/>
       <eParameters name="dType" eType="#//DArrow"/>
     </eOperations>
+    <eOperations name="getTemplateDGraph" eType="#//DGraph"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dType" lowerBound="1" eType="#//DGraph"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dNodes" upperBound="-1"
         eType="#//DNode" containment="true"/>
@@ -55,6 +57,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DNode" eSuperTypes="#//DElement">
     <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="getTypeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getTemplateDNode" eType="#//DNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dType" lowerBound="1" eType="#//DNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="node" lowerBound="1" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Node"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="configureString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -78,6 +81,7 @@
     <eOperations name="disconnect"/>
     <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="getTypeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getTemplateDArrow" eType="#//DArrow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dType" lowerBound="1" eType="#//DArrow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arrow" lowerBound="1" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Arrow"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="configureString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

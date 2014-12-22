@@ -24,6 +24,7 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.utils.DPFConstants;
 
@@ -392,6 +393,17 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 		return name;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTemplateElementType() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
 	public Graph getGraph() {
 		return (Graph) eContainer();
 	}
@@ -573,6 +585,24 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 		node = getTarget();
 		result.append((node == null ? node : node.getName()));
 		return result.toString();
+	}
+
+	@Override
+	public IDObject getTemplateElement() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isTemplateElement() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public IDObject getElement(int metaLevel) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } //ArrowImpl

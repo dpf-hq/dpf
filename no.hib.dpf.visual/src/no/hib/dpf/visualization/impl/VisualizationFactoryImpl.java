@@ -6,6 +6,7 @@ import java.util.Map;
 
 import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.visual.VElement;
+import no.hib.dpf.visualization.*;
 import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.VCompartmentElement;
 import no.hib.dpf.visualization.VisualizationFactory;

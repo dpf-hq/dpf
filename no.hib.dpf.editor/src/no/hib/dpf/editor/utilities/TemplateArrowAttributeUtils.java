@@ -1,8 +1,8 @@
 package no.hib.dpf.editor.utilities;
 
 import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.ArrowAttribute;
-import no.hib.dpf.core.DataNode;  
+//import no.hib.dpf.core.ArrowAttribute;
+//import no.hib.dpf.core.DataNode;  
 public class TemplateArrowAttributeUtils {
 
 	/**
@@ -12,11 +12,11 @@ public class TemplateArrowAttributeUtils {
 	 * @param direction
 	 */
 	public static void setDataValue(Arrow arrow, String templateNodeAttribute, String value) {
-		for (ArrowAttribute arrowattribute : arrow.getOutgoingAttributes()) {
-			if(getTemplateArrowAttributeName(arrowattribute).equals(templateNodeAttribute)){
-				arrowattribute.getTarget().setValue(value);
-			}
-		}
+//		for (ArrowAttribute arrowattribute : arrow.getOutgoingAttributes()) {
+//			if(getTemplateArrowAttributeName(arrowattribute).equals(templateNodeAttribute)){
+//				arrowattribute.getTarget().setValue(value);
+//			}
+//		}
 	}
 
 	/**
@@ -26,15 +26,15 @@ public class TemplateArrowAttributeUtils {
 	 * @param name
 	 * @return
 	 */
-	public static String getTemplateArrowAttributeName(ArrowAttribute arrowAttribute){
-		String retVal = "";
-		ArrowAttribute templateArrowAttribute = (ArrowAttribute) arrowAttribute.getTemplateElement();
-		if(templateArrowAttribute != null){
-			Arrow templateSourceDArrow = templateArrowAttribute.getSource();
-			retVal = templateArrowAttribute.getName().replaceFirst(templateSourceDArrow.getName().toLowerCase(), "");
-		}
-		return retVal; 
-	}
+//	public static String getTemplateArrowAttributeName(ArrowAttribute arrowAttribute){
+//		String retVal = "";
+//		ArrowAttribute templateArrowAttribute = (ArrowAttribute) arrowAttribute.getTemplateElement();
+//		if(templateArrowAttribute != null){
+//			Arrow templateSourceDArrow = templateArrowAttribute.getSource();
+//			retVal = templateArrowAttribute.getName().replaceFirst(templateSourceDArrow.getName().toLowerCase(), "");
+//		}
+//		return retVal; 
+//	}
 
 	/**
 	 * 
@@ -46,19 +46,19 @@ public class TemplateArrowAttributeUtils {
 		String retVal[] = {"", ""};  
 		Arrow templateArrow = (Arrow) arrow.getTemplateElement();
 		if(templateArrow != null){
-			for (ArrowAttribute outgoingArrowAttribute : arrow.getOutgoingAttributes()) {
-				
-				String outgoingAttributeName = getTemplateArrowAttributeName(outgoingArrowAttribute);
-				
-				// now match up the string
-				if(outgoingAttributeName.equals(templateArrowAttributeName)){
-					DataNode datanode = outgoingArrowAttribute.getTarget();
-					if(datanode != null){
-						retVal[DataNode.DATAVALUE] = datanode.getValue();
-						retVal[DataNode.DATATYPE] = datanode.getDatatype();
-					}
-				}
-			}
+//			for (ArrowAttribute outgoingArrowAttribute : arrow.getOutgoingAttributes()) {
+//				
+//				String outgoingAttributeName = getTemplateArrowAttributeName(outgoingArrowAttribute);
+//				
+//				// now match up the string
+//				if(outgoingAttributeName.equals(templateArrowAttributeName)){
+//					DataNode datanode = outgoingArrowAttribute.getTarget();
+//					if(datanode != null){
+//						retVal[DataNode.DATAVALUE] = datanode.getValue();
+//						retVal[DataNode.DATATYPE] = datanode.getDatatype();
+//					}
+//				}
+//			}
 		}
 		return retVal;
 	}
@@ -69,13 +69,13 @@ public class TemplateArrowAttributeUtils {
 	 * @param defaultNodeAttribute
 	 * @return
 	 */
-	public static DataNode getDataNode(Arrow arrow, String defaultArrowAttributeName){
-		for (ArrowAttribute arrowattribute : arrow.getOutgoingAttributes()) {
-			if(getTemplateArrowAttributeName(arrowattribute).equals(defaultArrowAttributeName)){
-				return arrowattribute.getTarget();
-			}
-		}
-		
-		return null;
-	}	
+//	public static DataNode getDataNode(Arrow arrow, String defaultArrowAttributeName){
+//		for (ArrowAttribute arrowattribute : arrow.getOutgoingAttributes()) {
+//			if(getTemplateArrowAttributeName(arrowattribute).equals(defaultArrowAttributeName)){
+//				return arrowattribute.getTarget();
+//			}
+//		}
+//		
+//		return null;
+//	}	
 }

@@ -19,10 +19,10 @@ import java.util.HashMap;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.diagram.util.DPFDiagramConstants;
+import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
-import no.hib.dpf.editor.nature.DPFProjectSupport;
+//import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
+//import no.hib.dpf.editor.nature.DPFProjectSupport;
 import no.hib.dpf.editor.utilities.DPFModelPersistanceUtils;
 import no.hib.dpf.editor.utilities.DPFTemplateUtils;
 import no.hib.dpf.utils.DPFCoreConstants;
@@ -244,7 +244,7 @@ public class TemplateVisualizationModelWizardPage extends WizardPage {
 				if (useDefault) {
 					sigFileText.setEnabled(false);
 					sigFileChooser.setEnabled(false);
-					sig = DPFDiagramConstants.DEFAULT_DSIGNATURE;
+					sig = DPFConstants.DEFAULT_DSIGNATURE;
 				} else {
 					sigFileText.setEnabled(true);
 					sigFileChooser.setEnabled(true);
@@ -275,7 +275,7 @@ public class TemplateVisualizationModelWizardPage extends WizardPage {
 
 		sigFileText.setEnabled(false);
 		sigFileChooser.setEnabled(false);
-		sig = DPFDiagramConstants.DEFAULT_DSIGNATURE;
+		sig = DPFConstants.DEFAULT_DSIGNATURE;
 		setPageComplete(validatePage());
 		setControl(composite);
 	}
@@ -284,7 +284,7 @@ public class TemplateVisualizationModelWizardPage extends WizardPage {
 	private DSpecification getDefaultMetamodel(String selection) {
 		switch (selection) {
 		case DPFCoreConstants.NODE:
-			return DPFDiagramConstants.REFLEXIVE_DSPECIFICATION;
+			return DPFConstants.REFLEXIVE_DSPECIFICATION;
 		case DPFTemplateUtils.DEFAULT_CLASS_DIAGRAM_TEMPLATE:	
 			return getDefaultTemplateMetamodel();
 		}
@@ -307,9 +307,11 @@ public class TemplateVisualizationModelWizardPage extends WizardPage {
 		if(i == 0){
 			i = filePath.indexOf("\\", 2);
 		}
-		filePath = filePath.substring(0, i);
-		
-		workspace += filePath + "\\" + DPFProjectSupport.FOLDERNAME_TEMPLATE_METAMODELS + "\\Template.dpf";
+		//System.out.println("filePaht: "+filePath);
+		if(i != -1){
+		  filePath = filePath.substring(0, i);
+		}
+		//workspace += filePath + "\\" + DPFProjectSupport.FOLDERNAME_TEMPLATE_METAMODELS + "\\Template.dpf";
 		
 		DSpecification spec = DPFModelPersistanceUtils.loadDModel(URI.createFileURI(workspace));
 		return spec;
@@ -329,9 +331,9 @@ public class TemplateVisualizationModelWizardPage extends WizardPage {
 	protected boolean validatePage() {
 		if (metaModel != null && sig != null) {
 			Graph graph = metaModel.getDGraph().getGraph();
-			if(graph != null && graph.getPotency() == 0){
-				return false;//TODO
-			}
+//			if(graph != null && graph.getPotency() == 0){
+//				return false;//TODO
+//			}
 			return true;
 		}
 		return false;

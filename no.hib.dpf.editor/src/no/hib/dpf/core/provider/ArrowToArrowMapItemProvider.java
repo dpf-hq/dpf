@@ -165,9 +165,10 @@ public class ArrowToArrowMapItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return DPFPlugin.INSTANCE;
-	}
+//	@Override
+//	public ResourceLocator getResourceLocator() {
+//		return DPFPlugin.INSTANCE;
+//		
+//	}
 
 }

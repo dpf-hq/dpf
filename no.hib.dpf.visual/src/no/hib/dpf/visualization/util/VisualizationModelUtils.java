@@ -10,7 +10,7 @@ import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.editor.nature.DPFProjectSupport;
+//import no.hib.dpf.editor.nature.DPFProjectSupport;
 import no.hib.dpf.editor.utilities.DPFTemplateUtils;
 import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VElement;
@@ -67,22 +67,22 @@ public class VisualizationModelUtils {
 	 */
 	public static boolean canAdd(VCompartmentElement newCompElement, VCompartment compartment) {
 
-		DNode dnode = newCompElement.getDNode();
-		if(dnode == null){
-			return false;
-		}
+//		DNode dnode = newCompElement.getDNode();
+//		if(dnode == null){
+//			return false;
+//		}
 		
-		DNode templateDNnode = dnode.getDType().getTemplateDNode();
-		if(templateDNnode == null){
-			return false;
-		}
+////		DNode templateDNnode = dnode.getDType().getTemplateDNode();
+//		if(templateDNnode == null){
+//			return false;
+//		}
 
-		DNode compartmentDNode = (DNode)compartment.getCompartmentDNode();
-		if(templateDNnode == compartmentDNode){
-			return true;
-		}
-		
-		return false;
+//		DNode compartmentDNode = (DNode)compartment.getCompartmentDNode();
+//		if(templateDNnode == compartmentDNode){
+//			return true;
+//		}
+//		
+		return true;
 	}
 	
 	/**
@@ -108,14 +108,14 @@ public class VisualizationModelUtils {
 			isExtensionFromDefaultMetalevel = true;
 		}
 		
-		// align 
-		if(isExtensionFromDefaultMetalevel){
-			sourceDType = parent.getDType().getTemplateDNode();
-			targetDType = compElement.getDType().getTemplateDNode();
-		}else{
+//		// align 
+//		if(isExtensionFromDefaultMetalevel){
+//			sourceDType = parent.getDType().getTemplateDNode();
+//			targetDType = compElement.getDType().getTemplateDNode();
+//		}else{
 			sourceDType = parent.getDType();
 			targetDType = compElement.getDType();
-		}
+//		}
 		
 		// sanity check
 		if(sourceDType == null || targetDType == null){
@@ -130,7 +130,7 @@ public class VisualizationModelUtils {
 			}
 		}
 
-		return false;
+		return true;
 	}
 	
 	/**
@@ -206,9 +206,12 @@ public class VisualizationModelUtils {
 		if(i == 0){
 			i = filePath.indexOf("\\", 2);
 		}
-		filePath = filePath.substring(0, i);
 		
-		workspace += filePath + "\\" + DPFProjectSupport.FOLDERNAME_TEMPLATE_VISUALIZATION_MODELS + "\\class_diagram.visual";
+		if(i != -1){
+			filePath = filePath.substring(0, i);
+		}
+			
+//		workspace += filePath + "\\" + DPFProjectSupport.FOLDERNAME_TEMPLATE_VISUALIZATION_MODELS + "\\class_diagram.visual";
 		
 		Visuals visuals = VisualUtils.loadVisuals(new ResourceSetImpl(), URI.createFileURI(workspace), new HashMap<Resource, Diagnostic>());
 		
@@ -249,26 +252,26 @@ public class VisualizationModelUtils {
 	 * @return
 	 */
 	public static boolean hasParameters(DNode newObject, EMap<DElement, VElement> maps) {
-		DNode templateDNode = newObject.getTemplateDNode();
-		if(maps != null){
-			for (DArrow darrow : templateDNode.getDOutgoings()) {
-				Assert.isNotNull(darrow);
-				DNode dTarget = darrow.getDTarget();
-				Assert.isNotNull(dTarget);
-				DNode typeDTarget = dTarget.getDType();
-				
-				VNode vnode = (VNode)maps.get(typeDTarget);
-				if(vnode != null && vnode.isComposite()){
-					continue;
-				}
-				
-				DArrow typeDArrow = darrow.getDType();
-				VArrow varrow = (VArrow) maps.get(typeDArrow);
-				if(varrow.isComposed() ){
-					return true;
-				}
-			}
-		}
-		return false;
+//		DNode templateDNode = newObject.getTemplateDNode();
+//		if(maps != null){
+//			for (DArrow darrow : templateDNode.getDOutgoings()) {
+//				Assert.isNotNull(darrow);
+//				DNode dTarget = darrow.getDTarget();
+//				Assert.isNotNull(dTarget);
+//				DNode typeDTarget = dTarget.getDType();
+//				
+//				VNode vnode = (VNode)maps.get(typeDTarget);
+//				if(vnode != null && vnode.isComposite()){
+//					continue;
+//				}
+//				
+//				DArrow typeDArrow = darrow.getDType();
+//				VArrow varrow = (VArrow) maps.get(typeDArrow);
+//				if(varrow.isComposed() ){
+//					return true;
+//				}
+//			}
+//		}
+		return true;
 	}	
 }

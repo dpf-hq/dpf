@@ -81,8 +81,8 @@ public class DGraphItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DGraph_dType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DGraph_dType_feature", "_UI_DGraph_type"),
+				 "_UI_DGraph_dType_feature", //getString("_UI_DGraph_dType_feature"),
+				 "_UI_PropertyDescriptor_description", //getString("_UI_PropertyDescriptor_description", "_UI_DGraph_dType_feature", "_UI_DGraph_type"),
 				 DiagramPackage.Literals.DGRAPH__DTYPE,
 				 true,
 				 false,
@@ -103,8 +103,8 @@ public class DGraphItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DGraph_graph_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DGraph_graph_feature", "_UI_DGraph_type"),
+				 "_UI_DGraph_graph_feature",//getString("_UI_DGraph_graph_feature"),
+				 "_UI_DGraph_graph_feature2",//getString("_UI_PropertyDescriptor_description", "_UI_DGraph_graph_feature", "_UI_DGraph_type"),
 				 DiagramPackage.Literals.DGRAPH__GRAPH,
 				 true,
 				 false,
@@ -153,7 +153,8 @@ public class DGraphItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DGraph"));
+		return overlayImage(object, DPFPlugin.INSTANCE.getImageRegistry().get("full/obj16/DGraph"));
+				//getResourceLocator().getImage("full/obj16/DGraph"));
 	}
 
 	/**
@@ -164,7 +165,7 @@ public class DGraphItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DGraph_type");
+		return "_UI_DGraph_type";//getString("_UI_DGraph_type");
 	}
 
 	/**
@@ -214,15 +215,15 @@ public class DGraphItemProvider
 				 DiagramFactory.eINSTANCE.createDArrow()));
 	}
 
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return DPFPlugin.INSTANCE;
-	}
+//	/**
+//	 * Return the resource locator for this item provider's resources.
+//	 * <!-- begin-user-doc -->
+//	 * <!-- end-user-doc -->
+//	 * @generated
+//	 */
+//	@Override
+//	public ResourceLocator getResourceLocator() {
+//		return DPFPlugin.INSTANCE;
+//	}
 
 }

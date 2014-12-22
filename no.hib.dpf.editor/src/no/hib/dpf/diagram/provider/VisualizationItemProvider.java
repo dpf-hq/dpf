@@ -160,16 +160,16 @@ public class VisualizationItemProvider
 		return itemPropertyDescriptors;
 	}
 
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return DPFPlugin.INSTANCE;
-	}
+//	/**
+//	 * Return the resource locator for this item provider's resources.
+//	 * <!-- begin-user-doc -->
+//	 * <!-- end-user-doc -->
+//	 * @generated
+//	 */
+//	@Override
+//	public ResourceLocator getResourceLocator() {
+//		return DPFPlugin.INSTANCE;
+//	}
 
 	/**
 	 * This returns the label text for the adapted class.

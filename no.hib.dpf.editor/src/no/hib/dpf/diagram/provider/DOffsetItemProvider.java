@@ -12,8 +12,8 @@ import java.util.List;
 
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DiagramPackage;
-
 import no.hib.dpf.editor.DPFPlugin;
+
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -145,7 +145,8 @@ public class DOffsetItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DOffset"));
+		return overlayImage(object, DPFPlugin.INSTANCE.getImageRegistry().get("full/obj16/DOffset"));
+		//getResourceLocator().getImage("full/obj16/DOffset"));
 	}
 
 	/**
@@ -193,15 +194,34 @@ public class DOffsetItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return DPFPlugin.INSTANCE;
-	}
+//	/**
+//	 * Return the resource locator for this item provider's resources.
+//	 * <!-- begin-user-doc -->
+//	 * <!-- end-user-doc -->
+//	 * @generated
+//	 */
+//	@Override
+//	public ResourceLocator getResourceLocator() {
+//		return DPFPlugin.INSTANCE;
+//	}
 
+	
+
+	/**
+	   * Get a translated string from the resource locator.
+	   */
+	  public String getString(String key)
+	  {
+	    return key;
+	  }
+	
+	  
+
+		/**
+		   * Get a translated string from the resource locator.
+		   */
+		  public String getString(String key, String k, String k2)
+		  {
+		    return key+"2";
+		  }
 }

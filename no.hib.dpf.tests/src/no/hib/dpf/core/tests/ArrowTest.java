@@ -30,6 +30,7 @@ import no.hib.dpf.core.Node;
  * <ul>
  *   <li>{@link no.hib.dpf.core.Arrow#getTypeName() <em>Get Type Name</em>}</li>
  *   <li>{@link no.hib.dpf.core.Arrow#generateUniqueName() <em>Generate Unique Name</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Arrow#getTemplateElementType() <em>Get Template Element Type</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -123,6 +124,19 @@ public class ArrowTest extends IDObjectTest {
 		assertFalse(a1.getName().equals(a2.getName()));
 	}
 	
+	/**
+	 * Tests the '{@link no.hib.dpf.core.Arrow#getTemplateElementType() <em>Get Template Element Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.Arrow#getTemplateElementType()
+	 * @generated
+	 */
+	public void testGetTemplateElementType() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
 	public void testGenerateUniqueNameWhenInGraph() {
 		Arrow a1 = CoreFactory.eINSTANCE.createArrow();
 		Arrow a2 = CoreFactory.eINSTANCE.createArrow();

@@ -2,6 +2,7 @@
  */
 package no.hib.dpf.visual.impl;
 
+import no.hib.dpf.visual.*;
 import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VNode;
 import no.hib.dpf.visual.VisualFactory;

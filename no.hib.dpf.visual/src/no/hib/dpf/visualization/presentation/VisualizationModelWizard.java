@@ -295,9 +295,12 @@ public class VisualizationModelWizard extends Wizard implements INewWizard {
 			// Open an editor on the new file.
 			//
 			try {
+				System.out.println("Looking for: "+workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()));
 				page.openEditor
 				(new FileEditorInput(modelFile),
-						workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
+						workbench.getEditorRegistry()
+						.getDefaultEditor(modelFile.getFullPath().toString())
+						.getId());					 	 
 			}
 			catch (PartInitException exception) {
 				MessageDialog.openError(workbenchWindow.getShell(), VisualPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());

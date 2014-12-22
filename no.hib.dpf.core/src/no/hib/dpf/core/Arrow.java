@@ -182,5 +182,13 @@ public interface Arrow extends IDObject {
 	 */
 	String generateUniqueName();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" unique="false"
+	 * @generated
+	 */
+	String getTemplateElementType();
+
 	Graph getGraph();
 } // Arrow

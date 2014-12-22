@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.diagram.util;
 
+import no.hib.dpf.diagram.*;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DComposedConstraint;

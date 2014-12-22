@@ -7,10 +7,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
 
-import no.hib.dpf.diagram.DArrowDAttribute;
+//import no.hib.dpf.diagram.DArrowDAttribute;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DElement;
-import no.hib.dpf.editor.parts.arrow.DArrowEditPart;
+import no.hib.dpf.editor.parts.DArrowEditPart;
 import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visualization.VCompartment;
  

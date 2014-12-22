@@ -15,6 +15,7 @@ import no.hib.dpf.core.provider.ArrowItemProvider;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.utils.DPFConstants;
 
@@ -140,7 +141,7 @@ public class DArrowItemProvider
 			@Override
 			public Collection<?> getChoiceOfValues(Object object)
 			{
-				return Arrays.asList(FigureConfigureManager.INSTANCE.getArrowNames());
+				return Arrays.asList(FigureConfigureManager.getInstance().getArrowNames());
 			}
 		};
 		itemPropertyDescriptors.add(current);
@@ -316,7 +317,8 @@ public class DArrowItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DArrow"));
+		return overlayImage(object, DPFPlugin.INSTANCE.getImageRegistry().get("full/obj16/DArrow"));
+		//getResourceLocator().getImage("full/obj16/DArrow"));
 	}
 
 	/**
@@ -371,4 +373,20 @@ public class DArrowItemProvider
 				 DiagramFactory.eINSTANCE.createDOffset()));
 	}
 
+	  /**
+	   * Get a translated string from the resource locator.
+	   */
+	  public String getString(String key)
+	  {
+		  return key;
+	  }
+
+	  /**
+	   * Get a translated string from the resource locator.
+	   */
+	  public String getString(String key, String k1, String k2)
+	  {
+		  return key;
+	  }
+	  
 }

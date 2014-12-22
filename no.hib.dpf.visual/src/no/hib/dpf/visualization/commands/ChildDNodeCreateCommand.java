@@ -33,13 +33,13 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
-import no.hib.dpf.core.DataNode;
+//import no.hib.dpf.core.DataNode;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.editor.commands.node.DNodeCreateCommand;
-import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
-import no.hib.dpf.editor.diagrams.classdiagram.dialogs.ClassDiagramMethodDialog;
+import no.hib.dpf.editor.commands.DNodeCreateCommand;
+//import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
+//import no.hib.dpf.editor.diagrams.classdiagram.dialogs.ClassDiagramMethodDialog;
 import no.hib.dpf.editor.utilities.DPFMetaLanguageUtils;
 import no.hib.dpf.editor.utilities.DPFModelUtils;
 import no.hib.dpf.editor.utilities.DPFTemplateUtils; 
@@ -106,12 +106,12 @@ public class ChildDNodeCreateCommand extends DNodeCreateCommand {
 		
 		// TODO: The code below should be made more generic. 
 		//******************************************************************************************************************************
-		if(newObject.getDType().getName().equals(ClassDiagramConstants.NODE_METHOD)){
-			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-			Assert.isNotNull(shell);
-			ClassDiagramMethodDialog dialog = new ClassDiagramMethodDialog(shell, parent,  newObject);
-			newObject = dialog.open();  //
-		}
+//		if(newObject.getDType().getName().equals(ClassDiagramConstants.NODE_METHOD)){
+//			Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+//			Assert.isNotNull(shell);
+//			ClassDiagramMethodDialog dialog = new ClassDiagramMethodDialog(shell, parent,  newObject);
+//			newObject = dialog.open();  //
+//		}
 		//******************************************************************************************************************************
 	}
 
@@ -131,25 +131,25 @@ public class ChildDNodeCreateCommand extends DNodeCreateCommand {
 				continue;
 			}
 			
-			DNode templateSourceDNode = sourceDNodeDType.getTemplateDNode();
-			DNode templateTargetDNode = targetDNodeDType.getTemplateDNode();
-			if(templateSourceDNode == null || templateTargetDNode == null){
-				continue;
-			}
+//			DNode templateSourceDNode = sourceDNodeDType.getTemplateDNode();
+//			DNode templateTargetDNode = targetDNodeDType.getTemplateDNode();
+//			if(templateSourceDNode == null || templateTargetDNode == null){
+//				continue;
+//			}
 			
-			if(templateSourceDNode == templateTargetDNode){
-				connectionDArrow = DPFModelUtils.createDArrow(typeDArrow);
-				DPFModelUtils.connectDArrow(parentNode, connectionDArrow, newObject);
-				connectionDArrow.getArrow().setPotency(newObject.getNode().getPotency());
-				DPFTemplateUtils.replicateTemplateArrowAttributesForArrow(connectionDArrow, parent);
-				parent.addDArrow(connectionDArrow); 
-				
-				// Wrap the node in a compartmentElement and add it to the compartment
-				VCompartmentElement compElement = VisualizationFactory.eINSTANCE.createVCompartmentElement();
-				compElement.setDNode(newObject);
-				compartment.addChild(compElement);
-				break;
-			}
+//			if(templateSourceDNode == templateTargetDNode){
+//				connectionDArrow = DPFModelUtils.createDArrow(typeDArrow);
+//				DPFModelUtils.connectDArrow(parentNode, connectionDArrow, newObject);
+//				connectionDArrow.getArrow().setPotency(newObject.getNode().getPotency());
+//				DPFTemplateUtils.replicateTemplateArrowAttributesForArrow(connectionDArrow, parent);
+//				parent.addDArrow(connectionDArrow); 
+//				
+//				// Wrap the node in a compartmentElement and add it to the compartment
+//				VCompartmentElement compElement = VisualizationFactory.eINSTANCE.createVCompartmentElement();
+//				compElement.setDNode(newObject);
+//				compartment.addChild(compElement);
+//				break;
+//			}
 		}
 	}
 

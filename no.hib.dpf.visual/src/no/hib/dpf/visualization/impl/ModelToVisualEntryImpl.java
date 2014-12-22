@@ -299,4 +299,11 @@ public class ModelToVisualEntryImpl extends EObjectImpl implements BasicEMap.Ent
 		return container == null ? null : (EMap<DElement, VElement>)container.eGet(eContainmentFeature());
 	}
 
+	
+	/**
+	 * toString
+	 */
+	public String toString() {
+		return getKey()+": "+getValue();
+	}
 } //ModelToVisualEntryImpl

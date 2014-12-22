@@ -34,9 +34,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link no.hib.dpf.core.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.core.Graph) <em>Create Constraint</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Create Constraint</em>}</li>
  *   <li>{@link no.hib.dpf.core.Predicate#canCreateConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.core.Graph) <em>Can Create Constraint</em>}</li>
- *   <li>{@link no.hib.dpf.core.Predicate#validateSemantics(java.lang.String, no.hib.dpf.core.GraphHomomorphism, no.hib.dpf.core.Graph) <em>Validate Semantics</em>}</li>
+ *   <li>{@link no.hib.dpf.core.Predicate#validateSemantics(java.lang.String, no.hib.dpf.core.GraphHomomorphism, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Validate Semantics</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -113,6 +113,19 @@ public class PredicateTest extends TestCase {
 	}
 
 	/**
+	 * Tests the '{@link no.hib.dpf.core.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Create Constraint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	public void testCreateConstraint__EList_EList() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
 	 * Tests the '{@link no.hib.dpf.core.Predicate#createConstraint(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, no.hib.dpf.core.Graph) <em>Create Constraint</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -175,6 +188,19 @@ public class PredicateTest extends TestCase {
 		
 		assertEquals(0, userGraph.getNodeByName("n_2").getConstraints().size());
 		
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.core.Predicate#validateSemantics(java.lang.String, no.hib.dpf.core.GraphHomomorphism, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Validate Semantics</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.Predicate#validateSemantics(java.lang.String, no.hib.dpf.core.GraphHomomorphism, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	public void testValidateSemantics__String_GraphHomomorphism_EList_EList() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 	/**

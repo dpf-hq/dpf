@@ -72,8 +72,8 @@ public class DPFVisualizationPaletteFactory extends AbstractDPFEditorPaletteFact
 		
 		templateArrows = DPFTemplateUtils.getTemplateArrows(typeDGraph);
 		templateNodes =  DPFTemplateUtils.getTemplateNodes(typeDGraph);
-		templateNodeAttributes = DPFTemplateUtils.getTemplateNodeAttributes(typeDGraph);
-		templateArrowAttributes = DPFTemplateUtils.getTemplateArrowAttributes(typeDGraph);
+//		templateNodeAttributes = DPFTemplateUtils.getTemplateNodeAttributes(typeDGraph);
+//		templateArrowAttributes = DPFTemplateUtils.getTemplateArrowAttributes(typeDGraph);
 		
 		addPaletteElements(typeDGraph, visualizations.getEntries());
 	}
@@ -84,6 +84,8 @@ public class DPFVisualizationPaletteFactory extends AbstractDPFEditorPaletteFact
 	 * @param dGraph
 	 */
 	private void addPaletteElements(DGraph dgraph, EMap<DElement, VElement> maps) {
+		System.out.println("Adding pallet elements: "+maps+"\n from: "+dgraph.getDNodes());
+		
 		// add nodes
 		addDNodes(dgraph, maps);
 	
@@ -107,6 +109,7 @@ public class DPFVisualizationPaletteFactory extends AbstractDPFEditorPaletteFact
 	private void addDNodes(DGraph dgraph, EMap<DElement,VElement> maps) {
 		ArrayList<DNode> paletteDNodes = getPaletteDNodes(dgraph.getDNodes(), maps);
 		for(DNode dnode : paletteDNodes){
+			System.out.println("adding node: "+dnode);
 			ImageDescriptor smallIcon = null;
 			ImageDescriptor largeIcon = null;
 
@@ -124,6 +127,7 @@ public class DPFVisualizationPaletteFactory extends AbstractDPFEditorPaletteFact
 	private void addDArrows(DGraph dgraph, EMap<DElement,VElement> maps) {
 		ArrayList<DArrow> paletteDArrows = getPaletteDArrows(dgraph.getDArrows(), maps);
 		for(DArrow darrow :paletteDArrows){
+			System.out.println("adding arrow: "+darrow);
 			ImageDescriptor smallIcon= null;
 			ImageDescriptor largeIcon = null;
 			
@@ -195,6 +199,7 @@ public class DPFVisualizationPaletteFactory extends AbstractDPFEditorPaletteFact
 	 * @param largeIcon
 	 */
 	private void addDNodeToPalette(DNode dnode, ImageDescriptor smallIcon, ImageDescriptor largeIcon) {
+		System.out.println("adding node to Pallet: "+dnode);
 		Node node = dnode.getNode();
 		Assert.isNotNull(node);
 		
@@ -205,7 +210,7 @@ public class DPFVisualizationPaletteFactory extends AbstractDPFEditorPaletteFact
 			}
 			addDNodeEntry(templateElementsGroup, dnode, smallIcon, largeIcon);
 		}else { 
-			
+			System.out.println("canAdd: "+canAdd(node));
 			// Check if the arrow can be instantiated or not:
 			if(canAdd(node)){
 				
@@ -343,7 +348,8 @@ public class DPFVisualizationPaletteFactory extends AbstractDPFEditorPaletteFact
 		Arrow arrow = darrow.getArrow();
 		
 		Node node = arrow.getTarget();
-		if(canAdd(node) && arrow != null){
+//		if(canAdd(node) && arrow != null){
+		if(canAdd(node) ){
 			String nodeName = node.getName();
 			root.add(new CreationToolEntry(nodeName, "Create a new " + nodeName, new ComposedNodeFactory(darrow.getDTarget()), 
 					smallIcon != null ? smallIcon : SMALLICON, largeicon != null ? largeicon : LARGEICON));
@@ -355,22 +361,26 @@ public class DPFVisualizationPaletteFactory extends AbstractDPFEditorPaletteFact
 	 * @param node
 	 * @return
 	 */
-	@Override
+//	@Override
 	protected boolean canAdd(Node node) {
 		
-		// if its a default type, then add it
-		if(templateNodes.contains(node.getName())){
-			return true;
-		}
-
-		// ... otherwise only add the node if its template arrow-mutability is not set and and potency != 0
-		Node templateNode = (Node) node.getTemplateElement();
-		if(templateNode != null && !templateNode.eIsSet(CorePackage.Literals.MUTABLE_ELEMENT__MUTABILITY)){
-			if(node.getPotency() != 0 && (node.getMutability() > 1 || node.getMutability() == -1)){
-				return true;
-			}
-		}
-		return false;
+		//add either way
+		
+		return true;
+//		
+//		// if its a default type, then add it
+//		if(templateNodes.contains(node.getName())){
+//			return true;
+//		}
+//
+//		// ... otherwise only add the node if its template arrow-mutability is not set and and potency != 0
+////		Node templateNode = (Node) node.getTemplateElement();
+////		if(templateNode != null && !templateNode.eIsSet(CorePackage.Literals.MUTABLE_ELEMENT__MUTABILITY)){
+////			if(node.getPotency() != 0 && (node.getMutability() > 1 || node.getMutability() == -1)){
+////				return true;
+////			}
+////		}
+//		return false;
 	}
 	
 	/**
@@ -381,18 +391,20 @@ public class DPFVisualizationPaletteFactory extends AbstractDPFEditorPaletteFact
 	@Override
 	protected boolean canAdd(Arrow arrow) {
 		
-		// if its a template type, then add it
-		if(templateArrows.contains(arrow.getName())){
-			return true;
-		}
+		return true;
 		
-		// ... otherwise only add the arrow if its template arrow-mutability is not set and potency != 0
-		Arrow templateArrow = (Arrow) arrow.getTemplateElement();
-		if(templateArrow != null && !templateArrow.eIsSet(CorePackage.Literals.MUTABLE_ELEMENT__MUTABILITY)){
-			if(arrow.getPotency() != 0 && (arrow.getMutability() > 1 || arrow.getMutability() == -1)){
-				return true;
-			}
-		}
-		return false;
+//		// if its a template type, then add it
+//		if(templateArrows.contains(arrow.getName())){
+//			return true;
+//		}
+//		
+//		// ... otherwise only add the arrow if its template arrow-mutability is not set and potency != 0
+////		Arrow templateArrow = (Arrow) arrow.getTemplateElement();
+////		if(templateArrow != null && !templateArrow.eIsSet(CorePackage.Literals.MUTABLE_ELEMENT__MUTABILITY)){
+////			if(arrow.getPotency() != 0 && (arrow.getMutability() > 1 || arrow.getMutability() == -1)){
+////				return true;
+////			}
+////		}
+//		return false;
 	}
 }

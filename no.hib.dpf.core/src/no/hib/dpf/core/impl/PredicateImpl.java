@@ -425,6 +425,10 @@ public class PredicateImpl extends EObjectImpl implements Predicate {
 		Map<Node, List<Node>> nodeMap = new LinkedHashMap<Node, List<Node>>();
 		Map<Arrow, List<Arrow>> arrowMap = new LinkedHashMap<Arrow, List<Arrow>>();
 		intialize(mapping,nodes, arrows, nodeMap, arrowMap);
+		if(getValidator() == null){
+			//No validater -> no validation
+			return true;
+		}
 		if(getValidator().getType() == ValidatorType.JAVA) {
 			Map<String, String> paraMap = getParameterMap(parameters);
 			Checker checker = getChecker();

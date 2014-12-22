@@ -3,14 +3,14 @@ package no.hib.dpf.visual.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import no.hib.dpf.core.DataNode;
+//import no.hib.dpf.core.DataNode;
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DArrowDAttribute;
+//import no.hib.dpf.diagram.DArrowDAttribute;
 import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
+//import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
 import no.hib.dpf.editor.utilities.DPFMetaLanguageUtils;
 import no.hib.dpf.editor.utilities.TemplateArrowAttributeUtils;
 import no.hib.dpf.editor.utilities.TemplateNodeAttributeUtils;
@@ -42,10 +42,10 @@ public class DPFVisualTemplateMappingUtils {
 			// get the visualization value
 			String visualization = DPFMetaLanguageUtils.getVisualizationData(typeDNode.getNode());
 			
-			// map against visualizationtype
+//			// map against visualizationtype
 			mapNodeVisualization(typeDNode, visualization, visuals, maps);
 		}
-		
+//		
 		// Map arrows to visualization
 		for (DArrow typeDArrow : typeDGraph.getDArrows()) {
 			

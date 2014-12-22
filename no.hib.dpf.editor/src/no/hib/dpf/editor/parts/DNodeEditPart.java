@@ -155,7 +155,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		}
 		return null;		
 	}
-	protected DNode getDiagramModel(){ return (DNode) getModel(); }
+	public DNode getDiagramModel(){ return (DNode) getModel(); }
 
 	public DNode getDNode(){
 		return (DNode) getModel();

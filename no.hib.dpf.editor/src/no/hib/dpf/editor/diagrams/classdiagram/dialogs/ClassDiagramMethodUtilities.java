@@ -3,7 +3,7 @@ package no.hib.dpf.editor.diagrams.classdiagram.dialogs;
 import java.util.ArrayList;
 
 import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.DataNode;
+//import no.hib.dpf.core.DataNode;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
@@ -37,7 +37,7 @@ public class ClassDiagramMethodUtilities {
 		Assert.isNotNull(dgraphDType);
 		
 		method.getNode().setName(methodName);
-		method.getNode().setPotency(potency);
+//		method.getNode().setPotency(potency);
 		generateParameterDNode(method, dgraph, potency, returnTypeName);
 		
 		return method;
@@ -56,10 +56,10 @@ public class ClassDiagramMethodUtilities {
 			
 			// generate parameternode
 			DNode parameterDNode = generateParameterForMethod(method, parameterDArrowtype, parameterDNodetype, potency, dgraph);
-			DataNode direction_datanode = TemplateNodeAttributeUtils.getDataNode(parameterDNode.getNode(), ClassDiagramConstants.NODE_ATTRIBUTE_PARAMETER_DIRECTION);
-			direction_datanode.setValue("return");
-			DataNode value_datanode = DPFMetaLanguageUtils.getValueNode(parameterDNode.getNode());
-			value_datanode.setValue(returnTypeName);
+//			DataNode direction_datanode = TemplateNodeAttributeUtils.getDataNode(parameterDNode.getNode(), ClassDiagramConstants.NODE_ATTRIBUTE_PARAMETER_DIRECTION);
+//			direction_datanode.setValue("return");
+//			DataNode value_datanode = DPFMetaLanguageUtils.getValueNode(parameterDNode.getNode());
+//			value_datanode.setValue(returnTypeName);
 		}			
 	}
 	
@@ -82,12 +82,12 @@ public class ClassDiagramMethodUtilities {
 		// create parameter arrow to connect the method and the parameter
 		DArrow method_to_parameterDArrow = DPFModelUtils.createDArrow(parameterTypeDArrow);
 		DPFModelUtils.connectDArrow(methodDNode, method_to_parameterDArrow, parameterDNode);
-		method_to_parameterDArrow.getArrow().setPotency(potency);
+//		method_to_parameterDArrow.getArrow().setPotency(potency);
 		dgraph.addDArrow(method_to_parameterDArrow);
 		
 		// generate attributes for the parameter-node
-		DPFTemplateUtils.replicateTemplateNodeAttributesForNode(parameterDNode, dgraph);
-		parameterDNode.getNode().setPotency(potency);
+//		DPFTemplateUtils.replicateTemplateNodeAttributesForNode(parameterDNode, dgraph);
+//		parameterDNode.getNode().setPotency(potency);
 		parameterDNode.getNode().setName(methodDNode.getName());
 		
 		return parameterDNode;
@@ -104,26 +104,29 @@ public class ClassDiagramMethodUtilities {
 			
 			// iterate over the attributes to find the attributevalue datanode
 			String name = node.getName();
-			String visibility = TemplateNodeAttributeUtils.getNodeAttributeData(node, ClassDiagramConstants.NODE_ATTRIBUTE_VISIBILITY)[DataNode.DATAVALUE];
-			String visibilityIcon = ClassDiagramConstants.getDefaultVisiblityMap().get(visibility);
-
-			DataNode parameter_value = null;
+//			String visibility = TemplateNodeAttributeUtils.getNodeAttributeData(node, ClassDiagramConstants.NODE_ATTRIBUTE_VISIBILITY)[DataNode.DATAVALUE];
+//			String visibilityIcon = ClassDiagramConstants.getDefaultVisiblityMap().get(visibility);
+			String visibilityIcon = "?";
+			
+			Node parameter_value = null;
 			String methodReturnType = "";
 			for (Arrow arrow : node.getOutgoings()) {
 				if(arrow != null){
 					Node targetNode = arrow.getTarget();
 					if(targetNode != null){ 
 						Node templateNode = (Node) targetNode.getTemplateElement();
-						if(templateNode != null && templateNode.getName() != null && templateNode.getName().equals(ClassDiagramConstants.NODE_METHOD_PARAMETER)){
-							parameter_value = DPFMetaLanguageUtils.getValueNode(targetNode);
-						}
+//						if(templateNode != null && templateNode.getName() != null && templateNode.getName().equals(ClassDiagramConstants.NODE_METHOD_PARAMETER)){
+//							parameter_value = DPFMetaLanguageUtils.getValueNode(targetNode);
+//						}
 					}
 				}
 			}
 			
-			if(parameter_value != null){
-				methodReturnType = parameter_value.getValue();
-			}
+//			if(parameter_value != null){
+//				methodReturnType = parameter_value.getValue();
+//			}
+			
+			
 			
 			String retVal = visibilityIcon + name + "()";
 			if(methodReturnType == null){

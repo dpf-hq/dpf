@@ -15,6 +15,7 @@
       <eParameters name="typeArrows" upperBound="-1" eType="#//Arrow"/>
     </eOperations>
     <eOperations name="validate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="getTemplateSpecification" eType="#//Specification"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//Graph"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
@@ -113,6 +114,7 @@
     <eOperations name="getTypeArrow" eType="#//Arrow">
       <eParameters name="intendedTarget" eType="#//Node"/>
     </eOperations>
+    <eOperations name="getTemplateElementType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="typeNode" lowerBound="1"
         eType="#//Node"/>
@@ -126,6 +128,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Arrow" eSuperTypes="#//IDObject">
     <eOperations name="getTypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="generateUniqueName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getTemplateElementType" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Node"
         eOpposite="#//Node/outgoings"/>
@@ -228,6 +231,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Arrow"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IDObject" abstract="true">
+    <eOperations name="getTemplateElement" eType="#//IDObject"/>
+    <eOperations name="isTemplateElement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="getElement" eType="#//IDObject">
+      <eParameters name="metaLevel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
   </eClassifiers>

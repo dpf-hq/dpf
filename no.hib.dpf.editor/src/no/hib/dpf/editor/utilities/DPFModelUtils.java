@@ -14,22 +14,22 @@ import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DArrowDAttribute;
+//import no.hib.dpf.diagram.DArrowDAttribute;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DComposedConstraint;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DConstraintNode;
-import no.hib.dpf.diagram.DDataNode;
+//import no.hib.dpf.diagram.DDataNode;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.diagram.DNodeDAttribute;
+//import no.hib.dpf.diagram.DNodeDAttribute;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
-import no.hib.dpf.editor.displaymodel.factories.DArrowDAttributeFactory;
+//import no.hib.dpf.editor.displaymodel.factories.DArrowDAttributeFactory;
 import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
-import no.hib.dpf.editor.displaymodel.factories.DNodeDAttributeFactory;
+//import no.hib.dpf.editor.displaymodel.factories.DNodeDAttributeFactory;
 import no.hib.dpf.editor.displaymodel.factories.DNodeFactory;
 
 import org.eclipse.core.runtime.Assert;
@@ -50,17 +50,17 @@ public class DPFModelUtils {
 		
 		Specification spec = newSpec.getSpecification();
 		if(spec != null){
-			if(spec.getType() != null){
-				spec.setMetalevel(spec.getType().getMetalevel() + 1); // increase metalevel
-			}
+//			if(spec.getType() != null){
+//				spec.setMetalevel(spec.getType().getMetalevel() + 1); // increase metalevel
+//			}
 			
 			Graph graph = spec.getGraph();
 			if(graph != null){
 				// update potency on the Graph
 				Graph typeGraph = graph.getType();
-				if(typeGraph != null && typeGraph.eIsSet(CorePackage.Literals.DEEP_ELEMENT__POTENCY)){
-					graph.setPotency(typeGraph.getPotency() - 1);
-				}
+//				if(typeGraph != null && typeGraph.eIsSet(CorePackage.Literals.DEEP_ELEMENT__POTENCY)){
+//					graph.setPotency(typeGraph.getPotency() - 1);
+//				}
 				
 				spec.setGraph(graph);
 			}
@@ -174,12 +174,12 @@ public class DPFModelUtils {
 	 * @author Ole Klokkhammer
 	 * @param typeDArrow
 	 * @return
-	 */
-	public static DNodeDAttribute createDNodeDAttribute(DNodeDAttribute typeDNodeDAttribute){
-		Assert.isNotNull(typeDNodeDAttribute);
-		DNodeDAttributeFactory arrowFactory = new DNodeDAttributeFactory(typeDNodeDAttribute);
-		return (DNodeDAttribute) arrowFactory.getNewObject();
-	}
+//	 */
+//	public static DNodeDAttribute createDNodeDAttribute(DNodeDAttribute typeDNodeDAttribute){
+//		Assert.isNotNull(typeDNodeDAttribute);
+//		DNodeDAttributeFactory arrowFactory = new DNodeDAttributeFactory(typeDNodeDAttribute);
+//		return (DNodeDAttribute) arrowFactory.getNewObject();
+//	}
 
 	/**
 	 * 
@@ -197,11 +197,11 @@ public class DPFModelUtils {
 	 * @param typeDArrowDAttribute
 	 * @return
 	 */
-	public static DArrowDAttribute createDArrowDAttribute(DArrowDAttribute typeDArrowDAttribute){
-		Assert.isNotNull(typeDArrowDAttribute);
-		DArrowDAttributeFactory arrowFactory = new DArrowDAttributeFactory(typeDArrowDAttribute);
-		return (DArrowDAttribute) arrowFactory.getNewObject();
-	}
+//	public static DArrowDAttribute createDArrowDAttribute(DArrowDAttribute typeDArrowDAttribute){
+//		Assert.isNotNull(typeDArrowDAttribute);
+//		DArrowDAttributeFactory arrowFactory = new DArrowDAttributeFactory(typeDArrowDAttribute);
+//		return (DArrowDAttribute) arrowFactory.getNewObject();
+//	}
 
 
 	/**
@@ -225,14 +225,14 @@ public class DPFModelUtils {
 	 * @param connectionDArrowDAttribute
 	 * @param targetDDataNode
 	 */
-	public static void connectDArrowDAttribute(DArrow sourceDArrow, DArrowDAttribute connectionDArrowDAttribute, DDataNode targetDDataNode){
-		if(sourceDArrow == null || connectionDArrowDAttribute == null || targetDDataNode == null){
-			throw new NullPointerException();
-		}
-		
-		connectionDArrowDAttribute.setDSource(sourceDArrow);
-		connectionDArrowDAttribute.setDTarget(targetDDataNode);
-	}
+//	public static void connectDArrowDAttribute(DArrow sourceDArrow, DArrow connectionDArrowDAttribute, DNode targetDDataNode){
+//		if(sourceDArrow == null || connectionDArrowDAttribute == null || targetDDataNode == null){
+//			throw new NullPointerException();
+//		}
+//		
+//		connectionDArrowDAttribute.setDSource(sourceDArrow);
+//		connectionDArrowDAttribute.setDTarget(targetDDataNode);
+//	}
 	
 	
 	/**
@@ -241,14 +241,14 @@ public class DPFModelUtils {
 	 * @param connectionDArrowDAttribute
 	 * @param targetDDataNode
 	 */
-	public static void connectDNodeDAttribute(DNode sourceDNode, DNodeDAttribute connectionDNodeDAttribute, DDataNode targetDDataNode){
-		if(sourceDNode == null || connectionDNodeDAttribute == null || targetDDataNode == null){
-			throw new NullPointerException();
-		}
-		
-		connectionDNodeDAttribute.setDSource(sourceDNode);
-		connectionDNodeDAttribute.setDTarget(targetDDataNode);
-	}
+//	public static void connectDNodeDAttribute(DNode sourceDNode, DNodeDAttribute connectionDNodeDAttribute, DDataNode targetDDataNode){
+//		if(sourceDNode == null || connectionDNodeDAttribute == null || targetDDataNode == null){
+//			throw new NullPointerException();
+//		}
+//		
+//		connectionDNodeDAttribute.setDSource(sourceDNode);
+//		connectionDNodeDAttribute.setDTarget(targetDDataNode);
+//	}
 	
 	/**
 	 * @author Ole Klokkhammer

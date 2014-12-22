@@ -15,6 +15,7 @@ import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DOffset;
+import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.diagram.util.DPFConstants;
 
@@ -549,6 +550,28 @@ public class DArrowImpl extends DElementImpl implements DArrow {
 		if(getDType() != null)
 			return getDType().getName();
 		return DPFConstants.NODE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DArrow getTemplateDArrow() {
+//		try {
+//			DSpecification spec = (DSpecification)this.eContainer().eContainer();
+////			if(spec.getSpecification().getMetalevel() >= 0){
+////				return getDType().getTemplateDArrow();
+////			}else if(spec.getSpecification().getMetalevel() < -1){
+////				return null;
+////			}else{
+//				return this;
+////			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		return null;
+		
 	}
 
 	/**

@@ -1082,6 +1082,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		op = addEOperation(dSpecificationEClass, this.getDConstraint(), "createDConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theCorePackage.getConstraint(), "constraint", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(dSpecificationEClass, this.getDSpecification(), "getTemplateDSpecification", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(dGraphEClass, DGraph.class, "DGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDGraph_DType(), this.getDGraph(), null, "dType", null, 1, 1, DGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDGraph_DNodes(), this.getDNode(), null, "dNodes", null, 0, -1, DGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1104,6 +1106,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		addEParameter(op, this.getDNode(), "dTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getDArrow(), "dType", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(dGraphEClass, this.getDGraph(), "getTemplateDGraph", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(dNodeEClass, DNode.class, "DNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDNode_DType(), this.getDNode(), null, "dType", null, 1, 1, DNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDNode_Node(), theCorePackage.getNode(), null, "node", null, 1, 1, DNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1117,6 +1121,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		addEOperation(dNodeEClass, ecorePackage.getEString(), "getName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(dNodeEClass, ecorePackage.getEString(), "getTypeName", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(dNodeEClass, this.getDNode(), "getTemplateDNode", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(dConstraintNodeEClass, DConstraintNode.class, "DConstraintNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDConstraintNode_DConstraint(), this.getDConstraint(), null, "dConstraint", null, 0, 1, DConstraintNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1141,6 +1147,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		addEOperation(dArrowEClass, ecorePackage.getEString(), "getName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(dArrowEClass, ecorePackage.getEString(), "getTypeName", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(dArrowEClass, this.getDArrow(), "getTemplateDArrow", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(dConstraintEClass, DConstraint.class, "DConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDConstraint_Constraint(), theCorePackage.getConstraint(), null, "constraint", null, 0, 1, DConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

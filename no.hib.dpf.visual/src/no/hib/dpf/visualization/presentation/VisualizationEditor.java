@@ -16,32 +16,40 @@ import no.hib.dpf.core.provider.CoreItemProviderAdapterFactory;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.diagram.DNodeDAttribute;
+//import no.hib.dpf.diagram.DNodeDAttribute;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.provider.DiagramItemProviderAdapterFactory;
-import no.hib.dpf.diagram.util.DPFDiagramConstants;
+import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFEditorContextMenuProvider;
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.actions.PrintAction;
 import no.hib.dpf.editor.figures.NodeFigure;
+import no.hib.dpf.editor.parts.ArrowLabelEditPart;
+import no.hib.dpf.editor.parts.DArrowEditPart;
+import no.hib.dpf.editor.parts.DComposedNodePart;
+import no.hib.dpf.editor.parts.DConstraintEditPart;
 import no.hib.dpf.editor.parts.DGraphEditPart;
-import no.hib.dpf.editor.parts.arrow.ArrowLabelEditPart;
-import no.hib.dpf.editor.parts.arrow.DArrowEditPart;
-import no.hib.dpf.editor.parts.attribute.DArrowDAttributeEditPart;
-import no.hib.dpf.editor.parts.attribute.DDataNodeEditPart;
-import no.hib.dpf.editor.parts.attribute.DNodeDAttributeEditPart;
-import no.hib.dpf.editor.parts.attribute.DNodeDAttributeLabelEditPart;
-import no.hib.dpf.editor.parts.constraint.DConstraintEditPart;
-import no.hib.dpf.editor.parts.node.DComposedNodePart;
-import no.hib.dpf.editor.parts.node.DNodeEditPart;
-import no.hib.dpf.editor.parts.node.NodeTreeEditPartFactory;
+import no.hib.dpf.editor.parts.DNodeEditPart;
+import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
+import no.hib.dpf.editor.parts.ArrowLabelEditPart;
+import no.hib.dpf.editor.parts.DArrowEditPart;
+//import no.hib.dpf.editor.parts.attribute.DArrowDAttributeEditPart;
+//import no.hib.dpf.editor.parts.attribute.DDataNodeEditPart;
+//import no.hib.dpf.editor.parts.attribute.DNodeDAttributeEditPart;
+//import no.hib.dpf.editor.parts.attribute.DNodeDAttributeLabelEditPart;
+import no.hib.dpf.editor.parts.DConstraintEditPart;
+import no.hib.dpf.editor.parts.DComposedNodePart;
+import no.hib.dpf.editor.parts.DNodeEditPart;
+import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
 import no.hib.dpf.editor.utilities.DPFModelPersistanceUtils;
 import no.hib.dpf.utils.DPFCoreUtil;
+import no.hib.dpf.visual.VisualPlugin;
+import no.hib.dpf.visual.provider.VisualItemProviderAdapterFactory;
 import no.hib.dpf.visualization.Visualizations;
 import no.hib.dpf.visualization.part.VCompartmentElementEditPart;
 import no.hib.dpf.visualization.part.VisualizationEditPartFactory;
@@ -50,23 +58,49 @@ import no.hib.dpf.visualization.util.VisualizationModelPersistanceUtils;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.jface.action.IMenuListener;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor.PropertyValueWrapper;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
+import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+import no.hib.dpf.visualization.provider.VisualizationItemProviderAdapterFactory;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPartViewer;
@@ -92,9 +126,31 @@ import org.eclipse.gef.ui.properties.UndoablePropertySheetEntry;
 import org.eclipse.gef.ui.properties.UndoablePropertySheetPage;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.util.LocalSelectionTransfer;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.StructuredViewer;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.FileTransfer;
+import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.ControlAdapter;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionBars;
@@ -108,14 +164,19 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
+import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.part.MultiPageEditorPart;
+import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
+import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+
 
 
 public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette {
@@ -175,8 +236,8 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette {
 		if (signature != null) {
 			for (DPredicate predicate : signature.getDPredicates())
 				addActionForPredicate(predicate);
-			if(signature != DPFDiagramConstants.DEFAULT_DSIGNATURE){ 
-				for (DPredicate predicate : DPFDiagramConstants.DEFAULT_DSIGNATURE.getDPredicates())
+			if(signature != DPFConstants.DEFAULT_DSIGNATURE){ 
+				for (DPredicate predicate : DPFConstants.DEFAULT_DSIGNATURE.getDPredicates())
 					addActionForPredicate(predicate);
 			}
 		}
@@ -296,7 +357,7 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette {
 	private static void updateMetaModelReference(DSpecification iter, URI oldBase, URI createFileURI){
 		if(oldBase == null){
 			DSpecification typeSpec = iter.getDType();
-			if(typeSpec != null && typeSpec != DPFDiagramConstants.REFLEXIVE_DSPECIFICATION){
+			if(typeSpec != null && typeSpec != DPFConstants.REFLEXIVE_DSPECIFICATION){
 				String relative = typeSpec.eResource().getURI().deresolve(createFileURI).toFileString();
 				iter.setMetaFile(relative);
 				iter.getSpecification().setMetaFile(DPFModelPersistanceUtils.getModelFromDiagram(relative));
@@ -344,16 +405,16 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette {
 		resourceSet.getURIResourceMap().put(newURI, diagram);
 		resourceSet.getURIResourceMap().put(modelFileURI, model);
 		DSpecification iter = newSpec;
-		while(iter != DPFDiagramConstants.REFLEXIVE_DSPECIFICATION){
+		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
 			EcoreUtil.resolveAll(iter.getDType());
 			iter = iter.getDType();
 		}
 		iter = newSpec;
-		while(iter != DPFDiagramConstants.REFLEXIVE_DSPECIFICATION){
+		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
 			updateMetaModelReference(iter, oldURI, newURI);
 			model.getContents().add(iter.getSpecification());
 			diagram.getContents().add(iter);
-			if(iter.getDSignature() != null && iter.getDSignature() != DPFDiagramConstants.DEFAULT_DSIGNATURE){
+			if(iter.getDSignature() != null && iter.getDSignature() != DPFConstants.DEFAULT_DSIGNATURE){
 				updateSignatureReference(newSpec, newURI);
 				model.getContents().add(iter.getDSignature().getSignature());
 				diagram.getContents().add(iter.getDSignature());
@@ -457,12 +518,12 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette {
 						source = modelPropertySourceProvider.getPropertySource(((DNodeEditPart) object).getDiagramModel());
 					else if(object instanceof DComposedNodePart)
 						source = modelPropertySourceProvider.getPropertySource((((DComposedNodePart)object).getDConstraint()));
-					else if(object instanceof DDataNodeEditPart)  
-						source = modelPropertySourceProvider.getPropertySource(((DDataNodeEditPart) object).getDDataNode());
-					else if(object instanceof DNodeDAttributeEditPart)
-						source = modelPropertySourceProvider.getPropertySource((((DNodeDAttributeEditPart)object).getDNodeDAttribute()));
-					else if(object instanceof DArrowDAttributeEditPart)
-						source = modelPropertySourceProvider.getPropertySource((((DArrowDAttributeEditPart)object).getDArrowDAttribute()));
+//					else if(object instanceof DDataNodeEditPart)  
+//						source = modelPropertySourceProvider.getPropertySource(((DDataNodeEditPart) object).getDDataNode());
+//					else if(object instanceof DNodeDAttributeEditPart)
+//						source = modelPropertySourceProvider.getPropertySource((((DNodeDAttributeEditPart)object).getDNodeDAttribute()));
+//					else if(object instanceof DArrowDAttributeEditPart)
+//						source = modelPropertySourceProvider.getPropertySource((((DArrowDAttributeEditPart)object).getDArrowDAttribute()));
 					else if(object instanceof DGraphEditPart)
 						source = modelPropertySourceProvider.getPropertySource((((DGraphEditPart)object).getDGraph()));
 					else if(object instanceof DArrowEditPart)
@@ -474,11 +535,11 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette {
 						DOffset offset = editpart.getDOffset();
 						if (offset != null && (offset.eContainer() instanceof DConstraint || offset .eContainer() instanceof DArrow))
 							source = modelPropertySourceProvider .getPropertySource(offset.eContainer());
-					}else if(object instanceof DNodeDAttributeLabelEditPart){
-						DNodeDAttributeLabelEditPart editpart = (DNodeDAttributeLabelEditPart) object;
-							DOffset offset = editpart.getDOffset();
-							if (offset != null && (offset.eContainer() instanceof DConstraint || offset .eContainer() instanceof DNodeDAttribute))
-								source = modelPropertySourceProvider .getPropertySource(offset.eContainer());
+//					}else if(object instanceof DNodeDAttributeLabelEditPart){
+//						DNodeDAttributeLabelEditPart editpart = (DNodeDAttributeLabelEditPart) object;
+//							DOffset offset = editpart.getDOffset();
+//							if (offset != null && (offset.eContainer() instanceof DConstraint || offset .eContainer() instanceof DNodeDAttribute))
+//								source = modelPropertySourceProvider .getPropertySource(offset.eContainer());
 					}else if(object instanceof VCompartmentElementEditPart){
 						source = modelPropertySourceProvider.getPropertySource(((VCompartmentElementEditPart) object).getDiagramModel());
 					}
@@ -849,4 +910,5 @@ public class VisualizationEditor extends GraphicalEditorWithFlyoutPalette {
 	        source.setPropertyValue(id, value);
 	    }
 	}
+
 }

@@ -4,7 +4,7 @@ import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.editor.displaymodel.factories.DPFEditPartFactory;
+import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VNode;

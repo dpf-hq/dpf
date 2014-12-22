@@ -35,7 +35,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.wb.swt.SWTResourceManager;
+//import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.GridData;
@@ -181,18 +181,18 @@ public class ClassDiagramMethodDialog extends Dialog {
 		@Override
 		public void handleEvent(Event e) {
 			if (e.type == SWT.Selection) {
-				int potency = (int) CorePackage.Literals.DEEP_ELEMENT__POTENCY
-						.getDefaultValue();
-				try {
-					potency = Integer.parseInt(potencyText.getText().trim());
-				} catch (NumberFormatException nEx) {
-				}
+//				int potency = (int) CorePackage.Literals.DEEP_ELEMENT__POTENCY
+//						.getDefaultValue();
+//				try {
+//					potency = Integer.parseInt(potencyText.getText().trim());
+//				} catch (NumberFormatException nEx) {
+//				}
 				
 				String returnType = returnTypeCombo.getItem(returnTypeCombo.getSelectionIndex());
 				
 				// create the method:
-				newMethodDNode = ClassDiagramMethodUtilities.createNewMethodForMethodDNode(
-						newMethodDNode, methodNameInput.getText(), potency, returnType, dgraph);
+//				newMethodDNode = ClassDiagramMethodUtilities.createNewMethodForMethodDNode(
+//						newMethodDNode, methodNameInput.getText(), potency, returnType, dgraph);
 
 				// close the dialog
 				shell.dispose();

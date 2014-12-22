@@ -2,6 +2,7 @@
  */
 package no.hib.dpf.visual.util;
 
+import no.hib.dpf.visual.*;
 import no.hib.dpf.visual.VArrow;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visual.VNode;

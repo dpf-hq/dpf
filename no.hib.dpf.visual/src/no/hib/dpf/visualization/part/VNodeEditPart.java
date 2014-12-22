@@ -3,22 +3,30 @@ package no.hib.dpf.visualization.part;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.hib.dpf.core.DataNode;
+
+
+
+
+//import no.hib.dpf.core.DataNode;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.core.NodeAttribute;
-import no.hib.dpf.core.impl.NodeAttributeImpl;
+//import no.hib.dpf.core.NodeAttribute;
+//import no.hib.dpf.core.impl.NodeAttributeImpl;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
+//import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
+//import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.parts.TextCellEditorLocator;
-import no.hib.dpf.editor.parts.node.DNodeEditPart;
-import no.hib.dpf.editor.parts.node.NodeComponentEditPolicy;
-import no.hib.dpf.editor.policies.DConnectionCreatePolicy;
+import no.hib.dpf.editor.figures.TextCellEditorLocator;
+import no.hib.dpf.editor.policies.NodeComponentEditPolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
+//import no.hib.dpf.editor.parts.TextCellEditorLocator;
+//import no.hib.dpf.editor.parts.node.DNodeEditPart;
+//import no.hib.dpf.editor.parts.node.NodeComponentEditPolicy;
+import no.hib.dpf.editor.policies.DConnectionCreatePolicy;
+//import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.utilities.DPFMetaLanguageUtils;
 import no.hib.dpf.editor.utilities.DPFTemplateUtils;
 import no.hib.dpf.editor.utilities.TemplateNodeAttributeUtils;
@@ -47,7 +55,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.graphics.Image;
 
-public class VNodeEditPart extends DNodeEditPart {
+public class VNodeEditPart extends no.hib.dpf.editor.parts.DNodeEditPart {
 
 	VNode visual = null;
 	EList<VCompartment> compartments = null;
@@ -80,7 +88,7 @@ public class VNodeEditPart extends DNodeEditPart {
 	}
 
 	@Override
-	protected void refreshVisuals() {
+	public void refreshVisuals() {
 		VNodeFigure figure = (VNodeFigure) getFigure();
 		DPFEditor editor = getEditor();
 		
@@ -132,11 +140,11 @@ public class VNodeEditPart extends DNodeEditPart {
 		Node node = getDPFNode();
 		Integer potency = null;
 		Integer mutability = null;
-		if(node != null){
-			potency = getDPFNode().getPotency();
-			//mutability = node.getMutability();
-		}
-		EditableLabel label = new EditableLabel(getNodeLabelName(), potency, mutability);
+//		if(node != null){
+//			potency = getDPFNode().getPotency();
+//			//mutability = node.getMutability();
+//		}
+		EditableLabel label = new EditableLabel(getNodeLabelName()); //, potency, mutability);
 		ImageDescriptor smallIcon = getImageDescriptor();
 		if(smallIcon != null){
 			label.setIcon((Image)smallIcon.createResource(null));	
@@ -152,7 +160,7 @@ public class VNodeEditPart extends DNodeEditPart {
 		return smallIcon;
 	}
 	
-	@Override
+	//@Override
 	protected String getNodeLabelName() {
 		String result = "";
 		Node node = getDPFNode();
@@ -245,7 +253,7 @@ public class VNodeEditPart extends DNodeEditPart {
 		return targets;
 	}
 
-	@Override
+//	@Override
 	protected void refreshLabel() {
 		VNodeFigure tableFigure = (VNodeFigure) getFigure();
 		EditableLabel label = tableFigure.getNameLabel();

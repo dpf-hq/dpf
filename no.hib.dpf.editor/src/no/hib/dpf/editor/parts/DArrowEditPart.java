@@ -263,7 +263,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		return result;
 	}
 	@Override
-	protected List<DConstraint> getModelSourceConnections() {
+	protected List<?> getModelSourceConnections() {
 		return getDArrow().getConstraintsFrom();
 	}
 

@@ -848,6 +848,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		addEOperation(specificationEClass, ecorePackage.getEBoolean(), "validate", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(specificationEClass, this.getSpecification(), "getTemplateSpecification", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraph_Type(), this.getGraph(), null, "type", null, 1, 1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraph_Nodes(), this.getNode(), null, "nodes", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -944,6 +946,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		op = addEOperation(nodeEClass, this.getArrow(), "getTypeArrow", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getNode(), "intendedTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(nodeEClass, ecorePackage.getEString(), "getTemplateElementType", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(arrowEClass, Arrow.class, "Arrow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getArrow_Name(), ecorePackage.getEString(), "name", null, 0, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getArrow_Source(), this.getNode(), this.getNode_Outgoings(), "source", null, 0, 1, Arrow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -954,6 +958,8 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		addEOperation(arrowEClass, ecorePackage.getEString(), "getTypeName", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(arrowEClass, ecorePackage.getEString(), "generateUniqueName", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(arrowEClass, ecorePackage.getEString(), "getTemplateElementType", 0, 1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(signatureEClass, Signature.class, "Signature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSignature_Predicates(), this.getPredicate(), null, "predicates", null, 0, -1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1038,6 +1044,13 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		initEClass(idObjectEClass, IDObject.class, "IDObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIDObject_Id(), ecorePackage.getEString(), "id", "", 0, 1, IDObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(idObjectEClass, this.getIDObject(), "getTemplateElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(idObjectEClass, ecorePackage.getEBoolean(), "isTemplateElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(idObjectEClass, this.getIDObject(), "getElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEInt(), "metaLevel", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(validatorTypeEEnum, ValidatorType.class, "ValidatorType");

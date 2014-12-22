@@ -7,8 +7,7 @@ Bundle-ClassPath: .
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: 
- no.hib.dpf.core,
+Export-Package: no.hib.dpf.core,
  no.hib.dpf.core.impl,
  no.hib.dpf.core.util,
  no.hib.dpf.utils,

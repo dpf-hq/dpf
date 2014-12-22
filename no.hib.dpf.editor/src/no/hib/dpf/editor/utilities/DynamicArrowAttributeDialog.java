@@ -1,10 +1,10 @@
 package no.hib.dpf.editor.utilities;
  
 import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.ArrowAttribute;
-import no.hib.dpf.core.DataNode;
+//import no.hib.dpf.core.ArrowAttribute;
+//import no.hib.dpf.core.DataNode;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.core.NodeAttribute; 
+//import no.hib.dpf.core.NodeAttribute; 
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DNode;  
 import no.hib.dpf.utils.DPFCoreConstants;
@@ -141,12 +141,12 @@ public class DynamicArrowAttributeDialog extends Dialog {
 	
 	private void fillTable(Table table) {
 		Arrow arrow = darrow.getArrow();
-		for (ArrowAttribute outgoingAttr : arrow.getOutgoingAttributes()) {
-			DataNode datanode = outgoingAttr.getTarget();
+		//for (Arrow outgoingAttr : arrow.getOutgoingAttributes()) {
+			Node datanode = arrow.getTarget();
 			if(datanode != null){
 				TableItem item = new TableItem(table, SWT.NONE);
 				
-				NodeAttribute metaLangAttr = (NodeAttribute) outgoingAttr.getElement(-2); 
+				Node metaLangAttr = (Node) arrow.getElement(-2); 
 				if(metaLangAttr != null && metaLangAttr.getName().equals(DPFMetaLanguageUtils.NODE_VALUE)){
 					CCombo datatypeCombo = new CCombo(table, SWT.NONE);
 					
@@ -157,14 +157,14 @@ public class DynamicArrowAttributeDialog extends Dialog {
 				    TableEditor editor = new TableEditor(table);
 				    editor.grabHorizontal = true;
 				    editor.setEditor(datatypeCombo, item, TABLE_COLUMN_VALUE_INDEX);
-					item.setText(TABLE_COLUMN_NAME_INDEX, outgoingAttr.getName());
-					item.setText(TABLE_COLUMN_MUTABILITY_INDEX, "" + datanode.getMutability());
+					item.setText(TABLE_COLUMN_NAME_INDEX, arrow.getName());
+//					item.setText(TABLE_COLUMN_MUTABILITY_INDEX, "" + datanode.getMutability());
 				}else{
-					item.setText(new String[] {outgoingAttr.getName(), datanode.getValue(), "" + datanode.getMutability()});
+					item.setText(new String[] {arrow.getName(), datanode.toString(), "" + false});
 				}
 				
 				item.setData(datanode);
-			}
+//			}
 		}	
 	}
 	
@@ -299,19 +299,19 @@ public class DynamicArrowAttributeDialog extends Dialog {
 			if (e.type == SWT.Selection) {
 				Arrow arrow = darrow.getArrow();
 				
-				for (ArrowAttribute outgoingAttr : arrow.getOutgoingAttributes()) {
-					for (TableItem tableItem : table.getItems()) {
-						if(tableItem.getText(TABLE_COLUMN_NAME_INDEX).trim().equals(outgoingAttr.getName())){
-							DataNode targetDatanode = outgoingAttr.getTarget();
-							if(targetDatanode != null){
-								if(tableItem.getText(TABLE_COLUMN_VALUE_INDEX).length() > 0){
-									targetDatanode.setValue(tableItem.getText(TABLE_COLUMN_VALUE_INDEX));
-								}
-								//targetDatanode.setMutability(tableItem.getText(TABLE_COLUMN_MUTABILITY_INDEX));
-							}
-						}
-					}
-				}
+//				for (ArrowAttribute outgoingAttr : arrow.getOutgoingAttributes()) {
+//					for (TableItem tableItem : table.getItems()) {
+//						if(tableItem.getText(TABLE_COLUMN_NAME_INDEX).trim().equals(outgoingAttr.getName())){
+//							DataNode targetDatanode = outgoingAttr.getTarget();
+//							if(targetDatanode != null){
+//								if(tableItem.getText(TABLE_COLUMN_VALUE_INDEX).length() > 0){
+//									targetDatanode.setValue(tableItem.getText(TABLE_COLUMN_VALUE_INDEX));
+//								}
+//								//targetDatanode.setMutability(tableItem.getText(TABLE_COLUMN_MUTABILITY_INDEX));
+//							}
+//						}
+//					}
+//				}
 				
 				
 				// close the dialog

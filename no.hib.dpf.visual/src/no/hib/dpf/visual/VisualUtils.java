@@ -27,6 +27,7 @@ public class VisualUtils extends DPFModelPersistanceUtils {
 				dsp = VisualFactory.eINSTANCE.createVisuals();
 				model.getContents().add(dsp);
 			}else{
+				
 				dsp = (Visuals) model.getContents().get(0);
 			}
 		}

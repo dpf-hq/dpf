@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.diagram.util.DPFDiagramConstants;
+import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.utilities.DPFModelPersistanceUtils;
 import no.hib.dpf.editor.utilities.DPFTemplateUtils;
 import no.hib.dpf.visual.VisualPlugin;
@@ -26,7 +26,7 @@ public class VisualizationModelPersistanceUtils extends DPFModelPersistanceUtils
 		
 		// finalize the metamodel
 		DSpecification newDSpec = visualizations.getInstance();
-		DPFTemplateUtils.replicateTemplateElements(newDSpec.getDGraph());
+//		DPFTemplateUtils.replicateTemplateElements(newDSpec.getDGraph());
 		
 		Resource visual = createResource(resourceSet, createFileURI, resourceToDiagnosticMap);
 		visual.getContents().add(visualizations);
@@ -40,16 +40,16 @@ public class VisualizationModelPersistanceUtils extends DPFModelPersistanceUtils
 		model.getContents().add(newDSpec.getSpecification());
 		
 		DSpecification currentDSpec = newDSpec;
-		while (currentDSpec != DPFDiagramConstants.REFLEXIVE_DSPECIFICATION) {
+		while (currentDSpec != DPFConstants.REFLEXIVE_DSPECIFICATION) {
 			diagram.getContents().add(currentDSpec);
 			model.getContents().add(currentDSpec.getSpecification());
 		
-			if(currentDSpec.getDSignature() != null && currentDSpec.getDSignature() != DPFDiagramConstants.DEFAULT_DSIGNATURE){
+			if(currentDSpec.getDSignature() != null && currentDSpec.getDSignature() != DPFConstants.DEFAULT_DSIGNATURE){
 				diagram.getContents().add(currentDSpec.getDSignature());
 				model.getContents().add(currentDSpec.getSpecification().getSignature());
 			}
 			
-			if(currentDSpec.getDSignature() != null && currentDSpec.getDSignature() != DPFDiagramConstants.DEFAULT_DSIGNATURE){
+			if(currentDSpec.getDSignature() != null && currentDSpec.getDSignature() != DPFConstants.DEFAULT_DSIGNATURE){
 				diagram.getContents().add(currentDSpec.getDSignature());
 				model.getContents().add(currentDSpec.getSpecification().getSignature());
 			}

@@ -1,8 +1,9 @@
 package no.hib.dpf.editor.utilities;
   
-import no.hib.dpf.core.DataNode;
+import no.hib.dpf.core.Arrow;
+//import no.hib.dpf.core.DataNode;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.core.NodeAttribute;  
+//import no.hib.dpf.core.NodeAttribute;  
 import no.hib.dpf.diagram.DNode;  
 import no.hib.dpf.utils.DPFCoreConstants;
 
@@ -266,20 +267,20 @@ public class DynamicNodeAttributeDialog extends Dialog {
 
 	private void fillTable(Table table) {
 		Node node = dnode.getNode();
-		for (NodeAttribute outgoingAttr : node.getOutgoingAttributes()) {
-			DataNode datanode = outgoingAttr.getTarget();
+		for (Arrow outgoingAttr : node.getOutgoings()) {
+			Node datanode = outgoingAttr.getTarget();
 			if(datanode != null){
 				final TableItem item = new TableItem(table, SWT.NONE);
-				
-				NodeAttribute metaLangAttr = (NodeAttribute) outgoingAttr.getElement(-2); 
-				if(metaLangAttr != null && metaLangAttr.getName().equals(DPFMetaLanguageUtils.NODE_VALUE)){
-					item.setData(metaLangAttr);
-					item.setText(TABLE_COLUMN_NAME_INDEX, outgoingAttr.getName());
-					item.setText(TABLE_COLUMN_MUTABILITY_INDEX, "" + datanode.getMutability());
-				}else{
-					item.setText(new String[] {outgoingAttr.getName(), datanode.getValue(), "" + datanode.getMutability()});
+
+//				NodeAttribute metaLangAttr = (NodeAttribute) outgoingAttr.getElement(-2); 
+//				if(metaLangAttr != null && metaLangAttr.getName().equals(DPFMetaLanguageUtils.NODE_VALUE)){
+//					item.setData(metaLangAttr);
+//					item.setText(TABLE_COLUMN_NAME_INDEX, outgoingAttr.getName());
+//					item.setText(TABLE_COLUMN_MUTABILITY_INDEX, "" + datanode.getMutability());
+//				}else{
+					item.setText(new String[] {outgoingAttr.getName(), datanode.toString(), "" + false});
 					item.setData(datanode);
-				}
+//				}
 			}
 		}
 		
@@ -298,24 +299,24 @@ public class DynamicNodeAttributeDialog extends Dialog {
 			if (e.type == SWT.Selection) {
 				Node node = dnode.getNode();
 				
-				for (NodeAttribute outgoingAttr : node.getOutgoingAttributes()) {
-					for (TableItem tableItem : table.getItems()) {
-						if(tableItem.getText(TABLE_COLUMN_NAME_INDEX).trim().equals(outgoingAttr.getName())){
-							DataNode targetDatanode = outgoingAttr.getTarget();
-							if(targetDatanode != null){
-								if(tableItem.getText(TABLE_COLUMN_VALUE_INDEX).length() > 0){
-									targetDatanode.setValue(tableItem.getText(TABLE_COLUMN_VALUE_INDEX));
-								}
-								int mutability = -1;
-								try{
-									mutability = Integer.parseInt(tableItem.getText(TABLE_COLUMN_MUTABILITY_INDEX).trim());
-									targetDatanode.setMutability(mutability);
-								}catch(NumberFormatException ee){
-								}
-							}
-						}
-					}
-				}
+//				for (NodeAttribute outgoingAttr : node.getOutgoingAttributes()) {
+//					for (TableItem tableItem : table.getItems()) {
+//						if(tableItem.getText(TABLE_COLUMN_NAME_INDEX).trim().equals(outgoingAttr.getName())){
+//							DataNode targetDatanode = outgoingAttr.getTarget();
+//							if(targetDatanode != null){
+//								if(tableItem.getText(TABLE_COLUMN_VALUE_INDEX).length() > 0){
+//									targetDatanode.setValue(tableItem.getText(TABLE_COLUMN_VALUE_INDEX));
+//								}
+//								int mutability = -1;
+//								try{
+//									mutability = Integer.parseInt(tableItem.getText(TABLE_COLUMN_MUTABILITY_INDEX).trim());
+//									targetDatanode.setMutability(mutability);
+//								}catch(NumberFormatException ee){
+//								}
+//							}
+//						}
+//					}
+//				}
 				
 				
 				// close the dialog

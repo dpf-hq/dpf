@@ -1,6 +1,6 @@
 package no.hib.dpf.visualization.commands;
 
-import no.hib.dpf.editor.commands.node.DNodeDeleteCommand;
+import no.hib.dpf.editor.commands.DNodeDeleteCommand;
 import no.hib.dpf.visualization.VCompartment;
 import no.hib.dpf.visualization.VCompartmentElement;
 

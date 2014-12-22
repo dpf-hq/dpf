@@ -26,6 +26,14 @@ import org.junit.Test;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>ID Object</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ *   <li>{@link no.hib.dpf.core.IDObject#getTemplateElement() <em>Get Template Element</em>}</li>
+ *   <li>{@link no.hib.dpf.core.IDObject#isTemplateElement() <em>Is Template Element</em>}</li>
+ *   <li>{@link no.hib.dpf.core.IDObject#getElement(int) <em>Get Element</em>}</li>
+ * </ul>
+ * </p>
  * @generated
  */
 public abstract class IDObjectTest extends TestCase {
@@ -66,6 +74,45 @@ public abstract class IDObjectTest extends TestCase {
 	 */
 	protected IDObject getFixture() {
 		return fixture;
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.core.IDObject#getTemplateElement() <em>Get Template Element</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.IDObject#getTemplateElement()
+	 * @generated
+	 */
+	public void testGetTemplateElement() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.core.IDObject#isTemplateElement() <em>Is Template Element</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.IDObject#isTemplateElement()
+	 * @generated
+	 */
+	public void testIsTemplateElement() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link no.hib.dpf.core.IDObject#getElement(int) <em>Get Element</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see no.hib.dpf.core.IDObject#getElement(int)
+	 * @generated
+	 */
+	public void testGetElement__int() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 	@Test

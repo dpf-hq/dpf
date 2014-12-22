@@ -225,4 +225,12 @@ public interface Specification extends EObject {
 	 */
 	boolean validate();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	Specification getTemplateSpecification();
+
 } // Specification

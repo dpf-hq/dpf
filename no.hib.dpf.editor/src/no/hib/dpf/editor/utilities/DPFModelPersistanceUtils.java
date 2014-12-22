@@ -1,7 +1,7 @@
 package no.hib.dpf.editor.utilities;
 
-import static no.hib.dpf.diagram.util.DPFDiagramConstants.DEFAULT_DSIGNATURE;
-import static no.hib.dpf.diagram.util.DPFDiagramConstants.REFLEXIVE_DSPECIFICATION;
+import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
+import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
 import static no.hib.dpf.utils.DPFCoreConstants.DEFAULT_SIGNATURE;
 import static no.hib.dpf.utils.DPFCoreConstants.DefaultDSpecification;
 import static no.hib.dpf.utils.DPFCoreConstants.DefaultSpecification;
@@ -22,7 +22,7 @@ import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
-import no.hib.dpf.diagram.util.DPFDiagramConstants;
+import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.utils.DPFCoreUtil;
 
@@ -68,7 +68,7 @@ public class DPFModelPersistanceUtils extends DPFCoreUtil {
 		
 		DGraph dgraph = newDSpec.getDGraph();
 		Assert.isNotNull(dgraph);
-		DPFTemplateUtils.replicateTemplateElements(dgraph);
+//		DPFTemplateUtils.replicateTemplateElements(dgraph);
 		
 		Resource diagram = createResource(resourceSet, createFileURI, resourceToDiagnosticMap);
 		diagram.getContents().add(newDSpec);
@@ -78,11 +78,11 @@ public class DPFModelPersistanceUtils extends DPFCoreUtil {
 		model.getContents().add(newDSpec.getSpecification());
 		
 		DSpecification currentDSpec = newDSpec;
-		while (currentDSpec != DPFDiagramConstants.REFLEXIVE_DSPECIFICATION) {
+		while (currentDSpec != DPFConstants.REFLEXIVE_DSPECIFICATION) {
 			diagram.getContents().add(currentDSpec);
 			model.getContents().add(currentDSpec.getSpecification());
 		
-			if(currentDSpec.getDSignature() != null && currentDSpec.getDSignature() != DPFDiagramConstants.DEFAULT_DSIGNATURE){
+			if(currentDSpec.getDSignature() != null && currentDSpec.getDSignature() != DPFConstants.DEFAULT_DSIGNATURE){
 				diagram.getContents().add(currentDSpec.getDSignature());
 				model.getContents().add(currentDSpec.getSpecification().getSignature());
 			}

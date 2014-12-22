@@ -12,6 +12,7 @@ import java.util.List;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -200,7 +201,7 @@ public class ArrowItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Arrow"));
+		return overlayImage(object, DPFPlugin.INSTANCE.getImageRegistry().get("full/obj16/Arrow"));
 	}
 
 	/**
@@ -249,4 +250,23 @@ public class ArrowItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
+	
+
+	/**
+	   * Get a translated string from the resource locator.
+	   */
+	  public String getString(String key)
+	  {
+	    return key;
+	  }
+	  
+
+		/**
+		   * Get a translated string from the resource locator.
+		   */
+		  public String getString(String key, String k1, String k2)
+		  {
+		    return key+"2";
+		  }
+	
 }

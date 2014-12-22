@@ -1,28 +1,28 @@
 package no.hib.dpf.visualization.presentation;
 
-import static no.hib.dpf.diagram.util.DPFDiagramConstants.DEFAULT_DSIGNATURE;
+import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.List;
 
 import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.ArrowAttribute;
+//import no.hib.dpf.core.ArrowAttribute;
 import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.DataNode;
+//import no.hib.dpf.core.DataNode;
 import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.core.NodeAttribute;
+//import no.hib.dpf.core.NodeAttribute;
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DArrowDAttribute;
-import no.hib.dpf.diagram.DDataNode;
+//import no.hib.dpf.diagram.DArrowDAttribute;
+//import no.hib.dpf.diagram.DDataNode;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.diagram.DNodeDAttribute;
+//import no.hib.dpf.diagram.DNodeDAttribute;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.actions.SelectionActionForEditParts;
-import no.hib.dpf.editor.commands.constraint.DConstraintCreateCommand;
+import no.hib.dpf.editor.commands.DConstraintCreateCommand;
 import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -36,18 +36,18 @@ public class CreateConstraintAction extends SelectionActionForEditParts {
 
 	private DPredicate dPredicate;
 	private EList<DArrow> selectionDArrows;
-	private EList<DArrowDAttribute> selectionDArrowDAttributes;
-	private EList<DNodeDAttribute> selectionDNodeDAttributes;
+//	private EList<DArrowDAttribute> selectionDArrowDAttributes;
+//	private EList<DNodeDAttribute> selectionDNodeDAttributes;
 	
 	private EList<DNode> selectionDNodes;
-	private EList<DDataNode> selectionDDataNodes;
+//	private EList<DDataNode> selectionDDataNodes;
 	
 	private EList<Arrow> selectionArrows;
-	private EList<ArrowAttribute> selectionArrowAttributes;
-	private EList<NodeAttribute> selectionNodeAttributes;
+//	private EList<ArrowAttribute> selectionArrowAttributes;
+//	private EList<NodeAttribute> selectionNodeAttributes;
 	
 	private EList<Node> selectionNodes;
-	private EList<DataNode> selectionDataNodes;
+//	private EList<DataNode> selectionDataNodes;
 	
 	private VisualizationEditor editor = null;
 	private GraphHomomorphism graphHomomorphism = null;
@@ -92,15 +92,15 @@ public class CreateConstraintAction extends SelectionActionForEditParts {
 		return result;
 	}
 	
-	private EList<DataNode> getDataNodes(List<DDataNode> datanodes){
-		EList<DataNode> result = new BasicEList<DataNode>();
-		if(datanodes != null){
-			for(DDataNode datanode : datanodes)
-				if(datanode.getDatanode() != null)
-					result.add(datanode.getDatanode());
-		}
-		return result;
-	}
+//	private EList<DataNode> getDataNodes(List<DDataNode> datanodes){
+//		EList<DataNode> result = new BasicEList<DataNode>();
+//		if(datanodes != null){
+//			for(DDataNode datanode : datanodes)
+//				if(datanode.getDatanode() != null)
+//					result.add(datanode.getDatanode());
+//		}
+//		return result;
+//	}
 	
 	private EList<Arrow> getArrows(List<DArrow> arrows){
 		EList<Arrow> result = new BasicEList<Arrow>();
@@ -110,25 +110,25 @@ public class CreateConstraintAction extends SelectionActionForEditParts {
 		return result;
 	}
 	
-	private EList<ArrowAttribute> getArrowAttributes(List<DArrowDAttribute> attributes){
-		EList<ArrowAttribute> result = new BasicEList<ArrowAttribute>();
-		if(attributes != null){
-			for(DArrowDAttribute attribute : attributes)
-				if(attribute.getArrowAttribute() != null)
-					result.add(attribute.getArrowAttribute());
-		}
-		return result;
-	}
-	
-	private EList<NodeAttribute> getNodeAttributes(List<DNodeDAttribute> attributes){
-		EList<NodeAttribute> result = new BasicEList<NodeAttribute>();
-		if(attributes != null){
-			for(DNodeDAttribute attribute : attributes)
-				if(attribute.getNodeAttribute() != null)
-					result.add(attribute.getNodeAttribute());
-		}
-		return result;
-	}
+//	private EList<ArrowAttribute> getArrowAttributes(List<DArrowDAttribute> attributes){
+//		EList<ArrowAttribute> result = new BasicEList<ArrowAttribute>();
+//		if(attributes != null){
+//			for(DArrowDAttribute attribute : attributes)
+//				if(attribute.getArrowAttribute() != null)
+//					result.add(attribute.getArrowAttribute());
+//		}
+//		return result;
+//	}
+//	
+//	private EList<NodeAttribute> getNodeAttributes(List<DNodeDAttribute> attributes){
+//		EList<NodeAttribute> result = new BasicEList<NodeAttribute>();
+//		if(attributes != null){
+//			for(DNodeDAttribute attribute : attributes)
+//				if(attribute.getNodeAttribute() != null)
+//					result.add(attribute.getNodeAttribute());
+//		}
+//		return result;
+//	}
 	
 	private IWorkbenchPart getActivePart(){
 		if(editor == null) return null;
@@ -153,14 +153,14 @@ public class CreateConstraintAction extends SelectionActionForEditParts {
 	protected void handleSelectionChanged() {
 		selectionDArrows = new BasicEList<DArrow>();
 		selectionDNodes = new BasicEList<DNode>();
-		getSelectElements(selectionDNodes, selectionDArrows,selectionDDataNodes, selectionDNodeDAttributes, selectionDArrowDAttributes);
-		selectionArrows = getArrows(selectionDArrows); 
-		selectionArrowAttributes = getArrowAttributes(selectionDArrowDAttributes);
-		selectionNodeAttributes = getNodeAttributes(selectionDNodeDAttributes);
-		
-		selectionNodes = getNodes(selectionDNodes);
-		selectionDataNodes = getDataNodes(selectionDDataNodes);
-		
+//		getSelectElements(selectionDNodes, selectionDArrows,selectionDDataNodes, selectionDNodeDAttributes, selectionDArrowDAttributes);
+//		selectionArrows = getArrows(selectionDArrows); 
+//		selectionArrowAttributes = getArrowAttributes(selectionDArrowDAttributes);
+//		selectionNodeAttributes = getNodeAttributes(selectionDNodeDAttributes);
+//		
+//		selectionNodes = getNodes(selectionDNodes);
+//		selectionDataNodes = getDataNodes(selectionDDataNodes);
+//		
 		super.handleSelectionChanged();
 	}
 	@Override

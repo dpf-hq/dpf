@@ -49,18 +49,18 @@ public class VCompartmentUtils {
 	public static void createCompartments(DNode dNode, EList<VCompartment> compartments, EMap<DElement, VElement> maps) {
 		// Add compartments to composite nodes
 		DNode nodeDType = dNode.getDType();
-		DNode templateDNode = nodeDType.getTemplateDNode();
-		for(DArrow templateDArrow : templateDNode.getDOutgoings()) {
-			
-			VElement ve = VisualizationModelUtils.getVElement(templateDArrow, maps);
-			if(ve != null && ((VArrow) ve).isComposed()) {
-				
-				VCompartment comp = createCompartment(templateDArrow.getDTarget(), dNode);
-				
-				// add the new compartment to the visualization
-				compartments.add(comp);
-			}
-		}
+//		DNode templateDNode = nodeDType.getTemplateDNode();
+//		for(DArrow templateDArrow : templateDNode.getDOutgoings()) {
+//			
+//			VElement ve = VisualizationModelUtils.getVElement(templateDArrow, maps);
+//			if(ve != null && ((VArrow) ve).isComposed()) {
+//				
+//				VCompartment comp = createCompartment(templateDArrow.getDTarget(), dNode);
+//				
+//				// add the new compartment to the visualization
+//				compartments.add(comp);
+//			}
+//		}
 	}
 
 
@@ -75,9 +75,9 @@ public class VCompartmentUtils {
 		VCompartment vCompartment = VisualizationFactory.eINSTANCE.createVCompartment();
 		vCompartment.setParent(dNode);
 		
-		DNode templateDNode = dTarget.getTemplateDNode();	
-		vCompartment.setCompartmentDNode(templateDNode);
-		vCompartment.setName(templateDNode.getName());
+//		DNode templateDNode = dTarget.getTemplateDNode();	
+//		vCompartment.setCompartmentDNode(templateDNode);
+//		vCompartment.setName(templateDNode.getName());
 		
 		return vCompartment;
 	}
@@ -121,24 +121,24 @@ public class VCompartmentUtils {
 		}
 		
 		DNode typeDNode = dNode.getDType();
-		DNode templateDNode = typeDNode.getTemplateDNode();
+//		DNode templateDNode = typeDNode.getTemplateDNode();
 		VNode vnode = (VNode)VisualizationModelUtils.getVElement(typeDNode, maps);
-		if(vnode != null && vnode.isComposite() && nodeCompartments.isEmpty()) {
-			for(DArrow templateDArrow : templateDNode.getDOutgoings()) {
-				
-				VElement velement = VisualizationModelUtils.getVElement(templateDArrow, maps);
-				if(velement != null && ((VArrow) velement).isComposed()) {
-					VCompartment vCompartment = VisualizationFactory.eINSTANCE.createVCompartment();
-					vCompartment.setName(templateDArrow.getDTarget().getName());
-					
-					DNode templateTargetDNode = templateDArrow.getDTarget();
-					vCompartment.setCompartmentDNode(templateTargetDNode);
-					vCompartment.setParent(typeDNode);
-					compartments.add(vCompartment);
-					nodeCompartments.add(vCompartment);
-				}	
-			}
-		}
+//		if(vnode != null && vnode.isComposite() && nodeCompartments.isEmpty()) {
+//			for(DArrow templateDArrow : templateDNode.getDOutgoings()) {
+//				
+//				VElement velement = VisualizationModelUtils.getVElement(templateDArrow, maps);
+//				if(velement != null && ((VArrow) velement).isComposed()) {
+//					VCompartment vCompartment = VisualizationFactory.eINSTANCE.createVCompartment();
+//					vCompartment.setName(templateDArrow.getDTarget().getName());
+//					
+//					DNode templateTargetDNode = templateDArrow.getDTarget();
+//					vCompartment.setCompartmentDNode(templateTargetDNode);
+//					vCompartment.setParent(typeDNode);
+//					compartments.add(vCompartment);
+//					nodeCompartments.add(vCompartment);
+//				}	
+//			}
+//		}
 		
 		// Add compartmentElements to compartments if any are saved
 		for(DArrow dArrow : dNode.getDOutgoings()){

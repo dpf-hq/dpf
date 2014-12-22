@@ -2,13 +2,13 @@ package no.hib.dpf.visualization.policies;
 
 import java.util.List;
 
-import no.hib.dpf.diagram.DDataNode;
+//import no.hib.dpf.diagram.DDataNode;
 import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.parts.DGraphEditPart;
-import no.hib.dpf.editor.parts.attribute.DDataNodeEditPart;
-import no.hib.dpf.editor.parts.node.DNodeEditPart;
+//import no.hib.dpf.editor.parts.attribute.DDataNodeEditPart;
+import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.policies.DGraphXYLayoutEditPolicy;
 import no.hib.dpf.visual.VElement;
 import no.hib.dpf.visualization.VCompartment;
@@ -63,13 +63,14 @@ public class VGraphXYLayoutEditPolicy extends DGraphXYLayoutEditPolicy {
 		}
 		return super.getCreateCommand(request);
 	} 
+	
 	public List<DNodeEditPart> getDNodeEditParts(DGraphEditPart parent, DNode type){
 		return super.getDNodeEditParts(parent, type);
 	}
-	
-	public List<DDataNodeEditPart> getDDataNodeEditParts(DGraphEditPart parent, DDataNode type){
-		return super.getDDataNodeEditParts(parent, type);
-	}
+//	
+//	public List<DDataNodeEditPart> getDDataNodeEditParts(DGraphEditPart parent, DDataNode type){
+//		return super.getDDataNodeEditParts(parent, type);
+//	}
 	
 	@Override
 	public EditPart getTargetEditPart(Request request) {

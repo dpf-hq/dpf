@@ -189,7 +189,7 @@ public abstract class GraphicalEditPartWithListener extends AbstractGraphicalEdi
 				removeTargetConnection((ConnectionEditPart) trash.get(i));
 		}
 	}
-	protected EObject getDiagramModel(){
+	public EObject getDiagramModel(){
 		return (EObject) getModel();
 	}
 	

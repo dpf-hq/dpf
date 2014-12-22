@@ -13,6 +13,7 @@ import java.util.List;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
+import no.hib.dpf.editor.DPFPlugin;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -140,7 +141,8 @@ public class GraphItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Graph"));
+		return overlayImage(object, DPFPlugin.INSTANCE.getImageRegistry().get("full/obj16/Graph"	));
+		//getResourceLocator().getImage("full/obj16/Graph"));
 	}
 
 	/**
@@ -202,4 +204,11 @@ public class GraphItemProvider
 				 CoreFactory.eINSTANCE.createArrow()));
 	}
 
+	  /**
+	   * Get a translated string from the resource locator.
+	   */
+	  public String getString(String key)
+	  {
+		  return key;
+	  }
 }
