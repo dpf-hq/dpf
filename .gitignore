@@ -1,0 +1,13 @@
+*.aux
+*.log
+*.dvi
+*.tex.backup
+*.swp
+*.tex~
+*.bbl
+*.blg
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb

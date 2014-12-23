@@ -1,0 +1,60 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{authblk}
+\usepackage{xspace}
+\usepackage{tabularx}
+\usepackage{verbatim}
+
+
+\title{Building DPF releases}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Tycho and the DPF build system}
+
+The DPF project uses a build system based on Maven and Tycho plugin. This allows us to build, test and package all the plugins belonging to the DPF
+project using a single command. Furthermore, using a well supported build system allows the implementation of continuous integration solutions.
+In this document I will treat Mavn as a commend line tool, however it is also possiblities to integrate Maven with Eclipse.
+
+\subsection{Installing Dependencies}
+
+The only technology required to build DPF is Maven. Maven will, based on the pom.xml files in the DPF plugins, automatically download
+any other requirements. Instructions on how to install and use maven are availbale at \url{http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html}. 
+
+\subsection{Using maven with DPF}
+
+Maven is controlled by pom.xml files. Each plugin as well as the root directory for the projects have one pom.xml file each.
+
+\begin{itemize}
+\item Why a build system
+\item Tycho and maven
+\item Intalling maven
+\item Uses of the build system
+\end{itemize}
+
+
+\section{How build a release}
+
+\begin{itemize}
+\item Running tests
+\item Running builds
+\item Building fot other platforms
+\item The DPF Eclipse application
+\end{itemize}
+
+\section{Adding a new plugin to the build}
+
+\begin{itemize}
+ \item creating a new pom.xml
+ \item Adding the new plugin to the project build
+\end{itemize}
+
+
+\end{document}
