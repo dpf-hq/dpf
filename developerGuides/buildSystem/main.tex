@@ -9,6 +9,8 @@
 \usepackage{tabularx}
 \usepackage{verbatim}
 
+\newcommand{\code}[1]{\\ \\ \texttt{#1} \\ \\ }
+
 
 \title{Building DPF releases}
 
@@ -30,17 +32,30 @@ any other requirements. Instructions on how to install and use maven are availba
 
 \subsection{Using maven with DPF}
 
-Maven is controlled by pom.xml files. Each plugin as well as the root directory for the projects have one pom.xml file each.
+Maven is controlled by pom.xml files. Each plugin as well as the root directory for the projects have one pom.xml file each. The pom.xml
+file in the root directory has a list of the sub-projectst that are included in the build.
 
-\begin{itemize}
-\item Why a build system
-\item Tycho and maven
-\item Intalling maven
-\item Uses of the build system
-\end{itemize}
+In order to use maven simply stand in the root directory and execute: \code{mvn [goal]} 
+For instance, the command  to build, test and package the DPF build
+is: \code{mvn install}
+For more information on the goals that are available in Maven see \url{http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html}.
+
+
+
+%\begin{itemize}
+%\item Why a build system
+%\item Tycho and maven
+%\item Intalling maven
+%\item Uses of the build system
+%\end{itemize}
 
 
 \section{How build a release}
+
+In order to build (compile) all the DPF plugins, stand in the root directory of the DPF repository and execute \code{mvn build}
+
+
+
 
 \begin{itemize}
 \item Running tests
