@@ -11,6 +11,7 @@ import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DNode;
 //import no.hib.dpf.diagram.DNodeDAttribute;
 import no.hib.dpf.editor.commands.DArrowCreateCommand;
+import no.hib.dpf.editor.commands.DArrowReconnectCommand;
 //import no.hib.dpf.editor.commands.DArrowReconnectCommand;
 //import no.hib.dpf.editor.commands.attribute.DArrowDAttributeCreateCommand;
 //import no.hib.dpf.editor.commands.attribute.DArrowDAttributeReconnectCommand;
@@ -336,15 +337,12 @@ public class DConnectionCreatePolicy extends GraphicalNodeEditPolicy {
 		}
 	}
 
+	
 	@Override
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	protected Command getReconnectSourceCommand(ReconnectRequest request) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }

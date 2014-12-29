@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
@@ -16,12 +17,16 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 
 public class DPFCoreUtil {
 
@@ -35,6 +40,53 @@ public class DPFCoreUtil {
 		return resource;
 	}
 
+	
+	public static Resource createResource(ResourceSet resourceSet, URI resourceURI, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
+		Exception exception = null;
+		Resource resource = null;
+		try {
+			resource = resourceSet.getResource(resourceURI, true);
+		}
+		catch (Exception e) {
+			exception = e;
+			resource = resourceSet.getResource(resourceURI, false);
+		}
+		analyzeResourceProblems(resource, exception, resourceToDiagnosticMap);
+		return resource;
+	}
+	
+	public static Diagnostic analyzeResourceProblems(Resource resource, Exception exception, Map<Resource, Diagnostic> resourceToDiagnosticMap) {
+		BasicDiagnostic basicDiagnostic = null;
+		if (!resource.getErrors().isEmpty() || !resource.getWarnings().isEmpty()) {
+			basicDiagnostic =
+					new BasicDiagnostic
+					(Diagnostic.ERROR,
+							getPluginID(),
+							0,
+							getErrorMessage(resource),
+							new Object [] { exception == null ? (Object)resource : exception });
+			basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
+		}
+		else if (exception != null) {
+			basicDiagnostic =
+					new BasicDiagnostic
+					(Diagnostic.ERROR,
+							getPluginID(),
+							0,
+							getErrorMessage(resource),
+							new Object[] { exception });
+		}
+		else {
+			return Diagnostic.OK_INSTANCE;
+		}
+		if (basicDiagnostic.getSeverity() != Diagnostic.OK) {
+			resourceToDiagnosticMap.put(resource,  basicDiagnostic);
+		}else
+			resourceToDiagnosticMap.remove(resource);
+		return basicDiagnostic;
+	}
+	
+	
 	protected static String getErrorMessage(Resource resource) {return "Problems encountered in file " + resource.getURI().toFileString();};
 
 	public static ResourceSetImpl getResourceSet(){
