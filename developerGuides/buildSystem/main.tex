@@ -56,6 +56,12 @@ In order to build (compile) all the DPF plugins, stand in the root directory of 
 output with lines (among many others) similar to the ones shown in Fig.~\ref{fig:compile}. This output lists all the modules of the project wether the compilation was 
 sucessfull. If one or more modules is not sucessfully compiles the output can be inspected to determine the cause of the compilation falioure. 
 
+\begin{figure}
+\includegraphics[width=\linewidth]{compile}
+
+\caption{Output of the compile command}
+\end{figure}
+
 Testing a build can be done by executing: \code{mvn -fn check}
 This will run all the test that are stored in test projects (See section~\ref{sec:plugins}).
 This commands will produce an output similar to the one showed in Fig.~\ref{fig:compile}. However, the sucess of the test projects will depend on the resultes of the 
@@ -74,9 +80,13 @@ contained test cases. The results of the tests will also be stored in the target
 In order to add a new plugin to the build, first, the plugin is created as a regular eclipse plugin. Additionally, a pom.xml file must be added to the root directory
 of the new plugin. A sample pom.xml is seen in listing~\ref{lst:pom}.
 
+\begin{figure}
 \begin{lstlisting}[caption={Sample pom.xml}]
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+<project 
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+  http://maven.apache.org/xsd/maven-4.0.0.xsd" 
+  xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
@@ -90,7 +100,7 @@ of the new plugin. A sample pom.xml is seen in listing~\ref{lst:pom}.
   <packaging>eclipse-plugin</packaging>
 </project>
 \end{lstlisting}
-
+\end{figure}
 
 The <packaging> tag describes the type of the plugin. For a regulat eclipse plugin the value of this tag should be \texttt{eclipse-plugin}. For a test project
 the value should be \texttt{eclipse-test-plugin}
