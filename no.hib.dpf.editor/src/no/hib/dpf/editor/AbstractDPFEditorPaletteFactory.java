@@ -16,10 +16,8 @@
 package no.hib.dpf.editor;
 
 import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.editor.icons.ImageSettings;
-import no.hib.dpf.utils.DPFCoreConstants;
 
 import org.eclipse.gef.palette.MarqueeToolEntry;
 import org.eclipse.gef.palette.PaletteContainer;

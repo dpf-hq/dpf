@@ -23,7 +23,6 @@ import java.util.Map;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DNode;
@@ -329,9 +328,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		figure.setBackgroundColor(DPFEditorPreferences.getDefault().getNodeBackgroundColor());
 		DPFEditor editor = getEditor();
 		if(editor != null){
-			boolean flag = editor.isMakerExisting(getDNode().getNode());
-			if(figure.getErrorImageFlag() != flag)
-				figure.setErrorImageFlag(flag);
+			figure.setErrorFlag(editor.isMakerExisting(getDNode().getNode()));
 		}
 		figure.setBounds(new Rectangle(getDiagramModel().getLocation(), getDiagramModel().getSize()));
 		figure.repaint();
@@ -365,14 +362,13 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		EList<Constraint> constraints = new BasicEList<Constraint>();
 		constraints.addAll(checkedArrow.getTypeArrow().getConstraints());
 
-		Graph graph = node.getGraph();
-		if(editor == null || graph == null) return;
+		if(editor == null || node.getGraph() == null) return;
 
 		for (Constraint constraint : constraints) {
 			EList<Node> nodes = new BasicEList<Node>();
 			EList<Arrow> arrows = new BasicEList<Arrow>();
 
-			DPFCoreUtil.findRelatedElements(node, constraint, graph, nodes, arrows);
+			DPFCoreUtil.findRelatedElements(node, constraint, nodes, arrows);
 
 			boolean valid = constraint.validate(nodes, arrows);
 			if(!valid){

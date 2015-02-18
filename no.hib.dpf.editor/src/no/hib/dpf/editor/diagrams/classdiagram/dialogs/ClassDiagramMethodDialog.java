@@ -1,26 +1,16 @@
 package no.hib.dpf.editor.diagrams.classdiagram.dialogs;
 
-import java.awt.Color;
-import java.util.ArrayList;
-
-import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
 import no.hib.dpf.utils.DPFCoreConstants;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CCombo;
-import org.eclipse.swt.custom.TableCursor;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
+//import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
@@ -28,17 +18,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-//import org.eclipse.wb.swt.SWTResourceManager;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.GridData;
 
 /**
  * 
@@ -188,7 +169,7 @@ public class ClassDiagramMethodDialog extends Dialog {
 //				} catch (NumberFormatException nEx) {
 //				}
 				
-				String returnType = returnTypeCombo.getItem(returnTypeCombo.getSelectionIndex());
+//				String returnType = returnTypeCombo.getItem(returnTypeCombo.getSelectionIndex());
 				
 				// create the method:
 //				newMethodDNode = ClassDiagramMethodUtilities.createNewMethodForMethodDNode(

@@ -18,7 +18,6 @@ package no.hib.dpf.core.util;
 
 import java.util.Map;
 
-import no.hib.dpf.core.*;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;

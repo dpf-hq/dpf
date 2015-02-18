@@ -50,12 +50,12 @@ public class DGraphXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			
 			if(move && (child instanceof DComposedNodePart || child instanceof DNodeEditPart)){
 				Point newLocation = ((Rectangle)constraint).getLocation();
-				if(child instanceof DComposedNodePart){
-					DComposedNodePart compose = (DComposedNodePart) child;
-					compose.getCrossPoint(newLocation);
-					if(compose.getBound() != null)
-						newLocation = newLocation.translate(compose.getBound().getCenter().getNegated());
-				}
+//				if(child instanceof DComposedNodePart){
+//					DComposedNodePart compose = (DComposedNodePart) child;
+//					compose.getCrossPoint(newLocation);
+//					if(compose.getBound() != null)
+//						newLocation = newLocation.translate(compose.getBound().getCenter().getNegated());
+//				}
 				return new DNodeMoveCommand((DNode)child.getModel(), newLocation);
 			}
 //			else if(move && (child instanceof DDataNodeEditPart)){
@@ -148,18 +148,18 @@ public class DGraphXYLayoutEditPolicy extends XYLayoutEditPolicy {
 //		return result;
 //	}
 	
-	private List<DArrowEditPart> getDArrowEditParts(DGraphEditPart parent, DArrow type) {
-		List<DArrowEditPart> result = new ArrayList<DArrowEditPart>();
-		for(Object child : parent.getChildren()){
-			if(child instanceof DArrowEditPart){
-				DArrow dArrow = ((DArrowEditPart) child).getDArrow();
-				if(dArrow.getDType() == type){ 
-					result.add((DArrowEditPart) child);
-				}
-			}
-		}
-		return result;
-	}
+//	private List<DArrowEditPart> getDArrowEditParts(DGraphEditPart parent, DArrow type) {
+//		List<DArrowEditPart> result = new ArrayList<DArrowEditPart>();
+//		for(Object child : parent.getChildren()){
+//			if(child instanceof DArrowEditPart){
+//				DArrow dArrow = ((DArrowEditPart) child).getDArrow();
+//				if(dArrow.getDType() == type){ 
+//					result.add((DArrowEditPart) child);
+//				}
+//			}
+//		}
+//		return result;
+//	}
 	
 	@Override
 	public EditPart getTargetEditPart(Request request) {

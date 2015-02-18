@@ -35,7 +35,7 @@ public class ClassDiagramAttributeUtilities {
 			
 			// value and datatype:
 			//Node valuenode = TemplateNodeAttributeUtils.getDataNode(node, ClassDiagramConstants.NODE_ATTRIBUTE_VALUE);
-			Node datatype = node.getTypeNode();
+//			Node datatype = node.getTypeNode();
 			if(node != null){
 				if(DPFCoreConstants.getEDataTypesMap().containsKey(node)){
 					retVal += " : " + node;

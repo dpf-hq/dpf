@@ -145,8 +145,7 @@ public class DOffsetItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, DPFPlugin.INSTANCE.getImageRegistry().get("full/obj16/DOffset"));
-		//getResourceLocator().getImage("full/obj16/DOffset"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DOffset"));
 	}
 
 	/**
@@ -194,7 +193,18 @@ public class DOffsetItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
-//	/**
+/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return DPFPlugin.INSTANCE;
+	}
+
+	//	/**
 //	 * Return the resource locator for this item provider's resources.
 //	 * <!-- begin-user-doc -->
 //	 * <!-- end-user-doc -->

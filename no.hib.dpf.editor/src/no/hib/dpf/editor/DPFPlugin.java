@@ -16,8 +16,6 @@
 package no.hib.dpf.editor;
 
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
-import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -30,10 +28,10 @@ import org.osgi.framework.BundleContext;
  * @see org.eclipse.ui.plugin.AbstractUIPlugin#getPreferenceStore()
  * @author Elias Volanakis
  */
-public final class DPFPlugin extends AbstractUIPlugin {
+public final class DPFPlugin extends EclipseUIPlugin {
 
 	/** Single plugin instance. */
-	public static DPFPlugin INSTANCE; //= new DPFPlugin();
+	public static DPFPlugin INSTANCE = new DPFPlugin();
 	public static String PLUGIN_ID = "no.hib.dpf.editor";
 
 	/**

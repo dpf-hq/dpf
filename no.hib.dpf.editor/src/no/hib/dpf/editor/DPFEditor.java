@@ -41,6 +41,7 @@ import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.provider.DiagramItemProviderAdapterFactory;
 import no.hib.dpf.editor.actions.CreateConstraintToolEntry;
 import no.hib.dpf.editor.actions.PrintAction;
+import no.hib.dpf.editor.figures.ArrowConnection;
 import no.hib.dpf.editor.figures.NodeFigure;
 import no.hib.dpf.editor.parts.ArrowLabelEditPart;
 import no.hib.dpf.editor.parts.DArrowEditPart;
@@ -142,7 +143,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 	protected DPFEditPartFactory shapesEditPartFactory;
 	protected DPFEditorPaletteFactory paletteFactory;
-	private static final String Marker_ID = DPFUtils.getPluginID()	+ ".validationmarker";
 
 	protected PropertySheetPage propertySheetPage;
 
@@ -543,7 +543,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				if(visitedNodes != null && visitedNodes.contains(node)) continue;
 				EList<Node> vertex = new BasicEList<Node>();
 				EList<Arrow> arrows = new BasicEList<Arrow>();
-				DPFCoreUtil.findRelatedElements(node, constraint, graph, vertex, arrows);
+				DPFCoreUtil.findRelatedElements(node, constraint, vertex, arrows);
 				if(!vertex.isEmpty()){
 					boolean valid = constraint.validate(vertex, arrows);
 					if(!valid){
@@ -661,17 +661,18 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		}
 	}
 
+	/*
+	 * Record all the markers attached to a node or an edge
+	 */
 	private Map<IDObject, List<IMarker>> markersMap = new HashMap<IDObject, List<IMarker>>();
+	/*
+	 * Record which constraint the mark is created for
+	 */
+	private Map<IMarker, Constraint> m2c = new HashMap<IMarker, Constraint>();
 	private IMarker findMarker(List<IMarker> markers, Constraint constraint){
 		if(markers != null)
 			for(IMarker marker : markers)
-				try {
-					if(marker.getAttribute("constraint") == constraint)
-						return marker;
-				} catch (CoreException e) {
-					DPFUtils.logError(e);
-					return null;
-				}
+				if(m2c.containsKey(marker)) return marker;
 		return null;
 	}
 	public void addMarker(IDObject iter, Constraint constraint) {
@@ -686,14 +687,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				String name = (iter instanceof Node)? ((Node)iter).getName() : 
 					((iter instanceof Arrow) ? ((Arrow)iter).getName() : null);
 
-				marker = file.createMarker(Marker_ID);
+				marker = file.createMarker(IMarker.PROBLEM);
 				marker.setAttribute(IMarker.MESSAGE, name + " violates constraint [" 
 						+ constraint.getPredicate().getSymbol()    + "] on {" 
 						+ DPFUtils.printConstraint(constraint) + "}");
 				marker.setAttribute(IMarker.LOCATION, name);
 				marker.setAttribute(IMarker.PRIORITY, IMarker.PRIORITY_NORMAL);
 				marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
-				marker.setAttribute("constraint", constraint);
+				m2c.put(marker, constraint);
 			} catch (CoreException e) {
 				marker = null;
 				DPFUtils.logError(e);
@@ -712,7 +713,14 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			if(dNode != null){
 				Object editpart = getGraphicalViewer().getEditPartRegistry().get(dNode);
 				if(editpart instanceof DNodeEditPart)
-					((NodeFigure)((DNodeEditPart)editpart).getFigure()).setErrorImageFlag(isMakerExisting(iter));
+					((NodeFigure)((DNodeEditPart)editpart).getFigure()).setErrorFlag(isMakerExisting(iter));
+			}
+		}else if(iter instanceof Arrow){
+			DArrow dArrow = dSpecification.getDGraph().getDArrow((Arrow) iter);
+			if(dArrow != null){
+				Object editpart = getGraphicalViewer().getEditPartRegistry().get(dArrow);
+				if(editpart instanceof DArrowEditPart)
+					((ArrowConnection)((DArrowEditPart)editpart).getFigure()).setErrorFlag(isMakerExisting(iter));
 			}
 		}
 	}
@@ -728,16 +736,15 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		if(markers != null){
 			IMarker marker = findMarker(markers, constraint);
 			if(marker != null){
-				if (marker.exists()) {
 					try {
 						marker.delete();
+						m2c.remove(marker);
 						markers.remove(marker);
 						if(markers.isEmpty())
 							updateVisual(iter);
 					} catch (CoreException e) {
 						DPFUtils.logError(e);
 					}
-				}
 			}
 		}
 	}

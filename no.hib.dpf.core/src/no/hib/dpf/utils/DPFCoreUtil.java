@@ -9,7 +9,6 @@ import java.util.Map;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.DPFCorePlugin;
-import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Specification;
 
@@ -187,11 +186,10 @@ public class DPFCoreUtil {
 	 * Right now, we assume that the arity is a connected graph.
 	 * @param node
 	 * @param constraint {@link Constraint}: the constraint
-	 * @param graph
 	 * @param nodes : the constrained nodes
 	 * @param arrows : the constrained arrows
 	 */
-	public static void findRelatedElements(Node node, Constraint constraint, Graph graph,
+	public static void findRelatedElements(Node node, Constraint constraint,
 			EList<Node> nodes, EList<Arrow> arrows) {
 		List<Node> visit = new ArrayList<Node>();
 		visit.add(node);

@@ -13,8 +13,8 @@ import java.util.List;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Signature;
-
 import no.hib.dpf.editor.DPFPlugin;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -184,6 +184,17 @@ public class SignatureItemProvider
 			(createChildParameter
 				(CorePackage.Literals.SIGNATURE__PREDICATES,
 				 CoreFactory.eINSTANCE.createPredicate()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return DPFPlugin.INSTANCE;
 	}
 
 //	/**

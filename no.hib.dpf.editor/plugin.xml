@@ -171,23 +171,11 @@
             name="Export Image">
       </command>
    </extension>
-   <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:no.hib.dpf.editor.model_editor?after=additions">
-         <command
-               commandId="no.hib.dpf.editor.exportimage"
-               label="Export Image"
-               style="push">
-         </command>
-      </menuContribution>
-   </extension>
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated Metamodel -->
+      <!-- @generated DiagramMetamodel -->
       <factory
-            uri="http://no.hib.dpf.core"
-            class="no.hib.dpf.core.provider.CoreItemProviderAdapterFactory"
+            uri="http://no.hib.dpf.diagram"
+            class="no.hib.dpf.diagram.provider.DiagramItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -195,11 +183,12 @@
                org.eclipse.emf.edit.provider.IItemLabelProvider
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
+
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated DiagramMetamodel -->
+      <!-- @generated Metamodel -->
       <factory
-            uri="http://no.hib.dpf.diagram"
-            class="no.hib.dpf.diagram.provider.DiagramItemProviderAdapterFactory"
+            uri="http://no.hib.dpf.core"
+            class="no.hib.dpf.core.provider.CoreItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

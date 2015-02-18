@@ -141,7 +141,7 @@ public class DPFUtils extends DPFCoreUtil {
 	public static final String DEFAULT_DIAGRAM_MODEL_EXTENSION = ".dpf";
 	public static final String DEFAULT_MODEL_EXTENSION = ".xmi";
 	public static DSignature loadDSignature(URI createFileURI) {
-		return loadDSignature(new ResourceSetImpl(), createFileURI);
+		return loadDSignature(getResourceSet(), createFileURI);
 	}
 
 	public static ResourceSetImpl getResourceSet() {

@@ -13,8 +13,8 @@ import java.util.List;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.SemanticValidator;
 import no.hib.dpf.core.ValidatorType;
-
 import no.hib.dpf.editor.DPFPlugin;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -170,6 +170,17 @@ public class SemanticValidatorItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return DPFPlugin.INSTANCE;
 	}
 
 //	/**

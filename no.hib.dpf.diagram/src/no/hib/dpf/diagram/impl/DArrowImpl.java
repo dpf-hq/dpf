@@ -15,7 +15,6 @@ import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DOffset;
-import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.diagram.util.DPFConstants;
 

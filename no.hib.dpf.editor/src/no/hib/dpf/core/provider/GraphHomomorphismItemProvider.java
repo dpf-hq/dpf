@@ -13,8 +13,8 @@ import java.util.List;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.GraphHomomorphism;
-
 import no.hib.dpf.editor.DPFPlugin;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -160,6 +160,17 @@ public class GraphHomomorphismItemProvider
 			(createChildParameter
 				(CorePackage.Literals.GRAPH_HOMOMORPHISM__ARROW_MAPPING,
 				 CoreFactory.eINSTANCE.create(CorePackage.Literals.ARROW_TO_ARROW_MAP)));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return DPFPlugin.INSTANCE;
 	}
 
 //	/**

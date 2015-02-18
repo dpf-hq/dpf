@@ -13,8 +13,8 @@ import java.util.List;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Specification;
-
 import no.hib.dpf.editor.DPFPlugin;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -261,6 +261,17 @@ public class SpecificationItemProvider
 			(createChildParameter
 				(CorePackage.Literals.SPECIFICATION__CONSTRAINTS,
 				 CoreFactory.eINSTANCE.createConstraint()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return DPFPlugin.INSTANCE;
 	}
 
 //	/**

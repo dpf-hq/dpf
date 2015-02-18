@@ -1,18 +1,13 @@
 package no.hib.dpf.editor.diagrams.classdiagram.dialogs;
 
-import java.util.ArrayList;
-
 import no.hib.dpf.core.Arrow;
 //import no.hib.dpf.core.DataNode;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants; 
-import no.hib.dpf.editor.utilities.DPFMetaLanguageUtils;
+import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
 import no.hib.dpf.editor.utilities.DPFModelUtils;
-import no.hib.dpf.editor.utilities.DPFTemplateUtils;
-import no.hib.dpf.editor.utilities.TemplateNodeAttributeUtils;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.draw2d.geometry.Point;
@@ -55,7 +50,7 @@ public class ClassDiagramMethodUtilities {
 		if(parameterDNodetype != null && parameterDArrowtype != null){
 			
 			// generate parameternode
-			DNode parameterDNode = generateParameterForMethod(method, parameterDArrowtype, parameterDNodetype, potency, dgraph);
+//			DNode parameterDNode = generateParameterForMethod(method, parameterDArrowtype, parameterDNodetype, potency, dgraph);
 //			DataNode direction_datanode = TemplateNodeAttributeUtils.getDataNode(parameterDNode.getNode(), ClassDiagramConstants.NODE_ATTRIBUTE_PARAMETER_DIRECTION);
 //			direction_datanode.setValue("return");
 //			DataNode value_datanode = DPFMetaLanguageUtils.getValueNode(parameterDNode.getNode());
@@ -108,13 +103,13 @@ public class ClassDiagramMethodUtilities {
 //			String visibilityIcon = ClassDiagramConstants.getDefaultVisiblityMap().get(visibility);
 			String visibilityIcon = "?";
 			
-			Node parameter_value = null;
+//			Node parameter_value = null;
 			String methodReturnType = "";
 			for (Arrow arrow : node.getOutgoings()) {
 				if(arrow != null){
 					Node targetNode = arrow.getTarget();
 					if(targetNode != null){ 
-						Node templateNode = (Node) targetNode.getTemplateElement();
+//						Node templateNode = (Node) targetNode.getTemplateElement();
 //						if(templateNode != null && templateNode.getName() != null && templateNode.getName().equals(ClassDiagramConstants.NODE_METHOD_PARAMETER)){
 //							parameter_value = DPFMetaLanguageUtils.getValueNode(targetNode);
 //						}
@@ -129,9 +124,10 @@ public class ClassDiagramMethodUtilities {
 			
 			
 			String retVal = visibilityIcon + name + "()";
-			if(methodReturnType == null){
-				retVal += " : void";
-			}else if(methodReturnType.equals("")){
+//			if(methodReturnType == null){
+//				retVal += " : void";
+//			}else
+				if(methodReturnType.equals("")){
 				retVal += " : void";
 			}else{
 				retVal += " : " + methodReturnType;

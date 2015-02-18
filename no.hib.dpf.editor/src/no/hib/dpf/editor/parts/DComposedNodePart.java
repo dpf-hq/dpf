@@ -2,16 +2,15 @@ package no.hib.dpf.editor.parts;
 
 import java.util.ArrayList;
 import java.util.List;
-import no.hib.dpf.editor.figures.LineSegment;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DComposedConstraint;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DConstraintNode;
 import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.editor.figures.LineSegment;
 import no.hib.dpf.editor.policies.NodeComponentEditPolicy;
 
 import org.eclipse.draw2d.ChopboxAnchor;
@@ -20,6 +19,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -28,9 +28,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-import org.eclipse.emf.common.notify.Adapter;
-
 
 
 public class DComposedNodePart extends GraphicalEditPartWithListener  implements NodeEditPart{
@@ -148,22 +145,19 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 		return result;
 	}
 	
-	@Override
 	public IFigure createFigure() {
 		label = new Label(){
-			@Override
 			protected String getTruncationString() {
 				return getText();
 			}
-			@Override
 			public void setText(String s) {
-				boolean changed = getText().equals(s);
+				boolean changed = !getText().equals(s);
 				super.setText(s);
-				if(changed)
-					setSize(getMinimumSize());
+				if(changed) setSize(getMinimumSize());
 			}
 		};
 		label.setOpaque(true);
+		label.setLocation(getDConstraintNode().getLocation());
 		return label;
 	}
 	public List<DArrowEditPart> getArrows() {
@@ -223,7 +217,7 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 	}
 
 	@Override
-	public ConnectionAnchor getSourceConnectionAnchor( ConnectionEditPart connection) {
+	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
 		return new ChopboxAnchor(label);
 	}
 	@Override
@@ -233,7 +227,7 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 
 
 	@Override
-	public ConnectionAnchor getTargetConnectionAnchor( ConnectionEditPart connection) {
+	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
 		return null;
 	}
 
@@ -256,13 +250,8 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 	}
 	@Override
 	protected void refreshVisuals() {
-		if(getDConstraintNode().getLocation() == null){
-			getDConstraintNode().setLocation(new Point());
-		}
 		label.setText(getFullName());
-		Rectangle bound = getBound();
-		if(bound != null)
-			label.setLocation(bound.getCenter().getTranslated(getDConstraintNode().getLocation()));
+		label.setLocation(getDConstraintNode().getLocation());
 	}
 	public void remove(EditPart target){
 		if(target instanceof DArrowEditPart){
@@ -300,171 +289,16 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 			}
 		}
 	}
-	public void resize(Point location) {
-		getFigure().setLocation(location.getTranslated(getDConstraintNode().getLocation()));
+	protected void listen(){
+		super.listen();
+		addUIAdapter(getDConstraint().getConstraint(), paraListner);
 	}
 	
-	
-//	Label label = null;
-//	@Override
-//	protected void createEditPolicies() {
-//		// allow removal of the associated model element
-//		installEditPolicy(EditPolicy.COMPONENT_ROLE, new NodeComponentEditPolicy());
-//	}
-//
-//	protected String getFullName() {
-//		DConstraint dConstraint = getDConstraint();
-//		String result = dConstraint.getDPredicate().getSimpleName();
-//		result = "[" + result + "]";
-//		String parameter = dConstraint.getConstraint().getParameters();
-//		if(parameter != null && !parameter.isEmpty()){
-//			result += "(" + parameter + ")";
-//		}
-//		return result;
-//	}
-//	/*
-//	 * Make the label size equals to the text size
-//	 */
-//	public IFigure createFigure() {
-//		label = new Label(){
-//			protected String getTruncationString() {
-//				return getText();
-//			}
-//			public void setText(String s) {
-//				boolean changed = !getText().equals(s);
-//				super.setText(s);
-//				if(changed) setSize(getMinimumSize());
-//			}
-//		};
-//		label.setOpaque(true);
-//		return label;
-//	}
-//
-//	public DConstraint getDConstraint() {
-//		return getDConstraintNode().getDConstraint();
-//	}
-//
-//	protected DConstraintNode getDConstraintNode(){
-//		return (DConstraintNode) getModel();
-//	}
-//
-//	public Label getLabel() { return (Label)getFigure(); }
-//
-//	@Override
-//	@SuppressWarnings({ "unchecked", "rawtypes" })
-//	protected List<?> getModelSourceConnections() {
-//		EList sources = new BasicEList();
-//		sources.addAll(getDConstraintNode().getConstraintsFrom());
-//		return sources;
-//	}
-//
-//	@Override
-//	public ConnectionAnchor getSourceConnectionAnchor( ConnectionEditPart connection) {
-//		return new ChopboxAnchor(label);
-//	}
-//	@Override
-//	public ConnectionAnchor getSourceConnectionAnchor(Request request) { return null; }
-//
-//	@Override
-//	public ConnectionAnchor getTargetConnectionAnchor( ConnectionEditPart connection) { return null; }
-//
-//	@Override
-//	public ConnectionAnchor getTargetConnectionAnchor(Request request) { return null; }
-//
-//	/*
-//	 * react to parameter changing
-//	 */
-//	protected void handleModelChanged(Notification msg){
-//		super.handleModelChanged(msg);
-//		if(msg.getNotifier() == getDConstraint().getConstraint()){
-//			switch(msg.getFeatureID(Constraint.class)){
-//			case CorePackage.CONSTRAINT__PARAMETERS:
-//				refreshVisuals();
-//			}
-//		}
-//	}
-//	/*
-//	 * react to connection creating and deleting
-//	 */
-//	@Override
-//	protected void handleDiagramModelChanged(Notification msg) {
-//		super.handleDiagramModelChanged(msg);
-//		if(msg.getNotifier() != null && msg.getNotifier() == getDiagramModel()){ 
-//			switch(msg.getFeatureID(DNode.class)){
-//			case DiagramPackage.DNODE__CONSTRAINTS_FROM:
-//				refreshSourceConnections();
-//				break;
-//			}
-//
-//		}
-//	}
-//	protected void refreshVisuals() {
-//		label.setText(getFullName());
-//		if(getDConstraintNode().getLocation() != null){
-//			label.setLocation(getDConstraintNode().getLocation());
-//		}else{
-//			DComposedConstraint composed = (DComposedConstraint) getDConstraint();
-//			if(getSourceConnections().size() == composed.getChildren().size()){
-//				/*
-//				 * Set the initial position of the node when every connection is connected
-//				 */
-//				Rectangle bounds = null;
-//				for(Object object : getSourceConnections()){
-//					if(object instanceof DConstraintEditPart){
-//						EditPart target = ((DConstraintEditPart)object).getTarget();
-//						if(target instanceof AbstractGraphicalEditPart){
-//							Rectangle cur = ((AbstractGraphicalEditPart)target).getFigure().getBounds();
-//							if(bounds == null) bounds = cur;
-//							else bounds = bounds.getUnion(cur);
-//						}
-//					}
-//				}
-//				Point initial = bounds.getTop();
-//				initial.y -= label.getSize().height;
-//				initial.x -= (label.getSize().width/2); 
-//				getDConstraintNode().setLocation(initial);
-//			}
-//		}
-//	}
-//	protected void listen(){
-//		super.listen();
-//		addUIAdapter(getDConstraint().getConstraint(), modelListener);
-//	}
-//	protected void unlisten(){
-//		removeUIAdapter(getDConstraint().getConstraint(), modelListener);
-//		super.unlisten();
-//	}
-//	
-//
-//	public List<DNodeEditPart> getNodes(){
-//		if(nodes == null) 
-//			nodes = new ArrayList<DNodeEditPart>();
-//		return nodes;
-//	}
-//	
-//	public Rectangle getBound(){
-//		Rectangle bound = null;
-//		for(DNodeEditPart iter : getNodes()){
-//			Rectangle cur = iter.getFigure().getBounds();
-//			if(bound == null)
-//				bound = cur.getCopy();
-//			else
-//				bound = bound.getUnion(cur);
-//		}
-//		for(DArrowEditPart iter : getArrows()){
-//			Rectangle cur = iter.getFigure().getBounds();
-//			if(bound == null)
-//				bound = cur.getCopy();
-//			else
-//				bound = bound.getUnion(cur);
-//		}
-//		return bound;
-//	}
-//	public Point getCrossPoint(Point newLocation){
-//		Rectangle bound = getBound();
-//		if(bound != null && bound.contains(newLocation)){
-//			newLocation = new LineSegment(newLocation, null).getCrossPoint(bound);
-//		}
-//		return newLocation;
-//	}
+	/*
+	 * Unlisten to diagram model
+	 */
+	protected void unlisten(){
+		removeUIAdapter(getDConstraint().getConstraint(), paraListner);
+		super.unlisten();
+	}
 }

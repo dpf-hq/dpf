@@ -1,36 +1,26 @@
 package no.hib.dpf.editor.policies;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.diagram.DArrow;
-//import no.hib.dpf.diagram.DArrowDAttribute;
-import no.hib.dpf.diagram.DConstraintNode;
 //import no.hib.dpf.diagram.DDataNode;
 import no.hib.dpf.diagram.DNode;
 //import no.hib.dpf.diagram.DNodeDAttribute;
 import no.hib.dpf.editor.commands.DArrowCreateCommand;
 import no.hib.dpf.editor.commands.DArrowReconnectCommand;
+import no.hib.dpf.editor.utilities.DPFTemplateUtils;
+
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
+import org.eclipse.gef.requests.CreateConnectionRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
+//import no.hib.dpf.diagram.DArrowDAttribute;
 //import no.hib.dpf.editor.commands.DArrowReconnectCommand;
 //import no.hib.dpf.editor.commands.attribute.DArrowDAttributeCreateCommand;
 //import no.hib.dpf.editor.commands.attribute.DArrowDAttributeReconnectCommand;
 //import no.hib.dpf.editor.commands.attribute.DNodeAttributeCreateCommand;
 //import no.hib.dpf.editor.commands.attribute.DNodeAttributeReconnectCommand;
-import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.parts.DGraphEditPart;
-import no.hib.dpf.editor.parts.DArrowEditPart;
-import no.hib.dpf.editor.parts.DNodeEditPart;
-import no.hib.dpf.editor.utilities.DPFTemplateUtils;
-
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
-import org.eclipse.gef.requests.CreateConnectionRequest;
-import org.eclipse.gef.requests.ReconnectRequest;
 
 /**
  * 
@@ -323,13 +313,13 @@ public class DConnectionCreatePolicy extends GraphicalNodeEditPolicy {
 				&& request instanceof CreateConnectionRequest){
 			super.eraseSourceFeedback(request);
 			
-			EditPart host = getHost();
-			NodeFigure figure = null;
-			if(host instanceof DNodeEditPart){
-				figure = (NodeFigure) ((DNodeEditPart) host).getFigure();
-			}else if(host instanceof DNodeEditPart){
-				figure = (NodeFigure) ((DNodeEditPart) host).getFigure();
-			}
+//			EditPart host = getHost();
+//			NodeFigure figure = null;
+//			if(host instanceof DNodeEditPart){
+//				figure = (NodeFigure) ((DNodeEditPart) host).getFigure();
+//			}else if(host instanceof DNodeEditPart){
+//				figure = (NodeFigure) ((DNodeEditPart) host).getFigure();
+//			}
 			
 //			if(figure != null){
 //				figure.showFeedBack(0);

@@ -4,10 +4,18 @@ import no.hib.dpf.core.Arrow;
 //import no.hib.dpf.core.DataNode;
 import no.hib.dpf.core.Node;
 //import no.hib.dpf.core.NodeAttribute;  
-import no.hib.dpf.diagram.DNode;  
+import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.utils.DPFCoreConstants;
 
-import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.custom.TableEditor;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
@@ -15,21 +23,12 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem; 
-import org.eclipse.swt.SWT; 
-import org.eclipse.swt.widgets.Text; 
-import org.eclipse.swt.custom.CCombo;
-import org.eclipse.swt.custom.TableEditor; 
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent; 
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.widgets.Button;  
-import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.TabItem; 
+import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Text;
 
 public class DynamicNodeAttributeDialog extends Dialog {
 
@@ -38,9 +37,9 @@ public class DynamicNodeAttributeDialog extends Dialog {
 	Table table;
 	TabFolder tabFolder;
 	
-	private final int TABLE_COLUMN_NAME_INDEX = 0;
+//	private final int TABLE_COLUMN_NAME_INDEX = 0;
 	private final int TABLE_COLUMN_VALUE_INDEX = 1;
-	private final int TABLE_COLUMN_MUTABILITY_INDEX = 2;
+//	private final int TABLE_COLUMN_MUTABILITY_INDEX = 2;
 
 	/**
 	 * Create the dialog.
@@ -297,7 +296,7 @@ public class DynamicNodeAttributeDialog extends Dialog {
 		@Override
 		public void handleEvent(Event e) {
 			if (e.type == SWT.Selection) {
-				Node node = dnode.getNode();
+//				Node node = dnode.getNode();
 				
 //				for (NodeAttribute outgoingAttr : node.getOutgoingAttributes()) {
 //					for (TableItem tableItem : table.getItems()) {

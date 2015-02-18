@@ -8,14 +8,12 @@ package no.hib.dpf.diagram.impl;
 
 import java.util.Collection;
 
-import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.diagram.util.DPFConstants;
 
@@ -529,7 +527,7 @@ public class DNodeImpl extends DElementImpl implements DNode {
 	 */
 	public DNode getTemplateDNode() {
 		try {
-			DSpecification spec = (DSpecification)this.eContainer().eContainer();
+//			DSpecification spec = (DSpecification)this.eContainer().eContainer();
 //			if(spec.getSpecification().eIsSet(CorePackage.Literals.SPECIFICATION__METALEVEL)){
 //				return getDType().getTemplateDNode();
 //			}else{

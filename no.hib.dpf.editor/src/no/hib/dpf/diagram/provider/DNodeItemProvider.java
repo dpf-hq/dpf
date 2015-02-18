@@ -236,8 +236,8 @@ public class DNodeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 "Size", //getString("_UI_DNode_size_feature"),
-				 "size2", //getString("_UI_PropertyDescriptor_description", "_UI_DNode_size_feature", "_UI_DNode_type"),
+				 getString("_UI_DNode_size_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DNode_size_feature", "_UI_DNode_type"),
 				 DiagramPackage.Literals.DNODE__SIZE,
 				 true,
 				 false,

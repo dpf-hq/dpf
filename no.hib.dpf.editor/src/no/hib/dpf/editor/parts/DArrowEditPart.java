@@ -166,7 +166,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 				return;
 			}
 			case DiagramPackage.DARROW__BENDPOINTS:
-				refreshBendpoints();
+				refresh();
 			}
 		}
 	}
@@ -248,7 +248,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 	public void refreshVisuals() {
 		DArrow darrow = getDArrow();
 		if(getEditor() != null && connectionFigure instanceof ArrowConnection)
-			((ArrowConnection)connectionFigure).setErrorImageFlag(getEditor().isMakerExisting(darrow.getArrow()));
+			((ArrowConnection)connectionFigure).setErrorFlag(getEditor().isMakerExisting(darrow.getArrow()));
 		refreshBendpoints();
 		getFigure().setForegroundColor(DPFEditorPreferences.getDefault().getArrowForegroundColor());
 	}

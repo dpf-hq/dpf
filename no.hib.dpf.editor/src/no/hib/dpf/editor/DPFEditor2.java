@@ -1,10 +1,12 @@
 package no.hib.dpf.editor;
 
 
-import no.hib.dpf.core.*;
+import no.hib.dpf.core.Specification;
 import no.hib.dpf.editor.parts.DPFEditPartFactory;
 
-import org.eclipse.core.resources.*;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;

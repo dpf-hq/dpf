@@ -6,9 +6,17 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Node;
 //import no.hib.dpf.core.NodeAttribute; 
 import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DNode;  
 import no.hib.dpf.utils.DPFCoreConstants;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.custom.TableEditor;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
@@ -18,20 +26,8 @@ import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem; 
-import org.eclipse.swt.SWT; 
-import org.eclipse.swt.widgets.Text; 
-import org.eclipse.swt.custom.CCombo;
-import org.eclipse.swt.custom.TableEditor;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.widgets.Button; 
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.custom.ScrolledComposite; 
+import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Text;
 
 public class DynamicArrowAttributeDialog extends Dialog {
 
@@ -42,7 +38,7 @@ public class DynamicArrowAttributeDialog extends Dialog {
 	
 	private final int TABLE_COLUMN_NAME_INDEX = 0;
 	private final int TABLE_COLUMN_VALUE_INDEX = 1;
-	private final int TABLE_COLUMN_MUTABILITY_INDEX = 2;
+//	private final int TABLE_COLUMN_MUTABILITY_INDEX = 2;
 
 	/**
 	 * Create the dialog.
@@ -297,7 +293,7 @@ public class DynamicArrowAttributeDialog extends Dialog {
 		@Override
 		public void handleEvent(Event e) {
 			if (e.type == SWT.Selection) {
-				Arrow arrow = darrow.getArrow();
+//				Arrow arrow = darrow.getArrow();
 				
 //				for (ArrowAttribute outgoingAttr : arrow.getOutgoingAttributes()) {
 //					for (TableItem tableItem : table.getItems()) {

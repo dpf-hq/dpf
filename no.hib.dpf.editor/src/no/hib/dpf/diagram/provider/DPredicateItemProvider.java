@@ -13,8 +13,8 @@ import java.util.List;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.DiagramPackage;
-
 import no.hib.dpf.editor.DPFPlugin;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -235,6 +235,17 @@ public class DPredicateItemProvider
 			(createChildParameter
 				(DiagramPackage.Literals.DPREDICATE__VISUALIZATION,
 				 DiagramFactory.eINSTANCE.createVisualization()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return DPFPlugin.INSTANCE;
 	}
 //
 //	/**

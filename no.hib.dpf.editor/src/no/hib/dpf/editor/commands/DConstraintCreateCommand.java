@@ -13,6 +13,7 @@ import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
@@ -49,7 +50,7 @@ public class DConstraintCreateCommand extends AbstractCreateCommand {
 		switch(dPredicate.getVisualization().getType()){
 		case ARROW_LABEL:
 			result = DiagramFactory.eINSTANCE.createDArrowLabelConstraint();
-			((DArrowLabelConstraint)result).setOffset(DiagramFactory.eINSTANCE.createDOffset());
+			((DArrowLabelConstraint)result).setOffset(DiagramFactory.eINSTANCE.createDefaultDOffset());
 			break;
 		case NODE_TO_ARROW:
 		case NODE_TO_NODE:
@@ -62,7 +63,13 @@ public class DConstraintCreateCommand extends AbstractCreateCommand {
 			DComposedConstraint newComposedConstraint = DiagramFactory.eINSTANCE.createDComposedConstraint();
 			DConstraintNode dNode = DiagramFactory.eINSTANCE.createDConstraintNode();
 			dNode.setSize(null);
-			dNode.setLocation(null);
+			DNode dnode = dnodes.get(0);
+			Rectangle rect = new Rectangle(dnode.getLocation(), dnode.getSize());
+			for(int index = 1; index < dnodes.size(); index++){
+				dnode = dnodes.get(index);
+				rect = rect.union(new Rectangle(dnode.getLocation(), dnode.getSize()));
+			}
+			dNode.setLocation(dnodes.size() == 1 ? rect.getTop() : rect.getCenter());
 			dNode.setDConstraint(newComposedConstraint);
 			newComposedConstraint.setFakeNode(dNode);
 			if(darrows.size() == 0){

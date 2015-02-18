@@ -13,8 +13,8 @@ import java.util.List;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.DiagramPackage;
-
 import no.hib.dpf.editor.DPFPlugin;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -81,8 +81,8 @@ public class DGraphItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 "_UI_DGraph_dType_feature", //getString("_UI_DGraph_dType_feature"),
-				 "_UI_PropertyDescriptor_description", //getString("_UI_PropertyDescriptor_description", "_UI_DGraph_dType_feature", "_UI_DGraph_type"),
+				 getString("_UI_DGraph_dType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DGraph_dType_feature", "_UI_DGraph_type"),
 				 DiagramPackage.Literals.DGRAPH__DTYPE,
 				 true,
 				 false,
@@ -103,8 +103,8 @@ public class DGraphItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 "_UI_DGraph_graph_feature",//getString("_UI_DGraph_graph_feature"),
-				 "_UI_DGraph_graph_feature2",//getString("_UI_PropertyDescriptor_description", "_UI_DGraph_graph_feature", "_UI_DGraph_type"),
+				 getString("_UI_DGraph_graph_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DGraph_graph_feature", "_UI_DGraph_type"),
 				 DiagramPackage.Literals.DGRAPH__GRAPH,
 				 true,
 				 false,
@@ -153,8 +153,7 @@ public class DGraphItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, DPFPlugin.INSTANCE.getImageRegistry().get("full/obj16/DGraph"));
-				//getResourceLocator().getImage("full/obj16/DGraph"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DGraph"));
 	}
 
 	/**
@@ -165,7 +164,7 @@ public class DGraphItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return "_UI_DGraph_type";//getString("_UI_DGraph_type");
+		return getString("_UI_DGraph_type");
 	}
 
 	/**
@@ -213,6 +212,17 @@ public class DGraphItemProvider
 			(createChildParameter
 				(DiagramPackage.Literals.DGRAPH__DARROWS,
 				 DiagramFactory.eINSTANCE.createDArrow()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return DPFPlugin.INSTANCE;
 	}
 
 //	/**

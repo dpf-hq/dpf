@@ -11,8 +11,8 @@ import java.util.Collection;
 import java.util.List;
 
 import no.hib.dpf.diagram.DiagramPackage;
-
 import no.hib.dpf.editor.DPFPlugin;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -77,9 +77,8 @@ public class DElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 //getString("_UI_DElement_constraintsFrom_feature")
-				 "Constraints From",
-				 "something someting", //getString("_UI_PropertyDescriptor_description", "_UI_DElement_constraintsFrom_feature", "_UI_DElement_type"),
+				 getString("_UI_DElement_constraintsFrom_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DElement_constraintsFrom_feature", "_UI_DElement_type"),
 				 DiagramPackage.Literals.DELEMENT__CONSTRAINTS_FROM,
 				 true,
 				 false,
@@ -100,8 +99,8 @@ public class DElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 "Constraints to",//getString("_UI_DElement_constraintsTo_feature"),
-				 "something other", //getString("_UI_PropertyDescriptor_description", "_UI_DElement_constraintsTo_feature", "_UI_DElement_type"),
+				 getString("_UI_DElement_constraintsTo_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DElement_constraintsTo_feature", "_UI_DElement_type"),
 				 DiagramPackage.Literals.DELEMENT__CONSTRAINTS_TO,
 				 true,
 				 false,
@@ -156,6 +155,17 @@ public class DElementItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return DPFPlugin.INSTANCE;
 	}
 
 //	/**

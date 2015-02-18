@@ -60,10 +60,9 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 	}
 
 	public boolean invalid = false;
-	public void setErrorImageFlag(boolean bool) {
+	public void setErrorFlag(boolean bool) {
 		if(invalid != bool){
 			invalid = bool;
-			revalidate();
 			repaint();
 		}		
 	}

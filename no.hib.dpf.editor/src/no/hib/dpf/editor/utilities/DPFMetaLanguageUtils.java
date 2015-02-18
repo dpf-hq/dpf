@@ -3,18 +3,14 @@ package no.hib.dpf.editor.utilities;
 import java.util.ArrayList;
 
 import no.hib.dpf.core.Arrow;
-//import no.hib.dpf.core.ArrowAttribute;
-import no.hib.dpf.core.CorePackage;
 //import no.hib.dpf.core.DataNode;
 import no.hib.dpf.core.Node;
 //import no.hib.dpf.core.NodeAttribute;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.utils.DPFCoreConstants;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
+//import no.hib.dpf.core.ArrowAttribute;
 
 public class DPFMetaLanguageUtils {
 	
@@ -172,7 +168,7 @@ public class DPFMetaLanguageUtils {
 			Assert.isNotNull(arrow);
 			Arrow templateType = (Arrow) arrow.getTemplateElement();
 			if(templateType != null && templateType.getTypeArrow() != null){
-				String metaLanguageType = templateType.getTypeArrow().getName();
+//				String metaLanguageType = templateType.getTypeArrow().getName();
 				
 //				if(metaLanguageType.equals(DPFMetaLanguageUtils.INHERITANCE)){
 //					if(arrow.eIsSet(CorePackage.Literals.DEEP_ELEMENT__POTENCY)){

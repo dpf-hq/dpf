@@ -20,7 +20,6 @@ import java.util.Map;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.editor.parts.listeners.UIAdapter;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
 

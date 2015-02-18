@@ -5,29 +5,25 @@ import java.util.ArrayList;
 //import no.hib.dpf.core.DataNode;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
-import no.hib.dpf.core.Specification;
 import no.hib.dpf.diagram.DArrow;
 //import no.hib.dpf.diagram.DArrowDAttribute;
 //import no.hib.dpf.diagram.DDataNode;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
-//import no.hib.dpf.diagram.DNodeDAttribute;
-import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.editor.diagrams.classdiagram.ClassDiagramConstants;
 //import no.hib.dpf.editor.displaymodel.factories.DArrowDAttributeFactory;
 import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
 //import no.hib.dpf.editor.displaymodel.factories.DDataNodeFactory;
 //import no.hib.dpf.editor.displaymodel.factories.DNodeDAttributeFactory;
 import no.hib.dpf.editor.displaymodel.factories.DNodeFactory;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.draw2d.geometry.Point;
+//import no.hib.dpf.diagram.DNodeDAttribute;
 
 
 public class DPFTemplateUtils {
 
 	public static final String DEFAULT_CLASS_DIAGRAM_TEMPLATE = "Template";
-	private static final Point replicationLocation = new Point(5, 500);
+//	private static final Point replicationLocation = new Point(5, 500);
 
 	/**
 	 * @author Ole Klokkhammer

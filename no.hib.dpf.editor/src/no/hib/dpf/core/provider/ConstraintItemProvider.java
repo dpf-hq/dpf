@@ -18,6 +18,7 @@ import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.diagram.provider.ExtendItemPropertyDescriptor;
+import no.hib.dpf.editor.DPFPlugin;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -325,6 +326,14 @@ public class ConstraintItemProvider
 			(createChildParameter
 				(CorePackage.Literals.CONSTRAINT__MAPPINGS,
 				 CoreFactory.eINSTANCE.createGraphHomomorphism()));
+	}
+	/**
+	 * (non-Javadoc)
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#getResourceLocator()
+	 * @generated 
+	 */
+	public ResourceLocator getResourceLocator(){
+		return DPFPlugin.INSTANCE;
 	}
 
 }

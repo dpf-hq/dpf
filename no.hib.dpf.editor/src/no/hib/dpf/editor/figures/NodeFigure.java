@@ -113,15 +113,11 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		super.paintChildren(graphics);
 	}
 
-	public void setErrorImageFlag(boolean bool) {
+	public void setErrorFlag(boolean bool) {
 		if(valid != bool){
 			valid = bool;
-			revalidate();
+			repaint();
 		}
-	}
-
-	public boolean getErrorImageFlag() {
-		return valid;
 	}
 	
 	public void setBounds(Rectangle rect) {

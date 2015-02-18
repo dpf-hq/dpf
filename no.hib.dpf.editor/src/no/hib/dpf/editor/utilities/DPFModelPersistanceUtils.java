@@ -8,9 +8,6 @@ import static no.hib.dpf.utils.DPFCoreConstants.DefaultSpecification;
 import static no.hib.dpf.utils.DPFCoreConstants.REFLEXIVE_SPECIFICATION;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -34,7 +31,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
@@ -56,7 +52,6 @@ import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.views.navigator.ResourceComparator;
-import org.osgi.framework.Bundle;
 
 public class DPFModelPersistanceUtils extends DPFCoreUtil {
 	
@@ -138,7 +133,7 @@ public class DPFModelPersistanceUtils extends DPFCoreUtil {
 		Resource diagram = createResource(resourceSet, diagramURI, resourceToDiagnosticMap);
 		
 		URI modelFileURI = getModelURI(diagramURI);
-		Resource model = createResource(resourceSet, modelFileURI, resourceToDiagnosticMap);
+		createResource(resourceSet, modelFileURI, resourceToDiagnosticMap);
 		try {
 			diagram.load(null);
 		} catch (Exception e) {
@@ -349,24 +344,24 @@ public class DPFModelPersistanceUtils extends DPFCoreUtil {
 		}
 	}
 	
-	private InputStream getUIContentStream(String symbolicName, String folder, String resource) {
-		try {
-			return findUIResource(symbolicName, folder, resource).openStream();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+//	private InputStream getUIContentStream(String symbolicName, String folder, String resource) {
+//		try {
+//			return findUIResource(symbolicName, folder, resource).openStream();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
 	
-	private URL findUIResource(String symbolicName, String folder, String resource) {
-		Bundle b = Platform.getBundle(symbolicName);
-		Enumeration<URL> ee = b.findEntries(folder, resource, false);
-		
-		URL fileURL = null;
-		
-		if(ee.hasMoreElements()) {
-			fileURL = ee.nextElement();
-		}
-		return fileURL;
-	}
+//	private URL findUIResource(String symbolicName, String folder, String resource) {
+//		Bundle b = Platform.getBundle(symbolicName);
+//		Enumeration<URL> ee = b.findEntries(folder, resource, false);
+//		
+//		URL fileURL = null;
+//		
+//		if(ee.hasMoreElements()) {
+//			fileURL = ee.nextElement();
+//		}
+//		return fileURL;
+//	}
 }

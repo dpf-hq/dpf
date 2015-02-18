@@ -1,14 +1,9 @@
 package no.hib.dpf.editor.utilities;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Enumeration;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
-import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.GraphHomomorphism;
 import no.hib.dpf.core.Node;
@@ -33,9 +28,7 @@ import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
 import no.hib.dpf.editor.displaymodel.factories.DNodeFactory;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
-import org.osgi.framework.Bundle;
 /**
  * 
  * @author Ole Klokkhammer
@@ -57,7 +50,7 @@ public class DPFModelUtils {
 			Graph graph = spec.getGraph();
 			if(graph != null){
 				// update potency on the Graph
-				Graph typeGraph = graph.getType();
+//				Graph typeGraph = graph.getType();
 //				if(typeGraph != null && typeGraph.eIsSet(CorePackage.Literals.DEEP_ELEMENT__POTENCY)){
 //					graph.setPotency(typeGraph.getPotency() - 1);
 //				}
@@ -274,9 +267,9 @@ public class DPFModelUtils {
 	 * @param typeDConstraint
 	 */
 	public static void addDConstraintFromType(ArrayList<DArrow> darrows, DConstraint typeDConstraint) {
-		for (DArrow dArrow : darrows) {
-			//TODO
-		}
+//		for (DArrow dArrow : darrows) {
+//			//TODO
+//		}
 	}
 	
 

@@ -116,8 +116,8 @@ public class IDObjectItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 "IDObject Feature",//getString("_UI_IDObject_id_feature"),
-				 "IDObject Feature2",//getString("_UI_PropertyDescriptor_description", "_UI_IDObject_id_feature", "_UI_IDObject_type"),
+				 getString("_UI_IDObject_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IDObject_id_feature", "_UI_IDObject_type"),
 				 CorePackage.Literals.ID_OBJECT__ID,
 				 true,
 				 false,
@@ -172,15 +172,14 @@ public class IDObjectItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
-//	/**
-//	 * Return the resource locator for this item provider's resources.
-//	 * <!-- begin-user-doc -->
-//	 * <!-- end-user-doc -->
-//	 * @generated
-//	 */
-//	@Override
-//	public ResourceLocator getResourceLocator() {
-//		return DPFPlugin.INSTANCE;
-//	}
-
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return DPFPlugin.INSTANCE;
+	}
 }
