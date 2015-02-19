@@ -129,12 +129,12 @@ public class ArrowTest extends IDObjectTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.core.Arrow#getTemplateElementType()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetTemplateElementType() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+//		fail();
 	}
 
 	public void testGenerateUniqueNameWhenInGraph() {

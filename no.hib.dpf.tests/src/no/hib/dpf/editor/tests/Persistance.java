@@ -1,51 +1,6 @@
 package no.hib.dpf.editor.tests;
 
-import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
-import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
-import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DARROW;
-import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DGRAPH;
-import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_TYPE_DNODE;
-import static no.hib.dpf.utils.DPFConstants.DEFAULT_SIGNATURE;
-import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_SPECIFICATION;
-import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_TYPE_ARROW;
-import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_TYPE_GRAPH;
-import static no.hib.dpf.utils.DPFConstants.REFLEXIVE_TYPE_NODE;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
-import java.util.HashMap;
-
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.CoreFactory;
-import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.Node;
-import no.hib.dpf.core.Predicate;
-import no.hib.dpf.core.Signature;
-import no.hib.dpf.core.Specification;
-import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DGraph;
-import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.diagram.DPredicate;
-import no.hib.dpf.diagram.DSignature;
-import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.diagram.DiagramFactory;
-import no.hib.dpf.diagram.VisualizationType;
-import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.editor.signature.SignatureEditor;
-import no.hib.dpf.utils.DPFCoreUtil;
-
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.junit.Test;
 
 public class Persistance {
 

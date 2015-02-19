@@ -317,7 +317,7 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	 */
 	public boolean validate(EList<Node> nodes, EList<Arrow> arrows) 
 	{
-		return getPredicate().validateSemantics(getParameters(), getMappings(),nodes,  arrows);
+		return getPredicate().validateSemantics(getParameters(), getMappings(), nodes,  arrows);
 	}
 
 	/**

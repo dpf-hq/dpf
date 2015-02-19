@@ -81,12 +81,12 @@ public abstract class IDObjectTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.core.IDObject#getTemplateElement()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetTemplateElement() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+//		fail();
 	}
 
 	/**
@@ -94,12 +94,12 @@ public abstract class IDObjectTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.core.IDObject#isTemplateElement()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testIsTemplateElement() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+//		fail();
 	}
 
 	/**
@@ -107,12 +107,12 @@ public abstract class IDObjectTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.core.IDObject#getElement(int)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetElement__int() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+//		fail();
 	}
 
 	@Test

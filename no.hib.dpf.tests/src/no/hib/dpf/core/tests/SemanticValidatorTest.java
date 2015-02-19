@@ -17,7 +17,6 @@ import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.SemanticValidator;
 import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.utils.internal.signature.InjectivePredicate;
-import no.hib.dpf.utils.internal.signature.InversePredicate;
 import no.hib.dpf.utils.internal.signature.IrreflexivePredicate;
 import no.hib.dpf.utils.internal.signature.JointlyInjectivePredicate;
 import no.hib.dpf.utils.internal.signature.JointlySurjectiveValidator;
@@ -135,14 +134,14 @@ public class SemanticValidatorTest extends TestCase {
 	private void testPredicate(Predicate predicate, EList<Node> nodes, EList<Arrow> arrows, Graph model, boolean result) {
 		Constraint constraint = predicate.createConstraint(nodes, arrows);
 		if (constraint != null)
-			assertEquals(predicate.validateSemantics(null, constraint.getMappings(), nodes, arrows), result);
+			assertEquals(predicate.validateSemantics(null, constraint.getMappings(), model.getNodes(), model.getArrows()), result);
 	}
 
 	private void testPredicate(String parameters, Predicate predicate,EList<Node> nodes, EList<Arrow> arrows, Graph model, boolean result) {
 		Constraint constraint = predicate.createConstraint(nodes, arrows);// predicate.getShape().getNodes(),
 		if (constraint != null) {
 			constraint.setParameters(parameters);
-			assertEquals( predicate.validateSemantics(parameters,constraint.getMappings(), nodes, arrows), result);
+			assertEquals( predicate.validateSemantics(parameters,constraint.getMappings(), model.getNodes(), model.getArrows()), result);
 		}
 	}
 
@@ -232,7 +231,7 @@ public class SemanticValidatorTest extends TestCase {
 		graph.getNodeByName("z").setTypeNode(typeGraph.getNodeByName("z_type"));
 		graph.getArrowByName("f").setTypeArrow(typeGraph.getArrowByName("f_type"));
 		graph.getArrowByName("g").setTypeArrow(typeGraph.getArrowByName("g_type"));
-		testPredicate(predicate, typeGraph, graph, false);
+		testPredicate(predicate, typeGraph, graph, true);
 
 		graph = CoreFactory.eINSTANCE.createGraph("x,y,z", "f:x:y,g:x:y");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
@@ -284,7 +283,7 @@ public class SemanticValidatorTest extends TestCase {
 		graph.getArrowByName("h").setTypeArrow(typeGraph.getArrowByName("f_type"));
 		graph.getArrowByName("i").setTypeArrow(typeGraph.getArrowByName("g_type"));
 		// consider this later
-		testPredicate(predicate, typeGraph, graph, false);
+		testPredicate(predicate, typeGraph, graph, true);
 
 		graph = CoreFactory.eINSTANCE.createGraph("x1,x2,z", "f:x1:z,g:x2:z");
 		graph.getNodeByName("x1").setTypeNode(typeGraph.getNodeByName("x_type"));
@@ -292,7 +291,7 @@ public class SemanticValidatorTest extends TestCase {
 		graph.getNodeByName("z").setTypeNode(typeGraph.getNodeByName("z_type"));
 		graph.getArrowByName("f").setTypeArrow(typeGraph.getArrowByName("f_type"));
 		graph.getArrowByName("g").setTypeArrow(typeGraph.getArrowByName("f_type"));
-		testPredicate(predicate, typeGraph, graph, false);
+		testPredicate(predicate, typeGraph, graph, true);
 	}
 	public void testJInjPredicate() {
 		Predicate predicate = new JointlyInjectivePredicate();

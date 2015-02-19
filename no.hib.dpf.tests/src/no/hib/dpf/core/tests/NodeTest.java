@@ -296,12 +296,12 @@ public class NodeTest extends IDObjectTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.core.Node#getTemplateElementType()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetTemplateElementType() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+//		fail();
 	}
 
 	/**

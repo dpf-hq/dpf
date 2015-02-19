@@ -7,8 +7,7 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: no.hib.dpf.core.tests,
- no.hib.dpf.diagram.tests
+Export-Package: no.hib.dpf.core.tests
 Require-Bundle: org.eclipse.core.runtime,
  no.hib.dpf.core;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,

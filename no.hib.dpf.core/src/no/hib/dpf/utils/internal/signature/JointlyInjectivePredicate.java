@@ -1,10 +1,11 @@
 package no.hib.dpf.utils.internal.signature;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Graph;
@@ -13,87 +14,46 @@ import no.hib.dpf.core.Node;
 public class JointlyInjectivePredicate extends AbstractBasePredicate {
 
 	public JointlyInjectivePredicate() {
-		super(JOINT_INJECTIVE, null, "X,Y,Z", "XY:X:Y, XZ:X:Y");
+		super(JOINT_INJECTIVE, null, "X,Y,Z", "XY:X:Y, XZ:X:Z");
 
 	}
 
 	@Override
 	public boolean check(Map<String, String> paras, Graph graph,
-		Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) {
+			Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) {
 		List<Arrow> xy = arrowMap.get(shape.getArrowByName("XY"));
 		List<Arrow> xz = arrowMap.get(shape.getArrowByName("XZ"));
-		Map<Node, List<Arrow>> zViolated = new HashMap<Node, List<Arrow>>();
-		Map<Node, List<Arrow>> yViolated = new HashMap<Node, List<Arrow>>();
-		boolean result = true;
+		Map<Node, Set<Node>> xtoy_z = new HashMap<Node, Set<Node>>();
 		if (xy != null) {
-//			List<Arrow> yValue= new ArrayList<Arrow>();
 			for (Arrow arrow : xy) {
-				Node target = arrow.getTarget();
-				List<Arrow> yValue = yViolated.containsKey(target) ? yViolated.get(target) : new ArrayList<Arrow>();
-				yValue.add(arrow);
-				yViolated.put(target, yValue);
+				Node source = arrow.getSource(), target = arrow.getTarget();
+				Set<Node> y_z = xtoy_z.containsKey(source) ? xtoy_z.get(source) : new HashSet<Node>();
+				y_z.add(target);
+				xtoy_z.put(source, y_z);
 			}
 
 		}
 		if (xz != null) {
-				for (Arrow arrow : xz) {
-				Node target = arrow.getTarget();
-				List<Arrow> zValue = zViolated.containsKey(target) ? zViolated.get(target) : new ArrayList<Arrow>();
-				zValue.add(arrow);
-				zViolated.put(target, zValue);
+			for (Arrow arrow : xz) {
+				Node source = arrow.getSource(), target = arrow.getTarget();
+				Set<Node> y_z = xtoy_z.containsKey(source) ? xtoy_z.get(source) : new HashSet<Node>();
+				y_z.add(target);
+				xtoy_z.put(source, y_z);
 			}
+
 		}
 
-		List<Node> xNodes = nodeMap.get(shape.getNodeByName("X"));
+		if (xtoy_z.isEmpty()) return true;
 
-		 if (yViolated.size() == 0 && zViolated.size()==0)
-		 result= true;
-		
-		 if (xNodes != null)
-		 for (Entry<Node, List<Arrow>> xEntry : yViolated.entrySet()) {
-			 if(xEntry.getValue().size() >1){
-				 for(int a =0 ;a< xEntry.getValue().size()-1; a++)
-						if(xEntry.getValue().get(a).getSource()!= xEntry.getValue().get(a+1).getSource()){
-				        result = false;
-							System.out.println(xEntry.getKey().getName()
-									+ " violates Jointly Injective constraint");
-							if (xEntry.getValue() == null) {
-								System.out
-										.println("It has no outgoing arrows which has type homophomism to XZ or YZ");
-							} else {
-								System.out
-										.println("It has multiple outgoing arrows of same type:");
-								for (Arrow arrow : xEntry.getValue())
-									System.out.println(arrow.getSource()
-											.getName()
-											+ "-->"
-											+ arrow.getTarget().getName());
-							}
-						}
-				}
-			}
-		 for (Entry<Node, List<Arrow>> xEntry : zViolated.entrySet()) {
-			if (xEntry.getValue().size() > 1) {
-				for (int a = 0; a < xEntry.getValue().size() - 1; a++)
-					if (xEntry.getValue().get(a).getSource() != xEntry
-							.getValue().get(a + 1).getSource()) {
-						result = false;
-						System.out.println(xEntry.getKey().getName()
-								+ " violates Jointly Injective constraint");
-						if (xEntry.getValue() == null) {
-							System.out
-									.println("It has no outgoing arrows which has type homophomism to XZ or YZ");
-						} else {
-							System.out
-									.println("It has multiple outgoing arrows of same type:");
-							for (Arrow arrow : xEntry.getValue())
-								System.out.println(arrow.getSource().getName()
-										+ "-->" + arrow.getTarget().getName());
-						}
-					}
+		for (Entry<Node, Set<Node>> xEntry : xtoy_z.entrySet()) {
+			for (Entry<Node, Set<Node>> yEntry : xtoy_z.entrySet()) {
+				if(xEntry.getKey() == yEntry.getKey()) continue;
+				if(xEntry.getValue().size() != yEntry.getValue().size()) continue;
+				System.out.println(xEntry.getValue());
+				System.out.println(yEntry.getValue());
+				if(xEntry.getValue().containsAll(yEntry.getValue())) return false;
 			}
 		}
-		return result;
+		return true;
 	}
-
 }

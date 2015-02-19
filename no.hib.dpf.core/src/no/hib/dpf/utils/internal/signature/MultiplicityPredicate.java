@@ -68,7 +68,6 @@ public class MultiplicityPredicate extends AbstractSingleArrowPredicate {
 					System.out.println(min);
 					if(value==0 && value == min)
 						result=true;
-					
 					else
 					if(value < min || (max != -1 && value > max)){
 						System.out.println(entry.getKey().getName() + " has violates Multi[" + min + "," + max + "] constraints. It has " + value + " outgoings.");
