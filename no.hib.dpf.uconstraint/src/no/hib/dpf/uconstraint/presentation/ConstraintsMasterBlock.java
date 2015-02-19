@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.hib.dpf.diagram.DiagramFactory;
-import no.hib.dpf.editor.parts.listeners.UIAdapter;
+import no.hib.dpf.editor.parts.UIAdapter;
 import no.hib.dpf.uconstraint.Constraints;
 import no.hib.dpf.uconstraint.UConstraint;
 import no.hib.dpf.uconstraint.UConstraintFactory;

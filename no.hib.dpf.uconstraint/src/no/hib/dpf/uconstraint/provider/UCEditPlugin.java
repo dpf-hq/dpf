@@ -1,9 +1,8 @@
 package no.hib.dpf.uconstraint.provider;
 
-import no.hib.dpf.editor.DPFPlugin;
+import no.hib.dpf.uconstraint.UConstraintPlugin;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
@@ -38,7 +37,7 @@ public final class UCEditPlugin extends EMFPlugin {
 	public UCEditPlugin() {
 		super
 		  (new ResourceLocator [] {
-		     DPFPlugin.INSTANCE.getPluginResourceLocator(),
+		     UConstraintPlugin.INSTANCE.getPluginResourceLocator(),
 		   });
 	}
 

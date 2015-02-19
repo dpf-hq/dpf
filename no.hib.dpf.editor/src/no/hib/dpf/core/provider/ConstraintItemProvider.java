@@ -139,6 +139,7 @@ public class ConstraintItemProvider
 	 * @generated NOT
 	 */
 	protected void addArrowsPropertyDescriptor(Object object) {
+		if(object instanceof Constraint && ((Constraint)object).getPredicate().getShape().getArrows().isEmpty()) return;
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -220,7 +221,7 @@ public class ConstraintItemProvider
 					String[] paras1 = parameter.split(";");
 					for (int i = 0; i < paras1.length; i++) {
 						String[] pair = paras1[i].split(":");
-						if(pair.length != 2) return;
+						if(!paras1[i].equals(pair[0] + ":") && pair.length != 2) return;
 						paras.add
 						(new ConstraintParameterItemProvider(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(),
 								pair[0], getString("_UI_PropertyDescriptor_description", "_UI_Constraint_parameters_feature", "_UI_Constraint_type"), CorePackage.Literals.CONSTRAINT__PARAMETERS, true, false,
