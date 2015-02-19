@@ -2,8 +2,6 @@
  */
 package no.hib.dpf.uconstraint;
 
-import no.hib.dpf.editor.DPFPlugin;
-
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
@@ -42,7 +40,7 @@ public final class UConstraintPlugin extends EMFPlugin {
 	public UConstraintPlugin() {
 		super
 			(new ResourceLocator [] {
-				DPFPlugin.INSTANCE,
+					UConstraintPlugin.INSTANCE,
 			});
 	}
 

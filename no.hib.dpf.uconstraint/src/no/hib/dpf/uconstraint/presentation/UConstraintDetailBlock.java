@@ -13,7 +13,7 @@ import no.hib.dpf.editor.parts.DConstraintFromNodeEditPart;
 import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.editor.parts.SingleArrowConstraintEditPart;
 import no.hib.dpf.editor.parts.TwoArrowsOneNodeConstraintEditPart;
-import no.hib.dpf.editor.parts.listeners.UIAdapter;
+import no.hib.dpf.editor.parts.UIAdapter;
 import no.hib.dpf.uconstraint.UCType;
 import no.hib.dpf.uconstraint.UConstraint;
 import no.hib.dpf.uconstraint.UConstraintPackage;
