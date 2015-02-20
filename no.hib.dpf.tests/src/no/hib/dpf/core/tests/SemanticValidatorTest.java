@@ -406,9 +406,7 @@ public class SemanticValidatorTest extends TestCase {
 
 	private void printGraph(Graph graph){
 		System.out.println("Graph Node NO. " + graph.getNodes().size());
-		System.out.println(graph.getNodes());
 		System.out.println("Graph Arrow NO. " + graph.getArrows().size());
-		System.out.println(graph.getArrows());
 	}
 	public void testMultiPredicate() {
 		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("x_type,y_type",

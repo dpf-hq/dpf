@@ -47,8 +47,6 @@ public class XOR4Predicate extends AbstractBasePredicate {
 				System.out.println("It has no outgoing arrows which has type homophomism to XY1, XY2, XY3 or XY4");
 			}else{
 				System.out.println("It has multiply typed outgoing arrows:");
-				for(Arrow arrow : entry.getValue())
-					System.out.println(arrow.getSource().getName() + "-->" + arrow.getTarget().getName());
 			}
 		}
 		return false; 

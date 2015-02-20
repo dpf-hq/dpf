@@ -45,8 +45,6 @@ public class MergeNANDPredicate  extends AbstractBasePredicate {
 		for(Entry<Node, List<Arrow>> entry : violated.entrySet()){
 			System.out.println(entry.getKey().getName() + " violates Merge-NAND constraint");
 			System.out.println("It has multiply typed incoming arrows:");
-			for(Arrow arrow : entry.getValue())
-				System.out.println(arrow.getSource().getName() + "-->" + arrow.getTarget().getName());
 		}
 		return false; 
 	} 

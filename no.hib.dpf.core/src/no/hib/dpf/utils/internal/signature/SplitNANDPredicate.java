@@ -46,8 +46,6 @@ public class SplitNANDPredicate  extends XORPredicate {
 		for(Entry<Node, List<Arrow>> entry : violated.entrySet()){
 			System.out.println(entry.getKey().getName() + " violates Split NAND constraint");
 			System.out.println("It has multiply typed outgoing arrows:");
-			for(Arrow arrow : entry.getValue())
-				System.out.println(arrow.getSource().getName() + "-->" + arrow.getTarget().getName());
 		}
 		return false; 
 	} 

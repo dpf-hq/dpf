@@ -63,9 +63,6 @@ public class MultiplicityPredicate extends AbstractSingleArrowPredicate {
 				boolean result = true;
 				for(Entry<Node, Integer>  entry : record.entrySet()){
 					Integer value = entry.getValue();
-					System.out.println(value);
-					System.out.println(max);
-					System.out.println(min);
 					if(value==0 && value == min)
 						result=true;
 					else
@@ -73,9 +70,7 @@ public class MultiplicityPredicate extends AbstractSingleArrowPredicate {
 						System.out.println(entry.getKey().getName() + " has violates Multi[" + min + "," + max + "] constraints. It has " + value + " outgoings.");
 						result = false;
 					}
-					System.out.println(result);
 				}
-				System.out.println("mult---"+result);
 				return result;
 			}
 	

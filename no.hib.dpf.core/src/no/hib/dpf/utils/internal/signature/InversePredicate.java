@@ -36,7 +36,6 @@ public class InversePredicate extends AbstractBasePredicate {
 		for (Node Node : xNodes)
 			if (!canReturn(Node))
 				result=false;
-		System.out.print("result ="+result+"\n");
 		return result;
 	}
 

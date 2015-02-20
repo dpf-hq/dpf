@@ -52,8 +52,6 @@ public class XORPredicate extends AbstractBasePredicate {
 				System.out.println("It has no outgoing arrows which has type homophomism to ZX or ZY");
 			}else{
 				System.out.println("It has multiply typed outgoing arrows:");
-				for(Arrow arrow : entry.getValue())
-					System.out.println(arrow.getSource().getName() + "-->" + arrow.getTarget().getName());
 			}
 		}
 		return false; 

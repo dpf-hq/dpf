@@ -5,16 +5,6 @@ import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 public class LineSegment{
-	public static void main(String[] args) {
-		LineSegment line = new LineSegment(new Point(0, 0), new Point(1, 0));
-		System.out.println(line.getSpinStart(line.getLength(), 90));
-		System.out.println(line.getSpinEnd(line.getLength(), -90));
-		LineSegment line1 = new LineSegment(new Point(1, 0), new Point(0, 0));
-		System.out.println(line1.getSpinStart(line1.getLength(), 90));
-		System.out.println(line1.getSpinStart(line1.getLength(), -90));
-//		System.out.println(getEndPoint(line, line.getLength(), 90));
-	}
-
 	public static Point move(Point a, Point origin){
 		return origin.getNegated().translate(a);
 	}

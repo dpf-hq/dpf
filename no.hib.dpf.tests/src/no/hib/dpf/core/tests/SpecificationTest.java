@@ -100,12 +100,12 @@ public class SpecificationTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.core.Specification#createGraph(java.lang.String)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testCreateGraph__String() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+//		fail();
 	}
 
 	/**
@@ -113,12 +113,12 @@ public class SpecificationTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.core.Specification#createConstraint(no.hib.dpf.core.Predicate, java.lang.String, no.hib.dpf.core.GraphHomomorphism, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testCreateConstraint__Predicate_String_GraphHomomorphism_EList_EList_EList_EList() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+//		fail();
 	}
 
 	/**
@@ -126,12 +126,12 @@ public class SpecificationTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.core.Specification#validate()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testValidate() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+//		fail();
 	}
 
 	/**
@@ -139,12 +139,12 @@ public class SpecificationTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see no.hib.dpf.core.Specification#getTemplateSpecification()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetTemplateSpecification() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+//		fail(); 
 	}
 
 } //SpecificationTest

@@ -49,8 +49,6 @@ public class JointlyInjectivePredicate extends AbstractBasePredicate {
 			for (Entry<Node, Set<Node>> yEntry : xtoy_z.entrySet()) {
 				if(xEntry.getKey() == yEntry.getKey()) continue;
 				if(xEntry.getValue().size() != yEntry.getValue().size()) continue;
-				System.out.println(xEntry.getValue());
-				System.out.println(yEntry.getValue());
 				if(xEntry.getValue().containsAll(yEntry.getValue())) return false;
 			}
 		}
