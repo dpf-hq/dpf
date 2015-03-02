@@ -17,3 +17,4 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Bundle-NativeCode: lib/native/libminisatprover.so
 Import-Package: no.hib.dpf.uconstraint
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

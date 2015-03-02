@@ -71,8 +71,8 @@ public class NodeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 "Node Name",//getString("_UI_Node_name_feature"),
-				 "Node Name2",//getString("_UI_PropertyDescriptor_description", "_UI_Node_name_feature", "_UI_Node_type"),
+				 getString("_UI_Node_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Node_name_feature", "_UI_Node_type"),
 				 CorePackage.Literals.NODE__NAME,
 				 true,
 				 false,
@@ -93,8 +93,8 @@ public class NodeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 "Type node",//getString("_UI_Node_typeNode_feature"),
-				 "type node",//getString("_UI_PropertyDescriptor_description", "_UI_Node_typeNode_feature", "_UI_Node_type"),
+				 getString("_UI_Node_typeNode_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Node_typeNode_feature", "_UI_Node_type"),
 				 CorePackage.Literals.NODE__TYPE_NODE,
 				 false,
 				 false,

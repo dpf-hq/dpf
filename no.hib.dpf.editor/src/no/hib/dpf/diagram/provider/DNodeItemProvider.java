@@ -119,8 +119,8 @@ public class DNodeItemProvider
 	protected void addConfigureStringPropertyDescriptor(Object object) {
 		ItemPropertyDescriptor current = new ItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 "Feature",//getString("_UI_DNode_configureString_feature"),
-				 "Feature2",//getString("_UI_PropertyDescriptor_description", "_UI_DNode_configureString_feature", "_UI_DNode_type"),
+				 getString("_UI_DNode_configureString_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DNode_configureString_feature", "_UI_DNode_type"),
 				 DiagramPackage.Literals.DNODE__CONFIGURE_STRING,
 				 true,
 				 false,

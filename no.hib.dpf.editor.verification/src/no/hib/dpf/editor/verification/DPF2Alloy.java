@@ -13,7 +13,6 @@ import java.util.Map.Entry;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.GraphHomomorphism;
-import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.ValidatorType;
@@ -26,7 +25,7 @@ import no.hib.dpf.diagram.util.DPFConstants;
 import no.hib.dpf.uconstraint.Constraints;
 import no.hib.dpf.uconstraint.UConstraint;
 
-public class TranslateDPFToAlloy {
+public class DPF2Alloy {
 
 	/*
 	 * Graph structure to alloy specification
@@ -37,52 +36,72 @@ public class TranslateDPFToAlloy {
 	static public  final String AP = "E";
 	static public  final String SIG = "sig ";
 
-	//	private String nodes = null;
-	//	private String arrows = null;
-	private StringBuffer buffer = new StringBuffer();
 	private DGraph dGraph = null;
 	private DSpecification model = null;
 
-	public  String nodeSig(Node node){ return NP + node.getName(); }
-	public  String edgeSig(Arrow node){ return AP + node.getName(); }
+	protected Map<Node, String> node2Sig = new HashMap<Node, String>();
+	protected Map<Arrow, String> edge2Sig = new HashMap<Arrow, String>();
+	protected List<String> enumNodes = new ArrayList<String>();
+	protected Map<String, String> name2cons_alloy = new HashMap<String, String>();
+	protected Map<Node, List<String>> node2enums = new HashMap<Node, List<String>>();
+	
+	/*
+	 * Translate a node in DPF to a signature named by NP plus node's name
+	 */
+	public  String getSigForNode(Node node){ 
+		String sigName = node2Sig.get(node); 
+		if(sigName == null){ 
+			sigName = NP + node.getName();
+			node2Sig.put(node, sigName);
+		}
+		return sigName;
+	}
+	
+	/*
+	 * Translate a edge in DPF to a signature named by NP plus edge's name
+	 */
+	public  String getSigForEdge(Arrow edge){ 
+		String sigName = edge2Sig.get(edge); 
+		if(sigName == null){ 
+			sigName = AP + edge.getName();
+			edge2Sig.put(edge, sigName);
+		}
+		return sigName;
+	}
 
-	public Map<String, List<String>> enumer = new HashMap<String, List<String>>();
-	//signatures for nodes
+	/*
+	 * Get all the signatures for nodes
+	 */
 	public  void nodeSigs(){
-		buffer.append("//signatures for nodes" + LINE);
 		for(Node node : dGraph.getGraph().getNodes()){
+			//Get the signature for the node
+			String name = getSigForNode(node);
+			//Check if a node is specified as an enumeration type
 			Constraint cenum = null;
 			for (Constraint iter : node.getConstraints()) 
 				if(iter.getPredicate().getSymbol().equals("enum"))
 					cenum = iter;
 			if(cenum != null){
-				List<String> ins = new ArrayList<String>();
+				//If the node is an enumeration type, create a signature for each literal the node has
 				String literals = cenum.getParameters();
 				String LITERALS = "literal:{";
-				buffer.append("abstract " + SIG + nodeSig(node) + "{}" + LINE);
 				literals = literals.substring(literals.indexOf(LITERALS) + LITERALS.length(), literals.length() - 1);
 				String[] liters = literals.split(",");
-				buffer.append("lone " + SIG + "N" + liters[0].trim());
-				ins.add(liters[0].trim());
-				for(int index = 1; index < liters.length; ++index){
-					buffer.append(", N" + liters[index].trim());
-					ins.add(liters[index].trim());
+				List<String> enums = new ArrayList<String>();
+				for(int index = 0; index < liters.length; ++index){
+					enums.add(liters[index].trim());
 				}
-				enumer.put(node.getName(), ins);
-				buffer.append(" extends " + nodeSig(node) + "{}" + LINE);
-			}else{
-				buffer.append(SIG + nodeSig(node) + "{}" + LINE);
-				buffer.append("fact{some "+ nodeSig(node) + "}" + LINE);
+				node2enums.put(node, enums);
+				enumNodes.add(name);
 			}
 		}
-		buffer.append(LINE);
 	}
-	//signatures for edges
+	/*
+	 * Get the signatures for edges
+	 */
 	public void edgeSigs(){
-		buffer.append("//signatures for edges" + LINE);
 		for(Arrow arrow : dGraph.getGraph().getArrows())
-			buffer.append(SIG + edgeSig(arrow) + "{src:one " + nodeSig(arrow.getSource()) + ", trg:one " + nodeSig(arrow.getTarget()) + "}" + LINE);
-		buffer.append(LINE);
+			getSigForEdge(arrow);
 	}
 
 	/**
@@ -90,8 +109,8 @@ public class TranslateDPFToAlloy {
 	 * 1. Each arrow has a default constraint multi[0,1]. Translate the default constraint first.<br>
 	 * 2. Then translate the other constraint associated with the metamodel.<br>
 	 */
-	private Map<IDObject, String> hash = new HashMap<IDObject, String>();
-	public void pre_source_valid(){
+	private Map<String, Object> name2cons_DPF = new HashMap<String, Object>();
+	public void facts(){
 		for(Arrow arrow : model.getSpecification().getGraph().getArrows()){
 			boolean isMult = false;
 			for(Constraint constraint : arrow.getConstraints()){
@@ -101,10 +120,9 @@ public class TranslateDPFToAlloy {
 				}
 			}
 			if(!isMult){
-				hash.put(arrow, "mult1_" + arrow.getName());
-				buffer.append("fact mult1_" + arrow.getName() + "{" + LINE);
-				buffer.append(translateArrowMultiplicity(arrow));
-				buffer.append("}" + LINE);
+				String name = "mult1_" + AP + arrow.getName();
+				name2cons_DPF.put(name, arrow);
+				name2cons_alloy.put(name, translateArrowMultiplicity(arrow));
 			}
 		}
 		for(Constraint constraint : model.getSpecification().getConstraints()){
@@ -114,40 +132,36 @@ public class TranslateDPFToAlloy {
 					|| predicate.getSymbol().equals("bool"))
 				continue;
 			String predName = getConstraintName(constraint);
-			hash.put(constraint, predName);
-			buffer.append("fact " + predName + "{" + LINE);
+			name2cons_DPF.put(predName, constraint);
 			if(predicate == DPFConstants.INJECTIVE)
-				buffer.append(translateInjective(constraint));
+				name2cons_alloy.put(predName, translateInjective(constraint));
 			else if(predicate == DPFConstants.SURJECTIVE)
-				buffer.append(translateSurjective(constraint));
+				name2cons_alloy.put(predName, translateSurjective(constraint));
 			else if(predicate == DPFConstants.ARROW_MULTI)
-				buffer.append(translateArrowMultiplicity(constraint));
+				name2cons_alloy.put(predName, translateArrowMultiplicity(constraint));
 			else if(predicate == DPFConstants.NODE_MULTI)
-				buffer.append(translateNodeMultiplicity(constraint));
+				name2cons_alloy.put(predName, translateNodeMultiplicity(constraint));
 			else if(predicate == DPFConstants.XOR)
-				buffer.append(translateXOR(constraint));
+				name2cons_alloy.put(predName, translateXOR(constraint));
 			else if(predicate == DPFConstants.XOR4)
-				buffer.append(translateXOR4(constraint));
+				name2cons_alloy.put(predName, translateXOR4(constraint));
 			else if(predicate == DPFConstants.MERGE_NAND)
-				buffer.append(translateMergeNAND(constraint));
+				name2cons_alloy.put(predName, translateMergeNAND(constraint));
 			else if(predicate == DPFConstants.SPLIT_NAND)
-				buffer.append(translateSplitNAND(constraint));
+				name2cons_alloy.put(predName, translateSplitNAND(constraint));
 			else if(predicate == DPFConstants.REFLEXIVE)
-				buffer.append(translateReflexive(constraint));
+				name2cons_alloy.put(predName, translateReflexive(constraint));
 			else if(predicate == DPFConstants.IRREFLEXIVE)
-				buffer.append(translateIrreflexive(constraint));
+				name2cons_alloy.put(predName, translateIrreflexive(constraint));
 			else if(predicate == DPFConstants.JOINT_SURJ)
-				buffer.append(translateJointSurjective(constraint));
+				name2cons_alloy.put(predName, translateJointSurjective(constraint));
 			else 
-				buffer.append(translateGeneral(constraint));
-
-			buffer.append("}" + LINE);
+				name2cons_alloy.put(predName, translateGeneral(constraint));
 		}
 		if(uc != null){
 			for(UConstraint iter : uc.getRules()){
-				buffer.append("fact " + iter.getName() + "{" + LINE);
-				pre_rule(iter, dGraph);
-				buffer.append(LINE + "}" + LINE);
+				name2cons_DPF.put(iter.getName(), iter);
+				name2cons_alloy.put(iter.getName(), getConsInAlloyForUC(iter));
 			}
 		}
 	}
@@ -212,55 +226,58 @@ public class TranslateDPFToAlloy {
 		}
 		return result;
 	}
-	public  void translateRelatedMatch(List<DNode> leftNodes, List<DArrow> leftEdges,  
+	public String translateRelatedMatch(List<DNode> leftNodes, List<DArrow> leftEdges,  
 			List<DNode> commonNodes, List<DArrow> commonEdges, 
 			List<DNode> rightNodes, List<DArrow> rightEdges) {
 		List<DArrow> visited = new ArrayList<DArrow>();
 		List<DNode> visitedNode= new ArrayList<DNode>();
 		String name = null, type = null;
 		boolean isLeftExist = true;
+		StringBuffer cons_Alloy = new StringBuffer();
 		if(!commonEdges.isEmpty()){
-			translateRelatedMatch(commonEdges.get(0), "all ", visited, visitedNode, commonNodes, commonEdges);
+			cons_Alloy.append(translateRelatedMatch(commonEdges.get(0), "all ", visited, visitedNode, commonNodes, commonEdges));
 		}else if(!commonNodes.isEmpty()){
 			DNode node = commonNodes.get(0);
 			visitedNode.add(node);
 			name = node.getNode().getName();
-			type = nodeSig(node.getNode().getTypeNode());
-			buffer.append("all " + name + ":" + type + "|");
+			type = getSigForNode(node.getNode().getTypeNode());
+			cons_Alloy.append("all " + name + ":" + type + "|");
 		}else{
 			isLeftExist = false;
 		}
 		if(leftEdges.size() > commonEdges.size()){
-			if(isLeftExist) buffer.append(" and");
-			buffer.append(" not (");
+			if(isLeftExist) cons_Alloy.append(" and");
+			cons_Alloy.append(" not (");
 			for(DArrow iter : leftEdges){
 				if(!visited.contains(iter)){
-					translateRelatedMatch(iter, "some ", visited, visitedNode, leftNodes, leftEdges);
+					cons_Alloy.append(translateRelatedMatch(iter, "some ", visited, visitedNode, leftNodes, leftEdges));
 				}
 			}
-			buffer.append(")");
+			cons_Alloy.append(")");
 			isLeftExist = true;
 		}
 		if(isLeftExist)
-			buffer.append(" implies (");
+			cons_Alloy.append(" implies (");
 		for(DArrow iter : rightEdges){
 			if(!visited.contains(iter)){
-				translateRelatedMatch(iter, "some ", visited, visitedNode,  rightNodes, rightEdges);
+				cons_Alloy.append(translateRelatedMatch(iter, "some ", visited, visitedNode,  rightNodes, rightEdges));
 			}
 		}
 		if(isLeftExist)
-			buffer.append(") ");
+			cons_Alloy.append(") ");
+		return cons_Alloy.toString();
 	}
-	public  boolean translateRelatedMatch(DArrow cur, String prefix, 
+	public  String translateRelatedMatch(DArrow cur, String prefix, 
 			List<DArrow> visited, List<DNode> visitedNode, 
 			List<DNode> leftNodes, List<DArrow> leftEdges) {
 		String the = cur.getArrow().getName(), source = cur.getArrow().getSource().getName(), target = cur.getArrow().getTarget().getName();
+		StringBuffer buffer = new StringBuffer();
 		buffer.append(prefix);//kept ? "some " : "one ");
 		buffer.append(the +":");
-		buffer.append(edgeSig(cur.getArrow().getTypeArrow()));
+		buffer.append(getSigForEdge(cur.getArrow().getTypeArrow()));
 		buffer.append("|");
 		boolean srcVisited = visitedNode.contains(cur.getDSource()), trgVisited =  visitedNode.contains(cur.getDTarget());
-		boolean srcIsEnum = IsEnum(cur.getArrow().getSource().getTypeNode().getName(), source), trgIsEnum = IsEnum(cur.getArrow().getTarget().getTypeNode().getName(), target);
+		boolean srcIsEnum = IsEnum(cur.getArrow().getSource().getTypeNode(), source), trgIsEnum = IsEnum(cur.getArrow().getTarget().getTypeNode(), target);
 		visitedNode.add(cur.getDSource());
 		visitedNode.add(cur.getDTarget());
 		visited.add(cur);
@@ -274,7 +291,7 @@ public class TranslateDPFToAlloy {
 				buffer.append(target + " in N" + target);
 			else
 				buffer.append(the + ".trg=" + target);
-			return true;
+			return buffer.toString();
 		}
 
 		String let = "";
@@ -311,14 +328,14 @@ public class TranslateDPFToAlloy {
 				if(leftEdges.contains(arrow) && !visited.contains(arrow)){
 					if(buffer1.length() > 0)
 						buffer1.append(" and (");
-					translateRelatedMatch(arrow, "some ", visited, visitedNode, leftNodes, leftEdges);
+					buffer1.append(translateRelatedMatch(arrow, "some ", visited, visitedNode, leftNodes, leftEdges));
 				}
 			}
 			for(DArrow arrow : cur.getDSource().getDOutgoings()){
 				if(leftEdges.contains(arrow)  && !visited.contains(arrow)){
 					if(buffer1.length() > 0)
 						buffer1.append(" and (");
-					translateRelatedMatch(arrow, "some ", visited, visitedNode, leftNodes, leftEdges);
+					buffer1.append(translateRelatedMatch(arrow, "some ", visited, visitedNode, leftNodes, leftEdges));
 					buffer1.append(")");
 				}
 			}
@@ -328,7 +345,7 @@ public class TranslateDPFToAlloy {
 				if(leftEdges.contains(arrow) && !visited.contains(arrow)){
 					if(buffer1.length() > 0)
 						buffer1.append(" and (");
-					translateRelatedMatch(arrow, "some ", visited, visitedNode, leftNodes, leftEdges);
+					buffer1.append(translateRelatedMatch(arrow, "some ", visited, visitedNode, leftNodes, leftEdges));
 					buffer1.append(")");
 				}
 			}
@@ -336,7 +353,7 @@ public class TranslateDPFToAlloy {
 				if(leftEdges.contains(arrow) && !visited.contains(arrow)){
 					if(buffer1.length() > 0)
 						buffer1.append(" and (");
-					translateRelatedMatch(arrow, "some ", visited, visitedNode, leftNodes, leftEdges);
+					buffer1.append(translateRelatedMatch(arrow, "some ", visited, visitedNode, leftNodes, leftEdges));
 					buffer1.append(")");
 				}
 			}
@@ -345,24 +362,26 @@ public class TranslateDPFToAlloy {
 
 		boolean containAnd = buffer1.length() > 0 && buffer1.indexOf(" and ") != -1;
 		if(containAnd) buffer.append("(");
-		buffer.append(buffer1);
+		buffer.append(buffer1.toString());
 		if(containAnd) buffer.append(")");
-		return buffer1.length() > 0;
+		return buffer.toString();
 	}
-	private boolean IsEnum(String name, String target) {
-		return enumer.containsKey(name) && enumer.get(name).contains(target);
+	private boolean IsEnum(Node name, String target) {
+		return node2enums.containsKey(name) && node2enums.get(name).contains(target);
 	}
 	@SuppressWarnings("unchecked")
-	public void pre_rule(UConstraint rule, DGraph dGraph){
+	public String getConsInAlloyForUC(UConstraint rule){
 		List<Object> relatedSet = new ArrayList<Object>();
 		getConnectedSubgraphs(rule.getSum().getDGraph().getDNodes(), rule.getSum().getDGraph().getDArrows(), relatedSet);
+		StringBuffer buffer = new StringBuffer();
 		for(int index = 0; index < relatedSet.size(); index += 2){
 			List<DNode> subn = (List<DNode>) relatedSet.get(index);
 			List<DArrow> suba = (List<DArrow>) relatedSet.get(index + 1);
-			translateRelatedMatch(intersection(subn, rule.getLeftNodes()), intersection(suba, rule.getLeftArrows()),
+			buffer.append(translateRelatedMatch(intersection(subn, rule.getLeftNodes()), intersection(suba, rule.getLeftArrows()),
 					intersection(subn, rule.getCommonNodes()), intersection(suba, rule.getCommonArrows()),
-					intersection(subn, rule.getRightNodes()), intersection(suba, rule.getRightArrows()));
+					intersection(subn, rule.getRightNodes()), intersection(suba, rule.getRightArrows())));
 		}
+		return buffer.toString() + LINE;
 	}
 	private String translateJointSurjective(Constraint constraint) {
 		Node target = getNode(constraint, "Z");
@@ -372,7 +391,7 @@ public class TranslateDPFToAlloy {
 				" | e.trg = n), e2=(some e : " + AP + yz.getName() + " | e.trg = n)| e1 or e2" + LINE;
 		return result;
 	}
-	private Object translateIrreflexive(Constraint constraint) {
+	private String translateIrreflexive(Constraint constraint) {
 		Arrow arrow = getArrow(constraint, "XY");
 		String result = "//" + "reflexive on " + arrow +  LINE + "\t";
 		result += "no e:(" + AP + arrow.getName() + ")| e.src = e.trg" + LINE;
@@ -512,8 +531,7 @@ public class TranslateDPFToAlloy {
 	public void translate(){
 		nodeSigs();
 		edgeSigs();
-		pre_source_valid();
-		buffer.append("run {} for 5");
+		facts();
 	}
 	private String getConstraintName(Constraint constraint){
 		String result = "";
@@ -521,18 +539,18 @@ public class TranslateDPFToAlloy {
 		GraphHomomorphism mapping = constraint.getMappings();
 		if(mapping.getArrowMapping().isEmpty()){
 			for(Node entry : mapping.getNodeMapping().values())
-				result += "_N" + entry.getName();
+				result += "_" + getSigForNode(entry);
 		}
 		else
 			for(Arrow entry : mapping.getArrowMapping().values())
-				result += "_E" + entry.getName();
+				result += "_" + getSigForEdge(entry);
 		return result;
 	}
 
 	/**
 	 * translate Model to Alloy
 	 */
-	public TranslateDPFToAlloy(DSpecification model){
+	public DPF2Alloy(DSpecification model){
 		this.model  = model;
 		dGraph = model.getDGraph();
 	}
@@ -543,8 +561,39 @@ public class TranslateDPFToAlloy {
 
 	public void writeToFile(File file) throws IOException{
 		FileWriter writer = new FileWriter(file);
-		writer.write(buffer.toString());
+		writer.write("//Signatures for nodes" + LINE);
+		for(String iter : node2Sig.values()){
+			if(enumNodes.contains(iter))
+				writer.write("abstract ");
+			writer.write(SIG + iter + "{}" + LINE);
+		}
+		for(Entry<Node, List<String>> iter : node2enums.entrySet()){
+			writer.write("lone " + SIG);
+			List<String> literals = iter.getValue();
+			writer.write(NP + literals.get(0));
+			for(int index = 1; index < literals.size(); ++index)
+				writer.write(", " + NP + literals.get(index));
+			writer.write(" extends " + node2Sig.get(iter.getKey()) + "{}" + LINE);
+		}
+		
+		writer.write(LINE + "//Signatures for edges" + LINE);
+		for(Entry<Arrow, String> iter : edge2Sig.entrySet()){
+			writer.write(SIG + iter.getValue() + "{src:one "
+					+ node2Sig.get(iter.getKey().getSource()) + ", trg:one "
+					+ node2Sig.get(iter.getKey().getTarget()) + "}" + LINE);
+		}
+		write(writer);
 		writer.close();
+	}
+	
+	public void write(FileWriter writer) throws IOException{
+		writer.write(LINE + "//facts" + LINE);
+		for(Entry<String, String> iter : name2cons_alloy.entrySet()){
+			writer.write("fact " + iter.getKey() + "{" + LINE);
+			writer.write("\t" + iter.getValue());
+			writer.write("}" + LINE + LINE);
+		}
+		writer.write("run{} for 3" + LINE);
 	}
 	public void setUConstraints(Constraints constraints) {
 		uc = constraints;

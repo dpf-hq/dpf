@@ -10,8 +10,10 @@ package no.hib.dpf.diagram.provider;
 import java.util.Collection;
 import java.util.List;
 
+import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.DPFPlugin;
+import no.hib.dpf.utils.DPFConstants;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -70,7 +72,7 @@ public class DElementItemProvider
 	 * This adds a property descriptor for the Constraints From feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addConstraintsFromPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
@@ -84,7 +86,7 @@ public class DElementItemProvider
 				 false,
 				 true,
 				 null,
-				 null,
+				 object instanceof DNode ? DPFConstants.DNODE_CATEGORY : DPFConstants.DARROW_CATEGORY,
 				 null));
 	}
 
@@ -92,7 +94,7 @@ public class DElementItemProvider
 	 * This adds a property descriptor for the Constraints To feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addConstraintsToPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
@@ -106,7 +108,7 @@ public class DElementItemProvider
 				 false,
 				 true,
 				 null,
-				 null,
+				 object instanceof DNode ? DPFConstants.DNODE_CATEGORY : DPFConstants.DARROW_CATEGORY,
 				 null));
 	}
 

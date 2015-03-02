@@ -1,11 +1,13 @@
 package no.hib.dpf.editor.verification;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DComposedConstraint;
@@ -25,6 +27,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.emf.common.util.URI;
@@ -51,6 +54,10 @@ import edu.mit.csail.sdg.alloy4compiler.translator.TranslateAlloyToKodkod;
 
 public class ValidateModelHandler extends AbstractHandler {
 
+	protected static String ALLOY = ".als";
+	protected static String INSTANCE = "_instance.dpf";
+	protected static String KEYWORD = "fact$";
+	protected String[] preds = null;
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IEditorPart editor = HandlerUtil.getActiveEditor(event);
@@ -65,108 +72,33 @@ public class ValidateModelHandler extends AbstractHandler {
 					 * load transform and translate it into Alloy specification
 					 */
 					URI dpfModelURI = URI.createFileURI(dpfFile.getLocation().toOSString());
-					DSpecification dpf = (DSpecification) ((EObject)graphicalViewer.getContents().getModel()).eContainer();//.DPFUtils.loadDSpecification(resourceSet, dpfModelURI);
-					ResourceSetImpl resourceSet = (ResourceSetImpl) dpf.eResource().getResourceSet();
-					resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uc", new XMIResourceFactoryImpl());
-					TranslateDPFToAlloy translate = new TranslateDPFToAlloy(dpf);
-					/*
-					 * Write the translated Alloy Specification into the file *Name*.als
-					 */
+					DSpecification dpf = (DSpecification) ((EObject)graphicalViewer.getContents().getModel()).eContainer();
+					
 					IFolder folder = (IFolder) dpfFile.getParent();
-					String dpfFileName = dpfFile.getName();
-					String fileName = dpfFileName.substring(0, dpfFileName.lastIndexOf('.')), alloyFileName = fileName + ".als";
-					IFile insFile = folder.getFile(fileName + ".uc");
-					if(insFile.exists()){
-						Constraints constraints = ConstraintsUtils.loadConstraints(resourceSet, dpfModelURI.trimFileExtension().appendFileExtension("uc"));
-						if(constraints != null)
-							translate.setUConstraints(constraints);
-					}
-					translate.translate();
-					File alloyFile = new File(folder.getLocation().toOSString(), alloyFileName);
-					translate.writeToFile(alloyFile);
-
+					String dpfFileName = getFileNameWithoutExtension(dpfFile.getName());
+					
+					File alloyFile = translateDPF2Alloy(dpf, folder, dpfFileName);
 					A4Reporter rep = new A4Reporter();
 					Module world = CompUtil.parseEverything_fromFile(rep, null, alloyFile.getAbsolutePath());
-					A4Options options = new A4Options();
-					options.solver = A4Options.SatSolver.MiniSatProverJNI;
-					options.skolemDepth = 1;
-					options.coreGranularity = 3;
-					options.coreMinimization = 0;
+					A4Options options = getAlloyOption();
 
-					Map<Pos, String> hash = new HashMap<Pos, String>();
-					for(Pair<String, Expr> fact : world.getAllFacts()){
-						if(!fact.a.startsWith("fact$"))
-							hash.put(fact.b.pos, fact.a);
-					}
+					Map<Pos, String> hash = getKeyExpressionPoistions(world);
+					String dialogMessage = "";
 					/*
 					 * Execute the commands
 					 */
-					for (Command command : world.getAllCommands()) {
+					for(int index = 0; index < world.getAllCommands().size(); index++){
+						Command command = world.getAllCommands().get(index);
 						A4Solution ans = TranslateAlloyToKodkod.execute_commandFromBook(rep, world.getAllReachableSigs(), command, options);
-						insFile = folder.getFile(fileName + "_instance.dpf");
-						if(insFile.exists()){
-							insFile.delete(true, new NullProgressMonitor());
-						}
+						IFile instanceFile = createDPFInstanceFile(folder, dpfFileName, index);
 						if(!ans.satisfiable()) {
 							List<String> ucs = new ArrayList<String>();
 							Map<String, List<String>> ats = new HashMap<String, List<String>>();
-							for( Pos pos : ans.highLevelCore().a){
-								String result = getCore(pos, hash);
-								if(result != null) {
-									List<String> splits = Arrays.asList(result.split("_"));
-									if(splits.size() == 1)
-										ucs.add(result);
-									else
-										ats.put(splits.get(0), splits.subList(1, splits.size()));
-								}
-							}
-							for( Pos pos : ans.highLevelCore().b){
-								String result = getCore(pos, hash);
-								if(result != null) {
-									List<String> splits = Arrays.asList(result.split("_"));
-									if(splits.size() == 1)
-										ucs.add(result);
-									else
-										ats.put(splits.get(0), splits.subList(1, splits.size()));
-								}
-							}
-							String ucstring = "";
-							for(String iter : ucs){
-								ucstring += iter + TranslateDPFToAlloy.LINE;
-							}
-							DGraph graph = dpf.getDGraph();
-							List<DConstraint> atms = new ArrayList<DConstraint>();
-							for(Entry<String, List<String>> iter : ats.entrySet()){
-								List<DElement> ds = new ArrayList<DElement>();
-								boolean isNode = true;
-								for(String ele : iter.getValue()){
-									if(ele.startsWith("N")){
-										DNode node = null;
-										for(DNode dn : graph.getDNodes())
-											if(dn.getName().equals(ele.substring(1))) {node = dn; break;}
-										ds.add(node);
-										isNode = true;
-									}else{
-										DArrow edge = null;
-										for(DArrow dn : graph.getDArrows())
-											if(dn.getName().equals(ele.substring(1))) {edge = dn; break;}
-										ds.add(edge);
-										isNode = false;
-									}
-								}
-								DElement one = ds.get(0);
-								DConstraint theone = null;
-								List<DConstraint> candidates = (isNode ? ((DNode)one).getDConstraints() : ((DArrow)one).getDConstraints());
-								for(DConstraint con : candidates){
-									if(con.getConstraint().getPredicate().getSymbol().equals(iter.getKey())){
-										if(con.getDNodes().containsAll(ds) || con.getDArrows().containsAll(ds)){
-											theone = con;
-											atms.add(theone);
-											break;
-										}
-									}
-								}
-							}
+							getCoreConstraints(ans.highLevelCore().a, hash, ucs, ats);
+							getCoreConstraints(ans.highLevelCore().b, hash, ucs, ats);
+
+							//show the atomic constraints which cause contradiction by red coloring those constraints 
+							List<DConstraint> atms = getCoreAtomicConstraints(dpf.getDGraph(), ats);
 							for(DConstraint con: atms){
 								Object key = con;
 								if(con instanceof DComposedConstraint){
@@ -176,16 +108,18 @@ public class ValidateModelHandler extends AbstractHandler {
 								if(value instanceof GraphicalEditPart)
 									((GraphicalEditPart)value).getFigure().setForegroundColor(ColorConstants.red);
 							}
-							if(!ucstring.isEmpty())
-							MessageDialog.openError(graphicalViewer.getControl().getShell(), "Conflict Universal Constraints in " + dpfModelURI.trimFileExtension().appendFileExtension("uc"),
-									ucstring);
+							//Show the names of the universal constraints which cause contradiction in a message dialog
+							for(String iter : ucs)
+								dialogMessage += iter + DPF2Alloy.LINE;
 							continue;
 						}
-						resourceSet = ConstraintsUtils.getResourceSet();
+						ResourceSetImpl resourceSet = ConstraintsUtils.getResourceSet();
 						DSpecification instance = GenerateInstanceFromAlloy.generateDSpecificationFromAlloy(ans, DPFUtils.loadDSpecification(resourceSet, dpfModelURI));
-						DPFUtils.saveDSpecification(resourceSet, instance, 
-								URI.createFileURI(insFile.getLocation().toOSString()));
+						DPFUtils.saveDSpecification(resourceSet, instance, URI.createFileURI(instanceFile.getLocation().toOSString()));
 					}
+					if(!dialogMessage.isEmpty())
+						MessageDialog.openError(graphicalViewer.getControl().getShell(), 
+								"Conflict Universal Constraints in " + dpfFileName + ".uc", dialogMessage);
 					folder.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
 				} catch (Exception e) {
 					DPFUtils.logError(e);
@@ -194,15 +128,123 @@ public class ValidateModelHandler extends AbstractHandler {
 		}
 		return null;
 	}
-//	private static void printPos(Pos cur){
-//		System.out.println("line: " + cur.y + " column: " + cur.x);
-//		System.out.println("line: " + cur.y2 + " column: " + cur.x2);
-//	}
-	private static boolean contained(Pos cur, Pos iter){
+	
+	protected String getFileNameWithoutExtension(String fileNameWithExtension){
+		int index = fileNameWithExtension.indexOf('.');
+		return index == -1 ? fileNameWithExtension : fileNameWithExtension.substring(0, index);
+	}
+	/*
+	 * Write the translated Alloy Specification into the file *Name*.als
+	 */
+	protected File translateDPF2Alloy(DSpecification dpf, IFolder folder, String dpfFileName) throws IOException{
+		ResourceSetImpl resourceSet = (ResourceSetImpl) dpf.eResource().getResourceSet();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uc", new XMIResourceFactoryImpl());
+		DPF2Alloy translate = getDPFToAlloy(dpf);
+		IFile insFile = folder.getFile(dpfFileName + ".uc");
+		if(insFile.exists()){
+			Constraints constraints = ConstraintsUtils.loadConstraints(resourceSet, URI.createFileURI(insFile.getLocation().toOSString()));
+			if(constraints != null)
+				translate.setUConstraints(constraints);
+		}
+		translate.translate();
+		File alloyFile = new File(folder.getLocation().toOSString(), dpfFileName + ALLOY );
+		translate.writeToFile(alloyFile);
+		return alloyFile;
+	}
+	protected DPF2Alloy getDPFToAlloy(DSpecification dpf) {
+		return new DPF2Alloy(dpf);
+	}
+
+	protected Map<Pos, String> getKeyExpressionPoistions(Module world){
+		Map<Pos, String> hash = new HashMap<Pos, String>();
+		for(Pair<String, Expr> fact : world.getAllFacts()){
+			if(!fact.a.startsWith(KEYWORD))
+				hash.put(fact.b.pos, fact.a);
+		}
+		return hash;
+	}
+	/**
+	 * Get the constraints which cause the contradiction
+	 * @param cores the positions of the expressions in Alloy which cause contradiction
+	 * @param hash the position of key expression, e.g., facts  
+	 * @param ucs the names of the universal constraints causing contradiction
+	 * @param ats the names of the atomic constraints causing contradiction and the names of elements that are restricted by the constraints
+	 */
+	protected void getCoreConstraints(Set<Pos> cores, Map<Pos, String> hash, List<String> ucs, Map<String, List<String>> ats){
+		for(Pos pos : cores){
+			String result = getCore(pos, hash);
+			if(result != null) {
+				List<String> splits = Arrays.asList(result.split("_"));
+				if(splits.size() == 1)
+					ucs.add(result);
+				else
+					ats.put(splits.get(0), splits.subList(1, splits.size()));
+			}
+		}
+	}
+	
+	protected DConstraint getAtomicConstraint(String pred, List<String> elements, DGraph graph){
+		List<DElement> ds = new ArrayList<DElement>();
+		boolean isNode = true;
+		for(String ele : elements){
+			if(ele.startsWith("N")){
+				DNode node = null;
+				for(DNode dn : graph.getDNodes())
+					if(dn.getName().equals(ele.substring(1))) {node = dn; break;}
+				ds.add(node);
+				isNode = true;
+			}else{
+				DArrow edge = null;
+				for(DArrow dn : graph.getDArrows())
+					if(dn.getName().equals(ele.substring(1))) {edge = dn; break;}
+				ds.add(edge);
+				isNode = false;
+			}
+		}
+		if(ds.isEmpty()) return null;;
+		DElement one = ds.get(0);
+		List<DConstraint> candidates = (isNode ? ((DNode)one).getDConstraints() : ((DArrow)one).getDConstraints());
+		for(DConstraint con : candidates){
+			if(con.getConstraint().getPredicate().getSymbol().equals(pred)){
+				if(con.getDNodes().containsAll(ds) || con.getDArrows().containsAll(ds)){
+					return con;
+				}
+			}
+		}
+		return null;
+	}
+
+	protected List<DConstraint> getCoreAtomicConstraints(DGraph graph, Map<String, List<String>> ats){
+		List<DConstraint> atms = new ArrayList<DConstraint>();
+		for(Entry<String, List<String>> iter : ats.entrySet()){
+			DConstraint atom = getAtomicConstraint(iter.getKey(), iter.getValue(), graph);
+			if(atom != null)
+				atms.add(atom);
+		}
+		return atms;
+	}
+
+	protected A4Options getAlloyOption(){
+		A4Options options = new A4Options();
+		options.solver = A4Options.SatSolver.MiniSatProverJNI;
+		options.skolemDepth = 1;
+		options.coreGranularity = 3;
+		options.coreMinimization = 0;
+		return options;
+	}
+	
+	protected IFile createDPFInstanceFile(IFolder folder, String fileName, int index) throws CoreException{
+		IFile insFile = folder.getFile(fileName + INSTANCE);
+		if(insFile.exists()){
+			insFile.delete(true, new NullProgressMonitor());
+		}
+		return insFile;
+	}
+	private boolean contained(Pos cur, Pos iter){
 		return !(iter.y2 < cur.y2 || iter.y > cur.y 
 				|| (iter.y == cur.y && iter.x > cur.x) || (iter.y2 == cur.y2 && iter.x2 < cur.x2));
 	}
-	private static String getCore(Pos cur, Map<Pos, String> hash) {
+	protected String getCore(Pos cur, Map<Pos, String> hash) {
 		for(Entry<Pos, String> rep : hash.entrySet()){
 			if(contained(cur, rep.getKey())) return rep.getValue();
 		}

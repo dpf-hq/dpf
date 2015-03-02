@@ -9,14 +9,9 @@
             name="Validate Model Consistence">
       </command>
       <command
-            defaultHandler="no.hib.dpf.editor.verification.GetUnsatCoreHandler"
-            id="no.hib.dpf.editor.unsat.core"
-            name="Get Unsat Core">
-      </command>
-      <command
-            defaultHandler="no.hib.dpf.editor.verification.RunAlloyHandler"
-            id="no.hib.dpf.editor.verification.runAlloy"
-            name="Run Alloy">
+            defaultHandler="no.hib.dpf.editor.verification.RedundantCheckHandler"
+            id="no.hib.dpf.editor.redundant_constraints"
+            name="Find Redundant Constraints">
       </command>
    </extension>
    <extension
@@ -36,9 +31,15 @@
             </visibleWhen>
          </command>
          <command
-               commandId="no.hib.dpf.editor.unsat.core"
-               label="Unsat Core"
+               commandId="no.hib.dpf.editor.redundant_constraints"
+               label="Find Redundant Constraints"
                style="push">
+            <visibleWhen
+                  checkEnabled="true">
+               <reference
+                     definitionId="no.hib.dpf.editor.verification.definition.isAlloyFile">
+               </reference>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
