@@ -69,7 +69,7 @@ public class DConstraintCreateCommand extends AbstractCreateCommand {
 				dnode = dnodes.get(index);
 				rect = rect.union(new Rectangle(dnode.getLocation(), dnode.getSize()));
 			}
-			dNode.setLocation(dnodes.size() == 1 ? rect.getTop() : rect.getCenter());
+			dNode.setLocation(rect.getTopLeft());
 			dNode.setDConstraint(newComposedConstraint);
 			newComposedConstraint.setFakeNode(dNode);
 			if(darrows.size() == 0){

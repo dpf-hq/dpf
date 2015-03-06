@@ -176,12 +176,12 @@ public class Draw2dUtil {
 		end = source == target ? source.getBounds().getBottom() : target.getBounds().getCenter();
 		copied.setPoint(start, 0);
 		copied.setPoint(end, copied.size() - 1);
-		start = copied.getPoint(index);
-		if(index + 1 < points.size())
+		if(index + 1 < points.size()){
+			start = copied.getPoint(index);
 			end = copied.getPoint(index + 1);
-		else{
-			start = copied.getPoint(index - 1);
-			end = copied.getPoint(index);
+		}else{
+			start = copied.getPoint(points.size() - 2);
+			end = copied.getPoint(points.size() - 1);
 		}
 		return getAbsoluteBendPoint(start, end, offset);
 	}

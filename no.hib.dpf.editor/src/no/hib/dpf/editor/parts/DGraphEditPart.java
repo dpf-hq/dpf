@@ -193,7 +193,7 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 
 	protected void fireRemovingChild(EditPart child, int index) {
 		super.fireRemovingChild(child, index);
-		if(child.getModel() instanceof DNode)
+		if(child.getModel() instanceof DNode && ((DNode)child.getModel()).getNode() != null)
 			verifyOnNodeChange(this.getDGraph().getGraph(), null, ((DNode)child.getModel()).getNode());
 	}
 
