@@ -12,7 +12,7 @@
  * Elias Volanakis - initial API and implementation
  * 
  * �yvind Bech and Dag Viggo Lok�en - DPF Editor
-*******************************************************************************/
+ *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
 import java.util.ArrayList;
@@ -20,7 +20,6 @@ import java.util.List;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DGraph;
@@ -30,6 +29,7 @@ import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.figures.DPFShortestPathConnectionRouter;
 import no.hib.dpf.editor.policies.DArrowCreateFeedBackPolicy;
 import no.hib.dpf.editor.policies.DGraphXYLayoutEditPolicy;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.Figure;
@@ -41,6 +41,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.CompoundSnapToHelper;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.SnapToGeometry;
@@ -87,7 +88,7 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 		// Shows a snap line when nodes align:
 		installEditPolicy("Snap Feedback", new SnapFeedbackPolicy()); //$NON-NLS-1$
 	}
-	
+
 
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class adapter) {
@@ -102,7 +103,7 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 			val = (Boolean)getViewer().getProperty(SnapToGrid.PROPERTY_GRID_ENABLED);
 			if (val != null && val.booleanValue())
 				snapStrategies.add(new SnapToGrid(this));
-			
+
 			if (snapStrategies.size() == 0)
 				return null;
 			if (snapStrategies.size() == 1)
@@ -141,63 +142,59 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 	 * 2. Remove a arrow, check constraint related to the node's type, the related incoming and outgoing connections's constraint
 	 *  is already checked when deleting them
 	 */
-	private void verifyOnNodeChange(Graph graph, Object oldNode, Object newNode) {
+	private void verifyOnNodeChange(Graph graph, Node newNode, Node oldNode) {
 		Node checkedNode = null;
 		DPFEditor editor = getEditor();
-		if(editor == null)
-			return;
-		if (newNode == null && oldNode instanceof Node){
-			checkedNode = (Node) oldNode;
-			editor.deleteMaker(checkedNode);
+		if(editor == null) return;
+		if (newNode == null && oldNode != null){
+			checkedNode = oldNode;
+			editor.deleteMaker(oldNode);
 		}
-		else if (newNode instanceof Node)
-			checkedNode = (Node) newNode;
-		
+		else if (newNode != null)
+			checkedNode = newNode;
+
 		EList<Constraint> constraints = new BasicEList<Constraint>();
 		constraints.addAll(checkedNode.getTypeNode().getConstraints());
-		
+
 		if(graph == null || editor == null) return;
 
 		for (Constraint constraint : constraints) {
 			EList<Node> nodes = new BasicEList<Node>();
 			EList<Arrow> arrows = new BasicEList<Arrow>();
-
-			findRelatedElements(checkedNode, graph, nodes, arrows);
-			List<Node> nodeList = graph.getNodes();
-			if (!nodeList.contains(checkedNode))
-				if (nodes.contains(checkedNode))
-					nodes.remove(checkedNode);
+			DPFCoreUtil.findRelatedElements(checkedNode, constraint, nodes, arrows);
+			if(newNode == null) {
+				nodes.remove(oldNode);
+				List<Arrow> delete = new ArrayList<Arrow>();
+				for(Arrow iter : arrows)
+					if(iter.getSource() == oldNode || iter.getTarget() == oldNode)
+						delete.add(iter);
+				arrows.removeAll(delete);
+			}
 			boolean valid = constraint.validate(nodes, arrows);
 			if(!valid){
 				for(Node iter : nodes)
 					editor.addMarker(iter, constraint);
-				for(Arrow iter : arrows)
-					editor.addMarker(iter, constraint);
 			}else{
 				for(Node iter : nodes)
 					editor.deleteMaker(iter, constraint);
-				for(Arrow iter : arrows)
-					editor.deleteMaker(iter, constraint);
 			}
+		}
+	}
+	protected void fireChildAdded(EditPart child, int index) {
+		super.fireChildAdded(child, index);
+		if(child.getModel() instanceof DNode){
+			Node node = ((DNode)child.getModel()).getNode();
+			if(node == null) return;
+			EList<Node> nodes = new BasicEList<Node>();
+			nodes.add(node);
+			verifyOnNodeChange(this.getDGraph().getGraph(), node, null);
 		}
 	}
 
-	private void findRelatedElements(Node checkedNode, Graph graph,
-			EList<Node> nodes, EList<Arrow> arrows) {
-		List<Node> nodeList = graph.getNodes();
-		if (nodeList.contains(checkedNode))
-			if (!nodes.contains(checkedNode))
-				nodes.add(checkedNode);
-	}
-	
-	protected void handleModelChanged(Notification msg){
-		if(msg.getNotifier() != null && msg.getNotifier() == getDGraph().getGraph()){ 
-			switch(msg.getFeatureID(Graph.class)){
-			case CorePackage.GRAPH__NODES:
-				verifyOnNodeChange((Graph)msg.getNotifier(), msg.getOldValue(), msg.getNewValue());
-				break;
-			}
-		}
+	protected void fireRemovingChild(EditPart child, int index) {
+		super.fireRemovingChild(child, index);
+		if(child.getModel() instanceof DNode)
+			verifyOnNodeChange(this.getDGraph().getGraph(), null, ((DNode)child.getModel()).getNode());
 	}
 
 	protected void handleDiagramModelChanged(Notification msg){
@@ -217,7 +214,7 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 		super.listen();
 		addUIAdapter(getDGraph().getGraph(), modelListener);
 	}
-	
+
 	protected void unlisten(){
 		removeUIAdapter(getDGraph().getGraph(), modelListener);
 		super.unlisten();

@@ -14,14 +14,14 @@ public abstract class AbstractBasePredicate extends PredicateImpl{
 	public static final String INJECTIVE = "inj",
 							   SURJECTIVE = "surj",
 							   IRREFLEXIVE = "irr",
-							   ARROW_MULTIPLICITY = "multi1",
-							   NODE_MULTIPLICITY = "multi2",
+							   ARROW_MULTIPLICITY = "multi",
+							   NODE_MULTIPLICITY = "multi1",
 							   INVERSE = "inv",
 							   JOINT_SURJECITVE = "js",
 							   JOINT_INJECTIVE = "ji",
 							   XOR = "xor",
-							   SPLIT_NOT_AND = "nand1",
-							   MERGE_NOT_AND = "nand2",
+							   SPLIT_NOT_AND = "nand",
+							   MERGE_NOT_AND = "nand1",
 							   REFLEXIVE = "ref",
 							   XOR4 = "xor4";
 	public AbstractBasePredicate(String symbol, String parameter, String nodes, String edges){

@@ -36,7 +36,13 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -73,10 +79,10 @@ public class ValidateModelHandler extends AbstractHandler {
 					 */
 					URI dpfModelURI = URI.createFileURI(dpfFile.getLocation().toOSString());
 					DSpecification dpf = (DSpecification) ((EObject)graphicalViewer.getContents().getModel()).eContainer();
-					
+
 					IFolder folder = (IFolder) dpfFile.getParent();
 					String dpfFileName = getFileNameWithoutExtension(dpfFile.getName());
-					
+
 					File alloyFile = translateDPF2Alloy(dpf, folder, dpfFileName);
 					A4Reporter rep = new A4Reporter();
 					Module world = CompUtil.parseEverything_fromFile(rep, null, alloyFile.getAbsolutePath());
@@ -117,9 +123,38 @@ public class ValidateModelHandler extends AbstractHandler {
 						DSpecification instance = GenerateInstanceFromAlloy.generateDSpecificationFromAlloy(ans, DPFUtils.loadDSpecification(resourceSet, dpfModelURI));
 						DPFUtils.saveDSpecification(resourceSet, instance, URI.createFileURI(instanceFile.getLocation().toOSString()));
 					}
-					if(!dialogMessage.isEmpty())
-						MessageDialog.openError(graphicalViewer.getControl().getShell(), 
-								"Conflict Universal Constraints in " + dpfFileName + ".uc", dialogMessage);
+					if(!dialogMessage.isEmpty()){
+						MessageDialog dialog = new MessageDialog(graphicalViewer.getControl().getShell(), 
+								"Conflict Universal Constraints in " + dpfFileName + ".uc", null, dialogMessage,
+								MessageDialog.ERROR, 
+								new String[] { IDialogConstants.OK_LABEL }, 0){
+							protected void setShellStyle(int newShellStyle) {
+								if(getShellStyle() != SWT.SHELL_TRIM){
+									setShellStyle(SWT.SHELL_TRIM);
+								}
+							};
+							
+							protected Control createMessageArea(Composite composite) {
+								Control result = super.createMessageArea(composite);
+								FontData[] data = messageLabel.getFont().getFontData();
+								for (int i = 0; i < data.length; i++) {
+									data[i].setHeight((int)(data[i].getHeight() * 2));
+								}
+								messageLabel.setFont(new Font(messageLabel.getDisplay(), data));
+								return result;
+							}
+						};
+						dialog.open();
+						//						style &= SWT.SHEET;
+						//						dialog.setShellStyle(dialog.getShellStyle() | style);
+						//						MessageDialog.open(MessageDialog.ERROR, 
+						//								graphicalViewer.getControl().getShell(), 
+						//								"Conflict Universal Constraints in " + dpfFileName + ".uc", 
+						//								dialogMessage, 
+						//								SWT.DIALOG_TRIM | SWT.MIN);
+					}
+					//						MessageDialog.openError(graphicalViewer.getControl().getShell(), 
+					//								"Conflict Universal Constraints in " + dpfFileName + ".uc", dialogMessage);
 					folder.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
 				} catch (Exception e) {
 					DPFUtils.logError(e);
@@ -128,7 +163,7 @@ public class ValidateModelHandler extends AbstractHandler {
 		}
 		return null;
 	}
-	
+
 	protected String getFileNameWithoutExtension(String fileNameWithExtension){
 		int index = fileNameWithExtension.indexOf('.');
 		return index == -1 ? fileNameWithExtension : fileNameWithExtension.substring(0, index);
@@ -182,7 +217,7 @@ public class ValidateModelHandler extends AbstractHandler {
 			}
 		}
 	}
-	
+
 	protected DConstraint getAtomicConstraint(String pred, List<String> elements, DGraph graph){
 		List<DElement> ds = new ArrayList<DElement>();
 		boolean isNode = true;
@@ -232,7 +267,7 @@ public class ValidateModelHandler extends AbstractHandler {
 		options.coreMinimization = 0;
 		return options;
 	}
-	
+
 	protected IFile createDPFInstanceFile(IFolder folder, String fileName, int index) throws CoreException{
 		IFile insFile = folder.getFile(fileName + INSTANCE);
 		if(insFile.exists()){

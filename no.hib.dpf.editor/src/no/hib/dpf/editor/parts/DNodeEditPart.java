@@ -24,6 +24,7 @@ import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DFakeNode;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
@@ -293,12 +294,6 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 			case CorePackage.NODE__NAME:
 				refreshVisuals();
 				break;
-			case CorePackage.NODE__INCOMINGS:
-				verifyOnArrowChange((Node)msg.getNotifier(), msg.getOldValue(), msg.getNewValue());
-				break;
-			case CorePackage.NODE__OUTGOINGS:
-				verifyOnArrowChange((Node)msg.getNotifier(), msg.getOldValue(), msg.getNewValue());
-				break;
 			}
 		}
 	}
@@ -346,18 +341,16 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		super.unlisten();
 	}
 
-	private void verifyOnArrowChange(Node node, Object oldArrow, Object newArrow){
+	private void verifyOnArrowChange(Node node, Arrow oldArrow, Arrow newArrow){
 		Arrow checkedArrow = null;
 		DPFEditor editor = getEditor();
-		if(editor == null)
-			return;
-		if (newArrow == null && oldArrow instanceof Arrow){
-			checkedArrow = (Arrow) oldArrow;
-			if(checkedArrow.getSource() == null && checkedArrow.getTarget() == null)
-				editor.deleteMaker(checkedArrow);
+		if(editor == null) return;
+		if (newArrow == null && oldArrow != null){
+			checkedArrow = oldArrow;
+			editor.deleteMaker(oldArrow);
 		}
-		else if (newArrow instanceof Arrow)
-			checkedArrow = (Arrow) newArrow;
+		else if (newArrow != null)
+			checkedArrow = newArrow;
 
 		EList<Constraint> constraints = new BasicEList<Constraint>();
 		constraints.addAll(checkedArrow.getTypeArrow().getConstraints());
@@ -368,8 +361,17 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 			EList<Node> nodes = new BasicEList<Node>();
 			EList<Arrow> arrows = new BasicEList<Arrow>();
 
+			System.out.println(constraint.getPredicate().getSymbol());
 			DPFCoreUtil.findRelatedElements(node, constraint, nodes, arrows);
 
+			if(newArrow == null) arrows.remove(checkedArrow);
+			for (Node arrow : nodes) {
+				System.out.print(arrow.getName() + " ");
+			}
+			for (Arrow arrow : arrows) {
+				System.out.print(arrow.getName() + " ");
+			}
+			System.out.println();
 			boolean valid = constraint.validate(nodes, arrows);
 			if(!valid){
 				for(Node iter : nodes)
@@ -382,7 +384,18 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 				for(Arrow iter : arrows)
 					editor.deleteMaker(iter, constraint);
 			}
-
 		}
+	}
+	protected void fireTargetConnectionAdded(ConnectionEditPart connection,
+			int index) {
+		super.fireTargetConnectionAdded(connection, index);
+		if(connection.getModel() instanceof DArrow)
+			verifyOnArrowChange(getDPFNode(), null, ((DArrow) connection.getModel()).getArrow());
+	}
+	protected void fireRemovingSourceConnection(ConnectionEditPart connection,
+			int index) {
+		super.fireRemovingSourceConnection(connection, index);
+		if(connection.getModel() instanceof DArrow)
+			verifyOnArrowChange(getDPFNode(), ((DArrow) connection.getModel()).getArrow(), null);
 	}
 }

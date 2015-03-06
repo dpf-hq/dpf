@@ -317,4 +317,11 @@ public class DPFUtils extends DPFCoreUtil {
 		else
 			return fileName.substring(0, index);
 	}
+	
+	/**
+	 * Returns the path to the workspace of this editor.
+	 */
+	public static String getWorkspaceDirectory() {
+		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
+	}
 }

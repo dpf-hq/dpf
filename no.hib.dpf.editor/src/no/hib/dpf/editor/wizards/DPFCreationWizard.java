@@ -19,7 +19,6 @@ import no.hib.dpf.diagram.DSignature;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.util.DPFConstants;
-import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFUtils;
 
 import org.eclipse.core.resources.IFile;
@@ -81,7 +80,7 @@ public class DPFCreationWizard extends Wizard implements INewWizard {
 			if(filename.endsWith(".xmi"))
 				filename = DPFUtils.getDiagramFromModel(filename);
 		} else
-			filename = DPFEditor.getWorkspaceDirectory();
+			filename = DPFUtils.getWorkspaceDirectory();
 		configPage.setInitialLocation(filename);
 	}
 

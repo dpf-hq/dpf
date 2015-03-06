@@ -24,10 +24,10 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.provider.CoreItemProviderAdapterFactory;
@@ -52,7 +52,6 @@ import no.hib.dpf.editor.parts.DPFEditPartFactory;
 import no.hib.dpf.editor.parts.NodeTreeEditPartFactory;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 import no.hib.dpf.editor.preferences.PreferenceConstants;
-import no.hib.dpf.utils.DPFCoreUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -64,9 +63,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -326,8 +323,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			iter.getSpecification().setSignatureFile(newSignatureFile);
 		}
 	}
-	
-	
+
+
 	/**When model is saved to another location, if a signature is not the default one,
 	 * the icon location of each predicate, relative to the model, should be update
 	 * @param dSignature : signature to update
@@ -341,7 +338,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				predicate.setIcon(DPFUtils.updateRelativeURI(oldBase, newBase, URI.createFileURI(predicate.getIcon())).toFileString());
 		}
 	}
-	
+
 	/**When model is saved to another location, update relative locations
 	 * @param resourceSet : the resourceSet containing the model
 	 * @param newSpec : the model
@@ -418,6 +415,21 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 				doSave(DPFUtils.getFileURI(file), new NullProgressMonitor());
 			}
 		}
+	}
+
+	public void dispose() {
+		try {
+			for(Entry<IDObject, List<IMarker>> entry : markersMap.entrySet()){
+				for(IMarker marker : entry.getValue())
+					if (marker.exists()){
+						m2c.remove(marker);
+						marker.delete();
+					}
+			}
+		} catch (CoreException e) {
+			DPFPlugin.getDefault().log(e);
+		}
+		super.dispose();
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -497,7 +509,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
 		getGraphicalViewer().setContents(dSpecification.getDGraph());
-		validateModel(dSpecification.getDGraph().getGraph());
 		getSite().setSelectionProvider(getGraphicalViewer());
 		getSite().getSelectionProvider().addSelectionChangedListener(paletteFactory);
 	}
@@ -535,38 +546,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		};
 	}
 
-	public  void validateModel(Graph graph) {
-		Map<Constraint, List<Node>> visited = new HashMap<Constraint, List<Node>>();
-		for(Node node : graph.getNodes()){
-			for (Constraint constraint : node.getTypeNode().getConstraints()) {
-				List<Node> visitedNodes = visited.get(constraint);
-				if(visitedNodes != null && visitedNodes.contains(node)) continue;
-				EList<Node> vertex = new BasicEList<Node>();
-				EList<Arrow> arrows = new BasicEList<Arrow>();
-				DPFCoreUtil.findRelatedElements(node, constraint, vertex, arrows);
-				if(!vertex.isEmpty()){
-					boolean valid = constraint.validate(vertex, arrows);
-					if(!valid){
-						for(Node iter : vertex)
-							addMarker(iter, constraint);
-						for(Arrow iter : arrows)
-							addMarker(iter, constraint);
-					}
-					if(visitedNodes == null){
-						visitedNodes = new ArrayList<Node>(vertex.size());
-						visitedNodes.addAll(vertex);
-					}else{
-						for(Node iter : vertex){
-							if(!visitedNodes.contains(iter))
-								visitedNodes.add(iter);
-						}
-					}
-					visited.put(constraint, visitedNodes);
-				}
-			}
-		}
-	}
-	
 	public boolean isSaveAsAllowed() {
 		return true;
 	}
@@ -582,14 +561,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		paletteFactory.updatePalette(dSpecification);
 		shapesEditPartFactory = new DPFEditPartFactory();
 	}
-
-	/**
-	 * Returns the path to the workspace of this editor.
-	 */
-	public static String getWorkspaceDirectory() {
-		return ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
-	}
-
 
 	@Override
 	public void doSave(IProgressMonitor monitor) {
@@ -672,7 +643,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	private IMarker findMarker(List<IMarker> markers, Constraint constraint){
 		if(markers != null)
 			for(IMarker marker : markers)
-				if(m2c.containsKey(marker)) return marker;
+				if(m2c.get(marker) == constraint) return marker;
 		return null;
 	}
 	public void addMarker(IDObject iter, Constraint constraint) {
@@ -702,10 +673,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 			if(marker != null)
 				markers.add(marker);
 		}
-		if(markers.size() == 1){
+		if(!markers.isEmpty())
 			markersMap.put(iter, markers);
-			updateVisual(iter);
-		}
+		updateVisual(iter);
 	}
 	private void updateVisual(IDObject iter){
 		if(iter instanceof Node){
@@ -736,75 +706,77 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		if(markers != null){
 			IMarker marker = findMarker(markers, constraint);
 			if(marker != null){
-					try {
-						marker.delete();
-						m2c.remove(marker);
-						markers.remove(marker);
-						if(markers.isEmpty())
-							updateVisual(iter);
-					} catch (CoreException e) {
-						DPFUtils.logError(e);
-					}
+				try {
+					marker.delete();
+					m2c.remove(marker);
+					markers.remove(marker);
+					if(markers.isEmpty())
+						updateVisual(iter);
+				} catch (CoreException e) {
+					DPFUtils.logError(e);
+				}
 			}
 		}
 	}
 
-	public void deleteMaker(IDObject checkedArrow) {
-		List<IMarker> markers = markersMap.get(checkedArrow);
+	public void deleteMaker(IDObject element) {
+		List<IMarker> markers = markersMap.get(element);
 		IFile file = ((IFileEditorInput)getEditorInput()).getFile();
 		if(file == null)
 			return;
 		if(markers == null) return;
 		try {
 			for(IMarker marker : markers)
-				if (marker.exists()) 
+				if (marker.exists()){
+					m2c.remove(marker);
 					marker.delete();
-			markersMap.remove(checkedArrow);
-			updateVisual(checkedArrow);
+				}
+			markersMap.remove(element);
+			updateVisual(element);
 		} catch (CoreException e) {
 			DPFUtils.logError(e);
 		}
 	}
-	
+
 	class UnwrappingPropertySource implements IPropertySource {
-	    private IPropertySource source;
+		private IPropertySource source;
 
-	    public UnwrappingPropertySource(final IPropertySource source) {
-	        this.source = source;
-	    }
+		public UnwrappingPropertySource(final IPropertySource source) {
+			this.source = source;
+		}
 
-	    @Override
-	    public Object getEditableValue() {
-	        Object value = source.getEditableValue();
-	        return value instanceof PropertyValueWrapper ? ((PropertyValueWrapper) value).getEditableValue(null) : source.getEditableValue();
-	    }
+		@Override
+		public Object getEditableValue() {
+			Object value = source.getEditableValue();
+			return value instanceof PropertyValueWrapper ? ((PropertyValueWrapper) value).getEditableValue(null) : source.getEditableValue();
+		}
 
-	    @Override
-	    public IPropertyDescriptor[] getPropertyDescriptors() {
-	        return source.getPropertyDescriptors();
-	    }
+		@Override
+		public IPropertyDescriptor[] getPropertyDescriptors() {
+			return source.getPropertyDescriptors();
+		}
 
-	    @Override
-	    public Object getPropertyValue(Object id) {
-	        Object value = source.getPropertyValue(id);
-	        if(value == null)
-	        	return null;
-	        return value instanceof PropertyValueWrapper ? ((PropertyValueWrapper) value).getEditableValue(null) : value;//source.getEditableValue();
-	    }
+		@Override
+		public Object getPropertyValue(Object id) {
+			Object value = source.getPropertyValue(id);
+			if(value == null)
+				return null;
+			return value instanceof PropertyValueWrapper ? ((PropertyValueWrapper) value).getEditableValue(null) : value;//source.getEditableValue();
+		}
 
-	    @Override
-	    public boolean isPropertySet(Object id) {
-	        return source.isPropertySet(id);
-	    }
+		@Override
+		public boolean isPropertySet(Object id) {
+			return source.isPropertySet(id);
+		}
 
-	    @Override
-	    public void resetPropertyValue(Object id) {
-	        source.resetPropertyValue(id);
-	    }
+		@Override
+		public void resetPropertyValue(Object id) {
+			source.resetPropertyValue(id);
+		}
 
-	    @Override
-	    public void setPropertyValue(Object id, Object value) {
-	        source.setPropertyValue(id, value);
-	    }
+		@Override
+		public void setPropertyValue(Object id, Object value) {
+			source.setPropertyValue(id, value);
+		}
 	}
 }

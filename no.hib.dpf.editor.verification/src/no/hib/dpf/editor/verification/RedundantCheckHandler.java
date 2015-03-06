@@ -30,7 +30,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.SWT;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -184,11 +186,17 @@ public class RedundantCheckHandler extends ValidateModelHandler {
 						DPFUtils.saveDSpecification(resourceSet, instance, URI.createFileURI(instanceFile.getLocation().toOSString()));
 					}
 					if(!dialogMessage.isEmpty()){
-						FileWriter writer = new FileWriter(new File(folder.getLocation().toOSString(), dpfFileName + "_redundant.log"));
-						writer.write(dialogMessage);
-						writer.close();
-						MessageDialog.openError(graphicalViewer.getControl().getShell(), 
-								"Redundant Constraints Report", dialogMessage);
+						MessageDialog dialog = new MessageDialog(graphicalViewer.getControl().getShell(), 
+								"Redundant Constraints Report", null, dialogMessage,
+								MessageDialog.ERROR, 
+								new String[] { IDialogConstants.OK_LABEL }, 0){
+							protected void setShellStyle(int newShellStyle) {
+								if(getShellStyle() != SWT.SHELL_TRIM){
+									setShellStyle(SWT.SHELL_TRIM);
+								}
+							};
+						};
+						dialog.open();
 					}
 					folder.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
 				} catch (Exception e) {

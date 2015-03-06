@@ -16,7 +16,6 @@
 
 package no.hib.dpf.uconstraint.presentation;
 
-import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.uconstraint.Constraints;
 import no.hib.dpf.uconstraint.UConstraintFactory;
@@ -82,7 +81,7 @@ public class UConstraintModelWizard extends Wizard implements INewWizard {
 			if(filename.endsWith(".xmi"))
 				filename = DPFUtils.getDiagramFromModel(filename);
 		} else
-			filename = DPFEditor.getWorkspaceDirectory();
+			filename = DPFUtils.getWorkspaceDirectory();
 		configPage.setInitialLocation(filename);
 	}
 
