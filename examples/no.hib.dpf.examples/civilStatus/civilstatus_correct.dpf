@@ -3,98 +3,98 @@
   <diagram:DSpecification grid="false" zoom="1.2" gridVisible="false" dSignature="/1" signatureFile="civilstatus.sig">
     <dGraph>
       <dNodes dOutgoings="/0/@dGraph/@dArrows.0 /0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.2 /0/@dGraph/@dArrows.3" dIncomings="/0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.2" dConstraints="/0/@dConstraints.0 /0/@dConstraints.1 /0/@dConstraints.2 /0/@dConstraints.3 /0/@dConstraints.4 /0/@dConstraints.7 /0/@dConstraints.8 /0/@dConstraints.9" location="127 69" size="85 32">
-        <node href="civilstatus.xmi#/0/@graph/@nodes.0"/>
+        <node href="civilstatus_correct.xmi#/0/@graph/@nodes.0"/>
       </dNodes>
       <dNodes constraintsTo="/0/@dConstraints.6/@children.0" dIncomings="/0/@dGraph/@dArrows.0" dConstraints="/0/@dConstraints.1 /0/@dConstraints.2 /0/@dConstraints.6" location="380 66" size="73 30">
-        <node href="civilstatus.xmi#/0/@graph/@nodes.1"/>
+        <node href="civilstatus_correct.xmi#/0/@graph/@nodes.1"/>
       </dNodes>
       <dNodes xsi:type="diagram:DConstraintNode" constraintsFrom="/0/@dConstraints.0/@children.0 /0/@dConstraints.0/@children.1" location="17 100" dConstraint="/0/@dConstraints.0"/>
       <dNodes constraintsTo="/0/@dConstraints.5/@children.0" dIncomings="/0/@dGraph/@dArrows.3" dConstraints="/0/@dConstraints.3 /0/@dConstraints.4 /0/@dConstraints.5" location="364 177" size="135 30">
-        <node href="civilstatus.xmi#/0/@graph/@nodes.2"/>
+        <node href="civilstatus_correct.xmi#/0/@graph/@nodes.2"/>
       </dNodes>
       <dNodes xsi:type="diagram:DConstraintNode" constraintsFrom="/0/@dConstraints.5/@children.0" location="191 131" dConstraint="/0/@dConstraints.5"/>
       <dNodes xsi:type="diagram:DConstraintNode" constraintsFrom="/0/@dConstraints.6/@children.0" location="309 34" dConstraint="/0/@dConstraints.6"/>
-      <dNodes xsi:type="diagram:DConstraintNode" constraintsFrom="/0/@dConstraints.9/@children.0 /0/@dConstraints.9/@children.1" location="17 50" dConstraint="/0/@dConstraints.9"/>
+      <dNodes xsi:type="diagram:DConstraintNode" constraintsFrom="/0/@dConstraints.9/@children.0 /0/@dConstraints.9/@children.1" location="13 50" dConstraint="/0/@dConstraints.9"/>
       <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.1" dConstraints="/0/@dConstraints.1 /0/@dConstraints.2">
-        <arrow href="civilstatus.xmi#/0/@graph/@arrows.0"/>
+        <arrow href="civilstatus_correct.xmi#/0/@graph/@arrows.0"/>
         <nameOffset offset="52 -22" len="247"/>
       </dArrows>
       <dArrows constraintsTo="/0/@dConstraints.0/@children.0 /0/@dConstraints.9/@children.0" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.0" dConstraints="/0/@dConstraints.0 /0/@dConstraints.8 /0/@dConstraints.9">
-        <arrow href="civilstatus.xmi#/0/@graph/@arrows.1"/>
+        <arrow href="civilstatus_correct.xmi#/0/@graph/@arrows.1"/>
         <nameOffset offset="-31 -27" len="-78" index="1"/>
         <bendpoints offset="-29 0" len="32"/>
         <bendpoints offset="-28 77" len="32" index="1"/>
         <bendpoints offset="9 78" len="32" index="2"/>
       </dArrows>
       <dArrows constraintsTo="/0/@dConstraints.0/@children.1 /0/@dConstraints.9/@children.1" dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.0" dConstraints="/0/@dConstraints.0 /0/@dConstraints.7 /0/@dConstraints.9">
-        <arrow href="civilstatus.xmi#/0/@graph/@arrows.2"/>
+        <arrow href="civilstatus_correct.xmi#/0/@graph/@arrows.2"/>
         <nameOffset offset="-64 2" len="-56" index="1"/>
         <bendpoints offset="43 1" len="24"/>
         <bendpoints offset="57 78" len="32" index="1"/>
         <bendpoints offset="16 58" len="24" index="1"/>
       </dArrows>
       <dArrows dSource="/0/@dGraph/@dNodes.0" dTarget="/0/@dGraph/@dNodes.3" dConstraints="/0/@dConstraints.3 /0/@dConstraints.4">
-        <arrow href="civilstatus.xmi#/0/@graph/@arrows.3"/>
+        <arrow href="civilstatus_correct.xmi#/0/@graph/@arrows.3"/>
         <nameOffset offset="5 5" len="244" index="1"/>
         <bendpoints offset="55 88" len="267"/>
       </dArrows>
-      <graph href="civilstatus.xmi#/0/@graph"/>
+      <graph href="civilstatus_correct.xmi#/0/@graph"/>
     </dGraph>
     <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="/0/@dGraph/@dNodes.0" dArrows="/0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.2" dPredicate="/1/@dPredicates.0" fakeNode="/0/@dGraph/@dNodes.2">
-      <constraint href="civilstatus.xmi#/0/@constraints.0"/>
+      <constraint href="civilstatus_correct.xmi#/0/@constraints.0"/>
       <children xsi:type="diagram:DGenericArrowConstraint" source="/0/@dGraph/@dNodes.2" target="/0/@dGraph/@dArrows.1"/>
       <children xsi:type="diagram:DGenericArrowConstraint" source="/0/@dGraph/@dNodes.2" target="/0/@dGraph/@dArrows.2"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.1" dArrows="/0/@dGraph/@dArrows.0" source="/0/@dGraph/@dArrows.0">
-      <constraint href="civilstatus.xmi#/0/@constraints.1"/>
+      <constraint href="civilstatus_correct.xmi#/0/@constraints.1"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
       <offset offset="61 2" len="247"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.1" dArrows="/0/@dGraph/@dArrows.0" source="/0/@dGraph/@dArrows.0">
-      <constraint href="civilstatus.xmi#/0/@constraints.2"/>
+      <constraint href="civilstatus_correct.xmi#/0/@constraints.2"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.1"/>
       <offset offset="145 -24" len="247"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.3" dArrows="/0/@dGraph/@dArrows.3" source="/0/@dGraph/@dArrows.3">
-      <constraint href="civilstatus.xmi#/0/@constraints.3"/>
+      <constraint href="civilstatus_correct.xmi#/0/@constraints.3"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.3"/>
       <offset offset="81 3" len="244" index="1"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0 /0/@dGraph/@dNodes.3" dArrows="/0/@dGraph/@dArrows.3" source="/0/@dGraph/@dArrows.3">
-      <constraint href="civilstatus.xmi#/0/@constraints.4"/>
+      <constraint href="civilstatus_correct.xmi#/0/@constraints.4"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.1"/>
       <offset offset="42 -18" len="244" index="1"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="/0/@dGraph/@dNodes.3" dPredicate="/1/@dPredicates.1" fakeNode="/0/@dGraph/@dNodes.4">
-      <constraint href="civilstatus.xmi#/0/@constraints.5"/>
+      <constraint href="civilstatus_correct.xmi#/0/@constraints.5"/>
       <children xsi:type="diagram:DGenericArrowConstraint" source="/0/@dGraph/@dNodes.4" target="/0/@dGraph/@dNodes.3"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="/0/@dGraph/@dNodes.1" dPredicate="/1/@dPredicates.1" fakeNode="/0/@dGraph/@dNodes.5">
-      <constraint href="civilstatus.xmi#/0/@constraints.6"/>
+      <constraint href="civilstatus_correct.xmi#/0/@constraints.6"/>
       <children xsi:type="diagram:DGenericArrowConstraint" source="/0/@dGraph/@dNodes.5" target="/0/@dGraph/@dNodes.1"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0" dArrows="/0/@dGraph/@dArrows.2" source="/0/@dGraph/@dArrows.2">
-      <constraint href="civilstatus.xmi#/0/@constraints.7"/>
+      <constraint href="civilstatus_correct.xmi#/0/@constraints.7"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.2"/>
       <offset offset="-37 14" len="-76" index="1"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="/0/@dGraph/@dNodes.0" dArrows="/0/@dGraph/@dArrows.1" source="/0/@dGraph/@dArrows.1">
-      <constraint href="civilstatus.xmi#/0/@constraints.8"/>
+      <constraint href="civilstatus_correct.xmi#/0/@constraints.8"/>
       <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.2"/>
       <offset offset="-23 6" len="37" index="2"/>
     </dConstraints>
     <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="/0/@dGraph/@dNodes.0" dArrows="/0/@dGraph/@dArrows.1 /0/@dGraph/@dArrows.2" fakeNode="/0/@dGraph/@dNodes.6">
-      <constraint href="civilstatus.xmi#/0/@constraints.9"/>
-      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.7"/>
+      <constraint href="civilstatus_correct.xmi#/0/@constraints.9"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#/1/@dPredicates.8"/>
       <children xsi:type="diagram:DGenericArrowConstraint" source="/0/@dGraph/@dNodes.6" target="/0/@dGraph/@dArrows.1"/>
       <children xsi:type="diagram:DGenericArrowConstraint" source="/0/@dGraph/@dNodes.6" target="/0/@dGraph/@dArrows.2"/>
     </dConstraints>
-    <specification href="civilstatus.xmi#/0"/>
+    <specification href="civilstatus_correct.xmi#/0"/>
   </diagram:DSpecification>
   <diagram:DSignature>
-    <signature href="civilstatus.xmi#/1"/>
+    <signature href="civilstatus_correct.xmi#/1"/>
     <dPredicates simpleName="inv">
-      <predicate href="civilstatus.xmi#/1/@predicates.0"/>
+      <predicate href="civilstatus_correct.xmi#/1/@predicates.0"/>
       <dGraph>
         <dNodes dOutgoings="/1/@dPredicates.0/@dGraph/@dArrows.0" dIncomings="/1/@dPredicates.0/@dGraph/@dArrows.1" location="50 50" size="100 30">
           <node href="specification.xmi#/1/@predicates.0/@shape/@nodes.0"/>
@@ -118,7 +118,7 @@
       </visualization>
     </dPredicates>
     <dPredicates simpleName="enum" icon="enum_32.png">
-      <predicate href="civilstatus.xmi#/1/@predicates.1"/>
+      <predicate href="civilstatus_correct.xmi#/1/@predicates.1"/>
       <dGraph>
         <dNodes location="50 50" size="100 30">
           <node href="specification.xmi#/1/@predicates.1/@shape/@nodes.0"/>

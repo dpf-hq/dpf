@@ -106,23 +106,23 @@
         </arrowMapping>
       </mappings>
     </constraints>
-    <constraints id="2cbac388-ac93-4d46-8e0c-20d2b75d4b99" nodes="/0/@graph/@nodes.0" arrows="/0/@graph/@arrows.1 /0/@graph/@arrows.2">
-      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7"/>
+    <constraints id="302b9f82-b8ab-42a6-a2e9-4c3f7e7b74b5" nodes="/0/@graph/@nodes.0" arrows="/0/@graph/@arrows.1 /0/@graph/@arrows.2">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8"/>
       <mappings>
         <nodeMapping value="/0/@graph/@nodes.0">
-          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@nodes.2"/>
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@nodes.1"/>
         </nodeMapping>
         <nodeMapping value="/0/@graph/@nodes.0">
-          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@nodes.1"/>
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@nodes.0"/>
         </nodeMapping>
         <nodeMapping value="/0/@graph/@nodes.0">
-          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@nodes.0"/>
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@nodes.2"/>
         </nodeMapping>
-        <arrowMapping value="/0/@graph/@arrows.2">
-          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@arrows.1"/>
-        </arrowMapping>
         <arrowMapping value="/0/@graph/@arrows.1">
-          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.7/@shape/@arrows.0"/>
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@arrows.0"/>
+        </arrowMapping>
+        <arrowMapping value="/0/@graph/@arrows.2">
+          <key href="platform:/resource/DefaultSpecification.xmi#/1/@predicates.8/@shape/@arrows.1"/>
         </arrowMapping>
       </mappings>
     </constraints>

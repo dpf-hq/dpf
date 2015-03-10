@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:UConstraint="http://no.hib.dpf.uconstraint" xmlns:core="http://no.hib.dpf.core">
   <UConstraint:Constraints sourceLocation="/home/wxlfrank/runtime-EclipseApplication/no.hib.dpf.examples/civilStatus/civilstatus.dpf">
-    <rules leftNodes="/0/@rules.0/@sum/@dGraph/@dNodes.0 /0/@rules.0/@sum/@dGraph/@dNodes.1 /0/@rules.0/@sum/@dGraph/@dNodes.3" rightNodes="/0/@rules.0/@sum/@dGraph/@dNodes.0 /0/@rules.0/@sum/@dGraph/@dNodes.2 /0/@rules.0/@sum/@dGraph/@dNodes.3" rightArrows="/0/@rules.0/@sum/@dGraph/@dArrows.2 /0/@rules.0/@sum/@dGraph/@dArrows.1" leftArrows="/0/@rules.0/@sum/@dGraph/@dArrows.0 /0/@rules.0/@sum/@dGraph/@dArrows.2" commonNodes="/0/@rules.0/@sum/@dGraph/@dNodes.0 /0/@rules.0/@sum/@dGraph/@dNodes.3" commonArrows="/0/@rules.0/@sum/@dGraph/@dArrows.2" name="marriedWithoutWifeWithHusband">
+    <rules leftNodes="/0/@rules.0/@sum/@dGraph/@dNodes.0 /0/@rules.0/@sum/@dGraph/@dNodes.1 /0/@rules.0/@sum/@dGraph/@dNodes.3" rightNodes="/0/@rules.0/@sum/@dGraph/@dNodes.0 /0/@rules.0/@sum/@dGraph/@dNodes.2 /0/@rules.0/@sum/@dGraph/@dNodes.3" rightArrows="/0/@rules.0/@sum/@dGraph/@dArrows.2 /0/@rules.0/@sum/@dGraph/@dArrows.1" leftArrows="/0/@rules.0/@sum/@dGraph/@dArrows.0 /0/@rules.0/@sum/@dGraph/@dArrows.2" commonNodes="/0/@rules.0/@sum/@dGraph/@dNodes.0 /0/@rules.0/@sum/@dGraph/@dNodes.3" commonArrows="/0/@rules.0/@sum/@dGraph/@dArrows.2" name="MarriedWithoutWife">
       <sum specification="/1" gridVisible="false">
         <dType href="civilstatus.dpf#/0"/>
         <dGraph graph="/1/@graph">
           <dType href="civilstatus.dpf#/0/@dGraph"/>
-          <dNodes node="/1/@graph/@nodes.0" dOutgoings="/0/@rules.0/@sum/@dGraph/@dArrows.0 /0/@rules.0/@sum/@dGraph/@dArrows.1 /0/@rules.0/@sum/@dGraph/@dArrows.2" location="212 167" size="100 30">
+          <dNodes node="/1/@graph/@nodes.0" dOutgoings="/0/@rules.0/@sum/@dGraph/@dArrows.0 /0/@rules.0/@sum/@dGraph/@dArrows.1 /0/@rules.0/@sum/@dGraph/@dArrows.2" location="161 220" size="137 30">
             <dType href="civilstatus.dpf#/0/@dGraph/@dNodes.0"/>
           </dNodes>
-          <dNodes node="/1/@graph/@nodes.1" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.0" location="396 167" size="100 30">
+          <dNodes node="/1/@graph/@nodes.1" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.0" location="6 101" size="113 30">
             <dType href="civilstatus.dpf#/0/@dGraph/@dNodes.0"/>
           </dNodes>
-          <dNodes node="/1/@graph/@nodes.2" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.1" location="50 169" size="100 30">
+          <dNodes node="/1/@graph/@nodes.2" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.1" location="8 219" size="116 30">
             <dType href="civilstatus.dpf#/0/@dGraph/@dNodes.0"/>
           </dNodes>
-          <dNodes node="/1/@graph/@nodes.3" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.2" location="182 51" size="160 30">
+          <dNodes node="/1/@graph/@nodes.3" dIncomings="/0/@rules.0/@sum/@dGraph/@dArrows.2" location="123 101" size="202 30">
             <dType href="civilstatus.dpf#/0/@dGraph/@dNodes.4"/>
           </dNodes>
           <dArrows arrow="/1/@graph/@arrows.0" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.1">
             <dType href="civilstatus.dpf#/0/@dGraph/@dArrows.1"/>
-            <nameOffset offset="62 -31" len="184"/>
+            <nameOffset offset="-155 18" len="-201"/>
           </dArrows>
           <dArrows arrow="/1/@graph/@arrows.1" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.2">
             <dType href="civilstatus.dpf#/0/@dGraph/@dArrows.2"/>
-            <nameOffset offset="-120 -38" len="-163"/>
+            <nameOffset offset="-137 -37" len="-164"/>
           </dArrows>
           <dArrows arrow="/1/@graph/@arrows.2" dSource="/0/@rules.0/@sum/@dGraph/@dNodes.0" dTarget="/0/@rules.0/@sum/@dGraph/@dNodes.3">
             <dType href="civilstatus.dpf#/0/@dGraph/@dArrows.3"/>
@@ -33,7 +33,7 @@
         </dGraph>
       </sum>
     </rules>
-    <rules leftNodes="/0/@rules.1/@sum/@dGraph/@dNodes.0 /0/@rules.1/@sum/@dGraph/@dNodes.2 /0/@rules.1/@sum/@dGraph/@dNodes.3" rightNodes="/0/@rules.1/@sum/@dGraph/@dNodes.0 /0/@rules.1/@sum/@dGraph/@dNodes.1 /0/@rules.1/@sum/@dGraph/@dNodes.3" rightArrows="/0/@rules.1/@sum/@dGraph/@dArrows.0 /0/@rules.1/@sum/@dGraph/@dArrows.2" leftArrows="/0/@rules.1/@sum/@dGraph/@dArrows.1 /0/@rules.1/@sum/@dGraph/@dArrows.2" commonNodes="/0/@rules.1/@sum/@dGraph/@dNodes.0 /0/@rules.1/@sum/@dGraph/@dNodes.3" commonArrows="/0/@rules.1/@sum/@dGraph/@dArrows.2" name="marriedWithoutHusbandWithWife">
+    <rules leftNodes="/0/@rules.1/@sum/@dGraph/@dNodes.0 /0/@rules.1/@sum/@dGraph/@dNodes.2 /0/@rules.1/@sum/@dGraph/@dNodes.3" rightNodes="/0/@rules.1/@sum/@dGraph/@dNodes.0 /0/@rules.1/@sum/@dGraph/@dNodes.1 /0/@rules.1/@sum/@dGraph/@dNodes.3" rightArrows="/0/@rules.1/@sum/@dGraph/@dArrows.0 /0/@rules.1/@sum/@dGraph/@dArrows.2" leftArrows="/0/@rules.1/@sum/@dGraph/@dArrows.1 /0/@rules.1/@sum/@dGraph/@dArrows.2" commonNodes="/0/@rules.1/@sum/@dGraph/@dNodes.0 /0/@rules.1/@sum/@dGraph/@dNodes.3" commonArrows="/0/@rules.1/@sum/@dGraph/@dArrows.2" name="MarriedWithoutHusband">
       <sum specification="/2" gridVisible="false">
         <dType href="civilstatus.dpf#/0"/>
         <dGraph graph="/2/@graph">
@@ -65,7 +65,7 @@
         </dGraph>
       </sum>
     </rules>
-    <rules leftNodes="/0/@rules.2/@sum/@dGraph/@dNodes.0 /0/@rules.2/@sum/@dGraph/@dNodes.1" rightNodes="/0/@rules.2/@sum/@dGraph/@dNodes.0 /0/@rules.2/@sum/@dGraph/@dNodes.1 /0/@rules.2/@sum/@dGraph/@dNodes.2" rightArrows="/0/@rules.2/@sum/@dGraph/@dArrows.0 /0/@rules.2/@sum/@dGraph/@dArrows.1" leftArrows="/0/@rules.2/@sum/@dGraph/@dArrows.0" commonNodes="/0/@rules.2/@sum/@dGraph/@dNodes.0 /0/@rules.2/@sum/@dGraph/@dNodes.1" commonArrows="/0/@rules.2/@sum/@dGraph/@dArrows.0" name="hasWifeIsMarried">
+    <rules leftNodes="/0/@rules.2/@sum/@dGraph/@dNodes.0 /0/@rules.2/@sum/@dGraph/@dNodes.1" rightNodes="/0/@rules.2/@sum/@dGraph/@dNodes.0 /0/@rules.2/@sum/@dGraph/@dNodes.1 /0/@rules.2/@sum/@dGraph/@dNodes.2" rightArrows="/0/@rules.2/@sum/@dGraph/@dArrows.0 /0/@rules.2/@sum/@dGraph/@dArrows.1" leftArrows="/0/@rules.2/@sum/@dGraph/@dArrows.0" commonNodes="/0/@rules.2/@sum/@dGraph/@dNodes.0 /0/@rules.2/@sum/@dGraph/@dNodes.1" commonArrows="/0/@rules.2/@sum/@dGraph/@dArrows.0" name="HasWifeIsMarried">
       <sum specification="/3" gridVisible="false">
         <dType href="civilstatus.dpf#/0"/>
         <dGraph graph="/3/@graph">
@@ -90,7 +90,7 @@
         </dGraph>
       </sum>
     </rules>
-    <rules leftNodes="/0/@rules.3/@sum/@dGraph/@dNodes.0 /0/@rules.3/@sum/@dGraph/@dNodes.1" rightNodes="/0/@rules.3/@sum/@dGraph/@dNodes.0 /0/@rules.3/@sum/@dGraph/@dNodes.1 /0/@rules.3/@sum/@dGraph/@dNodes.2" rightArrows="/0/@rules.3/@sum/@dGraph/@dArrows.0 /0/@rules.3/@sum/@dGraph/@dArrows.1" leftArrows="/0/@rules.3/@sum/@dGraph/@dArrows.0" commonNodes="/0/@rules.3/@sum/@dGraph/@dNodes.0 /0/@rules.3/@sum/@dGraph/@dNodes.1" commonArrows="/0/@rules.3/@sum/@dGraph/@dArrows.0" name="hasHusbandIsMarried">
+    <rules leftNodes="/0/@rules.3/@sum/@dGraph/@dNodes.0 /0/@rules.3/@sum/@dGraph/@dNodes.1" rightNodes="/0/@rules.3/@sum/@dGraph/@dNodes.0 /0/@rules.3/@sum/@dGraph/@dNodes.1 /0/@rules.3/@sum/@dGraph/@dNodes.2" rightArrows="/0/@rules.3/@sum/@dGraph/@dArrows.0 /0/@rules.3/@sum/@dGraph/@dArrows.1" leftArrows="/0/@rules.3/@sum/@dGraph/@dArrows.0" commonNodes="/0/@rules.3/@sum/@dGraph/@dNodes.0 /0/@rules.3/@sum/@dGraph/@dNodes.1" commonArrows="/0/@rules.3/@sum/@dGraph/@dArrows.0" name="HasHusbandIsMarried">
       <sum specification="/4" gridVisible="false">
         <dType href="civilstatus.dpf#/0"/>
         <dGraph graph="/4/@graph">
@@ -139,13 +139,13 @@
   <core:Specification>
     <graph id="464826ca-ef07-4a67-9759-947a3855edcb">
       <type href="civilstatus.xmi#/0/@graph"/>
-      <nodes id="3e1346e4-e821-4c49-b2bf-aebd47c080f8" name="P1" outgoings="/1/@graph/@arrows.0 /1/@graph/@arrows.1 /1/@graph/@arrows.2">
+      <nodes id="3e1346e4-e821-4c49-b2bf-aebd47c080f8" name="p1" outgoings="/1/@graph/@arrows.0 /1/@graph/@arrows.1 /1/@graph/@arrows.2">
         <typeNode href="civilstatus.xmi#/0/@graph/@nodes.0"/>
       </nodes>
-      <nodes id="d04d2f57-4d3e-4ed7-adaa-218531112227" name="Person0" incomings="/1/@graph/@arrows.0">
+      <nodes id="d04d2f57-4d3e-4ed7-adaa-218531112227" name="p3" incomings="/1/@graph/@arrows.0">
         <typeNode href="civilstatus.xmi#/0/@graph/@nodes.0"/>
       </nodes>
-      <nodes id="526fb310-f70a-418d-a16a-a7197cb7c5de" name="Person1" incomings="/1/@graph/@arrows.1">
+      <nodes id="526fb310-f70a-418d-a16a-a7197cb7c5de" name="p2" incomings="/1/@graph/@arrows.1">
         <typeNode href="civilstatus.xmi#/0/@graph/@nodes.0"/>
       </nodes>
       <nodes id="55055fff-1757-4298-b22c-829f8d835d2b" name="married" incomings="/1/@graph/@arrows.2">
