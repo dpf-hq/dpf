@@ -16,7 +16,6 @@ import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
-import org.eclipse.gef.palette.PaletteSeparator;
 
 public class DPFConstraintsPaletteFactory extends DPFEditorPaletteFactory {
 
@@ -26,7 +25,6 @@ public class DPFConstraintsPaletteFactory extends DPFEditorPaletteFactory {
 	public PaletteRoot createPalette() {
 		super.createPalette();
 		if(palette != null){
-			palette.add(new PaletteSeparator());
 			publicGroup.add(new ActionToolEntry("Left", "set this as a left element", null, null, PreserveTool.class));
 			publicGroup.add(new ActionToolEntry("Right", "set this as a right element", null, null, AddTool.class));
 			publicGroup.add(new ActionToolEntry("NAC", "set this as a nac element", null, null, DeleteTool.class));

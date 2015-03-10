@@ -16,7 +16,7 @@ public class ConstraintsFormPage extends FormPage {
 	
 	protected void createFormContent(final IManagedForm managedForm) {
 		final ScrolledForm form = managedForm.getForm();
-		form.setText("Constraints Productions"); //$NON-NLS-1$
+		form.setText("Constraints"); //$NON-NLS-1$
 		block.createContent(managedForm);
 	}
 	public boolean isEditor() {

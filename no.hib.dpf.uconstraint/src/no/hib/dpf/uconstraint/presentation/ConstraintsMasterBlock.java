@@ -86,7 +86,7 @@ public class ConstraintsMasterBlock extends MasterDetailsBlock {
 		//final ScrolledForm form = managedForm.getForm();
 		FormToolkit toolkit = managedForm.getToolkit();
 		Section section = toolkit.createSection(parent, Section.TWISTIE| Section.TITLE_BAR);
-		section.setText("UConstraints"); 
+		section.setText("Constraints"); 
 		section.setExpanded(true);
 		section.marginWidth = 10;
 		section.marginHeight = 5;
