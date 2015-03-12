@@ -46,7 +46,6 @@ public class DPFConstraintsPaletteFactory extends DPFEditorPaletteFactory {
 			Arrow arrow = darrow.getArrow();
 			Assert.isTrue(arrow != null);
 			Assert.isTrue(darrow != null);
-			//			add Arrow:Node-->Node to tooltip in case several arrows with same name showing up in the metamodel.
 			arrowGroup.add(new ConnectionCreationToolEntry(arrow.getName(), 
 					"Create a new " + arrow.getName() + ":" + arrow.getSource().getName() + "-->" + arrow.getTarget().getName(), new DArrowFactory(darrow), 
 					SMALLARROW, LARGEARROW));

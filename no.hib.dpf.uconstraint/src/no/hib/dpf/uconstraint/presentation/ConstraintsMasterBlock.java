@@ -83,7 +83,6 @@ public class ConstraintsMasterBlock extends MasterDetailsBlock {
 
 	@Override
 	protected void createMasterPart(final IManagedForm managedForm, Composite parent) {
-		//final ScrolledForm form = managedForm.getForm();
 		FormToolkit toolkit = managedForm.getToolkit();
 		Section section = toolkit.createSection(parent, Section.TWISTIE| Section.TITLE_BAR);
 		section.setText("Constraints"); 
