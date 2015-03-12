@@ -24,11 +24,13 @@ import no.hib.dpf.uconstraint.util.ConstraintsUtils;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -80,7 +82,7 @@ public class ValidateModelHandler extends AbstractHandler {
 					URI dpfModelURI = URI.createFileURI(dpfFile.getLocation().toOSString());
 					DSpecification dpf = (DSpecification) ((EObject)graphicalViewer.getContents().getModel()).eContainer();
 
-					IFolder folder = (IFolder) dpfFile.getParent();
+					IContainer folder = (IFolder) dpfFile.getParent();
 					String dpfFileName = getFileNameWithoutExtension(dpfFile.getName());
 
 					File alloyFile = translateDPF2Alloy(dpf, folder, dpfFileName);
@@ -171,11 +173,11 @@ public class ValidateModelHandler extends AbstractHandler {
 	/*
 	 * Write the translated Alloy Specification into the file *Name*.als
 	 */
-	protected File translateDPF2Alloy(DSpecification dpf, IFolder folder, String dpfFileName) throws IOException{
+	protected File translateDPF2Alloy(DSpecification dpf, IContainer folder, String dpfFileName) throws IOException{
 		ResourceSetImpl resourceSet = (ResourceSetImpl) dpf.eResource().getResourceSet();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uc", new XMIResourceFactoryImpl());
 		DPF2Alloy translate = getDPFToAlloy(dpf);
-		IFile insFile = folder.getFile(dpfFileName + ".uc");
+		IFile insFile = folder.getFile(new Path(dpfFileName + ".uc"));
 		if(insFile.exists()){
 			Constraints constraints = ConstraintsUtils.loadConstraints(resourceSet, URI.createFileURI(insFile.getLocation().toOSString()));
 			if(constraints != null)
@@ -268,8 +270,8 @@ public class ValidateModelHandler extends AbstractHandler {
 		return options;
 	}
 
-	protected IFile createDPFInstanceFile(IFolder folder, String fileName, int index) throws CoreException{
-		IFile insFile = folder.getFile(fileName + INSTANCE);
+	protected IFile createDPFInstanceFile(IContainer folder, String fileName, int index) throws CoreException{
+		IFile insFile = folder.getFile(new Path(fileName + INSTANCE));
 		if(insFile.exists()){
 			insFile.delete(true, new NullProgressMonitor());
 		}

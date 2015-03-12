@@ -21,6 +21,7 @@ import no.hib.dpf.uconstraint.util.ConstraintsUtils;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
@@ -112,7 +113,7 @@ public class RedundantCheckHandler extends ValidateModelHandler {
 					URI dpfModelURI = URI.createFileURI(dpfFile.getLocation().toOSString());
 					DSpecification dpf = (DSpecification) ((EObject)graphicalViewer.getContents().getModel()).eContainer();
 
-					IFolder folder = (IFolder) dpfFile.getParent();
+					IContainer folder = dpfFile.getParent();
 					String dpfFileName = getFileNameWithoutExtension(dpfFile.getName());
 
 					File alloyFile = translateDPF2Alloy(dpf, folder, dpfFileName);
