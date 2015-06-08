@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -146,7 +147,19 @@ public class DPFUtils extends DPFCoreUtil {
 
 	public static ResourceSetImpl getResourceSet() {
 		ResourceSetImpl resourceSet = DPFCoreUtil.getResourceSet();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMIResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMIResourceFactoryImpl(){
+			 @Override
+			  public Resource createResource(URI uri)
+			  {
+			    return new XMIResourceImpl(uri){
+			    	@Override
+			    	  protected boolean useUUIDs()
+			    	  {
+			    	    return true;
+			    	  }
+			    };
+			  }
+		});
 		
 		Resource resource = resourceSet.createResource(DefaultDSpecification);
 		resource.getContents().add(REFLEXIVE_DSPECIFICATION);

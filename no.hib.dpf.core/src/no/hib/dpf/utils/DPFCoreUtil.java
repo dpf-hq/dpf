@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -91,7 +92,19 @@ public class DPFCoreUtil {
 	public static ResourceSetImpl getResourceSet(){
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl(){
+			 @Override
+			  public Resource createResource(URI uri)
+			  {
+			    return new XMIResourceImpl(uri){
+			    	@Override
+			    	  protected boolean useUUIDs()
+			    	  {
+			    	    return true;
+			    	  }
+			    };
+			  }
+		});
 
 		Resource defaultSpecification = resourceSet.createResource(DPFConstants.DefaultSpecification);
 		defaultSpecification.getContents().add(DPFConstants.REFLEXIVE_SPECIFICATION);
