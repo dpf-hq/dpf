@@ -155,7 +155,10 @@ public class DPFUtils extends DPFCoreUtil {
 			    	@Override
 			    	  protected boolean useUUIDs()
 			    	  {
-			    	    return true;
+			    		/*
+			    		 * It should be changed to ture when elements are store based on their ids
+			    		 */
+			    	    return false;
 			    	  }
 			    };
 			  }

@@ -6,6 +6,11 @@
  */
 package no.hib.dpf.core.tests;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
 import no.hib.dpf.core.Arrow;
@@ -16,7 +21,9 @@ import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.SemanticValidator;
 import no.hib.dpf.diagram.util.DPFConstants;
+import no.hib.dpf.utils.internal.signature.AbstractBasePredicate;
 import no.hib.dpf.utils.internal.signature.InjectivePredicate;
+import no.hib.dpf.utils.internal.signature.InversePredicate;
 import no.hib.dpf.utils.internal.signature.IrreflexivePredicate;
 import no.hib.dpf.utils.internal.signature.JointlyInjectivePredicate;
 import no.hib.dpf.utils.internal.signature.JointlySurjectiveValidator;
@@ -123,7 +130,7 @@ public class SemanticValidatorTest extends TestCase {
 		testJSurPredicate();
 		testInjectivePredicate();
 		testXORPredicate();
-		//testInversePredicate();
+		testInversePredicate();
 		testIrreflexivePredicate();
 		testSurjectivePredicate();
 		testMultiPredicate();
@@ -153,24 +160,29 @@ public class SemanticValidatorTest extends TestCase {
 		testPredicate(parameters, predicate, type.getNodes(), type.getArrows(),model, result);
 	}
 
-	/*public void testInversePredicate() {
+	public void testInversePredicate() {
 		Predicate predicate = new InversePredicate();
-		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("x_type,y_type","f_type:x_type:y_type,g_type:y_type:x_type");
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("xt,yt","ft:xt:yt,gt:yt:xt");
 
 		Graph graph = CoreFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:y:x");
-		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
-		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("y_type"));
-		graph.getArrowByName("f").setTypeArrow(typeGraph.getArrowByName("f_type"));
-		graph.getArrowByName("g").setTypeArrow(typeGraph.getArrowByName("g_type"));
+		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("xt"));
+		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("yt"));
+		graph.getArrowByName("f").setTypeArrow(typeGraph.getArrowByName("ft"));
+		graph.getArrowByName("g").setTypeArrow(typeGraph.getArrowByName("gt"));
 		testPredicate(predicate, typeGraph, graph, true);
 
-		graph = CoreFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:x:y");
-		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
-		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("y_type"));
-		graph.getArrowByName("f").setTypeArrow(typeGraph.getArrowByName("f_type"));
-		graph.getArrowByName("g").setTypeArrow(typeGraph.getArrowByName("f_type"));
+		graph = CoreFactory.eINSTANCE.createGraph("x, y", "f:x:y");
+		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("xt"));
+		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("yt"));
+		graph.getArrowByName("f").setTypeArrow(typeGraph.getArrowByName("ft"));
 		testPredicate(predicate, typeGraph, graph, false);
-	}*/
+		
+		graph = CoreFactory.eINSTANCE.createGraph("x, y", "g:y:x");
+		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("xt"));
+		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("yt"));
+		graph.getArrowByName("g").setTypeArrow(typeGraph.getArrowByName("gt"));
+		testPredicate(predicate, typeGraph, graph, false);
+	}
 
 	public void testXORPredicate() {
 		Graph typeGraph = CoreFactory.eINSTANCE.createGraph(
@@ -413,13 +425,13 @@ public class SemanticValidatorTest extends TestCase {
 				"f_type:x_type:y_type");
 		Predicate predicate = new MultiplicityPredicate();
 
-		
+
 		Graph graph = CoreFactory.eINSTANCE.createGraph("x", "");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("x_type"));
 		testPredicate("min:1;max:1", predicate, typeGraph, graph, false);
 		testPredicate("min:0;max:1", predicate, typeGraph, graph, true);
 
-		
+
 		graph = CoreFactory.eINSTANCE.createGraph("x", "");
 		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("y_type"));
 		testPredicate("min:1;max:1", predicate, typeGraph, graph, true);
@@ -464,6 +476,68 @@ public class SemanticValidatorTest extends TestCase {
 		graph = CoreFactory.eINSTANCE.createGraph("x, y", "f:x:y,g:x:y");
 		testPredicate(predicate, typeGraph, graph, true);
 		graph = CoreFactory.eINSTANCE.createGraph("y", "g:y:y");
+		testPredicate(predicate, typeGraph, graph, false);
+	}
+
+	class CompositePredicate extends AbstractBasePredicate{
+
+		public CompositePredicate() {
+			super("COMP", null, "X,Y,Z", "XY:X:Y,YZ:Y:Z,XZ:X:Z");
+		}
+
+		@Override
+		public boolean check(Map<String, String> paras, Graph graph, Map<Node, List<Node>> nodeMap,
+				Map<Arrow, List<Arrow>> arrowMap) {
+			List<Arrow> xys = arrowMap.get(graph.getArrowByName("XY"));
+			List<Arrow> yzs = arrowMap.get(graph.getArrowByName("YZ"));
+			List<Arrow> xzs = arrowMap.get(graph.getArrowByName("XZ"));
+			Map<Node, List<Node>> xtoz = new HashMap<Node, List<Node>>();
+			if(xys != null)
+			for(Arrow xy : xys){
+				if(yzs != null)
+				for(Arrow yz : yzs){
+					if(xy.getTarget() == yz.getSource())
+						addToMapList(xy.getSource(), yz.getTarget(), xtoz);
+				}
+			}
+			if(xzs != null)
+			for(Arrow xz : xzs){
+				List<Node> nodes = xtoz.get(xz.getSource());
+				if(nodes != null && nodes.contains(xz.getTarget())){
+					nodes.remove(xz.getTarget());
+					if(nodes.isEmpty())
+						xtoz.remove(xz.getSource());
+				}
+			}		
+			return xtoz.isEmpty();
+		}
+		public <T, U> void addToMapList(T key, U value, Map<T, List<U>> map){
+			List<U> tos = map.get(key);
+			if(tos == null){
+				tos = new ArrayList<U>();
+				tos.add(value);
+				map.put(key, tos);
+				return;
+			}
+			if(!tos.contains(value))
+				tos.add(value);
+		}
+
+	}
+
+	public void testCompostePredicate() {
+		Predicate predicate = new CompositePredicate();
+		Graph typeGraph = CoreFactory.eINSTANCE.createGraph("xt,yt, zt","ft:xt:yt,gt:yt:zt,ht:xt:zt");
+		Graph graph = CoreFactory.eINSTANCE.createGraph("y", "");
+		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("yt"));
+		testPredicate(predicate, typeGraph, graph, true);
+
+		graph = CoreFactory.eINSTANCE.createGraph("x,y,z", "xy:x:y, yz:y:z");
+		graph.getNodeByName("x").setTypeNode(typeGraph.getNodeByName("xt"));
+		graph.getNodeByName("y").setTypeNode(typeGraph.getNodeByName("yt"));
+		graph.getNodeByName("z").setTypeNode(typeGraph.getNodeByName("zt"));
+		graph.getArrowByName("xy").setTypeArrow(typeGraph.getArrowByName("ft"));
+		graph.getArrowByName("yz").setTypeArrow(typeGraph.getArrowByName("gt"));
 		testPredicate(predicate, typeGraph, graph, false);
 	}
 } //SemanticValidatorTest

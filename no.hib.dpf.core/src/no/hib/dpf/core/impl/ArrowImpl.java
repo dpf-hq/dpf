@@ -202,8 +202,11 @@ public class ArrowImpl extends IDObjectImpl implements Arrow {
 			List<Integer> indexs = new ArrayList<Integer>();
 			for(Arrow iter : ((Graph)newContainer).getArrows()){
 				String current = iter.getName();
-				if(current != null && current.startsWith(name))
+				if(current != null && current.startsWith(name)){
+					try{
 					indexs.add(Integer.valueOf(current.substring(name.length())));
+					}catch(NumberFormatException e){}
+				}
 			}
 			Collections.sort(indexs);
 			int i = 0;
