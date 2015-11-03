@@ -27,6 +27,7 @@ import org.osgi.framework.BundleContext;
  * 
  * @see org.eclipse.ui.plugin.AbstractUIPlugin#getPreferenceStore()
  * @author Elias Volanakis
+ * @generated NOT
  */
 public final class DPFPlugin extends EclipseUIPlugin {
 

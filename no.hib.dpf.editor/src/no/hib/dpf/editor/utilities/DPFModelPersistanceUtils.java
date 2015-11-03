@@ -39,7 +39,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -201,38 +200,8 @@ public class DPFModelPersistanceUtils extends DPFCoreUtil {
 	public static ResourceSetImpl getResourceSet() {
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("xmi", new XMIResourceFactoryImpl(){
-			 @Override
-			  public Resource createResource(URI uri)
-			  {
-			    return new XMIResourceImpl(uri){
-			    	@Override
-			    	  protected boolean useUUIDs()
-			    	  {
-			    		/*
-			    		 * It should be changed to ture when elements are store based on their ids
-			    		 */
-			    	    return false;
-			    	  }
-			    };
-			  }
-		});
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("dpf", new XMIResourceFactoryImpl(){
-			 @Override
-			  public Resource createResource(URI uri)
-			  {
-			    return new XMIResourceImpl(uri){
-			    	@Override
-			    	  protected boolean useUUIDs()
-			    	  {
-			    		/*
-			    		 * It should be changed to ture when elements are store based on their ids
-			    		 */
-			    	    return false;
-			    	  }
-			    };
-			  }
-		});
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("xmi", new XMIResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap() .put("dpf", new XMIResourceFactoryImpl());
 		Resource resource = resourceSet.createResource(DefaultDSpecification);
 		resource.getContents().add(REFLEXIVE_DSPECIFICATION);
 		resource.getContents().add(DEFAULT_DSIGNATURE);

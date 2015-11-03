@@ -30,9 +30,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -60,18 +58,18 @@ public class DPFUtils extends DPFCoreUtil {
 			URI createFileURI) {
 		DPFCoreUtil.saveSpecification(resourceSet, getModelURI(createFileURI), newSpec.getSpecification());
 		Resource diagram = createResource(resourceSet, createFileURI);
-		EcoreUtil.resolveAll(newSpec.getDType().eResource());
-		DSpecification iter = newSpec;
-		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
-			diagram.getContents().add(iter);
-			iter = iter.getDType();
-		}
-		iter = newSpec;
-		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
-			if(iter.getDSignature() != DPFConstants.DEFAULT_DSIGNATURE)
-				diagram.getContents().add(iter.getDSignature());
-			iter = iter.getDType();
-		}
+//		EcoreUtil.resolveAll(newSpec.getDType().eResource());
+//		DSpecification iter = newSpec;
+//		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
+		diagram.getContents().add(newSpec);
+//			iter = iter.getDType();
+//		}
+//		iter = newSpec;
+//		while(iter != DPFConstants.REFLEXIVE_DSPECIFICATION){
+//			if(iter.getDSignature() != DPFConstants.DEFAULT_DSIGNATURE)
+//				diagram.getContents().add(iter.getDSignature());
+//			iter = iter.getDType();
+//		}
 		try {
 			diagram.save(null);
 		} catch (IOException e) {
@@ -147,22 +145,7 @@ public class DPFUtils extends DPFCoreUtil {
 
 	public static ResourceSetImpl getResourceSet() {
 		ResourceSetImpl resourceSet = DPFCoreUtil.getResourceSet();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMIResourceFactoryImpl(){
-			 @Override
-			  public Resource createResource(URI uri)
-			  {
-			    return new XMIResourceImpl(uri){
-			    	@Override
-			    	  protected boolean useUUIDs()
-			    	  {
-			    		/*
-			    		 * It should be changed to ture when elements are store based on their ids
-			    		 */
-			    	    return false;
-			    	  }
-			    };
-			  }
-		});
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMIResourceFactoryImpl());
 		
 		Resource resource = resourceSet.createResource(DefaultDSpecification);
 		resource.getContents().add(REFLEXIVE_DSPECIFICATION);

@@ -1,6 +1,6 @@
 package no.hib.dpf.editor.figures;
 
-import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.jface.viewers.CellEditor;
@@ -8,9 +8,9 @@ import org.eclipse.swt.widgets.Text;
 
 public class TextCellEditorLocator implements CellEditorLocator {
 
-	private Label label;
+	private Figure label;
 	 
-    public TextCellEditorLocator(Label label2) {
+    public TextCellEditorLocator(Figure label2) {
           super();
           this.label = label2;
     }

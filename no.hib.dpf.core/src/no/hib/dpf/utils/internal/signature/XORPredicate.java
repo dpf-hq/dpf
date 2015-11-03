@@ -14,6 +14,8 @@ public class XORPredicate extends AbstractBasePredicate {
 
 	public XORPredicate() {
 		super(XOR, null, "X,Y,Z", "ZX:Z:X, ZY:Z:Y");
+		setId("p-xor");
+		initialIDs();
 	}
 
 	public boolean check(Map<String, String> maps, Graph shape, Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) { 

@@ -13,10 +13,6 @@ package no.hib.dpf.editor.figures;
 
 import java.util.List;
 
-import no.hib.dpf.editor.icons.ImageSettings;
-import no.hib.dpf.editor.preferences.DPFEditorPreferences;
-import no.hib.dpf.editor.preferences.PreferenceConstants;
-
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
@@ -26,6 +22,10 @@ import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.SWT;
+
+import no.hib.dpf.editor.icons.ImageSettings;
+import no.hib.dpf.editor.preferences.DPFEditorPreferences;
+import no.hib.dpf.editor.preferences.PreferenceConstants;
 
 public class NodeFigure extends Figure implements RoutableFigure {
 

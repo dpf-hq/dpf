@@ -30,6 +30,8 @@ public class MultiplicityPredicate extends AbstractSingleArrowPredicate {
 
 	public MultiplicityPredicate() {
 		super(ARROW_MULTIPLICITY, "min:0;max:1");
+		setId("p-multiplicity");
+		initialIDs();
 	}
 
 	public boolean check(Map<String, String> maps, Graph graph, Map<Node, List<Node>> nodeMap,

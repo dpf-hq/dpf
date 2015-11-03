@@ -6,9 +6,8 @@
  */
 package no.hib.dpf.diagram;
 
+import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Predicate;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DPredicate extends EObject {
+public interface DPredicate extends IDObject {
 	/**
 	 * Returns the value of the '<em><b>DGraph</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

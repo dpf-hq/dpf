@@ -21,6 +21,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
@@ -31,17 +43,6 @@ import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.utils.DPFConstants;
-
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +60,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class GraphImpl extends IDObjectImpl implements Graph {
+public class GraphImpl extends EObjectImpl implements Graph {
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -671,24 +672,4 @@ public class GraphImpl extends IDObjectImpl implements Graph {
 		}
 		
 	}
-
-	@Override
-	public IDObject getTemplateElement() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isTemplateElement() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public IDObject getElement(int metaLevel) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 } //GraphImpl

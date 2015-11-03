@@ -8,13 +8,13 @@ package no.hib.dpf.diagram.impl;
 
 import java.util.Collection;
 
+import no.hib.dpf.core.impl.IDObjectImpl;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DiagramPackage;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *
  * @generated
  */
-public class DElementImpl extends EObjectImpl implements DElement {
+public class DElementImpl extends IDObjectImpl implements DElement {
 	/**
 	 * The cached value of the '{@link #getConstraintsFrom() <em>Constraints From</em>}' reference list.
 	 * <!-- begin-user-doc -->

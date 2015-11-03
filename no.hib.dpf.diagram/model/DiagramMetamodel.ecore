@@ -132,7 +132,7 @@
         eType="#//DConstraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fakeNode" eType="#//DConstraintNode"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DPredicate">
+  <eClassifiers xsi:type="ecore:EClass" name="DPredicate" eSuperTypes="../../no.hib.dpf.core/model/Metamodel.ecore#//IDObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" eType="ecore:EClass ../../no.hib.dpf.core/model/Metamodel.ecore#//Predicate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="simpleName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dGraph" eType="#//DGraph"
@@ -173,7 +173,7 @@
     <eLiterals name="Composed" value="5"/>
     <eLiterals name="OnNode" value="6" literal="OnNode"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DElement">
+  <eClassifiers xsi:type="ecore:EClass" name="DElement" eSuperTypes="../../no.hib.dpf.core/model/Metamodel.ecore#//IDObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraintsFrom" upperBound="-1"
         eType="#//DConstraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraintsTo" upperBound="-1"

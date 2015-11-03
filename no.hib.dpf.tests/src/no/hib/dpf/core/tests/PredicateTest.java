@@ -15,7 +15,6 @@
  */
 package no.hib.dpf.core.tests;
 
-import junit.framework.TestCase;
 import junit.textui.TestRunner;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
@@ -41,15 +40,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * @generated
  */
-public class PredicateTest extends TestCase {
-
-	/**
-	 * The fixture for this Predicate test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Predicate fixture = null;
+public class PredicateTest extends IDObjectTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,23 +62,14 @@ public class PredicateTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Predicate test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(Predicate fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Predicate test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected Predicate getFixture() {
-		return fixture;
+		return (Predicate)fixture;
 	}
 
 	/**

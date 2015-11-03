@@ -7,6 +7,7 @@
 package no.hib.dpf.diagram.impl;
 
 import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.impl.IDObjectImpl;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DPredicate;
 import no.hib.dpf.diagram.DSignature;
@@ -19,7 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class DPredicateImpl extends EObjectImpl implements DPredicate {
+public class DPredicateImpl extends IDObjectImpl implements DPredicate {
 	/**
 	 * The cached value of the '{@link #getPredicate() <em>Predicate</em>}' reference.
 	 * <!-- begin-user-doc -->

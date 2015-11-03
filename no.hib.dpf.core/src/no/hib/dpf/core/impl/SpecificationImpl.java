@@ -18,6 +18,16 @@ package no.hib.dpf.core.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
@@ -29,16 +39,6 @@ import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
 import no.hib.dpf.utils.DPFConstants;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 
 /**
@@ -326,11 +326,16 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setType(Specification newType) {
 		Specification oldType = type;
 		type = newType;
+		
+		Graph graph = getGraph();
+		Specification type = getType();
+		if(graph != null && !graph.eIsProxy())
+			graph.setType(type == null ? null : type.getGraph());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.SPECIFICATION__TYPE, oldType, type));
 	}

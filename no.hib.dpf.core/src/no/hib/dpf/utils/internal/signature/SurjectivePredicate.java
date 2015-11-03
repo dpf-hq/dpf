@@ -12,6 +12,8 @@ public class SurjectivePredicate extends AbstractSingleArrowPredicate {
 
 	public SurjectivePredicate() {
 		super(SURJECTIVE);
+		setId("p-surjective");
+		initialIDs();
 	}
 
 

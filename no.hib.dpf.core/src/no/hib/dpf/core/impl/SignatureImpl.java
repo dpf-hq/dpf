@@ -18,10 +18,6 @@ package no.hib.dpf.core.impl;
 import java.io.IOException;
 import java.util.Collection;
 
-import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.Predicate;
-import no.hib.dpf.core.Signature;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -36,6 +32,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
+
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.Signature;
 
 /**
  * <!-- begin-user-doc -->

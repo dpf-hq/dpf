@@ -20,27 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.Node;
-import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DFakeNode;
-import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.diagram.DiagramPackage;
-import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.editor.extension_points.FigureConfigureManager;
-import no.hib.dpf.editor.extension_points.INodePainting;
-import no.hib.dpf.editor.figures.EditableLabel;
-import no.hib.dpf.editor.figures.MultipleArrowsChopboxAnchor;
-import no.hib.dpf.editor.figures.NodeFigure;
-import no.hib.dpf.editor.figures.TextCellEditorLocator;
-import no.hib.dpf.editor.policies.DArrowCreatePolicy;
-import no.hib.dpf.editor.policies.NameDirectEditPolicy;
-import no.hib.dpf.editor.policies.NodeComponentEditPolicy;
-import no.hib.dpf.editor.preferences.DPFEditorPreferences;
-import no.hib.dpf.utils.DPFCoreUtil;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.draw2d.ChopboxAnchor;
@@ -56,6 +35,28 @@ import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.jface.viewers.TextCellEditor;
+
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DFakeNode;
+import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.diagram.impl.DNodeImpl;
+import no.hib.dpf.editor.DPFEditor;
+import no.hib.dpf.editor.extension_points.FigureConfigureManager;
+import no.hib.dpf.editor.extension_points.INodePainting;
+import no.hib.dpf.editor.figures.EditableLabel;
+import no.hib.dpf.editor.figures.MultipleArrowsChopboxAnchor;
+import no.hib.dpf.editor.figures.NodeFigure;
+import no.hib.dpf.editor.figures.TextCellEditorLocator;
+import no.hib.dpf.editor.policies.DArrowCreatePolicy;
+import no.hib.dpf.editor.policies.NameDirectEditPolicy;
+import no.hib.dpf.editor.policies.NodeComponentEditPolicy;
+import no.hib.dpf.editor.preferences.DPFEditorPreferences;
+import no.hib.dpf.utils.DPFCoreUtil;
 
 
 /**
@@ -306,7 +307,8 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 	@Override
 	public void performRequest(Request req) {
 		if (req.getType().equals(RequestConstants.REQ_DIRECT_EDIT)) {
-			TextDirectEditManager manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator(((NodeFigure)getFigure()).getNameLabel()));
+			TextDirectEditManager manager = new TextDirectEditManager(this, TextCellEditor.class, 
+					new TextCellEditorLocator(((NodeFigure)getFigure()).getNameLabel()));
 			manager.show();
 			return;
 		}
@@ -325,15 +327,15 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		if(editor != null){
 			figure.setErrorFlag(editor.isMakerExisting(getDNode().getNode()));
 		}
-		figure.setBounds(new Rectangle(getDiagramModel().getLocation(), getDiagramModel().getSize()));
+		DNode dNode = getDiagramModel();
+		if(dNode.getSize().width == DNodeImpl.DEFAULT_DIMENSION.width 
+				&& dNode.getSize().height == DNodeImpl.DEFAULT_DIMENSION.height){
+			dNode.setSize(figure.getPreferredSize());
+		}
+		figure.setBounds(new Rectangle(dNode.getLocation(), dNode.getSize()));
 		figure.repaint();
 		figure.invalidate();
 		refreshLabel();
-		//			((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), bounds);
-		// notify parent container of changed position & location
-		// if this line is removed, the XYLayoutManager used by the parent
-		// container (the Figure of the DPFDiagramEditPart), will not know the bounds of
-		// this figure and will not draw it correctly.
 	}
 
 	protected void unlisten(){
@@ -361,17 +363,9 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 			EList<Node> nodes = new BasicEList<Node>();
 			EList<Arrow> arrows = new BasicEList<Arrow>();
 
-			System.out.println(constraint.getPredicate().getSymbol());
 			DPFCoreUtil.findRelatedElements(node, constraint, nodes, arrows);
 
 			if(newArrow == null) arrows.remove(checkedArrow);
-			for (Node arrow : nodes) {
-				System.out.print(arrow.getName() + " ");
-			}
-			for (Arrow arrow : arrows) {
-				System.out.print(arrow.getName() + " ");
-			}
-			System.out.println();
 			boolean valid = constraint.validate(nodes, arrows);
 			if(!valid){
 				for(Node iter : nodes)

@@ -27,8 +27,8 @@ import no.hib.dpf.utils.internal.signature.InversePredicate;
 import no.hib.dpf.utils.internal.signature.IrreflexivePredicate;
 import no.hib.dpf.utils.internal.signature.JointlyInjectivePredicate;
 import no.hib.dpf.utils.internal.signature.JointlySurjectiveValidator;
-import no.hib.dpf.utils.internal.signature.MultiplicityPredicate;
 import no.hib.dpf.utils.internal.signature.MergeNANDPredicate;
+import no.hib.dpf.utils.internal.signature.MultiplicityPredicate;
 import no.hib.dpf.utils.internal.signature.SurjectivePredicate;
 import no.hib.dpf.utils.internal.signature.XORPredicate;
 

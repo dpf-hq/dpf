@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.diagram.util;
 
+import no.hib.dpf.core.IDObject;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DComposedConstraint;
@@ -109,6 +110,10 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 				return createDElementAdapter();
 			}
 			@Override
+			public Adapter caseIDObject(IDObject object) {
+				return createIDObjectAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -207,6 +212,20 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link no.hib.dpf.core.IDObject <em>ID Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see no.hib.dpf.core.IDObject
+	 * @generated
+	 */
+	public Adapter createIDObjectAdapter() {
 		return null;
 	}
 

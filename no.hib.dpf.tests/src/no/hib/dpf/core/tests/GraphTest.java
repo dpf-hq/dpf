@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import junit.framework.TestCase;
 import junit.textui.TestRunner;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
@@ -58,7 +59,15 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * @generated
  */
-public class GraphTest extends IDObjectTest {
+public class GraphTest extends TestCase {
+
+	/**
+	 * The fixture for this Graph test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Graph fixture = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,14 +89,23 @@ public class GraphTest extends IDObjectTest {
 	}
 
 	/**
+	 * Sets the fixture for this Graph test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void setFixture(Graph fixture) {
+		this.fixture = fixture;
+	}
+
+	/**
 	 * Returns the fixture for this Graph test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	protected Graph getFixture() {
-		return (Graph)fixture;
+		return fixture;
 	}
 
 	/**

@@ -15,16 +15,9 @@
  */
 package no.hib.dpf.core.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
-
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.GraphHomomorphism;
-import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.Node;
-import no.hib.dpf.core.Predicate;
-import no.hib.dpf.core.Specification;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -34,6 +27,15 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.GraphHomomorphism;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.core.Specification;
 
 /**
  * <!-- begin-user-doc -->
@@ -329,10 +331,10 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CorePackage.CONSTRAINT__NODES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNodes()).basicAdd(otherEnd, msgs);
-			case CorePackage.CONSTRAINT__ARROWS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getArrows()).basicAdd(otherEnd, msgs);
+		case CorePackage.CONSTRAINT__NODES:
+			return ((InternalEList<InternalEObject>)(InternalEList<?>)getNodes()).basicAdd(otherEnd, msgs);
+		case CorePackage.CONSTRAINT__ARROWS:
+			return ((InternalEList<InternalEObject>)(InternalEList<?>)getArrows()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -345,12 +347,12 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CorePackage.CONSTRAINT__NODES:
-				return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
-			case CorePackage.CONSTRAINT__ARROWS:
-				return ((InternalEList<?>)getArrows()).basicRemove(otherEnd, msgs);
-			case CorePackage.CONSTRAINT__MAPPINGS:
-				return basicSetMappings(null, msgs);
+		case CorePackage.CONSTRAINT__NODES:
+			return ((InternalEList<?>)getNodes()).basicRemove(otherEnd, msgs);
+		case CorePackage.CONSTRAINT__ARROWS:
+			return ((InternalEList<?>)getArrows()).basicRemove(otherEnd, msgs);
+		case CorePackage.CONSTRAINT__MAPPINGS:
+			return basicSetMappings(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -363,17 +365,17 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CorePackage.CONSTRAINT__NODES:
-				return getNodes();
-			case CorePackage.CONSTRAINT__ARROWS:
-				return getArrows();
-			case CorePackage.CONSTRAINT__PREDICATE:
-				if (resolve) return getPredicate();
-				return basicGetPredicate();
-			case CorePackage.CONSTRAINT__MAPPINGS:
-				return getMappings();
-			case CorePackage.CONSTRAINT__PARAMETERS:
-				return getParameters();
+		case CorePackage.CONSTRAINT__NODES:
+			return getNodes();
+		case CorePackage.CONSTRAINT__ARROWS:
+			return getArrows();
+		case CorePackage.CONSTRAINT__PREDICATE:
+			if (resolve) return getPredicate();
+			return basicGetPredicate();
+		case CorePackage.CONSTRAINT__MAPPINGS:
+			return getMappings();
+		case CorePackage.CONSTRAINT__PARAMETERS:
+			return getParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -387,23 +389,23 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CorePackage.CONSTRAINT__NODES:
-				getNodes().clear();
-				getNodes().addAll((Collection<? extends Node>)newValue);
-				return;
-			case CorePackage.CONSTRAINT__ARROWS:
-				getArrows().clear();
-				getArrows().addAll((Collection<? extends Arrow>)newValue);
-				return;
-			case CorePackage.CONSTRAINT__PREDICATE:
-				setPredicate((Predicate)newValue);
-				return;
-			case CorePackage.CONSTRAINT__MAPPINGS:
-				setMappings((GraphHomomorphism)newValue);
-				return;
-			case CorePackage.CONSTRAINT__PARAMETERS:
-				setParameters((String)newValue);
-				return;
+		case CorePackage.CONSTRAINT__NODES:
+			getNodes().clear();
+			getNodes().addAll((Collection<? extends Node>)newValue);
+			return;
+		case CorePackage.CONSTRAINT__ARROWS:
+			getArrows().clear();
+			getArrows().addAll((Collection<? extends Arrow>)newValue);
+			return;
+		case CorePackage.CONSTRAINT__PREDICATE:
+			setPredicate((Predicate)newValue);
+			return;
+		case CorePackage.CONSTRAINT__MAPPINGS:
+			setMappings((GraphHomomorphism)newValue);
+			return;
+		case CorePackage.CONSTRAINT__PARAMETERS:
+			setParameters((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -416,21 +418,21 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CorePackage.CONSTRAINT__NODES:
-				getNodes().clear();
-				return;
-			case CorePackage.CONSTRAINT__ARROWS:
-				getArrows().clear();
-				return;
-			case CorePackage.CONSTRAINT__PREDICATE:
-				setPredicate((Predicate)null);
-				return;
-			case CorePackage.CONSTRAINT__MAPPINGS:
-				setMappings((GraphHomomorphism)null);
-				return;
-			case CorePackage.CONSTRAINT__PARAMETERS:
-				setParameters(PARAMETERS_EDEFAULT);
-				return;
+		case CorePackage.CONSTRAINT__NODES:
+			getNodes().clear();
+			return;
+		case CorePackage.CONSTRAINT__ARROWS:
+			getArrows().clear();
+			return;
+		case CorePackage.CONSTRAINT__PREDICATE:
+			setPredicate((Predicate)null);
+			return;
+		case CorePackage.CONSTRAINT__MAPPINGS:
+			setMappings((GraphHomomorphism)null);
+			return;
+		case CorePackage.CONSTRAINT__PARAMETERS:
+			setParameters(PARAMETERS_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -443,16 +445,16 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CorePackage.CONSTRAINT__NODES:
-				return nodes != null && !nodes.isEmpty();
-			case CorePackage.CONSTRAINT__ARROWS:
-				return arrows != null && !arrows.isEmpty();
-			case CorePackage.CONSTRAINT__PREDICATE:
-				return predicate != null;
-			case CorePackage.CONSTRAINT__MAPPINGS:
-				return mappings != null;
-			case CorePackage.CONSTRAINT__PARAMETERS:
-				return PARAMETERS_EDEFAULT == null ? parameters != null : !PARAMETERS_EDEFAULT.equals(parameters);
+		case CorePackage.CONSTRAINT__NODES:
+			return nodes != null && !nodes.isEmpty();
+		case CorePackage.CONSTRAINT__ARROWS:
+			return arrows != null && !arrows.isEmpty();
+		case CorePackage.CONSTRAINT__PREDICATE:
+			return predicate != null;
+		case CorePackage.CONSTRAINT__MAPPINGS:
+			return mappings != null;
+		case CorePackage.CONSTRAINT__PARAMETERS:
+			return PARAMETERS_EDEFAULT == null ? parameters != null : !PARAMETERS_EDEFAULT.equals(parameters);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -460,16 +462,42 @@ public class ConstraintImpl extends IDObjectImpl implements Constraint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (parameters: ");
-		result.append(parameters);
-		result.append(')');
+		StringBuffer result = new StringBuffer();
+		result.append("[" + getPredicate().getSymbol());
+		if(parameters != null && !parameters.isEmpty())
+			result.append(" (" + parameters + ')');
+		result.append("] on ");
+		List<Node> nodes = new ArrayList<Node>();
+		nodes.addAll(getNodes());
+		if(!getArrows().isEmpty()){
+			result.append("Arrows{");
+			int index = 0;
+			for(Arrow dArrow : getArrows()){
+				Node source = dArrow.getSource(), target = dArrow.getTarget();
+				result.append(dArrow.getName() + ":"  + source.getName() + "->" + target.getName());
+				if(index == 0){result.append(", "); index++;}
+				if(nodes.contains(source))
+					nodes.remove(source);
+				if(nodes.contains(target))
+					nodes.remove(target);
+			}
+			result.append("}");
+		}
+		if(!nodes.isEmpty()){
+			result.append("Nodes{");
+			int index = 0;
+			for(Node dArrow : nodes){
+				result.append(dArrow.getName());
+				if(index == 0){result.append(", "); index++;}
+			}
+			result.append("}");
+		}
 		return result.toString();
 	}
 

@@ -115,14 +115,14 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case DiagramPackage.VISUALIZATION_TYPE:
-				return convertVisualizationTypeToString(eDataType, instanceValue);
-			case DiagramPackage.EDIMENSION:
-				return convertEDimensionToString(eDataType, instanceValue);
-			case DiagramPackage.ELOCATION:
-				return convertELocationToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case DiagramPackage.VISUALIZATION_TYPE:
+			return convertVisualizationTypeToString(eDataType, instanceValue);
+		case DiagramPackage.EDIMENSION:
+			return convertEDimensionToString(eDataType, instanceValue);
+		case DiagramPackage.ELOCATION:
+			return convertELocationToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -143,22 +143,22 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case DiagramPackage.DSPECIFICATION: return createDSpecification();
-			case DiagramPackage.DGRAPH: return createDGraph();
-			case DiagramPackage.DNODE: return createDNode();
-			case DiagramPackage.DCONSTRAINT_NODE: return createDConstraintNode();
-			case DiagramPackage.DARROW: return createDArrow();
-			case DiagramPackage.DCONSTRAINT: return createDConstraint();
-			case DiagramPackage.DARROW_LABEL_CONSTRAINT: return createDArrowLabelConstraint();
-			case DiagramPackage.DGENERIC_ARROW_CONSTRAINT: return createDGenericArrowConstraint();
-			case DiagramPackage.DCOMPOSED_CONSTRAINT: return createDComposedConstraint();
-			case DiagramPackage.DPREDICATE: return createDPredicate();
-			case DiagramPackage.DOFFSET: return createDOffset();
-			case DiagramPackage.DSIGNATURE: return createDSignature();
-			case DiagramPackage.VISUALIZATION: return createVisualization();
-			case DiagramPackage.DELEMENT: return createDElement();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case DiagramPackage.DSPECIFICATION: return createDSpecification();
+		case DiagramPackage.DGRAPH: return createDGraph();
+		case DiagramPackage.DNODE: return createDNode();
+		case DiagramPackage.DCONSTRAINT_NODE: return createDConstraintNode();
+		case DiagramPackage.DARROW: return createDArrow();
+		case DiagramPackage.DCONSTRAINT: return createDConstraint();
+		case DiagramPackage.DARROW_LABEL_CONSTRAINT: return createDArrowLabelConstraint();
+		case DiagramPackage.DGENERIC_ARROW_CONSTRAINT: return createDGenericArrowConstraint();
+		case DiagramPackage.DCOMPOSED_CONSTRAINT: return createDComposedConstraint();
+		case DiagramPackage.DPREDICATE: return createDPredicate();
+		case DiagramPackage.DOFFSET: return createDOffset();
+		case DiagramPackage.DSIGNATURE: return createDSignature();
+		case DiagramPackage.VISUALIZATION: return createVisualization();
+		case DiagramPackage.DELEMENT: return createDElement();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -173,7 +173,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		visualization.setSource(graph.getArrowByName("XY"));
 		return result;
 	}
-	
+
 	private DPredicate createNodeDPredicate(
 			Predicate predicate, String icon) {
 		if(predicate == null)
@@ -199,7 +199,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		visualization.setTarget(graph.getArrowByName(target));
 		return result;
 	}
-	
+
 	private DPredicate createComposedDPredicate(Predicate predicate, String icon) {
 		if(predicate == null)
 			return null;
@@ -249,19 +249,45 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	public DSignature createConstantDSignature() {
 		DSignatureImpl result = new DSignatureImpl();
 		result.setSignature(DPFConstants.DEFAULT_SIGNATURE);
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.INJECTIVE, "/icons/inj_36.png"));
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.SURJECTIVE, "/icons/surj_36.png"));
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.IRREFLEXIVE, "/icons/irr_36.png"));		
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.ARROW_MULTI, "/icons/mult_36.png"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.INVERSE, "/icons/inv_36.png", "XY", "YX"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.JOINT_SURJ, "/icons/js_36.png", "XZ", "YZ"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.JOINT_INJE, "/icons/ji_36.png", "XY", "XZ"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.XOR, "/icons/xor_36.png", "ZX", "ZY"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.SPLIT_NAND, "/icons/nand_36.png", "ZX", "ZY"));
-		result.addDPredicate(createArrowToArrowDPredicate(DPFConstants.MERGE_NAND, "/icons/nand_merge_36.png", "XZ", "YZ"));
-		result.addDPredicate(createNodeDPredicate(DPFConstants.NODE_MULTI, "/icons/mult_node_36.png"));
-		result.addDPredicate(createArrowLabelDPredicate(DPFConstants.REFLEXIVE, "/icons/ref_36.png"));
-		result.addDPredicate(createComposedDPredicate(DPFConstants.XOR4, "/icons/xor4_36.png"));
+		DPredicate dPredicate = createArrowLabelDPredicate(DPFConstants.INJECTIVE, "/icons/inj_36.png");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);
+		dPredicate = createArrowLabelDPredicate(DPFConstants.SURJECTIVE, "/icons/surj_36.png");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);
+		dPredicate = createArrowLabelDPredicate(DPFConstants.IRREFLEXIVE, "/icons/irr_36.png");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);		
+		dPredicate = createArrowLabelDPredicate(DPFConstants.ARROW_MULTI, "/icons/mult_36.png");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);
+		dPredicate = createArrowToArrowDPredicate(DPFConstants.INVERSE, "/icons/inv_36.png", "XY", "YX");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);
+		dPredicate = createArrowToArrowDPredicate(DPFConstants.JOINT_SURJ, "/icons/js_36.png", "XZ", "YZ");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);
+		dPredicate = createArrowToArrowDPredicate(DPFConstants.JOINT_INJE, "/icons/ji_36.png", "XY", "XZ");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);
+		dPredicate = createArrowToArrowDPredicate(DPFConstants.XOR, "/icons/xor_36.png", "ZX", "ZY");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);
+		dPredicate = createArrowToArrowDPredicate(DPFConstants.SPLIT_NAND, "/icons/nand_36.png", "ZX", "ZY");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);
+		dPredicate = createArrowToArrowDPredicate(DPFConstants.MERGE_NAND, "/icons/nand_merge_36.png", "XZ", "YZ");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);
+		dPredicate = createNodeDPredicate(DPFConstants.NODE_MULTI, "/icons/mult_node_36.png");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);
+		dPredicate = createArrowLabelDPredicate(DPFConstants.REFLEXIVE, "/icons/ref_36.png");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);
+		dPredicate = createComposedDPredicate(DPFConstants.XOR4, "/icons/xor4_36.png");
+		dPredicate.setId("diagram-" + dPredicate.getPredicate().getId());
+		result.addDPredicate(dPredicate);
 		return result;
 	}
 
@@ -289,7 +315,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		dArrow.setDType(DPFConstants.REFLEXIVE_TYPE_DARROW);
 		return dArrow;
 	}
-	
+
 	/**
 	 * @generated NOT
 	 */
@@ -408,7 +434,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 
 	@Override
 	public DOffset createDefaultDOffset() {
-//		Adjust the initial position of the arrow label
+		//		Adjust the initial position of the arrow label
 		return new DOffsetImpl(new Point(10, -3), 16);
 	}
 
@@ -557,7 +583,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	 * createConstantX() method is constants creation method. Those methods are only used in DPFConstants.
 	 * xwa@hib.no
 	 */
-	
+
 	private DPredicate createDPredicate(Predicate predicate, String icon){
 		DPredicate dPredicate = createDefaultDPredicate();
 		dPredicate.setPredicate(predicate);
@@ -596,7 +622,7 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		String[] result = initialValue.split(" ");
 		Assert.isTrue(result.length == 2);
 		return new Dimension(Integer.valueOf(result[0]).intValue(), Integer.valueOf(result[1]).intValue());
-//		return (Dimension)super.createFromString(eDataType, initialValue);
+		//		return (Dimension)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -617,14 +643,14 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case DiagramPackage.VISUALIZATION_TYPE:
-				return createVisualizationTypeFromString(eDataType, initialValue);
-			case DiagramPackage.EDIMENSION:
-				return createEDimensionFromString(eDataType, initialValue);
-			case DiagramPackage.ELOCATION:
-				return createELocationFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		case DiagramPackage.VISUALIZATION_TYPE:
+			return createVisualizationTypeFromString(eDataType, initialValue);
+		case DiagramPackage.EDIMENSION:
+			return createEDimensionFromString(eDataType, initialValue);
+		case DiagramPackage.ELOCATION:
+			return createELocationFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 

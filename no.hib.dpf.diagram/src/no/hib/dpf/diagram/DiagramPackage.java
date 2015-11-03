@@ -6,6 +6,8 @@
  */
 package no.hib.dpf.diagram;
 
+import no.hib.dpf.core.CorePackage;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -245,13 +247,22 @@ public interface DiagramPackage extends EPackage {
 	int DELEMENT = 13;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELEMENT__ID = CorePackage.ID_OBJECT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Constraints From</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DELEMENT__CONSTRAINTS_FROM = 0;
+	int DELEMENT__CONSTRAINTS_FROM = CorePackage.ID_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Constraints To</b></em>' reference list.
@@ -260,7 +271,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DELEMENT__CONSTRAINTS_TO = 1;
+	int DELEMENT__CONSTRAINTS_TO = CorePackage.ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>DElement</em>' class.
@@ -269,7 +280,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DELEMENT_FEATURE_COUNT = 2;
+	int DELEMENT_FEATURE_COUNT = CorePackage.ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link no.hib.dpf.diagram.impl.DNodeImpl <em>DNode</em>}' class.
@@ -280,6 +291,15 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	int DNODE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DNODE__ID = DELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Constraints From</b></em>' reference list.
@@ -389,6 +409,15 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	int DCONSTRAINT_NODE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DCONSTRAINT_NODE__ID = DNODE__ID;
 
 	/**
 	 * The feature id for the '<em><b>Constraints From</b></em>' reference list.
@@ -507,6 +536,15 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	int DARROW = 4;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DARROW__ID = DELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Constraints From</b></em>' reference list.
@@ -901,13 +939,22 @@ public interface DiagramPackage extends EPackage {
 	int DPREDICATE = 9;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DPREDICATE__ID = CorePackage.ID_OBJECT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Predicate</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DPREDICATE__PREDICATE = 0;
+	int DPREDICATE__PREDICATE = CorePackage.ID_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name</b></em>' attribute.
@@ -916,7 +963,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DPREDICATE__SIMPLE_NAME = 1;
+	int DPREDICATE__SIMPLE_NAME = CorePackage.ID_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>DGraph</b></em>' containment reference.
@@ -925,7 +972,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DPREDICATE__DGRAPH = 2;
+	int DPREDICATE__DGRAPH = CorePackage.ID_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Visualization</b></em>' containment reference.
@@ -934,7 +981,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DPREDICATE__VISUALIZATION = 3;
+	int DPREDICATE__VISUALIZATION = CorePackage.ID_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Icon</b></em>' attribute.
@@ -943,7 +990,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DPREDICATE__ICON = 4;
+	int DPREDICATE__ICON = CorePackage.ID_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>DPredicate</em>' class.
@@ -952,7 +999,7 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DPREDICATE_FEATURE_COUNT = 5;
+	int DPREDICATE_FEATURE_COUNT = CorePackage.ID_OBJECT_FEATURE_COUNT + 5;
 
 
 	/**

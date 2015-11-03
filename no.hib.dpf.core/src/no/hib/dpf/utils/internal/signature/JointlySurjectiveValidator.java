@@ -14,6 +14,8 @@ public class JointlySurjectiveValidator extends AbstractBasePredicate {
 
 	public JointlySurjectiveValidator() {
 		super(JOINT_SURJECITVE, null, "X,Y,Z", " YZ:Y:Z,XZ:X:Z");
+		setId("p-joint-surjective");
+		initialIDs();
 	}
 
 	@Override

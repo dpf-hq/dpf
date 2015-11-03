@@ -20,14 +20,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.IDObject;
-import no.hib.dpf.core.Node;
-import no.hib.dpf.utils.DPFConstants;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -36,6 +28,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.IDObject;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.utils.DPFConstants;
 
 /**
  * <!-- begin-user-doc -->

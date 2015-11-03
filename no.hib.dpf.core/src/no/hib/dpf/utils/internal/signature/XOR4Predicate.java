@@ -13,7 +13,9 @@ import no.hib.dpf.core.Node;
 public class XOR4Predicate extends AbstractBasePredicate {
 
 	public XOR4Predicate() {
-		super(XOR4, null, "X,Y1,Y2,Y3,Y4", "XY1:X:Y1,XY2:X:Y2,XY3:X:Y3,XY4:X:Y4,");
+		super(XOR4, null, "X,Y1,Y2,Y3,Y4", "XY1:X:Y1,XY2:X:Y2,XY3:X:Y3,XY4:X:Y4");
+		setId("p-xor4");
+		initialIDs();
 	}
 
 	public boolean check(Map<String, String> maps, Graph shape, Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) { 

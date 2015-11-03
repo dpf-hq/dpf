@@ -10,6 +10,8 @@ package no.hib.dpf.diagram.provider;
 import java.util.Collection;
 import java.util.List;
 
+import no.hib.dpf.core.provider.IDObjectItemProvider;
+import no.hib.dpf.diagram.DElement;
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.DPFPlugin;
@@ -19,13 +21,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 /**
  * This is the item provider adapter for a {@link no.hib.dpf.diagram.DElement} object.
@@ -34,13 +30,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
  * @generated
  */
 public class DElementItemProvider
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends IDObjectItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -131,7 +121,10 @@ public class DElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DElement_type");
+		String label = ((DElement)object).getId();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DElement_type") :
+			getString("_UI_DElement_type") + " " + label;
 	}
 
 	/**

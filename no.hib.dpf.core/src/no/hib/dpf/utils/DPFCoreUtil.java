@@ -6,26 +6,25 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.DPFCorePlugin;
-import no.hib.dpf.core.Node;
-import no.hib.dpf.core.Specification;
-
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.DPFCorePlugin;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Specification;
 
 
 public class DPFCoreUtil {
@@ -92,22 +91,7 @@ public class DPFCoreUtil {
 	public static ResourceSetImpl getResourceSet(){
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl(){
-			 @Override
-			  public Resource createResource(URI uri)
-			  {
-			    return new XMIResourceImpl(uri){
-			    	@Override
-			    	  protected boolean useUUIDs()
-			    	  {
-			    		/*
-			    		 * It should be changed to ture when elements are store based on their ids
-			    		 */
-			    	    return false;
-			    	  }
-			    };
-			  }
-		});
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 
 		Resource defaultSpecification = resourceSet.createResource(DPFConstants.DefaultSpecification);
 		defaultSpecification.getContents().add(DPFConstants.REFLEXIVE_SPECIFICATION);
@@ -150,18 +134,18 @@ public class DPFCoreUtil {
 	public static void saveSpecification(ResourceSetImpl resourceSet,URI modelFileURI, Specification specification){
 		Resource model = createResource(resourceSet, modelFileURI);
 		Assert.isNotNull(model);
-		EcoreUtil.resolveAll(specification.getType().eResource());
-		Specification iter = specification;	
-		while(iter != DPFConstants.REFLEXIVE_SPECIFICATION){
-			model.getContents().add(iter);
-			iter = iter.getType();
-		}
-		iter = specification;
-		while(iter != DPFConstants.REFLEXIVE_SPECIFICATION){
-			if(iter.getSignature() != DPFConstants.DEFAULT_SIGNATURE)
-				model.getContents().add(iter.getSignature());
-			iter = iter.getType();
-		}
+//		EcoreUtil.resolveAll(specification.getType().eResource());
+//		Specification iter = specification;	
+//		while(iter != DPFConstants.REFLEXIVE_SPECIFICATION){
+		model.getContents().add(specification);
+//			iter = iter.getType();
+//		}
+//		iter = specification;
+//		while(iter != DPFConstants.REFLEXIVE_SPECIFICATION){
+//			if(iter.getSignature() != DPFConstants.DEFAULT_SIGNATURE)
+//				model.getContents().add(iter.getSignature());
+//			iter = iter.getType();
+//		}
 		try {
 			model.save(null);
 		} catch (IOException e) {

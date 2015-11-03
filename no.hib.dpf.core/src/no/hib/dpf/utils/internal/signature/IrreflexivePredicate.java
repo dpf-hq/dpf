@@ -12,6 +12,8 @@ public class IrreflexivePredicate extends AbstractBasePredicate {
 	
 	public IrreflexivePredicate() {
 		super(IRREFLEXIVE, null, "X", "XY:X:X");
+		setId("p-irreflexive");
+		initialIDs();
 	}
 
 	public boolean check(Map<String, String> maps, Graph shape, Map<Node, List<Node>> nodeMap,

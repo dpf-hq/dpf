@@ -15,6 +15,8 @@ public class SplitNANDPredicate  extends XORPredicate {
 	public SplitNANDPredicate() {
 		super();
 		symbol = SPLIT_NOT_AND;
+		setId("p-split-not-and");
+		initialIDs();
 	}
 	public boolean check(Map<String, String> maps, Graph shape, Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) { 
 		Map<Node, List<Arrow>> targetWithX = new HashMap<Node, List<Arrow>>();

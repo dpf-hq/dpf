@@ -14,9 +14,11 @@ package no.hib.dpf.editor.figures;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.draw2d.text.FlowPage;
+import org.eclipse.draw2d.text.TextFlow;
 
 /**
  * A customized Label based on the label used in the flow example. 
@@ -24,19 +26,24 @@ import org.eclipse.draw2d.geometry.Rectangle;
  * Normal selection is denoted by highlight only. Borrowed from the Flow Editor example
  * @author Daniel Lee
  */
-public class EditableLabel extends Label
+public class EditableLabel extends FlowPage
 {
 
 	private boolean selected;
+	private TextFlow text;
 	
-	public EditableLabel(String text)
+	public EditableLabel(String label)
 	{
-		super(text);
+		super();
+		setHorizontalAligment(PositionConstants.CENTER);
+		setOpaque(true);
+		text = new TextFlow(label);
+		add(text);		
 	}
 	
 	private Rectangle getSelectionRectangle()
 	{
-		Rectangle bounds = getTextBounds().getCopy();
+		Rectangle bounds = text.getBounds().getCopy();
 		bounds.expand(new Insets(2, 2, 0, 0));
 		translateToParent(bounds);
 		bounds.intersect(getBounds());
@@ -70,6 +77,10 @@ public class EditableLabel extends Label
 	{
 		selected = b;
 		repaint();
+	}
+
+	public void setText(String nodeLabelName) {
+		text.setText(nodeLabelName);
 	}
 
 

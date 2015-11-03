@@ -1060,6 +1060,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		dArrowLabelConstraintEClass.getESuperTypes().add(this.getDConstraint());
 		dGenericArrowConstraintEClass.getESuperTypes().add(this.getDConstraint());
 		dComposedConstraintEClass.getESuperTypes().add(this.getDConstraint());
+		dPredicateEClass.getESuperTypes().add(theCorePackage.getIDObject());
+		dElementEClass.getESuperTypes().add(theCorePackage.getIDObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(dSpecificationEClass, DSpecification.class, "DSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

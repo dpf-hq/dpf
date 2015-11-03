@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.GraphHomomorphism;
+import no.hib.dpf.core.IDObject;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.ValidatorType;
@@ -37,22 +38,25 @@ public class DPF2Alloy {
 	static public  final String SIG = "sig ";
 
 	private DGraph dGraph = null;
-	private DSpecification model = null;
+	public DSpecification model = null;
 
 	protected Map<Node, String> node2Sig = new HashMap<Node, String>();
 	protected Map<Arrow, String> edge2Sig = new HashMap<Arrow, String>();
+	public List<IDObject> sig2DPF = new ArrayList<IDObject>();
 	protected List<String> enumNodes = new ArrayList<String>();
 	protected Map<String, String> name2cons_alloy = new HashMap<String, String>();
 	protected Map<Node, List<String>> node2enums = new HashMap<Node, List<String>>();
 	
+	private int index = 0;
 	/*
 	 * Translate a node in DPF to a signature named by NP plus node's name
 	 */
 	public  String getSigForNode(Node node){ 
 		String sigName = node2Sig.get(node); 
 		if(sigName == null){ 
-			sigName = NP + node.getName();
+			sigName = NP + index++;//node.getName();
 			node2Sig.put(node, sigName);
+			sig2DPF.add(node);
 		}
 		return sigName;
 	}
@@ -63,8 +67,9 @@ public class DPF2Alloy {
 	public  String getSigForEdge(Arrow edge){ 
 		String sigName = edge2Sig.get(edge); 
 		if(sigName == null){ 
-			sigName = AP + edge.getName();
+			sigName = AP + index++;//edge.getName();
 			edge2Sig.put(edge, sigName);
+			sig2DPF.add(edge);
 		}
 		return sigName;
 	}
@@ -120,7 +125,7 @@ public class DPF2Alloy {
 				}
 			}
 			if(!isMult){
-				String name = "mult1_" + AP + arrow.getName();
+				String name = "mult1_" + getSigForEdge(arrow);
 				name2cons_DPF.put(name, arrow);
 				name2cons_alloy.put(name, translateArrowMultiplicity(arrow));
 			}
@@ -155,8 +160,11 @@ public class DPF2Alloy {
 				name2cons_alloy.put(predName, translateIrreflexive(constraint));
 			else if(predicate == DPFConstants.JOINT_SURJ)
 				name2cons_alloy.put(predName, translateJointSurjective(constraint));
-			else 
-				name2cons_alloy.put(predName, translateGeneral(constraint));
+			else{
+				String result = translateGeneral(constraint);
+				if(result != null && !result.isEmpty())
+				name2cons_alloy.put(predName, result);
+			}
 		}
 		if(uc != null){
 			for(UConstraint iter : uc.getRules()){
@@ -387,14 +395,14 @@ public class DPF2Alloy {
 		Node target = getNode(constraint, "Z");
 		Arrow xz = getArrow(constraint, "XZ"), yz = getArrow(constraint, "YZ");
 		String result = "//" + "joint-surjective constraint between " + xz + " and " + yz + LINE + "\t";
-		result += "all n:(" + NP + target.getName() + ") | let e1 = (some e : " + AP + xz.getName() + 
-				" | e.trg = n), e2=(some e : " + AP + yz.getName() + " | e.trg = n)| e1 or e2" + LINE;
+		result += "all n:(" + getSigForNode(target) + ") | let e1 = (some e : " + getSigForEdge(xz) + 
+				" | e.trg = n), e2=(some e : " + getSigForEdge(yz) + " | e.trg = n)| e1 or e2" + LINE;
 		return result;
 	}
 	private String translateIrreflexive(Constraint constraint) {
 		Arrow arrow = getArrow(constraint, "XY");
 		String result = "//" + "reflexive on " + arrow +  LINE + "\t";
-		result += "no e:(" + AP + arrow.getName() + ")| e.src = e.trg" + LINE;
+		result += "no e:(" + getSigForEdge(arrow) + ")| e.src = e.trg" + LINE;
 		return result;
 	}
 	private String translateGeneral(Constraint constraint) {
@@ -402,11 +410,12 @@ public class DPF2Alloy {
 		if(predicate.getValidator().getType() == ValidatorType.ALLOY)
 		{
 			GraphHomomorphism mapping = constraint.getMappings();
-			Map<String,String> nodeHash = new HashMap<String,String>(), arrowHash = new HashMap<String,String>();
+			Map<String,Node> nodeHash = new HashMap<String,Node>(); 
+			Map<String,Arrow> arrowHash = new HashMap<String,Arrow>();
 			for(Entry<Arrow, Arrow> entry : mapping.getArrowMapping().entrySet())
-				arrowHash.put(entry.getKey().getName(), entry.getValue().getName());
+				arrowHash.put(entry.getKey().getName(), entry.getValue());
 			for(Entry<Node, Node> entry : mapping.getNodeMapping().entrySet())
-				nodeHash.put(entry.getKey().getName(), entry.getValue().getName());
+				nodeHash.put(entry.getKey().getName(), entry.getValue());
 			String alloy = predicate.getValidator().getValidator();
 			String real = "";
 			int first = 0, second = 0;
@@ -419,9 +428,9 @@ public class DPF2Alloy {
 				real += add;
 				String variable = alloy.substring(first + 1, second);
 				if(nodeHash.containsKey(variable)){
-					real += NP + nodeHash.get(variable);
+					real += getSigForNode(nodeHash.get(variable));
 				}else if(arrowHash.containsKey(variable)){
-					real += AP + arrowHash.get(variable);
+					real += getSigForEdge(arrowHash.get(variable));
 				}else return "";
 				first = second = second + 1;
 			}
@@ -432,33 +441,35 @@ public class DPF2Alloy {
 	private String translateReflexive(Constraint constraint) {
 		Arrow arrow = getArrow(constraint, "XY");
 		String result = "//" + "reflexive on " + arrow +  LINE + "\t";
-		result += "all e:(" + AP + arrow.getName() + ")| e.src = e.trg" + LINE; 
+		result += "all e:(" + getSigForEdge(arrow) + ")| e.src = e.trg" + LINE; 
 		return result;
 	}
 	private String translateSplitNAND(Constraint constraint) {
 		Node z = getNode(constraint, "Z");
 		Arrow zx = getArrow(constraint, "ZX"), zy = getArrow(constraint, "ZY");
 		String result = "//" + "NAND constraint between " + zx + " and " + zy + LINE + "\t";
-		result += "all n:(" + NP + z.getName() + ") | let e1 = (some e : " + AP + zx.getName() + 
-				" | e.src = n), e2=(some e : " + AP + zy.getName() + " | e.src = n)|not(e1 and e2)" + LINE;
+		result += "all n:(" + getSigForNode(z) + ") | let e1 = (some e : " + getSigForEdge(zx) + 
+				" | e.src = n), e2=(some e : " + getSigForEdge(zy) + " | e.src = n)|not(e1 and e2)" + LINE;
 		return result;
 	}
 	private String translateMergeNAND(Constraint constraint) {
 		Node target = getNode(constraint, "Z");
 		Arrow xz = getArrow(constraint, "XZ"), yz = getArrow(constraint, "YZ");
 		String result = "//" + "NAND constraint between " + xz + " and " + yz + LINE + "\t";
-		result += "all n:(" + NP + target.getName() + ") | let e1 = (some e : " + AP + xz.getName() + 
-				" | e.trg = n), e2=(some e : " + AP + yz.getName() + " | e.trg = n)|not(e1 and e2)" + LINE;
+		result += "all n:(" + getSigForNode(target) + 
+				") | let e1 = (some e : " + getSigForEdge(xz) + 
+				" | e.trg = n), e2=(some e : " + getSigForEdge(yz) + 
+				" | e.trg = n)|not(e1 and e2)" + LINE;
 		return result;
 	}
 	private String translateXOR4(Constraint constraint) {
 		Node source = getNode(constraint, "X");
 		Arrow xy1 = getArrow(constraint, "XY1"), xy2 = getArrow(constraint, "XY2"), xy3 = getArrow(constraint, "XY3"), xy4 = getArrow(constraint, "XY4");
 		String result = "//" + "XOR constraint between " + xy1 + ","+ xy2 + ","+ xy3 + " and " + xy4 + LINE + "\t";
-		result += "all n:(" + NP + source.getName() + ") | let e1=(some e : " + AP + xy1.getName() + 
-				"|e.src = n), e2=(some e : " + AP + xy2.getName() + 
-				"|e.src = n), e3=(some e : " + AP + xy3.getName() + 
-				"|e.src = n), e4=(some e : " + AP + xy4.getName() + 
+		result += "all n:(" + getSigForNode(source) + ") | let e1=(some e : " + getSigForEdge(xy1) + 
+				"|e.src = n), e2=(some e : " + getSigForEdge(xy2) + 
+				"|e.src = n), e3=(some e : " + getSigForEdge(xy3) + 
+				"|e.src = n), e4=(some e : " + getSigForEdge(xy4) + 
 				"|e.src = n)|(e1 or e2 or e3 or e4) and not(((e1 and (e2 or e3 or e4)) or (e2 and (e1 or e3 or e4)) or (e3 and (e2 or e1 or e4)) or (e4 and (e2 or e3 or e1))))" + LINE;
 		return result;
 	}
@@ -466,8 +477,8 @@ public class DPF2Alloy {
 		Node source = getNode(constraint, "Z");
 		Arrow zx = getArrow(constraint, "ZX"), zy = getArrow(constraint, "ZY");
 		String result = "//" + "XOR constraint between " + zx + " and " + zy + LINE + "\t";
-		result += "all n:(" + NP + source.getName() + ") | let e1 = (some e : " + AP + zx.getName() + 
-				" | e.src = n), e2=(some e : " + AP + zy.getName() + " | e.src = n)|(e1 or e2) and not(e1 and e2)" + LINE;
+		result += "all n:(" + getSigForNode(source) + ") | let e1 = (some e : " + getSigForEdge(zx) + 
+				" | e.src = n), e2=(some e : " + getSigForEdge(zy) + " | e.src = n)|(e1 or e2) and not(e1 and e2)" + LINE;
 		return result;
 	}
 	private String translateNodeMultiplicity(Constraint constraint) {
@@ -477,7 +488,7 @@ public class DPF2Alloy {
 		if(parameters == null) return result;
 		String min = parameters.get("min");
 		String max = parameters.get("max");
-		result += "let count = #" + NP + source.getName() + 
+		result += "let count = #" + getSigForNode(source) + 
 				" | count>=" + min;
 		if(!(max.equals("*") || max.equals("-1")))
 			result += " and count <=" + max;
@@ -491,7 +502,7 @@ public class DPF2Alloy {
 		if(parameters == null) return result;
 		String min = parameters.get("min");
 		String max = parameters.get("max");
-		result += "all n:(" + NP + source.getName() + ")| let count = #{e:(" + AP + arrow.getName() + 
+		result += "all n:(" + getSigForNode(source) + ")| let count = #{e:(" + getSigForEdge(arrow) + 
 				")| e.src = n}| count>=" + min;
 		if(!(max.equals("*") || max.equals("-1")))
 			result += " and count <=" + max;
@@ -501,12 +512,14 @@ public class DPF2Alloy {
 		Node source = getNode(constraint, "Y");
 		Arrow arrow = getArrow(constraint, "XY");
 		String result = "//" + "surjective on " + arrow +  LINE + "\t";
-		return result + "all n:(" + NP + source.getName() + ")| some e:(" + AP + arrow.getName() + 
+		return result + "all n:(" + getSigForNode(source)  + 
+				")| some e:(" + getSigForEdge(arrow) + 
 				")| e.trg = n" + LINE;
 	}
 	private String translateArrowMultiplicity(Arrow arrow) {
 		String result = "//" + "mulitplicity on " + arrow +  "[0,1]" + LINE  + "\t";
-		return result + "all n:(" + NP + arrow.getSource().getName() + ")| lone e:(" + AP + arrow.getName()+ 
+		return result + "all n:(" + getSigForNode(arrow.getSource()) + 
+				")|lone e:(" + getSigForEdge(arrow)+ 
 				")|e.src=n" + LINE;
 	}
 	private Node getNode(Constraint constraint, String name){
@@ -519,7 +532,8 @@ public class DPF2Alloy {
 		Node source = getNode(constraint, "X");
 		Arrow arrow = getArrow(constraint, "XY");
 		String result = "//" + "check injective on " + arrow +  LINE + "\t";
-		result += "all n:(" + NP + source.getName() + ")| no e1, e2:(" + AP + arrow.getName() + 
+		result += "all n:(" + getSigForNode(source) + 
+				")| no e1, e2:(" + getSigForEdge(arrow) + 
 				")| (e1 != e2 and e1.src = n and e2.src = n and e1.trg = e2.trg)" + LINE; 
 		return result ;
 	}

@@ -688,10 +688,14 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 		if(newDType == dType) return;
 		DSpecification oldDType = dType;
 		dType = newDType;
-		if(getSpecification() != null)
-			getSpecification().setType(getDType() == null ? null : getDType().getSpecification());
-		if(getDGraph() != null)
-			getDGraph().setDType(getDType() == null ? null : getDType().getDGraph());
+		
+		DSpecification type = getDType();
+		Specification spec = getSpecification();
+		DGraph graph = getDGraph();
+		if(spec != null && !spec.eIsProxy())
+			spec.setType(type == null ? null : type.getSpecification());
+		if(graph != null && !graph.eIsProxy())
+			graph.setDType(type == null ? null : type.getDGraph());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__DTYPE, oldDType, dType));
 	}

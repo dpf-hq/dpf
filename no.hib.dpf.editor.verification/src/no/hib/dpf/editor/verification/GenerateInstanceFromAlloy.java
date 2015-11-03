@@ -3,6 +3,7 @@ package no.hib.dpf.editor.verification;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import no.hib.dpf.core.Arrow;
@@ -41,7 +42,7 @@ public class GenerateInstanceFromAlloy {
 		return dpfType;
 
 	}
-	public static DSpecification generateDSpecificationFromAlloy(A4Solution solution, DSpecification type) throws Err{
+	public static DSpecification generateDSpecificationFromAlloy(A4Solution solution, DSpecification type, List<IDObject> alloy2DPF) throws Err{
 		if(!solution.satisfiable()){
 			return null;
 		}
@@ -52,7 +53,6 @@ public class GenerateInstanceFromAlloy {
 		
 		Specification instance = CoreFactory.eINSTANCE.createDefaultSpecification();
 		instance.setType(type.getSpecification());
-		instance.getGraph().setType(type.getSpecification().getGraph());
 		Graph graph = instance.getGraph(), graphType = graph.getType();
 		Map<AlloyAtom, IDObject> maps = new HashMap<AlloyAtom, IDObject>();
 
@@ -62,7 +62,10 @@ public class GenerateInstanceFromAlloy {
 			String typeName = alloyTypeName.substring(1);
 			if(alloyTypeName.startsWith("N")){
 				try {
-					Node dpfType = getNodeTypeFromAlloy(graphType, inst.model, alloyType);
+					Node dpfType = typeName.matches("\\d*")? 
+							(Node) alloy2DPF.get(Integer.parseInt(typeName)) 
+							: getNodeTypeFromAlloy(graphType, inst.model, alloyType);
+					;
 					if(dpfType == null){
 						throw new Exception("Cannot find type for " + alloyType.getName());
 					}
@@ -73,7 +76,9 @@ public class GenerateInstanceFromAlloy {
 				} catch (Exception e) {
 				}
 			} else if(alloyTypeName.startsWith("E")){
-				Arrow dpfType = graphType.getArrowByName(typeName);
+				Arrow dpfType = typeName.matches("\\d*")? 
+						(Arrow) alloy2DPF.get(Integer.parseInt(typeName)) 
+						: graphType.getArrowByName(typeName);
 				for(AlloyAtom alloyAtom : inst.type2atoms(alloyType)){
 					Arrow arrow = CoreFactory.eINSTANCE.createArrow();
 					arrow.setName(alloyAtom.toString().substring(1));

@@ -29,6 +29,25 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.jar.JarFile;
 
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.BasicEMap;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.OCL;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+import org.eclipse.ocl.helper.OCLHelper;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CoreFactory;
@@ -44,26 +63,6 @@ import no.hib.dpf.utils.CharSequenceCompilerException;
 import no.hib.dpf.utils.Checker;
 import no.hib.dpf.utils.DPFConstants;
 import no.hib.dpf.utils.DPFCoreUtil;
-
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.BasicEMap;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.ocl.OCL;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.helper.OCLHelper;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,7 +80,7 @@ import org.osgi.framework.FrameworkUtil;
  *
  * @generated
  */
-public class PredicateImpl extends EObjectImpl implements Predicate {
+public class PredicateImpl extends IDObjectImpl implements Predicate {
 	/**
 	 * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->

@@ -15,7 +15,8 @@ public class JointlyInjectivePredicate extends AbstractBasePredicate {
 
 	public JointlyInjectivePredicate() {
 		super(JOINT_INJECTIVE, null, "X,Y,Z", "XY:X:Y, XZ:X:Z");
-
+		setId("p-joint-injective");
+		initialIDs();
 	}
 
 	@Override

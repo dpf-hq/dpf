@@ -27,6 +27,8 @@ public class MultiplicityOnNodePredicate extends AbstractSingleNodePredicate {
 
 	public MultiplicityOnNodePredicate() {
 		super(NODE_MULTIPLICITY, "min:0;max:1");
+		setId("p-multiplicity-on-node");
+		initialIDs();
 	}
 
 	public boolean check(Map<String, String> maps, Graph graph, Map<Node, List<Node>> nodeMap,

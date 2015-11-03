@@ -14,6 +14,8 @@ import no.hib.dpf.core.Node;
 public class MergeNANDPredicate  extends AbstractBasePredicate {
 	public MergeNANDPredicate() {
 		super(MERGE_NOT_AND, null, "X,Y,Z", "XZ:X:Z, YZ:Y:Z");
+		setId("p-merge-not-and");
+		initialIDs();
 	}
 	public boolean check(Map<String, String> maps, Graph shape, Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) { 
 		Map<Node, List<Arrow>> sourceWithX = new HashMap<Node, List<Arrow>>();

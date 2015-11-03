@@ -41,4 +41,15 @@ public abstract class AbstractBasePredicate extends PredicateImpl{
 	}
 	public abstract boolean check(Map<String, String> paras, Graph graph,
 			Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) ;
+	
+	public void initialIDs(){
+		int i = 0;
+		for(Node node : getShape().getNodes()){
+			node.setId(getId() + "-node-" + i++);
+		}
+		i = 0;
+		for(Arrow arrow : getShape().getArrows()){
+			arrow.setId(getId() + "-edge-" + i++);
+		}
+	}
 }

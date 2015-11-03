@@ -3,6 +3,9 @@ package no.hib.dpf.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.eclipse.emf.common.util.URI;
+
 import no.hib.dpf.core.Arrow;
 //import no.hib.dpf.core.ArrowAttribute;
 import no.hib.dpf.core.CoreFactory;
@@ -12,7 +15,6 @@ import no.hib.dpf.core.Node;
 //import no.hib.dpf.core.NodeAttribute;
 import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
-import org.eclipse.emf.common.util.URI;
 
 
 public class DPFCoreConstants {

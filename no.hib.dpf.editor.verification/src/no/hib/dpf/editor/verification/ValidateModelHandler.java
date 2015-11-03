@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Node;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DComposedConstraint;
 import no.hib.dpf.diagram.DConstraint;
@@ -65,6 +67,7 @@ public class ValidateModelHandler extends AbstractHandler {
 	protected static String INSTANCE = "_instance.dpf";
 	protected static String KEYWORD = "fact$";
 	protected String[] preds = null;
+	protected DPF2Alloy translate;
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IEditorPart editor = HandlerUtil.getActiveEditor(event);
@@ -78,7 +81,6 @@ public class ValidateModelHandler extends AbstractHandler {
 					/*
 					 * load transform and translate it into Alloy specification
 					 */
-					URI dpfModelURI = URI.createFileURI(dpfFile.getLocation().toOSString());
 					DSpecification dpf = (DSpecification) ((EObject)graphicalViewer.getContents().getModel()).eContainer();
 
 					IContainer folder = dpfFile.getParent();
@@ -120,9 +122,8 @@ public class ValidateModelHandler extends AbstractHandler {
 								dialogMessage += iter + DPF2Alloy.LINE;
 							continue;
 						}
-						ResourceSetImpl resourceSet = ConstraintsUtils.getResourceSet();
-						DSpecification instance = GenerateInstanceFromAlloy.generateDSpecificationFromAlloy(ans, DPFUtils.loadDSpecification(resourceSet, dpfModelURI));
-						DPFUtils.saveDSpecification(resourceSet, instance, URI.createFileURI(instanceFile.getLocation().toOSString()));
+						DSpecification instance = GenerateInstanceFromAlloy.generateDSpecificationFromAlloy(ans, translate.model, translate.sig2DPF);
+						DPFUtils.saveDSpecification((ResourceSetImpl) translate.model.eResource().getResourceSet(), instance, URI.createFileURI(instanceFile.getLocation().toOSString()));
 					}
 					if(!dialogMessage.isEmpty()){
 						MessageDialog dialog = new MessageDialog(graphicalViewer.getControl().getShell(), 
@@ -134,7 +135,7 @@ public class ValidateModelHandler extends AbstractHandler {
 									setShellStyle(SWT.SHELL_TRIM);
 								}
 							};
-							
+
 							protected Control createMessageArea(Composite composite) {
 								Control result = super.createMessageArea(composite);
 								FontData[] data = messageLabel.getFont().getFontData();
@@ -146,16 +147,7 @@ public class ValidateModelHandler extends AbstractHandler {
 							}
 						};
 						dialog.open();
-						//						style &= SWT.SHEET;
-						//						dialog.setShellStyle(dialog.getShellStyle() | style);
-						//						MessageDialog.open(MessageDialog.ERROR, 
-						//								graphicalViewer.getControl().getShell(), 
-						//								"Conflict Universal Constraints in " + dpfFileName + ".uc", 
-						//								dialogMessage, 
-						//								SWT.DIALOG_TRIM | SWT.MIN);
 					}
-					//						MessageDialog.openError(graphicalViewer.getControl().getShell(), 
-					//								"Conflict Universal Constraints in " + dpfFileName + ".uc", dialogMessage);
 					folder.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
 				} catch (Exception e) {
 					DPFUtils.logError(e);
@@ -175,7 +167,7 @@ public class ValidateModelHandler extends AbstractHandler {
 	protected File translateDPF2Alloy(DSpecification dpf, IContainer folder, String dpfFileName) throws IOException{
 		ResourceSetImpl resourceSet = (ResourceSetImpl) dpf.eResource().getResourceSet();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uc", new XMIResourceFactoryImpl());
-		DPF2Alloy translate = getDPFToAlloy(dpf);
+		translate = getDPFToAlloy(dpf);
 		IFile insFile = folder.getFile(new Path(dpfFileName + ".uc"));
 		if(insFile.exists()){
 			Constraints constraints = ConstraintsUtils.loadConstraints(resourceSet, URI.createFileURI(insFile.getLocation().toOSString()));
@@ -225,16 +217,32 @@ public class ValidateModelHandler extends AbstractHandler {
 		for(String ele : elements){
 			if(ele.startsWith("N")){
 				DNode node = null;
-				for(DNode dn : graph.getDNodes())
-					if(dn.getName().equals(ele.substring(1))) {node = dn; break;}
-				ds.add(node);
-				isNode = true;
+				if(ele.matches("N\\d*")){
+					Node cur = (Node) translate.sig2DPF.get(Integer.parseInt(ele.substring(1)));
+					for(DNode dn : graph.getDNodes())
+						if(dn.getNode() == cur) {node = dn; break;}
+				}else{
+					for(DNode dn : graph.getDNodes())
+						if(dn.getName().equals(ele.substring(1))) {node = dn; break;}
+				}
+				if(node != null){
+					ds.add(node);
+					isNode = true;
+				}
 			}else{
 				DArrow edge = null;
-				for(DArrow dn : graph.getDArrows())
-					if(dn.getName().equals(ele.substring(1))) {edge = dn; break;}
-				ds.add(edge);
-				isNode = false;
+				if(ele.matches("E\\d*")){
+					Arrow cur = (Arrow) translate.sig2DPF.get(Integer.parseInt(ele.substring(1)));
+					for(DArrow dn : graph.getDArrows())
+						if(dn.getArrow() == cur) {edge = dn; break;}
+				}else{
+					for(DArrow dn : graph.getDArrows())
+						if(dn.getName().equals(ele.substring(1))) {edge = dn; break;}
+				}
+				if(edge != null){
+					ds.add(edge);
+					isNode = false;
+				}
 			}
 		}
 		if(ds.isEmpty()) return null;;

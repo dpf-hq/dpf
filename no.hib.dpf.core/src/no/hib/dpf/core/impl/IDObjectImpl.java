@@ -17,13 +17,13 @@ package no.hib.dpf.core.impl;
 
 import java.util.UUID;
 
-import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.IDObject;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.IDObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,7 +106,11 @@ public abstract class IDObjectImpl extends EObjectImpl implements IDObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public abstract IDObject getTemplateElement();
+	public IDObject getTemplateElement() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
 //	{
 //		// TODO: implement this method
 //		// Ensure that you remove @generated or mark it @generated NOT
@@ -118,7 +122,11 @@ public abstract class IDObjectImpl extends EObjectImpl implements IDObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public abstract boolean isTemplateElement();
+	public boolean isTemplateElement() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
 //	{
 //		// TODO: implement this method
 //		// Ensure that you remove @generated or mark it @generated NOT
@@ -130,7 +138,11 @@ public abstract class IDObjectImpl extends EObjectImpl implements IDObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public abstract IDObject getElement(int metaLevel); 
+	public IDObject getElement(int metaLevel) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	} 
 //	{
 //		// TODO: implement this method
 //		// Ensure that you remove @generated or mark it @generated NOT

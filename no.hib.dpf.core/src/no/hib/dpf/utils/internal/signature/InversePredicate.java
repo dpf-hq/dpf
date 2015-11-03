@@ -15,6 +15,8 @@ public class InversePredicate extends AbstractBasePredicate {
 	
 	public InversePredicate() {
 		super(INVERSE, null, "X,Y", "XY:X:Y, YX:Y:X");
+		setId("p-inverse");
+		initialIDs();
 	}
 	public boolean check(Map<String, String> paras, Graph graph, Map<Node, List<Node>> nodeMap,
 			Map<Arrow, List<Arrow>> arrowMap) {

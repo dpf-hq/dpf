@@ -6,6 +6,7 @@
  */
 package no.hib.dpf.diagram.util;
 
+import no.hib.dpf.core.IDObject;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DComposedConstraint;
@@ -133,6 +134,21 @@ public class DiagramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDElement(DElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ID Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ID Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIDObject(IDObject object) {
 		return null;
 	}
 
@@ -313,6 +329,7 @@ public class DiagramSwitch<T> extends Switch<T> {
 				DNode dNode = (DNode)theEObject;
 				T result = caseDNode(dNode);
 				if (result == null) result = caseDElement(dNode);
+				if (result == null) result = caseIDObject(dNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -321,6 +338,7 @@ public class DiagramSwitch<T> extends Switch<T> {
 				T result = caseDConstraintNode(dConstraintNode);
 				if (result == null) result = caseDNode(dConstraintNode);
 				if (result == null) result = caseDElement(dConstraintNode);
+				if (result == null) result = caseIDObject(dConstraintNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -328,6 +346,7 @@ public class DiagramSwitch<T> extends Switch<T> {
 				DArrow dArrow = (DArrow)theEObject;
 				T result = caseDArrow(dArrow);
 				if (result == null) result = caseDElement(dArrow);
+				if (result == null) result = caseIDObject(dArrow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -361,6 +380,7 @@ public class DiagramSwitch<T> extends Switch<T> {
 			case DiagramPackage.DPREDICATE: {
 				DPredicate dPredicate = (DPredicate)theEObject;
 				T result = caseDPredicate(dPredicate);
+				if (result == null) result = caseIDObject(dPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -385,6 +405,7 @@ public class DiagramSwitch<T> extends Switch<T> {
 			case DiagramPackage.DELEMENT: {
 				DElement dElement = (DElement)theEObject;
 				T result = caseDElement(dElement);
+				if (result == null) result = caseIDObject(dElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

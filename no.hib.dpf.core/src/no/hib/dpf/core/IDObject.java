@@ -46,7 +46,7 @@ public interface IDObject extends EObject {
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see no.hib.dpf.core.CorePackage#getIDObject_Id()
-	 * @model default=""
+	 * @model default="" id="true"
 	 * @generated
 	 */
 	String getId();

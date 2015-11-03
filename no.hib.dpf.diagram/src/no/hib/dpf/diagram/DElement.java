@@ -6,8 +6,9 @@
  */
 package no.hib.dpf.diagram;
 
+import no.hib.dpf.core.IDObject;
+
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DElement extends EObject {
+public interface DElement extends IDObject {
 	/**
 	 * Returns the value of the '<em><b>Constraints From</b></em>' reference list.
 	 * The list contents are of type {@link no.hib.dpf.diagram.DConstraint}.

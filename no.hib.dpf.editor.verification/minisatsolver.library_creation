@@ -1,0 +1,22 @@
+The following compilation and installation instructions have been tested on Linux (Fedora 22 with gcc 5.1.1) and on Mac OS X (10.10.5 with clang 6.0 and gcc 4.9). You may need to modify the build scripts for other operating systems.
+
+Kodkod uses the Waf build system, which requires Python 2.5 or later. You will also need Java 8 and a C/C++ compiler, and your JAVA_HOME environment variable needs to point to the JDK 8 home directory.
+
+Set the JAVA_HOME variable. For example, on OS X:
+
+$ export JAVA_HOME=`/usr/libexec/java_home`
+
+Clone the kodkod repository:
+
+$ git clone https://github.com/emina/kodkod.git
+$ cd kodkod
+
+Download Waf 1.8.12 and make it executable:
+
+$ wget --no-check-certificate https://waf.io/waf-1.8.12
+$ chmod u+x waf-1.8.12
+$ alias waf=$PWD/waf-1.8.12
+
+Build the native libraries, kodkod.jar, and examples.jar and install them into the kodkod/lib directory:
+
+$ waf configure --prefix=. --libdir=lib build install

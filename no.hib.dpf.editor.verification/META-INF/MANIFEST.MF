@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.expressions,
  no.hib.dpf.uconstraint
 Bundle-ActivationPolicy: lazy
-Bundle-NativeCode: lib/native/libminisatprover.so
+Bundle-NativeCode: lib/linux32/libminisatprover.so; processor=x86; osname=Linux, lib/linux64/libminisatprover.so; processor=x86_64; osname=Linux
 Import-Package: no.hib.dpf.uconstraint
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

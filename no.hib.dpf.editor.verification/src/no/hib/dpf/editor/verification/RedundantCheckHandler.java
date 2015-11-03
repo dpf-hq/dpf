@@ -11,13 +11,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import no.hib.dpf.core.Arrow;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DConstraint;
-import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DSpecification;
 import no.hib.dpf.editor.DPFEditor;
 import no.hib.dpf.editor.DPFUtils;
-import no.hib.dpf.uconstraint.util.ConstraintsUtils;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -110,7 +109,6 @@ public class RedundantCheckHandler extends ValidateModelHandler {
 					/*
 					 * load transform and translate it into Alloy specification
 					 */
-					URI dpfModelURI = URI.createFileURI(dpfFile.getLocation().toOSString());
 					DSpecification dpf = (DSpecification) ((EObject)graphicalViewer.getContents().getModel()).eContainer();
 
 					IContainer folder = dpfFile.getParent();
@@ -141,36 +139,25 @@ public class RedundantCheckHandler extends ValidateModelHandler {
 							String atoms = "";
 							for(DConstraint con: atms){
 								atoms += DPF2Alloy.LINE;
-								atoms += "\t[" + con.getDPredicate().getPredicate().getSymbol() + "] on "; 
-								if(!con.getDNodes().isEmpty()) 
-									atoms += "Nodes:";
-								for(DNode dNode : con.getDNodes()){
-									atoms += dNode.getName() + " ";
-								}
-								if(!con.getDNodes().isEmpty()) atoms += " ";
-								if(!con.getDArrows().isEmpty()) 
-									atoms += " Arrows:";
-								for(DArrow dNode : con.getDArrows()){
-									atoms += dNode.getName() + " ";
-								}
+								atoms += "\t" + con.getConstraint();
 							}
 							//Show the names of the universal constraints which cause contradiction in a message dialog
 							List<String> splits = Arrays.asList(preds[index].split("_"));
 							if(splits.size() > 1){
 								DConstraint cur = getAtomicConstraint(splits.get(0), splits.subList(1, splits.size()), dpf.getDGraph());
 								if(cur != null){
-									dialogMessage += "[" + cur.getDPredicate().getPredicate().getSymbol() + "] on "; 
-									if(!cur.getDNodes().isEmpty()) 
-										dialogMessage += "Nodes:";
-									for(DNode dNode : cur.getDNodes()){
-										dialogMessage += dNode.getName() + " ";
-									}
-									if(!cur.getDNodes().isEmpty()) dialogMessage += " ";
-									if(!cur.getDArrows().isEmpty()) 
-										dialogMessage += "Arrows:";
-									for(DArrow dNode : cur.getDArrows()){
-										dialogMessage += dNode.getName() + " ";
-									}
+									dialogMessage += cur.getConstraint();
+								}else{
+									dialogMessage += "[" + splits.get(0) + "] on "; 
+									String ele = splits.get(1);
+									Arrow arrow = (Arrow) translate.sig2DPF.get(Integer.parseInt(ele.substring(1)));
+									DArrow edge = null;
+									for(DArrow dn : dpf.getDGraph().getDArrows())
+										if(dn.getArrow() == arrow) {
+											edge = dn; 
+											break;
+										}
+									dialogMessage += edge.getName() + ":"  + edge.getDSource().getName() + "->" + edge.getDTarget().getName();
 								}
 							}else
 								dialogMessage += preds[index];
@@ -182,9 +169,8 @@ public class RedundantCheckHandler extends ValidateModelHandler {
 							dialogMessage +=  DPF2Alloy.LINE;
 							continue;
 						}
-						ResourceSetImpl resourceSet = ConstraintsUtils.getResourceSet();
-						DSpecification instance = GenerateInstanceFromAlloy.generateDSpecificationFromAlloy(ans, DPFUtils.loadDSpecification(resourceSet, dpfModelURI));
-						DPFUtils.saveDSpecification(resourceSet, instance, URI.createFileURI(instanceFile.getLocation().toOSString()));
+						DSpecification instance = GenerateInstanceFromAlloy.generateDSpecificationFromAlloy(ans, translate.model, translate.sig2DPF);
+						DPFUtils.saveDSpecification((ResourceSetImpl) translate.model.eResource().getResourceSet(), instance, URI.createFileURI(instanceFile.getLocation().toOSString()));
 					}
 					if(!dialogMessage.isEmpty()){
 						MessageDialog dialog = new MessageDialog(graphicalViewer.getControl().getShell(), 

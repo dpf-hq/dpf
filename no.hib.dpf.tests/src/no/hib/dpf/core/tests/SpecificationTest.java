@@ -3,9 +3,7 @@
 package no.hib.dpf.core.tests;
 
 import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Specification;
 

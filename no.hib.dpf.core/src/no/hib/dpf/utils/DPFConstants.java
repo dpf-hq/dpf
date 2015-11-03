@@ -1,5 +1,7 @@
 package no.hib.dpf.utils;
 
+import org.eclipse.emf.common.util.URI;
+
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
@@ -7,9 +9,19 @@ import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
-import no.hib.dpf.utils.internal.signature.*;
-
-import org.eclipse.emf.common.util.URI;
+import no.hib.dpf.utils.internal.signature.InjectivePredicate;
+import no.hib.dpf.utils.internal.signature.InversePredicate;
+import no.hib.dpf.utils.internal.signature.IrreflexivePredicate;
+import no.hib.dpf.utils.internal.signature.JointlyInjectivePredicate;
+import no.hib.dpf.utils.internal.signature.JointlySurjectiveValidator;
+import no.hib.dpf.utils.internal.signature.MergeNANDPredicate;
+import no.hib.dpf.utils.internal.signature.MultiplicityOnNodePredicate;
+import no.hib.dpf.utils.internal.signature.MultiplicityPredicate;
+import no.hib.dpf.utils.internal.signature.ReflexivePredicate;
+import no.hib.dpf.utils.internal.signature.SplitNANDPredicate;
+import no.hib.dpf.utils.internal.signature.SurjectivePredicate;
+import no.hib.dpf.utils.internal.signature.XOR4Predicate;
+import no.hib.dpf.utils.internal.signature.XORPredicate;
 
 public class DPFConstants {
 	public static final String ARROW = "Arrow";

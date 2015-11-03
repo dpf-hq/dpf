@@ -21,13 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.CoreFactory;
-import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.GraphHomomorphism;
-import no.hib.dpf.core.Node;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
@@ -37,6 +30,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.CoreFactory;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.GraphHomomorphism;
+import no.hib.dpf.core.Node;
 
 /**
  * <!-- begin-user-doc -->

@@ -18,6 +18,10 @@ package no.hib.dpf.core.util;
 
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Switch;
+
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.CorePackage;
@@ -29,10 +33,6 @@ import no.hib.dpf.core.Predicate;
 import no.hib.dpf.core.SemanticValidator;
 import no.hib.dpf.core.Signature;
 import no.hib.dpf.core.Specification;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.Switch;
 
 /**
  * <!-- begin-user-doc -->
@@ -100,7 +100,6 @@ public class CoreSwitch<T> extends Switch<T> {
 			case CorePackage.GRAPH: {
 				Graph graph = (Graph)theEObject;
 				T result = caseGraph(graph);
-				if (result == null) result = caseIDObject(graph);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -127,6 +126,7 @@ public class CoreSwitch<T> extends Switch<T> {
 			case CorePackage.PREDICATE: {
 				Predicate predicate = (Predicate)theEObject;
 				T result = casePredicate(predicate);
+				if (result == null) result = caseIDObject(predicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

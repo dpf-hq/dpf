@@ -241,7 +241,7 @@ public class SignatureEditor extends FormEditor implements CommandStackListener,
 		return selectionActions;
 	}
 	
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Object getAdapter(Class type) {
 		if (type == CommandStack.class)
 			return getCommandStack();

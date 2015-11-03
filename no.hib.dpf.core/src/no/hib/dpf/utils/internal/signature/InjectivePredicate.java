@@ -14,6 +14,8 @@ public class InjectivePredicate extends AbstractSingleArrowPredicate {
 
 	public InjectivePredicate() {
 		super(INJECTIVE);
+		setId("p-injective");
+		initialIDs();
 	}
 
 	public boolean check(Map<String, String> maps, Graph shape, Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) { 

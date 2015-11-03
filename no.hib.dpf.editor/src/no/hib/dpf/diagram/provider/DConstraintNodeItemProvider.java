@@ -89,7 +89,7 @@ public class DConstraintNodeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DConstraintNode)object).getConfigureString();
+		String label = ((DConstraintNode)object).getId();
 		return label == null || label.length() == 0 ?
 			getString("_UI_DConstraintNode_type") :
 			getString("_UI_DConstraintNode_type") + " " + label;

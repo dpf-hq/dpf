@@ -1,0 +1,11 @@
+Bundle-NativeCode: nativecode-clause ( , nativecode-clause)* 
+nativecode-clause: nativepaths ( ; env-parameter )* 
+nativepaths: nativepath ( ; nativepath )* 
+env-parameter: ( processordef | osnamedef | osversiondef | languagedef ) 
+processordef: processor= token 
+osnamedef: osname= token 
+osversiondef: osversion= token 
+languagedef: language= token 
+For example: Bundle-NativeCode: http.dll ; osname=Win95; processor=x86; language=en, libhttp.so; osname=Solaris; processor=sparc
+
+env-parameter values can be found here : http://www.osgi.org/Specifications/Reference
