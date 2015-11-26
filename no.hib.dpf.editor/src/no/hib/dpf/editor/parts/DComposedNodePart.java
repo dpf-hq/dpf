@@ -28,6 +28,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.swt.graphics.Color;
 
 
 public class DComposedNodePart extends GraphicalEditPartWithListener  implements NodeEditPart{
@@ -158,6 +159,7 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 		};
 		label.setOpaque(true);
 		label.setLocation(getDConstraintNode().getLocation());
+		label.setForegroundColor(new Color(null, 204, 0, 204));
 		return label;
 	}
 	public List<DArrowEditPart> getArrows() {

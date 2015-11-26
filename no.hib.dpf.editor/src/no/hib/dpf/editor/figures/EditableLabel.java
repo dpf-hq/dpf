@@ -37,7 +37,7 @@ public class EditableLabel extends FlowPage
 	{
 		super();
 		setHorizontalAligment(PositionConstants.CENTER);
-		setOpaque(true);
+		setOpaque(false);
 		text = new TextFlow(label);
 		add(text);		
 	}

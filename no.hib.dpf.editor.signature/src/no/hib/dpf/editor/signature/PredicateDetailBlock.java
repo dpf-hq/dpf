@@ -291,6 +291,10 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 				if(type == dPredicate.getVisualization().getType())
 					return;
 				dPredicate.getVisualization().setType(type);
+				if(type != VisualizationType.ARROW_TO_ARROW){
+					dPredicate.getVisualization().setSource(null);
+					dPredicate.getVisualization().setTarget(null);
+				}
 				master.getMultiEditor().setDirty(true);
 				refresh();
 			}

@@ -11,11 +11,6 @@
  *******************************************************************************/
 package no.hib.dpf.editor.parts;
 
-import no.hib.dpf.core.Constraint;
-import no.hib.dpf.diagram.DConstraint;
-import no.hib.dpf.editor.commands.DConstraintDeleteCommand;
-import no.hib.dpf.editor.figures.ConstraintConnection;
-
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
@@ -23,6 +18,12 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.swt.graphics.Color;
+
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.editor.commands.DConstraintDeleteCommand;
+import no.hib.dpf.editor.figures.ConstraintConnection;
 
 public abstract class DConstraintEditPart extends GraphicalConnectionEditPart {
 
@@ -83,6 +84,9 @@ public abstract class DConstraintEditPart extends GraphicalConnectionEditPart {
 	}
 
 	protected IFigure createFigure(){
-		return new ConstraintConnection();
+		ConstraintConnection result = new ConstraintConnection();
+		result.setForegroundColor(new Color(null, 204, 0, 204));
+		result.setLineWidth(2);
+		return result;
 	}
 }

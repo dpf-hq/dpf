@@ -194,9 +194,9 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 		DPredicate result = createDPredicate(predicate, icon);
 		Visualization visualization = result.getVisualization();
 		visualization.setType(VisualizationType.ARROW_TO_ARROW);
-		Graph graph = result.getPredicate().getShape();
-		visualization.setSource(graph.getArrowByName(source));
-		visualization.setTarget(graph.getArrowByName(target));
+//		Graph graph = result.getPredicate().getShape();
+//		visualization.setSource(graph.getArrowByName(source));
+//		visualization.setTarget(graph.getArrowByName(target));
 		return result;
 	}
 

@@ -342,7 +342,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		DNode dNode = getDiagramModel();
 		if(dNode.getSize().width == DNodeImpl.DEFAULT_DIMENSION.width 
 				&& dNode.getSize().height == DNodeImpl.DEFAULT_DIMENSION.height){
-			dNode.setSize(figure.getPreferredSize());
+			dNode.setSize(figure.getPreferredSize().getExpanded(figure.getNameLabel().getPreferredSize()));
 		}
 		figure.setBounds(new Rectangle(dNode.getLocation(), dNode.getSize()));
 		figure.repaint();

@@ -10,7 +10,7 @@
     <dNodes id="e9e4987f-4773-4584-90f3-09406b9c166a" configureString="End" dIncomings="560e1b1b-8cac-4683-b067-5bc22e976ea8" location="485 360" size="84 39">
       <node href="wm.xmi#17711b04-081e-4265-90a5-685576b88112"/>
     </dNodes>
-    <dNodes id="fbdbc796-9b1c-47cf-9d77-beebf3fed332" configureString="Ellipse" dOutgoings="88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dIncomings="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c 85ee5919-493f-4bf1-a15a-65614704f26f" location="307 375" size="72 37">
+    <dNodes id="fbdbc796-9b1c-47cf-9d77-beebf3fed332" configureString="Blueservice" dOutgoings="88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dIncomings="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c 85ee5919-493f-4bf1-a15a-65614704f26f" location="307 375" size="72 37">
       <node href="wm.xmi#266e1f3f-51ed-44c8-a1e9-abc779055975"/>
     </dNodes>
     <dNodes id="a98dda65-36ea-4277-b06c-cfd093ca45dc" configureString="Choice" dOutgoings="4d33364f-3b1f-4ec7-b556-54144d8d891e" dIncomings="e18a19de-1624-4888-bfec-9da3712885bc" location="489 168" size="76 47">
@@ -24,7 +24,7 @@
     </dArrows>
     <dArrows id="ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" configureString="RedDashedArrow" dSource="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
       <arrow href="wm.xmi#09816f1d-ca1a-491c-a454-57749fa9927e"/>
-      <nameOffset offset="-67 22" len="-120"/>
+      <nameOffset offset="-73 39" len="-120"/>
     </dArrows>
     <dArrows id="2ea23ecd-f33d-423e-9762-ae39938f1298" dSource="3d5c2555-ff04-494a-92a7-e4cc33de2e0d" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
       <arrow href="wm.xmi#34bcb5d1-6149-4e1d-a3b3-82a0a40b5dde"/>

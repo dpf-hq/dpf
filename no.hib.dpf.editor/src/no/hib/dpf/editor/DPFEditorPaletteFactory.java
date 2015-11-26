@@ -46,6 +46,7 @@ import org.eclipse.swt.widgets.Shell;
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DGraph;
 import no.hib.dpf.diagram.DNode;
@@ -161,18 +162,27 @@ public class DPFEditorPaletteFactory implements ISelectionChangedListener {
 			EList<DArrow> selectionDArrows = new BasicEList<DArrow>();
 			EList<DNode> selectionDNodes = new BasicEList<DNode>();
 			getSelectElements(Arrays.asList(str.toArray()), selectionDNodes, selectionDArrows);
+			EList<Arrow> selectionArrows = getArrows(selectionDArrows);
+			EList<Node> selectionNodes = getNodes(selectionDNodes);
 			for (CreateConstraintToolEntry entry : entries) {
-				EList<Arrow> selectionArrows = getArrows(selectionDArrows);
-				EList<Node> selectionNodes = getNodes(selectionDNodes);
-				boolean keep = true;
-				for (Node node : selectionNodes) {
-					for (Constraint constraint : node.getConstraints())
-						if (constraint.getPredicate() == entry.getDPredicate().getPredicate()) {
-							boolean repeat = constraint.getArrows().equals(selectionArrows)
-									&& constraint.getNodes().equals(selectionNodes);
-							if (repeat)
-								keep = false;
+				Predicate cur = entry.getDPredicate().getPredicate();
+				boolean keep = (cur.getShape().getArrows().size() >= selectionArrows.size())
+						&& (cur.getShape().getNodes().size() >= selectionNodes.size());
+				if (keep) {
+					for (Node node : selectionNodes) {
+						for (Constraint constraint : node.getConstraints()) {
+							if (constraint.getPredicate() == cur) {
+								boolean repeat = constraint.getArrows().equals(selectionArrows)
+										&& constraint.getNodes().equals(selectionNodes);
+								if (repeat) {
+									keep = false;
+									break;
+								}
+							}
 						}
+						if (!keep)
+							break;
+					}
 				}
 				if (keep) {
 					keep = entry.getDPredicate().getPredicate().canCreateConstraint(selectionNodes, selectionArrows);

@@ -59,9 +59,10 @@
    <extension
          point="no.hib.dpf.editor.FigureConfigure">
       <NodeConfigure
+            largeicon="icons/choice_67.png"
             name="Choice"
             paint="no.hib.dpf.editor.extension_points.painting.ChoicePainting"
-            smallicon="icons/d.jpg">
+            smallicon="icons/choice_44.png">
       </NodeConfigure>
       <NodeConfigure
             largeicon="icons/circle_67.png"
@@ -176,6 +177,12 @@
             name="End"
             paint="no.hib.dpf.editor.extension_points.painting.EndPainting"
             smallicon="icons/end_44.png">
+      </NodeConfigure>
+      <NodeConfigure
+            largeicon="icons/blueservice_67.png"
+            name="Blueservice"
+            paint="no.hib.dpf.editor.extension_points.painting.BlueservicePainting"
+            smallicon="icons/blueservice_44.png">
       </NodeConfigure>
    </extension>
    <extension

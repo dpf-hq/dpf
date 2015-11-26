@@ -22,9 +22,11 @@ import no.hib.dpf.editor.policies.ArrowLabelMovePolicy;
 import no.hib.dpf.editor.policies.DConstraintDeletePolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.swt.graphics.Color;
 
 
 public class SingleArrowConstraintEditPart extends ArrowLabelEditPart {
@@ -36,6 +38,13 @@ public class SingleArrowConstraintEditPart extends ArrowLabelEditPart {
 
 	protected DConstraint getDConstraint(){
 		return (DConstraint) getModel();
+	}
+	
+	public IFigure createFigure() {
+		EditableLabel label = new EditableLabel("");
+		label.setOpaque(false);
+		label.setForegroundColor(new Color(null, 204, 0, 204));
+		return label;
 	}
 	
 	public DOffset getDOffset(){
