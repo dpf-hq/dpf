@@ -25,6 +25,11 @@ public class ArrowLabelLocator implements Locator {
 
 	public void relocate(IFigure figure) {
 		Dimension minimum = FigureUtilities.getTextExtents(text, figure.getFont());
+		if(figure instanceof EditableLabel){
+			if(minimum.width > 80){
+				minimum = ((EditableLabel)figure).getPreferredSize(80, -1);
+			}
+		}
 		if(connection == null || connection.getSource() == null || connection.getTarget() == null) return;
 		Point point = Draw2dUtil.getAbsolutePoint(((DNodeEditPart) connection.getSource()).getFigure(), 
 				((DNodeEditPart) connection.getTarget()).getFigure(), 

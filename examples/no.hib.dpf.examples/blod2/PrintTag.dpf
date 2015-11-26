@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false" metaFile="wm.dpf" signatureFile="w.sig">
+  <dType href="wm.dpf#/"/>
+  <dGraph>
+    <dType href="wm.dpf#//@dGraph"/>
+    <dNodes id="77a62ce2-5d0f-4c58-a85b-e2f56cc1f0fb" dOutgoings="4200afaf-dc06-46ed-b61e-c90971098415" location="216 260" size="80 47">
+      <dType href="wm.dpf#3d5c2555-ff04-494a-92a7-e4cc33de2e0d"/>
+      <node href="PrintTag.xmi#3347fab6-d120-480e-8d78-c60f140ee173"/>
+    </dNodes>
+    <dNodes id="4b7b0cde-fd6a-4ae4-b595-636eb4aa2e48" constraintsTo="//@dConstraints.0/@children.0" dOutgoings="2809823f-42be-44e5-958b-42f5d89b9bef" dIncomings="4200afaf-dc06-46ed-b61e-c90971098415" dConstraints="//@dConstraints.0" location="399 277" size="93 46">
+      <dType href="wm.dpf#fbdbc796-9b1c-47cf-9d77-beebf3fed332"/>
+      <node href="PrintTag.xmi#b6f1d467-cfb0-4c5f-8844-3d9d33ad16ad"/>
+    </dNodes>
+    <dNodes xsi:type="diagram:DConstraintNode" id="3edeaf5a-8ea1-4bb4-941f-940d536b4c45" constraintsFrom="//@dConstraints.0/@children.0" location="424 348" dConstraint="//@dConstraints.0"/>
+    <dNodes id="1abee34c-af38-4767-9f13-77794e2a988b" dOutgoings="44046b46-5113-4d34-9a92-9bb703cede91" dIncomings="2809823f-42be-44e5-958b-42f5d89b9bef" location="592 286" size="41 27">
+      <dType href="wm.dpf#985a00a4-3616-4c08-802f-24a7fc07eda6"/>
+      <node href="PrintTag.xmi#ae43db38-4b45-4345-8c4a-79095ec9e0e2"/>
+    </dNodes>
+    <dNodes id="b6813059-e03d-4c8f-953f-d4ff1f5d658e" dOutgoings="a5c154f5-e577-439e-93bb-dca07830d388" dIncomings="44046b46-5113-4d34-9a92-9bb703cede91" location="708 281" size="73 37">
+      <dType href="wm.dpf#fbdbc796-9b1c-47cf-9d77-beebf3fed332"/>
+      <node href="PrintTag.xmi#d1617272-e2e3-40fc-b02e-cb48f5a6d8c5"/>
+    </dNodes>
+    <dNodes id="4d941d20-1b2c-4bf1-ba0c-147af3d92168" constraintsTo="//@dConstraints.1/@children.0" dOutgoings="4734fee1-7168-4e38-bac3-e70772b06c62" dIncomings="a5c154f5-e577-439e-93bb-dca07830d388" dConstraints="//@dConstraints.1" location="854 275" size="95 50">
+      <dType href="wm.dpf#985a00a4-3616-4c08-802f-24a7fc07eda6"/>
+      <node href="PrintTag.xmi#21d183e2-85e4-4caa-9a94-bec986b2d9dd"/>
+    </dNodes>
+    <dNodes xsi:type="diagram:DConstraintNode" id="58124818-0d09-4c58-a5e5-60bda42a3492" constraintsFrom="//@dConstraints.1/@children.0" location="873 348" dConstraint="//@dConstraints.1"/>
+    <dNodes id="c0c029ad-a41f-413e-ba0e-2a68840f0de2" dIncomings="4734fee1-7168-4e38-bac3-e70772b06c62" location="1068 251" size="97 97">
+      <dType href="wm.dpf#e9e4987f-4773-4584-90f3-09406b9c166a"/>
+      <node href="PrintTag.xmi#f55bc3cd-1688-489f-aeec-70b015005a05"/>
+    </dNodes>
+    <dArrows id="4200afaf-dc06-46ed-b61e-c90971098415" dSource="77a62ce2-5d0f-4c58-a85b-e2f56cc1f0fb" dTarget="4b7b0cde-fd6a-4ae4-b595-636eb4aa2e48">
+      <dType href="wm.dpf#85ee5919-493f-4bf1-a15a-65614704f26f"/>
+      <arrow href="PrintTag.xmi#dbcb4cba-09d1-4945-aeb1-07dd345ce1b9"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <dArrows id="2809823f-42be-44e5-958b-42f5d89b9bef" dSource="4b7b0cde-fd6a-4ae4-b595-636eb4aa2e48" dTarget="1abee34c-af38-4767-9f13-77794e2a988b">
+      <dType href="wm.dpf#88cf0414-b553-4dee-923a-5e66cbcf013f"/>
+      <arrow href="PrintTag.xmi#4132ac55-25fa-441c-9b17-a2c4a54ba7db"/>
+      <nameOffset offset="74 -32" len="167"/>
+    </dArrows>
+    <dArrows id="44046b46-5113-4d34-9a92-9bb703cede91" dSource="1abee34c-af38-4767-9f13-77794e2a988b" dTarget="b6813059-e03d-4c8f-953f-d4ff1f5d658e">
+      <dType href="wm.dpf#4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c"/>
+      <arrow href="PrintTag.xmi#40a0398e-cd3d-4fde-b01b-3168f63b6e4f"/>
+      <nameOffset offset="17 -54" len="132"/>
+    </dArrows>
+    <dArrows id="a5c154f5-e577-439e-93bb-dca07830d388" dSource="b6813059-e03d-4c8f-953f-d4ff1f5d658e" dTarget="4d941d20-1b2c-4bf1-ba0c-147af3d92168">
+      <dType href="wm.dpf#88cf0414-b553-4dee-923a-5e66cbcf013f"/>
+      <arrow href="PrintTag.xmi#53250643-ed22-4d15-a44d-7f52efd3169b"/>
+      <nameOffset offset="64 -34" len="157"/>
+    </dArrows>
+    <dArrows id="4734fee1-7168-4e38-bac3-e70772b06c62" dSource="4d941d20-1b2c-4bf1-ba0c-147af3d92168" dTarget="c0c029ad-a41f-413e-ba0e-2a68840f0de2">
+      <dType href="wm.dpf#560e1b1b-8cac-4683-b067-5bc22e976ea8"/>
+      <arrow href="PrintTag.xmi#44683b8b-0792-43cc-9d76-642b2513381a"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <graph href="PrintTag.xmi#//@graph"/>
+  </dGraph>
+  <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="4b7b0cde-fd6a-4ae4-b595-636eb4aa2e48" fakeNode="3edeaf5a-8ea1-4bb4-941f-940d536b4c45">
+    <constraint href="PrintTag.xmi#44039315-51f5-459c-8888-1eb741e2a337"/>
+    <dPredicate href="w.sig#75d964f2-9b01-44d4-8661-961fb2c45e7b"/>
+    <children xsi:type="diagram:DGenericArrowConstraint" source="3edeaf5a-8ea1-4bb4-941f-940d536b4c45" target="4b7b0cde-fd6a-4ae4-b595-636eb4aa2e48"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="4d941d20-1b2c-4bf1-ba0c-147af3d92168" fakeNode="58124818-0d09-4c58-a5e5-60bda42a3492">
+    <constraint href="PrintTag.xmi#fbd7f98d-700d-493d-bc18-1224e0be167c"/>
+    <dPredicate href="w.sig#778b488b-f6fd-40e4-b939-5fbdd0561fbe"/>
+    <children xsi:type="diagram:DGenericArrowConstraint" source="58124818-0d09-4c58-a5e5-60bda42a3492" target="4d941d20-1b2c-4bf1-ba0c-147af3d92168"/>
+  </dConstraints>
+  <specification href="PrintTag.xmi#/"/>
+  <dSignature href="w.sig#/0"/>
+</diagram:DSpecification>

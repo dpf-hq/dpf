@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core" metaFile="wm.xmi" signatureFile="w.sig">
+  <graph>
+    <type href="wm.xmi#//@graph"/>
+    <nodes id="3347fab6-d120-480e-8d78-c60f140ee173" name="InitTask0" outgoings="dbcb4cba-09d1-4945-aeb1-07dd345ce1b9">
+      <typeNode href="wm.xmi#a81c2b12-c407-4a93-977f-fe5f6d912450"/>
+    </nodes>
+    <nodes id="b6f1d467-cfb0-4c5f-8844-3d9d33ad16ad" name="Get Sample Barcode" outgoings="4132ac55-25fa-441c-9b17-a2c4a54ba7db" incomings="dbcb4cba-09d1-4945-aeb1-07dd345ce1b9" constraints="44039315-51f5-459c-8888-1eb741e2a337">
+      <typeNode href="wm.xmi#266e1f3f-51ed-44c8-a1e9-abc779055975"/>
+    </nodes>
+    <nodes id="ae43db38-4b45-4345-8c4a-79095ec9e0e2" name="Task0" outgoings="40a0398e-cd3d-4fde-b01b-3168f63b6e4f" incomings="4132ac55-25fa-441c-9b17-a2c4a54ba7db">
+      <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
+    </nodes>
+    <nodes id="d1617272-e2e3-40fc-b02e-cb48f5a6d8c5" name="PrintTag" outgoings="53250643-ed22-4d15-a44d-7f52efd3169b" incomings="40a0398e-cd3d-4fde-b01b-3168f63b6e4f">
+      <typeNode href="wm.xmi#266e1f3f-51ed-44c8-a1e9-abc779055975"/>
+    </nodes>
+    <nodes id="21d183e2-85e4-4caa-9a94-bec986b2d9dd" name="Collect Sample" outgoings="44683b8b-0792-43cc-9d76-642b2513381a" incomings="53250643-ed22-4d15-a44d-7f52efd3169b" constraints="fbd7f98d-700d-493d-bc18-1224e0be167c">
+      <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
+    </nodes>
+    <nodes id="f55bc3cd-1688-489f-aeec-70b015005a05" name="FinishTask0" incomings="44683b8b-0792-43cc-9d76-642b2513381a">
+      <typeNode href="wm.xmi#17711b04-081e-4265-90a5-685576b88112"/>
+    </nodes>
+    <arrows id="dbcb4cba-09d1-4945-aeb1-07dd345ce1b9" name="" source="3347fab6-d120-480e-8d78-c60f140ee173" target="b6f1d467-cfb0-4c5f-8844-3d9d33ad16ad">
+      <typeArrow href="wm.xmi#f4359ac2-c972-427d-8367-b64a7811e49e"/>
+    </arrows>
+    <arrows id="4132ac55-25fa-441c-9b17-a2c4a54ba7db" name="(Barcode)" source="b6f1d467-cfb0-4c5f-8844-3d9d33ad16ad" target="ae43db38-4b45-4345-8c4a-79095ec9e0e2">
+      <typeArrow href="wm.xmi#422d4560-0458-4308-8953-fc4bb69505a5"/>
+    </arrows>
+    <arrows id="40a0398e-cd3d-4fde-b01b-3168f63b6e4f" name="(Patient.name, Barcode)" source="ae43db38-4b45-4345-8c4a-79095ec9e0e2" target="d1617272-e2e3-40fc-b02e-cb48f5a6d8c5">
+      <typeArrow href="wm.xmi#e36d3c66-9cd8-450d-892d-4f14d2057a27"/>
+    </arrows>
+    <arrows id="53250643-ed22-4d15-a44d-7f52efd3169b" name="Tag" source="d1617272-e2e3-40fc-b02e-cb48f5a6d8c5" target="21d183e2-85e4-4caa-9a94-bec986b2d9dd">
+      <typeArrow href="wm.xmi#422d4560-0458-4308-8953-fc4bb69505a5"/>
+    </arrows>
+    <arrows id="44683b8b-0792-43cc-9d76-642b2513381a" name="end0" source="21d183e2-85e4-4caa-9a94-bec986b2d9dd" target="f55bc3cd-1688-489f-aeec-70b015005a05">
+      <typeArrow href="wm.xmi#e498b01d-a3a6-4b32-96d7-35b88d5b0a10"/>
+    </arrows>
+  </graph>
+  <constraints id="44039315-51f5-459c-8888-1eb741e2a337" nodes="b6f1d467-cfb0-4c5f-8844-3d9d33ad16ad">
+    <predicate href="w.sig#beb4f2fd-c413-4ca4-8347-acc5310a15fd"/>
+    <mappings>
+      <nodeMapping value="b6f1d467-cfb0-4c5f-8844-3d9d33ad16ad">
+        <key href="w.sig#5ea8eb5d-3f2d-4ea2-bdf7-dfb0d1cd1862"/>
+      </nodeMapping>
+    </mappings>
+  </constraints>
+  <constraints id="fbd7f98d-700d-493d-bc18-1224e0be167c" nodes="21d183e2-85e4-4caa-9a94-bec986b2d9dd">
+    <predicate href="w.sig#7b415f4c-a1c8-4f08-b0de-41c945ac435a"/>
+    <mappings>
+      <nodeMapping value="21d183e2-85e4-4caa-9a94-bec986b2d9dd">
+        <key href="w.sig#b60382ef-ff84-4be2-b289-b71aed9bf69c"/>
+      </nodeMapping>
+    </mappings>
+  </constraints>
+  <type href="wm.xmi#/"/>
+</core:Specification>

@@ -158,14 +158,14 @@ public class PredicateTest extends IDObjectTest {
 		arrows.add(userGraph.getArrowByName("e_1"));
 		arrows.add(userGraph.getArrowByName("e_2"));
 		
-		boolean canCreate = testPredicate.canCreateConstraint(nodes, arrows, userGraph);
+		boolean canCreate = testPredicate.canCreateConstraint(nodes, arrows);
 		assertFalse(canCreate);
 
 		
 		nodes.add(userGraph.getNodeByName("n_2"));
 		nodes.add(userGraph.getNodeByName("n_3"));
 		
-		canCreate = testPredicate.canCreateConstraint(nodes, arrows, userGraph);
+		canCreate = testPredicate.canCreateConstraint(nodes, arrows);
 		assertTrue(canCreate);
 		
 		assertEquals(0, userGraph.getNodeByName("n_2").getConstraints().size());

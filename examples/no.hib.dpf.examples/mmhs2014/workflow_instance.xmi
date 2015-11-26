@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <core:Specification xmi:id="_Ks4z8EvsEeW5VMlAwZI3CA" type="_KsRv8EvsEeW5VMlAwZI3CA">
+    <graph xmi:id="_Ks4z8UvsEeW5VMlAwZI3CA" id="cc4b6366-9e17-4f0d-948b-556bfb8a6af5" type="_KsRv8UvsEeW5VMlAwZI3CA">
+      <nodes xmi:id="_Ks5bAEvsEeW5VMlAwZI3CA" id="4b09ef26-7b19-4396-9605-7f9cd0caf999" name="Int" typeNode="_KsS-FEvsEeW5VMlAwZI3CA"/>
+    </graph>
+  </core:Specification>
+  <core:Specification xmi:id="_KsRv8EvsEeW5VMlAwZI3CA" metaFile="mm.xmi" signatureFile="AND_SPLIT_MERGE.sig" signature="_KsX2oUvsEeW5VMlAwZI3CA" type="_KsZEw0vsEeW5VMlAwZI3CA">
+    <graph xmi:id="_KsRv8UvsEeW5VMlAwZI3CA" id="861691c3-45fe-47bc-bf08-abc361a32de9">
+      <type href="workflow.xmi#//@graph"/>
+      <nodes xmi:id="_KsRv8kvsEeW5VMlAwZI3CA" id="dda6dbae-a399-49bb-afaa-2579fe4eb2ea" name="IE" outgoings="_KsS-FkvsEeW5VMlAwZI3CA _KsS-F0vsEeW5VMlAwZI3CA _KsUMMEvsEeW5VMlAwZI3CA" constraints="_KsUzQEvsEeW5VMlAwZI3CA _KsWBaUvsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0UvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <nodes xmi:id="_KsSXAEvsEeW5VMlAwZI3CA" id="ca007596-8f08-4206-98eb-aec73f7a48a4" name="BT1" outgoings="_KsS-GEvsEeW5VMlAwZI3CA _KsUMMkvsEeW5VMlAwZI3CA" incomings="_KsS-FkvsEeW5VMlAwZI3CA" constraints="_KsUzQEvsEeW5VMlAwZI3CA _KsUzR0vsEeW5VMlAwZI3CA _KsWockvsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0UvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <nodes xmi:id="_KsSXAUvsEeW5VMlAwZI3CA" id="792f7c69-a93c-44f2-8085-79412f7f360d" name="MRI" outgoings="_KsTlIEvsEeW5VMlAwZI3CA _KsUMMUvsEeW5VMlAwZI3CA" incomings="_KsS-F0vsEeW5VMlAwZI3CA" constraints="_KsUzQEvsEeW5VMlAwZI3CA _KsUzR0vsEeW5VMlAwZI3CA _KsWBbkvsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0UvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <nodes xmi:id="_KsSXAkvsEeW5VMlAwZI3CA" id="e2f0bcb2-eb0c-46ad-b8ec-3509524b8a75" name="E1" outgoings="_KsTlIUvsEeW5VMlAwZI3CA _KsTlIkvsEeW5VMlAwZI3CA _KsTlK0vsEeW5VMlAwZI3CA _KsUMM0vsEeW5VMlAwZI3CA" incomings="_KsS-GEvsEeW5VMlAwZI3CA _KsTlIEvsEeW5VMlAwZI3CA" constraints="_KsUzR0vsEeW5VMlAwZI3CA _KsUzTkvsEeW5VMlAwZI3CA _KsWBZEvsEeW5VMlAwZI3CA _KsWod0vsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0UvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <nodes xmi:id="_KsSXA0vsEeW5VMlAwZI3CA" id="8c5b5b12-e190-46fc-aaa5-c45c56639675" name="PA" outgoings="_KsTlI0vsEeW5VMlAwZI3CA _KsUMNEvsEeW5VMlAwZI3CA" incomings="_KsTlIUvsEeW5VMlAwZI3CA" constraints="_KsUzTkvsEeW5VMlAwZI3CA _KsUzVUvsEeW5VMlAwZI3CA _KsVaWEvsEeW5VMlAwZI3CA _KsXPgEvsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0UvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <nodes xmi:id="_KsSXBEvsEeW5VMlAwZI3CA" id="88731823-dc65-4723-bfdc-08829ba6ff19" name="PB" outgoings="_KsTlJEvsEeW5VMlAwZI3CA _KsUMNUvsEeW5VMlAwZI3CA" incomings="_KsTlIkvsEeW5VMlAwZI3CA" constraints="_KsUzTkvsEeW5VMlAwZI3CA _KsUzVUvsEeW5VMlAwZI3CA _KsXPhUvsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0UvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <nodes xmi:id="_KsSXBUvsEeW5VMlAwZI3CA" id="706a5543-049a-429c-9e89-60a409b8c5f9" name="E2" outgoings="_KsTlJUvsEeW5VMlAwZI3CA _KsTlJkvsEeW5VMlAwZI3CA _KsTlKUvsEeW5VMlAwZI3CA _KsTlKkvsEeW5VMlAwZI3CA _KsUMNkvsEeW5VMlAwZI3CA" incomings="_KsTlI0vsEeW5VMlAwZI3CA _KsTlJEvsEeW5VMlAwZI3CA _KsTlKEvsEeW5VMlAwZI3CA" constraints="_KsUzVUvsEeW5VMlAwZI3CA _KsVaUUvsEeW5VMlAwZI3CA _KsVaWEvsEeW5VMlAwZI3CA _KsVaX0vsEeW5VMlAwZI3CA _KsVaZEvsEeW5VMlAwZI3CA _KsXPikvsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0UvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <nodes xmi:id="_KsS-EEvsEeW5VMlAwZI3CA" id="f1d3e425-51e6-4be1-93da-342f0684100e" name="BT2" outgoings="_KsTlKEvsEeW5VMlAwZI3CA _KsUMN0vsEeW5VMlAwZI3CA" incomings="_KsTlJ0vsEeW5VMlAwZI3CA" constraints="_KsVaWEvsEeW5VMlAwZI3CA _KsXPj0vsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0UvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <nodes xmi:id="_KsS-EUvsEeW5VMlAwZI3CA" id="0d76a728-ef07-459a-908e-c8c2df048ec7" name="END" outgoings="_KsUMOUvsEeW5VMlAwZI3CA" incomings="_KsTlJUvsEeW5VMlAwZI3CA" constraints="_KsVaUUvsEeW5VMlAwZI3CA _KsX2lkvsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0UvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <nodes xmi:id="_KsS-EkvsEeW5VMlAwZI3CA" id="72b87ead-df41-4e08-ab0b-0236977e2a91" name="TD" outgoings="_KsTlJ0vsEeW5VMlAwZI3CA _KsUMOEvsEeW5VMlAwZI3CA" incomings="_KsTlJkvsEeW5VMlAwZI3CA" constraints="_KsVaUUvsEeW5VMlAwZI3CA _KsX2kUvsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0UvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <nodes xmi:id="_KsS-E0vsEeW5VMlAwZI3CA" id="5dd132d4-e10e-455a-bc96-4359d499f782" name="Bool" incomings="_KsTlKUvsEeW5VMlAwZI3CA _KsTlK0vsEeW5VMlAwZI3CA" constraints="_KsVaZEvsEeW5VMlAwZI3CA _KsWBZEvsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0kvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <nodes xmi:id="_KsS-FEvsEeW5VMlAwZI3CA" id="430a9d86-ff01-49ad-a7e5-3d1c9b789508" name="Int" incomings="_KsTlKkvsEeW5VMlAwZI3CA" constraints="_KsVaX0vsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0kvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <nodes xmi:id="_KsS-FUvsEeW5VMlAwZI3CA" id="cecbad33-1502-4973-9bc2-bcba5512a16d" name="State" incomings="_KsUMMEvsEeW5VMlAwZI3CA _KsUMMUvsEeW5VMlAwZI3CA _KsUMMkvsEeW5VMlAwZI3CA _KsUMM0vsEeW5VMlAwZI3CA _KsUMNEvsEeW5VMlAwZI3CA _KsUMNUvsEeW5VMlAwZI3CA _KsUMNkvsEeW5VMlAwZI3CA _KsUMN0vsEeW5VMlAwZI3CA _KsUMOEvsEeW5VMlAwZI3CA _KsUMOUvsEeW5VMlAwZI3CA" constraints="_KsWBaUvsEeW5VMlAwZI3CA _KsWBbkvsEeW5VMlAwZI3CA _KsWockvsEeW5VMlAwZI3CA _KsWod0vsEeW5VMlAwZI3CA _KsXPgEvsEeW5VMlAwZI3CA _KsXPhUvsEeW5VMlAwZI3CA _KsXPikvsEeW5VMlAwZI3CA _KsXPj0vsEeW5VMlAwZI3CA _KsX2kUvsEeW5VMlAwZI3CA _KsX2lkvsEeW5VMlAwZI3CA">
+        <typeNode href="mm.xmi#_Ks3l0kvsEeW5VMlAwZI3CA"/>
+      </nodes>
+      <arrows xmi:id="_KsS-FkvsEeW5VMlAwZI3CA" id="e694613b-8770-4f65-a536-1d8b34550582" name="f0" source="_KsRv8kvsEeW5VMlAwZI3CA" target="_KsSXAEvsEeW5VMlAwZI3CA" constraints="_KsUzQEvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsS-F0vsEeW5VMlAwZI3CA" id="40f6226f-45d7-4d6e-9d46-bba5968ad69a" name="f1" source="_KsRv8kvsEeW5VMlAwZI3CA" target="_KsSXAUvsEeW5VMlAwZI3CA" constraints="_KsUzQEvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsS-GEvsEeW5VMlAwZI3CA" id="5275c7b3-a842-46cc-a337-867bd85b99c8" name="f2" source="_KsSXAEvsEeW5VMlAwZI3CA" target="_KsSXAkvsEeW5VMlAwZI3CA" constraints="_KsUzR0vsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsTlIEvsEeW5VMlAwZI3CA" id="adda697d-8103-4544-866c-a72d528bd939" name="f3" source="_KsSXAUvsEeW5VMlAwZI3CA" target="_KsSXAkvsEeW5VMlAwZI3CA" constraints="_KsUzR0vsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsTlIUvsEeW5VMlAwZI3CA" id="d6e1315a-72e8-40ba-b2b4-5fab65e87a83" name="f4" source="_KsSXAkvsEeW5VMlAwZI3CA" target="_KsSXA0vsEeW5VMlAwZI3CA" constraints="_KsUzTkvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsTlIkvsEeW5VMlAwZI3CA" id="0ba31eb0-9438-40b7-b97a-71f8fc4b447b" name="f5" source="_KsSXAkvsEeW5VMlAwZI3CA" target="_KsSXBEvsEeW5VMlAwZI3CA" constraints="_KsUzTkvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsTlI0vsEeW5VMlAwZI3CA" id="1635b93f-eea1-4992-8ca5-d92f8212e836" name="f6" source="_KsSXA0vsEeW5VMlAwZI3CA" target="_KsSXBUvsEeW5VMlAwZI3CA" constraints="_KsUzVUvsEeW5VMlAwZI3CA _KsVaWEvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsTlJEvsEeW5VMlAwZI3CA" id="4e74cead-ba44-4e13-a95b-75238cdd5d83" name="f7" source="_KsSXBEvsEeW5VMlAwZI3CA" target="_KsSXBUvsEeW5VMlAwZI3CA" constraints="_KsUzVUvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsTlJUvsEeW5VMlAwZI3CA" id="2c3575ee-8e08-4bfb-aa88-2feaaf9e69a5" name="f8" source="_KsSXBUvsEeW5VMlAwZI3CA" target="_KsS-EUvsEeW5VMlAwZI3CA" constraints="_KsVaUUvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsTlJkvsEeW5VMlAwZI3CA" id="41b47b4d-c4b8-46f1-8db8-6b115d6b0f6c" name="f9" source="_KsSXBUvsEeW5VMlAwZI3CA" target="_KsS-EkvsEeW5VMlAwZI3CA" constraints="_KsVaUUvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsTlJ0vsEeW5VMlAwZI3CA" id="d5edeaca-9768-4ea7-80f4-c0a98d571625" name="f10" source="_KsS-EkvsEeW5VMlAwZI3CA" target="_KsS-EEvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsTlKEvsEeW5VMlAwZI3CA" id="dc869460-4ed1-4dc2-9725-d36c1b206c92" name="f11" source="_KsS-EEvsEeW5VMlAwZI3CA" target="_KsSXBUvsEeW5VMlAwZI3CA" constraints="_KsVaWEvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsTlKUvsEeW5VMlAwZI3CA" id="8b1cc991-f87c-4686-80e9-d4241e7b8695" name="resE2" source="_KsSXBUvsEeW5VMlAwZI3CA" target="_KsS-E0vsEeW5VMlAwZI3CA" constraints="_KsVaZEvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsTlKkvsEeW5VMlAwZI3CA" id="bfd9dbda-ea5c-475d-850c-c8caed9d1f3b" name="count" source="_KsSXBUvsEeW5VMlAwZI3CA" target="_KsS-FEvsEeW5VMlAwZI3CA" constraints="_KsVaX0vsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsTlK0vsEeW5VMlAwZI3CA" id="9ff5071f-72c3-4a9b-b143-e5b4bba4998d" name="resE1" source="_KsSXAkvsEeW5VMlAwZI3CA" target="_KsS-E0vsEeW5VMlAwZI3CA" constraints="_KsWBZEvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsUMMEvsEeW5VMlAwZI3CA" id="cc691ee3-62e4-4459-8627-113c4b288b23" name="att0" source="_KsRv8kvsEeW5VMlAwZI3CA" target="_KsS-FUvsEeW5VMlAwZI3CA" constraints="_KsWBaUvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsUMMUvsEeW5VMlAwZI3CA" id="ab958bea-8c10-426a-b99a-52b320b23e7c" name="att1" source="_KsSXAUvsEeW5VMlAwZI3CA" target="_KsS-FUvsEeW5VMlAwZI3CA" constraints="_KsWBbkvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsUMMkvsEeW5VMlAwZI3CA" id="1ade9105-2525-452f-b386-bbaff06b01d3" name="att2" source="_KsSXAEvsEeW5VMlAwZI3CA" target="_KsS-FUvsEeW5VMlAwZI3CA" constraints="_KsWockvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsUMM0vsEeW5VMlAwZI3CA" id="068adae3-f2be-4cb7-bd7f-518bf3c8922d" name="att3" source="_KsSXAkvsEeW5VMlAwZI3CA" target="_KsS-FUvsEeW5VMlAwZI3CA" constraints="_KsWod0vsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsUMNEvsEeW5VMlAwZI3CA" id="693d7c46-e1bd-4b63-b690-7692a0fee385" name="att4" source="_KsSXA0vsEeW5VMlAwZI3CA" target="_KsS-FUvsEeW5VMlAwZI3CA" constraints="_KsXPgEvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsUMNUvsEeW5VMlAwZI3CA" id="f2162ab7-c37b-4e28-b820-b61b55e48c5e" name="att5" source="_KsSXBEvsEeW5VMlAwZI3CA" target="_KsS-FUvsEeW5VMlAwZI3CA" constraints="_KsXPhUvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsUMNkvsEeW5VMlAwZI3CA" id="b8c457d5-ffd0-4fbb-b926-23f77611657c" name="att6" source="_KsSXBUvsEeW5VMlAwZI3CA" target="_KsS-FUvsEeW5VMlAwZI3CA" constraints="_KsXPikvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsUMN0vsEeW5VMlAwZI3CA" id="3dc5d630-f952-4698-b3b7-cca8aae7ec30" name="att7" source="_KsS-EEvsEeW5VMlAwZI3CA" target="_KsS-FUvsEeW5VMlAwZI3CA" constraints="_KsXPj0vsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsUMOEvsEeW5VMlAwZI3CA" id="abdc548d-211d-4d6e-bdb7-5ae7ecff0990" name="att8" source="_KsS-EkvsEeW5VMlAwZI3CA" target="_KsS-FUvsEeW5VMlAwZI3CA" constraints="_KsX2kUvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+      <arrows xmi:id="_KsUMOUvsEeW5VMlAwZI3CA" id="f0d6119b-3782-4c86-9397-6296a08bd7d7" name="att9" source="_KsS-EUvsEeW5VMlAwZI3CA" target="_KsS-FUvsEeW5VMlAwZI3CA" constraints="_KsX2lkvsEeW5VMlAwZI3CA">
+        <typeArrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+      </arrows>
+    </graph>
+    <constraints xmi:id="_KsUzQEvsEeW5VMlAwZI3CA" id="30cb5986-fa62-403f-8c44-e6d572f7bdaa" nodes="_KsRv8kvsEeW5VMlAwZI3CA _KsSXAEvsEeW5VMlAwZI3CA _KsSXAUvsEeW5VMlAwZI3CA" arrows="_KsS-FkvsEeW5VMlAwZI3CA _KsS-F0vsEeW5VMlAwZI3CA" predicate="_KsX2okvsEeW5VMlAwZI3CA" parameters="">
+      <mappings xmi:id="_KsUzQUvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsUzQkvsEeW5VMlAwZI3CA" key="_KsYdo0vsEeW5VMlAwZI3CA" value="_KsSXAUvsEeW5VMlAwZI3CA"/>
+        <nodeMapping xmi:id="_KsUzQ0vsEeW5VMlAwZI3CA" key="_KsYdoUvsEeW5VMlAwZI3CA" value="_KsRv8kvsEeW5VMlAwZI3CA"/>
+        <nodeMapping xmi:id="_KsUzREvsEeW5VMlAwZI3CA" key="_KsYdokvsEeW5VMlAwZI3CA" value="_KsSXAEvsEeW5VMlAwZI3CA"/>
+        <arrowMapping xmi:id="_KsUzRUvsEeW5VMlAwZI3CA" key="_KsYdpEvsEeW5VMlAwZI3CA" value="_KsS-FkvsEeW5VMlAwZI3CA"/>
+        <arrowMapping xmi:id="_KsUzRkvsEeW5VMlAwZI3CA" key="_KsYdpUvsEeW5VMlAwZI3CA" value="_KsS-F0vsEeW5VMlAwZI3CA"/>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsUzR0vsEeW5VMlAwZI3CA" id="9846c586-a6ce-4e29-b6fc-920114433c4f" nodes="_KsSXAEvsEeW5VMlAwZI3CA _KsSXAkvsEeW5VMlAwZI3CA _KsSXAUvsEeW5VMlAwZI3CA" arrows="_KsS-GEvsEeW5VMlAwZI3CA _KsTlIEvsEeW5VMlAwZI3CA" predicate="_KsYdp0vsEeW5VMlAwZI3CA">
+      <mappings xmi:id="_KsUzSEvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsUzSUvsEeW5VMlAwZI3CA" key="_KsYdqUvsEeW5VMlAwZI3CA" value="_KsSXAUvsEeW5VMlAwZI3CA"/>
+        <nodeMapping xmi:id="_KsUzSkvsEeW5VMlAwZI3CA" key="_KsYdq0vsEeW5VMlAwZI3CA" value="_KsSXAkvsEeW5VMlAwZI3CA"/>
+        <nodeMapping xmi:id="_KsUzS0vsEeW5VMlAwZI3CA" key="_KsYdqkvsEeW5VMlAwZI3CA" value="_KsSXAEvsEeW5VMlAwZI3CA"/>
+        <arrowMapping xmi:id="_KsUzTEvsEeW5VMlAwZI3CA" key="_KsYdrUvsEeW5VMlAwZI3CA" value="_KsS-GEvsEeW5VMlAwZI3CA"/>
+        <arrowMapping xmi:id="_KsUzTUvsEeW5VMlAwZI3CA" key="_KsYdrEvsEeW5VMlAwZI3CA" value="_KsTlIEvsEeW5VMlAwZI3CA"/>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsUzTkvsEeW5VMlAwZI3CA" id="60535ad6-e175-404b-9fef-435a09a2679e" nodes="_KsSXAkvsEeW5VMlAwZI3CA _KsSXA0vsEeW5VMlAwZI3CA _KsSXBEvsEeW5VMlAwZI3CA" arrows="_KsTlIUvsEeW5VMlAwZI3CA _KsTlIkvsEeW5VMlAwZI3CA" predicate="_KsYdr0vsEeW5VMlAwZI3CA">
+      <mappings xmi:id="_KsUzT0vsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsUzUEvsEeW5VMlAwZI3CA" key="_KsYds0vsEeW5VMlAwZI3CA" value="_KsSXBEvsEeW5VMlAwZI3CA"/>
+        <nodeMapping xmi:id="_KsUzUUvsEeW5VMlAwZI3CA" key="_KsYdsUvsEeW5VMlAwZI3CA" value="_KsSXAkvsEeW5VMlAwZI3CA"/>
+        <nodeMapping xmi:id="_KsUzUkvsEeW5VMlAwZI3CA" key="_KsYdskvsEeW5VMlAwZI3CA" value="_KsSXA0vsEeW5VMlAwZI3CA"/>
+        <arrowMapping xmi:id="_KsUzU0vsEeW5VMlAwZI3CA" key="_KsZEsEvsEeW5VMlAwZI3CA" value="_KsTlIUvsEeW5VMlAwZI3CA"/>
+        <arrowMapping xmi:id="_KsUzVEvsEeW5VMlAwZI3CA" key="_KsZEsUvsEeW5VMlAwZI3CA" value="_KsTlIkvsEeW5VMlAwZI3CA"/>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsUzVUvsEeW5VMlAwZI3CA" id="63000b1b-c827-4e92-a34c-0496b2169b0c" nodes="_KsSXA0vsEeW5VMlAwZI3CA _KsSXBUvsEeW5VMlAwZI3CA _KsSXBEvsEeW5VMlAwZI3CA" arrows="_KsTlI0vsEeW5VMlAwZI3CA _KsTlJEvsEeW5VMlAwZI3CA" predicate="_KsZEs0vsEeW5VMlAwZI3CA">
+      <mappings xmi:id="_KsUzVkvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsUzV0vsEeW5VMlAwZI3CA" key="_KsZEtkvsEeW5VMlAwZI3CA" value="_KsSXBUvsEeW5VMlAwZI3CA"/>
+        <nodeMapping xmi:id="_KsUzWEvsEeW5VMlAwZI3CA" key="_KsZEt0vsEeW5VMlAwZI3CA" value="_KsSXBEvsEeW5VMlAwZI3CA"/>
+        <nodeMapping xmi:id="_KsUzWUvsEeW5VMlAwZI3CA" key="_KsZEtUvsEeW5VMlAwZI3CA" value="_KsSXA0vsEeW5VMlAwZI3CA"/>
+        <arrowMapping xmi:id="_KsUzWkvsEeW5VMlAwZI3CA" key="_KsZEuEvsEeW5VMlAwZI3CA" value="_KsTlI0vsEeW5VMlAwZI3CA"/>
+        <arrowMapping xmi:id="_KsVaUEvsEeW5VMlAwZI3CA" key="_KsZEuUvsEeW5VMlAwZI3CA" value="_KsTlJEvsEeW5VMlAwZI3CA"/>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsVaUUvsEeW5VMlAwZI3CA" id="1ffb06f5-6bcf-4971-9f52-9aa24084c2c9" nodes="_KsSXBUvsEeW5VMlAwZI3CA _KsS-EUvsEeW5VMlAwZI3CA _KsS-EkvsEeW5VMlAwZI3CA" arrows="_KsTlJUvsEeW5VMlAwZI3CA _KsTlJkvsEeW5VMlAwZI3CA" predicate="_KsYdr0vsEeW5VMlAwZI3CA">
+      <mappings xmi:id="_KsVaUkvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsVaU0vsEeW5VMlAwZI3CA" key="_KsYds0vsEeW5VMlAwZI3CA" value="_KsS-EkvsEeW5VMlAwZI3CA"/>
+        <nodeMapping xmi:id="_KsVaVEvsEeW5VMlAwZI3CA" key="_KsYdsUvsEeW5VMlAwZI3CA" value="_KsSXBUvsEeW5VMlAwZI3CA"/>
+        <nodeMapping xmi:id="_KsVaVUvsEeW5VMlAwZI3CA" key="_KsYdskvsEeW5VMlAwZI3CA" value="_KsS-EUvsEeW5VMlAwZI3CA"/>
+        <arrowMapping xmi:id="_KsVaVkvsEeW5VMlAwZI3CA" key="_KsZEsEvsEeW5VMlAwZI3CA" value="_KsTlJUvsEeW5VMlAwZI3CA"/>
+        <arrowMapping xmi:id="_KsVaV0vsEeW5VMlAwZI3CA" key="_KsZEsUvsEeW5VMlAwZI3CA" value="_KsTlJkvsEeW5VMlAwZI3CA"/>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsVaWEvsEeW5VMlAwZI3CA" id="e5702f32-4623-47cb-857f-23459566deba" nodes="_KsS-EEvsEeW5VMlAwZI3CA _KsSXBUvsEeW5VMlAwZI3CA _KsSXA0vsEeW5VMlAwZI3CA" arrows="_KsTlKEvsEeW5VMlAwZI3CA _KsTlI0vsEeW5VMlAwZI3CA" predicate="_KsZEu0vsEeW5VMlAwZI3CA">
+      <mappings xmi:id="_KsVaWUvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsVaWkvsEeW5VMlAwZI3CA" key="_KsZEv0vsEeW5VMlAwZI3CA" value="_KsSXA0vsEeW5VMlAwZI3CA"/>
+        <nodeMapping xmi:id="_KsVaW0vsEeW5VMlAwZI3CA" key="_KsZEvUvsEeW5VMlAwZI3CA" value="_KsS-EEvsEeW5VMlAwZI3CA"/>
+        <nodeMapping xmi:id="_KsVaXEvsEeW5VMlAwZI3CA" key="_KsZEvkvsEeW5VMlAwZI3CA" value="_KsSXBUvsEeW5VMlAwZI3CA"/>
+        <arrowMapping xmi:id="_KsVaXUvsEeW5VMlAwZI3CA" key="_KsZEwEvsEeW5VMlAwZI3CA" value="_KsTlKEvsEeW5VMlAwZI3CA"/>
+        <arrowMapping xmi:id="_KsVaXkvsEeW5VMlAwZI3CA" key="_KsZEwUvsEeW5VMlAwZI3CA" value="_KsTlI0vsEeW5VMlAwZI3CA"/>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsVaX0vsEeW5VMlAwZI3CA" id="764c6323-2f37-4872-a3ef-06e0ac34a1fc" nodes="_KsSXBUvsEeW5VMlAwZI3CA _KsS-FEvsEeW5VMlAwZI3CA" arrows="_KsTlKkvsEeW5VMlAwZI3CA" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsVaYEvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsVaYUvsEeW5VMlAwZI3CA" value="_KsSXBUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsVaYkvsEeW5VMlAwZI3CA" value="_KsS-FEvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsVaY0vsEeW5VMlAwZI3CA" value="_KsTlKkvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsVaZEvsEeW5VMlAwZI3CA" id="c909e91d-3b6d-4b70-a508-4d940bdca044" nodes="_KsSXBUvsEeW5VMlAwZI3CA _KsS-E0vsEeW5VMlAwZI3CA" arrows="_KsTlKUvsEeW5VMlAwZI3CA" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsWBYEvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsWBYUvsEeW5VMlAwZI3CA" value="_KsSXBUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsWBYkvsEeW5VMlAwZI3CA" value="_KsS-E0vsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsWBY0vsEeW5VMlAwZI3CA" value="_KsTlKUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsWBZEvsEeW5VMlAwZI3CA" id="fcefd7f6-d26b-4f60-b0db-0445a13b9e85" nodes="_KsSXAkvsEeW5VMlAwZI3CA _KsS-E0vsEeW5VMlAwZI3CA" arrows="_KsTlK0vsEeW5VMlAwZI3CA" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsWBZUvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsWBZkvsEeW5VMlAwZI3CA" value="_KsSXAkvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsWBZ0vsEeW5VMlAwZI3CA" value="_KsS-E0vsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsWBaEvsEeW5VMlAwZI3CA" value="_KsTlK0vsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsWBaUvsEeW5VMlAwZI3CA" id="d379d772-2289-416c-ba48-a5634d455512" nodes="_KsRv8kvsEeW5VMlAwZI3CA _KsS-FUvsEeW5VMlAwZI3CA" arrows="_KsUMMEvsEeW5VMlAwZI3CA" parameters="min:0;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsWBakvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsWBa0vsEeW5VMlAwZI3CA" value="_KsRv8kvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsWBbEvsEeW5VMlAwZI3CA" value="_KsS-FUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsWBbUvsEeW5VMlAwZI3CA" value="_KsUMMEvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsWBbkvsEeW5VMlAwZI3CA" id="cde82cd4-63d0-4c16-9494-9ddb1a4cd624" nodes="_KsSXAUvsEeW5VMlAwZI3CA _KsS-FUvsEeW5VMlAwZI3CA" arrows="_KsUMMUvsEeW5VMlAwZI3CA" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsWBb0vsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsWBcEvsEeW5VMlAwZI3CA" value="_KsSXAUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsWocEvsEeW5VMlAwZI3CA" value="_KsS-FUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsWocUvsEeW5VMlAwZI3CA" value="_KsUMMUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsWockvsEeW5VMlAwZI3CA" id="cc2f8007-e4a5-4ffd-9281-654ded53959a" nodes="_KsSXAEvsEeW5VMlAwZI3CA _KsS-FUvsEeW5VMlAwZI3CA" arrows="_KsUMMkvsEeW5VMlAwZI3CA" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsWoc0vsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsWodEvsEeW5VMlAwZI3CA" value="_KsSXAEvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsWodUvsEeW5VMlAwZI3CA" value="_KsS-FUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsWodkvsEeW5VMlAwZI3CA" value="_KsUMMkvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsWod0vsEeW5VMlAwZI3CA" id="3cbe6a83-989b-40b4-94bd-5e316afd74cb" nodes="_KsSXAkvsEeW5VMlAwZI3CA _KsS-FUvsEeW5VMlAwZI3CA" arrows="_KsUMM0vsEeW5VMlAwZI3CA" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsWoeEvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsWoeUvsEeW5VMlAwZI3CA" value="_KsSXAkvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsWoekvsEeW5VMlAwZI3CA" value="_KsS-FUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsWoe0vsEeW5VMlAwZI3CA" value="_KsUMM0vsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsXPgEvsEeW5VMlAwZI3CA" id="1adafa43-b336-4d64-9ae5-e91e793a7cdb" nodes="_KsSXA0vsEeW5VMlAwZI3CA _KsS-FUvsEeW5VMlAwZI3CA" arrows="_KsUMNEvsEeW5VMlAwZI3CA" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsXPgUvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsXPgkvsEeW5VMlAwZI3CA" value="_KsSXA0vsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsXPg0vsEeW5VMlAwZI3CA" value="_KsS-FUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsXPhEvsEeW5VMlAwZI3CA" value="_KsUMNEvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsXPhUvsEeW5VMlAwZI3CA" id="bc306afe-b97d-469a-b1da-bb68fc7b9b3e" nodes="_KsSXBEvsEeW5VMlAwZI3CA _KsS-FUvsEeW5VMlAwZI3CA" arrows="_KsUMNUvsEeW5VMlAwZI3CA" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsXPhkvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsXPh0vsEeW5VMlAwZI3CA" value="_KsSXBEvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsXPiEvsEeW5VMlAwZI3CA" value="_KsS-FUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsXPiUvsEeW5VMlAwZI3CA" value="_KsUMNUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsXPikvsEeW5VMlAwZI3CA" id="35211586-3150-4ff3-9b00-393ee4e3b6a4" nodes="_KsSXBUvsEeW5VMlAwZI3CA _KsS-FUvsEeW5VMlAwZI3CA" arrows="_KsUMNkvsEeW5VMlAwZI3CA" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsXPi0vsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsXPjEvsEeW5VMlAwZI3CA" value="_KsSXBUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsXPjUvsEeW5VMlAwZI3CA" value="_KsS-FUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsXPjkvsEeW5VMlAwZI3CA" value="_KsUMNkvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsXPj0vsEeW5VMlAwZI3CA" id="6ea774fa-9f46-4e3b-89d7-d5db6209de6e" nodes="_KsS-EEvsEeW5VMlAwZI3CA _KsS-FUvsEeW5VMlAwZI3CA" arrows="_KsUMN0vsEeW5VMlAwZI3CA" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsXPkEvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsXPkUvsEeW5VMlAwZI3CA" value="_KsS-EEvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsXPkkvsEeW5VMlAwZI3CA" value="_KsS-FUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsX2kEvsEeW5VMlAwZI3CA" value="_KsUMN0vsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsX2kUvsEeW5VMlAwZI3CA" id="65dece60-d465-4546-bf2e-71114a2224cf" nodes="_KsS-EkvsEeW5VMlAwZI3CA _KsS-FUvsEeW5VMlAwZI3CA" arrows="_KsUMOEvsEeW5VMlAwZI3CA" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsX2kkvsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsX2k0vsEeW5VMlAwZI3CA" value="_KsS-EkvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsX2lEvsEeW5VMlAwZI3CA" value="_KsS-FUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsX2lUvsEeW5VMlAwZI3CA" value="_KsUMOEvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+    <constraints xmi:id="_KsX2lkvsEeW5VMlAwZI3CA" id="753376d6-f5c8-41f7-be5f-7ddb4dea49ee" nodes="_KsS-EUvsEeW5VMlAwZI3CA _KsS-FUvsEeW5VMlAwZI3CA" arrows="_KsUMOUvsEeW5VMlAwZI3CA" parameters="min:1;max:1">
+      <predicate href="platform:/resource/DefaultSpecification.xmi#_MQct9UvrEeW5VMlAwZI3CA"/>
+      <mappings xmi:id="_KsX2l0vsEeW5VMlAwZI3CA">
+        <nodeMapping xmi:id="_KsX2mEvsEeW5VMlAwZI3CA" value="_KsS-EUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct90vrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <nodeMapping xmi:id="_KsX2mUvsEeW5VMlAwZI3CA" value="_KsS-FUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-EvrEeW5VMlAwZI3CA"/>
+        </nodeMapping>
+        <arrowMapping xmi:id="_KsX2mkvsEeW5VMlAwZI3CA" value="_KsUMOUvsEeW5VMlAwZI3CA">
+          <key href="platform:/resource/DefaultSpecification.xmi#_MQct-UvrEeW5VMlAwZI3CA"/>
+        </arrowMapping>
+      </mappings>
+    </constraints>
+  </core:Specification>
+  <core:Specification xmi:id="_KsZEw0vsEeW5VMlAwZI3CA">
+    <graph xmi:id="_KsX2nEvsEeW5VMlAwZI3CA" id="a1f1128d-5f96-49a0-a4a5-ce04a4d7f320">
+      <nodes xmi:id="_KsX2nUvsEeW5VMlAwZI3CA" id="c9abfd6f-7c19-4271-ac79-3b65d9967981" name="Task" outgoings="_KsX2n0vsEeW5VMlAwZI3CA _KsX2oEvsEeW5VMlAwZI3CA" incomings="_KsX2n0vsEeW5VMlAwZI3CA"/>
+      <nodes xmi:id="_KsX2nkvsEeW5VMlAwZI3CA" id="7afe4781-682f-420e-a364-842be208a222" name="Att" incomings="_KsX2oEvsEeW5VMlAwZI3CA"/>
+      <arrows xmi:id="_KsX2n0vsEeW5VMlAwZI3CA" id="8fda2139-971b-46d6-8110-0616099e1726" name="Flow" source="_KsX2nUvsEeW5VMlAwZI3CA" target="_KsX2nUvsEeW5VMlAwZI3CA"/>
+      <arrows xmi:id="_KsX2oEvsEeW5VMlAwZI3CA" id="0dc6fb13-6de1-446c-b9e0-114f0f3f3e05" name="att" source="_KsX2nUvsEeW5VMlAwZI3CA" target="_KsX2nkvsEeW5VMlAwZI3CA"/>
+    </graph>
+  </core:Specification>
+  <core:Signature xmi:id="_KsX2oUvsEeW5VMlAwZI3CA">
+    <predicates xmi:id="_KsX2okvsEeW5VMlAwZI3CA" symbol="AND_SPLIT" parameters="">
+      <shape xmi:id="_KsYdoEvsEeW5VMlAwZI3CA" id="b5d9fdd8-72ce-4803-859a-8cb66665ed00">
+        <nodes xmi:id="_KsYdoUvsEeW5VMlAwZI3CA" id="0ce7581b-b5ea-462e-8a99-4de33b39d3bb" name="X" outgoings="_KsYdpEvsEeW5VMlAwZI3CA _KsYdpUvsEeW5VMlAwZI3CA"/>
+        <nodes xmi:id="_KsYdokvsEeW5VMlAwZI3CA" id="e28f90ea-fc68-4eae-a0e1-d9df2753a4ac" name="Y" incomings="_KsYdpEvsEeW5VMlAwZI3CA"/>
+        <nodes xmi:id="_KsYdo0vsEeW5VMlAwZI3CA" id="67446e9f-9c72-4791-80c2-9514fba3e724" name="Z" incomings="_KsYdpUvsEeW5VMlAwZI3CA"/>
+        <arrows xmi:id="_KsYdpEvsEeW5VMlAwZI3CA" id="9d6acce1-9732-42bb-932f-75b919118d71" name="XY" source="_KsYdoUvsEeW5VMlAwZI3CA" target="_KsYdokvsEeW5VMlAwZI3CA"/>
+        <arrows xmi:id="_KsYdpUvsEeW5VMlAwZI3CA" id="7a67ab3a-c19a-421f-87c8-eb46aef011ff" name="XZ" source="_KsYdoUvsEeW5VMlAwZI3CA" target="_KsYdo0vsEeW5VMlAwZI3CA"/>
+      </shape>
+      <validator xmi:id="_KsYdpkvsEeW5VMlAwZI3CA" type="JAVA" validator="import java.util.*; &#xA;&#xA;import no.hib.dpf.core.Arrow; &#xA;import no.hib.dpf.core.Graph; &#xA;import no.hib.dpf.core.Node; &#xA;import no.hib.dpf.utils.Checker; &#xA;public class CheckInstance implements Checker { &#xA;&#x9;public boolean check(Map&lt;String, String> maps, Graph shape, Map&lt;Node, List&lt;Node>> nodeMap, Map&lt;Arrow, List&lt;Arrow>> arrowMap) { &#xA;&#xA;&#x9;&#x9;List&lt;Node> x = new ArrayList&lt;Node>();&#xA;&#x9;&#x9;List&lt;Node> maped = nodeMap.get(shape.getNodeByName(&quot;X&quot;));&#xA;&#x9;&#x9;if(maped != null)&#xA;&#x9;&#x9;&#x9;x.addAll(maped);&#xA;&#x9;&#x9;List&lt;Arrow> xy = arrowMap.get(shape.getArrowByName(&quot;XY&quot;)), xz = arrowMap.get(shape.getArrowByName(&quot;XZ&quot;));&#xA;&#x9;&#x9;List&lt;Node> x1 = new ArrayList&lt;Node>();&#xA;&#x9;&#x9;if(xy != null){&#xA;&#x9;&#x9;&#x9;for(Arrow arrow : xy){&#xA;&#x9;&#x9;&#x9;&#x9;Node from = arrow.getSource();&#xA;&#x9;&#x9;&#x9;&#x9;if(x.contains(from)){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;x.remove(from);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;x1.add(from);&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;List&lt;Node> x2 = new ArrayList&lt;Node>();&#xA;&#x9;&#x9;if(xz != null){&#xA;&#x9;&#x9;&#x9;for(Arrow arrow : xz){&#xA;&#x9;&#x9;&#x9;&#x9;Node from = arrow.getSource();&#xA;&#x9;&#x9;&#x9;&#x9;if(x1.contains(from))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;x1.remove(from);&#xA;&#x9;&#x9;&#x9;&#x9;else if(x.contains(from)){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;x.remove(from);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;x2.add(from);&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;for(Node node : x)&#xA;&#x9;&#x9;&#x9;System.out.println(node.getName() + &quot; violates AND_SPLIT constraint.\n It misses Y and Z&quot;);&#xA;&#x9;&#x9;&#x9;&#x9;for(Node node : x1)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(node.getName() + &quot; violates AND_SPLIT constraint.\n It misses Z&quot;);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;for(Node node : x2)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(node.getName() + &quot; violates AND_SPLIT constraint.\n It misses Y&quot;);&#xA;&#x9;&#x9;System.out.println(x.size() == 0 &amp;&amp; x1.size() == 0 &amp;&amp; x2.size() == 0);&#xA;&#x9;&#x9;return x.size() == 0 &amp;&amp; x1.size()== 0 &amp;&amp; x2.size() == 0; &#xA;&#x9;} &#xA;}"/>
+    </predicates>
+    <predicates xmi:id="_KsYdp0vsEeW5VMlAwZI3CA" symbol="AND_MERGE">
+      <shape xmi:id="_KsYdqEvsEeW5VMlAwZI3CA" id="2e328111-2e64-4041-aa39-7907d0745475">
+        <nodes xmi:id="_KsYdqUvsEeW5VMlAwZI3CA" id="d958be45-d643-43c8-83d5-21088b6704eb" name="X" outgoings="_KsYdrEvsEeW5VMlAwZI3CA"/>
+        <nodes xmi:id="_KsYdqkvsEeW5VMlAwZI3CA" id="6e6f3a36-6196-4b47-bc0c-dd09651bbb2a" name="Z" outgoings="_KsYdrUvsEeW5VMlAwZI3CA"/>
+        <nodes xmi:id="_KsYdq0vsEeW5VMlAwZI3CA" id="8a46fba3-84b2-4c5a-81cf-050cf0230799" name="Y" incomings="_KsYdrEvsEeW5VMlAwZI3CA _KsYdrUvsEeW5VMlAwZI3CA"/>
+        <arrows xmi:id="_KsYdrEvsEeW5VMlAwZI3CA" id="f7979db6-5dc9-4651-90b6-898f286dd128" name="XY" source="_KsYdqUvsEeW5VMlAwZI3CA" target="_KsYdq0vsEeW5VMlAwZI3CA"/>
+        <arrows xmi:id="_KsYdrUvsEeW5VMlAwZI3CA" id="570cc8ec-1c1b-4eeb-b423-f0334923fc8a" name="ZY" source="_KsYdqkvsEeW5VMlAwZI3CA" target="_KsYdq0vsEeW5VMlAwZI3CA"/>
+      </shape>
+      <validator xmi:id="_KsYdrkvsEeW5VMlAwZI3CA" type="JAVA" validator="import java.util.*; &#xA;&#xA;import no.hib.dpf.core.Arrow; &#xA;import no.hib.dpf.core.Graph; &#xA;import no.hib.dpf.core.Node; &#xA;import no.hib.dpf.utils.Checker; &#xA;public class CheckInstance implements Checker { &#xA;&#x9;public boolean check(Map&lt;String, String> maps, Graph shape, Map&lt;Node, List&lt;Node>> nodeMap, Map&lt;Arrow, List&lt;Arrow>> arrowMap) { &#xA;&#xA;&#x9;&#x9;List&lt;Node> y = new ArrayList&lt;Node>();&#xA;&#x9;&#x9;List&lt;Node> maped = nodeMap.get(shape.getNodeByName(&quot;Y&quot;));&#xA;&#x9;&#x9;if(maped != null)&#xA;&#x9;&#x9;&#x9;y.addAll(maped);&#xA;&#x9;&#x9;List&lt;Arrow> xy = arrowMap.get(shape.getArrowByName(&quot;XY&quot;)), zy = arrowMap.get(shape.getArrowByName(&quot;ZY&quot;));&#xA;&#x9;&#x9;List&lt;Node> y1 = new ArrayList&lt;Node>();&#xA;&#x9;&#x9;if(xy != null){&#xA;&#x9;&#x9;&#x9;for(Arrow arrow : xy){&#xA;&#x9;&#x9;&#x9;&#x9;Node from = arrow.getTarget();&#xA;&#x9;&#x9;&#x9;&#x9;if(y.contains(from)){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;y.remove(from);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;y1.add(from);&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;List&lt;Node> y2 = new ArrayList&lt;Node>();&#xA;&#x9;&#x9;if(zy != null){&#xA;&#x9;&#x9;&#x9;for(Arrow arrow : zy){&#xA;&#x9;&#x9;&#x9;&#x9;Node from = arrow.getTarget();&#xA;&#x9;&#x9;&#x9;&#x9;if(y1.contains(from))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;y1.remove(from);&#xA;&#x9;&#x9;&#x9;&#x9;else if(y.contains(from)){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;y.remove(from);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;y2.add(from);&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;for(Node node : y)&#xA;&#x9;&#x9;&#x9;System.out.println(node.getName() + &quot; violates AND_MERGE constraint.\n It misses X and Z&quot;);&#xA;&#x9;&#x9;&#x9;&#x9;for(Node node : y1)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(node.getName() + &quot; violates AND_MERGE constraint.\n It misses Z&quot;);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;for(Node node : y2)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(node.getName() + &quot; violates AND_MERGE constraint.\n It misses X&quot;);&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;return y.size() == 0 &amp;&amp;  y1.size() == 0 &amp;&amp;  y2.size() == 0; &#xA;&#x9;} &#xA;}"/>
+    </predicates>
+    <predicates xmi:id="_KsYdr0vsEeW5VMlAwZI3CA" symbol="XOR_SPLIT">
+      <shape xmi:id="_KsYdsEvsEeW5VMlAwZI3CA" id="fb460bbc-ce27-44d3-95b5-7c3cffb34357">
+        <nodes xmi:id="_KsYdsUvsEeW5VMlAwZI3CA" id="2214fe9f-02f9-40d0-aa47-1daaded76fa4" name="X1" outgoings="_KsZEsEvsEeW5VMlAwZI3CA _KsZEsUvsEeW5VMlAwZI3CA"/>
+        <nodes xmi:id="_KsYdskvsEeW5VMlAwZI3CA" id="0040a07f-3b07-44bd-872d-4e1994db47da" name="Y1" incomings="_KsZEsEvsEeW5VMlAwZI3CA"/>
+        <nodes xmi:id="_KsYds0vsEeW5VMlAwZI3CA" id="a22f05a4-a108-4880-ab60-3238f1eb659b" name="Y2" incomings="_KsZEsUvsEeW5VMlAwZI3CA"/>
+        <arrows xmi:id="_KsZEsEvsEeW5VMlAwZI3CA" id="1d578b43-013a-4ee2-b9b4-72bf93cdc9e1" name="XY1" source="_KsYdsUvsEeW5VMlAwZI3CA" target="_KsYdskvsEeW5VMlAwZI3CA"/>
+        <arrows xmi:id="_KsZEsUvsEeW5VMlAwZI3CA" id="cd266d1c-e5e3-40af-99ff-3884a2025522" name="XY2" source="_KsYdsUvsEeW5VMlAwZI3CA" target="_KsYds0vsEeW5VMlAwZI3CA"/>
+      </shape>
+      <validator xmi:id="_KsZEskvsEeW5VMlAwZI3CA" type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
+    </predicates>
+    <predicates xmi:id="_KsZEs0vsEeW5VMlAwZI3CA" symbol="XOR_MERGE">
+      <shape xmi:id="_KsZEtEvsEeW5VMlAwZI3CA" id="0a70b248-9ee2-4579-9f0b-814ac21340a0">
+        <nodes xmi:id="_KsZEtUvsEeW5VMlAwZI3CA" id="e9551d91-a892-4b83-a847-9169609110ff" name="X1" outgoings="_KsZEuEvsEeW5VMlAwZI3CA"/>
+        <nodes xmi:id="_KsZEtkvsEeW5VMlAwZI3CA" id="4c169e57-a684-4b4d-a054-793e7276d5e0" name="Y1" incomings="_KsZEuEvsEeW5VMlAwZI3CA _KsZEuUvsEeW5VMlAwZI3CA"/>
+        <nodes xmi:id="_KsZEt0vsEeW5VMlAwZI3CA" id="be9fbeef-9914-4f59-ba61-4332915aa7c1" name="X2" outgoings="_KsZEuUvsEeW5VMlAwZI3CA"/>
+        <arrows xmi:id="_KsZEuEvsEeW5VMlAwZI3CA" id="727202a8-97d2-4745-8c77-1e9c47e0e42f" name="X1Y1" source="_KsZEtUvsEeW5VMlAwZI3CA" target="_KsZEtkvsEeW5VMlAwZI3CA"/>
+        <arrows xmi:id="_KsZEuUvsEeW5VMlAwZI3CA" id="cc9359b6-360a-40ff-bfe5-254b83343a74" name="X2Y1" source="_KsZEt0vsEeW5VMlAwZI3CA" target="_KsZEtkvsEeW5VMlAwZI3CA"/>
+      </shape>
+      <validator xmi:id="_KsZEukvsEeW5VMlAwZI3CA" type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
+    </predicates>
+    <predicates xmi:id="_KsZEu0vsEeW5VMlAwZI3CA" symbol="OR_MERGE">
+      <shape xmi:id="_KsZEvEvsEeW5VMlAwZI3CA" id="8ab5eb72-160b-4d7f-b783-7fe93cd768ec">
+        <nodes xmi:id="_KsZEvUvsEeW5VMlAwZI3CA" id="09d95875-ee29-4785-823b-7b232136705f" name="X1" outgoings="_KsZEwEvsEeW5VMlAwZI3CA"/>
+        <nodes xmi:id="_KsZEvkvsEeW5VMlAwZI3CA" id="0fe977d9-13d5-48d2-9ccf-777c59698062" name="Y1" incomings="_KsZEwEvsEeW5VMlAwZI3CA _KsZEwUvsEeW5VMlAwZI3CA"/>
+        <nodes xmi:id="_KsZEv0vsEeW5VMlAwZI3CA" id="4cc7557c-41ed-4045-bb4f-dde8b311fd1b" name="X2" outgoings="_KsZEwUvsEeW5VMlAwZI3CA"/>
+        <arrows xmi:id="_KsZEwEvsEeW5VMlAwZI3CA" id="535d414f-8478-4e46-96d7-28d5c006d9d2" name="X1Y1" source="_KsZEvUvsEeW5VMlAwZI3CA" target="_KsZEvkvsEeW5VMlAwZI3CA"/>
+        <arrows xmi:id="_KsZEwUvsEeW5VMlAwZI3CA" id="2c5ad3b4-5e7b-423e-87f9-e3954e4a3110" name="X2Y1" source="_KsZEv0vsEeW5VMlAwZI3CA" target="_KsZEvkvsEeW5VMlAwZI3CA"/>
+      </shape>
+      <validator xmi:id="_KsZEwkvsEeW5VMlAwZI3CA" type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
+    </predicates>
+  </core:Signature>
+</xmi:XMI>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="40.006287"
+   height="40.006294"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="dashed.svg"
+   inkscape:export-filename="/home/xwa/dpf/no.hib.dpf.editor/icons/dashed_44.png"
+   inkscape:export-xdpi="98.984421"
+   inkscape:export-ydpi="98.984421">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient5442"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#090a0f;stop-opacity:1;"
+         offset="0"
+         id="stop5444" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;">
+      <path
+         id="path3992"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <filter
+       inkscape:collect="always"
+       id="filter3797"
+       x="-1.1976095"
+       width="3.3952191"
+       y="-1.2024"
+       height="3.4047999"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="19.570312"
+         id="feGaussianBlur3799" />
+    </filter>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-0"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3992-2"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="-17.969732"
+     inkscape:cy="51.096102"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="pt"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1680"
+     inkscape:window-height="1025"
+     inkscape:window-x="1366"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-48.824233,-975.90666)">
+    <g
+       id="g5478"
+       transform="matrix(0.99928353,0,0,1.070351,70.712816,-73.121656)">
+      <rect
+         y="980.55585"
+         x="-20.997196"
+         height="36.42857"
+         width="38.214287"
+         id="rect5452"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.97527778;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3.90111113, 0.97527778;stroke-dashoffset:0" />
+      <path
+         inkscape:export-ydpi="98"
+         inkscape:export-xdpi="98"
+         inkscape:connector-curvature="0"
+         id="path3003"
+         d="m -21.399596,998.77013 38.287628,0"
+         style="fill:none;stroke:#000000;stroke-width:0.97527778;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3.90111113, 0.97527778;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)" />
+    </g>
+  </g>
+</svg>

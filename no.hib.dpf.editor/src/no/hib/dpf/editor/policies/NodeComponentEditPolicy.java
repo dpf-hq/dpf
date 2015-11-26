@@ -15,26 +15,30 @@
 *******************************************************************************/
 package no.hib.dpf.editor.policies;
 
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editpolicies.ComponentEditPolicy;
+import org.eclipse.gef.requests.GroupRequest;
+
 import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.editor.commands.DNodeDeleteCommand;
 import no.hib.dpf.editor.parts.DNodeEditPart;
 import no.hib.dpf.editor.parts.NodeTreeEditPart;
 
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.ComponentEditPolicy;
-import org.eclipse.gef.requests.GroupRequest;
-
-
 /**
- * This edit policy enables the removal of a VNode instance from its container. 
+ * This edit policy enables the removal of a VNode instance from its container.
+ * 
  * @see DNodeEditPart#createEditPolicies()
  * @see NodeTreeEditPart#createEditPolicies()
  * @author Elias Volanakis
  */
 public class NodeComponentEditPolicy extends ComponentEditPolicy {
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gef.editpolicies.ComponentEditPolicy#createDeleteCommand(org.eclipse.gef.requests.GroupRequest)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.gef.editpolicies.ComponentEditPolicy#createDeleteCommand(org.
+	 * eclipse.gef.requests.GroupRequest)
 	 */
 	protected Command createDeleteCommand(GroupRequest deleteRequest) {
 		Object child = getHost().getModel();

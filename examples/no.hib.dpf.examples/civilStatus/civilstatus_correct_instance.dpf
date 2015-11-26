@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://no.hib.dpf.core" xmlns:diagram="http://no.hib.dpf.diagram">
+  <diagram:DSpecification xmi:id="_UATjSkvwEeW5VMlAwZI3CA" dType="_OqgVgEvrEeW5VMlAwZI3CA" gridVisible="false">
+    <dGraph xmi:id="_UATjS0vwEeW5VMlAwZI3CA" dType="_OqgVgUvrEeW5VMlAwZI3CA">
+      <dNodes xmi:id="_UATjTEvwEeW5VMlAwZI3CA" dType="_Oqg8kkvrEeW5VMlAwZI3CA" location="100 30" size="100 30">
+        <node href="civilstatus_correct_instance.xmi#_UAP44kvwEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_UATjTUvwEeW5VMlAwZI3CA" dType="_Oqg8kkvrEeW5VMlAwZI3CA" location="300 30" size="100 30">
+        <node href="civilstatus_correct_instance.xmi#_UAP440vwEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <graph href="civilstatus_correct_instance.xmi#_UAP44UvwEeW5VMlAwZI3CA"/>
+    </dGraph>
+    <specification href="civilstatus_correct_instance.xmi#_UAP44EvwEeW5VMlAwZI3CA"/>
+  </diagram:DSpecification>
+  <diagram:DSpecification xmi:id="_OqgVgEvrEeW5VMlAwZI3CA" grid="false" zoom="1.2" gridVisible="false" dSignature="_Oqj_5kvrEeW5VMlAwZI3CA" signatureFile="civilstatus.sig">
+    <dGraph xmi:id="_OqgVgUvrEeW5VMlAwZI3CA">
+      <dNodes xmi:id="_OqgVgkvrEeW5VMlAwZI3CA" dOutgoings="_Oqg8lkvrEeW5VMlAwZI3CA _OqhjoUvrEeW5VMlAwZI3CA _OqhjpkvrEeW5VMlAwZI3CA _OqiKsEvrEeW5VMlAwZI3CA" dIncomings="_OqhjoUvrEeW5VMlAwZI3CA _OqhjpkvrEeW5VMlAwZI3CA" dConstraints="_OqiKs0vrEeW5VMlAwZI3CA _OqiKtkvrEeW5VMlAwZI3CA _OqixwUvrEeW5VMlAwZI3CA _Oqixw0vrEeW5VMlAwZI3CA _OqjY0UvrEeW5VMlAwZI3CA _OqjY10vrEeW5VMlAwZI3CA _Oqj_4UvrEeW5VMlAwZI3CA _Oqj_40vrEeW5VMlAwZI3CA _QhZltUvrEeW5VMlAwZI3CA _Rn-zQEvrEeW5VMlAwZI3CA" location="127 69" size="85 32">
+        <node href="civilstatus_correct_instance.xmi#_UAIkIUvwEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_Oqg8kEvrEeW5VMlAwZI3CA" constraintsTo="_OqjY1kvrEeW5VMlAwZI3CA" dIncomings="_Oqg8lkvrEeW5VMlAwZI3CA" dConstraints="_OqiKtkvrEeW5VMlAwZI3CA _OqixwUvrEeW5VMlAwZI3CA _OqjY1UvrEeW5VMlAwZI3CA" location="380 66" size="73 30">
+        <node href="civilstatus_correct_instance.xmi#_UAIkIkvwEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xsi:type="diagram:DConstraintNode" xmi:id="_Oqg8kUvrEeW5VMlAwZI3CA" constraintsFrom="_OqiKtEvrEeW5VMlAwZI3CA _OqiKtUvrEeW5VMlAwZI3CA" location="17 100" dConstraint="_OqiKs0vrEeW5VMlAwZI3CA"/>
+      <dNodes xmi:id="_Oqg8kkvrEeW5VMlAwZI3CA" constraintsTo="_OqjY1EvrEeW5VMlAwZI3CA" dIncomings="_OqiKsEvrEeW5VMlAwZI3CA" dConstraints="_Oqixw0vrEeW5VMlAwZI3CA _OqjY0UvrEeW5VMlAwZI3CA _OqjY00vrEeW5VMlAwZI3CA" location="364 177" size="135 30">
+        <node href="civilstatus_correct_instance.xmi#_UAIkI0vwEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xsi:type="diagram:DConstraintNode" xmi:id="_Oqg8k0vrEeW5VMlAwZI3CA" constraintsFrom="_OqjY1EvrEeW5VMlAwZI3CA" location="191 131" dConstraint="_OqjY00vrEeW5VMlAwZI3CA"/>
+      <dNodes xsi:type="diagram:DConstraintNode" xmi:id="_Oqg8lEvrEeW5VMlAwZI3CA" constraintsFrom="_OqjY1kvrEeW5VMlAwZI3CA" location="309 34" dConstraint="_OqjY1UvrEeW5VMlAwZI3CA"/>
+      <dNodes xsi:type="diagram:DConstraintNode" xmi:id="_Oqg8lUvrEeW5VMlAwZI3CA" constraintsFrom="_Oqj_5EvrEeW5VMlAwZI3CA _Oqj_5UvrEeW5VMlAwZI3CA" location="13 50" dConstraint="_Oqj_40vrEeW5VMlAwZI3CA"/>
+      <dArrows xmi:id="_Oqg8lkvrEeW5VMlAwZI3CA" dSource="_OqgVgkvrEeW5VMlAwZI3CA" dTarget="_Oqg8kEvrEeW5VMlAwZI3CA" dConstraints="_OqiKtkvrEeW5VMlAwZI3CA _OqixwUvrEeW5VMlAwZI3CA">
+        <arrow href="civilstatus_correct_instance.xmi#_UAIkJEvwEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_OqhjoEvrEeW5VMlAwZI3CA" offset="52 -22" len="247"/>
+      </dArrows>
+      <dArrows xmi:id="_OqhjoUvrEeW5VMlAwZI3CA" constraintsTo="_OqiKtEvrEeW5VMlAwZI3CA _Oqj_5EvrEeW5VMlAwZI3CA" dSource="_OqgVgkvrEeW5VMlAwZI3CA" dTarget="_OqgVgkvrEeW5VMlAwZI3CA" dConstraints="_OqiKs0vrEeW5VMlAwZI3CA _Oqj_4UvrEeW5VMlAwZI3CA _Oqj_40vrEeW5VMlAwZI3CA _QhZltUvrEeW5VMlAwZI3CA">
+        <arrow href="civilstatus_correct_instance.xmi#_UAIkJUvwEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_OqhjokvrEeW5VMlAwZI3CA" offset="-31 -27" len="-78" index="1"/>
+        <bendpoints xmi:id="_Oqhjo0vrEeW5VMlAwZI3CA" offset="-29 0" len="32"/>
+        <bendpoints xmi:id="_OqhjpEvrEeW5VMlAwZI3CA" offset="-28 77" len="32" index="1"/>
+        <bendpoints xmi:id="_OqhjpUvrEeW5VMlAwZI3CA" offset="9 78" len="32" index="2"/>
+      </dArrows>
+      <dArrows xmi:id="_OqhjpkvrEeW5VMlAwZI3CA" constraintsTo="_OqiKtUvrEeW5VMlAwZI3CA _Oqj_5UvrEeW5VMlAwZI3CA" dSource="_OqgVgkvrEeW5VMlAwZI3CA" dTarget="_OqgVgkvrEeW5VMlAwZI3CA" dConstraints="_OqiKs0vrEeW5VMlAwZI3CA _OqjY10vrEeW5VMlAwZI3CA _Oqj_40vrEeW5VMlAwZI3CA _Rn-zQEvrEeW5VMlAwZI3CA">
+        <arrow href="civilstatus_correct_instance.xmi#_UAIkJkvwEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_Oqhjp0vrEeW5VMlAwZI3CA" offset="-64 2" len="-56" index="1"/>
+        <bendpoints xmi:id="_OqhjqEvrEeW5VMlAwZI3CA" offset="43 1" len="24"/>
+        <bendpoints xmi:id="_OqhjqUvrEeW5VMlAwZI3CA" offset="57 78" len="32" index="1"/>
+        <bendpoints xmi:id="_OqhjqkvrEeW5VMlAwZI3CA" offset="16 58" len="24" index="1"/>
+      </dArrows>
+      <dArrows xmi:id="_OqiKsEvrEeW5VMlAwZI3CA" dSource="_OqgVgkvrEeW5VMlAwZI3CA" dTarget="_Oqg8kkvrEeW5VMlAwZI3CA" dConstraints="_Oqixw0vrEeW5VMlAwZI3CA _OqjY0UvrEeW5VMlAwZI3CA">
+        <arrow href="civilstatus_correct_instance.xmi#_UAIkJ0vwEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_OqiKsUvrEeW5VMlAwZI3CA" offset="5 5" len="244" index="1"/>
+        <bendpoints xmi:id="_OqiKskvrEeW5VMlAwZI3CA" offset="55 88" len="267"/>
+      </dArrows>
+      <graph href="civilstatus_correct_instance.xmi#_UAIkIEvwEeW5VMlAwZI3CA"/>
+    </dGraph>
+    <dConstraints xsi:type="diagram:DComposedConstraint" xmi:id="_OqiKs0vrEeW5VMlAwZI3CA" dNodes="_OqgVgkvrEeW5VMlAwZI3CA" dArrows="_OqhjoUvrEeW5VMlAwZI3CA _OqhjpkvrEeW5VMlAwZI3CA" dPredicate="_Oqj_50vrEeW5VMlAwZI3CA" fakeNode="_Oqg8kUvrEeW5VMlAwZI3CA">
+      <constraint href="civilstatus_correct_instance.xmi#_UAIkKEvwEeW5VMlAwZI3CA"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" xmi:id="_OqiKtEvrEeW5VMlAwZI3CA" source="_Oqg8kUvrEeW5VMlAwZI3CA" target="_OqhjoUvrEeW5VMlAwZI3CA"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" xmi:id="_OqiKtUvrEeW5VMlAwZI3CA" source="_Oqg8kUvrEeW5VMlAwZI3CA" target="_OqhjpkvrEeW5VMlAwZI3CA"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_OqiKtkvrEeW5VMlAwZI3CA" dNodes="_OqgVgkvrEeW5VMlAwZI3CA _Oqg8kEvrEeW5VMlAwZI3CA" dArrows="_Oqg8lkvrEeW5VMlAwZI3CA" source="_Oqg8lkvrEeW5VMlAwZI3CA">
+      <constraint href="civilstatus_correct_instance.xmi#_UAJLMEvwEeW5VMlAwZI3CA"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_OqixwEvrEeW5VMlAwZI3CA" offset="61 2" len="247"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_OqixwUvrEeW5VMlAwZI3CA" dNodes="_OqgVgkvrEeW5VMlAwZI3CA _Oqg8kEvrEeW5VMlAwZI3CA" dArrows="_Oqg8lkvrEeW5VMlAwZI3CA" source="_Oqg8lkvrEeW5VMlAwZI3CA">
+      <constraint href="civilstatus_correct_instance.xmi#_UAJLMUvwEeW5VMlAwZI3CA"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkR0vrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_OqixwkvrEeW5VMlAwZI3CA" offset="145 -24" len="247"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_Oqixw0vrEeW5VMlAwZI3CA" dNodes="_OqgVgkvrEeW5VMlAwZI3CA _Oqg8kkvrEeW5VMlAwZI3CA" dArrows="_OqiKsEvrEeW5VMlAwZI3CA" source="_OqiKsEvrEeW5VMlAwZI3CA">
+      <constraint href="civilstatus_correct_instance.xmi#_UAJLMkvwEeW5VMlAwZI3CA"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_OqjY0EvrEeW5VMlAwZI3CA" offset="81 3" len="244" index="1"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_OqjY0UvrEeW5VMlAwZI3CA" dNodes="_OqgVgkvrEeW5VMlAwZI3CA _Oqg8kkvrEeW5VMlAwZI3CA" dArrows="_OqiKsEvrEeW5VMlAwZI3CA" source="_OqiKsEvrEeW5VMlAwZI3CA">
+      <constraint href="civilstatus_correct_instance.xmi#_UAJLM0vwEeW5VMlAwZI3CA"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkR0vrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_OqjY0kvrEeW5VMlAwZI3CA" offset="42 -18" len="244" index="1"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" xmi:id="_OqjY00vrEeW5VMlAwZI3CA" dNodes="_Oqg8kkvrEeW5VMlAwZI3CA" dPredicate="_OqlOAEvrEeW5VMlAwZI3CA" fakeNode="_Oqg8k0vrEeW5VMlAwZI3CA">
+      <constraint href="civilstatus_correct_instance.xmi#_UAJLNEvwEeW5VMlAwZI3CA"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" xmi:id="_OqjY1EvrEeW5VMlAwZI3CA" source="_Oqg8k0vrEeW5VMlAwZI3CA" target="_Oqg8kkvrEeW5VMlAwZI3CA"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" xmi:id="_OqjY1UvrEeW5VMlAwZI3CA" dNodes="_Oqg8kEvrEeW5VMlAwZI3CA" dPredicate="_OqlOAEvrEeW5VMlAwZI3CA" fakeNode="_Oqg8lEvrEeW5VMlAwZI3CA">
+      <constraint href="civilstatus_correct_instance.xmi#_UAJLNUvwEeW5VMlAwZI3CA"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" xmi:id="_OqjY1kvrEeW5VMlAwZI3CA" source="_Oqg8lEvrEeW5VMlAwZI3CA" target="_Oqg8kEvrEeW5VMlAwZI3CA"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_OqjY10vrEeW5VMlAwZI3CA" dNodes="_OqgVgkvrEeW5VMlAwZI3CA" dArrows="_OqhjpkvrEeW5VMlAwZI3CA" source="_OqhjpkvrEeW5VMlAwZI3CA">
+      <constraint href="civilstatus_correct_instance.xmi#_UAJLNkvwEeW5VMlAwZI3CA"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkSkvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_Oqj_4EvrEeW5VMlAwZI3CA" offset="-37 14" len="-76" index="1"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_Oqj_4UvrEeW5VMlAwZI3CA" dNodes="_OqgVgkvrEeW5VMlAwZI3CA" dArrows="_OqhjoUvrEeW5VMlAwZI3CA" source="_OqhjoUvrEeW5VMlAwZI3CA">
+      <constraint href="civilstatus_correct_instance.xmi#_UAJyQEvwEeW5VMlAwZI3CA"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkSkvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_Oqj_4kvrEeW5VMlAwZI3CA" offset="-23 6" len="37" index="2"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" xmi:id="_Oqj_40vrEeW5VMlAwZI3CA" dNodes="_OqgVgkvrEeW5VMlAwZI3CA" dArrows="_OqhjoUvrEeW5VMlAwZI3CA _OqhjpkvrEeW5VMlAwZI3CA" fakeNode="_Oqg8lUvrEeW5VMlAwZI3CA">
+      <constraint href="civilstatus_correct_instance.xmi#_UAJyQUvwEeW5VMlAwZI3CA"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkXEvrEeW5VMlAwZI3CA"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" xmi:id="_Oqj_5EvrEeW5VMlAwZI3CA" source="_Oqg8lUvrEeW5VMlAwZI3CA" target="_OqhjoUvrEeW5VMlAwZI3CA"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" xmi:id="_Oqj_5UvrEeW5VMlAwZI3CA" source="_Oqg8lUvrEeW5VMlAwZI3CA" target="_OqhjpkvrEeW5VMlAwZI3CA"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_QhZltUvrEeW5VMlAwZI3CA" dNodes="_OqgVgkvrEeW5VMlAwZI3CA" dArrows="_OqhjoUvrEeW5VMlAwZI3CA" source="_OqhjoUvrEeW5VMlAwZI3CA">
+      <constraint href="civilstatus_correct_instance.xmi#_UAJyQkvwEeW5VMlAwZI3CA"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_QhZltkvrEeW5VMlAwZI3CA" offset="44 -4" len="29"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_Rn-zQEvrEeW5VMlAwZI3CA" dNodes="_OqgVgkvrEeW5VMlAwZI3CA" dArrows="_OqhjpkvrEeW5VMlAwZI3CA" source="_OqhjpkvrEeW5VMlAwZI3CA">
+      <constraint href="civilstatus_correct_instance.xmi#_UAJyQ0vwEeW5VMlAwZI3CA"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_Rn-zQUvrEeW5VMlAwZI3CA" offset="-19 -17" len="36" index="2"/>
+    </dConstraints>
+    <specification href="civilstatus_correct_instance.xmi#_OqThMEvrEeW5VMlAwZI3CA"/>
+  </diagram:DSpecification>
+  <diagram:DSignature xmi:id="_Oqj_5kvrEeW5VMlAwZI3CA">
+    <signature href="civilstatus_correct_instance.xmi#_OqaO40vrEeW5VMlAwZI3CA"/>
+    <dPredicates xmi:id="_Oqj_50vrEeW5VMlAwZI3CA" simpleName="inv">
+      <predicate href="civilstatus_correct.xmi#_OqaO5EvrEeW5VMlAwZI3CA"/>
+      <dGraph xmi:id="_Oqj_6EvrEeW5VMlAwZI3CA">
+        <dNodes xmi:id="_Oqkm8EvrEeW5VMlAwZI3CA" dOutgoings="_Oqkm8kvrEeW5VMlAwZI3CA" dIncomings="_Oqkm9EvrEeW5VMlAwZI3CA" location="50 50" size="100 30">
+          <node href="specification.xmi#/1/@predicates.0/@shape/@nodes.0"/>
+        </dNodes>
+        <dNodes xmi:id="_Oqkm8UvrEeW5VMlAwZI3CA" dOutgoings="_Oqkm9EvrEeW5VMlAwZI3CA" dIncomings="_Oqkm8kvrEeW5VMlAwZI3CA" location="200 50" size="100 30">
+          <node href="specification.xmi#/1/@predicates.0/@shape/@nodes.1"/>
+        </dNodes>
+        <dArrows xmi:id="_Oqkm8kvrEeW5VMlAwZI3CA" dSource="_Oqkm8EvrEeW5VMlAwZI3CA" dTarget="_Oqkm8UvrEeW5VMlAwZI3CA">
+          <arrow href="specification.xmi#/1/@predicates.0/@shape/@arrows.0"/>
+          <nameOffset xmi:id="_Oqkm80vrEeW5VMlAwZI3CA" offset="69 16" len="150"/>
+        </dArrows>
+        <dArrows xmi:id="_Oqkm9EvrEeW5VMlAwZI3CA" dSource="_Oqkm8UvrEeW5VMlAwZI3CA" dTarget="_Oqkm8EvrEeW5VMlAwZI3CA">
+          <arrow href="specification.xmi#/1/@predicates.0/@shape/@arrows.1"/>
+          <nameOffset xmi:id="_Oqkm9UvrEeW5VMlAwZI3CA" offset="-80 -37" len="-150"/>
+        </dArrows>
+        <graph href="specification.xmi#/1/@predicates.0/@shape"/>
+      </dGraph>
+      <visualization xmi:id="_Oqkm9kvrEeW5VMlAwZI3CA" type="ArrowToArrow">
+        <source xsi:type="core:Arrow" href="civilstatus.xmi#_UATjQ0vwEeW5VMlAwZI3CA"/>
+        <target xsi:type="core:Arrow" href="civilstatus.xmi#_UATjREvwEeW5VMlAwZI3CA"/>
+      </visualization>
+    </dPredicates>
+    <dPredicates xmi:id="_OqlOAEvrEeW5VMlAwZI3CA" simpleName="enum" icon="enum_32.png">
+      <predicate href="civilstatus_correct.xmi#_OqaO60vrEeW5VMlAwZI3CA"/>
+      <dGraph xmi:id="_OqlOAUvrEeW5VMlAwZI3CA">
+        <dNodes xmi:id="_OqlOAkvrEeW5VMlAwZI3CA" location="50 50" size="100 30">
+          <node href="specification.xmi#/1/@predicates.1/@shape/@nodes.0"/>
+        </dNodes>
+        <graph href="specification.xmi#/1/@predicates.1/@shape"/>
+      </dGraph>
+      <visualization xmi:id="_OqlOA0vrEeW5VMlAwZI3CA" type="OnNode"/>
+    </dPredicates>
+  </diagram:DSignature>
+</xmi:XMI>

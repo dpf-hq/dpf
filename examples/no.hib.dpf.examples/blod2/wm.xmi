@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core" signatureFile="wm.sig">
+  <graph>
+    <nodes id="4282ad3b-6663-47b5-9a26-80f0c4248ec5" name="Task" outgoings="0e2df415-99cc-4bf7-8a9b-8e5657c0076a e498b01d-a3a6-4b32-96d7-35b88d5b0a10 e36d3c66-9cd8-450d-892d-4f14d2057a27 c29de62a-d62f-4fde-8867-dd727b6c5d14" incomings="0e2df415-99cc-4bf7-8a9b-8e5657c0076a 34bcb5d1-6149-4e1d-a3b3-82a0a40b5dde 422d4560-0458-4308-8953-fc4bb69505a5 1f67381f-b79b-4aa6-9ba6-090a1047afa5 09816f1d-ca1a-491c-a454-57749fa9927e"/>
+    <nodes id="a81c2b12-c407-4a93-977f-fe5f6d912450" name="InitTask" outgoings="34bcb5d1-6149-4e1d-a3b3-82a0a40b5dde f4359ac2-c972-427d-8367-b64a7811e49e"/>
+    <nodes id="17711b04-081e-4265-90a5-685576b88112" name="FinishTask" incomings="e498b01d-a3a6-4b32-96d7-35b88d5b0a10"/>
+    <nodes id="266e1f3f-51ed-44c8-a1e9-abc779055975" name="Service" outgoings="422d4560-0458-4308-8953-fc4bb69505a5 09816f1d-ca1a-491c-a454-57749fa9927e" incomings="e36d3c66-9cd8-450d-892d-4f14d2057a27 f4359ac2-c972-427d-8367-b64a7811e49e"/>
+    <nodes id="68d6abb8-786f-470c-acdc-0c0569c9c91c" name="Choice" outgoings="1f67381f-b79b-4aa6-9ba6-090a1047afa5" incomings="c29de62a-d62f-4fde-8867-dd727b6c5d14"/>
+    <arrows id="0e2df415-99cc-4bf7-8a9b-8e5657c0076a" name="Flow" source="4282ad3b-6663-47b5-9a26-80f0c4248ec5" target="4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
+    <arrows id="09816f1d-ca1a-491c-a454-57749fa9927e" name="exception" source="266e1f3f-51ed-44c8-a1e9-abc779055975" target="4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
+    <arrows id="34bcb5d1-6149-4e1d-a3b3-82a0a40b5dde" name="start" source="a81c2b12-c407-4a93-977f-fe5f6d912450" target="4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
+    <arrows id="e498b01d-a3a6-4b32-96d7-35b88d5b0a10" name="end" source="4282ad3b-6663-47b5-9a26-80f0c4248ec5" target="17711b04-081e-4265-90a5-685576b88112"/>
+    <arrows id="422d4560-0458-4308-8953-fc4bb69505a5" name="return" source="266e1f3f-51ed-44c8-a1e9-abc779055975" target="4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
+    <arrows id="e36d3c66-9cd8-450d-892d-4f14d2057a27" name="request" source="4282ad3b-6663-47b5-9a26-80f0c4248ec5" target="266e1f3f-51ed-44c8-a1e9-abc779055975"/>
+    <arrows id="c29de62a-d62f-4fde-8867-dd727b6c5d14" name="dependecy" source="4282ad3b-6663-47b5-9a26-80f0c4248ec5" target="68d6abb8-786f-470c-acdc-0c0569c9c91c"/>
+    <arrows id="1f67381f-b79b-4aa6-9ba6-090a1047afa5" name="select" source="68d6abb8-786f-470c-acdc-0c0569c9c91c" target="4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
+    <arrows id="f4359ac2-c972-427d-8367-b64a7811e49e" name="request" source="a81c2b12-c407-4a93-977f-fe5f6d912450" target="266e1f3f-51ed-44c8-a1e9-abc779055975"/>
+  </graph>
+</core:Specification>

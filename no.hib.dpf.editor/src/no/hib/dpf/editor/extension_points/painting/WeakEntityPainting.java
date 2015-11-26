@@ -1,28 +1,21 @@
 package no.hib.dpf.editor.extension_points.painting;
-import java.util.List;
-
-import no.hib.dpf.editor.extension_points.INodePainting;
-import no.hib.dpf.editor.extension_points.border.BasicBorder;
-import no.hib.dpf.editor.extension_points.border.BasicNodeFigure;
-import no.hib.dpf.editor.figures.EditableLabel;
-import no.hib.dpf.editor.figures.NodeFigure;
-
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.swt.graphics.Color;
 
+import no.hib.dpf.editor.extension_points.INodePainting;
+import no.hib.dpf.editor.extension_points.border.BasicBorder;
+import no.hib.dpf.editor.figures.EditableLabel;
+import no.hib.dpf.editor.figures.NodeFigure;
+
 
 
 public class WeakEntityPainting implements INodePainting {
 
-	public class WeakEntityFigure extends BasicNodeFigure{
+	public class WeakEntityFigure extends NodeFigure{
 		public WeakEntityFigure(EditableLabel name) {
-			this(name, null);
-		}
-		@SuppressWarnings("rawtypes")
-		public WeakEntityFigure(EditableLabel name, List colums) {
-			super(name, colums);
+			super(name);
 			setBorder(new WeakEntityBorder());
 		}
 	}
@@ -34,7 +27,7 @@ public class WeakEntityPainting implements INodePainting {
 			double ration = ((double)tempRect.height) / ((double)tempRect.width);
 			tempRect.shrink(getWidth(), Math.max(getWidth(), (int) (getWidth() * ration)));
 			Color color = graphics.getBackgroundColor();
-			graphics.setBackgroundColor(bgColor);
+			graphics.setBackgroundColor(color);
 			graphics.fillRectangle(tempRect);
 			graphics.setBackgroundColor(color);
 			int _short = tempRect.height > tempRect.width ? tempRect.height : tempRect.height;

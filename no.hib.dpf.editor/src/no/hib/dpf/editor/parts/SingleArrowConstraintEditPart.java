@@ -17,11 +17,11 @@ import no.hib.dpf.diagram.DArrowLabelConstraint;
 import no.hib.dpf.diagram.DConstraint;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.editor.figures.ArrowLabelLocator;
+import no.hib.dpf.editor.figures.EditableLabel;
 import no.hib.dpf.editor.policies.ArrowLabelMovePolicy;
 import no.hib.dpf.editor.policies.DConstraintDeletePolicy;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
 
-import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -87,7 +87,7 @@ public class SingleArrowConstraintEditPart extends ArrowLabelEditPart {
 	@Override
 	protected void refreshVisuals() {
 		String arrowName = getFullName();
-		Label figure = getLabel();
+		EditableLabel figure = getLabel();
 		figure.setText(arrowName);
 		figure.setVisible(true);
 		DArrowEditPart parent = (DArrowEditPart) getParent();

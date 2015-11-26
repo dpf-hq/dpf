@@ -64,14 +64,16 @@
             smallicon="icons/d.jpg">
       </NodeConfigure>
       <NodeConfigure
+            largeicon="icons/circle_67.png"
             name="Circle"
             paint="no.hib.dpf.editor.extension_points.painting.CirclePainting"
-            smallicon="icons/circle.png">
+            smallicon="icons/circle_44.png">
       </NodeConfigure>
       <NodeConfigure
+            largeicon="icons/ellipse_67.png"
             name="Ellipse"
             paint="no.hib.dpf.editor.extension_points.painting.EllipsePainting"
-            smallicon="icons/ellipse.png">
+            smallicon="icons/ellipse_44.png">
       </NodeConfigure>
       <NodeConfigure
             largeicon="icons/entity_32.png"
@@ -140,9 +142,41 @@
             smallicon="icons/p_16.png">
       </ArrowConfigure>
       <ArrowConfigure
-            name="DashlineConfigure"
-            paint="no.hib.dpf.editor.extension_points.painting.DashLineArrowPainting">
+            largeicon="icons/dashed_67.png"
+            name="Dashline"
+            paint="no.hib.dpf.editor.extension_points.painting.DashLineArrowPainting"
+            smallicon="icons/dashed_44.png">
       </ArrowConfigure>
+      <NodeConfigure
+            largeicon="icons/exception_67.png"
+            name="Exception"
+            paint="no.hib.dpf.editor.extension_points.painting.ExceptionPainting"
+            smallicon="icons/exception_44.png">
+      </NodeConfigure>
+      <ArrowConfigure
+            largeicon="icons/reddashed_67.png"
+            name="RedDashedArrow"
+            paint="no.hib.dpf.editor.extension_points.painting.RedDashedArrowPainting"
+            smallicon="icons/reddashed_44.png">
+      </ArrowConfigure>
+      <ArrowConfigure
+            largeicon="icons/greendashed_67.png"
+            name="GreenDashedArrow"
+            paint="no.hib.dpf.editor.extension_points.painting.GreenDashLineArrowPainting"
+            smallicon="icons/greendashed_44.png">
+      </ArrowConfigure>
+      <NodeConfigure
+            largeicon="icons/start_67.png"
+            name="Start"
+            paint="no.hib.dpf.editor.extension_points.painting.StartPainting"
+            smallicon="icons/start_44.png">
+      </NodeConfigure>
+      <NodeConfigure
+            largeicon="icons/end_67.png"
+            name="End"
+            paint="no.hib.dpf.editor.extension_points.painting.EndPainting"
+            smallicon="icons/end_44.png">
+      </NodeConfigure>
    </extension>
    <extension
          id="nature.dpfprojectnature"

@@ -1,13 +1,5 @@
 package no.hib.dpf.editor.extension_points.painting;
 
-import java.util.List;
-
-import no.hib.dpf.editor.extension_points.INodePainting;
-import no.hib.dpf.editor.extension_points.border.BasicBorder;
-import no.hib.dpf.editor.extension_points.border.BasicNodeFigure;
-import no.hib.dpf.editor.figures.EditableLabel;
-import no.hib.dpf.editor.figures.NodeFigure;
-
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
@@ -17,15 +9,16 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
 
+import no.hib.dpf.editor.extension_points.INodePainting;
+import no.hib.dpf.editor.extension_points.border.BasicBorder;
+import no.hib.dpf.editor.figures.EditableLabel;
+import no.hib.dpf.editor.figures.NodeFigure;
+
 public class IRelationshipPainting implements INodePainting {
 
-	private class RelationshipFigure extends BasicNodeFigure{
+	private class RelationshipFigure extends NodeFigure{
 		public RelationshipFigure(EditableLabel name) {
-			this(name, null);
-		}
-		@SuppressWarnings("rawtypes")
-		public RelationshipFigure(EditableLabel name, List colums) {
-			super(name, colums);
+			super(name);
 			setBorder(new RelationshipBorder());
 		}
 	}
@@ -46,7 +39,7 @@ public class IRelationshipPainting implements INodePainting {
 			points.addPoint(tempRect.getRight());
 			points.addPoint(tempRect.getTop());
 			Color color = graphics.getBackgroundColor();
-			graphics.setBackgroundColor(bgColor);
+			graphics.setBackgroundColor(color);
 			graphics.fillPolygon(points);
 			graphics.setBackgroundColor(color);
 			int _short = tempRect.width;

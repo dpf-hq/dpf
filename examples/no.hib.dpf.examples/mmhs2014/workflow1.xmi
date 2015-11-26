@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <core:Specification metaFile="mm.xmi" signatureFile="AND_SPLIT_MERGE.sig" signature="/1" type="/2">
+    <graph id="861691c3-45fe-47bc-bf08-abc361a32de9">
+      <type href="workflow.xmi#//@graph"/>
+      <nodes id="dda6dbae-a399-49bb-afaa-2579fe4eb2ea" name="IE" outgoings="/0/@graph/@arrows.0 /0/@graph/@arrows.1" constraints="/0/@constraints.0">
+        <typeNode href="mm.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="ca007596-8f08-4206-98eb-aec73f7a48a4" name="BT1" outgoings="/0/@graph/@arrows.2" incomings="/0/@graph/@arrows.0" constraints="/0/@constraints.0 /0/@constraints.1">
+        <typeNode href="mm.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="792f7c69-a93c-44f2-8085-79412f7f360d" name="MRI" outgoings="/0/@graph/@arrows.3" incomings="/0/@graph/@arrows.1" constraints="/0/@constraints.0 /0/@constraints.1">
+        <typeNode href="mm.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="e2f0bcb2-eb0c-46ad-b8ec-3509524b8a75" name="E1" outgoings="/0/@graph/@arrows.4 /0/@graph/@arrows.5" incomings="/0/@graph/@arrows.2 /0/@graph/@arrows.3" constraints="/0/@constraints.1 /0/@constraints.4">
+        <typeNode href="mm.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="8c5b5b12-e190-46fc-aaa5-c45c56639675" name="PA" outgoings="/0/@graph/@arrows.6" incomings="/0/@graph/@arrows.4" constraints="/0/@constraints.2 /0/@constraints.4">
+        <typeNode href="mm.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="88731823-dc65-4723-bfdc-08829ba6ff19" name="PB" outgoings="/0/@graph/@arrows.7" incomings="/0/@graph/@arrows.5" constraints="/0/@constraints.2 /0/@constraints.4">
+        <typeNode href="mm.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="706a5543-049a-429c-9e89-60a409b8c5f9" name="E2" outgoings="/0/@graph/@arrows.8 /0/@graph/@arrows.9" incomings="/0/@graph/@arrows.6 /0/@graph/@arrows.7 /0/@graph/@arrows.11" constraints="/0/@constraints.2 /0/@constraints.3">
+        <typeNode href="mm.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="f1d3e425-51e6-4be1-93da-342f0684100e" name="BT2" outgoings="/0/@graph/@arrows.11" incomings="/0/@graph/@arrows.10">
+        <typeNode href="mm.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="0d76a728-ef07-459a-908e-c8c2df048ec7" name="END" incomings="/0/@graph/@arrows.8" constraints="/0/@constraints.3">
+        <typeNode href="mm.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <nodes id="72b87ead-df41-4e08-ab0b-0236977e2a91" name="TD" outgoings="/0/@graph/@arrows.10" incomings="/0/@graph/@arrows.9" constraints="/0/@constraints.3">
+        <typeNode href="mm.xmi#//@graph/@nodes.0"/>
+      </nodes>
+      <arrows id="e694613b-8770-4f65-a536-1d8b34550582" name="f0" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.1" constraints="/0/@constraints.0">
+        <typeArrow href="mm.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="40f6226f-45d7-4d6e-9d46-bba5968ad69a" name="f1" source="/0/@graph/@nodes.0" target="/0/@graph/@nodes.2" constraints="/0/@constraints.0">
+        <typeArrow href="mm.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="5275c7b3-a842-46cc-a337-867bd85b99c8" name="f2" source="/0/@graph/@nodes.1" target="/0/@graph/@nodes.3" constraints="/0/@constraints.1">
+        <typeArrow href="mm.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="adda697d-8103-4544-866c-a72d528bd939" name="f3" source="/0/@graph/@nodes.2" target="/0/@graph/@nodes.3" constraints="/0/@constraints.1">
+        <typeArrow href="mm.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="d6e1315a-72e8-40ba-b2b4-5fab65e87a83" name="f4" source="/0/@graph/@nodes.3" target="/0/@graph/@nodes.4" constraints="/0/@constraints.4">
+        <typeArrow href="mm.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="0ba31eb0-9438-40b7-b97a-71f8fc4b447b" name="f5" source="/0/@graph/@nodes.3" target="/0/@graph/@nodes.5" constraints="/0/@constraints.4">
+        <typeArrow href="mm.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="1635b93f-eea1-4992-8ca5-d92f8212e836" name="f6" source="/0/@graph/@nodes.4" target="/0/@graph/@nodes.6" constraints="/0/@constraints.2">
+        <typeArrow href="mm.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="4e74cead-ba44-4e13-a95b-75238cdd5d83" name="f7" source="/0/@graph/@nodes.5" target="/0/@graph/@nodes.6" constraints="/0/@constraints.2">
+        <typeArrow href="mm.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="2c3575ee-8e08-4bfb-aa88-2feaaf9e69a5" name="f8" source="/0/@graph/@nodes.6" target="/0/@graph/@nodes.8" constraints="/0/@constraints.3">
+        <typeArrow href="mm.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="41b47b4d-c4b8-46f1-8db8-6b115d6b0f6c" name="f9" source="/0/@graph/@nodes.6" target="/0/@graph/@nodes.9" constraints="/0/@constraints.3">
+        <typeArrow href="mm.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="d5edeaca-9768-4ea7-80f4-c0a98d571625" name="f10" source="/0/@graph/@nodes.9" target="/0/@graph/@nodes.7">
+        <typeArrow href="mm.xmi#//@graph/@arrows.0"/>
+      </arrows>
+      <arrows id="dc869460-4ed1-4dc2-9725-d36c1b206c92" name="f11" source="/0/@graph/@nodes.7" target="/0/@graph/@nodes.6">
+        <typeArrow href="mm.xmi#//@graph/@arrows.0"/>
+      </arrows>
+    </graph>
+    <constraints id="b11adcc4-b36a-40b8-9f63-f7a7d0522baf" nodes="/0/@graph/@nodes.0 /0/@graph/@nodes.1 /0/@graph/@nodes.2" arrows="/0/@graph/@arrows.0 /0/@graph/@arrows.1" predicate="/1/@predicates.0" parameters="">
+      <mappings>
+        <nodeMapping key="/1/@predicates.0/@shape/@nodes.2" value="/0/@graph/@nodes.2"/>
+        <nodeMapping key="/1/@predicates.0/@shape/@nodes.0" value="/0/@graph/@nodes.0"/>
+        <nodeMapping key="/1/@predicates.0/@shape/@nodes.1" value="/0/@graph/@nodes.1"/>
+        <arrowMapping key="/1/@predicates.0/@shape/@arrows.0" value="/0/@graph/@arrows.0"/>
+        <arrowMapping key="/1/@predicates.0/@shape/@arrows.1" value="/0/@graph/@arrows.1"/>
+      </mappings>
+    </constraints>
+    <constraints id="30b9218e-f26d-476c-ab9b-d78531964f7b" nodes="/0/@graph/@nodes.1 /0/@graph/@nodes.3 /0/@graph/@nodes.2" arrows="/0/@graph/@arrows.2 /0/@graph/@arrows.3" predicate="/1/@predicates.3">
+      <mappings>
+        <nodeMapping key="/1/@predicates.3/@shape/@nodes.1" value="/0/@graph/@nodes.3"/>
+        <nodeMapping key="/1/@predicates.3/@shape/@nodes.2" value="/0/@graph/@nodes.2"/>
+        <nodeMapping key="/1/@predicates.3/@shape/@nodes.0" value="/0/@graph/@nodes.1"/>
+        <arrowMapping key="/1/@predicates.3/@shape/@arrows.0" value="/0/@graph/@arrows.2"/>
+        <arrowMapping key="/1/@predicates.3/@shape/@arrows.1" value="/0/@graph/@arrows.3"/>
+      </mappings>
+    </constraints>
+    <constraints id="b7194eef-e4ad-41fb-9186-ac5cd6a5bce3" nodes="/0/@graph/@nodes.5 /0/@graph/@nodes.6 /0/@graph/@nodes.4" arrows="/0/@graph/@arrows.7 /0/@graph/@arrows.6" predicate="/1/@predicates.3">
+      <mappings>
+        <nodeMapping key="/1/@predicates.3/@shape/@nodes.1" value="/0/@graph/@nodes.6"/>
+        <nodeMapping key="/1/@predicates.3/@shape/@nodes.2" value="/0/@graph/@nodes.4"/>
+        <nodeMapping key="/1/@predicates.3/@shape/@nodes.0" value="/0/@graph/@nodes.5"/>
+        <arrowMapping key="/1/@predicates.3/@shape/@arrows.0" value="/0/@graph/@arrows.7"/>
+        <arrowMapping key="/1/@predicates.3/@shape/@arrows.1" value="/0/@graph/@arrows.6"/>
+      </mappings>
+    </constraints>
+    <constraints id="7db2438e-f3c0-42d3-8752-f34aa6d78f32" nodes="/0/@graph/@nodes.6 /0/@graph/@nodes.8 /0/@graph/@nodes.9" arrows="/0/@graph/@arrows.8 /0/@graph/@arrows.9" predicate="/1/@predicates.2">
+      <mappings>
+        <nodeMapping key="/1/@predicates.2/@shape/@nodes.2" value="/0/@graph/@nodes.9"/>
+        <nodeMapping key="/1/@predicates.2/@shape/@nodes.0" value="/0/@graph/@nodes.6"/>
+        <nodeMapping key="/1/@predicates.2/@shape/@nodes.1" value="/0/@graph/@nodes.8"/>
+        <arrowMapping key="/1/@predicates.2/@shape/@arrows.0" value="/0/@graph/@arrows.8"/>
+        <arrowMapping key="/1/@predicates.2/@shape/@arrows.1" value="/0/@graph/@arrows.9"/>
+      </mappings>
+    </constraints>
+    <constraints id="c7f48b28-d50e-49b0-baaf-c6e56db0276a" nodes="/0/@graph/@nodes.3 /0/@graph/@nodes.4 /0/@graph/@nodes.5" arrows="/0/@graph/@arrows.4 /0/@graph/@arrows.5" predicate="/1/@predicates.2">
+      <mappings>
+        <nodeMapping key="/1/@predicates.2/@shape/@nodes.2" value="/0/@graph/@nodes.5"/>
+        <nodeMapping key="/1/@predicates.2/@shape/@nodes.0" value="/0/@graph/@nodes.3"/>
+        <nodeMapping key="/1/@predicates.2/@shape/@nodes.1" value="/0/@graph/@nodes.4"/>
+        <arrowMapping key="/1/@predicates.2/@shape/@arrows.0" value="/0/@graph/@arrows.4"/>
+        <arrowMapping key="/1/@predicates.2/@shape/@arrows.1" value="/0/@graph/@arrows.5"/>
+      </mappings>
+    </constraints>
+  </core:Specification>
+  <core:Signature>
+    <predicates symbol="AND_SPLIT" parameters="">
+      <shape id="b5d9fdd8-72ce-4803-859a-8cb66665ed00">
+        <nodes id="0ce7581b-b5ea-462e-8a99-4de33b39d3bb" name="X" outgoings="/1/@predicates.0/@shape/@arrows.0 /1/@predicates.0/@shape/@arrows.1"/>
+        <nodes id="e28f90ea-fc68-4eae-a0e1-d9df2753a4ac" name="Y" incomings="/1/@predicates.0/@shape/@arrows.0"/>
+        <nodes id="67446e9f-9c72-4791-80c2-9514fba3e724" name="Z" incomings="/1/@predicates.0/@shape/@arrows.1"/>
+        <arrows id="9d6acce1-9732-42bb-932f-75b919118d71" name="XY" source="/1/@predicates.0/@shape/@nodes.0" target="/1/@predicates.0/@shape/@nodes.1"/>
+        <arrows id="7a67ab3a-c19a-421f-87c8-eb46aef011ff" name="XZ" source="/1/@predicates.0/@shape/@nodes.0" target="/1/@predicates.0/@shape/@nodes.2"/>
+      </shape>
+      <validator type="JAVA" validator="import java.util.*; &#xA;&#xA;import no.hib.dpf.core.Arrow; &#xA;import no.hib.dpf.core.Graph; &#xA;import no.hib.dpf.core.Node; &#xA;import no.hib.dpf.utils.Checker; &#xA;public class CheckInstance implements Checker { &#xA;&#x9;public boolean check(Map&lt;String, String> maps, Graph shape, Map&lt;Node, List&lt;Node>> nodeMap, Map&lt;Arrow, List&lt;Arrow>> arrowMap) { &#xA;&#xA;&#x9;&#x9;List&lt;Node> x = new ArrayList&lt;Node>();&#xA;&#x9;&#x9;List&lt;Node> maped = nodeMap.get(shape.getNodeByName(&quot;X&quot;));&#xA;&#x9;&#x9;if(maped != null)&#xA;&#x9;&#x9;&#x9;x.addAll(maped);&#xA;&#x9;&#x9;List&lt;Arrow> xy = arrowMap.get(shape.getArrowByName(&quot;XY&quot;)), xz = arrowMap.get(shape.getArrowByName(&quot;XZ&quot;));&#xA;&#x9;&#x9;List&lt;Node> x1 = new ArrayList&lt;Node>();&#xA;&#x9;&#x9;if(xy != null){&#xA;&#x9;&#x9;&#x9;for(Arrow arrow : xy){&#xA;&#x9;&#x9;&#x9;&#x9;Node from = arrow.getSource();&#xA;&#x9;&#x9;&#x9;&#x9;if(x.contains(from)){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;x.remove(from);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;x1.add(from);&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;List&lt;Node> x2 = new ArrayList&lt;Node>();&#xA;&#x9;&#x9;if(xz != null){&#xA;&#x9;&#x9;&#x9;for(Arrow arrow : xz){&#xA;&#x9;&#x9;&#x9;&#x9;Node from = arrow.getSource();&#xA;&#x9;&#x9;&#x9;&#x9;if(x1.contains(from))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;x1.remove(from);&#xA;&#x9;&#x9;&#x9;&#x9;else if(x.contains(from)){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;x.remove(from);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;x2.add(from);&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;for(Node node : x)&#xA;&#x9;&#x9;&#x9;System.out.println(node.getName() + &quot; violates AND_SPLIT constraint.\n It misses Y and Z&quot;);&#xA;&#x9;&#x9;&#x9;&#x9;for(Node node : x1)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(node.getName() + &quot; violates AND_SPLIT constraint.\n It misses Z&quot;);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;for(Node node : x2)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(node.getName() + &quot; violates AND_SPLIT constraint.\n It misses Y&quot;);&#xA;&#x9;&#x9;System.out.println(x.size() == 0 &amp;&amp; x1.size() == 0 &amp;&amp; x2.size() == 0);&#xA;&#x9;&#x9;return x.size() == 0 &amp;&amp; x1.size()== 0 &amp;&amp; x2.size() == 0; &#xA;&#x9;} &#xA;}"/>
+    </predicates>
+    <predicates symbol="AND_MERGE">
+      <shape id="2e328111-2e64-4041-aa39-7907d0745475">
+        <nodes id="d958be45-d643-43c8-83d5-21088b6704eb" name="X" outgoings="/1/@predicates.1/@shape/@arrows.0"/>
+        <nodes id="6e6f3a36-6196-4b47-bc0c-dd09651bbb2a" name="Z" outgoings="/1/@predicates.1/@shape/@arrows.1"/>
+        <nodes id="8a46fba3-84b2-4c5a-81cf-050cf0230799" name="Y" incomings="/1/@predicates.1/@shape/@arrows.0 /1/@predicates.1/@shape/@arrows.1"/>
+        <arrows id="f7979db6-5dc9-4651-90b6-898f286dd128" name="XY" source="/1/@predicates.1/@shape/@nodes.0" target="/1/@predicates.1/@shape/@nodes.2"/>
+        <arrows id="570cc8ec-1c1b-4eeb-b423-f0334923fc8a" name="ZY" source="/1/@predicates.1/@shape/@nodes.1" target="/1/@predicates.1/@shape/@nodes.2"/>
+      </shape>
+      <validator type="JAVA" validator="import java.util.*; &#xA;&#xA;import no.hib.dpf.core.Arrow; &#xA;import no.hib.dpf.core.Graph; &#xA;import no.hib.dpf.core.Node; &#xA;import no.hib.dpf.utils.Checker; &#xA;public class CheckInstance implements Checker { &#xA;&#x9;public boolean check(Map&lt;String, String> maps, Graph shape, Map&lt;Node, List&lt;Node>> nodeMap, Map&lt;Arrow, List&lt;Arrow>> arrowMap) { &#xA;&#xA;&#x9;&#x9;List&lt;Node> y = new ArrayList&lt;Node>();&#xA;&#x9;&#x9;List&lt;Node> maped = nodeMap.get(shape.getNodeByName(&quot;Y&quot;));&#xA;&#x9;&#x9;if(maped != null)&#xA;&#x9;&#x9;&#x9;y.addAll(maped);&#xA;&#x9;&#x9;List&lt;Arrow> xy = arrowMap.get(shape.getArrowByName(&quot;XY&quot;)), zy = arrowMap.get(shape.getArrowByName(&quot;ZY&quot;));&#xA;&#x9;&#x9;List&lt;Node> y1 = new ArrayList&lt;Node>();&#xA;&#x9;&#x9;if(xy != null){&#xA;&#x9;&#x9;&#x9;for(Arrow arrow : xy){&#xA;&#x9;&#x9;&#x9;&#x9;Node from = arrow.getTarget();&#xA;&#x9;&#x9;&#x9;&#x9;if(y.contains(from)){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;y.remove(from);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;y1.add(from);&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;List&lt;Node> y2 = new ArrayList&lt;Node>();&#xA;&#x9;&#x9;if(zy != null){&#xA;&#x9;&#x9;&#x9;for(Arrow arrow : zy){&#xA;&#x9;&#x9;&#x9;&#x9;Node from = arrow.getTarget();&#xA;&#x9;&#x9;&#x9;&#x9;if(y1.contains(from))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;y1.remove(from);&#xA;&#x9;&#x9;&#x9;&#x9;else if(y.contains(from)){&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;y.remove(from);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;y2.add(from);&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;for(Node node : y)&#xA;&#x9;&#x9;&#x9;System.out.println(node.getName() + &quot; violates AND_MERGE constraint.\n It misses X and Z&quot;);&#xA;&#x9;&#x9;&#x9;&#x9;for(Node node : y1)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(node.getName() + &quot; violates AND_MERGE constraint.\n It misses Z&quot;);&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;for(Node node : y2)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;System.out.println(node.getName() + &quot; violates AND_MERGE constraint.\n It misses X&quot;);&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;return y.size() == 0 &amp;&amp;  y1.size() == 0 &amp;&amp;  y2.size() == 0; &#xA;&#x9;} &#xA;}"/>
+    </predicates>
+    <predicates symbol="XOR_SPLIT">
+      <shape id="fb460bbc-ce27-44d3-95b5-7c3cffb34357">
+        <nodes id="2214fe9f-02f9-40d0-aa47-1daaded76fa4" name="X1" outgoings="/1/@predicates.2/@shape/@arrows.0 /1/@predicates.2/@shape/@arrows.1"/>
+        <nodes id="0040a07f-3b07-44bd-872d-4e1994db47da" name="Y1" incomings="/1/@predicates.2/@shape/@arrows.0"/>
+        <nodes id="a22f05a4-a108-4880-ab60-3238f1eb659b" name="Y2" incomings="/1/@predicates.2/@shape/@arrows.1"/>
+        <arrows id="1d578b43-013a-4ee2-b9b4-72bf93cdc9e1" name="XY1" source="/1/@predicates.2/@shape/@nodes.0" target="/1/@predicates.2/@shape/@nodes.1"/>
+        <arrows id="cd266d1c-e5e3-40af-99ff-3884a2025522" name="XY2" source="/1/@predicates.2/@shape/@nodes.0" target="/1/@predicates.2/@shape/@nodes.2"/>
+      </shape>
+      <validator type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
+    </predicates>
+    <predicates symbol="XOR_MERGE">
+      <shape id="0a70b248-9ee2-4579-9f0b-814ac21340a0">
+        <nodes id="e9551d91-a892-4b83-a847-9169609110ff" name="X1" outgoings="/1/@predicates.3/@shape/@arrows.0"/>
+        <nodes id="4c169e57-a684-4b4d-a054-793e7276d5e0" name="Y1" incomings="/1/@predicates.3/@shape/@arrows.0 /1/@predicates.3/@shape/@arrows.1"/>
+        <nodes id="be9fbeef-9914-4f59-ba61-4332915aa7c1" name="X2" outgoings="/1/@predicates.3/@shape/@arrows.1"/>
+        <arrows id="727202a8-97d2-4745-8c77-1e9c47e0e42f" name="X1Y1" source="/1/@predicates.3/@shape/@nodes.0" target="/1/@predicates.3/@shape/@nodes.1"/>
+        <arrows id="cc9359b6-360a-40ff-bfe5-254b83343a74" name="X2Y1" source="/1/@predicates.3/@shape/@nodes.2" target="/1/@predicates.3/@shape/@nodes.1"/>
+      </shape>
+      <validator type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
+    </predicates>
+    <predicates symbol="OR_MERGE">
+      <shape id="8ab5eb72-160b-4d7f-b783-7fe93cd768ec">
+        <nodes id="09d95875-ee29-4785-823b-7b232136705f" name="X1" outgoings="/1/@predicates.4/@shape/@arrows.0"/>
+        <nodes id="0fe977d9-13d5-48d2-9ccf-777c59698062" name="Y1" incomings="/1/@predicates.4/@shape/@arrows.0 /1/@predicates.4/@shape/@arrows.1"/>
+        <nodes id="4cc7557c-41ed-4045-bb4f-dde8b311fd1b" name="X2" outgoings="/1/@predicates.4/@shape/@arrows.1"/>
+        <arrows id="535d414f-8478-4e46-96d7-28d5c006d9d2" name="X1Y1" source="/1/@predicates.4/@shape/@nodes.0" target="/1/@predicates.4/@shape/@nodes.1"/>
+        <arrows id="2c5ad3b4-5e7b-423e-87f9-e3954e4a3110" name="X2Y1" source="/1/@predicates.4/@shape/@nodes.2" target="/1/@predicates.4/@shape/@nodes.1"/>
+      </shape>
+      <validator type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
+    </predicates>
+  </core:Signature>
+  <core:Specification>
+    <graph id="a1f1128d-5f96-49a0-a4a5-ce04a4d7f320">
+      <nodes id="c9abfd6f-7c19-4271-ac79-3b65d9967981" name="Task" outgoings="/2/@graph/@arrows.0 /2/@graph/@arrows.1" incomings="/2/@graph/@arrows.0"/>
+      <nodes id="7afe4781-682f-420e-a364-842be208a222" name="Att" incomings="/2/@graph/@arrows.1"/>
+      <arrows id="8fda2139-971b-46d6-8110-0616099e1726" name="Flow" source="/2/@graph/@nodes.0" target="/2/@graph/@nodes.0"/>
+      <arrows id="0dc6fb13-6de1-446c-b9e0-114f0f3f3e05" name="att" source="/2/@graph/@nodes.0" target="/2/@graph/@nodes.1"/>
+    </graph>
+  </core:Specification>
+</xmi:XMI>

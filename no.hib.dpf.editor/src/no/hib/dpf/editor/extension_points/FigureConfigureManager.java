@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 public class FigureConfigureManager {
@@ -22,22 +23,14 @@ public class FigureConfigureManager {
 	public static final String PAINT_ATT = "paint";
 	public static final String NAME_ATT = "name";
 
-	public static FigureConfigureManager INSTANCE = null;
 
-	Map<String, IConfigurationElement> nodeMap = null, arrowMap = null;
-	String[] nodeNames = null, arrowNames = null;
+	static Map<String, IConfigurationElement> nodeMap = new HashMap<String, IConfigurationElement>(), arrowMap = new HashMap<String, IConfigurationElement>();
+	static String[] nodeNames = null, arrowNames = null;
 
-	public FigureConfigureManager(){
-		nodeMap = new HashMap<String, IConfigurationElement>();
-		arrowMap = new HashMap<String, IConfigurationElement>();
+	static{
 		initConfigures();
 	}
 
-	public static FigureConfigureManager getInstance(){
-		if(INSTANCE == null)
-			INSTANCE = new FigureConfigureManager();
-		return INSTANCE;
-	}
 
 	public static String getName(IConfigurationElement element){
 		return element != null ? element.getAttribute(NAME_ATT) : "";
@@ -51,15 +44,15 @@ public class FigureConfigureManager {
 		return arrowMap.values();
 	}
 
-	public String[] getNodeNames(){
+	public static String[] getNodeNames(){
 		return getConfigurationNames(true);
 	}
 
-	public String[] getArrowNames(){
+	public static String[] getArrowNames(){
 		return getConfigurationNames(false);
 	}
 
-	private String[] getConfigurationNames(boolean node){
+	private static String[] getConfigurationNames(boolean node){
 		String[] names = node ? nodeNames : arrowNames;
 		if(names == null){
 			Map<String, IConfigurationElement> map = node ? nodeMap : arrowMap;
@@ -71,7 +64,7 @@ public class FigureConfigureManager {
 		return names;
 	}
 
-	private void initConfigures(){
+	private static void initConfigures(){
 		//get all the extensions for figureconfigure
 		IExtension[] extensions = Platform.getExtensionRegistry().getExtensionPoint(PLUGIN_ID, EXTENSION_POINT_ID) .getExtensions();
 		for (int i = 0; i < extensions.length; i++) {
@@ -85,18 +78,26 @@ public class FigureConfigureManager {
 			}
 		}
 	}
+	private static Map<String, ImageDescriptor> imageDesMap = new HashMap<String, ImageDescriptor>();
 
+	private static Map<String, Image> imageMaps = new HashMap<String, Image>();;
+	
 	private static ImageDescriptor getImageDescriptor(IConfigurationElement configElement, String att) {
+		if(configElement == null) return null;
 		String iconName = configElement.getAttribute(att);
 		if (iconName == null)
 			return null;
+		ImageDescriptor imageDescriptor = imageDesMap.get(iconName);
+		if(imageDescriptor != null)
+			return imageDescriptor;
 		IExtension extension = configElement.getDeclaringExtension();
 		String extendingPluginId = extension.getNamespaceIdentifier();
-		ImageDescriptor imageDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin(extendingPluginId, iconName);
+		imageDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin(extendingPluginId, iconName);
+		imageDesMap.put(iconName, imageDescriptor);
 		return imageDescriptor;
 	}
 
-	public IConfigurationElement getConfigurationElement(String name) {
+	public static IConfigurationElement getConfigurationElement(String name) {
 		if(name == null || name.isEmpty())
 			return null;
 		if(nodeMap.containsKey(name))
@@ -112,5 +113,17 @@ public class FigureConfigureManager {
 
 	public static ImageDescriptor getLargeIcon(IConfigurationElement configElement) {
 		return getImageDescriptor(configElement, LARGEICON_ATT);
+	}
+
+	public static Image getIcon(String name) {
+		Image result = imageMaps.get(name);
+		if(result != null) return result;
+		ImageDescriptor descriptor = getImageDescriptor(getConfigurationElement(name), SMALLICON_ATT);
+		if(descriptor != null){
+			result = descriptor.createImage();
+			result = new Image(result.getDevice(), result.getImageData().scaledTo(result.getBounds().width/2, result.getBounds().height/2));
+			imageMaps.put(name, result);
+		}
+		return result;
 	}
 }

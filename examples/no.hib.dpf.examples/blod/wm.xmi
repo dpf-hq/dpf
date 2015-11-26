@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core" signatureFile="wm.sig">
+  <graph>
+    <nodes id="4282ad3b-6663-47b5-9a26-80f0c4248ec5" name="Task" outgoings="0e2df415-99cc-4bf7-8a9b-8e5657c0076a 09816f1d-ca1a-491c-a454-57749fa9927e e498b01d-a3a6-4b32-96d7-35b88d5b0a10" incomings="0e2df415-99cc-4bf7-8a9b-8e5657c0076a 590c69a5-e159-4f50-9bde-5e653f69f673 34bcb5d1-6149-4e1d-a3b3-82a0a40b5dde" constraints="d0c7966a-b17a-429f-b9a7-074f45148493"/>
+    <nodes id="9224868b-4e20-4752-aab6-dc9d806481a4" name="ExceptionTask" outgoings="590c69a5-e159-4f50-9bde-5e653f69f673" incomings="09816f1d-ca1a-491c-a454-57749fa9927e"/>
+    <nodes id="a81c2b12-c407-4a93-977f-fe5f6d912450" name="InitTask" outgoings="34bcb5d1-6149-4e1d-a3b3-82a0a40b5dde" constraints="d0c7966a-b17a-429f-b9a7-074f45148493"/>
+    <nodes id="17711b04-081e-4265-90a5-685576b88112" name="FinishTask" incomings="e498b01d-a3a6-4b32-96d7-35b88d5b0a10"/>
+    <arrows id="0e2df415-99cc-4bf7-8a9b-8e5657c0076a" name="Flow" source="4282ad3b-6663-47b5-9a26-80f0c4248ec5" target="4282ad3b-6663-47b5-9a26-80f0c4248ec5" constraints="d0c7966a-b17a-429f-b9a7-074f45148493"/>
+    <arrows id="09816f1d-ca1a-491c-a454-57749fa9927e" name="exception" source="4282ad3b-6663-47b5-9a26-80f0c4248ec5" target="9224868b-4e20-4752-aab6-dc9d806481a4"/>
+    <arrows id="590c69a5-e159-4f50-9bde-5e653f69f673" name="recovery" source="9224868b-4e20-4752-aab6-dc9d806481a4" target="4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
+    <arrows id="34bcb5d1-6149-4e1d-a3b3-82a0a40b5dde" name="start" source="a81c2b12-c407-4a93-977f-fe5f6d912450" target="4282ad3b-6663-47b5-9a26-80f0c4248ec5" constraints="d0c7966a-b17a-429f-b9a7-074f45148493"/>
+    <arrows id="e498b01d-a3a6-4b32-96d7-35b88d5b0a10" name="end" source="4282ad3b-6663-47b5-9a26-80f0c4248ec5" target="17711b04-081e-4265-90a5-685576b88112"/>
+  </graph>
+  <constraints id="d0c7966a-b17a-429f-b9a7-074f45148493" nodes="a81c2b12-c407-4a93-977f-fe5f6d912450 4282ad3b-6663-47b5-9a26-80f0c4248ec5" arrows="34bcb5d1-6149-4e1d-a3b3-82a0a40b5dde 0e2df415-99cc-4bf7-8a9b-8e5657c0076a">
+    <predicate href="platform:/resource/DefaultSpecification.xmi#p-joint-surjective"/>
+    <mappings>
+      <nodeMapping value="a81c2b12-c407-4a93-977f-fe5f6d912450">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-joint-surjective-node-1"/>
+      </nodeMapping>
+      <nodeMapping value="4282ad3b-6663-47b5-9a26-80f0c4248ec5">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-joint-surjective-node-2"/>
+      </nodeMapping>
+      <nodeMapping value="4282ad3b-6663-47b5-9a26-80f0c4248ec5">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-joint-surjective-node-0"/>
+      </nodeMapping>
+      <arrowMapping value="34bcb5d1-6149-4e1d-a3b3-82a0a40b5dde">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-joint-surjective-edge-0"/>
+      </arrowMapping>
+      <arrowMapping value="0e2df415-99cc-4bf7-8a9b-8e5657c0076a">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-joint-surjective-edge-1"/>
+      </arrowMapping>
+    </mappings>
+  </constraints>
+</core:Specification>

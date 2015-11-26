@@ -20,6 +20,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
 import no.hib.dpf.core.Arrow;
@@ -28,9 +31,6 @@ import no.hib.dpf.core.CoreFactory;
 import no.hib.dpf.core.Graph;
 import no.hib.dpf.core.Node;
 import no.hib.dpf.core.Predicate;
-
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->

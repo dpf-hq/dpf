@@ -11,20 +11,21 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import no.hib.dpf.core.provider.ArrowItemProvider;
 import no.hib.dpf.diagram.DArrow;
 import no.hib.dpf.diagram.DiagramFactory;
 import no.hib.dpf.diagram.DiagramPackage;
 import no.hib.dpf.editor.extension_points.FigureConfigureManager;
 import no.hib.dpf.utils.DPFConstants;
-
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link no.hib.dpf.diagram.DArrow} object.
@@ -119,6 +120,28 @@ public class DArrowItemProvider
 				 null));
 	}
 
+	class X extends ItemPropertyDescriptor{
+
+		public X(AdapterFactory adapterFactory, ResourceLocator resourceLocator, String displayName, String description,
+				EStructuralFeature feature, boolean isSettable, boolean multiLine, boolean sortChoices,
+				Object staticImage, String category, String[] filterFlags) {
+			super(adapterFactory, resourceLocator, displayName, description, feature, isSettable, multiLine, sortChoices,
+					staticImage, category, filterFlags);
+			itemDelegator = new ItemDelegator(adapterFactory, resourceLocator){
+				public Object getImage(Object object)
+				{
+					String configure = getText(object);
+					return FigureConfigureManager.getIcon(configure);
+				}
+			};
+		}
+		@Override
+		public Collection<?> getChoiceOfValues(Object object)
+		{
+			return Arrays.asList(FigureConfigureManager.getArrowNames());
+		}
+
+	}
 	/**
 	 * This adds a property descriptor for the Configure String feature.
 	 * <!-- begin-user-doc -->
@@ -126,7 +149,7 @@ public class DArrowItemProvider
 	 * @generated NOT
 	 */
 	protected void addConfigureStringPropertyDescriptor(Object object) {
-		ItemPropertyDescriptor current = new ItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+		ItemPropertyDescriptor current = new X(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
 				getString("_UI_DArrow_configureString_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_DArrow_configureString_feature", "_UI_DArrow_type"),
@@ -135,14 +158,8 @@ public class DArrowItemProvider
 				false,
 				false,
 				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				DPFConstants.DARROW_CATEGORY,
-				null){
-			@Override
-			public Collection<?> getChoiceOfValues(Object object)
-			{
-				return Arrays.asList(FigureConfigureManager.getInstance().getArrowNames());
-			}
-		};
+				null,
+				null);
 		itemPropertyDescriptors.add(current);
 	}
 

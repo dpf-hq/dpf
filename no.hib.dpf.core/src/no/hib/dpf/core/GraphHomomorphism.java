@@ -15,6 +15,8 @@
  */
 package no.hib.dpf.core;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
@@ -77,6 +79,6 @@ public interface GraphHomomorphism extends EObject {
 	 * @model nodesMany="true" edgesMany="true"
 	 * @generated NOT
 	 */
-	GraphHomomorphism createGraphHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> edges);
+	public List<GraphHomomorphism> createGraphHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> edges, boolean test);
 
 } // GraphHomomorphism

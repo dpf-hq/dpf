@@ -190,7 +190,7 @@ public abstract class ModelElement implements IPropertySource, Serializable {
 	public void setPropertyValue(Object id, Object value) {
 		if(id.equals(PROP_CONFIGURE)){
 			Integer index = (Integer) value;
-			IConfigurationElement newConfigure = index.intValue() == 0 ? null : FigureConfigureManager.getInstance().getConfigurationElement(getConfigureLabels()[index]);
+			IConfigurationElement newConfigure = index.intValue() == 0 ? null : FigureConfigureManager.getConfigurationElement(getConfigureLabels()[index]);
 			if(configure != newConfigure){
 				IConfigurationElement old = configure;
 				configure = newConfigure;
@@ -201,8 +201,7 @@ public abstract class ModelElement implements IPropertySource, Serializable {
 	}
 
 	public void loadConfigure(){
-		if(configurationName != null && !configurationName.isEmpty())
-			configure = FigureConfigureManager.getInstance().getConfigurationElement(configurationName);
+		configure = FigureConfigureManager.getConfigurationElement(configurationName);
 	}
 	/**
 	 * May or may not create a new DPF Graph element. Only valid for those elements

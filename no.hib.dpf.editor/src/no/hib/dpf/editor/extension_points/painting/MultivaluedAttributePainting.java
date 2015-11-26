@@ -1,27 +1,20 @@
 package no.hib.dpf.editor.extension_points.painting;
 
-import java.util.List;
-
-import no.hib.dpf.editor.extension_points.INodePainting;
-import no.hib.dpf.editor.extension_points.border.BasicBorder;
-import no.hib.dpf.editor.extension_points.border.BasicNodeFigure;
-import no.hib.dpf.editor.figures.EditableLabel;
-import no.hib.dpf.editor.figures.NodeFigure;
-
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.EllipseAnchor;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 
+import no.hib.dpf.editor.extension_points.INodePainting;
+import no.hib.dpf.editor.extension_points.border.BasicBorder;
+import no.hib.dpf.editor.figures.EditableLabel;
+import no.hib.dpf.editor.figures.NodeFigure;
+
 public class MultivaluedAttributePainting implements INodePainting {
 
-	private class MultivaluedAttributeFigure extends BasicNodeFigure{
+	private class MultivaluedAttributeFigure extends NodeFigure{
 		public MultivaluedAttributeFigure(EditableLabel name) {
-			this(name, null);
-		}
-		@SuppressWarnings("rawtypes")
-		public MultivaluedAttributeFigure(EditableLabel name, List colums) {
-			super(name, colums);
+			super(name);
 			setBorder(new MultivaluedAttributeBorder());
 		}
 	}

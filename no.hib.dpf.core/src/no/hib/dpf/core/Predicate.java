@@ -15,6 +15,8 @@
  */
 package no.hib.dpf.core;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -145,9 +147,9 @@ public interface Predicate extends IDObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model nodesMany="true" arrowsMany="true"
-	 * @generated
+	 * @generated NOT
 	 */
-	Constraint createConstraint(EList<Node> nodes, EList<Arrow> arrows);
+	Constraint createConstraint(GraphHomomorphism graphHomomorphism);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,7 +157,7 @@ public interface Predicate extends IDObject {
 	 * @model nodesMany="true" arrowsMany="true"
 	 * @generated
 	 */
-	boolean canCreateConstraint(EList<Node> nodes, EList<Arrow> arrows, Graph modelToBeConstrained);
+	boolean canCreateConstraint(EList<Node> nodes, EList<Arrow> arrows);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -168,9 +170,12 @@ public interface Predicate extends IDObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param b 
 	 * @model constraintParametersMany="true" stuckedNodesMany="true" stuckedArrowsMany="true"
 	 * @generated NOT
 	 */
-	GraphHomomorphism createGraphHomomorphism(EList<Node> nodes, EList<Arrow> arrows);
+	List<GraphHomomorphism> createGraphHomomorphism(EList<Node> nodes, EList<Arrow> arrows, boolean b);
+
+	Constraint createConstraint(EList<Node> nodes, EList<Arrow> arrows);
 
 } // Predicate

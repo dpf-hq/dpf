@@ -299,9 +299,7 @@ public class PredicateImpl extends IDObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Constraint createConstraint(EList<Node> nodes, EList<Arrow> arrows) {
-		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
-		graphHomomorphism.createGraphHomomorphism(getShape(), nodes, arrows);
+	public Constraint createConstraint(GraphHomomorphism graphHomomorphism) {
 		return constructConstraint(graphHomomorphism);
 	}
 
@@ -310,9 +308,9 @@ public class PredicateImpl extends IDObjectImpl implements Predicate {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean canCreateConstraint(EList<Node> nodes, EList<Arrow> arrows, Graph modelToBeConstrained) {
+	public boolean canCreateConstraint(EList<Node> nodes, EList<Arrow> arrows) {
 		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
-		return graphHomomorphism.createGraphHomomorphism(getShape(), nodes, arrows) != null;
+		return graphHomomorphism.createGraphHomomorphism(getShape(), nodes, arrows, true) != null;
 	}
 	private void intialize(GraphHomomorphism mapping, EList<Node> nodes, EList<Arrow> arrows,
 			Map<Node, List<Node>> nodeMap, Map<Arrow, List<Arrow>> arrowMap) {
@@ -687,13 +685,21 @@ public class PredicateImpl extends IDObjectImpl implements Predicate {
 	}
 
 	@Override
-	public GraphHomomorphism createGraphHomomorphism(EList<Node> nodes, EList<Arrow> arrows) {
+	public List<GraphHomomorphism> createGraphHomomorphism(EList<Node> nodes, EList<Arrow> arrows, boolean test) {
 		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
-		return graphHomomorphism.createGraphHomomorphism(getShape(), nodes, arrows);
+		return graphHomomorphism.createGraphHomomorphism(getShape(), nodes, arrows, test);
 	}
 	
 	public NotificationChain eBasicSetContainer(InternalEObject newContainer, int newContainerFeatureID, NotificationChain msgs){
 		return super.eBasicSetContainer(newContainer, newContainerFeatureID, msgs);
+	}
+
+	@Override
+	public Constraint createConstraint(EList<Node> nodes, EList<Arrow> arrows) {
+		List<GraphHomomorphism> morphims = createGraphHomomorphism(nodes, arrows, true);
+		if(morphims != null)
+			return createConstraint(morphims.get(0));
+		return null;
 	}
 
 } //PredicateImpl

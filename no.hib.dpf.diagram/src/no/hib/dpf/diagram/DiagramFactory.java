@@ -262,4 +262,6 @@ public interface DiagramFactory extends EFactory {
 
 	DOffset createDefaultDOffset();
 
+	DOffset createDOffset(DOffset nameOffset);
+
 } //DiagramFactory

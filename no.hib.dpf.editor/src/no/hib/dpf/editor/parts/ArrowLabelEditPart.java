@@ -37,20 +37,7 @@ package no.hib.dpf.editor.parts;
  OF SUCH DAMAGE. 
  */
 
-
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DOffset;
-import no.hib.dpf.diagram.DiagramPackage;
-import no.hib.dpf.editor.figures.ArrowLabelLocator;
-import no.hib.dpf.editor.figures.TextCellEditorLocator;
-import no.hib.dpf.editor.policies.ArrowLabelMovePolicy;
-import no.hib.dpf.editor.policies.NameDirectEditPolicy;
-import no.hib.dpf.editor.preferences.DPFEditorPreferences;
-import no.hib.dpf.editor.tracker.ArrowTextTracker;
-
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.DragTracker;
@@ -61,7 +48,19 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.jface.viewers.TextCellEditor;
 
-public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DOffset;
+import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.editor.figures.ArrowLabelLocator;
+import no.hib.dpf.editor.figures.EditableLabel;
+import no.hib.dpf.editor.figures.TextCellEditorLocator;
+import no.hib.dpf.editor.policies.ArrowLabelMovePolicy;
+import no.hib.dpf.editor.policies.NameDirectEditPolicy;
+import no.hib.dpf.editor.preferences.DPFEditorPreferences;
+import no.hib.dpf.editor.tracker.ArrowTextTracker;
+
+public class ArrowLabelEditPart extends GraphicalEditPartWithListener {
 
 	DirectEditManager manager = null;
 
@@ -71,51 +70,55 @@ public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 	}
 
 	public IFigure createFigure() {
-		Label label = new Label();
+		EditableLabel label = new EditableLabel("");
 		label.setOpaque(true);
 		return label;
 	}
-	public DArrow getDArrow(){
+
+	public DArrow getDArrow() {
 		EditPart parent = getParent();
-		if(parent instanceof DArrowEditPart){
-			return ((DArrowEditPart)parent).getDArrow();
+		if (parent instanceof DArrowEditPart) {
+			return ((DArrowEditPart) parent).getDArrow();
 		}
 		return null;
 	}
-	
+
 	public DArrowEditPart getDArrowEditPart() {
 		return (DArrowEditPart) getParent();
 	}
 
-	public DOffset getDOffset(){
+	public DOffset getDOffset() {
 		return (DOffset) getModel();
 	}
 
 	public DragTracker getDragTracker(Request request) {
-		return new ArrowTextTracker(this, (DArrowEditPart)getParent());
+		return new ArrowTextTracker(this, (DArrowEditPart) getParent());
 	}
-	
+
 	protected String getFullName() {
 		DArrow darrow = getDArrow();
-		if(darrow == null)
+		if (darrow == null)
 			return "";
 		String result = darrow.getArrow().getName();
-		if(result == null) result = "";
+		if (result == null)
+			result = "";
 		Arrow type = darrow.getArrow().getTypeArrow();
 		if (DPFEditorPreferences.getDefault().getDisplayTypeNames() && type != null && type.getName() != null)
 			result += " : " + type.getName();
 		return result;
 	}
-	
-	public Label getLabel() { return (Label)getFigure(); }
 
-	protected Point getOffset(){
+	public EditableLabel getLabel() {
+		return (EditableLabel) getFigure();
+	}
+
+	protected Point getOffset() {
 		return getDOffset().getOffset();
 	}
 
-	protected void handleDiagramModelChanged(Notification msg){
-		if(msg.getNotifier() != null && msg.getNotifier() == getDOffset()){ 
-			switch(msg.getFeatureID(DOffset.class)){
+	protected void handleDiagramModelChanged(Notification msg) {
+		if (msg.getNotifier() != null && msg.getNotifier() == getDOffset()) {
+			switch (msg.getFeatureID(DOffset.class)) {
 			case DiagramPackage.DOFFSET__OFFSET:
 			case DiagramPackage.DOFFSET__INDEX:
 			case DiagramPackage.DOFFSET__LEN:
@@ -124,15 +127,17 @@ public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 				break;
 			}
 		}
-	}	
-	protected void listen(){
+	}
+
+	protected void listen() {
 		addUIAdapter(getDOffset(), diagrammodelListener);
 		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(propertyListener);
 	}
 
 	private void performDirectEdit() {
 		if (manager == null) {
-			manager = new TextDirectEditManager(this, TextCellEditor.class, new TextCellEditorLocator((Label) getFigure()));
+			manager = new TextDirectEditManager(this, TextCellEditor.class,
+					new TextCellEditorLocator((EditableLabel) getFigure()));
 		}
 		manager.show();
 	}
@@ -144,25 +149,26 @@ public class ArrowLabelEditPart extends GraphicalEditPartWithListener{
 	}
 
 	ArrowLabelLocator locator = null;
+
 	@Override
 	protected void refreshVisuals() {
 		String arrowName = getFullName();
-		Label figure = getLabel();
+		EditableLabel figure = getLabel();
 		figure.setText(arrowName);
 		figure.setVisible(DPFEditorPreferences.getDefault().getDisplayArrows());
 		DArrowEditPart parent = (DArrowEditPart) getParent();
-		if(locator == null){
+		if (locator == null) {
 			locator = new ArrowLabelLocator(arrowName, getDOffset(), parent);
 			parent.getFigure().getLayoutManager().setConstraint(figure, locator);
 			figure.revalidate();
-		}else{
+		} else {
 			locator.setName(arrowName);
 		}
 	}
-	protected void unlisten(){
+
+	protected void unlisten() {
 		DPFEditorPreferences.getDefault().getPreferenceStore().removePropertyChangeListener(propertyListener);
 		removeUIAdapter(getDOffset(), diagrammodelListener);
 	}
-	
-	
+
 }

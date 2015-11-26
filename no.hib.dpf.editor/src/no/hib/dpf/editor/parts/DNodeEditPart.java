@@ -83,10 +83,15 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 	}
 
 	public ConnectionAnchor createConnectionAnchor(ConnectionEditPart connection, boolean b, DNodeEditPart owner){
-		ConnectionAnchor anchor = owner.createAnchorUseConfigure();
-		if(anchor != null)
-			return anchor;
-		return getConnectionAnchor(connection, b);
+		ConnectionAnchor anchor = null;
+		anchor = createAnchorUseConfigure();
+		if(anchor == null)
+			anchor = new ChopboxAnchor(getFigure());
+		return anchor;
+//		ConnectionAnchor anchor = owner.createAnchorUseConfigure();
+//		if(anchor != null)
+//			return anchor;
+//		return getConnectionAnchor(connection, b);
 	}
 
 	protected void createEditPolicies() {
@@ -99,10 +104,15 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 	}
 
 	protected IFigure createFigure() {
-		if(getNodePaint() != null)
-			return nodePaint.createNodeFigure();
-		IFigure figure = new NodeFigure(new EditableLabel(getNodeLabelName()));
-		return figure;
+		NodeFigure result = null;
+		if(getNodePaint() != null){
+			result = nodePaint.createNodeFigure();
+			result.isStandard = false;
+		}
+		else
+			result = new NodeFigure(new EditableLabel(getNodeLabelName()));
+		result.backgroundColor = result.getBackgroundColor();
+		return result;
 	}
 
 	private DNodeEditPart getAnchorOwner(ConnectionEditPart connection, boolean source){
@@ -111,6 +121,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		return (DNodeEditPart) connection.getTarget();
 	}
 
+	@SuppressWarnings("unused")
 	private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection, boolean isSourceAnchor) {
 		NodeEditPart oppositeEnd = getOppositeEnd(connection, isSourceAnchor);
 		List<ConnectionAnchor> previousAnchorList;
@@ -209,11 +220,12 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		if(nodePaint == null)
 			try {
 				String name = null;
-				if(getDNode() instanceof DNode && (getDNode() instanceof DFakeNode))
-					name = getDNode().getDType().getConfigureString();
+				DNode node = getDNode();
+				if(node instanceof DNode && !(node instanceof DFakeNode))
+					name = node.getDType().getConfigureString();
 				if(name == null || name.isEmpty())
 					return null;
-				IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(name);
+				IConfigurationElement configure = FigureConfigureManager.getConfigurationElement(name);
 				if(configure != null)
 					nodePaint = (INodePainting) configure.createExecutableExtension(FigureConfigureManager.PAINT_ATT);
 			} catch (CoreException e) {
@@ -314,7 +326,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 		}
 		super.performRequest(req);
 	}
-	private void refreshLabel() {
+	protected void refreshLabel() {
 		NodeFigure tableFigure = (NodeFigure) getFigure();
 		EditableLabel label = tableFigure.getNameLabel();
 		label.setText(getNodeLabelName());
@@ -322,7 +334,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements Node
 	}
 	public void refreshVisuals() {
 		NodeFigure figure = (NodeFigure)getFigure();
-		figure.setBackgroundColor(DPFEditorPreferences.getDefault().getNodeBackgroundColor());
+		figure.setBackgroundColor(figure.backgroundColor);
 		DPFEditor editor = getEditor();
 		if(editor != null){
 			figure.setErrorFlag(editor.isMakerExisting(getDNode().getNode()));

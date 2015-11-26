@@ -532,7 +532,6 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 								Command command = ((CreateConstraintToolEntry)object).getCommand();
 								if(command != null && command.canExecute()){
 									getCommandStack().execute(command);
-									((CreateConstraintToolEntry)object).setGraphHomorphism(null);
 								}
 								if(object != getPaletteRoot().getDefaultEntry()){
 									source.getEditDomain().loadDefaultTool();
@@ -559,7 +558,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 		paletteFactory.updatePalette(getPaletteRoot(), dSpecification.getDType().getDGraph());
 		paletteFactory.updatePalette(dSpecification);
+		paletteFactory.setShell(getSite().getShell());
 		shapesEditPartFactory = new DPFEditPartFactory();
+		
 	}
 
 	@Override

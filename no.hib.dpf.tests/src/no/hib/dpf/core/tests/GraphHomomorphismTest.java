@@ -141,8 +141,9 @@ public class GraphHomomorphismTest extends TestCase {
 	 */
 	private void doTestReturnedMappings(List<Graph> graphs, String[] nodeNames, String[] edgeNames, boolean expectedResult) {
 		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
-		graphHomomorphism = graphHomomorphism.createGraphHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getArrows());
-		assertNotNull(graphHomomorphism);
+		List<GraphHomomorphism> result = graphHomomorphism.createGraphHomomorphism(graphs.get(0), graphs.get(1).getNodes(), graphs.get(1).getArrows(), true);
+		assertNotNull(result);
+		graphHomomorphism = result.get(0);
 		for (String nodes : nodeNames) {			
 			checkNodeMapping(graphs, nodes.split(":")[0], nodes.split(":")[1], graphHomomorphism);
 		}
@@ -284,8 +285,8 @@ public class GraphHomomorphismTest extends TestCase {
 	 */
 	private void testTryToCreateHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> edges, boolean expectedResult) {
 		GraphHomomorphism graphHomomorphism = CoreFactory.eINSTANCE.createGraphHomomorphism();
-		graphHomomorphism = graphHomomorphism.createGraphHomomorphism(sourceGraph, nodes, edges);
-		assertEquals(graphHomomorphism != null, expectedResult);
+		List<GraphHomomorphism> result = graphHomomorphism.createGraphHomomorphism(sourceGraph, nodes, edges, false);
+		assertEquals(result != null, expectedResult);
 	}
 
 

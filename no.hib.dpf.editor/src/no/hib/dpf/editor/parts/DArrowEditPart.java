@@ -20,24 +20,6 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.CorePackage;
-import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DArrowLabelConstraint;
-import no.hib.dpf.diagram.DConstraint;
-import no.hib.dpf.diagram.DOffset;
-import no.hib.dpf.diagram.DiagramPackage;
-import no.hib.dpf.editor.DPFUtils;
-import no.hib.dpf.editor.commands.DArrowDeleteCommand;
-import no.hib.dpf.editor.extension_points.FigureConfigureManager;
-import no.hib.dpf.editor.extension_points.IArrowPainting;
-import no.hib.dpf.editor.figures.ArrowConnection;
-import no.hib.dpf.editor.figures.ConstraintAnchor;
-import no.hib.dpf.editor.figures.Draw2dUtil;
-import no.hib.dpf.editor.figures.OpenArrowDecoration;
-import no.hib.dpf.editor.policies.ArrowBendpointEditPolicy;
-import no.hib.dpf.editor.preferences.DPFEditorPreferences;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.draw2d.AbsoluteBendpoint;
@@ -64,6 +46,23 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
+
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.CorePackage;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DArrowLabelConstraint;
+import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DOffset;
+import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.editor.commands.DArrowDeleteCommand;
+import no.hib.dpf.editor.extension_points.FigureConfigureManager;
+import no.hib.dpf.editor.extension_points.IArrowPainting;
+import no.hib.dpf.editor.figures.ArrowConnection;
+import no.hib.dpf.editor.figures.ConstraintAnchor;
+import no.hib.dpf.editor.figures.Draw2dUtil;
+import no.hib.dpf.editor.figures.OpenArrowDecoration;
+import no.hib.dpf.editor.policies.ArrowBendpointEditPolicy;
 
 
 /**
@@ -94,15 +93,17 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 	}
 
 	protected IFigure createFigure() {
-		if(getArrowPaint() != null)
+		if(getArrowPaint() != null){
 			connectionFigure = arrowPaint.createConnectionFigure();
-		else
-			createConnectionFigure();
-		connectionFigure.addRoutingListener(RoutingAnimator.getDefault());
-		if(arrowPaint != null)
 			connectionFigure.setTargetDecoration(arrowPaint.createTargetDecoration());
-		else
+			((ArrowConnection)connectionFigure).isStandard = false;
+		}
+		else{
+			createConnectionFigure();
 			setArrowHead(connectionFigure);
+		}
+		connectionFigure.addRoutingListener(RoutingAnimator.getDefault());
+		((ArrowConnection)connectionFigure).foreGroundColor = connectionFigure.getForegroundColor();
 		for(Object edit : getChildren())
 			if(edit instanceof AbstractGraphicalEditPart)
 				connectionFigure.add(((AbstractGraphicalEditPart)edit).getFigure());
@@ -115,7 +116,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 				String name = getDArrow().getDType().getConfigureString();
 				if(name == null || name.isEmpty())
 					return null;
-				IConfigurationElement configure = FigureConfigureManager.getInstance().getConfigurationElement(name);
+				IConfigurationElement configure = FigureConfigureManager.getConfigurationElement(name);
 				if(configure != null)
 					arrowPaint = (IArrowPainting) configure.createExecutableExtension(FigureConfigureManager.PAINT_ATT);
 			} catch (CoreException e) {
@@ -250,7 +251,8 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements NodeE
 		if(getEditor() != null && connectionFigure instanceof ArrowConnection)
 			((ArrowConnection)connectionFigure).setErrorFlag(getEditor().isMakerExisting(darrow.getArrow()));
 		refreshBendpoints();
-		getFigure().setForegroundColor(DPFEditorPreferences.getDefault().getArrowForegroundColor());
+		ArrowConnection arrowConnection = (ArrowConnection) getFigure();
+		arrowConnection.setForegroundColor(arrowConnection.foreGroundColor);
 	}
 
 	@Override

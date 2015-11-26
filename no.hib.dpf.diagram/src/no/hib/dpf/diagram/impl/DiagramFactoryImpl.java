@@ -684,4 +684,11 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	public DiagramPackage getDiagramPackage() {
 		return (DiagramPackage)getEPackage();
 	}
+
+	@Override
+	public DOffset createDOffset(DOffset nameOffset) {
+		DOffsetImpl dOffset = new DOffsetImpl(nameOffset.getOffset().getCopy(), nameOffset.getLen());
+		dOffset.setIndex(nameOffset.getIndex());
+		return dOffset;
+	}
 } //DiagramFactoryImpl

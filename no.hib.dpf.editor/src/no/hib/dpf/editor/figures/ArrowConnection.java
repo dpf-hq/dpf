@@ -19,12 +19,15 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 
 /**
  * Experimental class. Should draw a point or similar halfway out on the first line.
  */
 public class ArrowConnection extends PolylineConnection implements RoutableFigure {
 
+	public boolean isStandard = true;
+	
 	public ArrowConnection(){
 		super();
 		setForegroundColor(DPFEditorPreferences.getDefault().getArrowForegroundColor());
@@ -35,11 +38,13 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
 			@Override
 			public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
-				if (event.getProperty().equals(PreferenceConstants.P_ARROW_BGCOLOR))
+				if (isStandard && event.getProperty().equals(PreferenceConstants.P_ARROW_BGCOLOR))
 					setBackgroundColor(DPFEditorPreferences.getDefault().getArrowBackgroundColor());
 
-				if (event.getProperty().equals(PreferenceConstants.P_ARROW_FGCOLOR))
-					setForegroundColor(DPFEditorPreferences.getDefault().getArrowForegroundColor());
+				if (isStandard && event.getProperty().equals(PreferenceConstants.P_ARROW_FGCOLOR)){
+					foreGroundColor = DPFEditorPreferences.getDefault().getArrowForegroundColor();
+					setForegroundColor(foreGroundColor);
+				}
 			}
 		});
 
@@ -60,6 +65,7 @@ public class ArrowConnection extends PolylineConnection implements RoutableFigur
 	}
 
 	public boolean invalid = false;
+	public Color foreGroundColor = null;;
 	public void setErrorFlag(boolean bool) {
 		if(invalid != bool){
 			invalid = bool;

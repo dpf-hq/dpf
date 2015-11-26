@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://no.hib.dpf.core" xmlns:diagram="http://no.hib.dpf.diagram">
+  <diagram:DSpecification xmi:id="_KtFoQEvsEeW5VMlAwZI3CA" dType="_Ksa54EvsEeW5VMlAwZI3CA" gridVisible="false">
+    <dGraph xmi:id="_KtFoQUvsEeW5VMlAwZI3CA" dType="_Ksa54UvsEeW5VMlAwZI3CA">
+      <dNodes xmi:id="_KtFoQkvsEeW5VMlAwZI3CA" dType="_KscIBEvsEeW5VMlAwZI3CA" location="100 30" size="100 30">
+        <node href="workflow_instance.xmi#_Ks5bAEvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <graph href="workflow_instance.xmi#_Ks4z8UvsEeW5VMlAwZI3CA"/>
+    </dGraph>
+    <specification href="workflow_instance.xmi#_Ks4z8EvsEeW5VMlAwZI3CA"/>
+  </diagram:DSpecification>
+  <diagram:DSpecification xmi:id="_Ksa54EvsEeW5VMlAwZI3CA" dType="_KsfyZkvsEeW5VMlAwZI3CA" gridVisible="false" dSignature="_KsgZdEvsEeW5VMlAwZI3CA" metaFile="mm.dpf" signatureFile="AND_SPLIT_MERGE.sig">
+    <dGraph xmi:id="_Ksa54UvsEeW5VMlAwZI3CA" dType="_KsfyZ0vsEeW5VMlAwZI3CA">
+      <dNodes xmi:id="_Ksbg8EvsEeW5VMlAwZI3CA" dType="_KsfyaEvsEeW5VMlAwZI3CA" dOutgoings="_KscIBkvsEeW5VMlAwZI3CA _KscICEvsEeW5VMlAwZI3CA _KsdWKEvsEeW5VMlAwZI3CA" dConstraints="_Ksd9OkvsEeW5VMlAwZI3CA _KsfLUUvsEeW5VMlAwZI3CA" location="39 152" size="100 30">
+        <node href="workflow_instance.xmi#_KsRv8kvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_Ksbg8UvsEeW5VMlAwZI3CA" dType="_KsfyaEvsEeW5VMlAwZI3CA" dOutgoings="_KscICkvsEeW5VMlAwZI3CA _KsdWLEvsEeW5VMlAwZI3CA" dIncomings="_KscIBkvsEeW5VMlAwZI3CA" dConstraints="_Ksd9OkvsEeW5VMlAwZI3CA _Ksd9O0vsEeW5VMlAwZI3CA _KsfLVUvsEeW5VMlAwZI3CA" location="192 90" size="100 30">
+        <node href="workflow_instance.xmi#_KsSXAEvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_Ksbg8kvsEeW5VMlAwZI3CA" dType="_KsfyaEvsEeW5VMlAwZI3CA" dOutgoings="_KscvEUvsEeW5VMlAwZI3CA _KsdWKkvsEeW5VMlAwZI3CA" dIncomings="_KscICEvsEeW5VMlAwZI3CA" dConstraints="_Ksd9OkvsEeW5VMlAwZI3CA _Ksd9O0vsEeW5VMlAwZI3CA _KsfLU0vsEeW5VMlAwZI3CA" location="192 216" size="100 30">
+        <node href="workflow_instance.xmi#_KsSXAUvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_Ksbg80vsEeW5VMlAwZI3CA" dType="_KsfyaEvsEeW5VMlAwZI3CA" dOutgoings="_KscvE0vsEeW5VMlAwZI3CA _KscvFUvsEeW5VMlAwZI3CA _KsdWJUvsEeW5VMlAwZI3CA _KsdWLkvsEeW5VMlAwZI3CA" dIncomings="_KscICkvsEeW5VMlAwZI3CA _KscvEUvsEeW5VMlAwZI3CA" dConstraints="_Ksd9O0vsEeW5VMlAwZI3CA _KsekQEvsEeW5VMlAwZI3CA _KsekSEvsEeW5VMlAwZI3CA _KsfLV0vsEeW5VMlAwZI3CA" location="336 152" size="100 30">
+        <node href="workflow_instance.xmi#_KsSXAkvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_Ksbg9EvsEeW5VMlAwZI3CA" dType="_KsfyaEvsEeW5VMlAwZI3CA" dOutgoings="_KscvF0vsEeW5VMlAwZI3CA _KsdWMEvsEeW5VMlAwZI3CA" dIncomings="_KscvE0vsEeW5VMlAwZI3CA" dConstraints="_KsekQEvsEeW5VMlAwZI3CA _KsekQUvsEeW5VMlAwZI3CA _KsekQ0vsEeW5VMlAwZI3CA _KsfLWUvsEeW5VMlAwZI3CA" location="492 101" size="100 30">
+        <node href="workflow_instance.xmi#_KsSXA0vsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_Ksbg9UvsEeW5VMlAwZI3CA" dType="_KsfyaEvsEeW5VMlAwZI3CA" dOutgoings="_KscvGUvsEeW5VMlAwZI3CA _Ksd9MEvsEeW5VMlAwZI3CA" dIncomings="_KscvFUvsEeW5VMlAwZI3CA" dConstraints="_KsekQEvsEeW5VMlAwZI3CA _KsekQUvsEeW5VMlAwZI3CA _KsfLW0vsEeW5VMlAwZI3CA" location="492 264" size="100 30">
+        <node href="workflow_instance.xmi#_KsSXBEvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_Ksbg9kvsEeW5VMlAwZI3CA" dType="_KsfyaEvsEeW5VMlAwZI3CA" dOutgoings="_KscvG0vsEeW5VMlAwZI3CA _KscvHUvsEeW5VMlAwZI3CA _KsdWIUvsEeW5VMlAwZI3CA _KsdWI0vsEeW5VMlAwZI3CA _Ksd9MkvsEeW5VMlAwZI3CA" dIncomings="_KscvF0vsEeW5VMlAwZI3CA _KscvGUvsEeW5VMlAwZI3CA _KscvIUvsEeW5VMlAwZI3CA" dConstraints="_KsekQUvsEeW5VMlAwZI3CA _KsekQkvsEeW5VMlAwZI3CA _KsekQ0vsEeW5VMlAwZI3CA _KsekREvsEeW5VMlAwZI3CA _KsekRkvsEeW5VMlAwZI3CA _KsfLXUvsEeW5VMlAwZI3CA" location="660 152" size="100 30">
+        <node href="workflow_instance.xmi#_KsSXBUvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_KscIAEvsEeW5VMlAwZI3CA" dType="_KsfyaEvsEeW5VMlAwZI3CA" dOutgoings="_KscvIUvsEeW5VMlAwZI3CA _Ksd9NEvsEeW5VMlAwZI3CA" dIncomings="_KscvH0vsEeW5VMlAwZI3CA" dConstraints="_KsekQ0vsEeW5VMlAwZI3CA _KsfyYEvsEeW5VMlAwZI3CA" location="660 324" size="100 30">
+        <node href="workflow_instance.xmi#_KsS-EEvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_KscIAUvsEeW5VMlAwZI3CA" dType="_KsfyaEvsEeW5VMlAwZI3CA" dOutgoings="_Ksd9OEvsEeW5VMlAwZI3CA" dIncomings="_KscvG0vsEeW5VMlAwZI3CA" dConstraints="_KsekQkvsEeW5VMlAwZI3CA _KsfyZEvsEeW5VMlAwZI3CA" location="813 152" size="100 30">
+        <node href="workflow_instance.xmi#_KsS-EUvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_KscIAkvsEeW5VMlAwZI3CA" dType="_KsfyaEvsEeW5VMlAwZI3CA" dOutgoings="_KscvH0vsEeW5VMlAwZI3CA _Ksd9NkvsEeW5VMlAwZI3CA" dIncomings="_KscvHUvsEeW5VMlAwZI3CA" dConstraints="_KsekQkvsEeW5VMlAwZI3CA _KsfyYkvsEeW5VMlAwZI3CA" location="813 324" size="100 30">
+        <node href="workflow_instance.xmi#_KsS-EkvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_KscIA0vsEeW5VMlAwZI3CA" dType="_KsfyaUvsEeW5VMlAwZI3CA" dIncomings="_KsdWIUvsEeW5VMlAwZI3CA _KsdWJUvsEeW5VMlAwZI3CA" dConstraints="_KsekRkvsEeW5VMlAwZI3CA _KsekSEvsEeW5VMlAwZI3CA" location="813 61" size="100 30">
+        <node href="workflow_instance.xmi#_KsS-E0vsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_KscIBEvsEeW5VMlAwZI3CA" dType="_KsfyaUvsEeW5VMlAwZI3CA" dIncomings="_KsdWI0vsEeW5VMlAwZI3CA" dConstraints="_KsekREvsEeW5VMlAwZI3CA" location="660 61" size="100 30">
+        <node href="workflow_instance.xmi#_KsS-FEvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_KscIBUvsEeW5VMlAwZI3CA" dType="_KsfyaUvsEeW5VMlAwZI3CA" dIncomings="_KsdWKEvsEeW5VMlAwZI3CA _KsdWKkvsEeW5VMlAwZI3CA _KsdWLEvsEeW5VMlAwZI3CA _KsdWLkvsEeW5VMlAwZI3CA _KsdWMEvsEeW5VMlAwZI3CA _Ksd9MEvsEeW5VMlAwZI3CA _Ksd9MkvsEeW5VMlAwZI3CA _Ksd9NEvsEeW5VMlAwZI3CA _Ksd9NkvsEeW5VMlAwZI3CA _Ksd9OEvsEeW5VMlAwZI3CA" dConstraints="_KsfLUUvsEeW5VMlAwZI3CA _KsfLU0vsEeW5VMlAwZI3CA _KsfLVUvsEeW5VMlAwZI3CA _KsfLV0vsEeW5VMlAwZI3CA _KsfLWUvsEeW5VMlAwZI3CA _KsfLW0vsEeW5VMlAwZI3CA _KsfLXUvsEeW5VMlAwZI3CA _KsfyYEvsEeW5VMlAwZI3CA _KsfyYkvsEeW5VMlAwZI3CA _KsfyZEvsEeW5VMlAwZI3CA" location="209 360" size="100 30">
+        <node href="workflow_instance.xmi#_KsS-FUvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dArrows xmi:id="_KscIBkvsEeW5VMlAwZI3CA" constraintsFrom="_Ksd9OkvsEeW5VMlAwZI3CA" dType="_KsfyakvsEeW5VMlAwZI3CA" dSource="_Ksbg8EvsEeW5VMlAwZI3CA" dTarget="_Ksbg8UvsEeW5VMlAwZI3CA" dConstraints="_Ksd9OkvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsS-FkvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KscIB0vsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows xmi:id="_KscICEvsEeW5VMlAwZI3CA" constraintsTo="_Ksd9OkvsEeW5VMlAwZI3CA" dType="_KsfyakvsEeW5VMlAwZI3CA" dSource="_Ksbg8EvsEeW5VMlAwZI3CA" dTarget="_Ksbg8kvsEeW5VMlAwZI3CA" dConstraints="_Ksd9OkvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsS-F0vsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KscICUvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows xmi:id="_KscICkvsEeW5VMlAwZI3CA" constraintsTo="_Ksd9O0vsEeW5VMlAwZI3CA" dType="_KsfyakvsEeW5VMlAwZI3CA" dSource="_Ksbg8UvsEeW5VMlAwZI3CA" dTarget="_Ksbg80vsEeW5VMlAwZI3CA" dConstraints="_Ksd9O0vsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsS-GEvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KscvEEvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows xmi:id="_KscvEUvsEeW5VMlAwZI3CA" constraintsFrom="_Ksd9O0vsEeW5VMlAwZI3CA" dType="_KsfyakvsEeW5VMlAwZI3CA" dSource="_Ksbg8kvsEeW5VMlAwZI3CA" dTarget="_Ksbg80vsEeW5VMlAwZI3CA" dConstraints="_Ksd9O0vsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsTlIEvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KscvEkvsEeW5VMlAwZI3CA" offset="82 7" len="158"/>
+      </dArrows>
+      <dArrows xmi:id="_KscvE0vsEeW5VMlAwZI3CA" constraintsFrom="_KsekQEvsEeW5VMlAwZI3CA" dType="_KsfyakvsEeW5VMlAwZI3CA" dSource="_Ksbg80vsEeW5VMlAwZI3CA" dTarget="_Ksbg9EvsEeW5VMlAwZI3CA" dConstraints="_KsekQEvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsTlIUvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KscvFEvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows xmi:id="_KscvFUvsEeW5VMlAwZI3CA" constraintsTo="_KsekQEvsEeW5VMlAwZI3CA" dType="_KsfyakvsEeW5VMlAwZI3CA" dSource="_Ksbg80vsEeW5VMlAwZI3CA" dTarget="_Ksbg9UvsEeW5VMlAwZI3CA" dConstraints="_KsekQEvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsTlIkvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KscvFkvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows xmi:id="_KscvF0vsEeW5VMlAwZI3CA" constraintsFrom="_KsekQUvsEeW5VMlAwZI3CA" constraintsTo="_KsekQ0vsEeW5VMlAwZI3CA" dType="_KsfyakvsEeW5VMlAwZI3CA" dSource="_Ksbg9EvsEeW5VMlAwZI3CA" dTarget="_Ksbg9kvsEeW5VMlAwZI3CA" dConstraints="_KsekQUvsEeW5VMlAwZI3CA _KsekQ0vsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsTlI0vsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KscvGEvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows xmi:id="_KscvGUvsEeW5VMlAwZI3CA" constraintsTo="_KsekQUvsEeW5VMlAwZI3CA" dType="_KsfyakvsEeW5VMlAwZI3CA" dSource="_Ksbg9UvsEeW5VMlAwZI3CA" dTarget="_Ksbg9kvsEeW5VMlAwZI3CA" dConstraints="_KsekQUvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsTlJEvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KscvGkvsEeW5VMlAwZI3CA" offset="80 23" len="202"/>
+      </dArrows>
+      <dArrows xmi:id="_KscvG0vsEeW5VMlAwZI3CA" constraintsFrom="_KsekQkvsEeW5VMlAwZI3CA" dType="_KsfyakvsEeW5VMlAwZI3CA" dSource="_Ksbg9kvsEeW5VMlAwZI3CA" dTarget="_KscIAUvsEeW5VMlAwZI3CA" dConstraints="_KsekQkvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsTlJUvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KscvHEvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows xmi:id="_KscvHUvsEeW5VMlAwZI3CA" constraintsTo="_KsekQkvsEeW5VMlAwZI3CA" dType="_KsfyakvsEeW5VMlAwZI3CA" dSource="_Ksbg9kvsEeW5VMlAwZI3CA" dTarget="_KscIAkvsEeW5VMlAwZI3CA" dConstraints="_KsekQkvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsTlJkvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KscvHkvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows xmi:id="_KscvH0vsEeW5VMlAwZI3CA" dType="_KsfyakvsEeW5VMlAwZI3CA" dSource="_KscIAkvsEeW5VMlAwZI3CA" dTarget="_KscIAEvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsTlJ0vsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KscvIEvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows xmi:id="_KscvIUvsEeW5VMlAwZI3CA" constraintsFrom="_KsekQ0vsEeW5VMlAwZI3CA" dType="_KsfyakvsEeW5VMlAwZI3CA" dSource="_KscIAEvsEeW5VMlAwZI3CA" dTarget="_Ksbg9kvsEeW5VMlAwZI3CA" dConstraints="_KsekQ0vsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsTlKEvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KsdWIEvsEeW5VMlAwZI3CA" offset="66 1" len="172"/>
+      </dArrows>
+      <dArrows xmi:id="_KsdWIUvsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_Ksbg9kvsEeW5VMlAwZI3CA" dTarget="_KscIA0vsEeW5VMlAwZI3CA" dConstraints="_KsekRkvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsTlKUvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KsdWIkvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows xmi:id="_KsdWI0vsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_Ksbg9kvsEeW5VMlAwZI3CA" dTarget="_KscIBEvsEeW5VMlAwZI3CA" dConstraints="_KsekREvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsTlKkvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KsdWJEvsEeW5VMlAwZI3CA" offset="66 -15" len="91"/>
+      </dArrows>
+      <dArrows xmi:id="_KsdWJUvsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_Ksbg80vsEeW5VMlAwZI3CA" dTarget="_KscIA0vsEeW5VMlAwZI3CA" dConstraints="_KsekSEvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsTlK0vsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KsdWJkvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+        <bendpoints xmi:id="_KsdWJ0vsEeW5VMlAwZI3CA" offset="21 -109" len="485"/>
+      </dArrows>
+      <dArrows xmi:id="_KsdWKEvsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_Ksbg8EvsEeW5VMlAwZI3CA" dTarget="_KscIBUvsEeW5VMlAwZI3CA" dConstraints="_KsfLUUvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsUMMEvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KsdWKUvsEeW5VMlAwZI3CA" offset="125 29" len="259"/>
+      </dArrows>
+      <dArrows xmi:id="_KsdWKkvsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_Ksbg8kvsEeW5VMlAwZI3CA" dTarget="_KscIBUvsEeW5VMlAwZI3CA" dConstraints="_KsfLU0vsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsUMMUvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KsdWK0vsEeW5VMlAwZI3CA" offset="43 18" len="145"/>
+      </dArrows>
+      <dArrows xmi:id="_KsdWLEvsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_Ksbg8UvsEeW5VMlAwZI3CA" dTarget="_KscIBUvsEeW5VMlAwZI3CA" dConstraints="_KsfLVUvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsUMMkvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KsdWLUvsEeW5VMlAwZI3CA" offset="55 25" len="45" index="1"/>
+      </dArrows>
+      <dArrows xmi:id="_KsdWLkvsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_Ksbg80vsEeW5VMlAwZI3CA" dTarget="_KscIBUvsEeW5VMlAwZI3CA" dConstraints="_KsfLV0vsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsUMM0vsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KsdWL0vsEeW5VMlAwZI3CA" offset="-125 -11" len="-244"/>
+      </dArrows>
+      <dArrows xmi:id="_KsdWMEvsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_Ksbg9EvsEeW5VMlAwZI3CA" dTarget="_KscIBUvsEeW5VMlAwZI3CA" dConstraints="_KsfLWUvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsUMNEvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KsdWMUvsEeW5VMlAwZI3CA" offset="-198 -19" len="-384"/>
+      </dArrows>
+      <dArrows xmi:id="_Ksd9MEvsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_Ksbg9UvsEeW5VMlAwZI3CA" dTarget="_KscIBUvsEeW5VMlAwZI3CA" dConstraints="_KsfLW0vsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsUMNUvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_Ksd9MUvsEeW5VMlAwZI3CA" offset="-135 -10" len="-299"/>
+      </dArrows>
+      <dArrows xmi:id="_Ksd9MkvsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_Ksbg9kvsEeW5VMlAwZI3CA" dTarget="_KscIBUvsEeW5VMlAwZI3CA" dConstraints="_KsfLXUvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsUMNkvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_Ksd9M0vsEeW5VMlAwZI3CA" offset="-158 -12" len="-245"/>
+      </dArrows>
+      <dArrows xmi:id="_Ksd9NEvsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_KscIAEvsEeW5VMlAwZI3CA" dTarget="_KscIBUvsEeW5VMlAwZI3CA" dConstraints="_KsfyYEvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsUMN0vsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_Ksd9NUvsEeW5VMlAwZI3CA" offset="-181 -17" len="-453"/>
+      </dArrows>
+      <dArrows xmi:id="_Ksd9NkvsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_KscIAkvsEeW5VMlAwZI3CA" dTarget="_KscIBUvsEeW5VMlAwZI3CA" dConstraints="_KsfyYkvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsUMOEvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_Ksd9N0vsEeW5VMlAwZI3CA" offset="-215 -30" len="-98"/>
+      </dArrows>
+      <dArrows xmi:id="_Ksd9OEvsEeW5VMlAwZI3CA" dType="_KsgZckvsEeW5VMlAwZI3CA" dSource="_KscIAUvsEeW5VMlAwZI3CA" dTarget="_KscIBUvsEeW5VMlAwZI3CA" dConstraints="_KsfyZEvsEeW5VMlAwZI3CA">
+        <arrow href="workflow_instance.xmi#_KsUMOUvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_Ksd9OUvsEeW5VMlAwZI3CA" offset="-322 -9" len="-389"/>
+      </dArrows>
+      <graph href="workflow_instance.xmi#_KsRv8UvsEeW5VMlAwZI3CA"/>
+    </dGraph>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" xmi:id="_Ksd9OkvsEeW5VMlAwZI3CA" dNodes="_Ksbg8EvsEeW5VMlAwZI3CA _Ksbg8UvsEeW5VMlAwZI3CA _Ksbg8kvsEeW5VMlAwZI3CA" dArrows="_KscIBkvsEeW5VMlAwZI3CA _KscICEvsEeW5VMlAwZI3CA" dPredicate="_KsgZdUvsEeW5VMlAwZI3CA" source="_KscIBkvsEeW5VMlAwZI3CA" target="_KscICEvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.0"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" xmi:id="_Ksd9O0vsEeW5VMlAwZI3CA" dNodes="_Ksbg8UvsEeW5VMlAwZI3CA _Ksbg80vsEeW5VMlAwZI3CA _Ksbg8kvsEeW5VMlAwZI3CA" dArrows="_KscICkvsEeW5VMlAwZI3CA _KscvEUvsEeW5VMlAwZI3CA" dPredicate="_KshAgUvsEeW5VMlAwZI3CA" source="_KscvEUvsEeW5VMlAwZI3CA" target="_KscICkvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.1"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" xmi:id="_KsekQEvsEeW5VMlAwZI3CA" dNodes="_Ksbg80vsEeW5VMlAwZI3CA _Ksbg9EvsEeW5VMlAwZI3CA _Ksbg9UvsEeW5VMlAwZI3CA" dArrows="_KscvE0vsEeW5VMlAwZI3CA _KscvFUvsEeW5VMlAwZI3CA" dPredicate="_KshAi0vsEeW5VMlAwZI3CA" source="_KscvE0vsEeW5VMlAwZI3CA" target="_KscvFUvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.2"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" xmi:id="_KsekQUvsEeW5VMlAwZI3CA" dNodes="_Ksbg9EvsEeW5VMlAwZI3CA _Ksbg9kvsEeW5VMlAwZI3CA _Ksbg9UvsEeW5VMlAwZI3CA" dArrows="_KscvF0vsEeW5VMlAwZI3CA _KscvGUvsEeW5VMlAwZI3CA" dPredicate="_Kshnl0vsEeW5VMlAwZI3CA" source="_KscvF0vsEeW5VMlAwZI3CA" target="_KscvGUvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.3"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" xmi:id="_KsekQkvsEeW5VMlAwZI3CA" dNodes="_Ksbg9kvsEeW5VMlAwZI3CA _KscIAUvsEeW5VMlAwZI3CA _KscIAkvsEeW5VMlAwZI3CA" dArrows="_KscvG0vsEeW5VMlAwZI3CA _KscvHUvsEeW5VMlAwZI3CA" dPredicate="_KshAi0vsEeW5VMlAwZI3CA" source="_KscvG0vsEeW5VMlAwZI3CA" target="_KscvHUvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.4"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DGenericArrowConstraint" xmi:id="_KsekQ0vsEeW5VMlAwZI3CA" dNodes="_KscIAEvsEeW5VMlAwZI3CA _Ksbg9kvsEeW5VMlAwZI3CA _Ksbg9EvsEeW5VMlAwZI3CA" dArrows="_KscvIUvsEeW5VMlAwZI3CA _KscvF0vsEeW5VMlAwZI3CA" dPredicate="_KsiOokvsEeW5VMlAwZI3CA" source="_KscvIUvsEeW5VMlAwZI3CA" target="_KscvF0vsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.5"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsekREvsEeW5VMlAwZI3CA" dNodes="_Ksbg9kvsEeW5VMlAwZI3CA _KscIBEvsEeW5VMlAwZI3CA" dArrows="_KsdWI0vsEeW5VMlAwZI3CA" source="_KsdWI0vsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.6"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsekRUvsEeW5VMlAwZI3CA" offset="66 -80" len="91"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsekRkvsEeW5VMlAwZI3CA" dNodes="_Ksbg9kvsEeW5VMlAwZI3CA _KscIA0vsEeW5VMlAwZI3CA" dArrows="_KsdWIUvsEeW5VMlAwZI3CA" source="_KsdWIUvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.7"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsekR0vsEeW5VMlAwZI3CA" offset="85 -8" len="178"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsekSEvsEeW5VMlAwZI3CA" dNodes="_Ksbg80vsEeW5VMlAwZI3CA _KscIA0vsEeW5VMlAwZI3CA" dArrows="_KsdWJUvsEeW5VMlAwZI3CA" source="_KsdWJUvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.8"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsfLUEvsEeW5VMlAwZI3CA" offset="137 4" len="111"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsfLUUvsEeW5VMlAwZI3CA" dNodes="_Ksbg8EvsEeW5VMlAwZI3CA _KscIBUvsEeW5VMlAwZI3CA" dArrows="_KsdWKEvsEeW5VMlAwZI3CA" source="_KsdWKEvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.9"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsfLUkvsEeW5VMlAwZI3CA" offset="29 110" len="259"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsfLU0vsEeW5VMlAwZI3CA" dNodes="_Ksbg8kvsEeW5VMlAwZI3CA _KscIBUvsEeW5VMlAwZI3CA" dArrows="_KsdWKkvsEeW5VMlAwZI3CA" source="_KsdWKkvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.10"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsfLVEvsEeW5VMlAwZI3CA" offset="48 72" len="145"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsfLVUvsEeW5VMlAwZI3CA" dNodes="_Ksbg8UvsEeW5VMlAwZI3CA _KscIBUvsEeW5VMlAwZI3CA" dArrows="_KsdWLEvsEeW5VMlAwZI3CA" source="_KsdWLEvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.11"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsfLVkvsEeW5VMlAwZI3CA" offset="-54 0" len="108"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsfLV0vsEeW5VMlAwZI3CA" dNodes="_Ksbg80vsEeW5VMlAwZI3CA _KscIBUvsEeW5VMlAwZI3CA" dArrows="_KsdWLkvsEeW5VMlAwZI3CA" source="_KsdWLkvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.12"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsfLWEvsEeW5VMlAwZI3CA" offset="0 0"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsfLWUvsEeW5VMlAwZI3CA" dNodes="_Ksbg9EvsEeW5VMlAwZI3CA _KscIBUvsEeW5VMlAwZI3CA" dArrows="_KsdWMEvsEeW5VMlAwZI3CA" source="_KsdWMEvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.13"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsfLWkvsEeW5VMlAwZI3CA" offset="-194 -37" len="-384"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsfLW0vsEeW5VMlAwZI3CA" dNodes="_Ksbg9UvsEeW5VMlAwZI3CA _KscIBUvsEeW5VMlAwZI3CA" dArrows="_Ksd9MEvsEeW5VMlAwZI3CA" source="_Ksd9MEvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.14"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsfLXEvsEeW5VMlAwZI3CA" offset="0 0"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsfLXUvsEeW5VMlAwZI3CA" dNodes="_Ksbg9kvsEeW5VMlAwZI3CA _KscIBUvsEeW5VMlAwZI3CA" dArrows="_Ksd9MkvsEeW5VMlAwZI3CA" source="_Ksd9MkvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.15"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsfLXkvsEeW5VMlAwZI3CA" offset="0 0"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsfyYEvsEeW5VMlAwZI3CA" dNodes="_KscIAEvsEeW5VMlAwZI3CA _KscIBUvsEeW5VMlAwZI3CA" dArrows="_Ksd9NEvsEeW5VMlAwZI3CA" source="_Ksd9NEvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.16"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsfyYUvsEeW5VMlAwZI3CA" offset="0 0"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsfyYkvsEeW5VMlAwZI3CA" dNodes="_KscIAkvsEeW5VMlAwZI3CA _KscIBUvsEeW5VMlAwZI3CA" dArrows="_Ksd9NkvsEeW5VMlAwZI3CA" source="_Ksd9NkvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.17"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsfyY0vsEeW5VMlAwZI3CA" offset="0 0"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" xmi:id="_KsfyZEvsEeW5VMlAwZI3CA" dNodes="_KscIAUvsEeW5VMlAwZI3CA _KscIBUvsEeW5VMlAwZI3CA" dArrows="_Ksd9OEvsEeW5VMlAwZI3CA" source="_Ksd9OEvsEeW5VMlAwZI3CA">
+      <constraint href="workflow.xmi#/0/@constraints.18"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#_MSVkTUvrEeW5VMlAwZI3CA"/>
+      <offset xmi:id="_KsfyZUvsEeW5VMlAwZI3CA" offset="0 0"/>
+    </dConstraints>
+    <specification href="workflow_instance.xmi#_KsRv8EvsEeW5VMlAwZI3CA"/>
+  </diagram:DSpecification>
+  <diagram:DSpecification xmi:id="_KsfyZkvsEeW5VMlAwZI3CA" gridVisible="false">
+    <dGraph xmi:id="_KsfyZ0vsEeW5VMlAwZI3CA">
+      <dNodes xmi:id="_KsfyaEvsEeW5VMlAwZI3CA" dOutgoings="_KsfyakvsEeW5VMlAwZI3CA _KsgZckvsEeW5VMlAwZI3CA" dIncomings="_KsfyakvsEeW5VMlAwZI3CA" location="295 169" size="100 30">
+        <node href="mm.xmi#_Ks3l0UvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dNodes xmi:id="_KsfyaUvsEeW5VMlAwZI3CA" dIncomings="_KsgZckvsEeW5VMlAwZI3CA" location="493 174" size="100 30">
+        <node href="mm.xmi#_Ks3l0kvsEeW5VMlAwZI3CA"/>
+      </dNodes>
+      <dArrows xmi:id="_KsfyakvsEeW5VMlAwZI3CA" dSource="_KsfyaEvsEeW5VMlAwZI3CA" dTarget="_KsfyaEvsEeW5VMlAwZI3CA">
+        <arrow href="mm.xmi#_Ks3l00vsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_Ksfya0vsEeW5VMlAwZI3CA" offset="43 -3" len="15"/>
+        <bendpoints xmi:id="_KsfybEvsEeW5VMlAwZI3CA" offset="-15 0" len="30"/>
+        <bendpoints xmi:id="_KsfybUvsEeW5VMlAwZI3CA" offset="-15 100" len="30"/>
+        <bendpoints xmi:id="_KsgZcEvsEeW5VMlAwZI3CA" offset="45 100" len="30"/>
+        <bendpoints xmi:id="_KsgZcUvsEeW5VMlAwZI3CA" offset="45 0" len="30"/>
+      </dArrows>
+      <dArrows xmi:id="_KsgZckvsEeW5VMlAwZI3CA" dSource="_KsfyaEvsEeW5VMlAwZI3CA" dTarget="_KsfyaUvsEeW5VMlAwZI3CA">
+        <arrow href="mm.xmi#_Ks3l1EvsEeW5VMlAwZI3CA"/>
+        <nameOffset xmi:id="_KsgZc0vsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+      </dArrows>
+      <graph href="workflow1.xmi#/1/@graph"/>
+    </dGraph>
+    <specification href="workflow_instance.xmi#_KsZEw0vsEeW5VMlAwZI3CA"/>
+  </diagram:DSpecification>
+  <diagram:DSignature xmi:id="_KsgZdEvsEeW5VMlAwZI3CA">
+    <signature href="workflow_instance.xmi#_KsX2oUvsEeW5VMlAwZI3CA"/>
+    <dPredicates xmi:id="_KsgZdUvsEeW5VMlAwZI3CA" simpleName="AND_SPLIT">
+      <predicate href="workflow.xmi#/2/@predicates.0"/>
+      <dGraph xmi:id="_KsgZdkvsEeW5VMlAwZI3CA">
+        <dNodes xmi:id="_KsgZd0vsEeW5VMlAwZI3CA" dOutgoings="_KsgZekvsEeW5VMlAwZI3CA _KsgZfEvsEeW5VMlAwZI3CA" location="59 102" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.0/@shape/@nodes.0"/>
+        </dNodes>
+        <dNodes xmi:id="_KsgZeEvsEeW5VMlAwZI3CA" dIncomings="_KsgZekvsEeW5VMlAwZI3CA" location="312 103" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.0/@shape/@nodes.1"/>
+        </dNodes>
+        <dNodes xmi:id="_KsgZeUvsEeW5VMlAwZI3CA" dIncomings="_KsgZfEvsEeW5VMlAwZI3CA" location="315 283" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.0/@shape/@nodes.2"/>
+        </dNodes>
+        <dArrows xmi:id="_KsgZekvsEeW5VMlAwZI3CA" dSource="_KsgZd0vsEeW5VMlAwZI3CA" dTarget="_KsgZeEvsEeW5VMlAwZI3CA">
+          <arrow href="workflow.xmi#/2/@predicates.0/@shape/@arrows.0"/>
+          <nameOffset xmi:id="_KsgZe0vsEeW5VMlAwZI3CA" offset="111 -38" len="253"/>
+        </dArrows>
+        <dArrows xmi:id="_KsgZfEvsEeW5VMlAwZI3CA" dSource="_KsgZd0vsEeW5VMlAwZI3CA" dTarget="_KsgZeUvsEeW5VMlAwZI3CA">
+          <arrow href="workflow.xmi#/2/@predicates.0/@shape/@arrows.1"/>
+          <nameOffset xmi:id="_KsgZfUvsEeW5VMlAwZI3CA" offset="150 -22" len="313"/>
+        </dArrows>
+        <graph href="workflow.xmi#/2/@predicates.0/@shape"/>
+      </dGraph>
+      <visualization xmi:id="_KshAgEvsEeW5VMlAwZI3CA" type="ArrowToArrow">
+        <source xsi:type="core:Arrow" href="workflow.xmi#/2/@predicates.0/@shape/@arrows.0"/>
+        <target xsi:type="core:Arrow" href="workflow.xmi#/2/@predicates.0/@shape/@arrows.1"/>
+      </visualization>
+    </dPredicates>
+    <dPredicates xmi:id="_KshAgUvsEeW5VMlAwZI3CA" simpleName="AND_MERGE">
+      <predicate href="workflow.xmi#/2/@predicates.1"/>
+      <dGraph xmi:id="_KshAgkvsEeW5VMlAwZI3CA">
+        <dNodes xmi:id="_KshAg0vsEeW5VMlAwZI3CA" dOutgoings="_KshAhkvsEeW5VMlAwZI3CA" location="32 49" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.1/@shape/@nodes.0"/>
+        </dNodes>
+        <dNodes xmi:id="_KshAhEvsEeW5VMlAwZI3CA" dOutgoings="_KshAiEvsEeW5VMlAwZI3CA" location="32 133" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.1/@shape/@nodes.1"/>
+        </dNodes>
+        <dNodes xmi:id="_KshAhUvsEeW5VMlAwZI3CA" dIncomings="_KshAhkvsEeW5VMlAwZI3CA _KshAiEvsEeW5VMlAwZI3CA" location="212 51" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.1/@shape/@nodes.2"/>
+        </dNodes>
+        <dArrows xmi:id="_KshAhkvsEeW5VMlAwZI3CA" dSource="_KshAg0vsEeW5VMlAwZI3CA" dTarget="_KshAhUvsEeW5VMlAwZI3CA">
+          <arrow href="workflow.xmi#/2/@predicates.1/@shape/@arrows.0"/>
+          <nameOffset xmi:id="_KshAh0vsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows xmi:id="_KshAiEvsEeW5VMlAwZI3CA" dSource="_KshAhEvsEeW5VMlAwZI3CA" dTarget="_KshAhUvsEeW5VMlAwZI3CA">
+          <arrow href="workflow.xmi#/2/@predicates.1/@shape/@arrows.1"/>
+          <nameOffset xmi:id="_KshAiUvsEeW5VMlAwZI3CA" offset="118 4" len="197"/>
+        </dArrows>
+        <graph href="workflow.xmi#/2/@predicates.1/@shape"/>
+      </dGraph>
+      <visualization xmi:id="_KshAikvsEeW5VMlAwZI3CA" type="ArrowToArrow">
+        <source xsi:type="core:Arrow" href="workflow.xmi#/2/@predicates.1/@shape/@arrows.0"/>
+        <target xsi:type="core:Arrow" href="workflow.xmi#/2/@predicates.1/@shape/@arrows.1"/>
+      </visualization>
+    </dPredicates>
+    <dPredicates xmi:id="_KshAi0vsEeW5VMlAwZI3CA" simpleName="XOR_SPLIT">
+      <predicate href="workflow.xmi#/2/@predicates.2"/>
+      <dGraph xmi:id="_KshAjEvsEeW5VMlAwZI3CA">
+        <dNodes xmi:id="_KshAjUvsEeW5VMlAwZI3CA" dOutgoings="_KshnkkvsEeW5VMlAwZI3CA _KshnlEvsEeW5VMlAwZI3CA" location="50 50" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.2/@shape/@nodes.0"/>
+        </dNodes>
+        <dNodes xmi:id="_KshnkEvsEeW5VMlAwZI3CA" dIncomings="_KshnkkvsEeW5VMlAwZI3CA" location="200 50" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.2/@shape/@nodes.1"/>
+        </dNodes>
+        <dNodes xmi:id="_KshnkUvsEeW5VMlAwZI3CA" dIncomings="_KshnlEvsEeW5VMlAwZI3CA" location="200 100" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.2/@shape/@nodes.2"/>
+        </dNodes>
+        <dArrows xmi:id="_KshnkkvsEeW5VMlAwZI3CA" dSource="_KshAjUvsEeW5VMlAwZI3CA" dTarget="_KshnkEvsEeW5VMlAwZI3CA">
+          <arrow href="workflow.xmi#/2/@predicates.2/@shape/@arrows.0"/>
+          <nameOffset xmi:id="_Kshnk0vsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows xmi:id="_KshnlEvsEeW5VMlAwZI3CA" dSource="_KshAjUvsEeW5VMlAwZI3CA" dTarget="_KshnkUvsEeW5VMlAwZI3CA">
+          <arrow href="workflow.xmi#/2/@predicates.2/@shape/@arrows.1"/>
+          <nameOffset xmi:id="_KshnlUvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="workflow.xmi#/2/@predicates.2/@shape"/>
+      </dGraph>
+      <visualization xmi:id="_KshnlkvsEeW5VMlAwZI3CA" type="ArrowToArrow">
+        <source xsi:type="core:Arrow" href="workflow.xmi#/2/@predicates.2/@shape/@arrows.0"/>
+        <target xsi:type="core:Arrow" href="workflow.xmi#/2/@predicates.2/@shape/@arrows.1"/>
+      </visualization>
+    </dPredicates>
+    <dPredicates xmi:id="_Kshnl0vsEeW5VMlAwZI3CA" simpleName="XOR_MERGE">
+      <predicate href="workflow.xmi#/2/@predicates.3"/>
+      <dGraph xmi:id="_KshnmEvsEeW5VMlAwZI3CA">
+        <dNodes xmi:id="_KshnmUvsEeW5VMlAwZI3CA" dOutgoings="_KshnnEvsEeW5VMlAwZI3CA" location="50 50" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.3/@shape/@nodes.0"/>
+        </dNodes>
+        <dNodes xmi:id="_KshnmkvsEeW5VMlAwZI3CA" dIncomings="_KshnnEvsEeW5VMlAwZI3CA _KshnnkvsEeW5VMlAwZI3CA" location="200 50" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.3/@shape/@nodes.1"/>
+        </dNodes>
+        <dNodes xmi:id="_Kshnm0vsEeW5VMlAwZI3CA" dOutgoings="_KshnnkvsEeW5VMlAwZI3CA" location="50 100" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.3/@shape/@nodes.2"/>
+        </dNodes>
+        <dArrows xmi:id="_KshnnEvsEeW5VMlAwZI3CA" dSource="_KshnmUvsEeW5VMlAwZI3CA" dTarget="_KshnmkvsEeW5VMlAwZI3CA">
+          <arrow href="workflow.xmi#/2/@predicates.3/@shape/@arrows.0"/>
+          <nameOffset xmi:id="_KshnnUvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows xmi:id="_KshnnkvsEeW5VMlAwZI3CA" dSource="_Kshnm0vsEeW5VMlAwZI3CA" dTarget="_KshnmkvsEeW5VMlAwZI3CA">
+          <arrow href="workflow.xmi#/2/@predicates.3/@shape/@arrows.1"/>
+          <nameOffset xmi:id="_KsiOoEvsEeW5VMlAwZI3CA" offset="70 10" len="158"/>
+        </dArrows>
+        <graph href="workflow.xmi#/2/@predicates.3/@shape"/>
+      </dGraph>
+      <visualization xmi:id="_KsiOoUvsEeW5VMlAwZI3CA" type="ArrowToArrow">
+        <source xsi:type="core:Arrow" href="workflow.xmi#/2/@predicates.3/@shape/@arrows.0"/>
+        <target xsi:type="core:Arrow" href="workflow.xmi#/2/@predicates.3/@shape/@arrows.1"/>
+      </visualization>
+    </dPredicates>
+    <dPredicates xmi:id="_KsiOokvsEeW5VMlAwZI3CA" simpleName="OR_MERGE">
+      <predicate href="workflow.xmi#/2/@predicates.4"/>
+      <dGraph xmi:id="_KsiOo0vsEeW5VMlAwZI3CA">
+        <dNodes xmi:id="_KsiOpEvsEeW5VMlAwZI3CA" dOutgoings="_KsiOp0vsEeW5VMlAwZI3CA" location="50 50" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.4/@shape/@nodes.0"/>
+        </dNodes>
+        <dNodes xmi:id="_KsiOpUvsEeW5VMlAwZI3CA" dIncomings="_KsiOp0vsEeW5VMlAwZI3CA _KsiOqUvsEeW5VMlAwZI3CA" location="200 50" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.4/@shape/@nodes.1"/>
+        </dNodes>
+        <dNodes xmi:id="_KsiOpkvsEeW5VMlAwZI3CA" dOutgoings="_KsiOqUvsEeW5VMlAwZI3CA" location="50 100" size="100 30">
+          <node href="workflow.xmi#/2/@predicates.4/@shape/@nodes.2"/>
+        </dNodes>
+        <dArrows xmi:id="_KsiOp0vsEeW5VMlAwZI3CA" dSource="_KsiOpEvsEeW5VMlAwZI3CA" dTarget="_KsiOpUvsEeW5VMlAwZI3CA">
+          <arrow href="workflow.xmi#/2/@predicates.4/@shape/@arrows.0"/>
+          <nameOffset xmi:id="_KsiOqEvsEeW5VMlAwZI3CA" offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows xmi:id="_KsiOqUvsEeW5VMlAwZI3CA" dSource="_KsiOpkvsEeW5VMlAwZI3CA" dTarget="_KsiOpUvsEeW5VMlAwZI3CA">
+          <arrow href="workflow.xmi#/2/@predicates.4/@shape/@arrows.1"/>
+          <nameOffset xmi:id="_Ksi1sEvsEeW5VMlAwZI3CA" offset="73 2" len="158"/>
+        </dArrows>
+        <graph href="workflow.xmi#/2/@predicates.4/@shape"/>
+      </dGraph>
+      <visualization xmi:id="_Ksi1sUvsEeW5VMlAwZI3CA" type="ArrowToArrow">
+        <source xsi:type="core:Arrow" href="workflow.xmi#/2/@predicates.4/@shape/@arrows.0"/>
+        <target xsi:type="core:Arrow" href="workflow.xmi#/2/@predicates.4/@shape/@arrows.1"/>
+      </visualization>
+    </dPredicates>
+  </diagram:DSignature>
+</xmi:XMI>

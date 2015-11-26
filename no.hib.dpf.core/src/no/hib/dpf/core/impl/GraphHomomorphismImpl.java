@@ -57,12 +57,12 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	/**
 	 * @generated NOT
 	 */
-	private Map<Node, Node> backwardsNodeMap;
+	private static Map<Node, Node> backwardsNodeMap;
 
 	/**
 	 * @generated NOT
 	 */
-	private Map<Arrow, Arrow> backwardsArrowMap;
+	private static Map<Arrow, Arrow> backwardsArrowMap;
 	
 	/**
 	 * The cached value of the '{@link #getNodeMapping() <em>Node Mapping</em>}' map.
@@ -140,7 +140,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public GraphHomomorphism createGraphHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> arrows) {
+	public List<GraphHomomorphism> createGraphHomomorphism(Graph sourceGraph, EList<Node> nodes, EList<Arrow> arrows, boolean test) {
 		if (sourceGraph.getArrows().size() != arrows.size()) {
 			return null;
 		}
@@ -148,10 +148,15 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 			(sourceGraph.getNodes().size() != nodes.size())) {
 			return null;
 		}
+		
 		if (sourceGraph.getNodes().size() == 0) {
-			// SIDE EFFECT:			
-			createSimpleArrowMapping(sourceGraph, arrows);			
-			return this;
+			List<GraphHomomorphism> result = new ArrayList<GraphHomomorphism>();
+			GraphHomomorphismImpl cur = new GraphHomomorphismImpl();
+			cur.getArrowMapping();
+			cur.getNodeMapping();
+//			cur.createSimpleArrowMapping(sourceGraph, arrows);	
+			result.add(cur);
+			return result;
 		}
 		
 		Graph targetGraph = null;
@@ -174,24 +179,28 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		
 		// For all permutations of the target nodes:
 		List<Node[]> targetNodePermutations = heapPermuteExec(targetNodes);
+		
+		List<GraphHomomorphism> result = new ArrayList<GraphHomomorphism>();
 		for (int i = 0; i < targetNodePermutations.size(); i++) {
-			EcoreEMap<Node,Node> nodeMapping = createMapping(sourceNodes, targetNodePermutations, i);
-			if (testMapping(nodeMapping)) {
+			GraphHomomorphismImpl cur = new GraphHomomorphismImpl();
+			EcoreEMap<Node,Node> nodeMapping = cur.createMapping(sourceNodes, targetNodePermutations, i);
+			if (cur.testMapping(nodeMapping)) {
 				// SIDE EFFECT:
 				// Found a suitable node mapping. Use this and the backwards maps to create
 				// a proper homomorphism mapping for this instance.
-				EcoreEMap<Arrow,Arrow> arrowMapping = createArrowMapping(nodeMapping);
-				fixUnmappedArrows(arrowMapping, nodeMapping, sourceArrows, targetArrows);
+				EcoreEMap<Arrow,Arrow> arrowMapping = cur.createArrowMapping(nodeMapping);
+				cur.fixUnmappedArrows(arrowMapping, nodeMapping, sourceArrows, targetArrows);
 				
 				// Now check that all arrows are mapped
 				if (sourceArrows.length == arrowMapping.size()) {
-					resolveBackwardMappingsAndCreateFinalMapping(nodeMapping, arrowMapping);
-					return this;
+					cur.resolveBackwardMappingsAndCreateFinalMapping(nodeMapping, arrowMapping);
+					result.add(cur);
+					if(test) return result;
 				}
 			}
 		}
-		
-		return null;
+		if(result.isEmpty()) return null;
+		return result;
 	}
 	
 	
@@ -249,17 +258,17 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 		}
 	}
 
-	/**
-	 * Just map any arrow to another arrow:
-	 * @generated NOT
-	 */
-	private void createSimpleArrowMapping(Graph sourceGraph, EList<?> arrows) {
-		for (int i = 0; i < sourceGraph.getArrows().size(); i++) {
-			Arrow source = sourceGraph.getArrows().get(i);
-			Arrow target = (Arrow)arrows.get(i);				
-			this.getArrowMapping().put(source, target);
-		}
-	}
+//	/**
+//	 * Just map any arrow to another arrow:
+//	 * @generated NOT
+//	 */
+//	private void createSimpleArrowMapping(Graph sourceGraph, EList<?> arrows) {
+//		for (int i = 0; i < sourceGraph.getArrows().size(); i++) {
+//			Arrow source = sourceGraph.getArrows().get(i);
+//			Arrow target = (Arrow)arrows.get(i);				
+//			this.getArrowMapping().put(source, target);
+//		}
+//	}
 	
 	/**
 	 * Creates a new graph, containing only nodes and arrows corresponding to the ones given in the argument.
@@ -268,7 +277,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * 
 	 * @generated NOT
 	 */
-	private Graph createTemporaryTargetGraph(EList<Node> nodes, EList<Arrow> arrows) {
+	private static Graph createTemporaryTargetGraph(EList<Node> nodes, EList<Arrow> arrows) {
 		Graph retval = CoreFactory.eINSTANCE.createDefaultGraph();
 		
 		backwardsNodeMap = new HashMap<Node, Node>();
@@ -284,7 +293,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * Create new nodes, putting references to them in the "newNodes" map:
 	 * @generated NOT
 	 */
-	private Map<String, Node> createNewNodes(EList<Node> nodes, Graph retval) {
+	private static Map<String, Node> createNewNodes(EList<Node> nodes, Graph retval) {
 		Map<String, Node> newNodes = new HashMap<String, Node>();
 		for (Node node : nodes) {
 			Node newNode = retval.createNode(node.getId());
@@ -298,7 +307,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	 * Create new arrows, using the "newNodes" map to get sources and targets:
 	 * @generated NOT
 	 */
-	private void createNewArrows(EList<Arrow> arrows, Graph retval, Map<String, Node> newNodes) {
+	private static void createNewArrows(EList<Arrow> arrows, Graph retval, Map<String, Node> newNodes) {
 		for (Arrow arrow : arrows) {
 			Node sourceNode = getArrowFromMap(newNodes, arrow.getSource());
 			Node targetNode = getArrowFromMap(newNodes, arrow.getTarget());			
@@ -310,7 +319,7 @@ public class GraphHomomorphismImpl extends EObjectImpl implements GraphHomomorph
 	/** 
 	 * @generated NOT
 	 */
-	private Node getArrowFromMap(Map<String, Node> nodes, Node graphNode) {
+	private static Node getArrowFromMap(Map<String, Node> nodes, Node graphNode) {
 		if ((graphNode != null) && (nodes.containsKey(graphNode.getId()))) {
 			return nodes.get(graphNode.getId());
 		}

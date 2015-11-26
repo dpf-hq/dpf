@@ -11,8 +11,6 @@ import org.eclipse.swt.SWT;
 
 public class DashLineArrowPainting implements IArrowPainting {
 
-	public DashLineArrowPainting() {
-	}
 
 	@Override
 	public RotatableDecoration createTargetDecoration() {

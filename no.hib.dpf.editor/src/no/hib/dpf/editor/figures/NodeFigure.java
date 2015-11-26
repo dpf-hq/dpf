@@ -18,10 +18,12 @@ import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 
 import no.hib.dpf.editor.icons.ImageSettings;
 import no.hib.dpf.editor.preferences.DPFEditorPreferences;
@@ -32,11 +34,20 @@ public class NodeFigure extends Figure implements RoutableFigure {
 	protected EditableLabel nameLabel;
 	public static final org.eclipse.swt.graphics.Image IMAGE = ImageSettings.IMG_ERROR.getImage();
 
+	public boolean isStandard = true;
+	public Color backgroundColor = null;
 	public NodeFigure(EditableLabel name) {
-		this(name, null);
-		setOpaque(true); // non-transparent figure
+		nameLabel = name;
+		GridLayout layout = new GridLayout(1, true);
+		setLayoutManager(layout);
+		setBorder(new LineBorder(ColorConstants.black, 1));
 		setBackgroundColor(DPFEditorPreferences.getDefault().getNodeBackgroundColor());
 		setForegroundColor(DPFEditorPreferences.getDefault().getNodeForegroundColor());
+		setOpaque(true);
+		name.setForegroundColor(DPFEditorPreferences.getDefault().getNodeForegroundColor());
+		add(nameLabel);
+		layout.setConstraint(nameLabel, new GridData(SWT.CENTER, SWT.CENTER, true, true));
+		setOpaque(true); // non-transparent figure
 		listenToNodeColorProperty();
 	}
 
@@ -69,10 +80,13 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		DPFEditorPreferences.getDefault().getPreferenceStore().addPropertyChangeListener(new IPropertyChangeListener() {
 			@Override
 			public void propertyChange(org.eclipse.jface.util.PropertyChangeEvent event) {
-				if (event.getProperty().equals(PreferenceConstants.P_NODE_BGCOLOR))
-					setBackgroundColor(DPFEditorPreferences.getDefault().getNodeBackgroundColor());
+				if (isStandard && event.getProperty().equals(PreferenceConstants.P_NODE_BGCOLOR)){
+					backgroundColor = DPFEditorPreferences.getDefault().getNodeBackgroundColor();
+					setBackgroundColor(backgroundColor);
+					
+				}
 
-				if (event.getProperty().equals(PreferenceConstants.P_NODE_FGCOLOR))
+				if (isStandard && event.getProperty().equals(PreferenceConstants.P_NODE_FGCOLOR))
 					setForegroundColor(DPFEditorPreferences.getDefault().getNodeForegroundColor());
 			}
 		});
@@ -80,16 +94,8 @@ public class NodeFigure extends Figure implements RoutableFigure {
 
 	@SuppressWarnings("rawtypes")
 	public NodeFigure(EditableLabel name, List colums) {
-		nameLabel = name;
-		GridLayout layout = new GridLayout(1, true);
-		setLayoutManager(layout);
-		setBorder(new LineBorder(ColorConstants.black, 1));
-		setBackgroundColor(DPFEditorPreferences.getDefault().getNodeBackgroundColor());
-		setForegroundColor(DPFEditorPreferences.getDefault().getNodeForegroundColor());
-		setOpaque(true);
-		name.setForegroundColor(DPFEditorPreferences.getDefault().getNodeForegroundColor());
-		add(nameLabel);
-		layout.setConstraint(nameLabel, new GridData(SWT.CENTER, SWT.CENTER, true, true));
+		super();
+		
 	}
 
 	/**
@@ -126,5 +132,9 @@ public class NodeFigure extends Figure implements RoutableFigure {
 		super.setBounds(rect);
 		if(resize)
 			revalidate();
+	}
+
+	public IFigure getLabel() {
+		return nameLabel.getLabel();
 	}
 }

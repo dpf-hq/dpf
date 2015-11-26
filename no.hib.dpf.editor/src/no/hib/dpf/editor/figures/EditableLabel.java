@@ -14,6 +14,7 @@ package no.hib.dpf.editor.figures;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -81,6 +82,10 @@ public class EditableLabel extends FlowPage
 
 	public void setText(String nodeLabelName) {
 		text.setText(nodeLabelName);
+	}
+	
+	public IFigure getLabel(){
+		return text;
 	}
 
 

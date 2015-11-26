@@ -1,6 +1,7 @@
 package no.hib.dpf.editor.figures;
 
 
+import no.hib.dpf.diagram.DNode;
 import no.hib.dpf.diagram.DOffset;
 import no.hib.dpf.diagram.impl.DOffsetImpl;
 
@@ -200,6 +201,10 @@ public class Draw2dUtil {
 	//scale the vector according to the direction and get the end point.
 	public static Point scableLine(Point start, Point end, double scale){
 		return end.getScaled(scale).translate(start.getScaled(1-scale));
+	}
+
+	public static org.eclipse.draw2d.geometry.Point getCenter(DNode dSource) {
+		return dSource.getLocation().getTranslated(dSource.getSize().getScaled(0.5));
 	}
 
 }

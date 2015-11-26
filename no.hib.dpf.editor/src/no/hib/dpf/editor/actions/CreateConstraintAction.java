@@ -17,6 +17,13 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.util.List;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.IWorkbenchPart;
+
 import no.hib.dpf.core.Arrow;
 import no.hib.dpf.core.Constraint;
 import no.hib.dpf.core.GraphHomomorphism;
@@ -30,13 +37,6 @@ import no.hib.dpf.editor.DPFPlugin;
 import no.hib.dpf.editor.DPFUtils;
 import no.hib.dpf.editor.commands.DConstraintCreateCommand;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.IWorkbenchPart;
-
 public class CreateConstraintAction extends SelectionActionForEditParts {
 
 	private DPredicate dPredicate;
@@ -45,20 +45,21 @@ public class CreateConstraintAction extends SelectionActionForEditParts {
 	private EList<Arrow> selectionArrows;
 	private EList<Node> selectionNodes;
 	private DPFEditor editor = null;
-	private GraphHomomorphism graphHomomorphism = null;
 	private DSpecification dSpecification;
-	
-	private String getToolTipText(String name){
+
+	private String getToolTipText(String name) {
 		return "Creates a new " + name + " Constraint";
 	}
-	
+
 	public static String getActionID(DPredicate dPredicate) {
 		return "no.hib.dpf.editor.editor.actions.Create" + dPredicate.getPredicate().getSymbol() + "Action";
 	}
-	public static ImageDescriptor getImageDescriptor(DPredicate predicate, URI base){
-		if(predicate.getIcon() != null && !predicate.getIcon().isEmpty()){
-			if(predicate.eContainer() == DEFAULT_DSIGNATURE)
-				return ImageDescriptor.createFromURL(DPFPlugin.getDefault().getBundle().getResource(predicate.getIcon()));
+
+	public static ImageDescriptor getImageDescriptor(DPredicate predicate, URI base) {
+		if (predicate.getIcon() != null && !predicate.getIcon().isEmpty()) {
+			if (predicate.eContainer() == DEFAULT_DSIGNATURE)
+				return ImageDescriptor
+						.createFromURL(DPFPlugin.getDefault().getBundle().getResource(predicate.getIcon()));
 			File file = new File(URI.createFileURI(predicate.getIcon()).resolve(base).toFileString());
 			try {
 				return ImageDescriptor.createFromURL(file.toURI().toURL());
@@ -69,6 +70,7 @@ public class CreateConstraintAction extends SelectionActionForEditParts {
 		}
 		return null;
 	}
+
 	public CreateConstraintAction(DPFEditor part, DSpecification dSpecification, DPredicate predicate) {
 		super(part, getActionID(predicate), dSpecification.getDGraph());
 		this.dSpecification = dSpecification;
@@ -79,44 +81,50 @@ public class CreateConstraintAction extends SelectionActionForEditParts {
 		editor = (DPFEditor) getWorkbenchPart();
 	}
 
-	private EList<Node> getNodes(List<DNode> nodes){
+	private EList<Node> getNodes(List<DNode> nodes) {
 		EList<Node> result = new BasicEList<Node>();
-		for(DNode node : nodes)
-			if(node.getNode() != null)
+		for (DNode node : nodes)
+			if (node.getNode() != null)
 				result.add(node.getNode());
 		return result;
 	}
-	
-	private EList<Arrow> getArrows(List<DArrow> arrows){
+
+	private EList<Arrow> getArrows(List<DArrow> arrows) {
 		EList<Arrow> result = new BasicEList<Arrow>();
-		for(DArrow arrow : arrows)
-			if(arrow.getArrow() != null)
+		for (DArrow arrow : arrows)
+			if (arrow.getArrow() != null)
 				result.add(arrow.getArrow());
 		return result;
 	}
-	
-	private IWorkbenchPart getActivePart(){
-		if(editor == null) return null;
-		if(editor.getSite() == null) return null;
-		if(editor.getSite().getWorkbenchWindow() == null) return null;
-		if(editor.getSite().getWorkbenchWindow().getActivePage() == null) return null;
+
+	private IWorkbenchPart getActivePart() {
+		if (editor == null)
+			return null;
+		if (editor.getSite() == null)
+			return null;
+		if (editor.getSite().getWorkbenchWindow() == null)
+			return null;
+		if (editor.getSite().getWorkbenchWindow().getActivePage() == null)
+			return null;
 		return editor.getSite().getWorkbenchWindow().getActivePage().getActivePart();
 	}
-	
+
 	@Override
 	protected boolean calculateEnabled() {
-		if(getWorkbenchPart() == null || getActivePart() != editor || selectionArrows == null || selectionNodes.isEmpty()) return false;
-		for(Node node : selectionNodes){
-			for(Constraint constraint : node.getConstraints())
-				if(constraint.getPredicate() == dPredicate.getPredicate()){
-					boolean repeat = constraint.getArrows().equals(selectionArrows) && constraint.getNodes().equals(selectionNodes);
-					if(repeat)
+		if (getWorkbenchPart() == null || getActivePart() != editor || selectionArrows == null
+				|| selectionNodes.isEmpty())
+			return false;
+		for (Node node : selectionNodes) {
+			for (Constraint constraint : node.getConstraints())
+				if (constraint.getPredicate() == dPredicate.getPredicate()) {
+					boolean repeat = constraint.getArrows().equals(selectionArrows)
+							&& constraint.getNodes().equals(selectionNodes);
+					if (repeat)
 						return false;
 				}
 		}
-		graphHomomorphism = dPredicate.getPredicate().createGraphHomomorphism(selectionNodes, selectionArrows);
-		return graphHomomorphism != null;
-	}	
+		return dPredicate.getPredicate().canCreateConstraint(selectionNodes, selectionArrows);
+	}
 
 	protected void handleSelectionChanged() {
 		selectionDArrows = new BasicEList<DArrow>();
@@ -126,17 +134,28 @@ public class CreateConstraintAction extends SelectionActionForEditParts {
 		selectionNodes = getNodes(selectionDNodes);
 		super.handleSelectionChanged();
 	}
+
 	@Override
 	public void run() {
 		// this method is only called if calculate enabled() returns true
 		Command command = getConstraintCreateCommand(selectionDArrows, selectionDNodes);
-		if(command != null)
+		if (command != null)
 			execute(command);
 		editor.getGraphicalViewer().deselectAll();
 	}
 
-	protected Command getConstraintCreateCommand(EList<DArrow> arrows, EList<DNode> nodes){
-		return new DConstraintCreateCommand(dSpecification, dPredicate, graphHomomorphism, nodes, arrows);
+	protected Command getConstraintCreateCommand(EList<DArrow> arrows, EList<DNode> nodes) {
+		List<GraphHomomorphism> maps = dPredicate.getPredicate().createGraphHomomorphism(selectionNodes, selectionArrows,
+				false);
+		int result = 0;
+		if (maps.size() > 1) {
+			result = new ConstraintSelectDiaglog(null, maps, selectionDNodes, selectionDArrows).open();
+			if (result < 0)
+				return null;
+		}
+
+		return new DConstraintCreateCommand(dSpecification, dPredicate, maps.get(result), selectionDNodes,
+				selectionDArrows);
 	}
 
 }
