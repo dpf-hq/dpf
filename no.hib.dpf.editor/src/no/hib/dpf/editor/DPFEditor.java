@@ -142,6 +142,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	protected DPFEditorPaletteFactory paletteFactory;
 
 	protected PropertySheetPage propertySheetPage;
+	private boolean constraintVisible = false;
 
 	/** Create a new DPFEditor instance. This is called by the Workspace. */
 	public DPFEditor() {
@@ -536,6 +537,12 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 								if(object != getPaletteRoot().getDefaultEntry()){
 									source.getEditDomain().loadDefaultTool();
 								}
+							}else if(object instanceof ShowConstraintToolEntry){
+								getGraphicalViewer().setContents(null);
+								constraintVisible = !constraintVisible;
+								((ShowConstraintToolEntry)object).changeIcon(constraintVisible);
+								getGraphicalViewer().setContents(dSpecification.getDGraph());
+								source.getEditDomain().loadDefaultTool();
 							}
 						}
 					}
@@ -558,9 +565,7 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 
 		paletteFactory.updatePalette(getPaletteRoot(), dSpecification.getDType().getDGraph());
 		paletteFactory.updatePalette(dSpecification);
-		paletteFactory.setShell(getSite().getShell());
 		shapesEditPartFactory = new DPFEditPartFactory();
-		
 	}
 
 	@Override
@@ -779,5 +784,9 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		public void setPropertyValue(Object id, Object value) {
 			source.setPropertyValue(id, value);
 		}
+	}
+
+	public boolean isConstraintVisible() {
+		return constraintVisible;
 	}
 }

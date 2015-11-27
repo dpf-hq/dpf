@@ -33,6 +33,7 @@ import org.eclipse.gef.EditPartFactory;
  */
 public class DPFEditPartFactory implements EditPartFactory {
 
+	
 	/*
 	 * (non-Javadoc)
 	 * @see org.eclipse.gef.EditPartFactory#createEditPart(org.eclipse.gef.EditPart, java.lang.Object)

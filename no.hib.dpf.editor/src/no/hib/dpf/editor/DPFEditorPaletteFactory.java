@@ -21,6 +21,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.core.Predicate;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DPredicate;
+import no.hib.dpf.diagram.DSignature;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.editor.actions.CreateConstraintToolEntry;
+import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
+import no.hib.dpf.editor.displaymodel.factories.DNodeFactory;
+import no.hib.dpf.editor.extension_points.FigureConfigureManager;
+import no.hib.dpf.editor.icons.ImageSettings;
+import no.hib.dpf.editor.parts.DArrowEditPart;
+import no.hib.dpf.editor.parts.DNodeEditPart;
+
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.common.util.BasicEList;
@@ -41,25 +59,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.swt.widgets.Shell;
-
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.Node;
-import no.hib.dpf.core.Predicate;
-import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DGraph;
-import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.diagram.DPredicate;
-import no.hib.dpf.diagram.DSignature;
-import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.editor.actions.CreateConstraintToolEntry;
-import no.hib.dpf.editor.displaymodel.factories.DArrowFactory;
-import no.hib.dpf.editor.displaymodel.factories.DNodeFactory;
-import no.hib.dpf.editor.extension_points.FigureConfigureManager;
-import no.hib.dpf.editor.icons.ImageSettings;
-import no.hib.dpf.editor.parts.DArrowEditPart;
-import no.hib.dpf.editor.parts.DNodeEditPart;
 
 /**
  * Utility class that can create a GEF Palette.
@@ -78,8 +77,6 @@ public class DPFEditorPaletteFactory implements ISelectionChangedListener {
 	protected PaletteGroup nodeGroup = new PaletteGroup(NODES);
 	protected PaletteGroup constraintGroup = new PaletteGroup("Constraints");
 	protected PaletteRoot palette;
-
-	protected Shell shell;
 
 	/**
 	 * Creates the PaletteRoot and adds all palette elements. Use this factory
@@ -115,6 +112,9 @@ public class DPFEditorPaletteFactory implements ISelectionChangedListener {
 		mqtool.setToolProperty(MarqueeSelectionTool.PROPERTY_MARQUEE_BEHAVIOR,
 				MarqueeSelectionTool.BEHAVIOR_NODES_CONTAINED_AND_RELATED_CONNECTIONS);
 		toolbar.add(mqtool);
+		
+		tool = new ShowConstraintToolEntry();
+		toolbar.add(tool);
 
 		return toolbar;
 	}
@@ -249,9 +249,5 @@ public class DPFEditorPaletteFactory implements ISelectionChangedListener {
 			arrows.add(arrow);
 		addDNode(nodes, arrow.getDSource());
 		addDNode(nodes, arrow.getDTarget());
-	}
-
-	public void setShell(Shell shell2) {
-		shell = shell2;
 	}
 }

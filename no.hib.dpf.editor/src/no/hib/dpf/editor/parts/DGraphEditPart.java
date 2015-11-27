@@ -18,6 +18,20 @@ package no.hib.dpf.editor.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Constraint;
+import no.hib.dpf.core.Graph;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.diagram.DConstraintNode;
+import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DiagramPackage;
+import no.hib.dpf.editor.DPFEditor;
+import no.hib.dpf.editor.figures.DPFShortestPathConnectionRouter;
+import no.hib.dpf.editor.policies.DArrowCreateFeedBackPolicy;
+import no.hib.dpf.editor.policies.DGraphXYLayoutEditPolicy;
+import no.hib.dpf.utils.DPFCoreUtil;
+
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FreeformLayer;
@@ -37,19 +51,6 @@ import org.eclipse.gef.SnapToGuides;
 import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.eclipse.gef.rulers.RulerProvider;
-
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.Constraint;
-import no.hib.dpf.core.Graph;
-import no.hib.dpf.core.Node;
-import no.hib.dpf.diagram.DGraph;
-import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.diagram.DiagramPackage;
-import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.editor.figures.DPFShortestPathConnectionRouter;
-import no.hib.dpf.editor.policies.DArrowCreateFeedBackPolicy;
-import no.hib.dpf.editor.policies.DGraphXYLayoutEditPolicy;
-import no.hib.dpf.utils.DPFCoreUtil;
 
 /**
  * EditPart for the a DPFDiagram instance.
@@ -132,7 +133,15 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 	@Override
 	protected List<DNode> getModelChildren() {
 		EList<DNode> child = new BasicEList<DNode>();
-		child.addAll(getDGraph().getDNodes());
+		if(getEditor().isConstraintVisible())
+			child.addAll(getDGraph().getDNodes());
+		else{
+			for(DNode iter : getDGraph().getDNodes()){
+				if(!(iter instanceof DConstraintNode)){
+					child.add(iter);
+				}
+			}
+		}
 		return child;
 	}
 
