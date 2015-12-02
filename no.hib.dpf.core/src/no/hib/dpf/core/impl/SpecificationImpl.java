@@ -332,10 +332,8 @@ public class SpecificationImpl extends EObjectImpl implements Specification {
 		Specification oldType = type;
 		type = newType;
 		
-		Graph graph = getGraph();
-		Specification type = getType();
 		if(graph != null && !graph.eIsProxy())
-			graph.setType(type == null ? null : type.getGraph());
+			graph.setType(type == null  || type.eIsProxy() ? null : type.getGraph());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.SPECIFICATION__TYPE, oldType, type));
 	}

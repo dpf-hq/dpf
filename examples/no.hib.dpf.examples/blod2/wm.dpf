@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="ASCII"?>
 <diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false" signatureFile="wm.sig">
   <dGraph>
-    <dNodes id="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="2566c557-f9f8-46e9-bc49-73551fed69a6 560e1b1b-8cac-4683-b067-5bc22e976ea8 4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c e18a19de-1624-4888-bfec-9da3712885bc" dIncomings="2566c557-f9f8-46e9-bc49-73551fed69a6 2ea23ecd-f33d-423e-9762-ae39938f1298 88cf0414-b553-4dee-923a-5e66cbcf013f 4d33364f-3b1f-4ec7-b556-54144d8d891e ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" location="300 257" size="85 35">
+    <dNodes id="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="2566c557-f9f8-46e9-bc49-73551fed69a6 4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dIncomings="2566c557-f9f8-46e9-bc49-73551fed69a6 88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" location="300 257" size="85 35">
       <node href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </dNodes>
-    <dNodes id="3d5c2555-ff04-494a-92a7-e4cc33de2e0d" configureString="Start" dOutgoings="2ea23ecd-f33d-423e-9762-ae39938f1298 85ee5919-493f-4bf1-a15a-65614704f26f" location="167 260" size="74 32">
-      <node href="wm.xmi#a81c2b12-c407-4a93-977f-fe5f6d912450"/>
-    </dNodes>
-    <dNodes id="e9e4987f-4773-4584-90f3-09406b9c166a" configureString="End" dIncomings="560e1b1b-8cac-4683-b067-5bc22e976ea8" location="485 360" size="84 39">
-      <node href="wm.xmi#17711b04-081e-4265-90a5-685576b88112"/>
-    </dNodes>
-    <dNodes id="fbdbc796-9b1c-47cf-9d77-beebf3fed332" configureString="Blueservice" dOutgoings="88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dIncomings="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c 85ee5919-493f-4bf1-a15a-65614704f26f" location="307 375" size="72 37">
+    <dNodes id="fbdbc796-9b1c-47cf-9d77-beebf3fed332" configureString="Blueservice" dOutgoings="88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dIncomings="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" location="307 375" size="72 37">
       <node href="wm.xmi#266e1f3f-51ed-44c8-a1e9-abc779055975"/>
-    </dNodes>
-    <dNodes id="a98dda65-36ea-4277-b06c-cfd093ca45dc" configureString="Choice" dOutgoings="4d33364f-3b1f-4ec7-b556-54144d8d891e" dIncomings="e18a19de-1624-4888-bfec-9da3712885bc" location="489 168" size="76 47">
-      <node href="wm.xmi#68d6abb8-786f-470c-acdc-0c0569c9c91c"/>
     </dNodes>
     <dArrows id="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="985a00a4-3616-4c08-802f-24a7fc07eda6" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
       <arrow href="wm.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
@@ -26,14 +17,6 @@
       <arrow href="wm.xmi#09816f1d-ca1a-491c-a454-57749fa9927e"/>
       <nameOffset offset="-73 39" len="-120"/>
     </dArrows>
-    <dArrows id="2ea23ecd-f33d-423e-9762-ae39938f1298" dSource="3d5c2555-ff04-494a-92a7-e4cc33de2e0d" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
-      <arrow href="wm.xmi#34bcb5d1-6149-4e1d-a3b3-82a0a40b5dde"/>
-      <nameOffset offset="-111 -31" len="-229"/>
-    </dArrows>
-    <dArrows id="560e1b1b-8cac-4683-b067-5bc22e976ea8" dSource="985a00a4-3616-4c08-802f-24a7fc07eda6" dTarget="e9e4987f-4773-4584-90f3-09406b9c166a">
-      <arrow href="wm.xmi#e498b01d-a3a6-4b32-96d7-35b88d5b0a10"/>
-      <nameOffset offset="89 -17" len="178"/>
-    </dArrows>
     <dArrows id="88cf0414-b553-4dee-923a-5e66cbcf013f" configureString="GreenDashedArrow" dSource="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
       <arrow href="wm.xmi#422d4560-0458-4308-8953-fc4bb69505a5"/>
       <nameOffset offset="-72 70" len="-120"/>
@@ -41,18 +24,6 @@
     <dArrows id="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dSource="985a00a4-3616-4c08-802f-24a7fc07eda6" dTarget="fbdbc796-9b1c-47cf-9d77-beebf3fed332">
       <arrow href="wm.xmi#e36d3c66-9cd8-450d-892d-4f14d2057a27"/>
       <nameOffset offset="62 -28" len="119"/>
-    </dArrows>
-    <dArrows id="e18a19de-1624-4888-bfec-9da3712885bc" dSource="985a00a4-3616-4c08-802f-24a7fc07eda6" dTarget="a98dda65-36ea-4277-b06c-cfd093ca45dc">
-      <arrow href="wm.xmi#c29de62a-d62f-4fde-8867-dd727b6c5d14"/>
-      <nameOffset offset="118 16" len="202"/>
-    </dArrows>
-    <dArrows id="4d33364f-3b1f-4ec7-b556-54144d8d891e" dSource="a98dda65-36ea-4277-b06c-cfd093ca45dc" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
-      <arrow href="wm.xmi#1f67381f-b79b-4aa6-9ba6-090a1047afa5"/>
-      <nameOffset offset="-102 -49" len="-203"/>
-    </dArrows>
-    <dArrows id="85ee5919-493f-4bf1-a15a-65614704f26f" dSource="3d5c2555-ff04-494a-92a7-e4cc33de2e0d" dTarget="fbdbc796-9b1c-47cf-9d77-beebf3fed332">
-      <arrow href="wm.xmi#f4359ac2-c972-427d-8367-b64a7811e49e"/>
-      <nameOffset offset="61 30" len="181"/>
     </dArrows>
     <graph href="wm.xmi#//@graph"/>
   </dGraph>

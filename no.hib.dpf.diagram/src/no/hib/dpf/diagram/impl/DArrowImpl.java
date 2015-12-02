@@ -216,7 +216,7 @@ public class DArrowImpl extends DElementImpl implements DArrow {
 		DArrow oldDType = dType;
 		dType = newDType;
 		if(arrow != null && !arrow.eIsProxy())
-			arrow.setTypeArrow(dType == null ? null : dType.getArrow());
+			arrow.setTypeArrow(dType == null || dType.eIsProxy() ? null : dType.getArrow());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DARROW__DTYPE, oldDType, dType));
 	}
@@ -356,7 +356,7 @@ public class DArrowImpl extends DElementImpl implements DArrow {
 				msgs = ((InternalEObject)newDSource).eInverseAdd(this, DiagramPackage.DNODE__DOUTGOINGS, DNode.class, msgs);
 			msgs = basicSetDSource(newDSource, msgs);
 			if(arrow != null && !arrow.eIsProxy())
-				arrow.setSource(dSource != null ? dSource.getNode() : null);
+				arrow.setSource(dSource == null || dSource.eIsProxy() ? null  : dSource.getNode());
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -418,7 +418,7 @@ public class DArrowImpl extends DElementImpl implements DArrow {
 				msgs = ((InternalEObject)newDTarget).eInverseAdd(this, DiagramPackage.DNODE__DINCOMINGS, DNode.class, msgs);
 			msgs = basicSetDTarget(newDTarget, msgs);
 			if(arrow != null && !arrow.eIsProxy())
-				arrow.setTarget(dTarget != null ? dTarget.getNode() : null);
+				arrow.setTarget(dTarget == null || dTarget.eIsProxy() ? null : dTarget.getNode());
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())

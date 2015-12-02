@@ -561,7 +561,7 @@ public class DNodeImpl extends DElementImpl implements DNode {
 		DNode oldDType = dType;
 		dType = newDType;
 		if(node != null && !node.eIsProxy())
-			node.setTypeNode(dType != null ? dType.getNode() : null);
+			node.setTypeNode(dType == null || dType.eIsProxy() ? null : dType.getNode());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DNODE__DTYPE, oldDType, dType));
 	}

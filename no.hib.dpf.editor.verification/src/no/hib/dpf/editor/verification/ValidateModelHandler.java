@@ -9,20 +9,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.core.Node;
-import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DComposedConstraint;
-import no.hib.dpf.diagram.DConstraint;
-import no.hib.dpf.diagram.DElement;
-import no.hib.dpf.diagram.DGraph;
-import no.hib.dpf.diagram.DNode;
-import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.editor.DPFUtils;
-import no.hib.dpf.uconstraint.Constraints;
-import no.hib.dpf.uconstraint.util.ConstraintsUtils;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -60,6 +46,19 @@ import edu.mit.csail.sdg.alloy4compiler.parser.CompUtil;
 import edu.mit.csail.sdg.alloy4compiler.translator.A4Options;
 import edu.mit.csail.sdg.alloy4compiler.translator.A4Solution;
 import edu.mit.csail.sdg.alloy4compiler.translator.TranslateAlloyToKodkod;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.core.Node;
+import no.hib.dpf.diagram.DArrow;
+import no.hib.dpf.diagram.DComposedConstraint;
+import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DElement;
+import no.hib.dpf.diagram.DGraph;
+import no.hib.dpf.diagram.DNode;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.editor.DPFEditor;
+import no.hib.dpf.editor.DPFUtils;
+import no.hib.dpf.uconstraint.Constraints;
+import no.hib.dpf.uconstraint.util.ConstraintsUtils;
 
 public class ValidateModelHandler extends AbstractHandler {
 
@@ -102,7 +101,7 @@ public class ValidateModelHandler extends AbstractHandler {
 						IFile instanceFile = createDPFInstanceFile(folder, dpfFileName, index);
 						if(!ans.satisfiable()) {
 							List<String> ucs = new ArrayList<String>();
-							Map<String, List<String>> ats = new HashMap<String, List<String>>();
+							List<String> ats = new ArrayList<String>();
 							getCoreConstraints(ans.highLevelCore().a, hash, ucs, ats);
 							getCoreConstraints(ans.highLevelCore().b, hash, ucs, ats);
 
@@ -114,8 +113,10 @@ public class ValidateModelHandler extends AbstractHandler {
 									key = ((DComposedConstraint)con).getFakeNode();
 								}
 								Object value = graphicalViewer.getEditPartRegistry().get(key);
-								if(value instanceof GraphicalEditPart)
+								if(value instanceof GraphicalEditPart){
 									((GraphicalEditPart)value).getFigure().setForegroundColor(ColorConstants.red);
+									((GraphicalEditPart)value).getFigure().setFont(new Font(null, "Arial", 12, SWT.BOLD));
+								}
 							}
 							//Show the names of the universal constraints which cause contradiction in a message dialog
 							for(String iter : ucs)
@@ -198,15 +199,15 @@ public class ValidateModelHandler extends AbstractHandler {
 	 * @param ucs the names of the universal constraints causing contradiction
 	 * @param ats the names of the atomic constraints causing contradiction and the names of elements that are restricted by the constraints
 	 */
-	protected void getCoreConstraints(Set<Pos> cores, Map<Pos, String> hash, List<String> ucs, Map<String, List<String>> ats){
+	protected void getCoreConstraints(Set<Pos> cores, Map<Pos, String> hash, List<String> ucs, List<String> ats){
 		for(Pos pos : cores){
 			String result = getCore(pos, hash);
 			if(result != null) {
-				List<String> splits = Arrays.asList(result.split("_"));
-				if(splits.size() == 1)
+				int index = result.indexOf('_');
+				if(index < 0)
 					ucs.add(result);
 				else
-					ats.put(splits.get(0), splits.subList(1, splits.size()));
+					ats.add(result);
 			}
 		}
 	}
@@ -258,10 +259,11 @@ public class ValidateModelHandler extends AbstractHandler {
 		return null;
 	}
 
-	protected List<DConstraint> getCoreAtomicConstraints(DGraph graph, Map<String, List<String>> ats){
+	protected List<DConstraint> getCoreAtomicConstraints(DGraph graph, List<String> ats){
 		List<DConstraint> atms = new ArrayList<DConstraint>();
-		for(Entry<String, List<String>> iter : ats.entrySet()){
-			DConstraint atom = getAtomicConstraint(iter.getKey(), iter.getValue(), graph);
+		for(String iter : ats){
+			List<String> splits = Arrays.asList(iter.split("_"));
+			DConstraint atom = getAtomicConstraint(splits.get(0), splits.subList(1, splits.size()), graph);
 			if(atom != null)
 				atms.add(atom);
 		}
@@ -285,8 +287,16 @@ public class ValidateModelHandler extends AbstractHandler {
 		return insFile;
 	}
 	private boolean contained(Pos cur, Pos iter){
-		return !(iter.y2 < cur.y2 || iter.y > cur.y 
-				|| (iter.y == cur.y && iter.x > cur.x) || (iter.y2 == cur.y2 && iter.x2 < cur.x2));
+		if(cur.y == iter.y && cur.x < iter.x) {
+			return false;
+		}
+		if(cur.y2 == iter.y2 && cur.x2 > iter.x2) {
+			return false;			
+		}
+		if(cur.y < iter.y || cur.y2 > iter.y2) {
+			return false;
+		}
+		return true;
 	}
 	protected String getCore(Pos cur, Map<Pos, String> hash) {
 		for(Entry<Pos, String> rep : hash.entrySet()){

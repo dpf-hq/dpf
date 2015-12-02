@@ -280,7 +280,7 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements
 	protected List<EObject> getModelChildren() {
 		List<EObject> result = new ArrayList<EObject>();
 		result.add(getDArrow().getNameOffset());
-		if (getEditor().isConstraintVisible())
+		if (getEditor() == null || getEditor().isConstraintVisible())
 			for (DConstraint constraint : getDArrow().getDConstraints())
 				if (constraint instanceof DArrowLabelConstraint)
 					result.add(constraint);
@@ -289,14 +289,14 @@ public class DArrowEditPart extends GraphicalConnectionEditPart implements
 
 	@Override
 	protected List<?> getModelSourceConnections() {
-		if (getEditor().isConstraintVisible())
+		if (getEditor() == null || getEditor().isConstraintVisible())
 			return getDArrow().getConstraintsFrom();
 		return Collections.emptyList();
 	}
 
 	@Override
 	protected List<DConstraint> getModelTargetConnections() {
-		if (getEditor().isConstraintVisible())
+		if (getEditor() == null || getEditor().isConstraintVisible())
 			return getDArrow().getConstraintsTo();
 		return Collections.emptyList();
 	}

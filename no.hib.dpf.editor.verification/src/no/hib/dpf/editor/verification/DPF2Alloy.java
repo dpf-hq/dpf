@@ -56,6 +56,8 @@ public class DPF2Alloy {
 		if(sigName == null){ 
 			sigName = NP + index++;//node.getName();
 			node2Sig.put(node, sigName);
+			if(node == null)
+			System.out.println(node);
 			sig2DPF.add(node);
 		}
 		return sigName;
@@ -83,9 +85,12 @@ public class DPF2Alloy {
 			String name = getSigForNode(node);
 			//Check if a node is specified as an enumeration type
 			Constraint cenum = null;
-			for (Constraint iter : node.getConstraints()) 
+			for (Constraint iter : node.getConstraints()) {
+				if(iter.getPredicate() == null)
+					System.out.println(iter);
 				if(iter.getPredicate().getSymbol().equals("enum"))
 					cenum = iter;
+			}
 			if(cenum != null){
 				//If the node is an enumeration type, create a signature for each literal the node has
 				String literals = cenum.getParameters();
@@ -511,6 +516,9 @@ public class DPF2Alloy {
 	private String translateSurjective(Constraint constraint) {
 		Node source = getNode(constraint, "Y");
 		Arrow arrow = getArrow(constraint, "XY");
+		if(source == null && arrow != null){
+			System.out.println(arrow);
+		}
 		String result = "//" + "surjective on " + arrow +  LINE + "\t";
 		return result + "all n:(" + getSigForNode(source)  + 
 				")| some e:(" + getSigForEdge(arrow) + 
@@ -576,10 +584,11 @@ public class DPF2Alloy {
 	public void writeToFile(File file) throws IOException{
 		FileWriter writer = new FileWriter(file);
 		writer.write("//Signatures for nodes" + LINE);
-		for(String iter : node2Sig.values()){
+		for(Entry<Node, String> cur : node2Sig.entrySet()){
+			String iter = cur.getValue();
 			if(enumNodes.contains(iter))
 				writer.write("abstract ");
-			writer.write(SIG + iter + "{}" + LINE);
+			writer.write(SIG + iter + "{} // for " + cur.getKey().getName() + LINE);
 		}
 		for(Entry<Node, List<String>> iter : node2enums.entrySet()){
 			writer.write("lone " + SIG);
@@ -594,7 +603,7 @@ public class DPF2Alloy {
 		for(Entry<Arrow, String> iter : edge2Sig.entrySet()){
 			writer.write(SIG + iter.getValue() + "{src:one "
 					+ node2Sig.get(iter.getKey().getSource()) + ", trg:one "
-					+ node2Sig.get(iter.getKey().getTarget()) + "}" + LINE);
+					+ node2Sig.get(iter.getKey().getTarget()) + "} // for " + iter.getKey().toString() + LINE);
 		}
 		write(writer);
 		writer.close();

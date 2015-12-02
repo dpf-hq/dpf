@@ -210,7 +210,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements
 	protected List<?> getModelSourceConnections() {
 		EList sources = new BasicEList();
 		sources.addAll(getDNode().getDOutgoings());
-		if (getEditor().isConstraintVisible())
+		if (getEditor() == null || getEditor().isConstraintVisible())
 			sources.addAll(getDNode().getConstraintsFrom());
 		return sources;
 	}
@@ -220,7 +220,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements
 	protected List<?> getModelTargetConnections() {
 		EList targets = new BasicEList();
 		targets.addAll(getDNode().getDIncomings());
-		if (getEditor().isConstraintVisible())
+		if (getEditor() == null || getEditor().isConstraintVisible())
 			targets.addAll(getDNode().getConstraintsTo());
 		return targets;
 	}

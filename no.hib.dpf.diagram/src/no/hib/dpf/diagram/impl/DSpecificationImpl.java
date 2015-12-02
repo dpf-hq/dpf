@@ -688,14 +688,11 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 		if(newDType == dType) return;
 		DSpecification oldDType = dType;
 		dType = newDType;
-		
-		DSpecification type = getDType();
-		Specification spec = getSpecification();
-		DGraph graph = getDGraph();
-		if(spec != null && !spec.eIsProxy())
-			spec.setType(type == null ? null : type.getSpecification());
-		if(graph != null && !graph.eIsProxy())
-			graph.setDType(type == null ? null : type.getDGraph());
+
+		if(specification != null && !specification.eIsProxy())
+			specification.setType(dType == null || dType.eIsProxy() ? null : dType.getSpecification());
+		if(dGraph != null && !dGraph.eIsProxy())
+			dGraph.setDType(dType == null || dType.eIsProxy() ? null : dType.getDGraph());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DSPECIFICATION__DTYPE, oldDType, dType));
 	}
@@ -705,25 +702,25 @@ public class DSpecificationImpl extends EObjectImpl implements DSpecification {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-//	public void save(URI uri) throws IOException {
-//		ResourceSet resourceSet = new ResourceSetImpl();
-//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMLResourceFactoryImpl());
-//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
-//		Resource diagram = resourceSet.createResource(uri);
-//		Resource model = resourceSet.createResource(uri.appendFileExtension("xmi"));
-//		Resource model_type = resourceSet.createResource(uri.appendFileExtension("type").appendFileExtension("xmi"));
-//		Resource diagram_type = resourceSet.createResource(uri.appendFileExtension("xmi").appendFileExtension("type").appendFileExtension("xmi"));
-//		model.getContents().add(getSpecification());
-//		if(getSpecification().getGraph().getType() == Graph.REFLEXIVE_TYPE_GRAPH)
-//			model_type.getContents().add(getSpecification().getGraph().getType());
-//		diagram.getContents().add(this);
-//		if(getDType() == DSpecification.REFLEXIVE_DSPECIFICATION)
-//			diagram_type.getContents().add(getDType());
-//		model_type.save(null);
-//		model.save(null);
-//		diagram_type.save(null);
-//		diagram.save(null);
-//	}
+	//	public void save(URI uri) throws IOException {
+	//		ResourceSet resourceSet = new ResourceSetImpl();
+	//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("dpf", new XMLResourceFactoryImpl());
+	//		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
+	//		Resource diagram = resourceSet.createResource(uri);
+	//		Resource model = resourceSet.createResource(uri.appendFileExtension("xmi"));
+	//		Resource model_type = resourceSet.createResource(uri.appendFileExtension("type").appendFileExtension("xmi"));
+	//		Resource diagram_type = resourceSet.createResource(uri.appendFileExtension("xmi").appendFileExtension("type").appendFileExtension("xmi"));
+	//		model.getContents().add(getSpecification());
+	//		if(getSpecification().getGraph().getType() == Graph.REFLEXIVE_TYPE_GRAPH)
+	//			model_type.getContents().add(getSpecification().getGraph().getType());
+	//		diagram.getContents().add(this);
+	//		if(getDType() == DSpecification.REFLEXIVE_DSPECIFICATION)
+	//			diagram_type.getContents().add(getDType());
+	//		model_type.save(null);
+	//		model.save(null);
+	//		diagram_type.save(null);
+	//		diagram.save(null);
+	//	}
 
 	/**
 	 * <!-- begin-user-doc -->

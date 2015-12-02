@@ -441,7 +441,7 @@ public class DConstraintImpl extends EObjectImpl implements DConstraint {
 		DPredicate oldDPredicate = dPredicate;
 		dPredicate = newDPredicate;
 		if(constraint != null && !constraint.eIsProxy())
-			constraint.setPredicate(dPredicate != null ? dPredicate.getPredicate() : null);
+			constraint.setPredicate(dPredicate == null || dPredicate.eIsProxy() ? null : dPredicate.getPredicate());
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.DCONSTRAINT__DPREDICATE, oldDPredicate, dPredicate));
 	}

@@ -270,6 +270,8 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 				VisualizationType type = VisualizationType.get(0);
 				if (!event.getSelection().isEmpty()){
 					type = (VisualizationType)((IStructuredSelection)event.getSelection()).getFirstElement();
+					if(type == dPredicate.getVisualization().getType())
+						return;
 					DGraph dGraph = dPredicate.getDGraph();
 					if(dGraph != null){
 						switch(type){
@@ -288,8 +290,6 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 						}
 					}
 				}
-				if(type == dPredicate.getVisualization().getType())
-					return;
 				dPredicate.getVisualization().setType(type);
 				if(type != VisualizationType.ARROW_TO_ARROW){
 					dPredicate.getVisualization().setSource(null);
@@ -582,14 +582,16 @@ public class PredicateDetailBlock extends PredicateEditor implements IDetailsPag
 
 	protected void changePredicateValidator(ValidatorType validatorType) {
 		SemanticValidator validator = dPredicate.getPredicate().getValidator();
-		ValidatorType newType = validator.getType();
-		if(validatorType == newType) return;
+		ValidatorType oldType = validator.getType();
+		if(validatorType == oldType) return;
 		if(!MessageDialog.openConfirm(validatorCombo.getControl().getShell(), 
 				"Validator Change Confirmation", 
-				"Are you changing the validator from " + validatorType.toString() + " to " + newType.toString())) return;
+				"Are you changing the validator from " +  oldType.toString() + " to " + validatorType.toString())) return;
 		validator.setType(validatorType);
-		if(validatorType == ValidatorType.JAVA) validator.setValidator(no.hib.dpf.utils.DPFConstants.DefaultChecker);
-		else validator.setValidator("");
+		if(validatorType == ValidatorType.JAVA) 
+			validator.setValidator(no.hib.dpf.utils.DPFConstants.DefaultChecker);
+		else 
+			validator.setValidator("");
 		master.getMultiEditor().setDirty(true);
 		refresh();
 	}

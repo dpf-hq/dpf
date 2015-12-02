@@ -92,6 +92,7 @@ public class DPFCoreUtil {
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
 		resourceSet.setURIResourceMap(new LinkedHashMap<URI, Resource>());
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("sig", new XMIResourceFactoryImpl());
 
 		Resource defaultSpecification = resourceSet.createResource(DPFConstants.DefaultSpecification);
 		defaultSpecification.getContents().add(DPFConstants.REFLEXIVE_SPECIFICATION);

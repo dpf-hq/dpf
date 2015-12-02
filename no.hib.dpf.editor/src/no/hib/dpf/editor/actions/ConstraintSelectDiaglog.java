@@ -148,12 +148,14 @@ public class ConstraintSelectDiaglog extends Dialog {
 			DOffset offset = iter.getNameOffset();
 			org.eclipse.draw2d.geometry.Point source = Draw2dUtil.getCenter(iter.getDSource()),
 					target = Draw2dUtil.getCenter(iter.getDTarget()), realsource = source, realtarget = target;
-			int index = offset.getIndex();
-			if (index > 0) {
-				realsource = Draw2dUtil.getAbsoluteBendPoint(source, target, iter.getBendpoints().get(index - 1));
-			}
-			if (index < iter.getBendpoints().size()) {
-				realtarget = Draw2dUtil.getAbsoluteBendPoint(source, target, iter.getBendpoints().get(index));
+			if(iter.getBendpoints().size() > 2){
+				int index = offset.getIndex();
+				if (index > 0) {
+					realsource = Draw2dUtil.getAbsoluteBendPoint(source, target, iter.getBendpoints().get(index - 1));
+				}
+				if (index < iter.getBendpoints().size()) {
+					realtarget = Draw2dUtil.getAbsoluteBendPoint(source, target, iter.getBendpoints().get(index));
+				}
 			}
 			bound.union(Draw2dUtil.getAbsoluteBendPoint(realsource, realtarget, offset));
 		}

@@ -130,7 +130,7 @@ public class RedundantCheckHandler extends ValidateModelHandler {
 						IFile instanceFile = createDPFInstanceFile(folder, dpfFileName, index);
 						if(!ans.satisfiable()) {
 							List<String> ucs = new ArrayList<String>();
-							Map<String, List<String>> ats = new HashMap<String, List<String>>();
+							List<String> ats = new ArrayList<String>();
 							getCoreConstraints(ans.highLevelCore().a, hash, ucs, ats, preds[index]);
 							getCoreConstraints(ans.highLevelCore().b, hash, ucs, ats, preds[index]);
 
@@ -193,16 +193,16 @@ public class RedundantCheckHandler extends ValidateModelHandler {
 		}
 		return null;
 	}
-	protected void getCoreConstraints(Set<Pos> cores, Map<Pos, String> hash, List<String> ucs, Map<String, List<String>> ats, String cur){
+	protected void getCoreConstraints(Set<Pos> cores, Map<Pos, String> hash, List<String> ucs, List<String> ats, String cur){
 		for(Pos pos : cores){
 			String result = getCore(pos, hash);
 			if(result != null) {
 				if(result.equals(cur)) continue;
-				List<String> splits = Arrays.asList(result.split("_"));
-				if(splits.size() == 1 && !ucs.contains(result))
+				int index = result.indexOf('_');
+				if(index < 0)
 					ucs.add(result);
 				else
-					ats.put(splits.get(0), splits.subList(1, splits.size()));
+					ats.add(result);
 			}
 		}
 	}

@@ -789,4 +789,8 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 	public boolean isConstraintVisible() {
 		return constraintVisible;
 	}
+
+	public DSpecification getDSpecification() {
+		return dSpecification;
+	}
 }

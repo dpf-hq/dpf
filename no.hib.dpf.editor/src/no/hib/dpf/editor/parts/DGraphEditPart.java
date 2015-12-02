@@ -133,7 +133,7 @@ public class DGraphEditPart extends GraphicalEditPartWithListener {
 	@Override
 	protected List<DNode> getModelChildren() {
 		EList<DNode> child = new BasicEList<DNode>();
-		if(getEditor().isConstraintVisible())
+		if(getEditor() == null || getEditor().isConstraintVisible())
 			child.addAll(getDGraph().getDNodes());
 		else{
 			for(DNode iter : getDGraph().getDNodes()){

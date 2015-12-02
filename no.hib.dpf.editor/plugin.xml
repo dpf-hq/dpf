@@ -211,6 +211,12 @@
             id="no.hib.dpf.editor.exportimage"
             name="Export Image">
       </command>
+      <command
+            defaultHandler="no.hib.dpf.editor.commands.GenerateServiceHandler"
+            description="This function only works with workflow"
+            id="no.hib.dpf.editor.generate.service"
+            name="Generate Service">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -220,6 +226,11 @@
          <command
                commandId="no.hib.dpf.editor.exportimage"
                label="Export Image"
+               style="push">
+         </command>
+         <command
+               commandId="no.hib.dpf.editor.generate.service"
+               label="Generate Service"
                style="push">
          </command>
       </menuContribution>
