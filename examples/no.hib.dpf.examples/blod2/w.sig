@@ -53,7 +53,7 @@
     </dPredicates>
     <dPredicates id="ee0195b3-6c8f-4dd0-892b-19c8b2b975be" predicate="9fd75e90-53a2-4831-863d-03d81705c217">
       <dGraph graph="/1/@predicates.5/@shape">
-        <dNodes id="e14a64b5-ae71-4bbf-a81e-7e52a7c786fc" node="b12179da-2424-469f-a703-372178853ff6" location="50 50" size="100 30"/>
+        <dNodes id="e14a64b5-ae71-4bbf-a81e-7e52a7c786fc" node="b12179da-2424-469f-a703-372178853ff6" location="50 50" size="26 42"/>
       </dGraph>
       <visualization type="OnNode"/>
     </dPredicates>
@@ -197,9 +197,11 @@
       </dGraph>
       <visualization type="ArrowToArrow" target="1c9aeebe-ead1-47b2-b5a2-3cb506e41f32"/>
     </dPredicates>
-    <dPredicates id="4f529373-6c9a-40d2-9f2c-fd34f48d0290" predicate="1b94c392-680f-4dfd-917d-c84b44363721">
-      <dGraph graph="/1/@predicates.17/@shape"/>
-      <visualization/>
+    <dPredicates id="48f4a25a-de5b-4a51-affa-5366af33a5bf" predicate="772a8c8d-8195-4998-aef5-c1c9d09faf69">
+      <dGraph graph="/1/@predicates.17/@shape">
+        <dNodes id="008bd304-6938-4aed-ab78-d9438d7b9aa0" node="97c17d80-f5a7-410e-ac5d-bf48c529da9a" location="50 50" size="26 42"/>
+      </dGraph>
+      <visualization type="OnNode"/>
     </dPredicates>
   </diagram:DSignature>
   <core:Signature>
@@ -243,7 +245,7 @@
       </shape>
       <validator type="ALLOY" validator="all z:$Z$ | let e1 = (some e : $XZ$ | e.trg = z), &#xA;e2 = (some e : $YZ$ | e.trg = z)|&#xA;(e1 or e2) and not (e1 and e2)"/>
     </predicates>
-    <predicates id="9fd75e90-53a2-4831-863d-03d81705c217" symbol="@BloodBank">
+    <predicates id="9fd75e90-53a2-4831-863d-03d81705c217" symbol="@UniLab" parameters="">
       <shape>
         <nodes id="b12179da-2424-469f-a703-372178853ff6" name="X"/>
       </shape>
@@ -255,7 +257,7 @@
       </shape>
       <validator type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
     </predicates>
-    <predicates id="31b70dd9-2c2b-4aec-b57b-fce0c9938f31" symbol="@InterInfo">
+    <predicates id="31b70dd9-2c2b-4aec-b57b-fce0c9938f31" symbol="@Prosang">
       <shape>
         <nodes id="c370ffc0-2de3-4ea2-b425-11800d61f545" name="X"/>
       </shape>
@@ -353,8 +355,10 @@
       </shape>
       <validator type="ALLOY" validator="all y1:$Y1$, y2:$Y2$ | let e1 = (some e : $XY1$ | e.trg = y1), &#xA;e2 = (some e : $XY2$ | e.trg = y2)|&#xA; e1 implies e2"/>
     </predicates>
-    <predicates id="1b94c392-680f-4dfd-917d-c84b44363721" symbol="prosang">
-      <shape/>
+    <predicates id="772a8c8d-8195-4998-aef5-c1c9d09faf69" symbol="@PorterCom" parameters="">
+      <shape>
+        <nodes id="97c17d80-f5a7-410e-ac5d-bf48c529da9a" name="X"/>
+      </shape>
       <validator type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
     </predicates>
   </core:Signature>
