@@ -12,7 +12,7 @@ public class EllipseFigure extends NodeFigure{
 		super(name);
 		setBorder(new BasicBorder (){
 			@Override
-			public void draw(Graphics graphics) {				
+			public void draw(Graphics graphics) {	
 				graphics.drawOval(tempRect.x, tempRect.y, tempRect.width, tempRect.height);
 			}
 			public void drawBackground(Graphics graphics) {

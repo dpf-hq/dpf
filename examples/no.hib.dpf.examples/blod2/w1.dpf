@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://no.hib.dpf.core" xmlns:diagram="http://no.hib.dpf.diagram">
+  <diagram:DSpecification dType="/2" dSignature="/1" metaFile="wm.dpf" signatureFile="w.sig">
+    <dGraph>
+      <dType href="wm.dpf#//@dGraph"/>
+      <dNodes id="bbc5c8b0-375b-4c21-b718-6b57990ad4dd" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="f400d53d-c69a-44ef-8389-2c78196fbddd" dConstraints="/0/@dConstraints.2 /0/@dConstraints.16" location="990 385" size="109 49">
+        <node href="w1.xmi#9de17b96-7755-489f-8fb9-4fc6226ffd54"/>
+      </dNodes>
+      <dNodes id="9d3e0ec7-d8e0-4423-834f-e6a81beee456" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dIncomings="f400d53d-c69a-44ef-8389-2c78196fbddd 6ee35efd-04f5-4849-9336-1b87c22b3bcf 6d6a6389-263b-4cbb-8d9c-6a5b1c10f947" dConstraints="/0/@dConstraints.2 /0/@dConstraints.14 /0/@dConstraints.16 /0/@dConstraints.17 /0/@dConstraints.18" location="1198 530" size="85 40">
+        <node href="w1.xmi#3362c442-c5f6-4b8a-a900-d9875f418557"/>
+      </dNodes>
+      <dNodes id="179633a9-e674-446e-ad3a-51887aedc6cb" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="9cfbdb50-a9de-47b2-8949-b723f065fbc7 ebf2951f-d949-4e42-8d11-e3d18e3ed054" dIncomings="7405f5b5-bdd2-4117-95d2-7c7885cf1c7f" dConstraints="/0/@dConstraints.8 /0/@dConstraints.10 /0/@dConstraints.11 /0/@dConstraints.12 /0/@dConstraints.13 /0/@dConstraints.15 /0/@dConstraints.18" location="912 657" size="101 45">
+        <node href="w1.xmi#ced95f24-957c-41a9-8613-202f5f00ec06"/>
+      </dNodes>
+      <dNodes id="83b8128a-7218-46a6-b393-47ef38da807d" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="6040a0a6-89b7-4937-a727-1805c232961f" dIncomings="e7b8a505-6bfd-4819-8d3f-cd5d7c3169fe" dConstraints="/0/@dConstraints.1 /0/@dConstraints.6 /0/@dConstraints.21 /0/@dConstraints.22 /0/@dConstraints.23" location="674 930" size="154 49">
+        <node href="w1.xmi#f7d55798-5218-4d50-9c54-04fa8f9ee02b"/>
+      </dNodes>
+      <dNodes id="9369b8f0-6618-483f-92e9-e51e69976d57" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="ebf3be0c-636c-4919-844f-c9220e3ecdaa 4dc4b64e-ac11-4e09-8c2a-b9578e6a22a6 ccd8a902-6c39-40c1-873a-4737e765443d e7b8a505-6bfd-4819-8d3f-cd5d7c3169fe" dIncomings="89f1fa81-4c76-45a2-9d9b-c146fadae21d 6040a0a6-89b7-4937-a727-1805c232961f" dConstraints="/0/@dConstraints.0 /0/@dConstraints.4 /0/@dConstraints.8 /0/@dConstraints.21 /0/@dConstraints.22 /0/@dConstraints.23" location="391 822" size="126 45">
+        <node href="w1.xmi#64ec3ce3-56ff-43ab-8db1-3b8bb5c34871"/>
+      </dNodes>
+      <dNodes id="cdb512b7-66c4-4d96-831e-495a27596a57" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dIncomings="ebf3be0c-636c-4919-844f-c9220e3ecdaa" dConstraints="/0/@dConstraints.0 /0/@dConstraints.22" location="190 820" size="107 49">
+        <node href="w1.xmi#da7ee3ad-6714-4e0c-bb6b-fe2b956ed1de"/>
+      </dNodes>
+      <dNodes id="0107b489-410e-4542-8f86-6ba7afffb7bc" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="6d6a6389-263b-4cbb-8d9c-6a5b1c10f947 cd25efb9-6bac-45b6-9f08-646f8ff1e27e" dConstraints="/0/@dConstraints.2 /0/@dConstraints.14 /0/@dConstraints.15 /0/@dConstraints.16 /0/@dConstraints.17 /0/@dConstraints.19" location="1197 152" size="85 49">
+        <node href="w1.xmi#cb7fe5cd-710b-40f0-8039-d6d7a8af832e"/>
+      </dNodes>
+      <dNodes id="f714301c-93fe-4642-8efb-ba1313d88ba7" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dIncomings="cd25efb9-6bac-45b6-9f08-646f8ff1e27e 3fa2f9ce-c243-48d7-b4e5-e3e49d94c1fb" dConstraints="/0/@dConstraints.14 /0/@dConstraints.15 /0/@dConstraints.16 /0/@dConstraints.17 /0/@dConstraints.19 /0/@dConstraints.20" location="733 258" size="95 49">
+        <node href="w1.xmi#511a6394-9988-4352-b466-c9fcaf1b9975"/>
+      </dNodes>
+      <dNodes id="858ad6d6-0162-4237-beb6-099b4563cc3b" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dIncomings="7d03ba09-07ca-42c6-a89b-d3121355d125 6327de43-c1b9-43af-ab80-d6bbf18b9302 bf7dfbeb-c155-48c3-96a0-670163ce13b1" dConstraints="/0/@dConstraints.3 /0/@dConstraints.20 /0/@dConstraints.24 /0/@dConstraints.25 /0/@dConstraints.26" location="394 531" size="97 37">
+        <node href="w1.xmi#2fc1a1cc-0ee5-4981-b9cc-5c72a70ac3a1"/>
+      </dNodes>
+      <dNodes id="99bc44b4-ddcf-4713-a414-e0bcbc601419" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="7d03ba09-07ca-42c6-a89b-d3121355d125" dConstraints="/0/@dConstraints.3 /0/@dConstraints.25" location="400 393" size="85 41">
+        <node href="w1.xmi#7ceb2213-3ce2-424a-bcb6-1feb0820b9fa"/>
+      </dNodes>
+      <dNodes id="2de1d2fd-4310-482c-a98f-fc1f5a12acf5" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="6327de43-c1b9-43af-ab80-d6bbf18b9302 96513fb9-99d7-4968-9476-6820446fe801 3fa2f9ce-c243-48d7-b4e5-e3e49d94c1fb" dConstraints="/0/@dConstraints.3 /0/@dConstraints.9 /0/@dConstraints.19 /0/@dConstraints.20 /0/@dConstraints.24" location="169 529" size="114 43">
+        <node href="w1.xmi#6c20468f-02ab-4460-a1c4-81cddcbd0f9a"/>
+      </dNodes>
+      <dNodes id="839f629a-d9cf-4de1-8deb-f421b59c094e" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="6ee35efd-04f5-4849-9336-1b87c22b3bcf 7405f5b5-bdd2-4117-95d2-7c7885cf1c7f" dIncomings="4981c616-7678-4d33-9724-5226ecbd0c97" dConstraints="/0/@dConstraints.2 /0/@dConstraints.15 /0/@dConstraints.17 /0/@dConstraints.18 /0/@dConstraints.26 /0/@dConstraints.27" location="802 534" size="84 39">
+        <node href="w1.xmi#3aa78c0e-5877-49c4-bbe2-0b702ae2cad1"/>
+      </dNodes>
+      <dNodes id="d34915fa-b3b8-4207-b641-e90034cb8f5c" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="aa590449-f362-4734-88e9-75af7d185915" dIncomings="9cfbdb50-a9de-47b2-8949-b723f065fbc7 4dc4b64e-ac11-4e09-8c2a-b9578e6a22a6 02e10f35-24ad-4d3b-8210-952263fb017b" dConstraints="/0/@dConstraints.7 /0/@dConstraints.8 /0/@dConstraints.11 /0/@dConstraints.12 /0/@dConstraints.13 /0/@dConstraints.22" location="1076 822" size="97 45">
+        <node href="w1.xmi#d9a78a5c-d325-475a-9bac-9dcfc30788c7"/>
+      </dNodes>
+      <dNodes id="e7fd9564-5902-4fdd-bf7a-79795cdb9376" dType="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dOutgoings="f09cc0c8-a9ee-41e2-84b3-85468c933690 89f1fa81-4c76-45a2-9d9b-c146fadae21d" dIncomings="aa590449-f362-4734-88e9-75af7d185915" dConstraints="/0/@dConstraints.1 /0/@dConstraints.5 /0/@dConstraints.6 /0/@dConstraints.7 /0/@dConstraints.23" location="674 709" size="137 60">
+        <node href="w1.xmi#1e7b2f79-cc2f-45f6-8bbd-4786c8d77611"/>
+      </dNodes>
+      <dNodes id="17c05ac1-4ea6-4808-bd75-dab822301692" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dIncomings="f09cc0c8-a9ee-41e2-84b3-85468c933690" dConstraints="/0/@dConstraints.1 /0/@dConstraints.5" location="381 714" size="145 49">
+        <node href="w1.xmi#3e2385a4-e56e-425a-b64a-a8212bf8dd62"/>
+      </dNodes>
+      <dNodes xsi:type="diagram:DConstraintNode" id="6256ef0a-66f5-4e68-9569-3d1182297054" constraintsFrom="/0/@dConstraints.1/@children.0 /0/@dConstraints.1/@children.1" location="555 762" dConstraint="/0/@dConstraints.1"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="efc0190f-cd10-41c3-8f90-968c322a136e" constraintsFrom="/0/@dConstraints.2/@children.0 /0/@dConstraints.2/@children.1 /0/@dConstraints.2/@children.2" location="1190 468" dConstraint="/0/@dConstraints.2"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="2b8ccb4a-68bb-401c-b7d4-cdc3122e88be" constraintsFrom="/0/@dConstraints.3/@children.0 /0/@dConstraints.3/@children.1" location="349 468" dConstraint="/0/@dConstraints.3"/>
+      <dNodes id="17139f1a-9310-4e19-ad25-00ce983c78a9" dType="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dIncomings="ccd8a902-6c39-40c1-873a-4737e765443d" dConstraints="/0/@dConstraints.4 /0/@dConstraints.22" location="394 924" size="119 62">
+        <node href="w1.xmi#aa76d568-3fa9-41c8-a8f0-8d070e9b1597"/>
+      </dNodes>
+      <dNodes id="2005784c-7dc0-48bc-aedd-2f53c602a38d" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="02e10f35-24ad-4d3b-8210-952263fb017b" dIncomings="ebf2951f-d949-4e42-8d11-e3d18e3ed054" dConstraints="/0/@dConstraints.8 /0/@dConstraints.10 /0/@dConstraints.11 /0/@dConstraints.12 /0/@dConstraints.13" location="1196 659" size="92 42">
+        <node href="w1.xmi#fb386617-bcab-4860-89ee-63a4441c85e8"/>
+      </dNodes>
+      <dNodes id="ec24b2ee-add0-493d-b6a2-872b1fc976b9" dType="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dIncomings="96513fb9-99d7-4968-9476-6820446fe801" dConstraints="/0/@dConstraints.9 /0/@dConstraints.20" location="158 718" size="135 52">
+        <node href="w1.xmi#d3fdd0ee-ce52-40d3-84ce-42cb976e0b84"/>
+      </dNodes>
+      <dNodes xsi:type="diagram:DConstraintNode" id="6aed782f-8c6e-40c2-a01e-aa6642d90054" constraintsFrom="/0/@dConstraints.8/@children.0 /0/@dConstraints.8/@children.1 /0/@dConstraints.8/@children.2" location="990 786" dConstraint="/0/@dConstraints.8"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="e228a941-7570-48fa-9e91-ef1cb00832aa" constraintsFrom="/0/@dConstraints.11/@children.0 /0/@dConstraints.11/@children.1" location="1124 736" dConstraint="/0/@dConstraints.11"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="1464cd3b-3cae-40c0-ae48-1ed63794dc3e" constraintsFrom="/0/@dConstraints.12/@children.0 /0/@dConstraints.12/@children.1" location="1033 709" dConstraint="/0/@dConstraints.12"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="34d08fdf-54a8-43d5-b3bb-a7161594c457" constraintsFrom="/0/@dConstraints.13/@children.0 /0/@dConstraints.13/@children.1" location="1174 736" dConstraint="/0/@dConstraints.13"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="b8e56060-0bf8-40d1-885f-368e1b0ce5c5" constraintsFrom="/0/@dConstraints.14/@children.0 /0/@dConstraints.14/@children.1" location="1197 261" dConstraint="/0/@dConstraints.14"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="d5f49730-f659-4695-9270-89564797fe62" constraintsFrom="/0/@dConstraints.15/@children.0 /0/@dConstraints.15/@children.1" location="912 406" dConstraint="/0/@dConstraints.15"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="748d5aaa-fc44-4736-8c0f-84113c3782c3" constraintsFrom="/0/@dConstraints.16/@children.0 /0/@dConstraints.16/@children.1" location="1127 342" dConstraint="/0/@dConstraints.16"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="e3e3112c-c456-4458-8a07-19a229ec5b60" constraintsFrom="/0/@dConstraints.17/@children.0 /0/@dConstraints.17/@children.1" location="1174 389" dConstraint="/0/@dConstraints.17"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="9fa7cb18-4c01-4f35-b7f9-e0ff6ff1f374" constraintsFrom="/0/@dConstraints.18/@children.0 /0/@dConstraints.18/@children.1" location="1033 596" dConstraint="/0/@dConstraints.18"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="d5c1aa77-807d-4f59-8271-0313a04546e7" constraintsFrom="/0/@dConstraints.19/@children.0 /0/@dConstraints.19/@children.1" location="689 186" dConstraint="/0/@dConstraints.19"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="c7b884d3-6436-4435-8b9b-f3126d190274" constraintsFrom="/0/@dConstraints.20/@children.0 /0/@dConstraints.20/@children.1 /0/@dConstraints.20/@children.2" location="312 588" dConstraint="/0/@dConstraints.20"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="845f60c8-bfd2-48a7-b0d0-b9f1d8a7ab36" constraintsFrom="/0/@dConstraints.22/@children.0 /0/@dConstraints.22/@children.1 /0/@dConstraints.22/@children.2 /0/@dConstraints.22/@children.3" location="439 776" dConstraint="/0/@dConstraints.22"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="838e3ef7-9105-45b6-a788-c18823ec906d" constraintsFrom="/0/@dConstraints.23/@children.0 /0/@dConstraints.23/@children.1" location="564 876" dConstraint="/0/@dConstraints.23"/>
+      <dNodes id="3fb5cdfc-61a5-4e68-8826-2395267435aa" dType="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dOutgoings="bf7dfbeb-c155-48c3-96a0-670163ce13b1 4981c616-7678-4d33-9724-5226ecbd0c97" dConstraints="/0/@dConstraints.24 /0/@dConstraints.25 /0/@dConstraints.26 /0/@dConstraints.27" location="578 526" size="110 47">
+        <node href="w1.xmi#cb9af070-3991-483b-a825-ed06b65e3686"/>
+      </dNodes>
+      <dNodes xsi:type="diagram:DConstraintNode" id="f7171b1e-38f8-4ba8-ba45-3c01d5bfa781" constraintsFrom="/0/@dConstraints.24/@children.0 /0/@dConstraints.24/@children.1" location="411 610" dConstraint="/0/@dConstraints.24"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="55706995-4ae4-409b-8e59-e202575f57ca" constraintsFrom="/0/@dConstraints.25/@children.0 /0/@dConstraints.25/@children.1" location="474 456" dConstraint="/0/@dConstraints.25"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="9892852d-28a8-421f-ad2d-185ea2afdef0" constraintsFrom="/0/@dConstraints.26/@children.0 /0/@dConstraints.26/@children.1" location="648 442" dConstraint="/0/@dConstraints.26"/>
+      <dArrows id="ebf3be0c-636c-4919-844f-c9220e3ecdaa" constraintsTo="/0/@dConstraints.22/@children.3" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="9369b8f0-6618-483f-92e9-e51e69976d57" dTarget="cdb512b7-66c4-4d96-831e-495a27596a57" dConstraints="/0/@dConstraints.0 /0/@dConstraints.22">
+        <arrow href="w1.xmi#71c7d75b-2497-4239-b3af-d6708c3124a0"/>
+        <nameOffset offset="10 -3" len="16"/>
+      </dArrows>
+      <dArrows id="9cfbdb50-a9de-47b2-8949-b723f065fbc7" constraintsTo="/0/@dConstraints.8/@children.1 /0/@dConstraints.11/@children.1 /0/@dConstraints.12/@children.0" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="179633a9-e674-446e-ad3a-51887aedc6cb" dTarget="d34915fa-b3b8-4207-b641-e90034cb8f5c" dConstraints="/0/@dConstraints.8 /0/@dConstraints.11 /0/@dConstraints.12">
+        <arrow href="w1.xmi#90d432e4-4b28-4467-aa0e-5a1e32c1f343"/>
+        <nameOffset offset="-5 27" len="110"/>
+      </dArrows>
+      <dArrows id="f400d53d-c69a-44ef-8389-2c78196fbddd" constraintsTo="/0/@dConstraints.2/@children.1 /0/@dConstraints.16/@children.0" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="bbc5c8b0-375b-4c21-b718-6b57990ad4dd" dTarget="9d3e0ec7-d8e0-4423-834f-e6a81beee456" dConstraints="/0/@dConstraints.2 /0/@dConstraints.16">
+        <arrow href="w1.xmi#12db690a-9c6d-4c58-97cc-795bffb9c00d"/>
+        <nameOffset offset="-21 72" len="241"/>
+      </dArrows>
+      <dArrows id="7d03ba09-07ca-42c6-a89b-d3121355d125" constraintsTo="/0/@dConstraints.3/@children.1 /0/@dConstraints.25/@children.1" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="99bc44b4-ddcf-4713-a414-e0bcbc601419" dTarget="858ad6d6-0162-4237-beb6-099b4563cc3b" dConstraints="/0/@dConstraints.3 /0/@dConstraints.25">
+        <arrow href="w1.xmi#1c93fef8-f1b7-494d-b076-8c0ef975ed42"/>
+        <nameOffset offset="77 20" len="137"/>
+      </dArrows>
+      <dArrows id="6327de43-c1b9-43af-ab80-d6bbf18b9302" constraintsTo="/0/@dConstraints.3/@children.0 /0/@dConstraints.20/@children.0 /0/@dConstraints.24/@children.0" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="2de1d2fd-4310-482c-a98f-fc1f5a12acf5" dTarget="858ad6d6-0162-4237-beb6-099b4563cc3b" dConstraints="/0/@dConstraints.3 /0/@dConstraints.20 /0/@dConstraints.24">
+        <arrow href="w1.xmi#31db6071-a97a-45d1-b686-44f5255395dc"/>
+        <nameOffset offset="61 -53" len="216"/>
+      </dArrows>
+      <dArrows id="6ee35efd-04f5-4849-9336-1b87c22b3bcf" constraintsTo="/0/@dConstraints.2/@children.0 /0/@dConstraints.17/@children.0 /0/@dConstraints.18/@children.1" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="839f629a-d9cf-4de1-8deb-f421b59c094e" dTarget="9d3e0ec7-d8e0-4423-834f-e6a81beee456" dConstraints="/0/@dConstraints.2 /0/@dConstraints.17 /0/@dConstraints.18">
+        <arrow href="w1.xmi#dfdb967c-c3f7-4b83-9d5d-ce21fea8d9d1"/>
+        <nameOffset offset="36 -13" len="193"/>
+      </dArrows>
+      <dArrows id="aa590449-f362-4734-88e9-75af7d185915" dType="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dSource="d34915fa-b3b8-4207-b641-e90034cb8f5c" dTarget="e7fd9564-5902-4fdd-bf7a-79795cdb9376" dConstraints="/0/@dConstraints.7">
+        <arrow href="w1.xmi#64f52dd1-58aa-416c-9adb-b6a1f8ceb65b"/>
+        <nameOffset offset="-260 -7" len="-397"/>
+      </dArrows>
+      <dArrows id="f09cc0c8-a9ee-41e2-84b3-85468c933690" constraintsTo="/0/@dConstraints.1/@children.0" dType="ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dSource="e7fd9564-5902-4fdd-bf7a-79795cdb9376" dTarget="17c05ac1-4ea6-4808-bd75-dab822301692" dConstraints="/0/@dConstraints.1 /0/@dConstraints.5">
+        <arrow href="w1.xmi#89f9b938-74bd-4763-9014-acfd8cbca76c"/>
+        <nameOffset offset="-157 -60" len="-290"/>
+      </dArrows>
+      <dArrows id="89f1fa81-4c76-45a2-9d9b-c146fadae21d" constraintsTo="/0/@dConstraints.1/@children.1 /0/@dConstraints.23/@children.1" dType="88cf0414-b553-4dee-923a-5e66cbcf013f" dSource="e7fd9564-5902-4fdd-bf7a-79795cdb9376" dTarget="9369b8f0-6618-483f-92e9-e51e69976d57" dConstraints="/0/@dConstraints.1 /0/@dConstraints.6 /0/@dConstraints.23">
+        <arrow href="w1.xmi#99e147d1-1193-4ab9-ad54-320a284f633e"/>
+        <nameOffset offset="-280 -171" len="-305"/>
+      </dArrows>
+      <dArrows id="4dc4b64e-ac11-4e09-8c2a-b9578e6a22a6" constraintsTo="/0/@dConstraints.8/@children.0 /0/@dConstraints.22/@children.0" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="9369b8f0-6618-483f-92e9-e51e69976d57" dTarget="d34915fa-b3b8-4207-b641-e90034cb8f5c" dConstraints="/0/@dConstraints.8 /0/@dConstraints.22">
+        <arrow href="w1.xmi#4a57cd19-6568-43b2-9a3c-fd30c653aeb8"/>
+        <nameOffset offset="273 7" len="787"/>
+      </dArrows>
+      <dArrows id="6d6a6389-263b-4cbb-8d9c-6a5b1c10f947" constraintsTo="/0/@dConstraints.2/@children.2 /0/@dConstraints.14/@children.1" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="0107b489-410e-4542-8f86-6ba7afffb7bc" dTarget="9d3e0ec7-d8e0-4423-834f-e6a81beee456" dConstraints="/0/@dConstraints.2 /0/@dConstraints.14">
+        <arrow href="w1.xmi#a30e953c-988e-44ec-9f68-04e79e24a8bc"/>
+        <nameOffset offset="231 15" len="374"/>
+      </dArrows>
+      <dArrows id="ccd8a902-6c39-40c1-873a-4737e765443d" constraintsTo="/0/@dConstraints.22/@children.2" dType="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dSource="9369b8f0-6618-483f-92e9-e51e69976d57" dTarget="17139f1a-9310-4e19-ad25-00ce983c78a9" dConstraints="/0/@dConstraints.4 /0/@dConstraints.22">
+        <arrow href="w1.xmi#dfe56f69-9808-487c-8a55-13bea9444ef2"/>
+        <nameOffset offset="-71 -162" len="-118"/>
+      </dArrows>
+      <dArrows id="ebf2951f-d949-4e42-8d11-e3d18e3ed054" constraintsTo="/0/@dConstraints.11/@children.0 /0/@dConstraints.13/@children.0" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="179633a9-e674-446e-ad3a-51887aedc6cb" dTarget="2005784c-7dc0-48bc-aedd-2f53c602a38d" dConstraints="/0/@dConstraints.10 /0/@dConstraints.11 /0/@dConstraints.13">
+        <arrow href="w1.xmi#fc998edc-f918-4771-ab4a-0c8426fc15f2"/>
+        <nameOffset offset="142 -135" len="280"/>
+      </dArrows>
+      <dArrows id="02e10f35-24ad-4d3b-8210-952263fb017b" constraintsTo="/0/@dConstraints.8/@children.2 /0/@dConstraints.12/@children.1 /0/@dConstraints.13/@children.1" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="2005784c-7dc0-48bc-aedd-2f53c602a38d" dTarget="d34915fa-b3b8-4207-b641-e90034cb8f5c" dConstraints="/0/@dConstraints.8 /0/@dConstraints.12 /0/@dConstraints.13">
+        <arrow href="w1.xmi#c4f4781a-e5f5-4f07-a860-c06e8408d253"/>
+        <nameOffset offset="34 -2" len="113"/>
+      </dArrows>
+      <dArrows id="96513fb9-99d7-4968-9476-6820446fe801" constraintsTo="/0/@dConstraints.20/@children.2" dType="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dSource="2de1d2fd-4310-482c-a98f-fc1f5a12acf5" dTarget="ec24b2ee-add0-493d-b6a2-872b1fc976b9" dConstraints="/0/@dConstraints.9 /0/@dConstraints.20">
+        <arrow href="w1.xmi#6f96b493-1438-45f7-aeb4-58094b6d7292"/>
+        <nameOffset offset="-118 -70" len="-195"/>
+      </dArrows>
+      <dArrows id="7405f5b5-bdd2-4117-95d2-7c7885cf1c7f" constraintsTo="/0/@dConstraints.15/@children.1 /0/@dConstraints.18/@children.0" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="839f629a-d9cf-4de1-8deb-f421b59c094e" dTarget="179633a9-e674-446e-ad3a-51887aedc6cb" dConstraints="/0/@dConstraints.15 /0/@dConstraints.18">
+        <arrow href="w1.xmi#20f1d0ae-2cf3-4e67-9632-6f0a3b77b0d5"/>
+        <nameOffset offset="-108 -16" len="-181"/>
+      </dArrows>
+      <dArrows id="cd25efb9-6bac-45b6-9f08-646f8ff1e27e" constraintsTo="/0/@dConstraints.14/@children.0 /0/@dConstraints.15/@children.0 /0/@dConstraints.16/@children.1 /0/@dConstraints.17/@children.1 /0/@dConstraints.19/@children.0" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="0107b489-410e-4542-8f86-6ba7afffb7bc" dTarget="f714301c-93fe-4642-8efb-ba1313d88ba7" dConstraints="/0/@dConstraints.14 /0/@dConstraints.15 /0/@dConstraints.16 /0/@dConstraints.17 /0/@dConstraints.19">
+        <arrow href="w1.xmi#6e7c40a8-8914-4d2d-9079-099061e917be"/>
+        <nameOffset offset="-110 -78" len="-332" index="1"/>
+        <bendpoints offset="-148 74" len="-472"/>
+      </dArrows>
+      <dArrows id="3fa2f9ce-c243-48d7-b4e5-e3e49d94c1fb" constraintsTo="/0/@dConstraints.19/@children.1 /0/@dConstraints.20/@children.1" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="2de1d2fd-4310-482c-a98f-fc1f5a12acf5" dTarget="f714301c-93fe-4642-8efb-ba1313d88ba7" dConstraints="/0/@dConstraints.19 /0/@dConstraints.20">
+        <arrow href="w1.xmi#5fe02397-dd65-4e5c-892e-707470ed71aa"/>
+        <nameOffset offset="363 -20" len="556" index="1"/>
+        <bendpoints offset="115 -242" len="615"/>
+      </dArrows>
+      <dArrows id="e7b8a505-6bfd-4819-8d3f-cd5d7c3169fe" constraintsTo="/0/@dConstraints.22/@children.1" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="9369b8f0-6618-483f-92e9-e51e69976d57" dTarget="83b8128a-7218-46a6-b393-47ef38da807d" dConstraints="/0/@dConstraints.22">
+        <arrow href="w1.xmi#1d786cd6-3dfc-4e81-9e4c-3f2b3912aead"/>
+        <nameOffset offset="130 -63" len="87" index="1"/>
+        <bendpoints offset="78 -19" len="164"/>
+      </dArrows>
+      <dArrows id="6040a0a6-89b7-4937-a727-1805c232961f" constraintsTo="/0/@dConstraints.23/@children.0" dType="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="83b8128a-7218-46a6-b393-47ef38da807d" dTarget="9369b8f0-6618-483f-92e9-e51e69976d57" dConstraints="/0/@dConstraints.21 /0/@dConstraints.23">
+        <arrow href="w1.xmi#7fd9e824-1e21-4096-adce-a8ade219db0b"/>
+        <nameOffset offset="-20 33" len="-111" index="2"/>
+        <bendpoints offset="-92 15" len="-165"/>
+      </dArrows>
+      <dArrows id="bf7dfbeb-c155-48c3-96a0-670163ce13b1" constraintsTo="/0/@dConstraints.24/@children.1 /0/@dConstraints.25/@children.0 /0/@dConstraints.26/@children.1" dType="ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dSource="3fb5cdfc-61a5-4e68-8826-2395267435aa" dTarget="858ad6d6-0162-4237-beb6-099b4563cc3b" dConstraints="/0/@dConstraints.24 /0/@dConstraints.25 /0/@dConstraints.26">
+        <arrow href="w1.xmi#37738e82-0152-4404-9554-114fd0e82d52"/>
+        <nameOffset offset="-121 29" len="-191"/>
+      </dArrows>
+      <dArrows id="4981c616-7678-4d33-9724-5226ecbd0c97" constraintsTo="/0/@dConstraints.26/@children.0" dType="88cf0414-b553-4dee-923a-5e66cbcf013f" dSource="3fb5cdfc-61a5-4e68-8826-2395267435aa" dTarget="839f629a-d9cf-4de1-8deb-f421b59c094e" dConstraints="/0/@dConstraints.26 /0/@dConstraints.27">
+        <arrow href="w1.xmi#18847377-c1f2-4d7c-995b-51a4203193fb"/>
+        <nameOffset offset="56 -16" len="196"/>
+      </dArrows>
+      <graph href="w1.xmi#/0/@graph"/>
+    </dGraph>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="9369b8f0-6618-483f-92e9-e51e69976d57 cdb512b7-66c4-4d96-831e-495a27596a57" dArrows="ebf3be0c-636c-4919-844f-c9220e3ecdaa" source="ebf3be0c-636c-4919-844f-c9220e3ecdaa">
+      <constraint href="w1.xmi#b55426dc-3433-4f34-973e-4c2e4419e883"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+      <offset offset="-118 -20" len="-211"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="e7fd9564-5902-4fdd-bf7a-79795cdb9376 17c05ac1-4ea6-4808-bd75-dab822301692 83b8128a-7218-46a6-b393-47ef38da807d" dArrows="f09cc0c8-a9ee-41e2-84b3-85468c933690 89f1fa81-4c76-45a2-9d9b-c146fadae21d" fakeNode="6256ef0a-66f5-4e68-9569-3d1182297054">
+      <constraint href="w1.xmi#6e9b74f6-e474-495a-b905-359792f077ac"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-xor"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="6256ef0a-66f5-4e68-9569-3d1182297054" target="f09cc0c8-a9ee-41e2-84b3-85468c933690"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="6256ef0a-66f5-4e68-9569-3d1182297054" target="89f1fa81-4c76-45a2-9d9b-c146fadae21d"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="839f629a-d9cf-4de1-8deb-f421b59c094e 9d3e0ec7-d8e0-4423-834f-e6a81beee456 bbc5c8b0-375b-4c21-b718-6b57990ad4dd 0107b489-410e-4542-8f86-6ba7afffb7bc" dArrows="6ee35efd-04f5-4849-9336-1b87c22b3bcf f400d53d-c69a-44ef-8389-2c78196fbddd 6d6a6389-263b-4cbb-8d9c-6a5b1c10f947" dPredicate="10b80b69-c977-4699-8bbd-5e5f28bbf304" fakeNode="efc0190f-cd10-41c3-8f90-968c322a136e">
+      <constraint href="w1.xmi#d2e36894-22fb-4c48-926a-94047dc9f8f6"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="efc0190f-cd10-41c3-8f90-968c322a136e" target="6ee35efd-04f5-4849-9336-1b87c22b3bcf"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="efc0190f-cd10-41c3-8f90-968c322a136e" target="f400d53d-c69a-44ef-8389-2c78196fbddd"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="efc0190f-cd10-41c3-8f90-968c322a136e" target="6d6a6389-263b-4cbb-8d9c-6a5b1c10f947"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="2de1d2fd-4310-482c-a98f-fc1f5a12acf5 858ad6d6-0162-4237-beb6-099b4563cc3b 99bc44b4-ddcf-4713-a414-e0bcbc601419" dArrows="6327de43-c1b9-43af-ab80-d6bbf18b9302 7d03ba09-07ca-42c6-a89b-d3121355d125" dPredicate="4105aa6a-59ec-4eb8-8ef1-beac2d504261" fakeNode="2b8ccb4a-68bb-401c-b7d4-cdc3122e88be">
+      <constraint href="w1.xmi#e0e1deb4-330e-4846-a0fe-6a2fb401456b"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="2b8ccb4a-68bb-401c-b7d4-cdc3122e88be" target="6327de43-c1b9-43af-ab80-d6bbf18b9302"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="2b8ccb4a-68bb-401c-b7d4-cdc3122e88be" target="7d03ba09-07ca-42c6-a89b-d3121355d125"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="9369b8f0-6618-483f-92e9-e51e69976d57 17139f1a-9310-4e19-ad25-00ce983c78a9" dArrows="ccd8a902-6c39-40c1-873a-4737e765443d" source="ccd8a902-6c39-40c1-873a-4737e765443d">
+      <constraint href="w1.xmi#77e55820-2281-4c96-8001-63ae1ccaebeb"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+      <offset offset="51 -5" len="115"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="e7fd9564-5902-4fdd-bf7a-79795cdb9376 17c05ac1-4ea6-4808-bd75-dab822301692" dArrows="f09cc0c8-a9ee-41e2-84b3-85468c933690" source="f09cc0c8-a9ee-41e2-84b3-85468c933690">
+      <constraint href="w1.xmi#a7665042-67f3-4313-96b3-5045219da23c"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+      <offset offset="-202 -22" len="-290"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="e7fd9564-5902-4fdd-bf7a-79795cdb9376 83b8128a-7218-46a6-b393-47ef38da807d" dArrows="89f1fa81-4c76-45a2-9d9b-c146fadae21d" source="89f1fa81-4c76-45a2-9d9b-c146fadae21d">
+      <constraint href="w1.xmi#dce3a3ed-2f18-4b1d-a4cf-617c1467bccd"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+      <offset offset="-104 -9" len="-307"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="d34915fa-b3b8-4207-b641-e90034cb8f5c e7fd9564-5902-4fdd-bf7a-79795cdb9376" dArrows="aa590449-f362-4734-88e9-75af7d185915" source="aa590449-f362-4734-88e9-75af7d185915">
+      <constraint href="w1.xmi#2b98d957-fc01-49f0-a86b-ad1f83c197b4"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+      <offset offset="-217 -18" len="-311"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="9369b8f0-6618-483f-92e9-e51e69976d57 d34915fa-b3b8-4207-b641-e90034cb8f5c 179633a9-e674-446e-ad3a-51887aedc6cb 2005784c-7dc0-48bc-aedd-2f53c602a38d" dArrows="4dc4b64e-ac11-4e09-8c2a-b9578e6a22a6 9cfbdb50-a9de-47b2-8949-b723f065fbc7 02e10f35-24ad-4d3b-8210-952263fb017b" dPredicate="10b80b69-c977-4699-8bbd-5e5f28bbf304" fakeNode="6aed782f-8c6e-40c2-a01e-aa6642d90054">
+      <constraint href="w1.xmi#9817c7cd-0875-4ca6-8219-0a4f6540d351"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="6aed782f-8c6e-40c2-a01e-aa6642d90054" target="4dc4b64e-ac11-4e09-8c2a-b9578e6a22a6"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="6aed782f-8c6e-40c2-a01e-aa6642d90054" target="9cfbdb50-a9de-47b2-8949-b723f065fbc7"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="6aed782f-8c6e-40c2-a01e-aa6642d90054" target="02e10f35-24ad-4d3b-8210-952263fb017b"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="2de1d2fd-4310-482c-a98f-fc1f5a12acf5 ec24b2ee-add0-493d-b6a2-872b1fc976b9" dArrows="96513fb9-99d7-4968-9476-6820446fe801" source="96513fb9-99d7-4968-9476-6820446fe801">
+      <constraint href="w1.xmi#5d86f754-cea0-4806-9dc3-c70e89b8b58f"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+      <offset offset="53 32" len="231"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="179633a9-e674-446e-ad3a-51887aedc6cb 2005784c-7dc0-48bc-aedd-2f53c602a38d" dArrows="ebf2951f-d949-4e42-8d11-e3d18e3ed054" source="ebf2951f-d949-4e42-8d11-e3d18e3ed054">
+      <constraint href="w1.xmi#47098cd7-60a1-42f3-8b88-12b525257f31"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+      <offset offset="74 -24" len="194"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="179633a9-e674-446e-ad3a-51887aedc6cb 2005784c-7dc0-48bc-aedd-2f53c602a38d d34915fa-b3b8-4207-b641-e90034cb8f5c" dArrows="ebf2951f-d949-4e42-8d11-e3d18e3ed054 9cfbdb50-a9de-47b2-8949-b723f065fbc7" fakeNode="e228a941-7570-48fa-9e91-ef1cb00832aa">
+      <constraint href="w1.xmi#c8cdc759-35fd-4540-83bd-debb60437803"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-xor"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="e228a941-7570-48fa-9e91-ef1cb00832aa" target="ebf2951f-d949-4e42-8d11-e3d18e3ed054"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="e228a941-7570-48fa-9e91-ef1cb00832aa" target="9cfbdb50-a9de-47b2-8949-b723f065fbc7"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="179633a9-e674-446e-ad3a-51887aedc6cb d34915fa-b3b8-4207-b641-e90034cb8f5c 2005784c-7dc0-48bc-aedd-2f53c602a38d" dArrows="9cfbdb50-a9de-47b2-8949-b723f065fbc7 02e10f35-24ad-4d3b-8210-952263fb017b" dPredicate="2792c1a9-5e5b-45d5-a8e0-f14bf1b8da8d" fakeNode="1464cd3b-3cae-40c0-ae48-1ed63794dc3e">
+      <constraint href="w1.xmi#299ee328-e6e6-49c8-a0ec-55c81f8ada3f"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="1464cd3b-3cae-40c0-ae48-1ed63794dc3e" target="9cfbdb50-a9de-47b2-8949-b723f065fbc7"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="1464cd3b-3cae-40c0-ae48-1ed63794dc3e" target="02e10f35-24ad-4d3b-8210-952263fb017b"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="179633a9-e674-446e-ad3a-51887aedc6cb 2005784c-7dc0-48bc-aedd-2f53c602a38d d34915fa-b3b8-4207-b641-e90034cb8f5c" dArrows="ebf2951f-d949-4e42-8d11-e3d18e3ed054 02e10f35-24ad-4d3b-8210-952263fb017b" dPredicate="cbbc7e7e-06b8-4bfa-9b49-8a1ef77d7585" fakeNode="34d08fdf-54a8-43d5-b3bb-a7161594c457">
+      <constraint href="w1.xmi#9a717eb4-8b11-4ba8-bda9-8a581e280aa7"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="34d08fdf-54a8-43d5-b3bb-a7161594c457" target="ebf2951f-d949-4e42-8d11-e3d18e3ed054"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="34d08fdf-54a8-43d5-b3bb-a7161594c457" target="02e10f35-24ad-4d3b-8210-952263fb017b"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="0107b489-410e-4542-8f86-6ba7afffb7bc f714301c-93fe-4642-8efb-ba1313d88ba7 9d3e0ec7-d8e0-4423-834f-e6a81beee456" dArrows="cd25efb9-6bac-45b6-9f08-646f8ff1e27e 6d6a6389-263b-4cbb-8d9c-6a5b1c10f947" fakeNode="b8e56060-0bf8-40d1-885f-368e1b0ce5c5">
+      <constraint href="w1.xmi#5e6d9e1b-23f8-49b3-85a2-b569260bae1b"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-xor"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="b8e56060-0bf8-40d1-885f-368e1b0ce5c5" target="cd25efb9-6bac-45b6-9f08-646f8ff1e27e"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="b8e56060-0bf8-40d1-885f-368e1b0ce5c5" target="6d6a6389-263b-4cbb-8d9c-6a5b1c10f947"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="0107b489-410e-4542-8f86-6ba7afffb7bc f714301c-93fe-4642-8efb-ba1313d88ba7 839f629a-d9cf-4de1-8deb-f421b59c094e 179633a9-e674-446e-ad3a-51887aedc6cb" dArrows="cd25efb9-6bac-45b6-9f08-646f8ff1e27e 7405f5b5-bdd2-4117-95d2-7c7885cf1c7f" dPredicate="7528a0d6-d150-4c57-89c9-1f4252931361" fakeNode="d5f49730-f659-4695-9270-89564797fe62">
+      <constraint href="w1.xmi#04a96bf0-7c49-40a6-9cff-7492e2da3207"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="d5f49730-f659-4695-9270-89564797fe62" target="cd25efb9-6bac-45b6-9f08-646f8ff1e27e"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="d5f49730-f659-4695-9270-89564797fe62" target="7405f5b5-bdd2-4117-95d2-7c7885cf1c7f"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="bbc5c8b0-375b-4c21-b718-6b57990ad4dd 9d3e0ec7-d8e0-4423-834f-e6a81beee456 0107b489-410e-4542-8f86-6ba7afffb7bc f714301c-93fe-4642-8efb-ba1313d88ba7" dArrows="f400d53d-c69a-44ef-8389-2c78196fbddd cd25efb9-6bac-45b6-9f08-646f8ff1e27e" dPredicate="467939dc-b105-401d-acd1-842597e4c8bb" fakeNode="748d5aaa-fc44-4736-8c0f-84113c3782c3">
+      <constraint href="w1.xmi#1c038537-f130-4812-aecb-9abd69d6eee4"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="748d5aaa-fc44-4736-8c0f-84113c3782c3" target="f400d53d-c69a-44ef-8389-2c78196fbddd"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="748d5aaa-fc44-4736-8c0f-84113c3782c3" target="cd25efb9-6bac-45b6-9f08-646f8ff1e27e"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="839f629a-d9cf-4de1-8deb-f421b59c094e 9d3e0ec7-d8e0-4423-834f-e6a81beee456 0107b489-410e-4542-8f86-6ba7afffb7bc f714301c-93fe-4642-8efb-ba1313d88ba7" dArrows="6ee35efd-04f5-4849-9336-1b87c22b3bcf cd25efb9-6bac-45b6-9f08-646f8ff1e27e" dPredicate="467939dc-b105-401d-acd1-842597e4c8bb" fakeNode="e3e3112c-c456-4458-8a07-19a229ec5b60">
+      <constraint href="w1.xmi#35d03344-aed5-46c7-9013-90cc0343ce7f"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="e3e3112c-c456-4458-8a07-19a229ec5b60" target="6ee35efd-04f5-4849-9336-1b87c22b3bcf"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="e3e3112c-c456-4458-8a07-19a229ec5b60" target="cd25efb9-6bac-45b6-9f08-646f8ff1e27e"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="839f629a-d9cf-4de1-8deb-f421b59c094e 179633a9-e674-446e-ad3a-51887aedc6cb 9d3e0ec7-d8e0-4423-834f-e6a81beee456" dArrows="7405f5b5-bdd2-4117-95d2-7c7885cf1c7f 6ee35efd-04f5-4849-9336-1b87c22b3bcf" fakeNode="9fa7cb18-4c01-4f35-b7f9-e0ff6ff1f374">
+      <constraint href="w1.xmi#501a5869-32b0-41cf-b4e6-7a8c8664d343"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-xor"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="9fa7cb18-4c01-4f35-b7f9-e0ff6ff1f374" target="7405f5b5-bdd2-4117-95d2-7c7885cf1c7f"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="9fa7cb18-4c01-4f35-b7f9-e0ff6ff1f374" target="6ee35efd-04f5-4849-9336-1b87c22b3bcf"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="0107b489-410e-4542-8f86-6ba7afffb7bc f714301c-93fe-4642-8efb-ba1313d88ba7 2de1d2fd-4310-482c-a98f-fc1f5a12acf5" dArrows="cd25efb9-6bac-45b6-9f08-646f8ff1e27e 3fa2f9ce-c243-48d7-b4e5-e3e49d94c1fb" dPredicate="d78aaa93-06d6-4fdb-af68-fba078bf5885" fakeNode="d5c1aa77-807d-4f59-8271-0313a04546e7">
+      <constraint href="w1.xmi#2a9d48ef-9068-4c37-bcec-38fecbb3bb85"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="d5c1aa77-807d-4f59-8271-0313a04546e7" target="cd25efb9-6bac-45b6-9f08-646f8ff1e27e"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="d5c1aa77-807d-4f59-8271-0313a04546e7" target="3fa2f9ce-c243-48d7-b4e5-e3e49d94c1fb"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="2de1d2fd-4310-482c-a98f-fc1f5a12acf5 858ad6d6-0162-4237-beb6-099b4563cc3b f714301c-93fe-4642-8efb-ba1313d88ba7 ec24b2ee-add0-493d-b6a2-872b1fc976b9" dArrows="6327de43-c1b9-43af-ab80-d6bbf18b9302 3fa2f9ce-c243-48d7-b4e5-e3e49d94c1fb 96513fb9-99d7-4968-9476-6820446fe801" dPredicate="d32b517e-6c11-420f-8adc-9f1c224006fa" fakeNode="c7b884d3-6436-4435-8b9b-f3126d190274">
+      <constraint href="w1.xmi#525cbd53-d85d-455a-a1aa-890c3dd51ad3"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="c7b884d3-6436-4435-8b9b-f3126d190274" target="6327de43-c1b9-43af-ab80-d6bbf18b9302"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="c7b884d3-6436-4435-8b9b-f3126d190274" target="3fa2f9ce-c243-48d7-b4e5-e3e49d94c1fb"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="c7b884d3-6436-4435-8b9b-f3126d190274" target="96513fb9-99d7-4968-9476-6820446fe801"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="83b8128a-7218-46a6-b393-47ef38da807d 9369b8f0-6618-483f-92e9-e51e69976d57" dArrows="6040a0a6-89b7-4937-a727-1805c232961f" source="6040a0a6-89b7-4937-a727-1805c232961f">
+      <constraint href="w1.xmi#03aa3bed-d1de-46ea-a3eb-137bf2af924d"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+      <offset offset="-97 17" len="-88"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="9369b8f0-6618-483f-92e9-e51e69976d57 d34915fa-b3b8-4207-b641-e90034cb8f5c 83b8128a-7218-46a6-b393-47ef38da807d 17139f1a-9310-4e19-ad25-00ce983c78a9 cdb512b7-66c4-4d96-831e-495a27596a57" dArrows="4dc4b64e-ac11-4e09-8c2a-b9578e6a22a6 e7b8a505-6bfd-4819-8d3f-cd5d7c3169fe ccd8a902-6c39-40c1-873a-4737e765443d ebf3be0c-636c-4919-844f-c9220e3ecdaa" fakeNode="845f60c8-bfd2-48a7-b0d0-b9f1d8a7ab36">
+      <constraint href="w1.xmi#b779f6af-4f59-45ab-b3b2-7d6d3985e761"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-xor4"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="845f60c8-bfd2-48a7-b0d0-b9f1d8a7ab36" target="4dc4b64e-ac11-4e09-8c2a-b9578e6a22a6"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="845f60c8-bfd2-48a7-b0d0-b9f1d8a7ab36" target="e7b8a505-6bfd-4819-8d3f-cd5d7c3169fe"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="845f60c8-bfd2-48a7-b0d0-b9f1d8a7ab36" target="ccd8a902-6c39-40c1-873a-4737e765443d"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="845f60c8-bfd2-48a7-b0d0-b9f1d8a7ab36" target="ebf3be0c-636c-4919-844f-c9220e3ecdaa"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="83b8128a-7218-46a6-b393-47ef38da807d 9369b8f0-6618-483f-92e9-e51e69976d57 e7fd9564-5902-4fdd-bf7a-79795cdb9376" dArrows="6040a0a6-89b7-4937-a727-1805c232961f 89f1fa81-4c76-45a2-9d9b-c146fadae21d" dPredicate="d78aaa93-06d6-4fdb-af68-fba078bf5885" fakeNode="838e3ef7-9105-45b6-a788-c18823ec906d">
+      <constraint href="w1.xmi#daf26d39-b617-4bde-b863-a24267b87d66"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="838e3ef7-9105-45b6-a788-c18823ec906d" target="6040a0a6-89b7-4937-a727-1805c232961f"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="838e3ef7-9105-45b6-a788-c18823ec906d" target="89f1fa81-4c76-45a2-9d9b-c146fadae21d"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="2de1d2fd-4310-482c-a98f-fc1f5a12acf5 858ad6d6-0162-4237-beb6-099b4563cc3b 3fb5cdfc-61a5-4e68-8826-2395267435aa" dArrows="6327de43-c1b9-43af-ab80-d6bbf18b9302 bf7dfbeb-c155-48c3-96a0-670163ce13b1" fakeNode="f7171b1e-38f8-4ba8-ba45-3c01d5bfa781">
+      <constraint href="w1.xmi#d60112bc-c2f9-4712-8fc3-06c333634e8a"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-merge-not-and"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="f7171b1e-38f8-4ba8-ba45-3c01d5bfa781" target="6327de43-c1b9-43af-ab80-d6bbf18b9302"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="f7171b1e-38f8-4ba8-ba45-3c01d5bfa781" target="bf7dfbeb-c155-48c3-96a0-670163ce13b1"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="3fb5cdfc-61a5-4e68-8826-2395267435aa 858ad6d6-0162-4237-beb6-099b4563cc3b 99bc44b4-ddcf-4713-a414-e0bcbc601419" dArrows="bf7dfbeb-c155-48c3-96a0-670163ce13b1 7d03ba09-07ca-42c6-a89b-d3121355d125" dPredicate="d78aaa93-06d6-4fdb-af68-fba078bf5885" fakeNode="55706995-4ae4-409b-8e59-e202575f57ca">
+      <constraint href="w1.xmi#fc7cf1a3-06b1-4eb6-9c65-7531e16590dc"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="55706995-4ae4-409b-8e59-e202575f57ca" target="bf7dfbeb-c155-48c3-96a0-670163ce13b1"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="55706995-4ae4-409b-8e59-e202575f57ca" target="7d03ba09-07ca-42c6-a89b-d3121355d125"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="3fb5cdfc-61a5-4e68-8826-2395267435aa 839f629a-d9cf-4de1-8deb-f421b59c094e 858ad6d6-0162-4237-beb6-099b4563cc3b" dArrows="4981c616-7678-4d33-9724-5226ecbd0c97 bf7dfbeb-c155-48c3-96a0-670163ce13b1" fakeNode="9892852d-28a8-421f-ad2d-185ea2afdef0">
+      <constraint href="w1.xmi#e715be55-f657-488b-b6ee-bc680672eca0"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-xor"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="9892852d-28a8-421f-ad2d-185ea2afdef0" target="4981c616-7678-4d33-9724-5226ecbd0c97"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="9892852d-28a8-421f-ad2d-185ea2afdef0" target="bf7dfbeb-c155-48c3-96a0-670163ce13b1"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="3fb5cdfc-61a5-4e68-8826-2395267435aa 839f629a-d9cf-4de1-8deb-f421b59c094e" dArrows="4981c616-7678-4d33-9724-5226ecbd0c97" source="4981c616-7678-4d33-9724-5226ecbd0c97">
+      <constraint href="w1.xmi#31bb346e-3a70-4877-8072-3c58e6b86ed1"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+      <offset offset="86 13" len="196"/>
+    </dConstraints>
+    <specification href="w1.xmi#/0"/>
+  </diagram:DSpecification>
+  <diagram:DSignature>
+    <signature href="w1.xmi#/1"/>
+    <dPredicates id="c20a3782-bcb2-40ea-b793-5cdad160d975" simpleName="@APP">
+      <predicate href="w1.xmi#0646538c-d43d-4b40-9e4d-34f9a2f3116f"/>
+      <dGraph>
+        <dNodes id="7783a76e-e8fa-4025-88d2-e87afc05a3dc" location="50 50" size="19 27">
+          <node href="w1.xmi#3170a0b2-c9c1-4014-b572-c0cd6922cd9b"/>
+        </dNodes>
+        <graph href="w1.xmi#/1/@predicates.0/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="75d964f2-9b01-44d4-8661-961fb2c45e7b" simpleName="@DIPS">
+      <predicate href="w1.xmi#beb4f2fd-c413-4ca4-8347-acc5310a15fd"/>
+      <dGraph>
+        <dNodes id="147e2a47-99c8-4033-97ae-e41e88f8376a" location="50 50" size="100 30">
+          <node href="w1.xmi#5ea8eb5d-3f2d-4ea2-bdf7-dfb0d1cd1862"/>
+        </dNodes>
+        <graph href="w1.xmi#/1/@predicates.1/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="778b488b-f6fd-40e4-b939-5fbdd0561fbe" simpleName="@Maunel">
+      <predicate href="w1.xmi#7b415f4c-a1c8-4f08-b0de-41c945ac435a"/>
+      <dGraph>
+        <dNodes id="18bba545-dd52-4793-a3d1-ea38f7cf14fb" location="50 50" size="100 30">
+          <node href="w1.xmi#b60382ef-ff84-4be2-b289-b71aed9bf69c"/>
+        </dNodes>
+        <graph href="w1.xmi#/1/@predicates.2/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="8e8310b3-dbba-41de-9f28-44f3b2486c80" simpleName="nand3">
+      <predicate href="w1.xmi#8365a336-e2c3-4fef-917e-8a50ed395199"/>
+      <dGraph>
+        <dNodes id="c7738a43-79bf-4d60-95cc-cd30063dd59f" dOutgoings="97c2f6e4-a6b5-406a-a06a-d874dab0cb75 d89b30c1-0bd0-4fe7-a223-97e08cfcff6d a0a8ac0c-f2ad-4471-92e2-00216469d7b1" location="78 50" size="102 42">
+          <node href="w1.xmi#828b4845-5b20-4343-963a-99d8bf6ffea5"/>
+        </dNodes>
+        <dNodes id="59a5919c-8b87-47a0-8c07-b63c60dc2cb5" dIncomings="97c2f6e4-a6b5-406a-a06a-d874dab0cb75" location="289 39" size="100 42">
+          <node href="w1.xmi#6dc7d5be-8e39-4b5f-8dc8-9bf98ab42e2c"/>
+        </dNodes>
+        <dNodes id="31ddd6f0-9394-4da0-8ecf-6ee737761eb7" dIncomings="d89b30c1-0bd0-4fe7-a223-97e08cfcff6d" location="282 120" size="100 42">
+          <node href="w1.xmi#3a916f0c-7244-4f5d-bdfb-f8bbece6987b"/>
+        </dNodes>
+        <dNodes id="325c38d1-7f92-41a7-93fa-1865a055c605" dIncomings="a0a8ac0c-f2ad-4471-92e2-00216469d7b1" location="97 129" size="110 42">
+          <node href="w1.xmi#e345d2c8-9284-4c4a-b6d3-635c554f6703"/>
+        </dNodes>
+        <dArrows id="97c2f6e4-a6b5-406a-a06a-d874dab0cb75" dSource="c7738a43-79bf-4d60-95cc-cd30063dd59f" dTarget="59a5919c-8b87-47a0-8c07-b63c60dc2cb5">
+          <arrow href="w1.xmi#b700c557-064c-4dac-8903-c6ed9da88474"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="d89b30c1-0bd0-4fe7-a223-97e08cfcff6d" dSource="c7738a43-79bf-4d60-95cc-cd30063dd59f" dTarget="31ddd6f0-9394-4da0-8ecf-6ee737761eb7">
+          <arrow href="w1.xmi#7ff4372d-11cf-4074-a58d-0f163fb24929"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="a0a8ac0c-f2ad-4471-92e2-00216469d7b1" dSource="c7738a43-79bf-4d60-95cc-cd30063dd59f" dTarget="325c38d1-7f92-41a7-93fa-1865a055c605">
+          <arrow href="w1.xmi#d2b2cf8d-a764-4b72-8a87-e8a384361754"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="w1.xmi#/1/@predicates.3/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="d78aaa93-06d6-4fdb-af68-fba078bf5885" simpleName="xorsurj">
+      <predicate href="w1.xmi#ddabb8ce-2a40-48f8-98cd-58c78e574e58"/>
+      <dGraph>
+        <dNodes id="cb3f8c91-3fa2-45a3-9eec-481ca446541f" dOutgoings="d1752a7c-9768-458d-87f9-3f6819204f03" location="112 88" size="102 42">
+          <node href="w1.xmi#bd7b2a7a-ef19-4e6a-9663-45e05eed8b97"/>
+        </dNodes>
+        <dNodes id="3154c887-1a68-4d93-bec2-6b20dae1da12" dOutgoings="ff236514-edd2-4d40-ae82-30ab9b81cd59" location="126 212" size="100 42">
+          <node href="w1.xmi#292fede4-0827-4a8b-a866-1e9403cd0050"/>
+        </dNodes>
+        <dNodes id="15627f76-a24c-4001-870c-952a5afc2722" dIncomings="d1752a7c-9768-458d-87f9-3f6819204f03 ff236514-edd2-4d40-ae82-30ab9b81cd59" location="328 141" size="100 42">
+          <node href="w1.xmi#282d0e8f-2132-4565-b3db-850503a967d4"/>
+        </dNodes>
+        <dArrows id="d1752a7c-9768-458d-87f9-3f6819204f03" dSource="cb3f8c91-3fa2-45a3-9eec-481ca446541f" dTarget="15627f76-a24c-4001-870c-952a5afc2722">
+          <arrow href="w1.xmi#5861dd71-62c0-46e0-a140-8cf18051b80d"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="ff236514-edd2-4d40-ae82-30ab9b81cd59" dSource="3154c887-1a68-4d93-bec2-6b20dae1da12" dTarget="15627f76-a24c-4001-870c-952a5afc2722">
+          <arrow href="w1.xmi#2045c6a7-418f-4b02-9cdf-c269880f9f4e"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="w1.xmi#/1/@predicates.4/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="ee0195b3-6c8f-4dd0-892b-19c8b2b975be" simpleName="@UniLab">
+      <predicate href="w1.xmi#9fd75e90-53a2-4831-863d-03d81705c217"/>
+      <dGraph>
+        <dNodes id="e14a64b5-ae71-4bbf-a81e-7e52a7c786fc" location="50 50" size="26 42">
+          <node href="w1.xmi#b12179da-2424-469f-a703-372178853ff6"/>
+        </dNodes>
+        <graph href="w1.xmi#/1/@predicates.5/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="9009c0d4-8611-4176-ad7a-7ae734cc1773" simpleName="@Printer">
+      <predicate href="w1.xmi#3a6a6abd-2cfd-4fc7-92ba-2558635b2bd8"/>
+      <dGraph>
+        <dNodes id="3d2dcbc3-d11a-4664-80dd-76279859d895" location="50 50" size="19 27">
+          <node href="w1.xmi#49905441-33fc-4c8a-a055-f6d91fac9d9f"/>
+        </dNodes>
+        <graph href="w1.xmi#/1/@predicates.6/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="85a8262e-d867-4281-bfee-7acabb924a25" simpleName="@Prosang">
+      <predicate href="w1.xmi#31b70dd9-2c2b-4aec-b57b-fce0c9938f31"/>
+      <dGraph>
+        <dNodes id="71a5e3b3-3638-4d6b-b9bc-41d256a9fe83" location="50 50" size="19 27">
+          <node href="w1.xmi#c370ffc0-2de3-4ea2-b425-11800d61f545"/>
+        </dNodes>
+        <graph href="w1.xmi#/1/@predicates.7/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="e715caf0-9e21-4ff8-949b-4c4f9c35ac5a" simpleName="@Meona">
+      <predicate href="w1.xmi#f881ac75-ec38-40ed-9179-eb27248a846e"/>
+      <dGraph>
+        <dNodes id="e50399db-edc2-4be1-8754-cf4dce7fc273" location="50 50" size="19 27">
+          <node href="w1.xmi#2bd92ef5-688d-4bba-a780-05100fcb8d1d"/>
+        </dNodes>
+        <graph href="w1.xmi#/1/@predicates.8/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="e1d4ca20-f7ec-4b6a-8d29-906144b4e8a2" simpleName="andsurj">
+      <predicate href="w1.xmi#0e653995-c063-47d0-9d32-792f1f0bb967"/>
+      <dGraph>
+        <dNodes id="8c95b1c7-2550-4ef2-b4f6-4e04c088f3f8" dOutgoings="7d4fdcd0-a14d-4b38-8455-e56af0c75db2" location="50 50" size="26 27">
+          <node href="w1.xmi#05bc9fbc-5975-45d2-9557-42c322ad5c75"/>
+        </dNodes>
+        <dNodes id="1bc01ab2-1e9c-4e9c-968d-cf8ab553c366" dIncomings="7d4fdcd0-a14d-4b38-8455-e56af0c75db2 25c24cdc-77d7-415b-af32-69734cb735d5" location="200 50" size="25 27">
+          <node href="w1.xmi#62b245c1-0494-4459-b370-0dd119e10899"/>
+        </dNodes>
+        <dNodes id="b4c2980b-5ff2-402f-a0dc-f71e7476ce86" dOutgoings="25c24cdc-77d7-415b-af32-69734cb735d5" location="50 100" size="26 27">
+          <node href="w1.xmi#70e212ef-54cd-47ce-8ad6-a5a1f6b384a8"/>
+        </dNodes>
+        <dArrows id="7d4fdcd0-a14d-4b38-8455-e56af0c75db2" dSource="8c95b1c7-2550-4ef2-b4f6-4e04c088f3f8" dTarget="1bc01ab2-1e9c-4e9c-968d-cf8ab553c366">
+          <arrow href="w1.xmi#12e1cc0e-09e0-4806-b787-b0e09e180ad6"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="25c24cdc-77d7-415b-af32-69734cb735d5" dSource="b4c2980b-5ff2-402f-a0dc-f71e7476ce86" dTarget="1bc01ab2-1e9c-4e9c-968d-cf8ab553c366">
+          <arrow href="w1.xmi#a3b302d0-d883-451e-948f-82658a35a21b"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="w1.xmi#/1/@predicates.9/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="10b80b69-c977-4699-8bbd-5e5f28bbf304" simpleName="xor3surj">
+      <predicate href="w1.xmi#5d6f618b-97ef-4a35-8833-5ed786862196"/>
+      <dGraph>
+        <dNodes id="a9f36739-9909-4822-894e-b0347b6f10e1" dOutgoings="490d897a-332b-4a15-8ee1-6798bc6fe4a9" location="52 49" size="48 27">
+          <node href="w1.xmi#96c8ce3f-9102-481b-a269-f380e4d2ff9e"/>
+        </dNodes>
+        <dNodes id="b1561bd3-63af-4829-89be-a0a50d7ca35f" dOutgoings="ee1a69e3-ef29-4cd9-b11c-bd502f570c39" location="151 52" size="48 27">
+          <node href="w1.xmi#a2f4ac36-c258-4113-8227-af5f92c1c458"/>
+        </dNodes>
+        <dNodes id="75d97cf5-795d-483e-a5a7-456e9136b717" dOutgoings="96454cc2-3029-45ec-a5f6-07b1fd104ac3" location="237 47" size="48 27">
+          <node href="w1.xmi#24eda018-8bf7-4ec4-99e8-9334a7ff7606"/>
+        </dNodes>
+        <dNodes id="a64ba7cf-34ad-4b62-a4f8-21770f805eca" dIncomings="490d897a-332b-4a15-8ee1-6798bc6fe4a9 ee1a69e3-ef29-4cd9-b11c-bd502f570c39 96454cc2-3029-45ec-a5f6-07b1fd104ac3" location="158 135" size="48 27">
+          <node href="w1.xmi#18642b21-2524-4bd3-92e1-8a49fb30d8ba"/>
+        </dNodes>
+        <dArrows id="490d897a-332b-4a15-8ee1-6798bc6fe4a9" dSource="a9f36739-9909-4822-894e-b0347b6f10e1" dTarget="a64ba7cf-34ad-4b62-a4f8-21770f805eca">
+          <arrow href="w1.xmi#5f33ae54-5fd5-479c-93de-28141e95641d"/>
+          <nameOffset offset="41 14" len="136"/>
+        </dArrows>
+        <dArrows id="ee1a69e3-ef29-4cd9-b11c-bd502f570c39" dSource="b1561bd3-63af-4829-89be-a0a50d7ca35f" dTarget="a64ba7cf-34ad-4b62-a4f8-21770f805eca">
+          <arrow href="w1.xmi#a3d2b79f-1f64-43be-bf09-55ce24b1cef1"/>
+          <nameOffset offset="25 7" len="83"/>
+        </dArrows>
+        <dArrows id="96454cc2-3029-45ec-a5f6-07b1fd104ac3" dSource="75d97cf5-795d-483e-a5a7-456e9136b717" dTarget="a64ba7cf-34ad-4b62-a4f8-21770f805eca">
+          <arrow href="w1.xmi#45c1bbaf-64e9-475f-b3b7-074da98f722e"/>
+          <nameOffset offset="-52 -11" len="-119"/>
+        </dArrows>
+        <graph href="w1.xmi#/1/@predicates.10/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="4105aa6a-59ec-4eb8-8ef1-beac2d504261" simpleName="imply">
+      <predicate href="w1.xmi#69cc880c-d212-42ed-9b67-2f33ab927260"/>
+      <dGraph>
+        <dNodes id="158a070b-ba89-4a94-8c9c-15d11c75ce0d" dOutgoings="402a164e-9240-44ed-a1bf-3c9a406c2c11" location="32 27" size="68 29">
+          <node href="w1.xmi#47d1f64f-2190-49c2-ae41-dd6d28cdc12b"/>
+        </dNodes>
+        <dNodes id="8606f2e4-3f95-4497-ad36-33b936678675" dIncomings="402a164e-9240-44ed-a1bf-3c9a406c2c11 032bfb17-d70a-42b2-bec4-46a8c5b68ee3" location="186 36" size="76 35">
+          <node href="w1.xmi#8e0b41ef-86d2-4fe8-9960-fbc8ed23b012"/>
+        </dNodes>
+        <dNodes id="52e11c83-fc15-4f9b-9a2d-8359830f1861" dOutgoings="032bfb17-d70a-42b2-bec4-46a8c5b68ee3" location="33 71" size="70 27">
+          <node href="w1.xmi#24cf9e37-026e-4529-902b-744c66a417e4"/>
+        </dNodes>
+        <dArrows id="402a164e-9240-44ed-a1bf-3c9a406c2c11" dSource="158a070b-ba89-4a94-8c9c-15d11c75ce0d" dTarget="8606f2e4-3f95-4497-ad36-33b936678675">
+          <arrow href="w1.xmi#f51de3fc-9601-4834-8ba5-9a1536e9c901"/>
+          <nameOffset offset="57 -24" len="162"/>
+        </dArrows>
+        <dArrows id="032bfb17-d70a-42b2-bec4-46a8c5b68ee3" dSource="52e11c83-fc15-4f9b-9a2d-8359830f1861" dTarget="8606f2e4-3f95-4497-ad36-33b936678675">
+          <arrow href="w1.xmi#81b0e845-aea1-4efb-8751-dbedfd9d68a0"/>
+          <nameOffset offset="62 5" len="159"/>
+        </dArrows>
+        <graph href="w1.xmi#/1/@predicates.11/@shape"/>
+      </dGraph>
+      <visualization type="ArrowToArrow">
+        <target xsi:type="core:Arrow" href="w1.xmi#81b0e845-aea1-4efb-8751-dbedfd9d68a0"/>
+      </visualization>
+    </dPredicates>
+    <dPredicates id="d32b517e-6c11-420f-8adc-9f1c224006fa" simpleName="xor3">
+      <predicate href="w1.xmi#19a6dcbc-93fc-4427-ba61-2e8fc8ce84a5"/>
+      <dGraph>
+        <dNodes id="102ade7d-255e-497d-b0ff-80b5289758ee" dOutgoings="2d6409bf-9dd3-465f-9798-ddf0167be0cf 91e36c8f-feff-4692-9e87-38e6805a3380 5192cc32-b426-41bf-a463-771ce090f119" location="73 85" size="160 42">
+          <node href="w1.xmi#ba81f1be-2886-46eb-833c-b1c53f7feeeb"/>
+        </dNodes>
+        <dNodes id="d9d90055-a953-421c-bdf2-e1ef8e4cd217" dIncomings="2d6409bf-9dd3-465f-9798-ddf0167be0cf" location="299 87" size="160 42">
+          <node href="w1.xmi#6e0d09ef-b485-4efb-bc97-d57822e44d34"/>
+        </dNodes>
+        <dNodes id="83855efc-5cbd-42d8-b2dc-686f3e0c0ad4" dIncomings="5192cc32-b426-41bf-a463-771ce090f119" location="288 192" size="160 42">
+          <node href="w1.xmi#ac82994f-54ee-4296-a798-e2dce6a8c327"/>
+        </dNodes>
+        <dNodes id="c4b838d9-e815-495e-99da-a3a9b40dd04d" dIncomings="91e36c8f-feff-4692-9e87-38e6805a3380" location="108 203" size="160 42">
+          <node href="w1.xmi#f2bb4763-3349-4775-9295-3dfaf3ab09e2"/>
+        </dNodes>
+        <dArrows id="2d6409bf-9dd3-465f-9798-ddf0167be0cf" dSource="102ade7d-255e-497d-b0ff-80b5289758ee" dTarget="d9d90055-a953-421c-bdf2-e1ef8e4cd217">
+          <arrow href="w1.xmi#aa0b82a5-731d-4f07-8e22-644c6bbd7285"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="91e36c8f-feff-4692-9e87-38e6805a3380" dSource="102ade7d-255e-497d-b0ff-80b5289758ee" dTarget="c4b838d9-e815-495e-99da-a3a9b40dd04d">
+          <arrow href="w1.xmi#1b2f796e-0bae-42a2-8ff8-44610e7e3d88"/>
+          <nameOffset offset="51 27" len="123"/>
+        </dArrows>
+        <dArrows id="5192cc32-b426-41bf-a463-771ce090f119" dSource="102ade7d-255e-497d-b0ff-80b5289758ee" dTarget="83855efc-5cbd-42d8-b2dc-686f3e0c0ad4">
+          <arrow href="w1.xmi#85b187e8-ecd9-4dce-9086-ca647649e6c2"/>
+          <nameOffset offset="124 -20" len="240"/>
+        </dArrows>
+        <graph href="w1.xmi#/1/@predicates.12/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="2792c1a9-5e5b-45d5-a8e0-f14bf1b8da8d" simpleName="special">
+      <predicate href="w1.xmi#3c3a5963-99e5-4a17-87ee-ccfa9c746384"/>
+      <dGraph>
+        <dNodes id="520b6550-8fdf-4b47-9da0-a1237c4aff6b" dIncomings="46495781-fb6a-4834-9fd2-d821eec7427d 5d309ff4-92f1-4b9a-9041-9bf9e08b92a7" location="270 125" size="160 42">
+          <node href="w1.xmi#dc2449bc-4a61-45ec-8b4a-d5597712ba08"/>
+        </dNodes>
+        <dNodes id="a0a42ccc-19b2-4ff7-8e97-e5d08c435575" dOutgoings="46495781-fb6a-4834-9fd2-d821eec7427d" location="57 52" size="160 42">
+          <node href="w1.xmi#7352575e-c1ea-4ea5-be5e-567746a41992"/>
+        </dNodes>
+        <dNodes id="876a4e04-8f7b-4d0f-8f28-72e9f79f13e6" dOutgoings="5d309ff4-92f1-4b9a-9041-9bf9e08b92a7" location="62 214" size="160 42">
+          <node href="w1.xmi#17e943c0-f490-4049-888b-43601ef591b0"/>
+        </dNodes>
+        <dArrows id="46495781-fb6a-4834-9fd2-d821eec7427d" dSource="a0a42ccc-19b2-4ff7-8e97-e5d08c435575" dTarget="520b6550-8fdf-4b47-9da0-a1237c4aff6b">
+          <arrow href="w1.xmi#713ccd2b-5ff7-4ba4-ae96-0473fb508937"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="5d309ff4-92f1-4b9a-9041-9bf9e08b92a7" dSource="876a4e04-8f7b-4d0f-8f28-72e9f79f13e6" dTarget="520b6550-8fdf-4b47-9da0-a1237c4aff6b">
+          <arrow href="w1.xmi#311b5705-2867-4ead-b4a4-0e1a4f0186b5"/>
+          <nameOffset offset="81 0" len="226"/>
+        </dArrows>
+        <graph href="w1.xmi#/1/@predicates.13/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="cbbc7e7e-06b8-4bfa-9b49-8a1ef77d7585" simpleName="iff">
+      <predicate href="w1.xmi#7766d2ef-7fe7-46e0-b155-992914600f87"/>
+      <dGraph>
+        <dNodes id="9c0e0d04-9c86-4322-8de0-1e393f3930f3" dOutgoings="909b75f0-0c1f-46ef-86b5-02d9ca634cf5" location="44 41" size="116 42">
+          <node href="w1.xmi#6110c302-edc5-4f95-8e40-49d9b20b5a4f"/>
+        </dNodes>
+        <dNodes id="8c1734c7-12f1-4bd7-b40a-a07bf3eb4e9f" dOutgoings="da2f15bc-9546-4a83-8dd5-eea82d818918" dIncomings="909b75f0-0c1f-46ef-86b5-02d9ca634cf5" location="200 50" size="114 42">
+          <node href="w1.xmi#0d7203ec-17d8-4b25-b873-b7720b53d16a"/>
+        </dNodes>
+        <dNodes id="d15ce1cd-3d4f-455d-b499-86e1a314d864" dIncomings="da2f15bc-9546-4a83-8dd5-eea82d818918" location="212 167" size="114 42">
+          <node href="w1.xmi#26ce8ddb-32a2-4861-b48e-eb9f317c869a"/>
+        </dNodes>
+        <dArrows id="909b75f0-0c1f-46ef-86b5-02d9ca634cf5" dSource="9c0e0d04-9c86-4322-8de0-1e393f3930f3" dTarget="8c1734c7-12f1-4bd7-b40a-a07bf3eb4e9f">
+          <arrow href="w1.xmi#cf9ee934-c95e-425b-9f6e-f4874ce251bc"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="da2f15bc-9546-4a83-8dd5-eea82d818918" dSource="8c1734c7-12f1-4bd7-b40a-a07bf3eb4e9f" dTarget="d15ce1cd-3d4f-455d-b499-86e1a314d864">
+          <arrow href="w1.xmi#4a5f5edc-0ca3-407d-93ec-0ab7b41074fe"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="w1.xmi#/1/@predicates.14/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="7528a0d6-d150-4c57-89c9-1f4252931361" simpleName="iff2">
+      <predicate href="w1.xmi#27a760d6-6086-45fc-a3bb-b03e9a88c79b"/>
+      <dGraph>
+        <dNodes id="5fd50ae8-0cc8-49b4-8671-319f7b95569d" dOutgoings="c33fb227-59ac-4828-8803-a652d3ca1a71" location="50 50" size="116 42">
+          <node href="w1.xmi#a99f01a3-e0f4-48ce-a42c-65326869828a"/>
+        </dNodes>
+        <dNodes id="a5d34b68-92df-4d51-b95c-a370d4c394aa" dIncomings="c33fb227-59ac-4828-8803-a652d3ca1a71" location="200 50" size="114 42">
+          <node href="w1.xmi#40c9457f-ea18-4131-a52d-ffdeef51619c"/>
+        </dNodes>
+        <dNodes id="179a6c4d-4f30-4ac6-99ac-6094ff941103" dOutgoings="ed549a12-2ca8-4269-895b-fa4782ef1355" location="50 100" size="116 42">
+          <node href="w1.xmi#ea09bc30-d0bf-4968-9b17-ec61e1196d28"/>
+        </dNodes>
+        <dNodes id="ac78fde0-b58a-4d12-9b78-55f864e30cca" dIncomings="ed549a12-2ca8-4269-895b-fa4782ef1355" location="200 100" size="114 42">
+          <node href="w1.xmi#9e77a45c-45c1-45db-a2a4-a672e0978d41"/>
+        </dNodes>
+        <dArrows id="c33fb227-59ac-4828-8803-a652d3ca1a71" dSource="5fd50ae8-0cc8-49b4-8671-319f7b95569d" dTarget="a5d34b68-92df-4d51-b95c-a370d4c394aa">
+          <arrow href="w1.xmi#280e079d-7240-45ab-a924-6ea4b0a92157"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="ed549a12-2ca8-4269-895b-fa4782ef1355" dSource="179a6c4d-4f30-4ac6-99ac-6094ff941103" dTarget="ac78fde0-b58a-4d12-9b78-55f864e30cca">
+          <arrow href="w1.xmi#4d33fafb-0e52-4493-a462-b4d8a1a1b179"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="w1.xmi#/1/@predicates.15/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="467939dc-b105-401d-acd1-842597e4c8bb" simpleName="imply2">
+      <predicate href="w1.xmi#adef3a0c-5b83-4a81-baa9-0cd498ddc347"/>
+      <dGraph>
+        <dNodes id="2fd2fe2d-fb4f-4245-9ed7-8b3776e2a79d" dOutgoings="04df4e56-ab3b-4bce-98d4-5c2573259ec9" location="50 50" size="40 42">
+          <node href="w1.xmi#4ec9aedf-acd4-4191-9207-b39a19d74d9b"/>
+        </dNodes>
+        <dNodes id="c46f7fea-d997-4fcc-9803-a5617af1c8d5" dIncomings="04df4e56-ab3b-4bce-98d4-5c2573259ec9" location="200 50" size="38 42">
+          <node href="w1.xmi#d03c9bab-2807-45a7-9a3d-e7f63b10447b"/>
+        </dNodes>
+        <dNodes id="a60dc3ca-45d3-42d0-9d79-c63536746608" dOutgoings="bf3a4f76-fab9-4050-ab50-eee99add270f" location="50 100" size="40 42">
+          <node href="w1.xmi#ce2da3b3-abb2-4f10-b4b5-7220d65f881f"/>
+        </dNodes>
+        <dNodes id="cd8b28ef-80da-403d-8580-117b36e7e877" dIncomings="bf3a4f76-fab9-4050-ab50-eee99add270f" location="200 100" size="38 42">
+          <node href="w1.xmi#1b5670e2-e75a-4346-85e2-74fed83967fb"/>
+        </dNodes>
+        <dArrows id="04df4e56-ab3b-4bce-98d4-5c2573259ec9" dSource="2fd2fe2d-fb4f-4245-9ed7-8b3776e2a79d" dTarget="c46f7fea-d997-4fcc-9803-a5617af1c8d5">
+          <arrow href="w1.xmi#4a3d3dce-8df6-4ac2-b3cc-7549d99884d2"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="bf3a4f76-fab9-4050-ab50-eee99add270f" dSource="a60dc3ca-45d3-42d0-9d79-c63536746608" dTarget="cd8b28ef-80da-403d-8580-117b36e7e877">
+          <arrow href="w1.xmi#1c9aeebe-ead1-47b2-b5a2-3cb506e41f32"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="w1.xmi#/1/@predicates.16/@shape"/>
+      </dGraph>
+      <visualization type="ArrowToArrow">
+        <target xsi:type="core:Arrow" href="w1.xmi#1c9aeebe-ead1-47b2-b5a2-3cb506e41f32"/>
+      </visualization>
+    </dPredicates>
+    <dPredicates id="48f4a25a-de5b-4a51-affa-5366af33a5bf" simpleName="@PorterCom">
+      <predicate href="w1.xmi#772a8c8d-8195-4998-aef5-c1c9d09faf69"/>
+      <dGraph>
+        <dNodes id="008bd304-6938-4aed-ab78-d9438d7b9aa0" location="50 50" size="26 42">
+          <node href="w1.xmi#97c17d80-f5a7-410e-ac5d-bf48c529da9a"/>
+        </dNodes>
+        <graph href="w1.xmi#/1/@predicates.17/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="dddc1db8-cd13-4150-8ffd-e1e67d5e988e" simpleName="xor4">
+      <predicate href="w1.xmi#114ce658-f03a-4644-9ff6-96ec11914026"/>
+      <dGraph>
+        <dNodes id="db480ac9-27c7-4ae5-b3fd-b150e650b251" dOutgoings="f33b407c-512b-4755-867f-bde5d02ed851 f971010b-14f9-44b1-b5d6-f88ed503dac5 5ba6dc81-1e8f-445e-b7a8-69cf3f6cf253 cfa54dcd-bb6d-4bd7-91a2-e511ae855634" location="50 50" size="26 42">
+          <node href="w1.xmi#d1270525-16b5-4ae5-80dc-808d110c923a"/>
+        </dNodes>
+        <dNodes id="1baaa1fb-41b2-412e-b63b-845704aae99b" dIncomings="f33b407c-512b-4755-867f-bde5d02ed851" location="210 56" size="82 42">
+          <node href="w1.xmi#071a63f2-c7e3-496c-8b5e-49af545535db"/>
+        </dNodes>
+        <dNodes id="d4c2772a-589d-4873-a747-4def00a3b651" dIncomings="f971010b-14f9-44b1-b5d6-f88ed503dac5" location="206 143" size="82 42">
+          <node href="w1.xmi#3d659460-f054-410f-8829-5f88931403a6"/>
+        </dNodes>
+        <dNodes id="1ad68ded-3e7e-409f-8c2e-a57c09a3baf0" dIncomings="5ba6dc81-1e8f-445e-b7a8-69cf3f6cf253" location="149 219" size="82 42">
+          <node href="w1.xmi#9e936878-0f81-4fb1-a755-5c9ad572de17"/>
+        </dNodes>
+        <dNodes id="88c215a3-347f-49d2-8726-1175f625846e" dIncomings="cfa54dcd-bb6d-4bd7-91a2-e511ae855634" location="48 225" size="82 42">
+          <node href="w1.xmi#f855c05a-6d30-4310-89bc-bc52708f2c84"/>
+        </dNodes>
+        <dArrows id="f33b407c-512b-4755-867f-bde5d02ed851" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="1baaa1fb-41b2-412e-b63b-845704aae99b">
+          <arrow href="w1.xmi#5d7aee22-abbb-40c2-a05c-51394c5b9257"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="f971010b-14f9-44b1-b5d6-f88ed503dac5" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="d4c2772a-589d-4873-a747-4def00a3b651">
+          <arrow href="w1.xmi#cf994d71-a8d3-48e1-9009-15cd32149928"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="5ba6dc81-1e8f-445e-b7a8-69cf3f6cf253" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="1ad68ded-3e7e-409f-8c2e-a57c09a3baf0">
+          <arrow href="w1.xmi#cdd7c202-7a6a-4755-90ec-ed911c87a26f"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="cfa54dcd-bb6d-4bd7-91a2-e511ae855634" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="88c215a3-347f-49d2-8726-1175f625846e">
+          <arrow href="w1.xmi#306a8320-c023-4468-ab6f-3eea0c01494f"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="w1.xmi#/1/@predicates.18/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="e455755a-11eb-421f-9cde-72448f26056f" simpleName="@system">
+      <predicate href="w1.xmi#02fb1287-a33e-4866-9da8-f1ca69c26a28"/>
+      <dGraph>
+        <dNodes id="bb708d93-d7fa-49df-a636-085841c6be73" location="50 50" size="26 42">
+          <node href="w1.xmi#98da7453-4275-4b0c-b9a2-c4cff131f489"/>
+        </dNodes>
+        <graph href="w1.xmi#/1/@predicates.19/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+  </diagram:DSignature>
+  <diagram:DSpecification zoom="2.0" gridVisible="false" dSignature="/3" signatureFile="wm.sig">
+    <dGraph>
+      <dNodes id="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="2566c557-f9f8-46e9-bc49-73551fed69a6 4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dIncomings="2566c557-f9f8-46e9-bc49-73551fed69a6 88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dConstraints="/2/@dConstraints.0 /2/@dConstraints.1" location="24 72" size="85 35">
+        <node href="w1.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
+      </dNodes>
+      <dNodes id="fbdbc796-9b1c-47cf-9d77-beebf3fed332" configureString="Blueservice" dOutgoings="88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dIncomings="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dConstraints="/2/@dConstraints.0 /2/@dConstraints.1" location="204 71" size="73 36">
+        <node href="w1.xmi#266e1f3f-51ed-44c8-a1e9-abc779055975"/>
+      </dNodes>
+      <dArrows id="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="985a00a4-3616-4c08-802f-24a7fc07eda6" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
+        <arrow href="w1.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
+        <nameOffset offset="22 -20" len="44" index="1"/>
+        <bendpoints offset="-45 3" len="35"/>
+        <bendpoints offset="-44 -41" len="35" index="1"/>
+      </dArrows>
+      <dArrows id="ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" configureString="RedDashedArrow" dSource="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
+        <arrow href="w1.xmi#09816f1d-ca1a-491c-a454-57749fa9927e"/>
+        <nameOffset offset="-13 -29" len="-94" index="1"/>
+        <bendpoints offset="-76 -37" len="-162"/>
+      </dArrows>
+      <dArrows id="88cf0414-b553-4dee-923a-5e66cbcf013f" configureString="GreenDashedArrow" dSource="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
+        <arrow href="w1.xmi#422d4560-0458-4308-8953-fc4bb69505a5"/>
+        <nameOffset offset="-107 -5" len="-90"/>
+        <bendpoints offset="-84 31" len="-174"/>
+      </dArrows>
+      <dArrows id="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dSource="985a00a4-3616-4c08-802f-24a7fc07eda6" dTarget="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dConstraints="/2/@dConstraints.0 /2/@dConstraints.1">
+        <arrow href="w1.xmi#e36d3c66-9cd8-450d-892d-4f14d2057a27"/>
+        <nameOffset offset="44 -8" len="162"/>
+      </dArrows>
+      <graph href="wm.xmi#//@graph"/>
+    </dGraph>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="985a00a4-3616-4c08-802f-24a7fc07eda6 fbdbc796-9b1c-47cf-9d77-beebf3fed332" dArrows="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" source="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c">
+      <constraint href="wm.xmi#6ebb29d0-2fa5-46fa-b374-667835be3ee9"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+      <offset offset="85 -18" len="162"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="985a00a4-3616-4c08-802f-24a7fc07eda6 fbdbc796-9b1c-47cf-9d77-beebf3fed332" dArrows="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" source="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c">
+      <constraint href="wm.xmi#711bc3fb-5f32-4eb5-9d7c-5044ed6d7edf"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-multiplicity"/>
+      <offset offset="85 -1" len="162"/>
+    </dConstraints>
+    <specification href="w1.xmi#/2"/>
+  </diagram:DSpecification>
+  <diagram:DSignature>
+    <signature href="w1.xmi#/3"/>
+  </diagram:DSignature>
+</xmi:XMI>

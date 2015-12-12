@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="ASCII"?>
 <core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core" signatureFile="wm.sig">
   <graph>
-    <nodes id="4282ad3b-6663-47b5-9a26-80f0c4248ec5" name="Task" outgoings="0e2df415-99cc-4bf7-8a9b-8e5657c0076a e36d3c66-9cd8-450d-892d-4f14d2057a27" incomings="0e2df415-99cc-4bf7-8a9b-8e5657c0076a 422d4560-0458-4308-8953-fc4bb69505a5 09816f1d-ca1a-491c-a454-57749fa9927e"/>
-    <nodes id="266e1f3f-51ed-44c8-a1e9-abc779055975" name="Service" outgoings="422d4560-0458-4308-8953-fc4bb69505a5 09816f1d-ca1a-491c-a454-57749fa9927e" incomings="e36d3c66-9cd8-450d-892d-4f14d2057a27"/>
+    <nodes id="4282ad3b-6663-47b5-9a26-80f0c4248ec5" name="Task" outgoings="0e2df415-99cc-4bf7-8a9b-8e5657c0076a e36d3c66-9cd8-450d-892d-4f14d2057a27" incomings="0e2df415-99cc-4bf7-8a9b-8e5657c0076a 422d4560-0458-4308-8953-fc4bb69505a5 09816f1d-ca1a-491c-a454-57749fa9927e" constraints="6ebb29d0-2fa5-46fa-b374-667835be3ee9 711bc3fb-5f32-4eb5-9d7c-5044ed6d7edf"/>
+    <nodes id="266e1f3f-51ed-44c8-a1e9-abc779055975" name="Service" outgoings="422d4560-0458-4308-8953-fc4bb69505a5 09816f1d-ca1a-491c-a454-57749fa9927e" incomings="e36d3c66-9cd8-450d-892d-4f14d2057a27" constraints="6ebb29d0-2fa5-46fa-b374-667835be3ee9 711bc3fb-5f32-4eb5-9d7c-5044ed6d7edf"/>
     <arrows id="0e2df415-99cc-4bf7-8a9b-8e5657c0076a" name="Flow" source="4282ad3b-6663-47b5-9a26-80f0c4248ec5" target="4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     <arrows id="09816f1d-ca1a-491c-a454-57749fa9927e" name="exception" source="266e1f3f-51ed-44c8-a1e9-abc779055975" target="4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     <arrows id="422d4560-0458-4308-8953-fc4bb69505a5" name="return" source="266e1f3f-51ed-44c8-a1e9-abc779055975" target="4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
-    <arrows id="e36d3c66-9cd8-450d-892d-4f14d2057a27" name="request" source="4282ad3b-6663-47b5-9a26-80f0c4248ec5" target="266e1f3f-51ed-44c8-a1e9-abc779055975"/>
+    <arrows id="e36d3c66-9cd8-450d-892d-4f14d2057a27" name="request" source="4282ad3b-6663-47b5-9a26-80f0c4248ec5" target="266e1f3f-51ed-44c8-a1e9-abc779055975" constraints="6ebb29d0-2fa5-46fa-b374-667835be3ee9 711bc3fb-5f32-4eb5-9d7c-5044ed6d7edf"/>
   </graph>
+  <constraints id="6ebb29d0-2fa5-46fa-b374-667835be3ee9" nodes="4282ad3b-6663-47b5-9a26-80f0c4248ec5 266e1f3f-51ed-44c8-a1e9-abc779055975" arrows="e36d3c66-9cd8-450d-892d-4f14d2057a27">
+    <predicate href="platform:/resource/DefaultSpecification.xmi#p-surjective"/>
+    <mappings>
+      <nodeMapping value="4282ad3b-6663-47b5-9a26-80f0c4248ec5">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-surjective-node-0"/>
+      </nodeMapping>
+      <nodeMapping value="266e1f3f-51ed-44c8-a1e9-abc779055975">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-surjective-node-1"/>
+      </nodeMapping>
+      <arrowMapping value="e36d3c66-9cd8-450d-892d-4f14d2057a27">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-surjective-edge-0"/>
+      </arrowMapping>
+    </mappings>
+  </constraints>
+  <constraints id="711bc3fb-5f32-4eb5-9d7c-5044ed6d7edf" nodes="4282ad3b-6663-47b5-9a26-80f0c4248ec5 266e1f3f-51ed-44c8-a1e9-abc779055975" arrows="e36d3c66-9cd8-450d-892d-4f14d2057a27" parameters="min:0;max:1">
+    <predicate href="platform:/resource/DefaultSpecification.xmi#p-multiplicity"/>
+    <mappings>
+      <nodeMapping value="4282ad3b-6663-47b5-9a26-80f0c4248ec5">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-multiplicity-node-0"/>
+      </nodeMapping>
+      <nodeMapping value="266e1f3f-51ed-44c8-a1e9-abc779055975">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-multiplicity-node-1"/>
+      </nodeMapping>
+      <arrowMapping value="e36d3c66-9cd8-450d-892d-4f14d2057a27">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-multiplicity-edge-0"/>
+      </arrowMapping>
+    </mappings>
+  </constraints>
 </core:Specification>

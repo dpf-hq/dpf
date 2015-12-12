@@ -1,0 +1,126 @@
+PorterCom
+{
+  Service : 
+  [
+    {
+      name : Order Traumepakke,
+      required : ,
+      provided : ,
+      exception : []
+    }
+  ]
+}
+Meona
+{
+  Service : 
+  [
+    {
+      name : Store Patient Condition,
+      required : (Patient{temp, pressure_high, pressure_low, pulse}),
+      provided : ,
+      exception : []
+    }
+  ]
+}
+UniLab
+{
+  Service : 
+  [
+    {
+      name : Send Sample,
+      required : (Sample*),
+      provided : ,
+      exception : []
+    }
+  ]
+}
+DIPS
+{
+  Service : 
+  [
+    {
+      name : Get Nurse Info,
+      required : (Barcode),
+      provided : (Nurse{name}),
+      exception : 
+      [
+        Nurse is not found
+      ]
+    },
+    {
+      name : Get Patient Info,
+      required : (Barcode),
+      provided : (Patient{name, ID, gender, blodtype, screening}),
+      exception : 
+      [
+        Patient is not found
+      ]
+    },
+    {
+      name : Get Sample Info,
+      required : (Barcode),
+      provided : (Sample),
+      exception : []
+    },
+    {
+      name : Get Patient Info,
+      required : (Barcode),
+      provided : (Patient),
+      exception : 
+      [
+        Sample is not for the patient
+      ]
+    },
+    {
+      name : Get Doctor Info,
+      required : (Barcode),
+      provided : (Doctor),
+      exception : []
+    }
+  ]
+}
+Prosang
+{
+  Service : 
+  [
+    {
+      name : Verify Blood Product,
+      required : (Barcode,  Patient),
+      provided : The blood is for the patient,
+      exception : 
+      [
+        The blood Product is not for the patient
+      ]
+    },
+    {
+      name : Register Reaction,
+      required : (Reaction{type}),
+      provided : ,
+      exception : []
+    },
+    {
+      name : Store Transfusion,
+      required : (Transfusion, Nurse),
+      provided : ,
+      exception : []
+    },
+    {
+      name : Order Blood Product,
+      required : (BloodOrder{quantity, expectTime}),
+      provided : (Blood*),
+      exception : []
+    }
+  ]
+}
+Printer
+{
+  Service : 
+  [
+    {
+      name : Print Sample Label,
+      required : (Sample Label File*),
+      provided : (Label*),
+      exception : []
+    }
+  ]
+}

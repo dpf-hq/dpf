@@ -1,32 +1,44 @@
 <?xml version="1.0" encoding="ASCII"?>
-<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false" signatureFile="wm.sig">
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://no.hib.dpf.diagram" zoom="2.0" gridVisible="false" signatureFile="wm.sig">
   <dGraph>
-    <dNodes id="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="2566c557-f9f8-46e9-bc49-73551fed69a6 4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dIncomings="2566c557-f9f8-46e9-bc49-73551fed69a6 88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" location="300 257" size="85 35">
+    <dNodes id="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="2566c557-f9f8-46e9-bc49-73551fed69a6 4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dIncomings="2566c557-f9f8-46e9-bc49-73551fed69a6 88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dConstraints="//@dConstraints.0 //@dConstraints.1" location="24 72" size="85 35">
       <node href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </dNodes>
-    <dNodes id="fbdbc796-9b1c-47cf-9d77-beebf3fed332" configureString="Blueservice" dOutgoings="88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dIncomings="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" location="307 375" size="72 37">
+    <dNodes id="fbdbc796-9b1c-47cf-9d77-beebf3fed332" configureString="Blueservice" dOutgoings="88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dIncomings="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dConstraints="//@dConstraints.0 //@dConstraints.1" location="204 71" size="73 36">
       <node href="wm.xmi#266e1f3f-51ed-44c8-a1e9-abc779055975"/>
     </dNodes>
     <dArrows id="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="985a00a4-3616-4c08-802f-24a7fc07eda6" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
       <arrow href="wm.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
-      <nameOffset offset="25 -24" len="44" index="1"/>
+      <nameOffset offset="22 -20" len="44" index="1"/>
       <bendpoints offset="-45 3" len="35"/>
       <bendpoints offset="-44 -41" len="35" index="1"/>
     </dArrows>
     <dArrows id="ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" configureString="RedDashedArrow" dSource="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
       <arrow href="wm.xmi#09816f1d-ca1a-491c-a454-57749fa9927e"/>
-      <nameOffset offset="-73 39" len="-120"/>
+      <nameOffset offset="-13 -29" len="-94" index="1"/>
+      <bendpoints offset="-76 -37" len="-162"/>
     </dArrows>
     <dArrows id="88cf0414-b553-4dee-923a-5e66cbcf013f" configureString="GreenDashedArrow" dSource="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
       <arrow href="wm.xmi#422d4560-0458-4308-8953-fc4bb69505a5"/>
-      <nameOffset offset="-72 70" len="-120"/>
+      <nameOffset offset="-107 -5" len="-90"/>
+      <bendpoints offset="-84 31" len="-174"/>
     </dArrows>
-    <dArrows id="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dSource="985a00a4-3616-4c08-802f-24a7fc07eda6" dTarget="fbdbc796-9b1c-47cf-9d77-beebf3fed332">
+    <dArrows id="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dSource="985a00a4-3616-4c08-802f-24a7fc07eda6" dTarget="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dConstraints="//@dConstraints.0 //@dConstraints.1">
       <arrow href="wm.xmi#e36d3c66-9cd8-450d-892d-4f14d2057a27"/>
-      <nameOffset offset="62 -28" len="119"/>
+      <nameOffset offset="44 -8" len="162"/>
     </dArrows>
     <graph href="wm.xmi#//@graph"/>
   </dGraph>
+  <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="985a00a4-3616-4c08-802f-24a7fc07eda6 fbdbc796-9b1c-47cf-9d77-beebf3fed332" dArrows="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" source="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c">
+    <constraint href="wm.xmi#6ebb29d0-2fa5-46fa-b374-667835be3ee9"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+    <offset offset="85 -18" len="162"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="985a00a4-3616-4c08-802f-24a7fc07eda6 fbdbc796-9b1c-47cf-9d77-beebf3fed332" dArrows="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" source="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c">
+    <constraint href="wm.xmi#711bc3fb-5f32-4eb5-9d7c-5044ed6d7edf"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-multiplicity"/>
+    <offset offset="85 -1" len="162"/>
+  </dConstraints>
   <specification href="wm.xmi#/"/>
   <dSignature href="wm.sig#/0"/>
 </diagram:DSpecification>

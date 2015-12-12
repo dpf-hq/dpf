@@ -109,14 +109,14 @@
     </dPredicates>
     <dPredicates id="4105aa6a-59ec-4eb8-8ef1-beac2d504261" predicate="69cc880c-d212-42ed-9b67-2f33ab927260">
       <dGraph graph="/1/@predicates.11/@shape">
-        <dNodes id="158a070b-ba89-4a94-8c9c-15d11c75ce0d" node="47d1f64f-2190-49c2-ae41-dd6d28cdc12b" dOutgoings="402a164e-9240-44ed-a1bf-3c9a406c2c11" location="50 50" size="68 29"/>
-        <dNodes id="8606f2e4-3f95-4497-ad36-33b936678675" node="8e0b41ef-86d2-4fe8-9960-fbc8ed23b012" dIncomings="402a164e-9240-44ed-a1bf-3c9a406c2c11 032bfb17-d70a-42b2-bec4-46a8c5b68ee3" location="200 50" size="76 35"/>
-        <dNodes id="52e11c83-fc15-4f9b-9a2d-8359830f1861" node="24cf9e37-026e-4529-902b-744c66a417e4" dOutgoings="032bfb17-d70a-42b2-bec4-46a8c5b68ee3" location="50 100" size="70 27"/>
+        <dNodes id="158a070b-ba89-4a94-8c9c-15d11c75ce0d" node="47d1f64f-2190-49c2-ae41-dd6d28cdc12b" dOutgoings="402a164e-9240-44ed-a1bf-3c9a406c2c11" location="32 27" size="68 29"/>
+        <dNodes id="8606f2e4-3f95-4497-ad36-33b936678675" node="8e0b41ef-86d2-4fe8-9960-fbc8ed23b012" dIncomings="402a164e-9240-44ed-a1bf-3c9a406c2c11 032bfb17-d70a-42b2-bec4-46a8c5b68ee3" location="186 36" size="76 35"/>
+        <dNodes id="52e11c83-fc15-4f9b-9a2d-8359830f1861" node="24cf9e37-026e-4529-902b-744c66a417e4" dOutgoings="032bfb17-d70a-42b2-bec4-46a8c5b68ee3" location="33 71" size="70 27"/>
         <dArrows id="402a164e-9240-44ed-a1bf-3c9a406c2c11" arrow="f51de3fc-9601-4834-8ba5-9a1536e9c901" dSource="158a070b-ba89-4a94-8c9c-15d11c75ce0d" dTarget="8606f2e4-3f95-4497-ad36-33b936678675">
-          <nameOffset offset="54 -35" len="152"/>
+          <nameOffset offset="57 -24" len="162"/>
         </dArrows>
         <dArrows id="032bfb17-d70a-42b2-bec4-46a8c5b68ee3" arrow="81b0e845-aea1-4efb-8751-dbedfd9d68a0" dSource="52e11c83-fc15-4f9b-9a2d-8359830f1861" dTarget="8606f2e4-3f95-4497-ad36-33b936678675">
-          <nameOffset offset="67 -1" len="164"/>
+          <nameOffset offset="62 5" len="159"/>
         </dArrows>
       </dGraph>
       <visualization type="ArrowToArrow" target="81b0e845-aea1-4efb-8751-dbedfd9d68a0"/>
@@ -200,6 +200,34 @@
     <dPredicates id="48f4a25a-de5b-4a51-affa-5366af33a5bf" predicate="772a8c8d-8195-4998-aef5-c1c9d09faf69">
       <dGraph graph="/1/@predicates.17/@shape">
         <dNodes id="008bd304-6938-4aed-ab78-d9438d7b9aa0" node="97c17d80-f5a7-410e-ac5d-bf48c529da9a" location="50 50" size="26 42"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="dddc1db8-cd13-4150-8ffd-e1e67d5e988e" predicate="114ce658-f03a-4644-9ff6-96ec11914026">
+      <dGraph graph="/1/@predicates.18/@shape">
+        <dNodes id="db480ac9-27c7-4ae5-b3fd-b150e650b251" node="d1270525-16b5-4ae5-80dc-808d110c923a" dOutgoings="f33b407c-512b-4755-867f-bde5d02ed851 f971010b-14f9-44b1-b5d6-f88ed503dac5 5ba6dc81-1e8f-445e-b7a8-69cf3f6cf253 cfa54dcd-bb6d-4bd7-91a2-e511ae855634" location="50 50" size="26 42"/>
+        <dNodes id="1baaa1fb-41b2-412e-b63b-845704aae99b" node="071a63f2-c7e3-496c-8b5e-49af545535db" dIncomings="f33b407c-512b-4755-867f-bde5d02ed851" location="210 56" size="82 42"/>
+        <dNodes id="d4c2772a-589d-4873-a747-4def00a3b651" node="3d659460-f054-410f-8829-5f88931403a6" dIncomings="f971010b-14f9-44b1-b5d6-f88ed503dac5" location="206 143" size="82 42"/>
+        <dNodes id="1ad68ded-3e7e-409f-8c2e-a57c09a3baf0" node="9e936878-0f81-4fb1-a755-5c9ad572de17" dIncomings="5ba6dc81-1e8f-445e-b7a8-69cf3f6cf253" location="149 219" size="82 42"/>
+        <dNodes id="88c215a3-347f-49d2-8726-1175f625846e" node="f855c05a-6d30-4310-89bc-bc52708f2c84" dIncomings="cfa54dcd-bb6d-4bd7-91a2-e511ae855634" location="48 225" size="82 42"/>
+        <dArrows id="f33b407c-512b-4755-867f-bde5d02ed851" arrow="5d7aee22-abbb-40c2-a05c-51394c5b9257" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="1baaa1fb-41b2-412e-b63b-845704aae99b">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="f971010b-14f9-44b1-b5d6-f88ed503dac5" arrow="cf994d71-a8d3-48e1-9009-15cd32149928" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="d4c2772a-589d-4873-a747-4def00a3b651">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="5ba6dc81-1e8f-445e-b7a8-69cf3f6cf253" arrow="cdd7c202-7a6a-4755-90ec-ed911c87a26f" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="1ad68ded-3e7e-409f-8c2e-a57c09a3baf0">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="cfa54dcd-bb6d-4bd7-91a2-e511ae855634" arrow="306a8320-c023-4468-ab6f-3eea0c01494f" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="88c215a3-347f-49d2-8726-1175f625846e">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="e455755a-11eb-421f-9cde-72448f26056f" predicate="02fb1287-a33e-4866-9da8-f1ca69c26a28">
+      <dGraph graph="/1/@predicates.19/@shape">
+        <dNodes id="bb708d93-d7fa-49df-a636-085841c6be73" node="98da7453-4275-4b0c-b9a2-c4cff131f489" location="50 50" size="26 42"/>
       </dGraph>
       <visualization type="OnNode"/>
     </dPredicates>
@@ -299,7 +327,7 @@
         <arrows id="f51de3fc-9601-4834-8ba5-9a1536e9c901" name="XY1" source="47d1f64f-2190-49c2-ae41-dd6d28cdc12b" target="8e0b41ef-86d2-4fe8-9960-fbc8ed23b012"/>
         <arrows id="81b0e845-aea1-4efb-8751-dbedfd9d68a0" name="XY2" source="24cf9e37-026e-4529-902b-744c66a417e4" target="8e0b41ef-86d2-4fe8-9960-fbc8ed23b012"/>
       </shape>
-      <validator type="ALLOY" validator="all x:$Y1$ | let e1 = (some e : $XY1$ | e.trg = x), &#xA;e2 = (some e : $XY2$ | e.trg = x)|&#xA; not e1 or e2"/>
+      <validator type="ALLOY" validator="all x:$Y1$ | let e1 = (some e : $XY1$ | e.trg = x), &#xD;&#xA;e2 = (some e : $XY2$ | e.trg = x)| not e1 or e2"/>
     </predicates>
     <predicates id="19a6dcbc-93fc-4427-ba61-2e8fc8ce84a5" symbol="xor3" parameters="">
       <shape>
@@ -358,6 +386,26 @@
     <predicates id="772a8c8d-8195-4998-aef5-c1c9d09faf69" symbol="@PorterCom" parameters="">
       <shape>
         <nodes id="97c17d80-f5a7-410e-ac5d-bf48c529da9a" name="X"/>
+      </shape>
+      <validator type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
+    </predicates>
+    <predicates id="114ce658-f03a-4644-9ff6-96ec11914026" symbol="xor4">
+      <shape>
+        <nodes id="d1270525-16b5-4ae5-80dc-808d110c923a" name="X" outgoings="5d7aee22-abbb-40c2-a05c-51394c5b9257 cf994d71-a8d3-48e1-9009-15cd32149928 cdd7c202-7a6a-4755-90ec-ed911c87a26f 306a8320-c023-4468-ab6f-3eea0c01494f"/>
+        <nodes id="071a63f2-c7e3-496c-8b5e-49af545535db" name="Node0" incomings="5d7aee22-abbb-40c2-a05c-51394c5b9257"/>
+        <nodes id="3d659460-f054-410f-8829-5f88931403a6" name="Node1" incomings="cf994d71-a8d3-48e1-9009-15cd32149928"/>
+        <nodes id="9e936878-0f81-4fb1-a755-5c9ad572de17" name="Node2" incomings="cdd7c202-7a6a-4755-90ec-ed911c87a26f"/>
+        <nodes id="f855c05a-6d30-4310-89bc-bc52708f2c84" name="Node3" incomings="306a8320-c023-4468-ab6f-3eea0c01494f"/>
+        <arrows id="5d7aee22-abbb-40c2-a05c-51394c5b9257" name="Y1" source="d1270525-16b5-4ae5-80dc-808d110c923a" target="071a63f2-c7e3-496c-8b5e-49af545535db"/>
+        <arrows id="cf994d71-a8d3-48e1-9009-15cd32149928" name="Arrow1" source="d1270525-16b5-4ae5-80dc-808d110c923a" target="3d659460-f054-410f-8829-5f88931403a6"/>
+        <arrows id="cdd7c202-7a6a-4755-90ec-ed911c87a26f" name="Arrow2" source="d1270525-16b5-4ae5-80dc-808d110c923a" target="9e936878-0f81-4fb1-a755-5c9ad572de17"/>
+        <arrows id="306a8320-c023-4468-ab6f-3eea0c01494f" name="Arrow3" source="d1270525-16b5-4ae5-80dc-808d110c923a" target="f855c05a-6d30-4310-89bc-bc52708f2c84"/>
+      </shape>
+      <validator type="ALLOY" validator=""/>
+    </predicates>
+    <predicates id="02fb1287-a33e-4866-9da8-f1ca69c26a28" symbol="@system">
+      <shape>
+        <nodes id="98da7453-4275-4b0c-b9a2-c4cff131f489" name="X"/>
       </shape>
       <validator type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
     </predicates>
