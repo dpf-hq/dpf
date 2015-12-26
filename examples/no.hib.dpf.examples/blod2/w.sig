@@ -231,6 +231,20 @@
       </dGraph>
       <visualization type="OnNode"/>
     </dPredicates>
+    <dPredicates id="d1e75422-62bb-484f-8d99-d9259d6e6698" predicate="a3fba446-65d2-466b-8ef0-31fa1f455dda">
+      <dGraph graph="/1/@predicates.20/@shape">
+        <dNodes id="82a9ed67-05a5-45e3-9017-2a6e516a7eec" node="88810671-cfe1-4139-a24c-375f5b75182f" dOutgoings="f8ebfbd1-d1a7-4ded-9a38-18600095d9aa" location="50 50" size="38 42"/>
+        <dNodes id="7f606ba9-e83a-44fc-9c11-0787d0c53d3b" node="d76a938c-460a-4983-b552-c4f7c25c18c2" dIncomings="f8ebfbd1-d1a7-4ded-9a38-18600095d9aa 61617af6-5099-4568-a376-684ecbe33db7" location="200 50" size="38 42"/>
+        <dNodes id="2bdc47f1-0392-4b97-bc3e-469cdaf53265" node="0991ccfc-f9ab-4bf7-b521-e3cc6ff3df9e" dOutgoings="61617af6-5099-4568-a376-684ecbe33db7" location="50 100" size="38 42"/>
+        <dArrows id="f8ebfbd1-d1a7-4ded-9a38-18600095d9aa" arrow="7d01dc41-bc48-4038-b75e-dfad6822f30d" dSource="82a9ed67-05a5-45e3-9017-2a6e516a7eec" dTarget="7f606ba9-e83a-44fc-9c11-0787d0c53d3b">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="61617af6-5099-4568-a376-684ecbe33db7" arrow="7ecca8be-0ea1-4c46-8965-ab33202eff7e" dSource="2bdc47f1-0392-4b97-bc3e-469cdaf53265" dTarget="7f606ba9-e83a-44fc-9c11-0787d0c53d3b">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+      </dGraph>
+      <visualization type="ArrowToArrow" target="7ecca8be-0ea1-4c46-8965-ab33202eff7e"/>
+    </dPredicates>
   </diagram:DSignature>
   <core:Signature>
     <predicates id="0646538c-d43d-4b40-9e4d-34f9a2f3116f" symbol="@APP">
@@ -406,6 +420,16 @@
     <predicates id="02fb1287-a33e-4866-9da8-f1ca69c26a28" symbol="@system">
       <shape>
         <nodes id="98da7453-4275-4b0c-b9a2-c4cff131f489" name="X"/>
+      </shape>
+      <validator type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
+    </predicates>
+    <predicates id="a3fba446-65d2-466b-8ef0-31fa1f455dda" symbol="optional-and-merge">
+      <shape>
+        <nodes id="88810671-cfe1-4139-a24c-375f5b75182f" name="X1" outgoings="7d01dc41-bc48-4038-b75e-dfad6822f30d"/>
+        <nodes id="d76a938c-460a-4983-b552-c4f7c25c18c2" name="Y1" incomings="7d01dc41-bc48-4038-b75e-dfad6822f30d 7ecca8be-0ea1-4c46-8965-ab33202eff7e"/>
+        <nodes id="0991ccfc-f9ab-4bf7-b521-e3cc6ff3df9e" name="X2" outgoings="7ecca8be-0ea1-4c46-8965-ab33202eff7e"/>
+        <arrows id="7d01dc41-bc48-4038-b75e-dfad6822f30d" name="XY1" source="88810671-cfe1-4139-a24c-375f5b75182f" target="d76a938c-460a-4983-b552-c4f7c25c18c2"/>
+        <arrows id="7ecca8be-0ea1-4c46-8965-ab33202eff7e" name="XY2" source="0991ccfc-f9ab-4bf7-b521-e3cc6ff3df9e" target="d76a938c-460a-4983-b552-c4f7c25c18c2"/>
       </shape>
       <validator type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
     </predicates>
