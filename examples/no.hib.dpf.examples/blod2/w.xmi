@@ -73,7 +73,7 @@
     <nodes id="6c20468f-02ab-4460-a1c4-81cddcbd0f9a" name="Send Blood Order" outgoings="31db6071-a97a-45d1-b686-44f5255395dc 6f96b493-1438-45f7-aeb4-58094b6d7292 5fe02397-dd65-4e5c-892e-707470ed71aa" incomings="cacd227b-b051-4ade-b4bb-b9bc689f1b42" constraints="5f784adc-faf3-4305-9839-0db9abcc6e1b 7cbf5283-f6f5-4538-8105-cbd81a7e521c e0e1deb4-330e-4846-a0fe-6a2fb401456b d60112bc-c2f9-4712-8fc3-06c333634e8a 5d86f754-cea0-4806-9dc3-c70e89b8b58f 2a9d48ef-9068-4c37-bcec-38fecbb3bb85 525cbd53-d85d-455a-a1aa-890c3dd51ad3 3c73c7bd-a317-4308-8c25-50389f6e2374">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
-    <nodes id="3aa78c0e-5877-49c4-bbe2-0b702ae2cad1" name="Send Sample" outgoings="dfdb967c-c3f7-4b83-9d5d-ce21fea8d9d1 20f1d0ae-2cf3-4e67-9632-6f0a3b77b0d5" incomings="18847377-c1f2-4d7c-995b-51a4203193fb" constraints="e715be55-f657-488b-b6ee-bc680672eca0 d79036bf-fe2d-4385-a547-12a8c61e8c3b 31bb346e-3a70-4877-8072-3c58e6b86ed1 d2e36894-22fb-4c48-926a-94047dc9f8f6 35d03344-aed5-46c7-9013-90cc0343ce7f 501a5869-32b0-41cf-b4e6-7a8c8664d343 8d88c750-50ec-44ac-9d5a-d3f8734bd5cb">
+    <nodes id="3aa78c0e-5877-49c4-bbe2-0b702ae2cad1" name="Send Sample" outgoings="dfdb967c-c3f7-4b83-9d5d-ce21fea8d9d1 20f1d0ae-2cf3-4e67-9632-6f0a3b77b0d5" incomings="18847377-c1f2-4d7c-995b-51a4203193fb" constraints="e715be55-f657-488b-b6ee-bc680672eca0 d79036bf-fe2d-4385-a547-12a8c61e8c3b 31bb346e-3a70-4877-8072-3c58e6b86ed1 d2e36894-22fb-4c48-926a-94047dc9f8f6 35d03344-aed5-46c7-9013-90cc0343ce7f 501a5869-32b0-41cf-b4e6-7a8c8664d343 8d88c750-50ec-44ac-9d5a-d3f8734bd5cb 2ff88a01-5c4b-4d5c-8f93-1caeff461350">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
     <nodes id="d9a78a5c-d325-475a-9bac-9dcfc30788c7" name="Scan Blood Product" outgoings="64f52dd1-58aa-416c-9adb-b6a1f8ceb65b" incomings="90d432e4-4b28-4467-aa0e-5a1e32c1f343 4a57cd19-6568-43b2-9a3c-fd30c653aeb8 c4f4781a-e5f5-4f07-a860-c06e8408d253" constraints="f5756968-75a0-4d4c-96a3-1b2a72933d56 2b98d957-fc01-49f0-a86b-ad1f83c197b4 9817c7cd-0875-4ca6-8219-0a4f6540d351 c8cdc759-35fd-4540-83bd-debb60437803 299ee328-e6e6-49c8-a0ec-55c81f8ada3f b779f6af-4f59-45ab-b3b2-7d6d3985e761 51e6b675-14b3-452d-9b9d-ab8f34b0add5">
@@ -1301,14 +1301,6 @@
       </nodeMapping>
     </mappings>
   </constraints>
-  <constraints id="3b9b4237-e28a-4014-89e4-d27aad89ec9a">
-    <predicate href="w.sig#772a8c8d-8195-4998-aef5-c1c9d09faf69"/>
-    <mappings>
-      <nodeMapping>
-        <key href="w.sig#97c17d80-f5a7-410e-ac5d-bf48c529da9a"/>
-      </nodeMapping>
-    </mappings>
-  </constraints>
   <constraints id="4468c582-65bc-4c99-b9ea-a8f7991f2a13" nodes="d9d684e4-266e-4565-8bf4-abcb99e28745 9de17b96-7755-489f-8fb9-4fc6226ffd54 511a6394-9988-4352-b466-c9fcaf1b9975" arrows="5b3ad1d8-d096-4d2e-b438-0a9298202313 e4a5233d-ccc4-4017-871b-bd8c28292795">
     <predicate href="w.sig#adef3a0c-5b83-4a81-baa9-0cd498ddc347"/>
     <mappings>
@@ -1485,6 +1477,14 @@
       <arrowMapping value="20f1d0ae-2cf3-4e67-9632-6f0a3b77b0d5">
         <key href="w.sig#7ecca8be-0ea1-4c46-8965-ab33202eff7e"/>
       </arrowMapping>
+    </mappings>
+  </constraints>
+  <constraints id="2ff88a01-5c4b-4d5c-8f93-1caeff461350" nodes="3aa78c0e-5877-49c4-bbe2-0b702ae2cad1">
+    <predicate href="w.sig#f881ac75-ec38-40ed-9179-eb27248a846e"/>
+    <mappings>
+      <nodeMapping value="3aa78c0e-5877-49c4-bbe2-0b702ae2cad1">
+        <key href="w.sig#2bd92ef5-688d-4bba-a780-05100fcb8d1d"/>
+      </nodeMapping>
     </mappings>
   </constraints>
   <type href="wm.xmi#/"/>

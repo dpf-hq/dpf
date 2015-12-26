@@ -108,7 +108,7 @@
       <dType href="wm.dpf#985a00a4-3616-4c08-802f-24a7fc07eda6"/>
       <node href="w.xmi#6c20468f-02ab-4460-a1c4-81cddcbd0f9a"/>
     </dNodes>
-    <dNodes id="839f629a-d9cf-4de1-8deb-f421b59c094e" constraintsTo="//@dConstraints.27/@children.0" dOutgoings="6ee35efd-04f5-4849-9336-1b87c22b3bcf 7405f5b5-bdd2-4117-95d2-7c7885cf1c7f" dIncomings="4981c616-7678-4d33-9724-5226ecbd0c97" dConstraints="//@dConstraints.13 //@dConstraints.27 //@dConstraints.32 //@dConstraints.43 //@dConstraints.66 //@dConstraints.68 //@dConstraints.88" location="1005 531" size="84 39">
+    <dNodes id="839f629a-d9cf-4de1-8deb-f421b59c094e" constraintsTo="//@dConstraints.27/@children.0 //@dConstraints.89/@children.0" dOutgoings="6ee35efd-04f5-4849-9336-1b87c22b3bcf 7405f5b5-bdd2-4117-95d2-7c7885cf1c7f" dIncomings="4981c616-7678-4d33-9724-5226ecbd0c97" dConstraints="//@dConstraints.13 //@dConstraints.27 //@dConstraints.32 //@dConstraints.43 //@dConstraints.66 //@dConstraints.68 //@dConstraints.88 //@dConstraints.89" location="1005 531" size="84 39">
       <dType href="wm.dpf#985a00a4-3616-4c08-802f-24a7fc07eda6"/>
       <node href="w.xmi#3aa78c0e-5877-49c4-bbe2-0b702ae2cad1"/>
     </dNodes>
@@ -204,6 +204,7 @@
     <dNodes xsi:type="diagram:DConstraintNode" id="5594ffcf-9a37-4304-9ecd-0aa6827e56cd" constraintsFrom="//@dConstraints.86/@children.0" location="57 513" dConstraint="//@dConstraints.86"/>
     <dNodes xsi:type="diagram:DConstraintNode" id="a092d136-074d-482a-b394-da69d6e5e534" constraintsFrom="//@dConstraints.87/@children.0 //@dConstraints.87/@children.1" location="57 468" dConstraint="//@dConstraints.87"/>
     <dNodes xsi:type="diagram:DConstraintNode" id="75c54ab9-6c79-4aaf-bf1f-dbefc7694272" constraintsFrom="//@dConstraints.88/@children.0 //@dConstraints.88/@children.1" location="827 685" dConstraint="//@dConstraints.88"/>
+    <dNodes xsi:type="diagram:DConstraintNode" id="5fdb5b37-fd2b-40c0-9e9a-b6f5f4128d4a" constraintsFrom="//@dConstraints.89/@children.0" location="1005 531" dConstraint="//@dConstraints.89"/>
     <dArrows id="58a64cb6-6e11-4ea5-a155-f01278ed4e83" dSource="f714301c-93fe-4642-8efb-ba1313d88ba7" dTarget="4aefed00-3660-454e-b5e3-6e8a5ef19a70" dConstraints="//@dConstraints.7">
       <dType href="wm.dpf#2566c557-f9f8-46e9-bc49-73551fed69a6"/>
       <arrow href="w.xmi#c98c3202-a9cc-4872-a0db-c4715a81d725"/>
@@ -921,6 +922,11 @@
     <dPredicate href="w.sig#d1e75422-62bb-484f-8d99-d9259d6e6698"/>
     <children xsi:type="diagram:DGenericArrowConstraint" source="75c54ab9-6c79-4aaf-bf1f-dbefc7694272" target="7405f5b5-bdd2-4117-95d2-7c7885cf1c7f"/>
     <children xsi:type="diagram:DGenericArrowConstraint" source="75c54ab9-6c79-4aaf-bf1f-dbefc7694272" target="aef6019d-7df5-4583-b688-972129db8f9d"/>
+  </dConstraints>
+  <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="839f629a-d9cf-4de1-8deb-f421b59c094e" fakeNode="5fdb5b37-fd2b-40c0-9e9a-b6f5f4128d4a">
+    <constraint href="w.xmi#2ff88a01-5c4b-4d5c-8f93-1caeff461350"/>
+    <dPredicate href="w.sig#e715caf0-9e21-4ff8-949b-4c4f9c35ac5a"/>
+    <children xsi:type="diagram:DGenericArrowConstraint" source="5fdb5b37-fd2b-40c0-9e9a-b6f5f4128d4a" target="839f629a-d9cf-4de1-8deb-f421b59c094e"/>
   </dConstraints>
   <specification href="w.xmi#/"/>
   <dSignature href="w.sig#/0"/>
