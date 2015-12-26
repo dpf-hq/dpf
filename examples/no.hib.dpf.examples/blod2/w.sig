@@ -245,6 +245,20 @@
       </dGraph>
       <visualization type="ArrowToArrow" target="7ecca8be-0ea1-4c46-8965-ab33202eff7e"/>
     </dPredicates>
+    <dPredicates id="7fd03d9e-c3cd-4eb1-a8aa-e05ac3c01da1" predicate="4c58d0c9-208c-4cec-bf22-67c07c5a001a">
+      <dGraph graph="/1/@predicates.21/@shape">
+        <dNodes id="504578ee-7f74-4b5b-bc7f-29dde33c35d7" node="90682978-edea-4c59-844d-f1bc1285bf80" dOutgoings="2fdca30f-9110-42ce-9ffa-45940f0faf8e a82d0f4a-02bf-46d0-bd88-7e7cd15f1156" location="50 50" size="38 42"/>
+        <dNodes id="4934a83b-d35a-404e-8f6e-33dbc815c444" node="cf00268c-905c-49fb-8bfd-b3a306d2dbb9" dIncomings="2fdca30f-9110-42ce-9ffa-45940f0faf8e" location="200 50" size="38 42"/>
+        <dNodes id="c3ccc487-1065-4283-871b-2c62088b4fda" node="9d5f331f-e805-4c7b-8cd6-68baade465f0" dIncomings="a82d0f4a-02bf-46d0-bd88-7e7cd15f1156" location="209 190" size="38 42"/>
+        <dArrows id="2fdca30f-9110-42ce-9ffa-45940f0faf8e" arrow="10a83edc-e5c8-4a85-84df-2bf319ab6184" dSource="504578ee-7f74-4b5b-bc7f-29dde33c35d7" dTarget="4934a83b-d35a-404e-8f6e-33dbc815c444">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="a82d0f4a-02bf-46d0-bd88-7e7cd15f1156" arrow="36457a74-35bb-4109-b989-cc9d1ae749b4" dSource="504578ee-7f74-4b5b-bc7f-29dde33c35d7" dTarget="c3ccc487-1065-4283-871b-2c62088b4fda">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+      </dGraph>
+      <visualization type="ArrowToArrow" target="36457a74-35bb-4109-b989-cc9d1ae749b4"/>
+    </dPredicates>
   </diagram:DSignature>
   <core:Signature>
     <predicates id="0646538c-d43d-4b40-9e4d-34f9a2f3116f" symbol="@APP">
@@ -430,6 +444,16 @@
         <nodes id="0991ccfc-f9ab-4bf7-b521-e3cc6ff3df9e" name="X2" outgoings="7ecca8be-0ea1-4c46-8965-ab33202eff7e"/>
         <arrows id="7d01dc41-bc48-4038-b75e-dfad6822f30d" name="XY1" source="88810671-cfe1-4139-a24c-375f5b75182f" target="d76a938c-460a-4983-b552-c4f7c25c18c2"/>
         <arrows id="7ecca8be-0ea1-4c46-8965-ab33202eff7e" name="XY2" source="0991ccfc-f9ab-4bf7-b521-e3cc6ff3df9e" target="d76a938c-460a-4983-b552-c4f7c25c18c2"/>
+      </shape>
+      <validator type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
+    </predicates>
+    <predicates id="4c58d0c9-208c-4cec-bf22-67c07c5a001a" symbol="optional-and-split">
+      <shape>
+        <nodes id="90682978-edea-4c59-844d-f1bc1285bf80" name="X1" outgoings="10a83edc-e5c8-4a85-84df-2bf319ab6184 36457a74-35bb-4109-b989-cc9d1ae749b4"/>
+        <nodes id="cf00268c-905c-49fb-8bfd-b3a306d2dbb9" name="Y1" incomings="10a83edc-e5c8-4a85-84df-2bf319ab6184"/>
+        <nodes id="9d5f331f-e805-4c7b-8cd6-68baade465f0" name="Y2" incomings="36457a74-35bb-4109-b989-cc9d1ae749b4"/>
+        <arrows id="10a83edc-e5c8-4a85-84df-2bf319ab6184" name="XY1" source="90682978-edea-4c59-844d-f1bc1285bf80" target="cf00268c-905c-49fb-8bfd-b3a306d2dbb9"/>
+        <arrows id="36457a74-35bb-4109-b989-cc9d1ae749b4" name="XY2" source="90682978-edea-4c59-844d-f1bc1285bf80" target="9d5f331f-e805-4c7b-8cd6-68baade465f0"/>
       </shape>
       <validator type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
     </predicates>

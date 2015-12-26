@@ -4,7 +4,7 @@
     <nodes id="f075238c-cc52-47c2-b0b4-ae9ca7e176b8" name="Scan Patient Wristband" outgoings="858d0d29-a082-4f8e-a4e5-f53bd64a2023" incomings="f91f2572-1010-45c4-8245-2293e90177d0 d752e596-1e8d-4c50-b082-52293b1adb1e" constraints="4b626a3c-0a00-4f1c-82a7-40824040b37d c045b173-5d1a-486b-a3b6-b25d1fc552b9 5f341b25-6bcf-4726-8db5-885f70743c3e 310672c8-ce53-44bc-8a0d-5334832d08c1 641cb17f-0a90-4045-9277-818b86d47e0d">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
-    <nodes id="4343c67a-9ad3-4634-8b7d-8e09c7fbf359" name="Select Book pre-examination" outgoings="6522c6cf-6f5d-44b0-9d0b-93b6da79c07c" incomings="c98c3202-a9cc-4872-a0db-c4715a81d725" constraints="c1e2532d-ac1a-4dbf-b761-5d5eb58ef9e4 61553c8e-c007-4af7-8b6d-a1925c7da637 4750d1f1-36a8-4a75-b424-befb29e8c130 109dba8f-9f1d-4294-88cf-deb29389d3ef">
+    <nodes id="4343c67a-9ad3-4634-8b7d-8e09c7fbf359" name="Select Book pre-examination" outgoings="6522c6cf-6f5d-44b0-9d0b-93b6da79c07c" incomings="c98c3202-a9cc-4872-a0db-c4715a81d725" constraints="c1e2532d-ac1a-4dbf-b761-5d5eb58ef9e4 61553c8e-c007-4af7-8b6d-a1925c7da637 4750d1f1-36a8-4a75-b424-befb29e8c130 109dba8f-9f1d-4294-88cf-deb29389d3ef ba3c062a-a369-4fee-9e23-5def91d70455">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
     <nodes id="9de17b96-7755-489f-8fb9-4fc6226ffd54" name="Send Sample Order" outgoings="12db690a-9c6d-4c58-97cc-795bffb9c00d 97842f7d-b012-4fb8-98bf-e8635144db6a" incomings="6522c6cf-6f5d-44b0-9d0b-93b6da79c07c 5b3ad1d8-d096-4d2e-b438-0a9298202313" constraints="c1e2532d-ac1a-4dbf-b761-5d5eb58ef9e4 a951c7e1-06b0-4c1f-8446-1e6fdf230c65 d2e36894-22fb-4c48-926a-94047dc9f8f6 1c038537-f130-4812-aecb-9abd69d6eee4 4468c582-65bc-4c99-b9ea-a8f7991f2a13 109dba8f-9f1d-4294-88cf-deb29389d3ef 67cb4a15-c8d1-499e-b9cc-64553cf6db03">
@@ -31,13 +31,13 @@
     <nodes id="6b3f94f6-4c6d-4234-810e-629813e1eb13" name="Show Nurse Info" outgoings="f91f2572-1010-45c4-8245-2293e90177d0" incomings="9f5a9f69-4f45-44cd-831f-9a71b7eb566d" constraints="c9eee666-d70b-4791-9ae8-d45ef3619c94 06ce7d26-c4e2-45e3-b836-c3d3e7858d35 310672c8-ce53-44bc-8a0d-5334832d08c1 3751adaf-5497-4f26-9251-8f70c7ef26d9">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
-    <nodes id="d9d684e4-266e-4565-8bf4-abcb99e28745" name="Select Blod Typeing" outgoings="5b3ad1d8-d096-4d2e-b438-0a9298202313" incomings="e4a5233d-ccc4-4017-871b-bd8c28292795" constraints="4e6cc67e-1016-4047-98cb-c9ac5c5806ce 12761b3d-d132-4d86-ab9f-d87e924a8174 4468c582-65bc-4c99-b9ea-a8f7991f2a13 109dba8f-9f1d-4294-88cf-deb29389d3ef">
+    <nodes id="d9d684e4-266e-4565-8bf4-abcb99e28745" name="Select Blod Typeing" outgoings="5b3ad1d8-d096-4d2e-b438-0a9298202313" incomings="e4a5233d-ccc4-4017-871b-bd8c28292795" constraints="4e6cc67e-1016-4047-98cb-c9ac5c5806ce 12761b3d-d132-4d86-ab9f-d87e924a8174 4468c582-65bc-4c99-b9ea-a8f7991f2a13 109dba8f-9f1d-4294-88cf-deb29389d3ef ba3c062a-a369-4fee-9e23-5def91d70455">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
     <nodes id="cb7fe5cd-710b-40f0-8039-d6d7a8af832e" name="Show Patient Info" outgoings="a30e953c-988e-44ec-9f68-04e79e24a8bc 6e7c40a8-8914-4d2d-9079-099061e917be" incomings="a70aab4f-914d-47b4-8a17-206e1da42217" constraints="4ece8f3d-d280-4025-a6ab-c1ff7eb71ced c045b173-5d1a-486b-a3b6-b25d1fc552b9 d2e36894-22fb-4c48-926a-94047dc9f8f6 a32db52e-5669-46e3-be85-2fca9f5be3d1 5e6d9e1b-23f8-49b3-85a2-b569260bae1b 1c038537-f130-4812-aecb-9abd69d6eee4 35d03344-aed5-46c7-9013-90cc0343ce7f 2a9d48ef-9068-4c37-bcec-38fecbb3bb85">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
-    <nodes id="511a6394-9988-4352-b466-c9fcaf1b9975" name="Order Sample" outgoings="c98c3202-a9cc-4872-a0db-c4715a81d725 e4a5233d-ccc4-4017-871b-bd8c28292795" incomings="6e7c40a8-8914-4d2d-9079-099061e917be 5fe02397-dd65-4e5c-892e-707470ed71aa" constraints="5c803d12-d5b4-4ffa-b380-2df30294867f 5e6d9e1b-23f8-49b3-85a2-b569260bae1b 1c038537-f130-4812-aecb-9abd69d6eee4 35d03344-aed5-46c7-9013-90cc0343ce7f 2a9d48ef-9068-4c37-bcec-38fecbb3bb85 525cbd53-d85d-455a-a1aa-890c3dd51ad3 4468c582-65bc-4c99-b9ea-a8f7991f2a13">
+    <nodes id="511a6394-9988-4352-b466-c9fcaf1b9975" name="Order Sample" outgoings="c98c3202-a9cc-4872-a0db-c4715a81d725 e4a5233d-ccc4-4017-871b-bd8c28292795" incomings="6e7c40a8-8914-4d2d-9079-099061e917be 5fe02397-dd65-4e5c-892e-707470ed71aa" constraints="5c803d12-d5b4-4ffa-b380-2df30294867f 5e6d9e1b-23f8-49b3-85a2-b569260bae1b 1c038537-f130-4812-aecb-9abd69d6eee4 35d03344-aed5-46c7-9013-90cc0343ce7f 2a9d48ef-9068-4c37-bcec-38fecbb3bb85 525cbd53-d85d-455a-a1aa-890c3dd51ad3 4468c582-65bc-4c99-b9ea-a8f7991f2a13 ba3c062a-a369-4fee-9e23-5def91d70455">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
     <nodes id="3120873c-c197-4389-baae-3ebb6dd203dc" name="Get Nurse Info" outgoings="9f5a9f69-4f45-44cd-831f-9a71b7eb566d 351b3290-422c-4b9d-8666-bfca37c42905" incomings="b4f2a966-1d04-4275-a4d6-74f13ea17493" constraints="2cb8b34a-49f3-4a6a-9df5-6134fef7cf1b 06ce7d26-c4e2-45e3-b836-c3d3e7858d35 72271463-acf7-4313-aafb-290fe47cb202 3751adaf-5497-4f26-9251-8f70c7ef26d9 1314db70-54dd-4cf2-9bdb-cdcbede15489">
@@ -106,7 +106,7 @@
     <nodes id="15ccd5be-c874-4798-b754-a743d4348585" name="Init" outgoings="5ece12ad-312c-4c3d-8fd9-1a8caa99cc9a" constraints="1314db70-54dd-4cf2-9bdb-cdcbede15489 cb27865c-9c18-4afe-8e92-1baa398bca56">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
-    <arrows id="c98c3202-a9cc-4872-a0db-c4715a81d725" name="" source="511a6394-9988-4352-b466-c9fcaf1b9975" target="4343c67a-9ad3-4634-8b7d-8e09c7fbf359" constraints="61553c8e-c007-4af7-8b6d-a1925c7da637">
+    <arrows id="c98c3202-a9cc-4872-a0db-c4715a81d725" name="" source="511a6394-9988-4352-b466-c9fcaf1b9975" target="4343c67a-9ad3-4634-8b7d-8e09c7fbf359" constraints="61553c8e-c007-4af7-8b6d-a1925c7da637 ba3c062a-a369-4fee-9e23-5def91d70455">
       <typeArrow href="wm.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
     </arrows>
     <arrows id="6522c6cf-6f5d-44b0-9d0b-93b6da79c07c" name="" source="4343c67a-9ad3-4634-8b7d-8e09c7fbf359" target="9de17b96-7755-489f-8fb9-4fc6226ffd54" constraints="c1e2532d-ac1a-4dbf-b761-5d5eb58ef9e4 109dba8f-9f1d-4294-88cf-deb29389d3ef">
@@ -121,7 +121,7 @@
     <arrows id="f91f2572-1010-45c4-8245-2293e90177d0" name="" source="6b3f94f6-4c6d-4234-810e-629813e1eb13" target="f075238c-cc52-47c2-b0b4-ae9ca7e176b8" constraints="310672c8-ce53-44bc-8a0d-5334832d08c1">
       <typeArrow href="wm.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
     </arrows>
-    <arrows id="e4a5233d-ccc4-4017-871b-bd8c28292795" name="Patient has not been bloodtyped" source="511a6394-9988-4352-b466-c9fcaf1b9975" target="d9d684e4-266e-4565-8bf4-abcb99e28745" constraints="4e6cc67e-1016-4047-98cb-c9ac5c5806ce 4468c582-65bc-4c99-b9ea-a8f7991f2a13">
+    <arrows id="e4a5233d-ccc4-4017-871b-bd8c28292795" name="Patient has not been bloodtyped" source="511a6394-9988-4352-b466-c9fcaf1b9975" target="d9d684e4-266e-4565-8bf4-abcb99e28745" constraints="4e6cc67e-1016-4047-98cb-c9ac5c5806ce 4468c582-65bc-4c99-b9ea-a8f7991f2a13 ba3c062a-a369-4fee-9e23-5def91d70455">
       <typeArrow href="wm.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
     </arrows>
     <arrows id="5b3ad1d8-d096-4d2e-b438-0a9298202313" name="" source="d9d684e4-266e-4565-8bf4-abcb99e28745" target="9de17b96-7755-489f-8fb9-4fc6226ffd54" constraints="4468c582-65bc-4c99-b9ea-a8f7991f2a13 109dba8f-9f1d-4294-88cf-deb29389d3ef">
@@ -1485,6 +1485,26 @@
       <nodeMapping value="3aa78c0e-5877-49c4-bbe2-0b702ae2cad1">
         <key href="w.sig#2bd92ef5-688d-4bba-a780-05100fcb8d1d"/>
       </nodeMapping>
+    </mappings>
+  </constraints>
+  <constraints id="ba3c062a-a369-4fee-9e23-5def91d70455" nodes="511a6394-9988-4352-b466-c9fcaf1b9975 4343c67a-9ad3-4634-8b7d-8e09c7fbf359 d9d684e4-266e-4565-8bf4-abcb99e28745" arrows="c98c3202-a9cc-4872-a0db-c4715a81d725 e4a5233d-ccc4-4017-871b-bd8c28292795">
+    <predicate href="w.sig#4c58d0c9-208c-4cec-bf22-67c07c5a001a"/>
+    <mappings>
+      <nodeMapping value="4343c67a-9ad3-4634-8b7d-8e09c7fbf359">
+        <key href="w.sig#cf00268c-905c-49fb-8bfd-b3a306d2dbb9"/>
+      </nodeMapping>
+      <nodeMapping value="511a6394-9988-4352-b466-c9fcaf1b9975">
+        <key href="w.sig#90682978-edea-4c59-844d-f1bc1285bf80"/>
+      </nodeMapping>
+      <nodeMapping value="d9d684e4-266e-4565-8bf4-abcb99e28745">
+        <key href="w.sig#9d5f331f-e805-4c7b-8cd6-68baade465f0"/>
+      </nodeMapping>
+      <arrowMapping value="c98c3202-a9cc-4872-a0db-c4715a81d725">
+        <key href="w.sig#10a83edc-e5c8-4a85-84df-2bf319ab6184"/>
+      </arrowMapping>
+      <arrowMapping value="e4a5233d-ccc4-4017-871b-bd8c28292795">
+        <key href="w.sig#36457a74-35bb-4109-b989-cc9d1ae749b4"/>
+      </arrowMapping>
     </mappings>
   </constraints>
   <type href="wm.xmi#/"/>
