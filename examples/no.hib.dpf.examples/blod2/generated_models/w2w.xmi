@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <graph>
+    <nodes id="ee85bb4f-6390-4248-b70a-2c670085938c" name="Link" outgoings="d66be68a-5bb9-4b4c-8b19-f3ae76330b67 c59deaed-63e8-4bcf-84aa-9cadeb53cad0 efa0f0c8-1c03-41ba-b311-a8aff1fe3587 275339df-1fb4-460b-a4c7-d4da5b9dd759 12a38d05-12d3-4a0c-95d5-c6e3f296f1e5 27aafe0c-6d07-42d6-852b-6c4124ac7f91 491a8485-8375-4c6e-8ebd-460c2849cdfc 3993b914-8c28-4d82-9c65-0c5e27530f4c 63a6a4f1-3460-43e5-8289-77ad5b538a16 01bfd937-79c6-4397-b62f-8f8cc80ab3c0 b4d95c7f-2f44-4c10-bb46-cf35e50eef26 2972b9f5-29aa-4e1d-8b79-f9d517dad78c 13c9643b-9814-4046-ae8b-15e42b6e5e72 4e3a269b-0ff1-4be8-9631-ffbe42f9e947 f06bfb9e-25d4-481b-a2f8-93dea17bd3e5 62c957b0-ad92-44bc-818f-3ae9018c220e e3804490-ca0e-4378-b7f3-933720517efd 2c95b14a-4361-4c91-9111-8b3d5cd73ae3 07b83f3c-03bb-456a-86e1-3517a91e28e1 1db4069a-2b32-4525-814f-5a341b86de8c 6de4668c-cc17-410a-bdda-b227d662384b 5b0d9137-6766-4f49-a046-84f7a0b4efbb 1057226e-e65a-4823-9c4d-3f5ca7777ee8 95e76675-5e92-44dd-ab04-63aefe5a281c e923f7c5-47d7-47a1-9054-86006714c251 6e202bca-db35-465d-96e3-29be28d70468 a89b3cbd-4440-4806-903a-326d50285743 5337e692-7ea7-471d-8722-02ae00aba158 f8fdddb6-9dbd-40f1-9bb3-447100913070 edcc525b-0c11-4b08-9187-5c8472b2d5e9 6457070e-5512-4e8e-992f-a45bb2ce90a4 bb2ff3ba-2b97-49fa-ad09-9919bd4a372e 5271ac06-5b44-4d7c-a614-c7ea6017e2f0 c2489401-1375-4efb-a605-007b02031b8c a1be6ffa-b287-47cf-930d-17bcd28dea80 c07f2f30-7be3-466f-8d56-ba702d58b138 8f79330c-d318-4cfe-923b-697a08610414 cdeb9d42-62cb-4a09-97a2-32bf42b397ba 57df9e9f-b3e8-4b92-81d0-2c2222cc1691 7cf5b88c-1fb5-4b1a-a9cf-41090fe44a53 76767cc0-2642-41c4-b64b-d95a113dcc37 a8371419-ea58-45ab-8b45-5a43c4eb57f1 eb7a40f1-c305-4f90-8be2-2c1f50f865aa acf5aa66-b02b-47fe-8cab-09e22fa6fbd3 7d966db6-1c95-4c0c-b7ad-05e3aecd5ee9 fd6213bb-bd46-42ce-b6a8-61ce08030346 c193512b-cdfb-4765-a830-d32721857c86 ca7122d3-c0a7-4c10-8e72-b29a3cab8f8a c16ba98b-41b6-4915-8920-288dc290f93d 9201adae-a37b-4e01-b083-968b7112465c 4e994e8c-0195-4d68-80f7-df1111178ee8 042661c3-6714-4ff0-8218-46f2023a756b a04a5089-26ba-4488-bc61-7fcccfe20169 276711eb-3640-41bc-927b-b4bb243e39ff 280cc8fd-8f8d-4e7f-aa72-92acf297a837 8b03371c-17a1-4251-b258-6f96d5f5984d 13369694-eea3-468a-80a0-6819ef0f24a7 3d07c5e8-776a-4ff5-9272-8719144188de 0a1e3e1a-9e9d-49cc-949c-471c7ffa1551 387eb8c5-8da4-4dcd-8638-243dca00c631 b143effe-0119-429c-9560-a6fd48a06596 a7a0a940-9e19-466d-8b9e-75c2d246430f 6e9c90e1-f627-4d67-8571-4000c2d23785 d541ab4f-6b24-4420-b49c-ab062e4941d8 fd3d26d3-fecd-4292-8e12-102bc44f69c3 2fa8bef1-1441-480b-b640-ba3b8433b6b8 8c45fb5a-b3ee-4656-bf15-3c257fed1ee1 75da7241-dc96-46ce-97a5-9bbca0c018df 8497ca85-5f82-49c7-ae3f-b9f96faf3cab e3e4477a-85f8-4ffa-b8ac-c2b7e63d7afe fcd39616-72e3-49be-bc98-a6be1a718dc2 ed5f225b-9f0b-4220-a3ed-35c307e04ceb 27dc124b-088a-4c4d-ace2-665bf2ba0ec0 caf875c8-2acd-4cfd-bd13-70af5b9e34f2 659f6e87-6293-4315-a84c-6aed25f6ad12 f8728aec-cbf6-4a87-a20c-e62f6a4fd4e9 3c095109-193f-4bef-a8a3-a8200bd6ff06 aecf3a05-db6f-44ad-8f14-901176b4d338 1fcd9d74-161f-42bb-bf34-883eb553e775 e1ce658c-b423-45cf-9c4e-4a46907678b9 56b297f5-ff98-407a-b57d-3d14251dacdf 14d2cc51-250e-4295-bf22-e7b4dd3c0606 b108595d-02fd-4753-8525-df600680d3fa 747cc20f-b0cf-45f7-b4e7-49e95c450def a634e1f2-3951-431d-8003-ff721edb3bfc 4c65aebd-7294-4597-85dd-7da7f46a940a cc0af90d-d745-48c5-95b9-baeec7dd1a92 19a18eb3-7b9d-4d27-8efc-f6a13ba46897 1178a080-3235-4187-b72e-29bf8b922e76 da26001e-6058-4021-b1b0-f2e0373070ef 21e62de2-c95a-473d-9b0d-869baf94f922 0fadd569-a8d9-4e95-9a01-20a55a9574c7 8f4a844c-12c8-4d74-8d3c-3e6469bd2115 025a43f2-6ce0-40b4-ba88-31550782a227 1ccf17cf-b085-4f18-aacc-37d74da54dfb 214946d9-977f-4904-8edc-3315e96bd7e1 22b4f423-305d-45ba-a7f1-2c5bd38c542b b8752ded-9b96-4e43-93d9-6be379de37d9 b2c3de69-2044-4b57-80eb-68984d78bdb0 c0336dde-cac3-4168-a539-632b988c4b33 bd373f13-db38-4a27-9be1-34854eef952f b5edc69e-817d-4ff3-9d93-733825f13af1 d5104479-53d6-4750-9a1e-2500ec2769b8 7e2fe887-69f2-4d77-9ef9-b7efcf2bea70 e9dee16a-8403-4ea6-b243-3389650076b5 58671552-2972-421d-a36b-ea4990d4d723 9270196f-850a-4e5b-b005-59f82818227d a22537b0-07e3-4198-aa1b-eb0dd3d1b97e fef0002a-0aa5-4fc6-8f57-3dc0b57834c0 cf71cacf-257e-4455-8e63-3ef1ee68b068 0b49dbab-3f02-412e-93a2-b1bec099922e 01bced60-66e3-44c4-91bf-56291d3f69d3 84f6b97e-a716-4a72-909b-340a6ab4afd7 c9fe1c3e-1964-485d-a403-46e7ea541328 12988309-1738-4087-980a-e5c35d190868 bbde9a80-8b1a-43fd-9e4f-c909de4d328f 52896acc-4505-4a65-9908-2067fb1dc8bc 6a6431e3-2366-4f27-bd4b-830560bf27bf f18834cb-49cb-4568-8cec-9e68f22132f4 79098b8e-3d87-414c-af3b-91328134f5d5 26d1d2a7-1f23-4c0f-b726-ad7666b85824 4335ee33-3d77-4eb5-b58b-1c2578755fd3 5d10d44b-c1d7-4de0-8ee5-8a6606cb0473 c0114dd0-857a-4702-8890-b671f24441c2 360b2584-f132-44c2-9a7c-36a10b5496af 8d624595-fd14-4e29-b982-06da0057d5aa 8ae389bd-6bbe-4332-98b0-96c46720ce52 7fe7e146-a57e-4af5-ae2f-31a930e01edd 07cfea03-7a95-4675-979b-401280040b56 559cb6b8-46a5-4ea9-aeba-4b97ffe6b1b7 9b57d958-5f13-4161-a4d7-38e48ba64fe3 d8afdcab-cbf2-44b5-abd7-95d6d31da3c3 cbbf2dfb-c663-47e3-b65a-590e0fa385e5 d2d55eb7-7ab8-45d2-b9ef-fd30757a8268 f2e7e457-0abc-4202-a341-a42fd1265f61 34d8991b-b2bb-43f5-8bb4-79fad606badb 4c2590b8-4041-4228-b548-357ed9fbe8a7 161cd640-42ed-43eb-a676-73ff7ddb59ef acea0414-a14c-41f6-85c0-8316d9ecb01d 70ad839f-5a6d-4cff-8fd6-d6f17b844017 0ab25901-c97f-433e-a37b-048d4bb38493 03ae9dd0-4089-45f5-adc6-398de347ac59 04fdd4bd-268e-46ed-bd40-2f471b2753e8 dae5f687-7986-48bc-b88c-356ed056c8ca 219993b2-4ba1-4d09-a79c-e26431794adb 0053e69c-d8e1-458e-9bf2-e9edfda4963e 2d35cf5d-d988-44b2-af01-d245f7a38f63 be7a7ea7-94d1-4f74-9b04-dbf3978948a4 da170441-891d-4563-b898-247487b650ab 445315cd-302d-4a20-995a-b59d81f25835 66dfe087-b531-4448-8355-7afc8e9fde22 9ad2d1b1-e8a4-4ec0-9530-0ff25a6a778d cc357fd1-ce2f-42ed-848f-618e2e8e0f97 791608b5-380f-41bb-8877-606abdc5321b a5d93576-f0dc-4c52-b1ff-f8831979ecb0 6ff15044-023f-4af5-b6f3-6c336c3a2a92 d0a73109-8d94-402f-9906-c69a658cd402 3234b6c5-b56e-4df7-8497-e54e1ddafc14 bdec9fdf-d795-4b30-b893-4c34e0e4fab0 e141c2d4-6be6-42f5-bb43-e883b5b79cf6 3582667a-1cde-459d-a425-d77f722c6d1a 1960322e-2284-4bf8-b92a-3dd707f2caa4 bf8bb071-0e13-4373-a2da-133ff8c5cd13 19471a68-cb02-4c50-99ef-5ca13d1abdf4 6149045a-c4df-4cae-b514-a98f0bcc6b69 108c1042-59be-4121-880d-87f86f6d1578 ac1ff108-8a2f-4c68-93cc-f55603c008e8 2a923e64-7157-43a1-ba1c-3527bc4d92ac"/>
+    <nodes id="589898ea-5db7-4509-b8e3-d4dc233c8d44" name="Scan Patient Wristband" incomings="d66be68a-5bb9-4b4c-8b19-f3ae76330b67 a634e1f2-3951-431d-8003-ff721edb3bfc"/>
+    <nodes id="29d74437-f3f6-4bcc-9986-69fba87736b1" name="Select Book pre-examination" incomings="c59deaed-63e8-4bcf-84aa-9cadeb53cad0 4c65aebd-7294-4597-85dd-7da7f46a940a"/>
+    <nodes id="77104b4e-8e98-4e45-8c5c-6fc3c42afe29" name="Send Sample Order" incomings="efa0f0c8-1c03-41ba-b311-a8aff1fe3587 cc0af90d-d745-48c5-95b9-baeec7dd1a92"/>
+    <nodes id="8471cef0-eb81-4da1-b16c-76fa2175bf7d" name="Order Blood" incomings="275339df-1fb4-460b-a4c7-d4da5b9dd759 19a18eb3-7b9d-4d27-8efc-f6a13ba46897"/>
+    <nodes id="b67febe1-5099-46e7-bb73-d0619d901a32" name="Collect Blood" incomings="12a38d05-12d3-4a0c-95d5-c6e3f296f1e5 1178a080-3235-4187-b72e-29bf8b922e76"/>
+    <nodes id="c3c67939-e72e-42aa-acd1-aaa4f164a2e1" name="Measure temperature, blood pressure and pulse" incomings="27aafe0c-6d07-42d6-852b-6c4124ac7f91 da26001e-6058-4021-b1b0-f2e0373070ef"/>
+    <nodes id="1d5e9f8d-cafe-45ef-ace0-dd5b7f604b46" name="perform transfusion" incomings="491a8485-8375-4c6e-8ebd-460c2849cdfc 21e62de2-c95a-473d-9b0d-869baf94f922"/>
+    <nodes id="44a18f14-d78a-48fb-a31e-e525d4dd52a9" name="Identify nurse, log transfusion" incomings="3993b914-8c28-4d82-9c65-0c5e27530f4c 0fadd569-a8d9-4e95-9a01-20a55a9574c7"/>
+    <nodes id="4ca30455-e02f-4b81-9009-194204eb5778" name="Scan Nurse Card" incomings="63a6a4f1-3460-43e5-8289-77ad5b538a16 8f4a844c-12c8-4d74-8d3c-3e6469bd2115"/>
+    <nodes id="ec5c71c8-9585-4ed3-9e1f-5c0ff6625bee" name="Show Nurse Info" incomings="01bfd937-79c6-4397-b62f-8f8cc80ab3c0 025a43f2-6ce0-40b4-ba88-31550782a227"/>
+    <nodes id="20be53d1-0bc8-40f8-9a5e-6e0ae82b8b6d" name="Select Blod Typeing" incomings="b4d95c7f-2f44-4c10-bb46-cf35e50eef26 1ccf17cf-b085-4f18-aacc-37d74da54dfb"/>
+    <nodes id="54abc5cb-1eae-4695-81ef-9968c5b2ce78" name="Show Patient Info" incomings="2972b9f5-29aa-4e1d-8b79-f9d517dad78c 214946d9-977f-4904-8edc-3315e96bd7e1"/>
+    <nodes id="5be8fb61-d87a-4685-9d3c-23edad850489" name="Order Sample" incomings="13c9643b-9814-4046-ae8b-15e42b6e5e72 22b4f423-305d-45ba-a7f1-2c5bd38c542b"/>
+    <nodes id="7934b9fd-c3b5-46dd-8710-59d04106e04e" name="Get Nurse Info" incomings="4e3a269b-0ff1-4be8-9631-ffbe42f9e947 b8752ded-9b96-4e43-93d9-6be379de37d9"/>
+    <nodes id="3c577b19-7c9b-44f2-bdd7-5cf1fe139952" name="Get Patient Info" incomings="f06bfb9e-25d4-481b-a2f8-93dea17bd3e5 b2c3de69-2044-4b57-80eb-68984d78bdb0"/>
+    <nodes id="07dd13ce-9bf8-4d2e-8cfe-fd67e977fa6d" name="Get Sample Info" incomings="62c957b0-ad92-44bc-818f-3ae9018c220e c0336dde-cac3-4168-a539-632b988c4b33"/>
+    <nodes id="d8ead753-0305-4d0d-9948-e573433247c9" name="Scann Patient Wristband" incomings="e3804490-ca0e-4378-b7f3-933720517efd bd373f13-db38-4a27-9be1-34854eef952f"/>
+    <nodes id="8c28b873-a798-4478-af87-9ec4917b5a83" name="Scan Sample" incomings="2c95b14a-4361-4c91-9111-8b3d5cd73ae3 b5edc69e-817d-4ff3-9d93-733825f13af1"/>
+    <nodes id="2d55872f-39bd-4a07-b356-b0441542d28e" name="Get Patient Info" incomings="07b83f3c-03bb-456a-86e1-3517a91e28e1 d5104479-53d6-4750-9a1e-2500ec2769b8"/>
+    <nodes id="9c77f97d-2d62-40bd-ac7d-1ed2608def80" name="Collect Sample" incomings="1db4069a-2b32-4525-814f-5a341b86de8c 7e2fe887-69f2-4d77-9ef9-b7efcf2bea70"/>
+    <nodes id="311a2427-860c-426d-b868-747101a23102" name="Select Blood Product" incomings="6de4668c-cc17-410a-bdda-b227d662384b e9dee16a-8403-4ea6-b243-3389650076b5"/>
+    <nodes id="e3a4abdf-f29d-4316-b2f5-a5dd434e36a8" name="Get Doctor Info" incomings="5b0d9137-6766-4f49-a046-84f7a0b4efbb 58671552-2972-421d-a36b-ea4990d4d723"/>
+    <nodes id="f252ccdc-9b80-433b-bec2-fa3a848614b2" name="Select Department" incomings="1057226e-e65a-4823-9c4d-3f5ca7777ee8 9270196f-850a-4e5b-b005-59f82818227d"/>
+    <nodes id="d4c66489-dedb-4c0a-a592-1b2a425c1731" name="Send Blood Order" incomings="95e76675-5e92-44dd-ab04-63aefe5a281c a22537b0-07e3-4198-aa1b-eb0dd3d1b97e"/>
+    <nodes id="bbfeaea9-8e62-4120-8253-25af42f44e73" name="Send Sample" incomings="e923f7c5-47d7-47a1-9054-86006714c251 fef0002a-0aa5-4fc6-8f57-3dc0b57834c0"/>
+    <nodes id="6822aae6-9426-4fe0-9696-9dbedcf7415b" name="Scan Blood Product" incomings="6e202bca-db35-465d-96e3-29be28d70468 cf71cacf-257e-4455-8e63-3ef1ee68b068"/>
+    <nodes id="20d650e2-35e4-4401-ab6b-e32819cd729b" name="Verify Blood Product" incomings="a89b3cbd-4440-4806-903a-326d50285743 0b49dbab-3f02-412e-93a2-b1bec099922e"/>
+    <nodes id="3d472bbd-246d-433b-974c-5a04429404c6" name="Stop Transfusion, Contact AIT" incomings="5337e692-7ea7-471d-8722-02ae00aba158 01bced60-66e3-44c4-91bf-56291d3f69d3"/>
+    <nodes id="db653352-b153-4478-a7d3-81a973121095" name="Store Patient Condition" incomings="f8fdddb6-9dbd-40f1-9bb3-447100913070 84f6b97e-a716-4a72-909b-340a6ab4afd7"/>
+    <nodes id="486d0b37-88b8-4edc-b8ca-40e21ffcfa16" name="Register Reaction" incomings="edcc525b-0c11-4b08-9187-5c8472b2d5e9 c9fe1c3e-1964-485d-a403-46e7ea541328"/>
+    <nodes id="e39a6811-331b-44f8-9e3d-4d44ddb853dd" name="Store Transfusion" incomings="6457070e-5512-4e8e-992f-a45bb2ce90a4 12988309-1738-4087-980a-e5c35d190868"/>
+    <nodes id="12fb8169-eb94-4da5-8b96-1bc32cfbc0ec" name="Put Blood Into refrigertor" incomings="bb2ff3ba-2b97-49fa-ad09-9919bd4a372e bbde9a80-8b1a-43fd-9e4f-c909de4d328f"/>
+    <nodes id="ebca157a-1136-4b3f-8999-883f470cfa1a" name="Order Blood Product" incomings="5271ac06-5b44-4d7c-a614-c7ea6017e2f0 52896acc-4505-4a65-9908-2067fb1dc8bc"/>
+    <nodes id="680e7dda-e871-40af-bdf3-6ef8f51ead93" name="Send Sample" incomings="c2489401-1375-4efb-a605-007b02031b8c 6a6431e3-2366-4f27-bd4b-830560bf27bf"/>
+    <nodes id="5a4e31c9-bcc4-4196-8b27-913b1d0269f7" name="Print Sample Label" incomings="a1be6ffa-b287-47cf-930d-17bcd28dea80 f18834cb-49cb-4568-8cec-9e68f22132f4"/>
+    <nodes id="ffb2d3a5-11cd-4aee-a3eb-a6063b271cb7" name="Can be any Task" incomings="c07f2f30-7be3-466f-8d56-ba702d58b138 79098b8e-3d87-414c-af3b-91328134f5d5"/>
+    <nodes id="1f4cd051-b9bd-419c-8ca1-e22d7b347eec" name="Order Traumepakke" incomings="8f79330c-d318-4cfe-923b-697a08610414 26d1d2a7-1f23-4c0f-b726-ad7666b85824"/>
+    <nodes id="39695739-6d9e-48bd-be00-742868db21ee" name="" incomings="cdeb9d42-62cb-4a09-97a2-32bf42b397ba 4335ee33-3d77-4eb5-b58b-1c2578755fd3"/>
+    <nodes id="147566ad-bdfa-4816-a408-70fe697e511e" name="" incomings="57df9e9f-b3e8-4b92-81d0-2c2222cc1691 5d10d44b-c1d7-4de0-8ee5-8a6606cb0473"/>
+    <nodes id="189ba56c-cbce-4bbc-babf-707567a1e48c" name="" incomings="7cf5b88c-1fb5-4b1a-a9cf-41090fe44a53 c0114dd0-857a-4702-8890-b671f24441c2"/>
+    <nodes id="d462969c-4913-4b33-91af-72ccbb92a0a4" name="out time less than 4h" incomings="76767cc0-2642-41c4-b64b-d95a113dcc37 360b2584-f132-44c2-9a7c-36a10b5496af"/>
+    <nodes id="477bac9f-3ac6-468e-be23-21dba8ea8c85" name="" incomings="a8371419-ea58-45ab-8b45-5a43c4eb57f1 8d624595-fd14-4e29-b982-06da0057d5aa"/>
+    <nodes id="e2ed7b72-db34-4abe-a5ed-61858afca754" name="Patient has not been bloodtyped" incomings="eb7a40f1-c305-4f90-8be2-2c1f50f865aa 8ae389bd-6bbe-4332-98b0-96c46720ce52"/>
+    <nodes id="887c5f0b-73ee-4446-a5be-7036fe912435" name="" incomings="acf5aa66-b02b-47fe-8cab-09e22fa6fbd3 7fe7e146-a57e-4af5-ae2f-31a930e01edd"/>
+    <nodes id="03c77690-bbc9-4d63-9901-7020da3aa641" name="(Nurse{name})" incomings="7d966db6-1c95-4c0c-b7ad-05e3aecd5ee9 07cfea03-7a95-4675-979b-401280040b56"/>
+    <nodes id="71b96ad8-84e1-4b34-8953-bfb0ea3ad087" name="Nurse is not found" incomings="fd6213bb-bd46-42ce-b6a8-61ce08030346 559cb6b8-46a5-4ea9-aeba-4b97ffe6b1b7"/>
+    <nodes id="7be42daf-73c1-4d7b-8a5e-7218d55de9fd" name="(Barcode)" incomings="c193512b-cdfb-4765-a830-d32721857c86 9b57d958-5f13-4161-a4d7-38e48ba64fe3"/>
+    <nodes id="a5b418ff-b407-4077-a76d-9b433d387d84" name="(Patient{name, ID, gender, blodtype, screening})" incomings="ca7122d3-c0a7-4c10-8e72-b29a3cab8f8a d8afdcab-cbf2-44b5-abd7-95d6d31da3c3"/>
+    <nodes id="fb69b72e-183e-4972-bbdd-c1d7bbe1e41b" name="Patient is not found" incomings="c16ba98b-41b6-4915-8920-288dc290f93d cbbf2dfb-c663-47e3-b65a-590e0fa385e5"/>
+    <nodes id="cba6437f-720d-4ebf-b745-bf5ed00a63ba" name="(Sample)" incomings="9201adae-a37b-4e01-b083-968b7112465c d2d55eb7-7ab8-45d2-b9ef-fd30757a8268"/>
+    <nodes id="577a300c-8541-4048-ac6b-eff548730a3c" name="(Barcode)" incomings="4e994e8c-0195-4d68-80f7-df1111178ee8 f2e7e457-0abc-4202-a341-a42fd1265f61"/>
+    <nodes id="2ffae0c5-e4cc-4a80-8771-a8917fb978ac" name="(Barcode)" incomings="042661c3-6714-4ff0-8218-46f2023a756b 34d8991b-b2bb-43f5-8bb4-79fad606badb"/>
+    <nodes id="7bcfa9ed-3368-473e-9f1e-78e89f878ac3" name="(Patient)" incomings="a04a5089-26ba-4488-bc61-7fcccfe20169 4c2590b8-4041-4228-b548-357ed9fbe8a7"/>
+    <nodes id="d012f944-bb27-4756-a46a-ebdc35093b0a" name="Blood have not been ordered" incomings="276711eb-3640-41bc-927b-b4bb243e39ff 161cd640-42ed-43eb-a676-73ff7ddb59ef"/>
+    <nodes id="9f5067cb-bf3b-4d99-9188-33ec256d6ec9" name="" incomings="280cc8fd-8f8d-4e7f-aa72-92acf297a837 acea0414-a14c-41f6-85c0-8316d9ecb01d"/>
+    <nodes id="e87d9c4a-c81c-4bab-84e4-43820ef6940e" name="" incomings="8b03371c-17a1-4251-b258-6f96d5f5984d 70ad839f-5a6d-4cff-8fd6-d6f17b844017"/>
+    <nodes id="d397d717-dbe2-4590-903c-59b77d0f3244" name="(Barcode)" incomings="13369694-eea3-468a-80a0-6819ef0f24a7 0ab25901-c97f-433e-a37b-048d4bb38493"/>
+    <nodes id="18a2c73a-0dcc-4974-b38d-11b8d8d172ac" name="(Doctor)" incomings="3d07c5e8-776a-4ff5-9272-8719144188de 03ae9dd0-4089-45f5-adc6-398de347ac59"/>
+    <nodes id="6079b20f-e78e-4d4c-b200-db3760498b22" name="(Department)" incomings="0a1e3e1a-9e9d-49cc-949c-471c7ffa1551 04fdd4bd-268e-46ed-bd40-2f471b2753e8"/>
+    <nodes id="c0fba981-5b15-4625-a34d-e638593744b7" name="Samples have not been sent" incomings="387eb8c5-8da4-4dcd-8638-243dca00c631 dae5f687-7986-48bc-b88c-356ed056c8ca"/>
+    <nodes id="3d69d623-646b-4af7-9f01-88e4b98057c3" name="Sample is not for the patient" incomings="b143effe-0119-429c-9560-a6fd48a06596 219993b2-4ba1-4d09-a79c-e26431794adb"/>
+    <nodes id="4a8f23ef-5935-4f4a-917d-bcfd2eaa356b" name="Blood have not been ordered" incomings="a7a0a940-9e19-466d-8b9e-75c2d246430f 0053e69c-d8e1-458e-9bf2-e9edfda4963e"/>
+    <nodes id="e7f46356-b78f-4de3-b88b-5308328fd9b2" name="(Barcode,  Patient)" incomings="6e9c90e1-f627-4d67-8571-4000c2d23785 2d35cf5d-d988-44b2-af01-d245f7a38f63"/>
+    <nodes id="948a0ee2-967e-4a88-8049-645768ef3afb" name="The blood Product is not for the patient" incomings="d541ab4f-6b24-4420-b49c-ab062e4941d8 be7a7ea7-94d1-4f74-9b04-dbf3978948a4"/>
+    <nodes id="08b9e945-b97e-4b77-94da-a395faa55c40" name="The blood is for the patient" incomings="fd3d26d3-fecd-4292-8e12-102bc44f69c3 da170441-891d-4563-b898-247487b650ab"/>
+    <nodes id="28c96f18-7222-4532-825d-888c936be134" name="(Patient{temp, pressure_high, pressure_low, pulse})" incomings="2fa8bef1-1441-480b-b640-ba3b8433b6b8 445315cd-302d-4a20-995a-b59d81f25835"/>
+    <nodes id="0a65f51f-fc91-4264-8a79-4d23b79c5561" name="More blood" incomings="8c45fb5a-b3ee-4656-bf15-3c257fed1ee1 66dfe087-b531-4448-8355-7afc8e9fde22"/>
+    <nodes id="27bfa0ce-3963-4c4c-b292-8c2b235705b9" name="(Barcode)" incomings="75da7241-dc96-46ce-97a5-9bbca0c018df 9ad2d1b1-e8a4-4ec0-9530-0ff25a6a778d"/>
+    <nodes id="3318dcba-1c63-4567-8917-95fac864dd91" name="" incomings="8497ca85-5f82-49c7-ae3f-b9f96faf3cab cc357fd1-ce2f-42ed-848f-618e2e8e0f97"/>
+    <nodes id="1568b8fa-dd1c-4452-a850-fe19b01d18ba" name="(Reaction{type})" incomings="e3e4477a-85f8-4ffa-b8ac-c2b7e63d7afe 791608b5-380f-41bb-8877-606abdc5321b"/>
+    <nodes id="7fe60858-9044-4b29-9524-53b15e6c111a" name="(Transfusion, Nurse)" incomings="fcd39616-72e3-49be-bc98-a6be1a718dc2 a5d93576-f0dc-4c52-b1ff-f8831979ecb0"/>
+    <nodes id="dc1eec72-a7c0-4d20-8d5d-21242e76001c" name="out time less then 0.5h" incomings="ed5f225b-9f0b-4220-a3ed-35c307e04ceb 6ff15044-023f-4af5-b6f3-6c336c3a2a92"/>
+    <nodes id="ca8e2070-1a97-4236-b9a2-b2686b8e3b8d" name="out time less than 4h" incomings="27dc124b-088a-4c4d-ace2-665bf2ba0ec0 d0a73109-8d94-402f-9906-c69a658cd402"/>
+    <nodes id="8c8344ee-56e6-4054-b167-150eb8853d4c" name="(BloodOrder{quantity, expectTime})" incomings="caf875c8-2acd-4cfd-bd13-70af5b9e34f2 3234b6c5-b56e-4df7-8497-e54e1ddafc14"/>
+    <nodes id="5a6e8d90-5e79-4781-b67f-9cd71d99e976" name="(Blood*)" incomings="659f6e87-6293-4315-a84c-6aed25f6ad12 bdec9fdf-d795-4b30-b893-4c34e0e4fab0"/>
+    <nodes id="7d2eef44-d88e-4c50-9f5c-10f96c70d42f" name="" incomings="f8728aec-cbf6-4a87-a20c-e62f6a4fd4e9 e141c2d4-6be6-42f5-bb43-e883b5b79cf6"/>
+    <nodes id="02c058d8-b2bf-45e0-b17d-4ee4d7b17f6d" name="bloodtype is unknown or screening is not done or invalid(screen is valid within 4 days)" incomings="3c095109-193f-4bef-a8a3-a8200bd6ff06 3582667a-1cde-459d-a425-d77f722c6d1a"/>
+    <nodes id="016bd74a-a93f-419d-82cf-282232181097" name="Samples have not been ordered" incomings="aecf3a05-db6f-44ad-8f14-901176b4d338 1960322e-2284-4bf8-b92a-3dd707f2caa4"/>
+    <nodes id="435b73f9-faaf-46bb-83c9-093b83cf9cff" name="" incomings="1fcd9d74-161f-42bb-bf34-883eb553e775 bf8bb071-0e13-4373-a2da-133ff8c5cd13"/>
+    <nodes id="4992a2d8-78b0-441c-8980-3402e63cbc76" name="(Sample*)" incomings="e1ce658c-b423-45cf-9c4e-4a46907678b9 19471a68-cb02-4c50-99ef-5ca13d1abdf4"/>
+    <nodes id="85e473ad-8c02-4538-9635-38db0f98ad6e" name="" incomings="56b297f5-ff98-407a-b57d-3d14251dacdf 6149045a-c4df-4cae-b514-a98f0bcc6b69"/>
+    <nodes id="56ec5652-c36a-45f9-b110-583b9b7bceed" name="(Sample Label File*)" incomings="14d2cc51-250e-4295-bf22-e7b4dd3c0606 108c1042-59be-4121-880d-87f86f6d1578"/>
+    <nodes id="c87b9699-f07c-4f2a-b00f-23e6edcb2239" name="(Label*)" incomings="b108595d-02fd-4753-8525-df600680d3fa ac1ff108-8a2f-4c68-93cc-f55603c008e8"/>
+    <nodes id="43ad0c5f-08a6-4354-a0e0-ec197c4f015a" name="" incomings="747cc20f-b0cf-45f7-b4e7-49e95c450def 2a923e64-7157-43a1-ba1c-3527bc4d92ac"/>
+    <arrows id="d66be68a-5bb9-4b4c-8b19-f3ae76330b67" name="sourceScan Patient Wristband" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="589898ea-5db7-4509-b8e3-d4dc233c8d44"/>
+    <arrows id="c59deaed-63e8-4bcf-84aa-9cadeb53cad0" name="sourceSelect Book pre-examination" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="29d74437-f3f6-4bcc-9986-69fba87736b1"/>
+    <arrows id="efa0f0c8-1c03-41ba-b311-a8aff1fe3587" name="sourceSend Sample Order" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="77104b4e-8e98-4e45-8c5c-6fc3c42afe29"/>
+    <arrows id="275339df-1fb4-460b-a4c7-d4da5b9dd759" name="sourceOrder Blood" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="8471cef0-eb81-4da1-b16c-76fa2175bf7d"/>
+    <arrows id="12a38d05-12d3-4a0c-95d5-c6e3f296f1e5" name="sourceCollect Blood" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="b67febe1-5099-46e7-bb73-d0619d901a32"/>
+    <arrows id="27aafe0c-6d07-42d6-852b-6c4124ac7f91" name="sourceMeasure temperature, blood pressure and pulse" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="c3c67939-e72e-42aa-acd1-aaa4f164a2e1"/>
+    <arrows id="491a8485-8375-4c6e-8ebd-460c2849cdfc" name="sourceperform transfusion" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="1d5e9f8d-cafe-45ef-ace0-dd5b7f604b46"/>
+    <arrows id="3993b914-8c28-4d82-9c65-0c5e27530f4c" name="sourceIdentify nurse, log transfusion" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="44a18f14-d78a-48fb-a31e-e525d4dd52a9"/>
+    <arrows id="63a6a4f1-3460-43e5-8289-77ad5b538a16" name="sourceScan Nurse Card" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="4ca30455-e02f-4b81-9009-194204eb5778"/>
+    <arrows id="01bfd937-79c6-4397-b62f-8f8cc80ab3c0" name="sourceShow Nurse Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="ec5c71c8-9585-4ed3-9e1f-5c0ff6625bee"/>
+    <arrows id="b4d95c7f-2f44-4c10-bb46-cf35e50eef26" name="sourceSelect Blod Typeing" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="20be53d1-0bc8-40f8-9a5e-6e0ae82b8b6d"/>
+    <arrows id="2972b9f5-29aa-4e1d-8b79-f9d517dad78c" name="sourceShow Patient Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="54abc5cb-1eae-4695-81ef-9968c5b2ce78"/>
+    <arrows id="13c9643b-9814-4046-ae8b-15e42b6e5e72" name="sourceOrder Sample" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="5be8fb61-d87a-4685-9d3c-23edad850489"/>
+    <arrows id="4e3a269b-0ff1-4be8-9631-ffbe42f9e947" name="sourceGet Nurse Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="7934b9fd-c3b5-46dd-8710-59d04106e04e"/>
+    <arrows id="f06bfb9e-25d4-481b-a2f8-93dea17bd3e5" name="sourceGet Patient Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="3c577b19-7c9b-44f2-bdd7-5cf1fe139952"/>
+    <arrows id="62c957b0-ad92-44bc-818f-3ae9018c220e" name="sourceGet Sample Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="07dd13ce-9bf8-4d2e-8cfe-fd67e977fa6d"/>
+    <arrows id="e3804490-ca0e-4378-b7f3-933720517efd" name="sourceScann Patient Wristband" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="d8ead753-0305-4d0d-9948-e573433247c9"/>
+    <arrows id="2c95b14a-4361-4c91-9111-8b3d5cd73ae3" name="sourceScan Sample" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="8c28b873-a798-4478-af87-9ec4917b5a83"/>
+    <arrows id="07b83f3c-03bb-456a-86e1-3517a91e28e1" name="sourceGet Patient Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="2d55872f-39bd-4a07-b356-b0441542d28e"/>
+    <arrows id="1db4069a-2b32-4525-814f-5a341b86de8c" name="sourceCollect Sample" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="9c77f97d-2d62-40bd-ac7d-1ed2608def80"/>
+    <arrows id="6de4668c-cc17-410a-bdda-b227d662384b" name="sourceSelect Blood Product" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="311a2427-860c-426d-b868-747101a23102"/>
+    <arrows id="5b0d9137-6766-4f49-a046-84f7a0b4efbb" name="sourceGet Doctor Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="e3a4abdf-f29d-4316-b2f5-a5dd434e36a8"/>
+    <arrows id="1057226e-e65a-4823-9c4d-3f5ca7777ee8" name="sourceSelect Department" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="f252ccdc-9b80-433b-bec2-fa3a848614b2"/>
+    <arrows id="95e76675-5e92-44dd-ab04-63aefe5a281c" name="sourceSend Blood Order" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="d4c66489-dedb-4c0a-a592-1b2a425c1731"/>
+    <arrows id="e923f7c5-47d7-47a1-9054-86006714c251" name="sourceSend Sample" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="bbfeaea9-8e62-4120-8253-25af42f44e73"/>
+    <arrows id="6e202bca-db35-465d-96e3-29be28d70468" name="sourceScan Blood Product" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="6822aae6-9426-4fe0-9696-9dbedcf7415b"/>
+    <arrows id="a89b3cbd-4440-4806-903a-326d50285743" name="sourceVerify Blood Product" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="20d650e2-35e4-4401-ab6b-e32819cd729b"/>
+    <arrows id="5337e692-7ea7-471d-8722-02ae00aba158" name="sourceStop Transfusion, Contact AIT" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="3d472bbd-246d-433b-974c-5a04429404c6"/>
+    <arrows id="f8fdddb6-9dbd-40f1-9bb3-447100913070" name="sourceStore Patient Condition" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="db653352-b153-4478-a7d3-81a973121095"/>
+    <arrows id="edcc525b-0c11-4b08-9187-5c8472b2d5e9" name="sourceRegister Reaction" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="486d0b37-88b8-4edc-b8ca-40e21ffcfa16"/>
+    <arrows id="6457070e-5512-4e8e-992f-a45bb2ce90a4" name="sourceStore Transfusion" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="e39a6811-331b-44f8-9e3d-4d44ddb853dd"/>
+    <arrows id="bb2ff3ba-2b97-49fa-ad09-9919bd4a372e" name="sourcePut Blood Into refrigertor" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="12fb8169-eb94-4da5-8b96-1bc32cfbc0ec"/>
+    <arrows id="5271ac06-5b44-4d7c-a614-c7ea6017e2f0" name="sourceOrder Blood Product" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="ebca157a-1136-4b3f-8999-883f470cfa1a"/>
+    <arrows id="c2489401-1375-4efb-a605-007b02031b8c" name="sourceSend Sample" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="680e7dda-e871-40af-bdf3-6ef8f51ead93"/>
+    <arrows id="a1be6ffa-b287-47cf-930d-17bcd28dea80" name="sourcePrint Sample Label" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="5a4e31c9-bcc4-4196-8b27-913b1d0269f7"/>
+    <arrows id="c07f2f30-7be3-466f-8d56-ba702d58b138" name="sourceCan be any Task" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="ffb2d3a5-11cd-4aee-a3eb-a6063b271cb7"/>
+    <arrows id="8f79330c-d318-4cfe-923b-697a08610414" name="sourceOrder Traumepakke" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="1f4cd051-b9bd-419c-8ca1-e22d7b347eec"/>
+    <arrows id="cdeb9d42-62cb-4a09-97a2-32bf42b397ba" name="source" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="39695739-6d9e-48bd-be00-742868db21ee"/>
+    <arrows id="57df9e9f-b3e8-4b92-81d0-2c2222cc1691" name="source" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="147566ad-bdfa-4816-a408-70fe697e511e"/>
+    <arrows id="7cf5b88c-1fb5-4b1a-a9cf-41090fe44a53" name="source" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="189ba56c-cbce-4bbc-babf-707567a1e48c"/>
+    <arrows id="76767cc0-2642-41c4-b64b-d95a113dcc37" name="sourceout time less than 4h" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="d462969c-4913-4b33-91af-72ccbb92a0a4"/>
+    <arrows id="a8371419-ea58-45ab-8b45-5a43c4eb57f1" name="source" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="477bac9f-3ac6-468e-be23-21dba8ea8c85"/>
+    <arrows id="eb7a40f1-c305-4f90-8be2-2c1f50f865aa" name="sourcePatient has not been bloodtyped" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="e2ed7b72-db34-4abe-a5ed-61858afca754"/>
+    <arrows id="acf5aa66-b02b-47fe-8cab-09e22fa6fbd3" name="source" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="887c5f0b-73ee-4446-a5be-7036fe912435"/>
+    <arrows id="7d966db6-1c95-4c0c-b7ad-05e3aecd5ee9" name="source(Nurse{name})" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="03c77690-bbc9-4d63-9901-7020da3aa641"/>
+    <arrows id="fd6213bb-bd46-42ce-b6a8-61ce08030346" name="sourceNurse is not found" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="71b96ad8-84e1-4b34-8953-bfb0ea3ad087"/>
+    <arrows id="c193512b-cdfb-4765-a830-d32721857c86" name="source(Barcode)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="7be42daf-73c1-4d7b-8a5e-7218d55de9fd"/>
+    <arrows id="ca7122d3-c0a7-4c10-8e72-b29a3cab8f8a" name="source(Patient{name, ID, gender, blodtype, screening})" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="a5b418ff-b407-4077-a76d-9b433d387d84"/>
+    <arrows id="c16ba98b-41b6-4915-8920-288dc290f93d" name="sourcePatient is not found" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="fb69b72e-183e-4972-bbdd-c1d7bbe1e41b"/>
+    <arrows id="9201adae-a37b-4e01-b083-968b7112465c" name="source(Sample)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="cba6437f-720d-4ebf-b745-bf5ed00a63ba"/>
+    <arrows id="4e994e8c-0195-4d68-80f7-df1111178ee8" name="source(Barcode)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="577a300c-8541-4048-ac6b-eff548730a3c"/>
+    <arrows id="042661c3-6714-4ff0-8218-46f2023a756b" name="source(Barcode)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="2ffae0c5-e4cc-4a80-8771-a8917fb978ac"/>
+    <arrows id="a04a5089-26ba-4488-bc61-7fcccfe20169" name="source(Patient)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="7bcfa9ed-3368-473e-9f1e-78e89f878ac3"/>
+    <arrows id="276711eb-3640-41bc-927b-b4bb243e39ff" name="sourceBlood have not been ordered" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="d012f944-bb27-4756-a46a-ebdc35093b0a"/>
+    <arrows id="280cc8fd-8f8d-4e7f-aa72-92acf297a837" name="source" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="9f5067cb-bf3b-4d99-9188-33ec256d6ec9"/>
+    <arrows id="8b03371c-17a1-4251-b258-6f96d5f5984d" name="source" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="e87d9c4a-c81c-4bab-84e4-43820ef6940e"/>
+    <arrows id="13369694-eea3-468a-80a0-6819ef0f24a7" name="source(Barcode)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="d397d717-dbe2-4590-903c-59b77d0f3244"/>
+    <arrows id="3d07c5e8-776a-4ff5-9272-8719144188de" name="source(Doctor)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="18a2c73a-0dcc-4974-b38d-11b8d8d172ac"/>
+    <arrows id="0a1e3e1a-9e9d-49cc-949c-471c7ffa1551" name="source(Department)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="6079b20f-e78e-4d4c-b200-db3760498b22"/>
+    <arrows id="387eb8c5-8da4-4dcd-8638-243dca00c631" name="sourceSamples have not been sent" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="c0fba981-5b15-4625-a34d-e638593744b7"/>
+    <arrows id="b143effe-0119-429c-9560-a6fd48a06596" name="sourceSample is not for the patient" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="3d69d623-646b-4af7-9f01-88e4b98057c3"/>
+    <arrows id="a7a0a940-9e19-466d-8b9e-75c2d246430f" name="sourceBlood have not been ordered" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="4a8f23ef-5935-4f4a-917d-bcfd2eaa356b"/>
+    <arrows id="6e9c90e1-f627-4d67-8571-4000c2d23785" name="source(Barcode,  Patient)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="e7f46356-b78f-4de3-b88b-5308328fd9b2"/>
+    <arrows id="d541ab4f-6b24-4420-b49c-ab062e4941d8" name="sourceThe blood Product is not for the patient" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="948a0ee2-967e-4a88-8049-645768ef3afb"/>
+    <arrows id="fd3d26d3-fecd-4292-8e12-102bc44f69c3" name="sourceThe blood is for the patient" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="08b9e945-b97e-4b77-94da-a395faa55c40"/>
+    <arrows id="2fa8bef1-1441-480b-b640-ba3b8433b6b8" name="source(Patient{temp, pressure_high, pressure_low, pulse})" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="28c96f18-7222-4532-825d-888c936be134"/>
+    <arrows id="8c45fb5a-b3ee-4656-bf15-3c257fed1ee1" name="sourceMore blood" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="0a65f51f-fc91-4264-8a79-4d23b79c5561"/>
+    <arrows id="75da7241-dc96-46ce-97a5-9bbca0c018df" name="source(Barcode)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="27bfa0ce-3963-4c4c-b292-8c2b235705b9"/>
+    <arrows id="8497ca85-5f82-49c7-ae3f-b9f96faf3cab" name="source" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="3318dcba-1c63-4567-8917-95fac864dd91"/>
+    <arrows id="e3e4477a-85f8-4ffa-b8ac-c2b7e63d7afe" name="source(Reaction{type})" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="1568b8fa-dd1c-4452-a850-fe19b01d18ba"/>
+    <arrows id="fcd39616-72e3-49be-bc98-a6be1a718dc2" name="source(Transfusion, Nurse)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="7fe60858-9044-4b29-9524-53b15e6c111a"/>
+    <arrows id="ed5f225b-9f0b-4220-a3ed-35c307e04ceb" name="sourceout time less then 0.5h" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="dc1eec72-a7c0-4d20-8d5d-21242e76001c"/>
+    <arrows id="27dc124b-088a-4c4d-ace2-665bf2ba0ec0" name="sourceout time less than 4h" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="ca8e2070-1a97-4236-b9a2-b2686b8e3b8d"/>
+    <arrows id="caf875c8-2acd-4cfd-bd13-70af5b9e34f2" name="source(BloodOrder{quantity, expectTime})" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="8c8344ee-56e6-4054-b167-150eb8853d4c"/>
+    <arrows id="659f6e87-6293-4315-a84c-6aed25f6ad12" name="source(Blood*)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="5a6e8d90-5e79-4781-b67f-9cd71d99e976"/>
+    <arrows id="f8728aec-cbf6-4a87-a20c-e62f6a4fd4e9" name="source" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="7d2eef44-d88e-4c50-9f5c-10f96c70d42f"/>
+    <arrows id="3c095109-193f-4bef-a8a3-a8200bd6ff06" name="sourcebloodtype is unknown or screening is not done or invalid(screen is valid within 4 days)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="02c058d8-b2bf-45e0-b17d-4ee4d7b17f6d"/>
+    <arrows id="aecf3a05-db6f-44ad-8f14-901176b4d338" name="sourceSamples have not been ordered" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="016bd74a-a93f-419d-82cf-282232181097"/>
+    <arrows id="1fcd9d74-161f-42bb-bf34-883eb553e775" name="source" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="435b73f9-faaf-46bb-83c9-093b83cf9cff"/>
+    <arrows id="e1ce658c-b423-45cf-9c4e-4a46907678b9" name="source(Sample*)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="4992a2d8-78b0-441c-8980-3402e63cbc76"/>
+    <arrows id="56b297f5-ff98-407a-b57d-3d14251dacdf" name="source" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="85e473ad-8c02-4538-9635-38db0f98ad6e"/>
+    <arrows id="14d2cc51-250e-4295-bf22-e7b4dd3c0606" name="source(Sample Label File*)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="56ec5652-c36a-45f9-b110-583b9b7bceed"/>
+    <arrows id="b108595d-02fd-4753-8525-df600680d3fa" name="source(Label*)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="c87b9699-f07c-4f2a-b00f-23e6edcb2239"/>
+    <arrows id="747cc20f-b0cf-45f7-b4e7-49e95c450def" name="source" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="43ad0c5f-08a6-4354-a0e0-ec197c4f015a"/>
+    <arrows id="a634e1f2-3951-431d-8003-ff721edb3bfc" name="targetScan Patient Wristband" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="589898ea-5db7-4509-b8e3-d4dc233c8d44"/>
+    <arrows id="4c65aebd-7294-4597-85dd-7da7f46a940a" name="targetSelect Book pre-examination" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="29d74437-f3f6-4bcc-9986-69fba87736b1"/>
+    <arrows id="cc0af90d-d745-48c5-95b9-baeec7dd1a92" name="targetSend Sample Order" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="77104b4e-8e98-4e45-8c5c-6fc3c42afe29"/>
+    <arrows id="19a18eb3-7b9d-4d27-8efc-f6a13ba46897" name="targetOrder Blood" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="8471cef0-eb81-4da1-b16c-76fa2175bf7d"/>
+    <arrows id="1178a080-3235-4187-b72e-29bf8b922e76" name="targetCollect Blood" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="b67febe1-5099-46e7-bb73-d0619d901a32"/>
+    <arrows id="da26001e-6058-4021-b1b0-f2e0373070ef" name="targetMeasure temperature, blood pressure and pulse" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="c3c67939-e72e-42aa-acd1-aaa4f164a2e1"/>
+    <arrows id="21e62de2-c95a-473d-9b0d-869baf94f922" name="targetperform transfusion" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="1d5e9f8d-cafe-45ef-ace0-dd5b7f604b46"/>
+    <arrows id="0fadd569-a8d9-4e95-9a01-20a55a9574c7" name="targetIdentify nurse, log transfusion" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="44a18f14-d78a-48fb-a31e-e525d4dd52a9"/>
+    <arrows id="8f4a844c-12c8-4d74-8d3c-3e6469bd2115" name="targetScan Nurse Card" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="4ca30455-e02f-4b81-9009-194204eb5778"/>
+    <arrows id="025a43f2-6ce0-40b4-ba88-31550782a227" name="targetShow Nurse Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="ec5c71c8-9585-4ed3-9e1f-5c0ff6625bee"/>
+    <arrows id="1ccf17cf-b085-4f18-aacc-37d74da54dfb" name="targetSelect Blod Typeing" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="20be53d1-0bc8-40f8-9a5e-6e0ae82b8b6d"/>
+    <arrows id="214946d9-977f-4904-8edc-3315e96bd7e1" name="targetShow Patient Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="54abc5cb-1eae-4695-81ef-9968c5b2ce78"/>
+    <arrows id="22b4f423-305d-45ba-a7f1-2c5bd38c542b" name="targetOrder Sample" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="5be8fb61-d87a-4685-9d3c-23edad850489"/>
+    <arrows id="b8752ded-9b96-4e43-93d9-6be379de37d9" name="targetGet Nurse Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="7934b9fd-c3b5-46dd-8710-59d04106e04e"/>
+    <arrows id="b2c3de69-2044-4b57-80eb-68984d78bdb0" name="targetGet Patient Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="3c577b19-7c9b-44f2-bdd7-5cf1fe139952"/>
+    <arrows id="c0336dde-cac3-4168-a539-632b988c4b33" name="targetGet Sample Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="07dd13ce-9bf8-4d2e-8cfe-fd67e977fa6d"/>
+    <arrows id="bd373f13-db38-4a27-9be1-34854eef952f" name="targetScann Patient Wristband" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="d8ead753-0305-4d0d-9948-e573433247c9"/>
+    <arrows id="b5edc69e-817d-4ff3-9d93-733825f13af1" name="targetScan Sample" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="8c28b873-a798-4478-af87-9ec4917b5a83"/>
+    <arrows id="d5104479-53d6-4750-9a1e-2500ec2769b8" name="targetGet Patient Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="2d55872f-39bd-4a07-b356-b0441542d28e"/>
+    <arrows id="7e2fe887-69f2-4d77-9ef9-b7efcf2bea70" name="targetCollect Sample" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="9c77f97d-2d62-40bd-ac7d-1ed2608def80"/>
+    <arrows id="e9dee16a-8403-4ea6-b243-3389650076b5" name="targetSelect Blood Product" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="311a2427-860c-426d-b868-747101a23102"/>
+    <arrows id="58671552-2972-421d-a36b-ea4990d4d723" name="targetGet Doctor Info" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="e3a4abdf-f29d-4316-b2f5-a5dd434e36a8"/>
+    <arrows id="9270196f-850a-4e5b-b005-59f82818227d" name="targetSelect Department" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="f252ccdc-9b80-433b-bec2-fa3a848614b2"/>
+    <arrows id="a22537b0-07e3-4198-aa1b-eb0dd3d1b97e" name="targetSend Blood Order" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="d4c66489-dedb-4c0a-a592-1b2a425c1731"/>
+    <arrows id="fef0002a-0aa5-4fc6-8f57-3dc0b57834c0" name="targetSend Sample" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="bbfeaea9-8e62-4120-8253-25af42f44e73"/>
+    <arrows id="cf71cacf-257e-4455-8e63-3ef1ee68b068" name="targetScan Blood Product" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="6822aae6-9426-4fe0-9696-9dbedcf7415b"/>
+    <arrows id="0b49dbab-3f02-412e-93a2-b1bec099922e" name="targetVerify Blood Product" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="20d650e2-35e4-4401-ab6b-e32819cd729b"/>
+    <arrows id="01bced60-66e3-44c4-91bf-56291d3f69d3" name="targetStop Transfusion, Contact AIT" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="3d472bbd-246d-433b-974c-5a04429404c6"/>
+    <arrows id="84f6b97e-a716-4a72-909b-340a6ab4afd7" name="targetStore Patient Condition" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="db653352-b153-4478-a7d3-81a973121095"/>
+    <arrows id="c9fe1c3e-1964-485d-a403-46e7ea541328" name="targetRegister Reaction" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="486d0b37-88b8-4edc-b8ca-40e21ffcfa16"/>
+    <arrows id="12988309-1738-4087-980a-e5c35d190868" name="targetStore Transfusion" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="e39a6811-331b-44f8-9e3d-4d44ddb853dd"/>
+    <arrows id="bbde9a80-8b1a-43fd-9e4f-c909de4d328f" name="targetPut Blood Into refrigertor" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="12fb8169-eb94-4da5-8b96-1bc32cfbc0ec"/>
+    <arrows id="52896acc-4505-4a65-9908-2067fb1dc8bc" name="targetOrder Blood Product" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="ebca157a-1136-4b3f-8999-883f470cfa1a"/>
+    <arrows id="6a6431e3-2366-4f27-bd4b-830560bf27bf" name="targetSend Sample" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="680e7dda-e871-40af-bdf3-6ef8f51ead93"/>
+    <arrows id="f18834cb-49cb-4568-8cec-9e68f22132f4" name="targetPrint Sample Label" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="5a4e31c9-bcc4-4196-8b27-913b1d0269f7"/>
+    <arrows id="79098b8e-3d87-414c-af3b-91328134f5d5" name="targetCan be any Task" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="ffb2d3a5-11cd-4aee-a3eb-a6063b271cb7"/>
+    <arrows id="26d1d2a7-1f23-4c0f-b726-ad7666b85824" name="targetOrder Traumepakke" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="1f4cd051-b9bd-419c-8ca1-e22d7b347eec"/>
+    <arrows id="4335ee33-3d77-4eb5-b58b-1c2578755fd3" name="target" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="39695739-6d9e-48bd-be00-742868db21ee"/>
+    <arrows id="5d10d44b-c1d7-4de0-8ee5-8a6606cb0473" name="target" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="147566ad-bdfa-4816-a408-70fe697e511e"/>
+    <arrows id="c0114dd0-857a-4702-8890-b671f24441c2" name="target" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="189ba56c-cbce-4bbc-babf-707567a1e48c"/>
+    <arrows id="360b2584-f132-44c2-9a7c-36a10b5496af" name="targetout time less than 4h" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="d462969c-4913-4b33-91af-72ccbb92a0a4"/>
+    <arrows id="8d624595-fd14-4e29-b982-06da0057d5aa" name="target" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="477bac9f-3ac6-468e-be23-21dba8ea8c85"/>
+    <arrows id="8ae389bd-6bbe-4332-98b0-96c46720ce52" name="targetPatient has not been bloodtyped" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="e2ed7b72-db34-4abe-a5ed-61858afca754"/>
+    <arrows id="7fe7e146-a57e-4af5-ae2f-31a930e01edd" name="target" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="887c5f0b-73ee-4446-a5be-7036fe912435"/>
+    <arrows id="07cfea03-7a95-4675-979b-401280040b56" name="target(Nurse{name})" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="03c77690-bbc9-4d63-9901-7020da3aa641"/>
+    <arrows id="559cb6b8-46a5-4ea9-aeba-4b97ffe6b1b7" name="targetNurse is not found" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="71b96ad8-84e1-4b34-8953-bfb0ea3ad087"/>
+    <arrows id="9b57d958-5f13-4161-a4d7-38e48ba64fe3" name="target(Barcode)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="7be42daf-73c1-4d7b-8a5e-7218d55de9fd"/>
+    <arrows id="d8afdcab-cbf2-44b5-abd7-95d6d31da3c3" name="target(Patient{name, ID, gender, blodtype, screening})" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="a5b418ff-b407-4077-a76d-9b433d387d84"/>
+    <arrows id="cbbf2dfb-c663-47e3-b65a-590e0fa385e5" name="targetPatient is not found" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="fb69b72e-183e-4972-bbdd-c1d7bbe1e41b"/>
+    <arrows id="d2d55eb7-7ab8-45d2-b9ef-fd30757a8268" name="target(Sample)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="cba6437f-720d-4ebf-b745-bf5ed00a63ba"/>
+    <arrows id="f2e7e457-0abc-4202-a341-a42fd1265f61" name="target(Barcode)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="577a300c-8541-4048-ac6b-eff548730a3c"/>
+    <arrows id="34d8991b-b2bb-43f5-8bb4-79fad606badb" name="target(Barcode)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="2ffae0c5-e4cc-4a80-8771-a8917fb978ac"/>
+    <arrows id="4c2590b8-4041-4228-b548-357ed9fbe8a7" name="target(Patient)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="7bcfa9ed-3368-473e-9f1e-78e89f878ac3"/>
+    <arrows id="161cd640-42ed-43eb-a676-73ff7ddb59ef" name="targetBlood have not been ordered" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="d012f944-bb27-4756-a46a-ebdc35093b0a"/>
+    <arrows id="acea0414-a14c-41f6-85c0-8316d9ecb01d" name="target" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="9f5067cb-bf3b-4d99-9188-33ec256d6ec9"/>
+    <arrows id="70ad839f-5a6d-4cff-8fd6-d6f17b844017" name="target" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="e87d9c4a-c81c-4bab-84e4-43820ef6940e"/>
+    <arrows id="0ab25901-c97f-433e-a37b-048d4bb38493" name="target(Barcode)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="d397d717-dbe2-4590-903c-59b77d0f3244"/>
+    <arrows id="03ae9dd0-4089-45f5-adc6-398de347ac59" name="target(Doctor)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="18a2c73a-0dcc-4974-b38d-11b8d8d172ac"/>
+    <arrows id="04fdd4bd-268e-46ed-bd40-2f471b2753e8" name="target(Department)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="6079b20f-e78e-4d4c-b200-db3760498b22"/>
+    <arrows id="dae5f687-7986-48bc-b88c-356ed056c8ca" name="targetSamples have not been sent" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="c0fba981-5b15-4625-a34d-e638593744b7"/>
+    <arrows id="219993b2-4ba1-4d09-a79c-e26431794adb" name="targetSample is not for the patient" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="3d69d623-646b-4af7-9f01-88e4b98057c3"/>
+    <arrows id="0053e69c-d8e1-458e-9bf2-e9edfda4963e" name="targetBlood have not been ordered" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="4a8f23ef-5935-4f4a-917d-bcfd2eaa356b"/>
+    <arrows id="2d35cf5d-d988-44b2-af01-d245f7a38f63" name="target(Barcode,  Patient)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="e7f46356-b78f-4de3-b88b-5308328fd9b2"/>
+    <arrows id="be7a7ea7-94d1-4f74-9b04-dbf3978948a4" name="targetThe blood Product is not for the patient" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="948a0ee2-967e-4a88-8049-645768ef3afb"/>
+    <arrows id="da170441-891d-4563-b898-247487b650ab" name="targetThe blood is for the patient" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="08b9e945-b97e-4b77-94da-a395faa55c40"/>
+    <arrows id="445315cd-302d-4a20-995a-b59d81f25835" name="target(Patient{temp, pressure_high, pressure_low, pulse})" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="28c96f18-7222-4532-825d-888c936be134"/>
+    <arrows id="66dfe087-b531-4448-8355-7afc8e9fde22" name="targetMore blood" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="0a65f51f-fc91-4264-8a79-4d23b79c5561"/>
+    <arrows id="9ad2d1b1-e8a4-4ec0-9530-0ff25a6a778d" name="target(Barcode)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="27bfa0ce-3963-4c4c-b292-8c2b235705b9"/>
+    <arrows id="cc357fd1-ce2f-42ed-848f-618e2e8e0f97" name="target" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="3318dcba-1c63-4567-8917-95fac864dd91"/>
+    <arrows id="791608b5-380f-41bb-8877-606abdc5321b" name="target(Reaction{type})" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="1568b8fa-dd1c-4452-a850-fe19b01d18ba"/>
+    <arrows id="a5d93576-f0dc-4c52-b1ff-f8831979ecb0" name="target(Transfusion, Nurse)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="7fe60858-9044-4b29-9524-53b15e6c111a"/>
+    <arrows id="6ff15044-023f-4af5-b6f3-6c336c3a2a92" name="targetout time less then 0.5h" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="dc1eec72-a7c0-4d20-8d5d-21242e76001c"/>
+    <arrows id="d0a73109-8d94-402f-9906-c69a658cd402" name="targetout time less than 4h" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="ca8e2070-1a97-4236-b9a2-b2686b8e3b8d"/>
+    <arrows id="3234b6c5-b56e-4df7-8497-e54e1ddafc14" name="target(BloodOrder{quantity, expectTime})" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="8c8344ee-56e6-4054-b167-150eb8853d4c"/>
+    <arrows id="bdec9fdf-d795-4b30-b893-4c34e0e4fab0" name="target(Blood*)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="5a6e8d90-5e79-4781-b67f-9cd71d99e976"/>
+    <arrows id="e141c2d4-6be6-42f5-bb43-e883b5b79cf6" name="target" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="7d2eef44-d88e-4c50-9f5c-10f96c70d42f"/>
+    <arrows id="3582667a-1cde-459d-a425-d77f722c6d1a" name="targetbloodtype is unknown or screening is not done or invalid(screen is valid within 4 days)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="02c058d8-b2bf-45e0-b17d-4ee4d7b17f6d"/>
+    <arrows id="1960322e-2284-4bf8-b92a-3dd707f2caa4" name="targetSamples have not been ordered" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="016bd74a-a93f-419d-82cf-282232181097"/>
+    <arrows id="bf8bb071-0e13-4373-a2da-133ff8c5cd13" name="target" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="435b73f9-faaf-46bb-83c9-093b83cf9cff"/>
+    <arrows id="19471a68-cb02-4c50-99ef-5ca13d1abdf4" name="target(Sample*)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="4992a2d8-78b0-441c-8980-3402e63cbc76"/>
+    <arrows id="6149045a-c4df-4cae-b514-a98f0bcc6b69" name="target" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="85e473ad-8c02-4538-9635-38db0f98ad6e"/>
+    <arrows id="108c1042-59be-4121-880d-87f86f6d1578" name="target(Sample Label File*)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="56ec5652-c36a-45f9-b110-583b9b7bceed"/>
+    <arrows id="ac1ff108-8a2f-4c68-93cc-f55603c008e8" name="target(Label*)" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="c87b9699-f07c-4f2a-b00f-23e6edcb2239"/>
+    <arrows id="2a923e64-7157-43a1-ba1c-3527bc4d92ac" name="target" source="ee85bb4f-6390-4248-b70a-2c670085938c" target="43ad0c5f-08a6-4354-a0e0-ec197c4f015a"/>
+  </graph>
+</core:Specification>

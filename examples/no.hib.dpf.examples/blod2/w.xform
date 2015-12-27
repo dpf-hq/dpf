@@ -1,0 +1,1578 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core" xmlns:transform="http://no.hib.dpf.transform">
+  <transform:Transform>
+    <sourceMetaModel href="w.dpf#/"/>
+    <targetMetaModel href="w.dpf#/"/>
+    <rules rightNodes="e8263075-7f03-4df3-8818-931c22115998" rightArrows="470b44f6-99f1-41ff-bc0a-cecc1c13d662" commonNodes="b68d50ef-b3dc-452b-9116-efae46cb6f4c" name="CollectBloodPutBloodIntorefrigertor">
+      <sum specification="/1" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/1/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="b68d50ef-b3dc-452b-9116-efae46cb6f4c" node="4183209b-c972-460d-95f1-92462bfbca6d" dOutgoings="470b44f6-99f1-41ff-bc0a-cecc1c13d662" location="0 0" size="100 30">
+            <dType href="w.dpf#179633a9-e674-446e-ad3a-51887aedc6cb"/>
+          </dNodes>
+          <dNodes id="e8263075-7f03-4df3-8818-931c22115998" node="58ace242-72de-406f-9a17-b1173a7f41b6" dIncomings="470b44f6-99f1-41ff-bc0a-cecc1c13d662" location="140 0" size="100 30">
+            <dType href="w.dpf#2005784c-7dc0-48bc-aedd-2f53c602a38d"/>
+          </dNodes>
+          <dArrows id="470b44f6-99f1-41ff-bc0a-cecc1c13d662" arrow="cdcae3c3-99cf-4ed2-bd72-9fcbc0090468" dSource="b68d50ef-b3dc-452b-9116-efae46cb6f4c" dTarget="e8263075-7f03-4df3-8818-931c22115998">
+            <dType href="w.dpf#ebf2951f-d949-4e42-8d11-e3d18e3ed054"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="554a15f9-2ca9-47bf-865c-2246baf66687" rightArrows="98556160-ede4-4fd9-847b-a9740754f068" commonNodes="15e4f4e9-cec3-4099-b8e1-3b5e6084baa6" name="CollectBloodScanBloodProduct">
+      <sum specification="/2" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/2/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="15e4f4e9-cec3-4099-b8e1-3b5e6084baa6" node="0d3b1e95-9883-4781-8ace-bd42effabcbe" dOutgoings="98556160-ede4-4fd9-847b-a9740754f068" location="0 0" size="100 30">
+            <dType href="w.dpf#179633a9-e674-446e-ad3a-51887aedc6cb"/>
+          </dNodes>
+          <dNodes id="554a15f9-2ca9-47bf-865c-2246baf66687" node="ecdb6286-435e-401b-a19a-9569cdbda353" dIncomings="98556160-ede4-4fd9-847b-a9740754f068" location="140 0" size="100 30">
+            <dType href="w.dpf#d34915fa-b3b8-4207-b641-e90034cb8f5c"/>
+          </dNodes>
+          <dArrows id="98556160-ede4-4fd9-847b-a9740754f068" arrow="e87dfc37-cf9e-46d5-bf3a-a4208bbae649" dSource="15e4f4e9-cec3-4099-b8e1-3b5e6084baa6" dTarget="554a15f9-2ca9-47bf-865c-2246baf66687">
+            <dType href="w.dpf#9cfbdb50-a9de-47b2-8949-b723f065fbc7"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="25f27e7d-e269-4178-b19e-0f72d7205afd" rightArrows="6cb99778-2d6c-4554-8b9b-28febb0de287" commonNodes="5585c1d8-1769-44cc-885b-7ad09b78b64f" name="CollectSampleScanSample">
+      <sum specification="/3" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/3/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="5585c1d8-1769-44cc-885b-7ad09b78b64f" node="dd522cd0-9bd2-443e-9138-c7a9da1f4e81" dOutgoings="6cb99778-2d6c-4554-8b9b-28febb0de287" location="0 0" size="100 30">
+            <dType href="w.dpf#99bc44b4-ddcf-4713-a414-e0bcbc601419"/>
+          </dNodes>
+          <dNodes id="25f27e7d-e269-4178-b19e-0f72d7205afd" node="5e933aa8-64d6-41b6-83d5-24539975ea79" dIncomings="6cb99778-2d6c-4554-8b9b-28febb0de287" location="140 0" size="100 30">
+            <dType href="w.dpf#858ad6d6-0162-4237-beb6-099b4563cc3b"/>
+          </dNodes>
+          <dArrows id="6cb99778-2d6c-4554-8b9b-28febb0de287" arrow="2eb3e60c-d2d1-46c6-ab42-28cabd9d97fd" dSource="5585c1d8-1769-44cc-885b-7ad09b78b64f" dTarget="25f27e7d-e269-4178-b19e-0f72d7205afd">
+            <dType href="w.dpf#7d03ba09-07ca-42c6-a89b-d3121355d125"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="c05b6544-baec-4d47-a30d-3cc4760f8a7c" rightArrows="17d2c41a-3520-4ebf-a631-0307e8920661" commonNodes="c5b4571d-274b-4610-8842-59d72936290a" name="GetDoctorInfoSelectDepartment">
+      <sum specification="/4" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/4/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="c5b4571d-274b-4610-8842-59d72936290a" node="f177309b-aef8-426d-91d5-f7fb362fa019" dOutgoings="17d2c41a-3520-4ebf-a631-0307e8920661" location="0 0" size="100 30">
+            <dType href="w.dpf#d42557fb-5a5d-4d40-b9d8-73e08a285aa3"/>
+          </dNodes>
+          <dNodes id="c05b6544-baec-4d47-a30d-3cc4760f8a7c" node="f905d1a6-444e-4c30-aa3e-cf8e2e5c6b3f" dIncomings="17d2c41a-3520-4ebf-a631-0307e8920661" location="140 0" size="100 30">
+            <dType href="w.dpf#ced3d448-c81b-44e1-970a-fd42162daf24"/>
+          </dNodes>
+          <dArrows id="17d2c41a-3520-4ebf-a631-0307e8920661" arrow="33665326-559a-4295-83f8-f466bb210b71" dSource="c5b4571d-274b-4610-8842-59d72936290a" dTarget="c05b6544-baec-4d47-a30d-3cc4760f8a7c">
+            <dType href="w.dpf#2b6b890c-879e-47ef-a0be-8f9cee9ad84d"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="726df3b1-8cc2-46c4-bcd2-966e42ada1e7" rightArrows="4e0d49a7-63bf-4b38-bc89-f477a19dc319" commonNodes="d886b146-8e70-4d85-84d0-27964f338eb3" name="GetNurseInfoScanNurseCard">
+      <sum specification="/5" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/5/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="d886b146-8e70-4d85-84d0-27964f338eb3" node="03160297-4dad-44bb-bcad-2752ddc957d8" dOutgoings="4e0d49a7-63bf-4b38-bc89-f477a19dc319" location="0 0" size="100 30">
+            <dType href="w.dpf#77f942ab-c52f-47ff-b454-c9911e19c047"/>
+          </dNodes>
+          <dNodes id="726df3b1-8cc2-46c4-bcd2-966e42ada1e7" node="5dce2629-5656-425c-b89a-58fb2228af50" dIncomings="4e0d49a7-63bf-4b38-bc89-f477a19dc319" location="140 0" size="100 30">
+            <dType href="w.dpf#3fd89677-37f1-4c53-a71c-c013ea336548"/>
+          </dNodes>
+          <dArrows id="4e0d49a7-63bf-4b38-bc89-f477a19dc319" arrow="793a98ae-1a47-43c7-83a8-176402b99bfc" dSource="d886b146-8e70-4d85-84d0-27964f338eb3" dTarget="726df3b1-8cc2-46c4-bcd2-966e42ada1e7">
+            <dType href="w.dpf#e91dadb0-d084-4f03-a4af-7d11d45d20eb"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="eed697dc-0373-420c-882b-3d40ea05b003" rightArrows="4ad3f845-4bca-4b64-898e-1701835d5bc2" commonNodes="372ec46a-d946-4f05-afd1-0d330f3b28cf" name="GetNurseInfoShowNurseInfo">
+      <sum specification="/6" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/6/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="372ec46a-d946-4f05-afd1-0d330f3b28cf" node="b0870fe3-ed05-406b-a9cb-45f0959e25ef" dOutgoings="4ad3f845-4bca-4b64-898e-1701835d5bc2" location="0 0" size="100 30">
+            <dType href="w.dpf#77f942ab-c52f-47ff-b454-c9911e19c047"/>
+          </dNodes>
+          <dNodes id="eed697dc-0373-420c-882b-3d40ea05b003" node="0535daef-32d8-4814-a155-38cf1e88bd3a" dIncomings="4ad3f845-4bca-4b64-898e-1701835d5bc2" location="140 0" size="100 30">
+            <dType href="w.dpf#bf14fe8a-f109-4111-98eb-c466cfc7b902"/>
+          </dNodes>
+          <dArrows id="4ad3f845-4bca-4b64-898e-1701835d5bc2" arrow="2f1449a4-475a-4f84-beeb-697d5e8439e4" dSource="372ec46a-d946-4f05-afd1-0d330f3b28cf" dTarget="eed697dc-0373-420c-882b-3d40ea05b003">
+            <dType href="w.dpf#0cfc9833-7616-41f2-ad8a-31266b901d3b"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="461439f2-8a95-4b96-a0bd-5ccda8568e98" rightArrows="06653044-15c0-4bda-adff-8cfbd369967f" commonNodes="9c3535f6-0deb-4cfd-9c1d-c01cc9539e21" name="GetPatientInfoScanPatientWristband">
+      <sum specification="/7" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/7/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="9c3535f6-0deb-4cfd-9c1d-c01cc9539e21" node="cedf4316-d345-4c6c-958e-87fa2c5c059c" dOutgoings="06653044-15c0-4bda-adff-8cfbd369967f" location="0 0" size="100 30">
+            <dType href="w.dpf#ba941cfc-177f-401c-b765-d7bd5798a3de"/>
+          </dNodes>
+          <dNodes id="461439f2-8a95-4b96-a0bd-5ccda8568e98" node="c8dc49e5-5fb7-4c5a-bb77-8b8d5938a8e7" dIncomings="06653044-15c0-4bda-adff-8cfbd369967f" location="140 0" size="100 30">
+            <dType href="w.dpf#4ca55545-eeb9-4ec2-82d5-8e3a0d185e1f"/>
+          </dNodes>
+          <dArrows id="06653044-15c0-4bda-adff-8cfbd369967f" arrow="35975fdd-71cc-4780-81ad-4033f763fd7e" dSource="9c3535f6-0deb-4cfd-9c1d-c01cc9539e21" dTarget="461439f2-8a95-4b96-a0bd-5ccda8568e98">
+            <dType href="w.dpf#0cbe2897-1270-4db8-9ae8-10773da07972"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="4b36e722-4fac-4ba6-9b3c-378f623074d8" rightArrows="d7115703-fb6d-4c9b-9b25-5678bb120863" commonNodes="438a71a6-266b-44f0-b07b-29bc7c85a955" name="GetPatientInfoScanSample">
+      <sum specification="/8" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/8/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="438a71a6-266b-44f0-b07b-29bc7c85a955" node="17823105-2e9b-4353-ad72-50a9075c544c" dOutgoings="d7115703-fb6d-4c9b-9b25-5678bb120863" location="0 0" size="100 30">
+            <dType href="w.dpf#3fb5cdfc-61a5-4e68-8826-2395267435aa"/>
+          </dNodes>
+          <dNodes id="4b36e722-4fac-4ba6-9b3c-378f623074d8" node="48279ec5-e07a-4549-be64-590cf9342c18" dIncomings="d7115703-fb6d-4c9b-9b25-5678bb120863" location="140 0" size="100 30">
+            <dType href="w.dpf#858ad6d6-0162-4237-beb6-099b4563cc3b"/>
+          </dNodes>
+          <dArrows id="d7115703-fb6d-4c9b-9b25-5678bb120863" arrow="7007b2f3-b163-40d3-8be6-5cda45f23687" dSource="438a71a6-266b-44f0-b07b-29bc7c85a955" dTarget="4b36e722-4fac-4ba6-9b3c-378f623074d8">
+            <dType href="w.dpf#bf7dfbeb-c155-48c3-96a0-670163ce13b1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="10292796-ad4b-416d-b392-5b81ad642cfb" rightArrows="af35ca93-a02c-400b-9735-ab01b97d8492" commonNodes="36014a4f-93c4-4838-a08b-2aefb48b2e78" name="GetPatientInfoSendSample">
+      <sum specification="/9" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/9/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="36014a4f-93c4-4838-a08b-2aefb48b2e78" node="7aafd5ee-98f3-47c9-aa43-6b042c28afb2" dOutgoings="af35ca93-a02c-400b-9735-ab01b97d8492" location="0 0" size="100 30">
+            <dType href="w.dpf#3fb5cdfc-61a5-4e68-8826-2395267435aa"/>
+          </dNodes>
+          <dNodes id="10292796-ad4b-416d-b392-5b81ad642cfb" node="28f17ffa-a860-40aa-84ec-cc699275d0f9" dIncomings="af35ca93-a02c-400b-9735-ab01b97d8492" location="140 0" size="100 30">
+            <dType href="w.dpf#839f629a-d9cf-4de1-8deb-f421b59c094e"/>
+          </dNodes>
+          <dArrows id="af35ca93-a02c-400b-9735-ab01b97d8492" arrow="a78c213e-0844-4843-822b-c7fef9f88683" dSource="36014a4f-93c4-4838-a08b-2aefb48b2e78" dTarget="10292796-ad4b-416d-b392-5b81ad642cfb">
+            <dType href="w.dpf#4981c616-7678-4d33-9724-5226ecbd0c97"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="afa6058d-d5c0-4ae0-971c-cf7104ef9dca" rightArrows="cc56f226-cc7e-45ed-add0-ee08600b345d" commonNodes="c2e47bd7-8365-440d-a776-ba00a1480586" name="GetPatientInfoShowPatientInfo">
+      <sum specification="/10" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/10/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="c2e47bd7-8365-440d-a776-ba00a1480586" node="917cc435-15be-4ae9-8a14-8b81a8b61095" dOutgoings="cc56f226-cc7e-45ed-add0-ee08600b345d" location="0 0" size="100 30">
+            <dType href="w.dpf#ba941cfc-177f-401c-b765-d7bd5798a3de"/>
+          </dNodes>
+          <dNodes id="afa6058d-d5c0-4ae0-971c-cf7104ef9dca" node="e90c2cfa-5a66-4fa4-8245-fb76c67d821b" dIncomings="cc56f226-cc7e-45ed-add0-ee08600b345d" location="140 0" size="100 30">
+            <dType href="w.dpf#0107b489-410e-4542-8f86-6ba7afffb7bc"/>
+          </dNodes>
+          <dArrows id="cc56f226-cc7e-45ed-add0-ee08600b345d" arrow="e475635b-9bdf-430d-997d-9c1f7106875d" dSource="c2e47bd7-8365-440d-a776-ba00a1480586" dTarget="afa6058d-d5c0-4ae0-971c-cf7104ef9dca">
+            <dType href="w.dpf#c6bb9e77-d0f9-4509-b00b-e7fafd97ee41"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="b8edf95a-e823-4be1-adba-421051b5bf60" rightArrows="ce735109-36db-42d7-a573-72e6f580eb82" commonNodes="f2c7a2fc-e18a-46ea-aec2-edd46938054c" name="GetSampleInfoScannPatientWristband">
+      <sum specification="/11" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/11/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="f2c7a2fc-e18a-46ea-aec2-edd46938054c" node="a6b80951-2abe-4e03-ad59-135aabe15c2a" dOutgoings="ce735109-36db-42d7-a573-72e6f580eb82" location="0 0" size="100 30">
+            <dType href="w.dpf#1f65bf03-03d7-4fb0-986a-93358aff9fa6"/>
+          </dNodes>
+          <dNodes id="b8edf95a-e823-4be1-adba-421051b5bf60" node="b3d3b177-b4db-4224-a7ca-f3e93c31ee16" dIncomings="ce735109-36db-42d7-a573-72e6f580eb82" location="140 0" size="100 30">
+            <dType href="w.dpf#450b8462-6c80-428a-89f8-cccf08e1cf31"/>
+          </dNodes>
+          <dArrows id="ce735109-36db-42d7-a573-72e6f580eb82" arrow="7d8b7899-1161-42f7-94a1-c770614d03cf" dSource="f2c7a2fc-e18a-46ea-aec2-edd46938054c" dTarget="b8edf95a-e823-4be1-adba-421051b5bf60">
+            <dType href="w.dpf#ed14edbe-5cea-47e4-b53d-dd7a737e8386"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="a8358b87-2dbc-40ed-b219-0246485b41da" rightArrows="339197fa-ec12-46c1-8d98-6c42e9cdc46a" commonNodes="1818f684-6d38-4f7e-a37d-2dc0641327c9" name="IdentifynurselogtransfusionStoreTransfusion">
+      <sum specification="/12" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/12/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="1818f684-6d38-4f7e-a37d-2dc0641327c9" node="0bad41be-b555-4ac5-aa52-e86dc6427e9a" dOutgoings="339197fa-ec12-46c1-8d98-6c42e9cdc46a" location="0 0" size="100 30">
+            <dType href="w.dpf#cdb512b7-66c4-4d96-831e-495a27596a57"/>
+          </dNodes>
+          <dNodes id="a8358b87-2dbc-40ed-b219-0246485b41da" node="174e4433-93eb-4e2c-8503-7a48153d7469" dIncomings="339197fa-ec12-46c1-8d98-6c42e9cdc46a" location="140 0" size="100 30">
+            <dType href="w.dpf#80be2392-e537-48e5-ae93-13450d117f43"/>
+          </dNodes>
+          <dArrows id="339197fa-ec12-46c1-8d98-6c42e9cdc46a" arrow="4886ace7-dbe2-48c0-bece-c8ad29f8aaa3" dSource="1818f684-6d38-4f7e-a37d-2dc0641327c9" dTarget="a8358b87-2dbc-40ed-b219-0246485b41da">
+            <dType href="w.dpf#4103c0c8-68e8-4059-b413-244c3effe324"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="b491981c-1a23-4fad-93b3-2cf4f577bf44" rightArrows="5c5b8080-5741-4dc2-8365-e84b846ac7e9" commonNodes="d636746b-cfc6-4496-8345-4e574930057d" name="InitScanNurseCard">
+      <sum specification="/13" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/13/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="d636746b-cfc6-4496-8345-4e574930057d" node="2dc4780e-195d-4220-a23c-02cdafa5b2c8" dOutgoings="5c5b8080-5741-4dc2-8365-e84b846ac7e9" location="0 0" size="100 30">
+            <dType href="w.dpf#80703675-c52b-4af4-a5c1-f007369e9bb0"/>
+          </dNodes>
+          <dNodes id="b491981c-1a23-4fad-93b3-2cf4f577bf44" node="8c635348-8e88-4d4a-97f5-c185a4ab13b8" dIncomings="5c5b8080-5741-4dc2-8365-e84b846ac7e9" location="140 0" size="100 30">
+            <dType href="w.dpf#3fd89677-37f1-4c53-a71c-c013ea336548"/>
+          </dNodes>
+          <dArrows id="5c5b8080-5741-4dc2-8365-e84b846ac7e9" arrow="8d08da39-4bc9-45cd-b312-9cdb85f767be" dSource="d636746b-cfc6-4496-8345-4e574930057d" dTarget="b491981c-1a23-4fad-93b3-2cf4f577bf44">
+            <dType href="w.dpf#5c679ce9-f6fc-4e22-a01d-2fce3a9719b8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="5cdcaa04-172f-4072-bd6d-a3766c472394" rightArrows="20c5cb04-f06e-4fd7-896a-8d03c5e42765" commonNodes="e1f1ada9-461a-4fec-ab5c-3604a46a6773" name="MeasuretemperaturebloodpressureandpulseStorePatientCondition">
+      <sum specification="/14" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/14/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="e1f1ada9-461a-4fec-ab5c-3604a46a6773" node="8b82706e-8bbf-430b-b5f3-34c2c9eb3b12" dOutgoings="20c5cb04-f06e-4fd7-896a-8d03c5e42765" location="0 0" size="100 30">
+            <dType href="w.dpf#83b8128a-7218-46a6-b393-47ef38da807d"/>
+          </dNodes>
+          <dNodes id="5cdcaa04-172f-4072-bd6d-a3766c472394" node="0dfc77b7-7f57-41b1-9b2a-37f8180eb5c9" dIncomings="20c5cb04-f06e-4fd7-896a-8d03c5e42765" location="140 0" size="100 30">
+            <dType href="w.dpf#c55211f5-1976-4fd6-958e-4460b2f3149f"/>
+          </dNodes>
+          <dArrows id="20c5cb04-f06e-4fd7-896a-8d03c5e42765" arrow="b2039ee1-dcc5-4729-baf9-9dfb28a23c0b" dSource="e1f1ada9-461a-4fec-ab5c-3604a46a6773" dTarget="5cdcaa04-172f-4072-bd6d-a3766c472394">
+            <dType href="w.dpf#695354ae-34e9-436b-a2ad-5a893ea02dea"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="bf910fc2-2783-4797-8b3f-a72567259f24" rightArrows="0fd5cac5-81ad-424a-bd70-def9cd7bb8c9" commonNodes="b761959d-2cc1-407f-a9cf-f7815deb301d" name="Measuretemperaturebloodpressureandpulseperformtransfusion">
+      <sum specification="/15" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/15/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="b761959d-2cc1-407f-a9cf-f7815deb301d" node="6c0f4add-adb6-4edc-9965-833cdcbdcb57" dOutgoings="0fd5cac5-81ad-424a-bd70-def9cd7bb8c9" location="0 0" size="100 30">
+            <dType href="w.dpf#83b8128a-7218-46a6-b393-47ef38da807d"/>
+          </dNodes>
+          <dNodes id="bf910fc2-2783-4797-8b3f-a72567259f24" node="4248e1a5-1874-4839-9433-2ab89f62fea3" dIncomings="0fd5cac5-81ad-424a-bd70-def9cd7bb8c9" location="140 0" size="100 30">
+            <dType href="w.dpf#9369b8f0-6618-483f-92e9-e51e69976d57"/>
+          </dNodes>
+          <dArrows id="0fd5cac5-81ad-424a-bd70-def9cd7bb8c9" arrow="ccbb581c-8d77-41f2-8482-8042695770b9" dSource="b761959d-2cc1-407f-a9cf-f7815deb301d" dTarget="bf910fc2-2783-4797-8b3f-a72567259f24">
+            <dType href="w.dpf#6040a0a6-89b7-4937-a727-1805c232961f"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="b722d0af-200d-4d63-80ae-60f9e7847fdf" rightArrows="d9e8fc7d-cab1-4657-ae12-95035e3a1d60" commonNodes="6648d910-e907-4cbe-81d4-d67e44b036f7" name="OrderBloodProductCollectBlood">
+      <sum specification="/16" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/16/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="6648d910-e907-4cbe-81d4-d67e44b036f7" node="92160e79-7cf8-4e32-8fed-09a67e1a3f53" dOutgoings="d9e8fc7d-cab1-4657-ae12-95035e3a1d60" location="0 0" size="100 30">
+            <dType href="w.dpf#ec24b2ee-add0-493d-b6a2-872b1fc976b9"/>
+          </dNodes>
+          <dNodes id="b722d0af-200d-4d63-80ae-60f9e7847fdf" node="ddc80fac-e38f-4327-b90d-0f7bd5da7a9d" dIncomings="d9e8fc7d-cab1-4657-ae12-95035e3a1d60" location="140 0" size="100 30">
+            <dType href="w.dpf#179633a9-e674-446e-ad3a-51887aedc6cb"/>
+          </dNodes>
+          <dArrows id="d9e8fc7d-cab1-4657-ae12-95035e3a1d60" arrow="c7c34a52-aed2-477d-9547-ec977f1f5921" dSource="6648d910-e907-4cbe-81d4-d67e44b036f7" dTarget="b722d0af-200d-4d63-80ae-60f9e7847fdf">
+            <dType href="w.dpf#aef6019d-7df5-4583-b688-972129db8f9d"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="af8d01aa-b887-4b74-be62-7215ef9585e9" rightArrows="ac9461be-619a-4c05-9457-b7598174ee75" commonNodes="ae63f404-7e3c-4ea6-98ef-4b38f46806c8" name="OrderBloodSelectBloodProduct">
+      <sum specification="/17" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/17/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="ae63f404-7e3c-4ea6-98ef-4b38f46806c8" node="4ba2b1f3-6668-4e17-813c-fd5a19ed39f6" dOutgoings="ac9461be-619a-4c05-9457-b7598174ee75" location="0 0" size="100 30">
+            <dType href="w.dpf#9d3e0ec7-d8e0-4423-834f-e6a81beee456"/>
+          </dNodes>
+          <dNodes id="af8d01aa-b887-4b74-be62-7215ef9585e9" node="7db24902-142d-4258-8988-599ab1a33c9a" dIncomings="ac9461be-619a-4c05-9457-b7598174ee75" location="140 0" size="100 30">
+            <dType href="w.dpf#4cd62907-90ac-4174-9597-e28c30d6a83f"/>
+          </dNodes>
+          <dArrows id="ac9461be-619a-4c05-9457-b7598174ee75" arrow="4bde0aed-abb8-4b29-bac6-058de6d89161" dSource="ae63f404-7e3c-4ea6-98ef-4b38f46806c8" dTarget="af8d01aa-b887-4b74-be62-7215ef9585e9">
+            <dType href="w.dpf#eac93d04-1727-4ba0-8edf-9ea30af4bb1d"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="f42ebb07-b3ed-4c4b-bafd-6653b50df89e ede0bcd2-06bf-4cc5-b5bb-0310bd2fa7c7" rightArrows="849b0fd8-4ed1-4d7f-a38f-511ea5cbedfe e0a324c9-4308-48fe-856c-23eb13f6c1a0" commonNodes="d74ddb02-4d74-4e3f-83cb-f5e9c0a03305" name="OrderSampleSelectBlodTypeing">
+      <sum specification="/18" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/18/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="d74ddb02-4d74-4e3f-83cb-f5e9c0a03305" node="c8aaa437-83cf-40d7-b26c-28fe93e582b7" dOutgoings="849b0fd8-4ed1-4d7f-a38f-511ea5cbedfe e0a324c9-4308-48fe-856c-23eb13f6c1a0" location="0 0" size="100 30">
+            <dType href="w.dpf#f714301c-93fe-4642-8efb-ba1313d88ba7"/>
+          </dNodes>
+          <dNodes id="f42ebb07-b3ed-4c4b-bafd-6653b50df89e" node="bae896de-edb2-4a4a-9b91-096228b305bb" dIncomings="849b0fd8-4ed1-4d7f-a38f-511ea5cbedfe" location="140 0" size="100 30">
+            <dType href="w.dpf#b8f5bd36-4cad-4216-9ab8-9e4b54de840c"/>
+          </dNodes>
+          <dNodes id="ede0bcd2-06bf-4cc5-b5bb-0310bd2fa7c7" node="45aa4212-6ea5-46b9-8368-0e4e9f9f06f3" dIncomings="e0a324c9-4308-48fe-856c-23eb13f6c1a0" location="140 140" size="100 30">
+            <dType href="w.dpf#4aefed00-3660-454e-b5e3-6e8a5ef19a70"/>
+          </dNodes>
+          <dArrows id="849b0fd8-4ed1-4d7f-a38f-511ea5cbedfe" arrow="e402dcc0-ef11-4501-969b-1c46be6f03b6" dSource="d74ddb02-4d74-4e3f-83cb-f5e9c0a03305" dTarget="f42ebb07-b3ed-4c4b-bafd-6653b50df89e">
+            <dType href="w.dpf#454747bb-5eb2-4e60-b462-26267335e2ee"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows id="e0a324c9-4308-48fe-856c-23eb13f6c1a0" arrow="af5c1d11-f774-49ed-8181-49189bf6efa6" dSource="d74ddb02-4d74-4e3f-83cb-f5e9c0a03305" dTarget="ede0bcd2-06bf-4cc5-b5bb-0310bd2fa7c7">
+            <dType href="w.dpf#58a64cb6-6e11-4ea5-a155-f01278ed4e83"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="92ae74f4-d041-4726-8516-f1fb472869b4" rightArrows="9fe92602-ea54-4402-866f-660b811f1937" commonNodes="b750e19b-2645-46b2-8f44-8f2156911735" name="OrderSampleSelectBookpreexamination">
+      <sum specification="/19" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/19/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="b750e19b-2645-46b2-8f44-8f2156911735" node="33f7cfeb-347f-432a-99c6-2f8555d06e3a" dOutgoings="9fe92602-ea54-4402-866f-660b811f1937" location="0 0" size="100 30">
+            <dType href="w.dpf#f714301c-93fe-4642-8efb-ba1313d88ba7"/>
+          </dNodes>
+          <dNodes id="92ae74f4-d041-4726-8516-f1fb472869b4" node="e8fb9b5e-b318-45f9-a0d4-8daf7acf5fb0" dIncomings="9fe92602-ea54-4402-866f-660b811f1937" location="140 0" size="100 30">
+            <dType href="w.dpf#4aefed00-3660-454e-b5e3-6e8a5ef19a70"/>
+          </dNodes>
+          <dArrows id="9fe92602-ea54-4402-866f-660b811f1937" arrow="cd47a610-4c4e-4a35-926c-9b3438b32a8c" dSource="b750e19b-2645-46b2-8f44-8f2156911735" dTarget="92ae74f4-d041-4726-8516-f1fb472869b4">
+            <dType href="w.dpf#58a64cb6-6e11-4ea5-a155-f01278ed4e83"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="6fd01326-d170-4ec7-9ea7-b5e3bf6a8e4b" rightArrows="12d12162-c4b6-4f1b-9fbf-6de3518c8bf4" commonNodes="2bc9221c-ff41-4522-84b8-4ac794d9ce5a" name="PrintSampleLabelCollectSample">
+      <sum specification="/20" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/20/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="2bc9221c-ff41-4522-84b8-4ac794d9ce5a" node="477f5cb5-476d-4767-ae00-adea7c32216d" dOutgoings="12d12162-c4b6-4f1b-9fbf-6de3518c8bf4" location="0 0" size="100 30">
+            <dType href="w.dpf#28adb108-32b5-4bf7-8511-7d433154155e"/>
+          </dNodes>
+          <dNodes id="6fd01326-d170-4ec7-9ea7-b5e3bf6a8e4b" node="71d64cba-8639-4211-836e-ee8ebfd39443" dIncomings="12d12162-c4b6-4f1b-9fbf-6de3518c8bf4" location="140 0" size="100 30">
+            <dType href="w.dpf#99bc44b4-ddcf-4713-a414-e0bcbc601419"/>
+          </dNodes>
+          <dArrows id="12d12162-c4b6-4f1b-9fbf-6de3518c8bf4" arrow="c1fb82a3-feeb-4e18-b4b8-d31c32560f35" dSource="2bc9221c-ff41-4522-84b8-4ac794d9ce5a" dTarget="6fd01326-d170-4ec7-9ea7-b5e3bf6a8e4b">
+            <dType href="w.dpf#e76e0bee-3b1b-4e58-911b-559cf8d4bcf3"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="e9f096e6-e7a5-4aaa-a58e-7a6d86e3e108" rightArrows="09d28f05-dbae-4768-9af5-d1e71363fcd6" commonNodes="435dd753-cf60-4bbc-9fc8-89296a82dc06" name="PutBloodIntorefrigertorScanBloodProduct">
+      <sum specification="/21" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/21/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="435dd753-cf60-4bbc-9fc8-89296a82dc06" node="f4763265-507c-4392-a7c8-850253f0d6cf" dOutgoings="09d28f05-dbae-4768-9af5-d1e71363fcd6" location="0 0" size="100 30">
+            <dType href="w.dpf#2005784c-7dc0-48bc-aedd-2f53c602a38d"/>
+          </dNodes>
+          <dNodes id="e9f096e6-e7a5-4aaa-a58e-7a6d86e3e108" node="8ddc701b-004b-4646-9f5e-90017d9ea931" dIncomings="09d28f05-dbae-4768-9af5-d1e71363fcd6" location="140 0" size="100 30">
+            <dType href="w.dpf#d34915fa-b3b8-4207-b641-e90034cb8f5c"/>
+          </dNodes>
+          <dArrows id="09d28f05-dbae-4768-9af5-d1e71363fcd6" arrow="3b125c3c-84a3-4e89-91f6-7a192a88286b" dSource="435dd753-cf60-4bbc-9fc8-89296a82dc06" dTarget="e9f096e6-e7a5-4aaa-a58e-7a6d86e3e108">
+            <dType href="w.dpf#02e10f35-24ad-4d3b-8210-952263fb017b"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="f224c842-2b26-40bc-8e2b-2582f5d71dd6" rightArrows="fb5cee08-78bc-42d1-a60c-6d50a0b834ac" commonNodes="72d5736f-139a-4a04-ac62-a1d3a256e44d" name="ScanBloodProductVerifyBloodProduct">
+      <sum specification="/22" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/22/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="72d5736f-139a-4a04-ac62-a1d3a256e44d" node="85432b8d-c157-485d-8823-4b0d5f88237c" dOutgoings="fb5cee08-78bc-42d1-a60c-6d50a0b834ac" location="0 0" size="100 30">
+            <dType href="w.dpf#d34915fa-b3b8-4207-b641-e90034cb8f5c"/>
+          </dNodes>
+          <dNodes id="f224c842-2b26-40bc-8e2b-2582f5d71dd6" node="3d328a12-245f-42ef-94d6-770dc73a2f89" dIncomings="fb5cee08-78bc-42d1-a60c-6d50a0b834ac" location="140 0" size="100 30">
+            <dType href="w.dpf#e7fd9564-5902-4fdd-bf7a-79795cdb9376"/>
+          </dNodes>
+          <dArrows id="fb5cee08-78bc-42d1-a60c-6d50a0b834ac" arrow="9869abb0-3125-40ed-8a91-98ee4a516372" dSource="72d5736f-139a-4a04-ac62-a1d3a256e44d" dTarget="f224c842-2b26-40bc-8e2b-2582f5d71dd6">
+            <dType href="w.dpf#aa590449-f362-4734-88e9-75af7d185915"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="ff1b3ade-b4c1-4229-9bc1-dc218e53fd33" rightArrows="76be1015-8916-4b30-a80b-0e34c803aa03" commonNodes="dad654aa-9914-4def-a5c8-42c6377b81d3" name="ScanNurseCardGetNurseInfo">
+      <sum specification="/23" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/23/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="dad654aa-9914-4def-a5c8-42c6377b81d3" node="1332aafe-ba6c-476e-a6d2-860666b7db7c" dOutgoings="76be1015-8916-4b30-a80b-0e34c803aa03" location="0 0" size="100 30">
+            <dType href="w.dpf#3fd89677-37f1-4c53-a71c-c013ea336548"/>
+          </dNodes>
+          <dNodes id="ff1b3ade-b4c1-4229-9bc1-dc218e53fd33" node="89fcb60c-49d2-4978-beb2-513b25334a24" dIncomings="76be1015-8916-4b30-a80b-0e34c803aa03" location="140 0" size="100 30">
+            <dType href="w.dpf#77f942ab-c52f-47ff-b454-c9911e19c047"/>
+          </dNodes>
+          <dArrows id="76be1015-8916-4b30-a80b-0e34c803aa03" arrow="7f964c03-98c9-4c3b-8293-0f8bbe794b4f" dSource="dad654aa-9914-4def-a5c8-42c6377b81d3" dTarget="ff1b3ade-b4c1-4229-9bc1-dc218e53fd33">
+            <dType href="w.dpf#a18709b9-ff25-4709-b37f-cded1d7f9ca1"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="a66d3830-04e0-4d9d-af62-feef1916169d" rightArrows="862d32bc-70d6-46b4-9a21-8e701f4114ac" commonNodes="8ecc7e2f-5bf4-40c7-8fcc-748336f32dcb" name="ScanPatientWristbandGetPatientInfo">
+      <sum specification="/24" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/24/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="8ecc7e2f-5bf4-40c7-8fcc-748336f32dcb" node="f6a5cc8b-5572-4fdf-9af2-811de3dde5dd" dOutgoings="862d32bc-70d6-46b4-9a21-8e701f4114ac" location="0 0" size="100 30">
+            <dType href="w.dpf#4ca55545-eeb9-4ec2-82d5-8e3a0d185e1f"/>
+          </dNodes>
+          <dNodes id="a66d3830-04e0-4d9d-af62-feef1916169d" node="65de9446-d764-4a7d-808d-c6c87241e075" dIncomings="862d32bc-70d6-46b4-9a21-8e701f4114ac" location="140 0" size="100 30">
+            <dType href="w.dpf#ba941cfc-177f-401c-b765-d7bd5798a3de"/>
+          </dNodes>
+          <dArrows id="862d32bc-70d6-46b4-9a21-8e701f4114ac" arrow="52846630-0bc8-4c65-9b59-43489216742e" dSource="8ecc7e2f-5bf4-40c7-8fcc-748336f32dcb" dTarget="a66d3830-04e0-4d9d-af62-feef1916169d">
+            <dType href="w.dpf#ce62bd8d-b495-4d94-a208-f8cbf612b499"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="bade504e-7045-43ab-a2a5-4aa87fbfc76a" rightArrows="2e2307d4-c97a-46a9-b863-73fcfbdcbff7" commonNodes="3dd7cf57-dc6e-44f4-b3e5-1d51de71a6dd" name="ScanSampleGetSampleInfo">
+      <sum specification="/25" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/25/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="3dd7cf57-dc6e-44f4-b3e5-1d51de71a6dd" node="72a4c7eb-7c31-427f-982e-831047768c0a" dOutgoings="2e2307d4-c97a-46a9-b863-73fcfbdcbff7" location="0 0" size="100 30">
+            <dType href="w.dpf#858ad6d6-0162-4237-beb6-099b4563cc3b"/>
+          </dNodes>
+          <dNodes id="bade504e-7045-43ab-a2a5-4aa87fbfc76a" node="b97214e8-66f6-4e63-8e37-fa9ff0d7f92f" dIncomings="2e2307d4-c97a-46a9-b863-73fcfbdcbff7" location="140 0" size="100 30">
+            <dType href="w.dpf#1f65bf03-03d7-4fb0-986a-93358aff9fa6"/>
+          </dNodes>
+          <dArrows id="2e2307d4-c97a-46a9-b863-73fcfbdcbff7" arrow="72b26532-7829-421c-a152-53bfca884f94" dSource="3dd7cf57-dc6e-44f4-b3e5-1d51de71a6dd" dTarget="bade504e-7045-43ab-a2a5-4aa87fbfc76a">
+            <dType href="w.dpf#45bb1bb3-3fe2-467a-9b17-78e0d322189e"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="356e9164-b38b-41f3-86c9-1c142dec9972" rightArrows="b288456f-8266-4960-a8a1-ebdaa97c645d" commonNodes="c23b0693-50d0-402e-aafa-874c82d153bc" name="ScannPatientWristbandGetPatientInfo">
+      <sum specification="/26" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/26/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="c23b0693-50d0-402e-aafa-874c82d153bc" node="a717e77e-c21f-49dd-986a-bf279adc509d" dOutgoings="b288456f-8266-4960-a8a1-ebdaa97c645d" location="0 0" size="100 30">
+            <dType href="w.dpf#450b8462-6c80-428a-89f8-cccf08e1cf31"/>
+          </dNodes>
+          <dNodes id="356e9164-b38b-41f3-86c9-1c142dec9972" node="c0e0ecaa-7769-4854-9d54-2848d5821e08" dIncomings="b288456f-8266-4960-a8a1-ebdaa97c645d" location="140 0" size="100 30">
+            <dType href="w.dpf#3fb5cdfc-61a5-4e68-8826-2395267435aa"/>
+          </dNodes>
+          <dArrows id="b288456f-8266-4960-a8a1-ebdaa97c645d" arrow="db81648a-6640-4355-87ad-9cf709052380" dSource="c23b0693-50d0-402e-aafa-874c82d153bc" dTarget="356e9164-b38b-41f3-86c9-1c142dec9972">
+            <dType href="w.dpf#cfb793a2-636f-4a08-b98b-09ad59b78935"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="f7084be6-65c7-45ab-b5cd-73a39d0f3150" rightArrows="0668dc2d-6e3a-47bb-a167-ee5efd443d8b 52e1f8de-66b9-4135-b4ec-07c9b9546ea2" commonNodes="c4092193-b4e0-47ca-88af-80990b80bcc0 c86f10ae-85e7-4324-8085-874535b54115" name="SelectBlodTypeingSendSampleOrder">
+      <sum specification="/27" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/27/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="c4092193-b4e0-47ca-88af-80990b80bcc0" node="71a02b4d-ac00-4d26-b48c-5ab83a7910f4" dOutgoings="0668dc2d-6e3a-47bb-a167-ee5efd443d8b" location="0 0" size="100 30">
+            <dType href="w.dpf#b8f5bd36-4cad-4216-9ab8-9e4b54de840c"/>
+          </dNodes>
+          <dNodes id="f7084be6-65c7-45ab-b5cd-73a39d0f3150" node="513563c1-dadd-4fad-a338-77bb2739d835" dIncomings="0668dc2d-6e3a-47bb-a167-ee5efd443d8b 52e1f8de-66b9-4135-b4ec-07c9b9546ea2" location="140 0" size="100 30">
+            <dType href="w.dpf#bbc5c8b0-375b-4c21-b718-6b57990ad4dd"/>
+          </dNodes>
+          <dNodes id="c86f10ae-85e7-4324-8085-874535b54115" node="c6df5ac9-cb66-4250-9e36-f48d7450ef24" dOutgoings="52e1f8de-66b9-4135-b4ec-07c9b9546ea2" location="0 140" size="100 30">
+            <dType href="w.dpf#4aefed00-3660-454e-b5e3-6e8a5ef19a70"/>
+          </dNodes>
+          <dArrows id="0668dc2d-6e3a-47bb-a167-ee5efd443d8b" arrow="38321fda-4542-49c3-b0da-588170af66f4" dSource="c4092193-b4e0-47ca-88af-80990b80bcc0" dTarget="f7084be6-65c7-45ab-b5cd-73a39d0f3150">
+            <dType href="w.dpf#859b2df9-a18c-4d93-953b-87eea6c011b8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows id="52e1f8de-66b9-4135-b4ec-07c9b9546ea2" arrow="6c73b89c-7362-4e19-bb1e-65e19f60ffd9" dSource="c86f10ae-85e7-4324-8085-874535b54115" dTarget="f7084be6-65c7-45ab-b5cd-73a39d0f3150">
+            <dType href="w.dpf#1c91ef12-3358-48b4-acd7-837dd644b04d"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="65ba2ee8-4704-4d05-9e25-724c5bac8fb0" rightArrows="10b30dec-e6c9-4b88-8708-4eb6e46d551e" commonNodes="4626489e-2168-4e04-9848-af41fed1a00e" name="SelectBloodProductGetDoctorInfo">
+      <sum specification="/28" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/28/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="4626489e-2168-4e04-9848-af41fed1a00e" node="ad62bd02-82ce-41b1-bbbe-15d50f623bd3" dOutgoings="10b30dec-e6c9-4b88-8708-4eb6e46d551e" location="0 0" size="100 30">
+            <dType href="w.dpf#4cd62907-90ac-4174-9597-e28c30d6a83f"/>
+          </dNodes>
+          <dNodes id="65ba2ee8-4704-4d05-9e25-724c5bac8fb0" node="03c6c482-8281-40ee-8130-a383b2490fd3" dIncomings="10b30dec-e6c9-4b88-8708-4eb6e46d551e" location="140 0" size="100 30">
+            <dType href="w.dpf#d42557fb-5a5d-4d40-b9d8-73e08a285aa3"/>
+          </dNodes>
+          <dArrows id="10b30dec-e6c9-4b88-8708-4eb6e46d551e" arrow="ed6b7064-6e09-45ae-9e73-9b136198dade" dSource="4626489e-2168-4e04-9848-af41fed1a00e" dTarget="65ba2ee8-4704-4d05-9e25-724c5bac8fb0">
+            <dType href="w.dpf#2ec406bc-4ebe-4f81-abfb-f99f7db66fca"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="1ad12a0f-a22b-4569-be79-072dbb3ff718" rightArrows="b22185cd-be94-4813-80ab-cb9a72ef91e5" commonNodes="28aa6760-31df-4447-912e-13f50448a305" name="SelectBookpreexaminationSendSampleOrder">
+      <sum specification="/29" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/29/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="28aa6760-31df-4447-912e-13f50448a305" node="72534716-1479-4cba-ab0e-7a5337757d51" dOutgoings="b22185cd-be94-4813-80ab-cb9a72ef91e5" location="0 0" size="100 30">
+            <dType href="w.dpf#4aefed00-3660-454e-b5e3-6e8a5ef19a70"/>
+          </dNodes>
+          <dNodes id="1ad12a0f-a22b-4569-be79-072dbb3ff718" node="c37bf5a9-96d7-4fa4-a01f-0d530f5c21a0" dIncomings="b22185cd-be94-4813-80ab-cb9a72ef91e5" location="140 0" size="100 30">
+            <dType href="w.dpf#bbc5c8b0-375b-4c21-b718-6b57990ad4dd"/>
+          </dNodes>
+          <dArrows id="b22185cd-be94-4813-80ab-cb9a72ef91e5" arrow="47df7d6f-5e9b-4836-a58c-43a350ec1963" dSource="28aa6760-31df-4447-912e-13f50448a305" dTarget="1ad12a0f-a22b-4569-be79-072dbb3ff718">
+            <dType href="w.dpf#1c91ef12-3358-48b4-acd7-837dd644b04d"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="85fcdc7f-d5e0-49ff-a20c-3e15a46aba41" rightArrows="d2350618-1c3e-45df-8bc8-511fe1b4ec39" commonNodes="ce87cd63-8e92-4779-aa50-8b8951368665" name="SelectDepartmentSendBloodOrder">
+      <sum specification="/30" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/30/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="ce87cd63-8e92-4779-aa50-8b8951368665" node="f5f29a3e-dba7-4dc5-abb0-4ca979e746d7" dOutgoings="d2350618-1c3e-45df-8bc8-511fe1b4ec39" location="0 0" size="100 30">
+            <dType href="w.dpf#ced3d448-c81b-44e1-970a-fd42162daf24"/>
+          </dNodes>
+          <dNodes id="85fcdc7f-d5e0-49ff-a20c-3e15a46aba41" node="e4f85964-93ed-4dbd-8050-cae21fb853c3" dIncomings="d2350618-1c3e-45df-8bc8-511fe1b4ec39" location="140 0" size="100 30">
+            <dType href="w.dpf#2de1d2fd-4310-482c-a98f-fc1f5a12acf5"/>
+          </dNodes>
+          <dArrows id="d2350618-1c3e-45df-8bc8-511fe1b4ec39" arrow="6e990fe6-8ac7-44c6-a51a-05a18c35c3c8" dSource="ce87cd63-8e92-4779-aa50-8b8951368665" dTarget="85fcdc7f-d5e0-49ff-a20c-3e15a46aba41">
+            <dType href="w.dpf#bf7b48ff-a2ab-4809-bbad-4308266b5511"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="123fb45f-e36a-4a7a-b593-04b24ef44959" rightArrows="debf8984-cf63-4a1d-bddd-631578de7a6f" commonNodes="65b01df6-301a-4cd2-81ee-9d041b465787" name="SendBloodOrderOrderBloodProduct">
+      <sum specification="/31" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/31/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="65b01df6-301a-4cd2-81ee-9d041b465787" node="998ab89c-55a4-40cf-9379-87462e5361ce" dOutgoings="debf8984-cf63-4a1d-bddd-631578de7a6f" location="0 0" size="100 30">
+            <dType href="w.dpf#2de1d2fd-4310-482c-a98f-fc1f5a12acf5"/>
+          </dNodes>
+          <dNodes id="123fb45f-e36a-4a7a-b593-04b24ef44959" node="677d6a60-19f0-45fc-92a9-6644c3806a2d" dIncomings="debf8984-cf63-4a1d-bddd-631578de7a6f" location="140 0" size="100 30">
+            <dType href="w.dpf#ec24b2ee-add0-493d-b6a2-872b1fc976b9"/>
+          </dNodes>
+          <dArrows id="debf8984-cf63-4a1d-bddd-631578de7a6f" arrow="8c37b323-69d0-4aa5-8aaa-a54b62c4e6b3" dSource="65b01df6-301a-4cd2-81ee-9d041b465787" dTarget="123fb45f-e36a-4a7a-b593-04b24ef44959">
+            <dType href="w.dpf#96513fb9-99d7-4968-9476-6820446fe801"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="94b38ad7-d036-4d23-b1de-733c4abf92cc" rightArrows="132f874b-af13-4a9f-9183-e5a04413ddbf" commonNodes="75628e21-5a62-4f79-b2e5-cba01f677d64" name="SendBloodOrderOrderSample">
+      <sum specification="/32" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/32/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="75628e21-5a62-4f79-b2e5-cba01f677d64" node="da60b3b9-62f8-49e3-97b8-63e9653f9daf" dOutgoings="132f874b-af13-4a9f-9183-e5a04413ddbf" location="0 0" size="100 30">
+            <dType href="w.dpf#2de1d2fd-4310-482c-a98f-fc1f5a12acf5"/>
+          </dNodes>
+          <dNodes id="94b38ad7-d036-4d23-b1de-733c4abf92cc" node="eb202396-c2a6-4e97-8482-d8b352141bc4" dIncomings="132f874b-af13-4a9f-9183-e5a04413ddbf" location="140 0" size="100 30">
+            <dType href="w.dpf#f714301c-93fe-4642-8efb-ba1313d88ba7"/>
+          </dNodes>
+          <dArrows id="132f874b-af13-4a9f-9183-e5a04413ddbf" arrow="a4218e40-e251-45f7-b2e1-48a2ab9db4da" dSource="75628e21-5a62-4f79-b2e5-cba01f677d64" dTarget="94b38ad7-d036-4d23-b1de-733c4abf92cc">
+            <dType href="w.dpf#3fa2f9ce-c243-48d7-b4e5-e3e49d94c1fb"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="0a6f723d-0fd1-4949-b938-94ef8abd1462" rightArrows="814932d6-ac50-485f-9206-76dfd79f5bb3 40824ae3-26a1-47d3-8fcd-93d6e1bc918b" commonNodes="eb5bb5b5-5808-455d-91c6-a4d9f69275cf c721a112-1a66-4884-80a8-f117d632ccb3" name="SendBloodOrderScanSample">
+      <sum specification="/33" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/33/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="eb5bb5b5-5808-455d-91c6-a4d9f69275cf" node="6e643d1c-e91e-4161-8a20-d6be2ef8b459" dOutgoings="814932d6-ac50-485f-9206-76dfd79f5bb3" location="0 0" size="100 30">
+            <dType href="w.dpf#2de1d2fd-4310-482c-a98f-fc1f5a12acf5"/>
+          </dNodes>
+          <dNodes id="0a6f723d-0fd1-4949-b938-94ef8abd1462" node="bc7cac90-7e75-430f-ae77-af10b6a3f53d" dIncomings="814932d6-ac50-485f-9206-76dfd79f5bb3 40824ae3-26a1-47d3-8fcd-93d6e1bc918b" location="140 0" size="100 30">
+            <dType href="w.dpf#858ad6d6-0162-4237-beb6-099b4563cc3b"/>
+          </dNodes>
+          <dNodes id="c721a112-1a66-4884-80a8-f117d632ccb3" node="951d65af-326e-4a2b-a40b-aea66cceda03" dOutgoings="40824ae3-26a1-47d3-8fcd-93d6e1bc918b" location="0 140" size="100 30">
+            <dType href="w.dpf#99bc44b4-ddcf-4713-a414-e0bcbc601419"/>
+          </dNodes>
+          <dArrows id="814932d6-ac50-485f-9206-76dfd79f5bb3" arrow="53f4be9a-bf82-44f8-8340-1d8657154729" dSource="eb5bb5b5-5808-455d-91c6-a4d9f69275cf" dTarget="0a6f723d-0fd1-4949-b938-94ef8abd1462">
+            <dType href="w.dpf#6327de43-c1b9-43af-ab80-d6bbf18b9302"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows id="40824ae3-26a1-47d3-8fcd-93d6e1bc918b" arrow="9e35e2e1-4c2f-4084-9d30-5c143f74cd1a" dSource="c721a112-1a66-4884-80a8-f117d632ccb3" dTarget="0a6f723d-0fd1-4949-b938-94ef8abd1462">
+            <dType href="w.dpf#7d03ba09-07ca-42c6-a89b-d3121355d125"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="220d6beb-571b-4df2-b43c-08d6ef1dbf05" rightArrows="264eb8a3-b083-408a-8008-d8b2ed220380 27959342-ac09-4464-a546-e9764a30feec" commonNodes="a5cefc08-d2d3-481b-a0f5-d0f7b181ded8 da3cf6d0-0628-4d35-8c02-747d760ccb4f" name="SendSampleCollectBlood">
+      <sum specification="/34" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/34/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="a5cefc08-d2d3-481b-a0f5-d0f7b181ded8" node="94e789a6-75d8-43d8-a48a-a2b4a58dd30d" dOutgoings="264eb8a3-b083-408a-8008-d8b2ed220380" location="0 0" size="100 30">
+            <dType href="w.dpf#839f629a-d9cf-4de1-8deb-f421b59c094e"/>
+          </dNodes>
+          <dNodes id="220d6beb-571b-4df2-b43c-08d6ef1dbf05" node="3f71fff0-7b6c-40f6-9a61-e90592a704ed" dIncomings="264eb8a3-b083-408a-8008-d8b2ed220380 27959342-ac09-4464-a546-e9764a30feec" location="140 0" size="100 30">
+            <dType href="w.dpf#179633a9-e674-446e-ad3a-51887aedc6cb"/>
+          </dNodes>
+          <dNodes id="da3cf6d0-0628-4d35-8c02-747d760ccb4f" node="6235af3a-4457-4f13-a609-88685eeb1dca" dOutgoings="27959342-ac09-4464-a546-e9764a30feec" location="0 140" size="100 30">
+            <dType href="w.dpf#ec24b2ee-add0-493d-b6a2-872b1fc976b9"/>
+          </dNodes>
+          <dArrows id="264eb8a3-b083-408a-8008-d8b2ed220380" arrow="92b2eca1-985f-42dd-9948-8b1f8586a86f" dSource="a5cefc08-d2d3-481b-a0f5-d0f7b181ded8" dTarget="220d6beb-571b-4df2-b43c-08d6ef1dbf05">
+            <dType href="w.dpf#7405f5b5-bdd2-4117-95d2-7c7885cf1c7f"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+          <dArrows id="27959342-ac09-4464-a546-e9764a30feec" arrow="ac8000eb-f673-44e1-a899-8bbd646e7013" dSource="da3cf6d0-0628-4d35-8c02-747d760ccb4f" dTarget="220d6beb-571b-4df2-b43c-08d6ef1dbf05">
+            <dType href="w.dpf#aef6019d-7df5-4583-b688-972129db8f9d"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="f308a022-86a9-481d-8e66-4c591670da25" rightArrows="a9695987-a7d8-4aa8-b545-4b34ca394b7a" commonNodes="fe3e835a-86c2-4fbc-a62f-3380ec91e399" name="SendSampleOrderBlood">
+      <sum specification="/35" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/35/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="fe3e835a-86c2-4fbc-a62f-3380ec91e399" node="a8dcd1c3-a54e-41b5-a93a-4d9f69434396" dOutgoings="a9695987-a7d8-4aa8-b545-4b34ca394b7a" location="0 0" size="100 30">
+            <dType href="w.dpf#839f629a-d9cf-4de1-8deb-f421b59c094e"/>
+          </dNodes>
+          <dNodes id="f308a022-86a9-481d-8e66-4c591670da25" node="5e8e1bca-b734-4132-855f-0d95470f9d4d" dIncomings="a9695987-a7d8-4aa8-b545-4b34ca394b7a" location="140 0" size="100 30">
+            <dType href="w.dpf#9d3e0ec7-d8e0-4423-834f-e6a81beee456"/>
+          </dNodes>
+          <dArrows id="a9695987-a7d8-4aa8-b545-4b34ca394b7a" arrow="e42a13b8-9be4-4146-aa8e-0171eadae8e5" dSource="fe3e835a-86c2-4fbc-a62f-3380ec91e399" dTarget="f308a022-86a9-481d-8e66-4c591670da25">
+            <dType href="w.dpf#6ee35efd-04f5-4849-9336-1b87c22b3bcf"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="35912e93-fe96-4475-a867-447d8d62eb69" rightArrows="7df478cf-4760-4b71-9890-9c96fb16cdf0" commonNodes="a5ce6607-3e8c-4c4a-8b72-1b1a3ffb63d3" name="SendSampleOrderOrderBlood">
+      <sum specification="/36" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/36/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="a5ce6607-3e8c-4c4a-8b72-1b1a3ffb63d3" node="96573d8d-9a65-4dc4-a043-4c86e38b35b3" dOutgoings="7df478cf-4760-4b71-9890-9c96fb16cdf0" location="0 0" size="100 30">
+            <dType href="w.dpf#bbc5c8b0-375b-4c21-b718-6b57990ad4dd"/>
+          </dNodes>
+          <dNodes id="35912e93-fe96-4475-a867-447d8d62eb69" node="005a72e5-8127-4a66-a80f-8917a56054d9" dIncomings="7df478cf-4760-4b71-9890-9c96fb16cdf0" location="140 0" size="100 30">
+            <dType href="w.dpf#9d3e0ec7-d8e0-4423-834f-e6a81beee456"/>
+          </dNodes>
+          <dArrows id="7df478cf-4760-4b71-9890-9c96fb16cdf0" arrow="e2053b27-14da-4acb-80e2-d9a55b4a03a9" dSource="a5ce6607-3e8c-4c4a-8b72-1b1a3ffb63d3" dTarget="35912e93-fe96-4475-a867-447d8d62eb69">
+            <dType href="w.dpf#f400d53d-c69a-44ef-8389-2c78196fbddd"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="b07fbf29-6ab4-499f-b66b-c388790bc6b4" rightArrows="d1dba65a-4c29-43c2-9a22-ff43401a1644" commonNodes="a1e11c96-058b-4ebd-af4e-6a03be1df0b7" name="SendSampleOrderPrintSampleLabel">
+      <sum specification="/37" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/37/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="a1e11c96-058b-4ebd-af4e-6a03be1df0b7" node="de98dee3-3424-4bd0-be23-61a07572a8e7" dOutgoings="d1dba65a-4c29-43c2-9a22-ff43401a1644" location="0 0" size="100 30">
+            <dType href="w.dpf#bbc5c8b0-375b-4c21-b718-6b57990ad4dd"/>
+          </dNodes>
+          <dNodes id="b07fbf29-6ab4-499f-b66b-c388790bc6b4" node="a9e6f886-261d-4d63-a8ba-f6ffa7015020" dIncomings="d1dba65a-4c29-43c2-9a22-ff43401a1644" location="140 0" size="100 30">
+            <dType href="w.dpf#28adb108-32b5-4bf7-8511-7d433154155e"/>
+          </dNodes>
+          <dArrows id="d1dba65a-4c29-43c2-9a22-ff43401a1644" arrow="1ca33da4-cfb7-4fe5-8447-67ad62922c25" dSource="a1e11c96-058b-4ebd-af4e-6a03be1df0b7" dTarget="b07fbf29-6ab4-499f-b66b-c388790bc6b4">
+            <dType href="w.dpf#8ac31e3c-66f8-465c-9679-e44f4e51b8b8"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="73ba2394-3406-433b-8745-8e76598fb862" rightArrows="8d146259-30b2-4593-a878-8e61e2d8e823" commonNodes="d5c442ee-3e6c-409b-8d29-b01b0e8cbce0" name="ShowNurseInfoScanPatientWristband">
+      <sum specification="/38" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/38/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="d5c442ee-3e6c-409b-8d29-b01b0e8cbce0" node="02d0a32d-0b40-4299-8f21-9fd2ec6bc0e9" dOutgoings="8d146259-30b2-4593-a878-8e61e2d8e823" location="0 0" size="100 30">
+            <dType href="w.dpf#bf14fe8a-f109-4111-98eb-c466cfc7b902"/>
+          </dNodes>
+          <dNodes id="73ba2394-3406-433b-8745-8e76598fb862" node="a0ad4cf2-9068-4c8d-a792-d8b01b8f2e76" dIncomings="8d146259-30b2-4593-a878-8e61e2d8e823" location="140 0" size="100 30">
+            <dType href="w.dpf#4ca55545-eeb9-4ec2-82d5-8e3a0d185e1f"/>
+          </dNodes>
+          <dArrows id="8d146259-30b2-4593-a878-8e61e2d8e823" arrow="d29c397a-c858-4337-b322-16bd838955b3" dSource="d5c442ee-3e6c-409b-8d29-b01b0e8cbce0" dTarget="73ba2394-3406-433b-8745-8e76598fb862">
+            <dType href="w.dpf#dd0be023-650a-441a-953d-da8e04b03978"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="2041ecea-fd40-4944-965c-3ee5a4638535" rightArrows="67e38af8-a604-4be8-857a-00ef9f39b64f" commonNodes="7d774b80-2b57-46ba-90f3-13df7d344d86" name="ShowPatientInfoOrderBlood">
+      <sum specification="/39" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/39/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="7d774b80-2b57-46ba-90f3-13df7d344d86" node="750b739b-251d-42db-a362-4d1065831ca2" dOutgoings="67e38af8-a604-4be8-857a-00ef9f39b64f" location="0 0" size="100 30">
+            <dType href="w.dpf#0107b489-410e-4542-8f86-6ba7afffb7bc"/>
+          </dNodes>
+          <dNodes id="2041ecea-fd40-4944-965c-3ee5a4638535" node="26c53c8f-2143-4ad9-985b-c3908910f1f3" dIncomings="67e38af8-a604-4be8-857a-00ef9f39b64f" location="140 0" size="100 30">
+            <dType href="w.dpf#9d3e0ec7-d8e0-4423-834f-e6a81beee456"/>
+          </dNodes>
+          <dArrows id="67e38af8-a604-4be8-857a-00ef9f39b64f" arrow="b4c39c66-85dc-4020-a7ea-8a47c1fc6cf0" dSource="7d774b80-2b57-46ba-90f3-13df7d344d86" dTarget="2041ecea-fd40-4944-965c-3ee5a4638535">
+            <dType href="w.dpf#6d6a6389-263b-4cbb-8d9c-6a5b1c10f947"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="de63989f-c396-463a-a369-e7419e4b01ec" rightArrows="d4036663-019b-4c96-b481-03f8f5fa12a9" commonNodes="e9ce17f8-2757-4319-bee1-8fcb80e4e598" name="ShowPatientInfoOrderSample">
+      <sum specification="/40" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/40/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="e9ce17f8-2757-4319-bee1-8fcb80e4e598" node="bf4fefe6-c063-42fc-b91d-3d02ad641896" dOutgoings="d4036663-019b-4c96-b481-03f8f5fa12a9" location="0 0" size="100 30">
+            <dType href="w.dpf#0107b489-410e-4542-8f86-6ba7afffb7bc"/>
+          </dNodes>
+          <dNodes id="de63989f-c396-463a-a369-e7419e4b01ec" node="9e59aa2e-2ef9-453d-94b2-d529ed5a429c" dIncomings="d4036663-019b-4c96-b481-03f8f5fa12a9" location="140 0" size="100 30">
+            <dType href="w.dpf#f714301c-93fe-4642-8efb-ba1313d88ba7"/>
+          </dNodes>
+          <dArrows id="d4036663-019b-4c96-b481-03f8f5fa12a9" arrow="206a2efb-e0f4-4539-b780-a029aee26dda" dSource="e9ce17f8-2757-4319-bee1-8fcb80e4e598" dTarget="de63989f-c396-463a-a369-e7419e4b01ec">
+            <dType href="w.dpf#cd25efb9-6bac-45b6-9f08-646f8ff1e27e"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="b921fcd6-50d2-423a-bcc5-85be571e0da6" rightArrows="3ec8b497-673b-4c64-9b02-80d9098cb6c0" commonNodes="2f61ffba-ee19-492f-a496-1c86e8e8a93a" name="VerifyBloodProductStopTransfusionContactAIT">
+      <sum specification="/41" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/41/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="2f61ffba-ee19-492f-a496-1c86e8e8a93a" node="d65f5fd7-6482-4cd6-8830-29c2900b2a2e" dOutgoings="3ec8b497-673b-4c64-9b02-80d9098cb6c0" location="0 0" size="100 30">
+            <dType href="w.dpf#e7fd9564-5902-4fdd-bf7a-79795cdb9376"/>
+          </dNodes>
+          <dNodes id="b921fcd6-50d2-423a-bcc5-85be571e0da6" node="568488c3-6d5b-44b8-8555-ce3217dea10f" dIncomings="3ec8b497-673b-4c64-9b02-80d9098cb6c0" location="140 0" size="100 30">
+            <dType href="w.dpf#17c05ac1-4ea6-4808-bd75-dab822301692"/>
+          </dNodes>
+          <dArrows id="3ec8b497-673b-4c64-9b02-80d9098cb6c0" arrow="bb46aa4a-c4cf-4954-b7c1-b04481174460" dSource="2f61ffba-ee19-492f-a496-1c86e8e8a93a" dTarget="b921fcd6-50d2-423a-bcc5-85be571e0da6">
+            <dType href="w.dpf#f09cc0c8-a9ee-41e2-84b3-85468c933690"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="6be6b8ee-c895-417d-a5ee-c3d4f136d787" rightArrows="1f5594ed-d104-4320-a5d6-057fea55df21" commonNodes="dfb9031e-00a2-473f-b0f3-d930468c721c" name="VerifyBloodProductperformtransfusion">
+      <sum specification="/42" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/42/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="dfb9031e-00a2-473f-b0f3-d930468c721c" node="819cd464-7475-4d82-ac33-40ecfe704686" dOutgoings="1f5594ed-d104-4320-a5d6-057fea55df21" location="0 0" size="100 30">
+            <dType href="w.dpf#e7fd9564-5902-4fdd-bf7a-79795cdb9376"/>
+          </dNodes>
+          <dNodes id="6be6b8ee-c895-417d-a5ee-c3d4f136d787" node="613d7dc3-86d0-4860-b76c-2517ef60a191" dIncomings="1f5594ed-d104-4320-a5d6-057fea55df21" location="140 0" size="100 30">
+            <dType href="w.dpf#9369b8f0-6618-483f-92e9-e51e69976d57"/>
+          </dNodes>
+          <dArrows id="1f5594ed-d104-4320-a5d6-057fea55df21" arrow="c9f0e364-0e92-4982-aa7a-003137d53cb8" dSource="dfb9031e-00a2-473f-b0f3-d930468c721c" dTarget="6be6b8ee-c895-417d-a5ee-c3d4f136d787">
+            <dType href="w.dpf#89f1fa81-4c76-45a2-9d9b-c146fadae21d"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="07ceec1e-3f2c-4fc8-9634-e7a7574f1d71" rightArrows="f49e401d-d11d-407a-aedd-fa3adfd3ef3e" commonNodes="d0c2d9d0-cf00-4ef9-816b-90714aad5b36" name="performtransfusionIdentifynurselogtransfusion">
+      <sum specification="/43" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/43/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="d0c2d9d0-cf00-4ef9-816b-90714aad5b36" node="5b12c77e-bb11-473b-a472-bf8a004b0269" dOutgoings="f49e401d-d11d-407a-aedd-fa3adfd3ef3e" location="0 0" size="100 30">
+            <dType href="w.dpf#9369b8f0-6618-483f-92e9-e51e69976d57"/>
+          </dNodes>
+          <dNodes id="07ceec1e-3f2c-4fc8-9634-e7a7574f1d71" node="0cb79ef5-7e13-4e20-8d1c-6c8fd9a0dd94" dIncomings="f49e401d-d11d-407a-aedd-fa3adfd3ef3e" location="140 0" size="100 30">
+            <dType href="w.dpf#cdb512b7-66c4-4d96-831e-495a27596a57"/>
+          </dNodes>
+          <dArrows id="f49e401d-d11d-407a-aedd-fa3adfd3ef3e" arrow="2a3fdbc3-5790-49bf-bbc0-f86e16bb7927" dSource="d0c2d9d0-cf00-4ef9-816b-90714aad5b36" dTarget="07ceec1e-3f2c-4fc8-9634-e7a7574f1d71">
+            <dType href="w.dpf#ebf3be0c-636c-4919-844f-c9220e3ecdaa"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="15cc01dd-e39f-4181-a0b2-a88bde9ec868" rightArrows="79a0ba6c-4d1b-41c1-961e-25ec1716db40" commonNodes="d71c211f-bf55-4a1b-b2f0-6a1cf52192ed" name="performtransfusionMeasuretemperaturebloodpressureandpulse">
+      <sum specification="/44" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/44/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="d71c211f-bf55-4a1b-b2f0-6a1cf52192ed" node="85063d39-23fe-4c47-89b9-1af0d2dac50c" dOutgoings="79a0ba6c-4d1b-41c1-961e-25ec1716db40" location="0 0" size="100 30">
+            <dType href="w.dpf#9369b8f0-6618-483f-92e9-e51e69976d57"/>
+          </dNodes>
+          <dNodes id="15cc01dd-e39f-4181-a0b2-a88bde9ec868" node="dd71a2a4-2fc7-428c-8d40-c1a58b10d1ed" dIncomings="79a0ba6c-4d1b-41c1-961e-25ec1716db40" location="140 0" size="100 30">
+            <dType href="w.dpf#83b8128a-7218-46a6-b393-47ef38da807d"/>
+          </dNodes>
+          <dArrows id="79a0ba6c-4d1b-41c1-961e-25ec1716db40" arrow="f75b67be-844b-460a-b7ff-7ced24e778f6" dSource="d71c211f-bf55-4a1b-b2f0-6a1cf52192ed" dTarget="15cc01dd-e39f-4181-a0b2-a88bde9ec868">
+            <dType href="w.dpf#e7b8a505-6bfd-4819-8d3f-cd5d7c3169fe"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="9b9c8767-ba28-483f-8204-0824be56f720" rightArrows="7a0c99e8-c5b0-4a90-b88c-5ca2b205c891" commonNodes="e40647e3-af35-432b-aae8-f6f839f7023c" name="performtransfusionRegisterReaction">
+      <sum specification="/45" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/45/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="e40647e3-af35-432b-aae8-f6f839f7023c" node="3dea3bc4-eb55-4082-8515-218d318e5e4f" dOutgoings="7a0c99e8-c5b0-4a90-b88c-5ca2b205c891" location="0 0" size="100 30">
+            <dType href="w.dpf#9369b8f0-6618-483f-92e9-e51e69976d57"/>
+          </dNodes>
+          <dNodes id="9b9c8767-ba28-483f-8204-0824be56f720" node="f61d3c84-364e-4b7f-baa6-ebda324f2af2" dIncomings="7a0c99e8-c5b0-4a90-b88c-5ca2b205c891" location="140 0" size="100 30">
+            <dType href="w.dpf#17139f1a-9310-4e19-ad25-00ce983c78a9"/>
+          </dNodes>
+          <dArrows id="7a0c99e8-c5b0-4a90-b88c-5ca2b205c891" arrow="c97d6c1d-4516-4731-bcbb-6737a58b00cb" dSource="e40647e3-af35-432b-aae8-f6f839f7023c" dTarget="9b9c8767-ba28-483f-8204-0824be56f720">
+            <dType href="w.dpf#ccd8a902-6c39-40c1-873a-4737e765443d"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <rules rightNodes="fcf37933-cbf5-4b8b-b94a-aeca438f6ea4" rightArrows="c44f2bc1-62a1-4b01-99df-b18c9b661a5d" commonNodes="d4d40e8b-9b77-4344-87ef-5e4d0df14eeb" name="performtransfusionScanBloodProduct">
+      <sum specification="/46" gridVisible="false">
+        <dType href="w.dpf#/"/>
+        <dGraph graph="/46/@graph">
+          <dType href="w.dpf#//@dGraph"/>
+          <dNodes id="d4d40e8b-9b77-4344-87ef-5e4d0df14eeb" node="af3671e6-b87a-4f84-9455-7077b2981e90" dOutgoings="c44f2bc1-62a1-4b01-99df-b18c9b661a5d" location="0 0" size="100 30">
+            <dType href="w.dpf#9369b8f0-6618-483f-92e9-e51e69976d57"/>
+          </dNodes>
+          <dNodes id="fcf37933-cbf5-4b8b-b94a-aeca438f6ea4" node="856f87cd-f5cc-4303-90f5-25b63588df39" dIncomings="c44f2bc1-62a1-4b01-99df-b18c9b661a5d" location="140 0" size="100 30">
+            <dType href="w.dpf#d34915fa-b3b8-4207-b641-e90034cb8f5c"/>
+          </dNodes>
+          <dArrows id="c44f2bc1-62a1-4b01-99df-b18c9b661a5d" arrow="1c48e465-2905-4800-b05f-ce0fd4037f0a" dSource="d4d40e8b-9b77-4344-87ef-5e4d0df14eeb" dTarget="fcf37933-cbf5-4b8b-b94a-aeca438f6ea4">
+            <dType href="w.dpf#4dc4b64e-ac11-4e09-8c2a-b9578e6a22a6"/>
+            <nameOffset offset="10 -3" len="16"/>
+          </dArrows>
+        </dGraph>
+      </sum>
+    </rules>
+    <elementTypeGraph href="w.dpf#/"/>
+  </transform:Transform>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="4183209b-c972-460d-95f1-92462bfbca6d" name="n0" outgoings="cdcae3c3-99cf-4ed2-bd72-9fcbc0090468">
+        <typeNode href="w.xmi#ced95f24-957c-41a9-8613-202f5f00ec06"/>
+      </nodes>
+      <nodes id="58ace242-72de-406f-9a17-b1173a7f41b6" name="n1" incomings="cdcae3c3-99cf-4ed2-bd72-9fcbc0090468">
+        <typeNode href="w.xmi#fb386617-bcab-4860-89ee-63a4441c85e8"/>
+      </nodes>
+      <arrows id="cdcae3c3-99cf-4ed2-bd72-9fcbc0090468" name="e0" source="4183209b-c972-460d-95f1-92462bfbca6d" target="58ace242-72de-406f-9a17-b1173a7f41b6">
+        <typeArrow href="w.xmi#fc998edc-f918-4771-ab4a-0c8426fc15f2"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="0d3b1e95-9883-4781-8ace-bd42effabcbe" name="n0" outgoings="e87dfc37-cf9e-46d5-bf3a-a4208bbae649">
+        <typeNode href="w.xmi#ced95f24-957c-41a9-8613-202f5f00ec06"/>
+      </nodes>
+      <nodes id="ecdb6286-435e-401b-a19a-9569cdbda353" name="n1" incomings="e87dfc37-cf9e-46d5-bf3a-a4208bbae649">
+        <typeNode href="w.xmi#d9a78a5c-d325-475a-9bac-9dcfc30788c7"/>
+      </nodes>
+      <arrows id="e87dfc37-cf9e-46d5-bf3a-a4208bbae649" name="e0" source="0d3b1e95-9883-4781-8ace-bd42effabcbe" target="ecdb6286-435e-401b-a19a-9569cdbda353">
+        <typeArrow href="w.xmi#90d432e4-4b28-4467-aa0e-5a1e32c1f343"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="dd522cd0-9bd2-443e-9138-c7a9da1f4e81" name="n0" outgoings="2eb3e60c-d2d1-46c6-ab42-28cabd9d97fd">
+        <typeNode href="w.xmi#7ceb2213-3ce2-424a-bcb6-1feb0820b9fa"/>
+      </nodes>
+      <nodes id="5e933aa8-64d6-41b6-83d5-24539975ea79" name="n1" incomings="2eb3e60c-d2d1-46c6-ab42-28cabd9d97fd">
+        <typeNode href="w.xmi#2fc1a1cc-0ee5-4981-b9cc-5c72a70ac3a1"/>
+      </nodes>
+      <arrows id="2eb3e60c-d2d1-46c6-ab42-28cabd9d97fd" name="e0" source="dd522cd0-9bd2-443e-9138-c7a9da1f4e81" target="5e933aa8-64d6-41b6-83d5-24539975ea79">
+        <typeArrow href="w.xmi#1c93fef8-f1b7-494d-b076-8c0ef975ed42"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="f177309b-aef8-426d-91d5-f7fb362fa019" name="n0" outgoings="33665326-559a-4295-83f8-f466bb210b71">
+        <typeNode href="w.xmi#574280e3-aace-410b-8478-b640bc5e751e"/>
+      </nodes>
+      <nodes id="f905d1a6-444e-4c30-aa3e-cf8e2e5c6b3f" name="n1" incomings="33665326-559a-4295-83f8-f466bb210b71">
+        <typeNode href="w.xmi#6ae6f628-8d4d-4154-9142-9efecff7e096"/>
+      </nodes>
+      <arrows id="33665326-559a-4295-83f8-f466bb210b71" name="e0" source="f177309b-aef8-426d-91d5-f7fb362fa019" target="f905d1a6-444e-4c30-aa3e-cf8e2e5c6b3f">
+        <typeArrow href="w.xmi#a710c4f3-7dc0-4989-aefe-7469afa079b2"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="03160297-4dad-44bb-bcad-2752ddc957d8" name="n0" outgoings="793a98ae-1a47-43c7-83a8-176402b99bfc">
+        <typeNode href="w.xmi#3120873c-c197-4389-baae-3ebb6dd203dc"/>
+      </nodes>
+      <nodes id="5dce2629-5656-425c-b89a-58fb2228af50" name="n1" incomings="793a98ae-1a47-43c7-83a8-176402b99bfc">
+        <typeNode href="w.xmi#0edfdf20-1bf9-445b-aa2d-ed703e9160e4"/>
+      </nodes>
+      <arrows id="793a98ae-1a47-43c7-83a8-176402b99bfc" name="e0" source="03160297-4dad-44bb-bcad-2752ddc957d8" target="5dce2629-5656-425c-b89a-58fb2228af50">
+        <typeArrow href="w.xmi#351b3290-422c-4b9d-8666-bfca37c42905"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="b0870fe3-ed05-406b-a9cb-45f0959e25ef" name="n0" outgoings="2f1449a4-475a-4f84-beeb-697d5e8439e4">
+        <typeNode href="w.xmi#3120873c-c197-4389-baae-3ebb6dd203dc"/>
+      </nodes>
+      <nodes id="0535daef-32d8-4814-a155-38cf1e88bd3a" name="n1" incomings="2f1449a4-475a-4f84-beeb-697d5e8439e4">
+        <typeNode href="w.xmi#6b3f94f6-4c6d-4234-810e-629813e1eb13"/>
+      </nodes>
+      <arrows id="2f1449a4-475a-4f84-beeb-697d5e8439e4" name="e0" source="b0870fe3-ed05-406b-a9cb-45f0959e25ef" target="0535daef-32d8-4814-a155-38cf1e88bd3a">
+        <typeArrow href="w.xmi#9f5a9f69-4f45-44cd-831f-9a71b7eb566d"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="cedf4316-d345-4c6c-958e-87fa2c5c059c" name="n0" outgoings="35975fdd-71cc-4780-81ad-4033f763fd7e">
+        <typeNode href="w.xmi#1b6a778e-f17d-4ec0-9922-443b6056c648"/>
+      </nodes>
+      <nodes id="c8dc49e5-5fb7-4c5a-bb77-8b8d5938a8e7" name="n1" incomings="35975fdd-71cc-4780-81ad-4033f763fd7e">
+        <typeNode href="w.xmi#f075238c-cc52-47c2-b0b4-ae9ca7e176b8"/>
+      </nodes>
+      <arrows id="35975fdd-71cc-4780-81ad-4033f763fd7e" name="e0" source="cedf4316-d345-4c6c-958e-87fa2c5c059c" target="c8dc49e5-5fb7-4c5a-bb77-8b8d5938a8e7">
+        <typeArrow href="w.xmi#d752e596-1e8d-4c50-b082-52293b1adb1e"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="17823105-2e9b-4353-ad72-50a9075c544c" name="n0" outgoings="7007b2f3-b163-40d3-8be6-5cda45f23687">
+        <typeNode href="w.xmi#cb9af070-3991-483b-a825-ed06b65e3686"/>
+      </nodes>
+      <nodes id="48279ec5-e07a-4549-be64-590cf9342c18" name="n1" incomings="7007b2f3-b163-40d3-8be6-5cda45f23687">
+        <typeNode href="w.xmi#2fc1a1cc-0ee5-4981-b9cc-5c72a70ac3a1"/>
+      </nodes>
+      <arrows id="7007b2f3-b163-40d3-8be6-5cda45f23687" name="e0" source="17823105-2e9b-4353-ad72-50a9075c544c" target="48279ec5-e07a-4549-be64-590cf9342c18">
+        <typeArrow href="w.xmi#37738e82-0152-4404-9554-114fd0e82d52"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="7aafd5ee-98f3-47c9-aa43-6b042c28afb2" name="n0" outgoings="a78c213e-0844-4843-822b-c7fef9f88683">
+        <typeNode href="w.xmi#cb9af070-3991-483b-a825-ed06b65e3686"/>
+      </nodes>
+      <nodes id="28f17ffa-a860-40aa-84ec-cc699275d0f9" name="n1" incomings="a78c213e-0844-4843-822b-c7fef9f88683">
+        <typeNode href="w.xmi#3aa78c0e-5877-49c4-bbe2-0b702ae2cad1"/>
+      </nodes>
+      <arrows id="a78c213e-0844-4843-822b-c7fef9f88683" name="e0" source="7aafd5ee-98f3-47c9-aa43-6b042c28afb2" target="28f17ffa-a860-40aa-84ec-cc699275d0f9">
+        <typeArrow href="w.xmi#18847377-c1f2-4d7c-995b-51a4203193fb"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="917cc435-15be-4ae9-8a14-8b81a8b61095" name="n0" outgoings="e475635b-9bdf-430d-997d-9c1f7106875d">
+        <typeNode href="w.xmi#1b6a778e-f17d-4ec0-9922-443b6056c648"/>
+      </nodes>
+      <nodes id="e90c2cfa-5a66-4fa4-8245-fb76c67d821b" name="n1" incomings="e475635b-9bdf-430d-997d-9c1f7106875d">
+        <typeNode href="w.xmi#cb7fe5cd-710b-40f0-8039-d6d7a8af832e"/>
+      </nodes>
+      <arrows id="e475635b-9bdf-430d-997d-9c1f7106875d" name="e0" source="917cc435-15be-4ae9-8a14-8b81a8b61095" target="e90c2cfa-5a66-4fa4-8245-fb76c67d821b">
+        <typeArrow href="w.xmi#a70aab4f-914d-47b4-8a17-206e1da42217"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="a6b80951-2abe-4e03-ad59-135aabe15c2a" name="n0" outgoings="7d8b7899-1161-42f7-94a1-c770614d03cf">
+        <typeNode href="w.xmi#9d36b442-37bb-436c-be33-274a116d4a03"/>
+      </nodes>
+      <nodes id="b3d3b177-b4db-4224-a7ca-f3e93c31ee16" name="n1" incomings="7d8b7899-1161-42f7-94a1-c770614d03cf">
+        <typeNode href="w.xmi#023bb168-2e80-4a21-bdb4-b81a9b4fa16f"/>
+      </nodes>
+      <arrows id="7d8b7899-1161-42f7-94a1-c770614d03cf" name="e0" source="a6b80951-2abe-4e03-ad59-135aabe15c2a" target="b3d3b177-b4db-4224-a7ca-f3e93c31ee16">
+        <typeArrow href="w.xmi#68ecda4f-32a9-4548-b407-29d1a8b8c154"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="0bad41be-b555-4ac5-aa52-e86dc6427e9a" name="n0" outgoings="4886ace7-dbe2-48c0-bece-c8ad29f8aaa3">
+        <typeNode href="w.xmi#da7ee3ad-6714-4e0c-bb6b-fe2b956ed1de"/>
+      </nodes>
+      <nodes id="174e4433-93eb-4e2c-8503-7a48153d7469" name="n1" incomings="4886ace7-dbe2-48c0-bece-c8ad29f8aaa3">
+        <typeNode href="w.xmi#c7213f50-ecce-4d9d-8d03-4a944408fe39"/>
+      </nodes>
+      <arrows id="4886ace7-dbe2-48c0-bece-c8ad29f8aaa3" name="e0" source="0bad41be-b555-4ac5-aa52-e86dc6427e9a" target="174e4433-93eb-4e2c-8503-7a48153d7469">
+        <typeArrow href="w.xmi#1278127c-73a2-4010-b38d-2154a7843621"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="2dc4780e-195d-4220-a23c-02cdafa5b2c8" name="n0" outgoings="8d08da39-4bc9-45cd-b312-9cdb85f767be">
+        <typeNode href="w.xmi#15ccd5be-c874-4798-b754-a743d4348585"/>
+      </nodes>
+      <nodes id="8c635348-8e88-4d4a-97f5-c185a4ab13b8" name="n1" incomings="8d08da39-4bc9-45cd-b312-9cdb85f767be">
+        <typeNode href="w.xmi#0edfdf20-1bf9-445b-aa2d-ed703e9160e4"/>
+      </nodes>
+      <arrows id="8d08da39-4bc9-45cd-b312-9cdb85f767be" name="e0" source="2dc4780e-195d-4220-a23c-02cdafa5b2c8" target="8c635348-8e88-4d4a-97f5-c185a4ab13b8">
+        <typeArrow href="w.xmi#5ece12ad-312c-4c3d-8fd9-1a8caa99cc9a"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="8b82706e-8bbf-430b-b5f3-34c2c9eb3b12" name="n0" outgoings="b2039ee1-dcc5-4729-baf9-9dfb28a23c0b">
+        <typeNode href="w.xmi#f7d55798-5218-4d50-9c54-04fa8f9ee02b"/>
+      </nodes>
+      <nodes id="0dfc77b7-7f57-41b1-9b2a-37f8180eb5c9" name="n1" incomings="b2039ee1-dcc5-4729-baf9-9dfb28a23c0b">
+        <typeNode href="w.xmi#f731d862-9267-4623-ac07-842f8a112cd0"/>
+      </nodes>
+      <arrows id="b2039ee1-dcc5-4729-baf9-9dfb28a23c0b" name="e0" source="8b82706e-8bbf-430b-b5f3-34c2c9eb3b12" target="0dfc77b7-7f57-41b1-9b2a-37f8180eb5c9">
+        <typeArrow href="w.xmi#03fd7edb-f022-42c8-b441-c4886209a5d2"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="6c0f4add-adb6-4edc-9965-833cdcbdcb57" name="n0" outgoings="ccbb581c-8d77-41f2-8482-8042695770b9">
+        <typeNode href="w.xmi#f7d55798-5218-4d50-9c54-04fa8f9ee02b"/>
+      </nodes>
+      <nodes id="4248e1a5-1874-4839-9433-2ab89f62fea3" name="n1" incomings="ccbb581c-8d77-41f2-8482-8042695770b9">
+        <typeNode href="w.xmi#64ec3ce3-56ff-43ab-8db1-3b8bb5c34871"/>
+      </nodes>
+      <arrows id="ccbb581c-8d77-41f2-8482-8042695770b9" name="e0" source="6c0f4add-adb6-4edc-9965-833cdcbdcb57" target="4248e1a5-1874-4839-9433-2ab89f62fea3">
+        <typeArrow href="w.xmi#7fd9e824-1e21-4096-adce-a8ade219db0b"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="92160e79-7cf8-4e32-8fed-09a67e1a3f53" name="n0" outgoings="c7c34a52-aed2-477d-9547-ec977f1f5921">
+        <typeNode href="w.xmi#d3fdd0ee-ce52-40d3-84ce-42cb976e0b84"/>
+      </nodes>
+      <nodes id="ddc80fac-e38f-4327-b90d-0f7bd5da7a9d" name="n1" incomings="c7c34a52-aed2-477d-9547-ec977f1f5921">
+        <typeNode href="w.xmi#ced95f24-957c-41a9-8613-202f5f00ec06"/>
+      </nodes>
+      <arrows id="c7c34a52-aed2-477d-9547-ec977f1f5921" name="e0" source="92160e79-7cf8-4e32-8fed-09a67e1a3f53" target="ddc80fac-e38f-4327-b90d-0f7bd5da7a9d">
+        <typeArrow href="w.xmi#35cca6bc-1c81-42c5-8a96-7b7b96bdf8ea"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="4ba2b1f3-6668-4e17-813c-fd5a19ed39f6" name="n0" outgoings="4bde0aed-abb8-4b29-bac6-058de6d89161">
+        <typeNode href="w.xmi#3362c442-c5f6-4b8a-a900-d9875f418557"/>
+      </nodes>
+      <nodes id="7db24902-142d-4258-8988-599ab1a33c9a" name="n1" incomings="4bde0aed-abb8-4b29-bac6-058de6d89161">
+        <typeNode href="w.xmi#3daf4d29-2997-42de-9b10-2e6aad84ea3a"/>
+      </nodes>
+      <arrows id="4bde0aed-abb8-4b29-bac6-058de6d89161" name="e0" source="4ba2b1f3-6668-4e17-813c-fd5a19ed39f6" target="7db24902-142d-4258-8988-599ab1a33c9a">
+        <typeArrow href="w.xmi#9ac8f327-a50a-4654-bc79-66850cc7fa24"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="c8aaa437-83cf-40d7-b26c-28fe93e582b7" name="n0" outgoings="e402dcc0-ef11-4501-969b-1c46be6f03b6 af5c1d11-f774-49ed-8181-49189bf6efa6">
+        <typeNode href="w.xmi#511a6394-9988-4352-b466-c9fcaf1b9975"/>
+      </nodes>
+      <nodes id="bae896de-edb2-4a4a-9b91-096228b305bb" name="n1" incomings="e402dcc0-ef11-4501-969b-1c46be6f03b6">
+        <typeNode href="w.xmi#d9d684e4-266e-4565-8bf4-abcb99e28745"/>
+      </nodes>
+      <nodes id="45aa4212-6ea5-46b9-8368-0e4e9f9f06f3" name="n2" incomings="af5c1d11-f774-49ed-8181-49189bf6efa6">
+        <typeNode href="w.xmi#4343c67a-9ad3-4634-8b7d-8e09c7fbf359"/>
+      </nodes>
+      <arrows id="e402dcc0-ef11-4501-969b-1c46be6f03b6" name="e0" source="c8aaa437-83cf-40d7-b26c-28fe93e582b7" target="bae896de-edb2-4a4a-9b91-096228b305bb">
+        <typeArrow href="w.xmi#e4a5233d-ccc4-4017-871b-bd8c28292795"/>
+      </arrows>
+      <arrows id="af5c1d11-f774-49ed-8181-49189bf6efa6" name="e2" source="c8aaa437-83cf-40d7-b26c-28fe93e582b7" target="45aa4212-6ea5-46b9-8368-0e4e9f9f06f3">
+        <typeArrow href="w.xmi#c98c3202-a9cc-4872-a0db-c4715a81d725"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="33f7cfeb-347f-432a-99c6-2f8555d06e3a" name="n0" outgoings="cd47a610-4c4e-4a35-926c-9b3438b32a8c">
+        <typeNode href="w.xmi#511a6394-9988-4352-b466-c9fcaf1b9975"/>
+      </nodes>
+      <nodes id="e8fb9b5e-b318-45f9-a0d4-8daf7acf5fb0" name="n1" incomings="cd47a610-4c4e-4a35-926c-9b3438b32a8c">
+        <typeNode href="w.xmi#4343c67a-9ad3-4634-8b7d-8e09c7fbf359"/>
+      </nodes>
+      <arrows id="cd47a610-4c4e-4a35-926c-9b3438b32a8c" name="e0" source="33f7cfeb-347f-432a-99c6-2f8555d06e3a" target="e8fb9b5e-b318-45f9-a0d4-8daf7acf5fb0">
+        <typeArrow href="w.xmi#c98c3202-a9cc-4872-a0db-c4715a81d725"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="477f5cb5-476d-4767-ae00-adea7c32216d" name="n0" outgoings="c1fb82a3-feeb-4e18-b4b8-d31c32560f35">
+        <typeNode href="w.xmi#29f73fde-88f1-42a7-88d5-565d92c57366"/>
+      </nodes>
+      <nodes id="71d64cba-8639-4211-836e-ee8ebfd39443" name="n1" incomings="c1fb82a3-feeb-4e18-b4b8-d31c32560f35">
+        <typeNode href="w.xmi#7ceb2213-3ce2-424a-bcb6-1feb0820b9fa"/>
+      </nodes>
+      <arrows id="c1fb82a3-feeb-4e18-b4b8-d31c32560f35" name="e0" source="477f5cb5-476d-4767-ae00-adea7c32216d" target="71d64cba-8639-4211-836e-ee8ebfd39443">
+        <typeArrow href="w.xmi#e6a4331c-dec1-4a8a-bdc8-6455f9770c98"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="f4763265-507c-4392-a7c8-850253f0d6cf" name="n0" outgoings="3b125c3c-84a3-4e89-91f6-7a192a88286b">
+        <typeNode href="w.xmi#fb386617-bcab-4860-89ee-63a4441c85e8"/>
+      </nodes>
+      <nodes id="8ddc701b-004b-4646-9f5e-90017d9ea931" name="n1" incomings="3b125c3c-84a3-4e89-91f6-7a192a88286b">
+        <typeNode href="w.xmi#d9a78a5c-d325-475a-9bac-9dcfc30788c7"/>
+      </nodes>
+      <arrows id="3b125c3c-84a3-4e89-91f6-7a192a88286b" name="e0" source="f4763265-507c-4392-a7c8-850253f0d6cf" target="8ddc701b-004b-4646-9f5e-90017d9ea931">
+        <typeArrow href="w.xmi#c4f4781a-e5f5-4f07-a860-c06e8408d253"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="85432b8d-c157-485d-8823-4b0d5f88237c" name="n0" outgoings="9869abb0-3125-40ed-8a91-98ee4a516372">
+        <typeNode href="w.xmi#d9a78a5c-d325-475a-9bac-9dcfc30788c7"/>
+      </nodes>
+      <nodes id="3d328a12-245f-42ef-94d6-770dc73a2f89" name="n1" incomings="9869abb0-3125-40ed-8a91-98ee4a516372">
+        <typeNode href="w.xmi#1e7b2f79-cc2f-45f6-8bbd-4786c8d77611"/>
+      </nodes>
+      <arrows id="9869abb0-3125-40ed-8a91-98ee4a516372" name="e0" source="85432b8d-c157-485d-8823-4b0d5f88237c" target="3d328a12-245f-42ef-94d6-770dc73a2f89">
+        <typeArrow href="w.xmi#64f52dd1-58aa-416c-9adb-b6a1f8ceb65b"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="1332aafe-ba6c-476e-a6d2-860666b7db7c" name="n0" outgoings="7f964c03-98c9-4c3b-8293-0f8bbe794b4f">
+        <typeNode href="w.xmi#0edfdf20-1bf9-445b-aa2d-ed703e9160e4"/>
+      </nodes>
+      <nodes id="89fcb60c-49d2-4978-beb2-513b25334a24" name="n1" incomings="7f964c03-98c9-4c3b-8293-0f8bbe794b4f">
+        <typeNode href="w.xmi#3120873c-c197-4389-baae-3ebb6dd203dc"/>
+      </nodes>
+      <arrows id="7f964c03-98c9-4c3b-8293-0f8bbe794b4f" name="e0" source="1332aafe-ba6c-476e-a6d2-860666b7db7c" target="89fcb60c-49d2-4978-beb2-513b25334a24">
+        <typeArrow href="w.xmi#b4f2a966-1d04-4275-a4d6-74f13ea17493"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="f6a5cc8b-5572-4fdf-9af2-811de3dde5dd" name="n0" outgoings="52846630-0bc8-4c65-9b59-43489216742e">
+        <typeNode href="w.xmi#f075238c-cc52-47c2-b0b4-ae9ca7e176b8"/>
+      </nodes>
+      <nodes id="65de9446-d764-4a7d-808d-c6c87241e075" name="n1" incomings="52846630-0bc8-4c65-9b59-43489216742e">
+        <typeNode href="w.xmi#1b6a778e-f17d-4ec0-9922-443b6056c648"/>
+      </nodes>
+      <arrows id="52846630-0bc8-4c65-9b59-43489216742e" name="e0" source="f6a5cc8b-5572-4fdf-9af2-811de3dde5dd" target="65de9446-d764-4a7d-808d-c6c87241e075">
+        <typeArrow href="w.xmi#858d0d29-a082-4f8e-a4e5-f53bd64a2023"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="72a4c7eb-7c31-427f-982e-831047768c0a" name="n0" outgoings="72b26532-7829-421c-a152-53bfca884f94">
+        <typeNode href="w.xmi#2fc1a1cc-0ee5-4981-b9cc-5c72a70ac3a1"/>
+      </nodes>
+      <nodes id="b97214e8-66f6-4e63-8e37-fa9ff0d7f92f" name="n1" incomings="72b26532-7829-421c-a152-53bfca884f94">
+        <typeNode href="w.xmi#9d36b442-37bb-436c-be33-274a116d4a03"/>
+      </nodes>
+      <arrows id="72b26532-7829-421c-a152-53bfca884f94" name="e0" source="72a4c7eb-7c31-427f-982e-831047768c0a" target="b97214e8-66f6-4e63-8e37-fa9ff0d7f92f">
+        <typeArrow href="w.xmi#218e03fb-1ae5-4038-b14d-6d0206541b36"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="a717e77e-c21f-49dd-986a-bf279adc509d" name="n0" outgoings="db81648a-6640-4355-87ad-9cf709052380">
+        <typeNode href="w.xmi#023bb168-2e80-4a21-bdb4-b81a9b4fa16f"/>
+      </nodes>
+      <nodes id="c0e0ecaa-7769-4854-9d54-2848d5821e08" name="n1" incomings="db81648a-6640-4355-87ad-9cf709052380">
+        <typeNode href="w.xmi#cb9af070-3991-483b-a825-ed06b65e3686"/>
+      </nodes>
+      <arrows id="db81648a-6640-4355-87ad-9cf709052380" name="e0" source="a717e77e-c21f-49dd-986a-bf279adc509d" target="c0e0ecaa-7769-4854-9d54-2848d5821e08">
+        <typeArrow href="w.xmi#1b3cfae4-6870-422f-907b-9f019bd412f3"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="71a02b4d-ac00-4d26-b48c-5ab83a7910f4" name="n0" outgoings="38321fda-4542-49c3-b0da-588170af66f4">
+        <typeNode href="w.xmi#d9d684e4-266e-4565-8bf4-abcb99e28745"/>
+      </nodes>
+      <nodes id="513563c1-dadd-4fad-a338-77bb2739d835" name="n1" incomings="38321fda-4542-49c3-b0da-588170af66f4 6c73b89c-7362-4e19-bb1e-65e19f60ffd9">
+        <typeNode href="w.xmi#9de17b96-7755-489f-8fb9-4fc6226ffd54"/>
+      </nodes>
+      <nodes id="c6df5ac9-cb66-4250-9e36-f48d7450ef24" name="n2" outgoings="6c73b89c-7362-4e19-bb1e-65e19f60ffd9">
+        <typeNode href="w.xmi#4343c67a-9ad3-4634-8b7d-8e09c7fbf359"/>
+      </nodes>
+      <arrows id="38321fda-4542-49c3-b0da-588170af66f4" name="e0" source="71a02b4d-ac00-4d26-b48c-5ab83a7910f4" target="513563c1-dadd-4fad-a338-77bb2739d835">
+        <typeArrow href="w.xmi#5b3ad1d8-d096-4d2e-b438-0a9298202313"/>
+      </arrows>
+      <arrows id="6c73b89c-7362-4e19-bb1e-65e19f60ffd9" name="e2" source="c6df5ac9-cb66-4250-9e36-f48d7450ef24" target="513563c1-dadd-4fad-a338-77bb2739d835">
+        <typeArrow href="w.xmi#6522c6cf-6f5d-44b0-9d0b-93b6da79c07c"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="ad62bd02-82ce-41b1-bbbe-15d50f623bd3" name="n0" outgoings="ed6b7064-6e09-45ae-9e73-9b136198dade">
+        <typeNode href="w.xmi#3daf4d29-2997-42de-9b10-2e6aad84ea3a"/>
+      </nodes>
+      <nodes id="03c6c482-8281-40ee-8130-a383b2490fd3" name="n1" incomings="ed6b7064-6e09-45ae-9e73-9b136198dade">
+        <typeNode href="w.xmi#574280e3-aace-410b-8478-b640bc5e751e"/>
+      </nodes>
+      <arrows id="ed6b7064-6e09-45ae-9e73-9b136198dade" name="e0" source="ad62bd02-82ce-41b1-bbbe-15d50f623bd3" target="03c6c482-8281-40ee-8130-a383b2490fd3">
+        <typeArrow href="w.xmi#4773a561-c4b3-4c12-8d24-be53445ffa98"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="72534716-1479-4cba-ab0e-7a5337757d51" name="n0" outgoings="47df7d6f-5e9b-4836-a58c-43a350ec1963">
+        <typeNode href="w.xmi#4343c67a-9ad3-4634-8b7d-8e09c7fbf359"/>
+      </nodes>
+      <nodes id="c37bf5a9-96d7-4fa4-a01f-0d530f5c21a0" name="n1" incomings="47df7d6f-5e9b-4836-a58c-43a350ec1963">
+        <typeNode href="w.xmi#9de17b96-7755-489f-8fb9-4fc6226ffd54"/>
+      </nodes>
+      <arrows id="47df7d6f-5e9b-4836-a58c-43a350ec1963" name="e0" source="72534716-1479-4cba-ab0e-7a5337757d51" target="c37bf5a9-96d7-4fa4-a01f-0d530f5c21a0">
+        <typeArrow href="w.xmi#6522c6cf-6f5d-44b0-9d0b-93b6da79c07c"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="f5f29a3e-dba7-4dc5-abb0-4ca979e746d7" name="n0" outgoings="6e990fe6-8ac7-44c6-a51a-05a18c35c3c8">
+        <typeNode href="w.xmi#6ae6f628-8d4d-4154-9142-9efecff7e096"/>
+      </nodes>
+      <nodes id="e4f85964-93ed-4dbd-8050-cae21fb853c3" name="n1" incomings="6e990fe6-8ac7-44c6-a51a-05a18c35c3c8">
+        <typeNode href="w.xmi#6c20468f-02ab-4460-a1c4-81cddcbd0f9a"/>
+      </nodes>
+      <arrows id="6e990fe6-8ac7-44c6-a51a-05a18c35c3c8" name="e0" source="f5f29a3e-dba7-4dc5-abb0-4ca979e746d7" target="e4f85964-93ed-4dbd-8050-cae21fb853c3">
+        <typeArrow href="w.xmi#cacd227b-b051-4ade-b4bb-b9bc689f1b42"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="998ab89c-55a4-40cf-9379-87462e5361ce" name="n0" outgoings="8c37b323-69d0-4aa5-8aaa-a54b62c4e6b3">
+        <typeNode href="w.xmi#6c20468f-02ab-4460-a1c4-81cddcbd0f9a"/>
+      </nodes>
+      <nodes id="677d6a60-19f0-45fc-92a9-6644c3806a2d" name="n1" incomings="8c37b323-69d0-4aa5-8aaa-a54b62c4e6b3">
+        <typeNode href="w.xmi#d3fdd0ee-ce52-40d3-84ce-42cb976e0b84"/>
+      </nodes>
+      <arrows id="8c37b323-69d0-4aa5-8aaa-a54b62c4e6b3" name="e0" source="998ab89c-55a4-40cf-9379-87462e5361ce" target="677d6a60-19f0-45fc-92a9-6644c3806a2d">
+        <typeArrow href="w.xmi#6f96b493-1438-45f7-aeb4-58094b6d7292"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="da60b3b9-62f8-49e3-97b8-63e9653f9daf" name="n0" outgoings="a4218e40-e251-45f7-b2e1-48a2ab9db4da">
+        <typeNode href="w.xmi#6c20468f-02ab-4460-a1c4-81cddcbd0f9a"/>
+      </nodes>
+      <nodes id="eb202396-c2a6-4e97-8482-d8b352141bc4" name="n1" incomings="a4218e40-e251-45f7-b2e1-48a2ab9db4da">
+        <typeNode href="w.xmi#511a6394-9988-4352-b466-c9fcaf1b9975"/>
+      </nodes>
+      <arrows id="a4218e40-e251-45f7-b2e1-48a2ab9db4da" name="e0" source="da60b3b9-62f8-49e3-97b8-63e9653f9daf" target="eb202396-c2a6-4e97-8482-d8b352141bc4">
+        <typeArrow href="w.xmi#5fe02397-dd65-4e5c-892e-707470ed71aa"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="6e643d1c-e91e-4161-8a20-d6be2ef8b459" name="n0" outgoings="53f4be9a-bf82-44f8-8340-1d8657154729">
+        <typeNode href="w.xmi#6c20468f-02ab-4460-a1c4-81cddcbd0f9a"/>
+      </nodes>
+      <nodes id="bc7cac90-7e75-430f-ae77-af10b6a3f53d" name="n1" incomings="53f4be9a-bf82-44f8-8340-1d8657154729 9e35e2e1-4c2f-4084-9d30-5c143f74cd1a">
+        <typeNode href="w.xmi#2fc1a1cc-0ee5-4981-b9cc-5c72a70ac3a1"/>
+      </nodes>
+      <nodes id="951d65af-326e-4a2b-a40b-aea66cceda03" name="n2" outgoings="9e35e2e1-4c2f-4084-9d30-5c143f74cd1a">
+        <typeNode href="w.xmi#7ceb2213-3ce2-424a-bcb6-1feb0820b9fa"/>
+      </nodes>
+      <arrows id="53f4be9a-bf82-44f8-8340-1d8657154729" name="e0" source="6e643d1c-e91e-4161-8a20-d6be2ef8b459" target="bc7cac90-7e75-430f-ae77-af10b6a3f53d">
+        <typeArrow href="w.xmi#31db6071-a97a-45d1-b686-44f5255395dc"/>
+      </arrows>
+      <arrows id="9e35e2e1-4c2f-4084-9d30-5c143f74cd1a" name="e2" source="951d65af-326e-4a2b-a40b-aea66cceda03" target="bc7cac90-7e75-430f-ae77-af10b6a3f53d">
+        <typeArrow href="w.xmi#1c93fef8-f1b7-494d-b076-8c0ef975ed42"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="94e789a6-75d8-43d8-a48a-a2b4a58dd30d" name="n0" outgoings="92b2eca1-985f-42dd-9948-8b1f8586a86f">
+        <typeNode href="w.xmi#3aa78c0e-5877-49c4-bbe2-0b702ae2cad1"/>
+      </nodes>
+      <nodes id="3f71fff0-7b6c-40f6-9a61-e90592a704ed" name="n1" incomings="92b2eca1-985f-42dd-9948-8b1f8586a86f ac8000eb-f673-44e1-a899-8bbd646e7013">
+        <typeNode href="w.xmi#ced95f24-957c-41a9-8613-202f5f00ec06"/>
+      </nodes>
+      <nodes id="6235af3a-4457-4f13-a609-88685eeb1dca" name="n2" outgoings="ac8000eb-f673-44e1-a899-8bbd646e7013">
+        <typeNode href="w.xmi#d3fdd0ee-ce52-40d3-84ce-42cb976e0b84"/>
+      </nodes>
+      <arrows id="92b2eca1-985f-42dd-9948-8b1f8586a86f" name="e0" source="94e789a6-75d8-43d8-a48a-a2b4a58dd30d" target="3f71fff0-7b6c-40f6-9a61-e90592a704ed">
+        <typeArrow href="w.xmi#20f1d0ae-2cf3-4e67-9632-6f0a3b77b0d5"/>
+      </arrows>
+      <arrows id="ac8000eb-f673-44e1-a899-8bbd646e7013" name="e2" source="6235af3a-4457-4f13-a609-88685eeb1dca" target="3f71fff0-7b6c-40f6-9a61-e90592a704ed">
+        <typeArrow href="w.xmi#35cca6bc-1c81-42c5-8a96-7b7b96bdf8ea"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="a8dcd1c3-a54e-41b5-a93a-4d9f69434396" name="n0" outgoings="e42a13b8-9be4-4146-aa8e-0171eadae8e5">
+        <typeNode href="w.xmi#3aa78c0e-5877-49c4-bbe2-0b702ae2cad1"/>
+      </nodes>
+      <nodes id="5e8e1bca-b734-4132-855f-0d95470f9d4d" name="n1" incomings="e42a13b8-9be4-4146-aa8e-0171eadae8e5">
+        <typeNode href="w.xmi#3362c442-c5f6-4b8a-a900-d9875f418557"/>
+      </nodes>
+      <arrows id="e42a13b8-9be4-4146-aa8e-0171eadae8e5" name="e0" source="a8dcd1c3-a54e-41b5-a93a-4d9f69434396" target="5e8e1bca-b734-4132-855f-0d95470f9d4d">
+        <typeArrow href="w.xmi#dfdb967c-c3f7-4b83-9d5d-ce21fea8d9d1"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="96573d8d-9a65-4dc4-a043-4c86e38b35b3" name="n0" outgoings="e2053b27-14da-4acb-80e2-d9a55b4a03a9">
+        <typeNode href="w.xmi#9de17b96-7755-489f-8fb9-4fc6226ffd54"/>
+      </nodes>
+      <nodes id="005a72e5-8127-4a66-a80f-8917a56054d9" name="n1" incomings="e2053b27-14da-4acb-80e2-d9a55b4a03a9">
+        <typeNode href="w.xmi#3362c442-c5f6-4b8a-a900-d9875f418557"/>
+      </nodes>
+      <arrows id="e2053b27-14da-4acb-80e2-d9a55b4a03a9" name="e0" source="96573d8d-9a65-4dc4-a043-4c86e38b35b3" target="005a72e5-8127-4a66-a80f-8917a56054d9">
+        <typeArrow href="w.xmi#12db690a-9c6d-4c58-97cc-795bffb9c00d"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="de98dee3-3424-4bd0-be23-61a07572a8e7" name="n0" outgoings="1ca33da4-cfb7-4fe5-8447-67ad62922c25">
+        <typeNode href="w.xmi#9de17b96-7755-489f-8fb9-4fc6226ffd54"/>
+      </nodes>
+      <nodes id="a9e6f886-261d-4d63-a8ba-f6ffa7015020" name="n1" incomings="1ca33da4-cfb7-4fe5-8447-67ad62922c25">
+        <typeNode href="w.xmi#29f73fde-88f1-42a7-88d5-565d92c57366"/>
+      </nodes>
+      <arrows id="1ca33da4-cfb7-4fe5-8447-67ad62922c25" name="e0" source="de98dee3-3424-4bd0-be23-61a07572a8e7" target="a9e6f886-261d-4d63-a8ba-f6ffa7015020">
+        <typeArrow href="w.xmi#97842f7d-b012-4fb8-98bf-e8635144db6a"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="02d0a32d-0b40-4299-8f21-9fd2ec6bc0e9" name="n0" outgoings="d29c397a-c858-4337-b322-16bd838955b3">
+        <typeNode href="w.xmi#6b3f94f6-4c6d-4234-810e-629813e1eb13"/>
+      </nodes>
+      <nodes id="a0ad4cf2-9068-4c8d-a792-d8b01b8f2e76" name="n1" incomings="d29c397a-c858-4337-b322-16bd838955b3">
+        <typeNode href="w.xmi#f075238c-cc52-47c2-b0b4-ae9ca7e176b8"/>
+      </nodes>
+      <arrows id="d29c397a-c858-4337-b322-16bd838955b3" name="e0" source="02d0a32d-0b40-4299-8f21-9fd2ec6bc0e9" target="a0ad4cf2-9068-4c8d-a792-d8b01b8f2e76">
+        <typeArrow href="w.xmi#f91f2572-1010-45c4-8245-2293e90177d0"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="750b739b-251d-42db-a362-4d1065831ca2" name="n0" outgoings="b4c39c66-85dc-4020-a7ea-8a47c1fc6cf0">
+        <typeNode href="w.xmi#cb7fe5cd-710b-40f0-8039-d6d7a8af832e"/>
+      </nodes>
+      <nodes id="26c53c8f-2143-4ad9-985b-c3908910f1f3" name="n1" incomings="b4c39c66-85dc-4020-a7ea-8a47c1fc6cf0">
+        <typeNode href="w.xmi#3362c442-c5f6-4b8a-a900-d9875f418557"/>
+      </nodes>
+      <arrows id="b4c39c66-85dc-4020-a7ea-8a47c1fc6cf0" name="e0" source="750b739b-251d-42db-a362-4d1065831ca2" target="26c53c8f-2143-4ad9-985b-c3908910f1f3">
+        <typeArrow href="w.xmi#a30e953c-988e-44ec-9f68-04e79e24a8bc"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="bf4fefe6-c063-42fc-b91d-3d02ad641896" name="n0" outgoings="206a2efb-e0f4-4539-b780-a029aee26dda">
+        <typeNode href="w.xmi#cb7fe5cd-710b-40f0-8039-d6d7a8af832e"/>
+      </nodes>
+      <nodes id="9e59aa2e-2ef9-453d-94b2-d529ed5a429c" name="n1" incomings="206a2efb-e0f4-4539-b780-a029aee26dda">
+        <typeNode href="w.xmi#511a6394-9988-4352-b466-c9fcaf1b9975"/>
+      </nodes>
+      <arrows id="206a2efb-e0f4-4539-b780-a029aee26dda" name="e0" source="bf4fefe6-c063-42fc-b91d-3d02ad641896" target="9e59aa2e-2ef9-453d-94b2-d529ed5a429c">
+        <typeArrow href="w.xmi#6e7c40a8-8914-4d2d-9079-099061e917be"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="d65f5fd7-6482-4cd6-8830-29c2900b2a2e" name="n0" outgoings="bb46aa4a-c4cf-4954-b7c1-b04481174460">
+        <typeNode href="w.xmi#1e7b2f79-cc2f-45f6-8bbd-4786c8d77611"/>
+      </nodes>
+      <nodes id="568488c3-6d5b-44b8-8555-ce3217dea10f" name="n1" incomings="bb46aa4a-c4cf-4954-b7c1-b04481174460">
+        <typeNode href="w.xmi#3e2385a4-e56e-425a-b64a-a8212bf8dd62"/>
+      </nodes>
+      <arrows id="bb46aa4a-c4cf-4954-b7c1-b04481174460" name="e0" source="d65f5fd7-6482-4cd6-8830-29c2900b2a2e" target="568488c3-6d5b-44b8-8555-ce3217dea10f">
+        <typeArrow href="w.xmi#89f9b938-74bd-4763-9014-acfd8cbca76c"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="819cd464-7475-4d82-ac33-40ecfe704686" name="n0" outgoings="c9f0e364-0e92-4982-aa7a-003137d53cb8">
+        <typeNode href="w.xmi#1e7b2f79-cc2f-45f6-8bbd-4786c8d77611"/>
+      </nodes>
+      <nodes id="613d7dc3-86d0-4860-b76c-2517ef60a191" name="n1" incomings="c9f0e364-0e92-4982-aa7a-003137d53cb8">
+        <typeNode href="w.xmi#64ec3ce3-56ff-43ab-8db1-3b8bb5c34871"/>
+      </nodes>
+      <arrows id="c9f0e364-0e92-4982-aa7a-003137d53cb8" name="e0" source="819cd464-7475-4d82-ac33-40ecfe704686" target="613d7dc3-86d0-4860-b76c-2517ef60a191">
+        <typeArrow href="w.xmi#99e147d1-1193-4ab9-ad54-320a284f633e"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="5b12c77e-bb11-473b-a472-bf8a004b0269" name="n0" outgoings="2a3fdbc3-5790-49bf-bbc0-f86e16bb7927">
+        <typeNode href="w.xmi#64ec3ce3-56ff-43ab-8db1-3b8bb5c34871"/>
+      </nodes>
+      <nodes id="0cb79ef5-7e13-4e20-8d1c-6c8fd9a0dd94" name="n1" incomings="2a3fdbc3-5790-49bf-bbc0-f86e16bb7927">
+        <typeNode href="w.xmi#da7ee3ad-6714-4e0c-bb6b-fe2b956ed1de"/>
+      </nodes>
+      <arrows id="2a3fdbc3-5790-49bf-bbc0-f86e16bb7927" name="e0" source="5b12c77e-bb11-473b-a472-bf8a004b0269" target="0cb79ef5-7e13-4e20-8d1c-6c8fd9a0dd94">
+        <typeArrow href="w.xmi#71c7d75b-2497-4239-b3af-d6708c3124a0"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="85063d39-23fe-4c47-89b9-1af0d2dac50c" name="n0" outgoings="f75b67be-844b-460a-b7ff-7ced24e778f6">
+        <typeNode href="w.xmi#64ec3ce3-56ff-43ab-8db1-3b8bb5c34871"/>
+      </nodes>
+      <nodes id="dd71a2a4-2fc7-428c-8d40-c1a58b10d1ed" name="n1" incomings="f75b67be-844b-460a-b7ff-7ced24e778f6">
+        <typeNode href="w.xmi#f7d55798-5218-4d50-9c54-04fa8f9ee02b"/>
+      </nodes>
+      <arrows id="f75b67be-844b-460a-b7ff-7ced24e778f6" name="e0" source="85063d39-23fe-4c47-89b9-1af0d2dac50c" target="dd71a2a4-2fc7-428c-8d40-c1a58b10d1ed">
+        <typeArrow href="w.xmi#1d786cd6-3dfc-4e81-9e4c-3f2b3912aead"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="3dea3bc4-eb55-4082-8515-218d318e5e4f" name="n0" outgoings="c97d6c1d-4516-4731-bcbb-6737a58b00cb">
+        <typeNode href="w.xmi#64ec3ce3-56ff-43ab-8db1-3b8bb5c34871"/>
+      </nodes>
+      <nodes id="f61d3c84-364e-4b7f-baa6-ebda324f2af2" name="n1" incomings="c97d6c1d-4516-4731-bcbb-6737a58b00cb">
+        <typeNode href="w.xmi#aa76d568-3fa9-41c8-a8f0-8d070e9b1597"/>
+      </nodes>
+      <arrows id="c97d6c1d-4516-4731-bcbb-6737a58b00cb" name="e0" source="3dea3bc4-eb55-4082-8515-218d318e5e4f" target="f61d3c84-364e-4b7f-baa6-ebda324f2af2">
+        <typeArrow href="w.xmi#dfe56f69-9808-487c-8a55-13bea9444ef2"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+  <core:Specification>
+    <graph>
+      <type href="w.xmi#//@graph"/>
+      <nodes id="af3671e6-b87a-4f84-9455-7077b2981e90" name="n0" outgoings="1c48e465-2905-4800-b05f-ce0fd4037f0a">
+        <typeNode href="w.xmi#64ec3ce3-56ff-43ab-8db1-3b8bb5c34871"/>
+      </nodes>
+      <nodes id="856f87cd-f5cc-4303-90f5-25b63588df39" name="n1" incomings="1c48e465-2905-4800-b05f-ce0fd4037f0a">
+        <typeNode href="w.xmi#d9a78a5c-d325-475a-9bac-9dcfc30788c7"/>
+      </nodes>
+      <arrows id="1c48e465-2905-4800-b05f-ce0fd4037f0a" name="e0" source="af3671e6-b87a-4f84-9455-7077b2981e90" target="856f87cd-f5cc-4303-90f5-25b63588df39">
+        <typeArrow href="w.xmi#4a57cd19-6568-43b2-9a3c-fd30c653aeb8"/>
+      </arrows>
+    </graph>
+    <type href="w.xmi#/"/>
+  </core:Specification>
+</xmi:XMI>

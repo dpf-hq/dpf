@@ -214,13 +214,13 @@
           <nameOffset offset="10 -3" len="16"/>
         </dArrows>
         <dArrows id="f971010b-14f9-44b1-b5d6-f88ed503dac5" arrow="cf994d71-a8d3-48e1-9009-15cd32149928" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="d4c2772a-589d-4873-a747-4def00a3b651">
-          <nameOffset offset="10 -3" len="16"/>
+          <nameOffset offset="87 -18" len="206"/>
         </dArrows>
         <dArrows id="5ba6dc81-1e8f-445e-b7a8-69cf3f6cf253" arrow="cdd7c202-7a6a-4755-90ec-ed911c87a26f" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="1ad68ded-3e7e-409f-8c2e-a57c09a3baf0">
-          <nameOffset offset="10 -3" len="16"/>
+          <nameOffset offset="112 -11" len="211"/>
         </dArrows>
         <dArrows id="cfa54dcd-bb6d-4bd7-91a2-e511ae855634" arrow="306a8320-c023-4468-ab6f-3eea0c01494f" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="88c215a3-347f-49d2-8726-1175f625846e">
-          <nameOffset offset="10 -3" len="16"/>
+          <nameOffset offset="103 16" len="176"/>
         </dArrows>
       </dGraph>
       <visualization type="Composed"/>
@@ -367,7 +367,7 @@
         <arrows id="1b2f796e-0bae-42a2-8ff8-44610e7e3d88" name="XY2" source="ba81f1be-2886-46eb-833c-b1c53f7feeeb" target="f2bb4763-3349-4775-9295-3dfaf3ab09e2"/>
         <arrows id="85b187e8-ecd9-4dce-9086-ca647649e6c2" name="XY3" source="ba81f1be-2886-46eb-833c-b1c53f7feeeb" target="ac82994f-54ee-4296-a798-e2dce6a8c327"/>
       </shape>
-      <validator type="ALLOY" validator="all x:$X$ | let e1 = (some e : $XY1$ | e.src = x), &#xA;e2 = (some e : $XY2$ | e.src = x), &#xA;e3 = (some e : $XY3$ | e.src = x)|&#xA;not (e1 and e2) and not (e1 and e3) and not (e2 and e3) and (e1 or e2 or e3)"/>
+      <validator type="ALLOY" validator="all x:$X$ | let e1 = (some e : $XY1$ | e.src = x), &#xD;&#xA;e2 = (some e : $XY2$ | e.src = x), &#xD;&#xA;e3 = (some e : $XY3$ | e.src = x)|&#xD;&#xA;not (e1 and e2) and not (e1 and e3) and not (e2 and e3)"/>
     </predicates>
     <predicates id="3c3a5963-99e5-4a17-87ee-ccfa9c746384" symbol="special">
       <shape>
@@ -420,16 +420,16 @@
     <predicates id="114ce658-f03a-4644-9ff6-96ec11914026" symbol="xor4">
       <shape>
         <nodes id="d1270525-16b5-4ae5-80dc-808d110c923a" name="X" outgoings="5d7aee22-abbb-40c2-a05c-51394c5b9257 cf994d71-a8d3-48e1-9009-15cd32149928 cdd7c202-7a6a-4755-90ec-ed911c87a26f 306a8320-c023-4468-ab6f-3eea0c01494f"/>
-        <nodes id="071a63f2-c7e3-496c-8b5e-49af545535db" name="Node0" incomings="5d7aee22-abbb-40c2-a05c-51394c5b9257"/>
-        <nodes id="3d659460-f054-410f-8829-5f88931403a6" name="Node1" incomings="cf994d71-a8d3-48e1-9009-15cd32149928"/>
-        <nodes id="9e936878-0f81-4fb1-a755-5c9ad572de17" name="Node2" incomings="cdd7c202-7a6a-4755-90ec-ed911c87a26f"/>
-        <nodes id="f855c05a-6d30-4310-89bc-bc52708f2c84" name="Node3" incomings="306a8320-c023-4468-ab6f-3eea0c01494f"/>
-        <arrows id="5d7aee22-abbb-40c2-a05c-51394c5b9257" name="Y1" source="d1270525-16b5-4ae5-80dc-808d110c923a" target="071a63f2-c7e3-496c-8b5e-49af545535db"/>
-        <arrows id="cf994d71-a8d3-48e1-9009-15cd32149928" name="Arrow1" source="d1270525-16b5-4ae5-80dc-808d110c923a" target="3d659460-f054-410f-8829-5f88931403a6"/>
-        <arrows id="cdd7c202-7a6a-4755-90ec-ed911c87a26f" name="Arrow2" source="d1270525-16b5-4ae5-80dc-808d110c923a" target="9e936878-0f81-4fb1-a755-5c9ad572de17"/>
-        <arrows id="306a8320-c023-4468-ab6f-3eea0c01494f" name="Arrow3" source="d1270525-16b5-4ae5-80dc-808d110c923a" target="f855c05a-6d30-4310-89bc-bc52708f2c84"/>
+        <nodes id="071a63f2-c7e3-496c-8b5e-49af545535db" name="Y1" incomings="5d7aee22-abbb-40c2-a05c-51394c5b9257"/>
+        <nodes id="3d659460-f054-410f-8829-5f88931403a6" name="Y2" incomings="cf994d71-a8d3-48e1-9009-15cd32149928"/>
+        <nodes id="9e936878-0f81-4fb1-a755-5c9ad572de17" name="Y3" incomings="cdd7c202-7a6a-4755-90ec-ed911c87a26f"/>
+        <nodes id="f855c05a-6d30-4310-89bc-bc52708f2c84" name="Y4" incomings="306a8320-c023-4468-ab6f-3eea0c01494f"/>
+        <arrows id="5d7aee22-abbb-40c2-a05c-51394c5b9257" name="XY1" source="d1270525-16b5-4ae5-80dc-808d110c923a" target="071a63f2-c7e3-496c-8b5e-49af545535db"/>
+        <arrows id="cf994d71-a8d3-48e1-9009-15cd32149928" name="XY2" source="d1270525-16b5-4ae5-80dc-808d110c923a" target="3d659460-f054-410f-8829-5f88931403a6"/>
+        <arrows id="cdd7c202-7a6a-4755-90ec-ed911c87a26f" name="XY3" source="d1270525-16b5-4ae5-80dc-808d110c923a" target="9e936878-0f81-4fb1-a755-5c9ad572de17"/>
+        <arrows id="306a8320-c023-4468-ab6f-3eea0c01494f" name="XY4" source="d1270525-16b5-4ae5-80dc-808d110c923a" target="f855c05a-6d30-4310-89bc-bc52708f2c84"/>
       </shape>
-      <validator type="ALLOY" validator=""/>
+      <validator type="ALLOY" validator="all x:$X$ | let e1 = (some e : $XY1$ | e.src = x), &#xD;&#xA;e2 = (some e : $XY2$ | e.src = x), &#xD;&#xA;e3 = (some e : $XY3$ | e.src = x),&#xD;&#xA;e4 = (some e : $XY4$ | e.src = x)|&#xD;&#xA;not (e1 and e2) and not (e1 and e3) and not (e2 and e3) and not (e1 and e4)   and not (e2 and e4) and not (e3 and e4)"/>
     </predicates>
     <predicates id="02fb1287-a33e-4866-9da8-f1ca69c26a28" symbol="@system">
       <shape>

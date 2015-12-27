@@ -16,13 +16,13 @@
     <nodes id="ced95f24-957c-41a9-8613-202f5f00ec06" name="Collect Blood" outgoings="90d432e4-4b28-4467-aa0e-5a1e32c1f343 fc998edc-f918-4771-ab4a-0c8426fc15f2" incomings="35cca6bc-1c81-42c5-8a96-7b7b96bdf8ea 20f1d0ae-2cf3-4e67-9632-6f0a3b77b0d5" constraints="f2d28709-0ab7-4b34-a1ff-becc80176fa0 9817c7cd-0875-4ca6-8219-0a4f6540d351 47098cd7-60a1-42f3-8b88-12b525257f31 c8cdc759-35fd-4540-83bd-debb60437803 299ee328-e6e6-49c8-a0ec-55c81f8ada3f 6df5bd91-1b01-40fa-9dae-21e7794ee8da 501a5869-32b0-41cf-b4e6-7a8c8664d343 51e6b675-14b3-452d-9b9d-ab8f34b0add5 8d88c750-50ec-44ac-9d5a-d3f8734bd5cb">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
-    <nodes id="f7d55798-5218-4d50-9c54-04fa8f9ee02b" name="Measure temperature, blood pressure and pulse" outgoings="03fd7edb-f022-42c8-b441-c4886209a5d2 7fd9e824-1e21-4096-adce-a8ade219db0b" incomings="1d786cd6-3dfc-4e81-9e4c-3f2b3912aead" constraints="f027acdb-b847-4388-abcf-bc7c174c785f 6e9b74f6-e474-495a-b905-359792f077ac f7bae386-4004-496d-8b1f-83bced897f85 dce3a3ed-2f18-4b1d-a4cf-617c1467bccd 03aa3bed-d1de-46ea-a3eb-137bf2af924d b779f6af-4f59-45ab-b3b2-7d6d3985e761 daf26d39-b617-4bde-b863-a24267b87d66">
+    <nodes id="f7d55798-5218-4d50-9c54-04fa8f9ee02b" name="Measure temperature, blood pressure and pulse" outgoings="03fd7edb-f022-42c8-b441-c4886209a5d2 7fd9e824-1e21-4096-adce-a8ade219db0b" incomings="1d786cd6-3dfc-4e81-9e4c-3f2b3912aead" constraints="f027acdb-b847-4388-abcf-bc7c174c785f 6e9b74f6-e474-495a-b905-359792f077ac f7bae386-4004-496d-8b1f-83bced897f85 daf26d39-b617-4bde-b863-a24267b87d66 b8df933c-339e-4634-a63a-8c652cca413a 43978d1f-52fb-42c5-ba48-d09c966b99f1 28774f4a-4cd1-497e-92cb-5d2ff29ffebf">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
-    <nodes id="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" name="perform transfusion" outgoings="71c7d75b-2497-4239-b3af-d6708c3124a0 4a57cd19-6568-43b2-9a3c-fd30c653aeb8 dfe56f69-9808-487c-8a55-13bea9444ef2 1d786cd6-3dfc-4e81-9e4c-3f2b3912aead" incomings="99e147d1-1193-4ab9-ad54-320a284f633e 7fd9e824-1e21-4096-adce-a8ade219db0b" constraints="5adfccd7-05c0-424a-a7f0-6a6d2e1e3fd4 b55426dc-3433-4f34-973e-4c2e4419e883 77e55820-2281-4c96-8001-63ae1ccaebeb 9817c7cd-0875-4ca6-8219-0a4f6540d351 03aa3bed-d1de-46ea-a3eb-137bf2af924d b779f6af-4f59-45ab-b3b2-7d6d3985e761 daf26d39-b617-4bde-b863-a24267b87d66">
+    <nodes id="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" name="perform transfusion" outgoings="71c7d75b-2497-4239-b3af-d6708c3124a0 4a57cd19-6568-43b2-9a3c-fd30c653aeb8 dfe56f69-9808-487c-8a55-13bea9444ef2 1d786cd6-3dfc-4e81-9e4c-3f2b3912aead" incomings="99e147d1-1193-4ab9-ad54-320a284f633e 7fd9e824-1e21-4096-adce-a8ade219db0b" constraints="5adfccd7-05c0-424a-a7f0-6a6d2e1e3fd4 b55426dc-3433-4f34-973e-4c2e4419e883 77e55820-2281-4c96-8001-63ae1ccaebeb 9817c7cd-0875-4ca6-8219-0a4f6540d351 daf26d39-b617-4bde-b863-a24267b87d66 b8df933c-339e-4634-a63a-8c652cca413a 43978d1f-52fb-42c5-ba48-d09c966b99f1 28774f4a-4cd1-497e-92cb-5d2ff29ffebf">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
-    <nodes id="da7ee3ad-6714-4e0c-bb6b-fe2b956ed1de" name="Identify nurse, log transfusion" outgoings="1278127c-73a2-4010-b38d-2154a7843621" incomings="71c7d75b-2497-4239-b3af-d6708c3124a0" constraints="e78be288-dd3b-491a-bc52-0be51149b505 b55426dc-3433-4f34-973e-4c2e4419e883 6d8a96e1-4a6f-4060-b0a7-5c02e33e7aeb b779f6af-4f59-45ab-b3b2-7d6d3985e761">
+    <nodes id="da7ee3ad-6714-4e0c-bb6b-fe2b956ed1de" name="Identify nurse, log transfusion" outgoings="1278127c-73a2-4010-b38d-2154a7843621" incomings="71c7d75b-2497-4239-b3af-d6708c3124a0" constraints="e78be288-dd3b-491a-bc52-0be51149b505 b55426dc-3433-4f34-973e-4c2e4419e883 6d8a96e1-4a6f-4060-b0a7-5c02e33e7aeb 43978d1f-52fb-42c5-ba48-d09c966b99f1">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
     <nodes id="0edfdf20-1bf9-445b-aa2d-ed703e9160e4" name="Scan Nurse Card" outgoings="b4f2a966-1d04-4275-a4d6-74f13ea17493" incomings="351b3290-422c-4b9d-8666-bfca37c42905 5ece12ad-312c-4c3d-8fd9-1a8caa99cc9a" constraints="06ce7d26-c4e2-45e3-b836-c3d3e7858d35 72271463-acf7-4313-aafb-290fe47cb202 245a6b45-5955-4ab6-9e88-79bcb88b07dd 0ba8eedb-bd12-42cb-b170-0524eaf94f0a 1314db70-54dd-4cf2-9bdb-cdcbede15489">
@@ -76,19 +76,19 @@
     <nodes id="3aa78c0e-5877-49c4-bbe2-0b702ae2cad1" name="Send Sample" outgoings="dfdb967c-c3f7-4b83-9d5d-ce21fea8d9d1 20f1d0ae-2cf3-4e67-9632-6f0a3b77b0d5" incomings="18847377-c1f2-4d7c-995b-51a4203193fb" constraints="e715be55-f657-488b-b6ee-bc680672eca0 d79036bf-fe2d-4385-a547-12a8c61e8c3b 31bb346e-3a70-4877-8072-3c58e6b86ed1 d2e36894-22fb-4c48-926a-94047dc9f8f6 35d03344-aed5-46c7-9013-90cc0343ce7f 501a5869-32b0-41cf-b4e6-7a8c8664d343 8d88c750-50ec-44ac-9d5a-d3f8734bd5cb 2ff88a01-5c4b-4d5c-8f93-1caeff461350">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
-    <nodes id="d9a78a5c-d325-475a-9bac-9dcfc30788c7" name="Scan Blood Product" outgoings="64f52dd1-58aa-416c-9adb-b6a1f8ceb65b" incomings="90d432e4-4b28-4467-aa0e-5a1e32c1f343 4a57cd19-6568-43b2-9a3c-fd30c653aeb8 c4f4781a-e5f5-4f07-a860-c06e8408d253" constraints="f5756968-75a0-4d4c-96a3-1b2a72933d56 2b98d957-fc01-49f0-a86b-ad1f83c197b4 9817c7cd-0875-4ca6-8219-0a4f6540d351 c8cdc759-35fd-4540-83bd-debb60437803 299ee328-e6e6-49c8-a0ec-55c81f8ada3f b779f6af-4f59-45ab-b3b2-7d6d3985e761 51e6b675-14b3-452d-9b9d-ab8f34b0add5">
+    <nodes id="d9a78a5c-d325-475a-9bac-9dcfc30788c7" name="Scan Blood Product" outgoings="64f52dd1-58aa-416c-9adb-b6a1f8ceb65b" incomings="90d432e4-4b28-4467-aa0e-5a1e32c1f343 4a57cd19-6568-43b2-9a3c-fd30c653aeb8 c4f4781a-e5f5-4f07-a860-c06e8408d253" constraints="f5756968-75a0-4d4c-96a3-1b2a72933d56 2b98d957-fc01-49f0-a86b-ad1f83c197b4 9817c7cd-0875-4ca6-8219-0a4f6540d351 c8cdc759-35fd-4540-83bd-debb60437803 299ee328-e6e6-49c8-a0ec-55c81f8ada3f 51e6b675-14b3-452d-9b9d-ab8f34b0add5 160ec090-7902-4c73-a98d-6f5b463b7871 43978d1f-52fb-42c5-ba48-d09c966b99f1">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
-    <nodes id="1e7b2f79-cc2f-45f6-8bbd-4786c8d77611" name="Verify Blood Product" outgoings="89f9b938-74bd-4763-9014-acfd8cbca76c 99e147d1-1193-4ab9-ad54-320a284f633e" incomings="64f52dd1-58aa-416c-9adb-b6a1f8ceb65b" constraints="6e9b74f6-e474-495a-b905-359792f077ac 0910439f-dd42-4e91-a6d7-6607b4f25970 a7665042-67f3-4313-96b3-5045219da23c dce3a3ed-2f18-4b1d-a4cf-617c1467bccd 2b98d957-fc01-49f0-a86b-ad1f83c197b4 daf26d39-b617-4bde-b863-a24267b87d66">
+    <nodes id="1e7b2f79-cc2f-45f6-8bbd-4786c8d77611" name="Verify Blood Product" outgoings="89f9b938-74bd-4763-9014-acfd8cbca76c 99e147d1-1193-4ab9-ad54-320a284f633e" incomings="64f52dd1-58aa-416c-9adb-b6a1f8ceb65b" constraints="6e9b74f6-e474-495a-b905-359792f077ac 0910439f-dd42-4e91-a6d7-6607b4f25970 a7665042-67f3-4313-96b3-5045219da23c 2b98d957-fc01-49f0-a86b-ad1f83c197b4 daf26d39-b617-4bde-b863-a24267b87d66">
       <typeNode href="wm.xmi#266e1f3f-51ed-44c8-a1e9-abc779055975"/>
     </nodes>
     <nodes id="3e2385a4-e56e-425a-b64a-a8212bf8dd62" name="Stop Transfusion, Contact AIT" incomings="89f9b938-74bd-4763-9014-acfd8cbca76c" constraints="6e9b74f6-e474-495a-b905-359792f077ac a7665042-67f3-4313-96b3-5045219da23c">
       <typeNode href="wm.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
     </nodes>
-    <nodes id="f731d862-9267-4623-ac07-842f8a112cd0" name="Store Patient Condition" incomings="03fd7edb-f022-42c8-b441-c4886209a5d2" constraints="292a5132-562b-444c-b81f-07739fa677aa f7bae386-4004-496d-8b1f-83bced897f85">
+    <nodes id="f731d862-9267-4623-ac07-842f8a112cd0" name="Store Patient Condition" incomings="03fd7edb-f022-42c8-b441-c4886209a5d2" constraints="292a5132-562b-444c-b81f-07739fa677aa f7bae386-4004-496d-8b1f-83bced897f85 b8df933c-339e-4634-a63a-8c652cca413a">
       <typeNode href="wm.xmi#266e1f3f-51ed-44c8-a1e9-abc779055975"/>
     </nodes>
-    <nodes id="aa76d568-3fa9-41c8-a8f0-8d070e9b1597" name="Register Reaction" incomings="dfe56f69-9808-487c-8a55-13bea9444ef2" constraints="cb19114b-1374-481e-8da9-9c35794e718e 77e55820-2281-4c96-8001-63ae1ccaebeb b779f6af-4f59-45ab-b3b2-7d6d3985e761">
+    <nodes id="aa76d568-3fa9-41c8-a8f0-8d070e9b1597" name="Register Reaction" incomings="dfe56f69-9808-487c-8a55-13bea9444ef2" constraints="cb19114b-1374-481e-8da9-9c35794e718e 77e55820-2281-4c96-8001-63ae1ccaebeb 43978d1f-52fb-42c5-ba48-d09c966b99f1">
       <typeNode href="wm.xmi#266e1f3f-51ed-44c8-a1e9-abc779055975"/>
     </nodes>
     <nodes id="c7213f50-ecce-4d9d-8d03-4a944408fe39" name="Store Transfusion" incomings="1278127c-73a2-4010-b38d-2154a7843621" constraints="078353a6-be8f-4ec4-9308-e1405d1fe2db 6d8a96e1-4a6f-4060-b0a7-5c02e33e7aeb">
@@ -112,7 +112,7 @@
     <arrows id="6522c6cf-6f5d-44b0-9d0b-93b6da79c07c" name="" source="4343c67a-9ad3-4634-8b7d-8e09c7fbf359" target="9de17b96-7755-489f-8fb9-4fc6226ffd54" constraints="c1e2532d-ac1a-4dbf-b761-5d5eb58ef9e4 109dba8f-9f1d-4294-88cf-deb29389d3ef">
       <typeArrow href="wm.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
     </arrows>
-    <arrows id="71c7d75b-2497-4239-b3af-d6708c3124a0" name="" source="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" target="da7ee3ad-6714-4e0c-bb6b-fe2b956ed1de" constraints="b55426dc-3433-4f34-973e-4c2e4419e883 b779f6af-4f59-45ab-b3b2-7d6d3985e761">
+    <arrows id="71c7d75b-2497-4239-b3af-d6708c3124a0" name="" source="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" target="da7ee3ad-6714-4e0c-bb6b-fe2b956ed1de" constraints="b55426dc-3433-4f34-973e-4c2e4419e883 43978d1f-52fb-42c5-ba48-d09c966b99f1">
       <typeArrow href="wm.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
     </arrows>
     <arrows id="90d432e4-4b28-4467-aa0e-5a1e32c1f343" name="out time less than 4h" source="ced95f24-957c-41a9-8613-202f5f00ec06" target="d9a78a5c-d325-475a-9bac-9dcfc30788c7" constraints="9817c7cd-0875-4ca6-8219-0a4f6540d351 c8cdc759-35fd-4540-83bd-debb60437803 299ee328-e6e6-49c8-a0ec-55c81f8ada3f">
@@ -187,13 +187,13 @@
     <arrows id="89f9b938-74bd-4763-9014-acfd8cbca76c" name="The blood Product is not for the patient" source="1e7b2f79-cc2f-45f6-8bbd-4786c8d77611" target="3e2385a4-e56e-425a-b64a-a8212bf8dd62" constraints="6e9b74f6-e474-495a-b905-359792f077ac a7665042-67f3-4313-96b3-5045219da23c">
       <typeArrow href="wm.xmi#09816f1d-ca1a-491c-a454-57749fa9927e"/>
     </arrows>
-    <arrows id="99e147d1-1193-4ab9-ad54-320a284f633e" name="The blood is for the patient" source="1e7b2f79-cc2f-45f6-8bbd-4786c8d77611" target="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" constraints="6e9b74f6-e474-495a-b905-359792f077ac dce3a3ed-2f18-4b1d-a4cf-617c1467bccd daf26d39-b617-4bde-b863-a24267b87d66">
+    <arrows id="99e147d1-1193-4ab9-ad54-320a284f633e" name="The blood is for the patient" source="1e7b2f79-cc2f-45f6-8bbd-4786c8d77611" target="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" constraints="6e9b74f6-e474-495a-b905-359792f077ac daf26d39-b617-4bde-b863-a24267b87d66">
       <typeArrow href="wm.xmi#422d4560-0458-4308-8953-fc4bb69505a5"/>
     </arrows>
-    <arrows id="03fd7edb-f022-42c8-b441-c4886209a5d2" name="(Patient{temp, pressure_high, pressure_low, pulse})" source="f7d55798-5218-4d50-9c54-04fa8f9ee02b" target="f731d862-9267-4623-ac07-842f8a112cd0" constraints="f7bae386-4004-496d-8b1f-83bced897f85">
+    <arrows id="03fd7edb-f022-42c8-b441-c4886209a5d2" name="(Patient{temp, pressure_high, pressure_low, pulse})" source="f7d55798-5218-4d50-9c54-04fa8f9ee02b" target="f731d862-9267-4623-ac07-842f8a112cd0" constraints="f7bae386-4004-496d-8b1f-83bced897f85 b8df933c-339e-4634-a63a-8c652cca413a">
       <typeArrow href="wm.xmi#e36d3c66-9cd8-450d-892d-4f14d2057a27"/>
     </arrows>
-    <arrows id="4a57cd19-6568-43b2-9a3c-fd30c653aeb8" name="More blood" source="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" target="d9a78a5c-d325-475a-9bac-9dcfc30788c7" constraints="9817c7cd-0875-4ca6-8219-0a4f6540d351 b779f6af-4f59-45ab-b3b2-7d6d3985e761">
+    <arrows id="4a57cd19-6568-43b2-9a3c-fd30c653aeb8" name="More blood" source="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" target="d9a78a5c-d325-475a-9bac-9dcfc30788c7" constraints="9817c7cd-0875-4ca6-8219-0a4f6540d351 43978d1f-52fb-42c5-ba48-d09c966b99f1">
       <typeArrow href="wm.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
     </arrows>
     <arrows id="b4f2a966-1d04-4275-a4d6-74f13ea17493" name="(Barcode)" source="0edfdf20-1bf9-445b-aa2d-ed703e9160e4" target="3120873c-c197-4389-baae-3ebb6dd203dc" constraints="72271463-acf7-4313-aafb-290fe47cb202">
@@ -202,7 +202,7 @@
     <arrows id="a30e953c-988e-44ec-9f68-04e79e24a8bc" name="" source="cb7fe5cd-710b-40f0-8039-d6d7a8af832e" target="3362c442-c5f6-4b8a-a900-d9875f418557" constraints="d2e36894-22fb-4c48-926a-94047dc9f8f6 5e6d9e1b-23f8-49b3-85a2-b569260bae1b">
       <typeArrow href="wm.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
     </arrows>
-    <arrows id="dfe56f69-9808-487c-8a55-13bea9444ef2" name="(Reaction{type})" source="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" target="aa76d568-3fa9-41c8-a8f0-8d070e9b1597" constraints="77e55820-2281-4c96-8001-63ae1ccaebeb b779f6af-4f59-45ab-b3b2-7d6d3985e761">
+    <arrows id="dfe56f69-9808-487c-8a55-13bea9444ef2" name="(Reaction{type})" source="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" target="aa76d568-3fa9-41c8-a8f0-8d070e9b1597" constraints="77e55820-2281-4c96-8001-63ae1ccaebeb 43978d1f-52fb-42c5-ba48-d09c966b99f1">
       <typeArrow href="wm.xmi#e36d3c66-9cd8-450d-892d-4f14d2057a27"/>
     </arrows>
     <arrows id="1278127c-73a2-4010-b38d-2154a7843621" name="(Transfusion, Nurse)" source="da7ee3ad-6714-4e0c-bb6b-fe2b956ed1de" target="c7213f50-ecce-4d9d-8d03-4a944408fe39" constraints="6d8a96e1-4a6f-4060-b0a7-5c02e33e7aeb">
@@ -229,10 +229,10 @@
     <arrows id="5fe02397-dd65-4e5c-892e-707470ed71aa" name="Samples have not been ordered" source="6c20468f-02ab-4460-a1c4-81cddcbd0f9a" target="511a6394-9988-4352-b466-c9fcaf1b9975" constraints="2a9d48ef-9068-4c37-bcec-38fecbb3bb85 525cbd53-d85d-455a-a1aa-890c3dd51ad3">
       <typeArrow href="wm.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
     </arrows>
-    <arrows id="1d786cd6-3dfc-4e81-9e4c-3f2b3912aead" name="" source="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" target="f7d55798-5218-4d50-9c54-04fa8f9ee02b" constraints="b779f6af-4f59-45ab-b3b2-7d6d3985e761">
+    <arrows id="1d786cd6-3dfc-4e81-9e4c-3f2b3912aead" name="" source="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" target="f7d55798-5218-4d50-9c54-04fa8f9ee02b" constraints="43978d1f-52fb-42c5-ba48-d09c966b99f1 28774f4a-4cd1-497e-92cb-5d2ff29ffebf">
       <typeArrow href="wm.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
     </arrows>
-    <arrows id="7fd9e824-1e21-4096-adce-a8ade219db0b" name="" source="f7d55798-5218-4d50-9c54-04fa8f9ee02b" target="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" constraints="03aa3bed-d1de-46ea-a3eb-137bf2af924d daf26d39-b617-4bde-b863-a24267b87d66">
+    <arrows id="7fd9e824-1e21-4096-adce-a8ade219db0b" name="" source="f7d55798-5218-4d50-9c54-04fa8f9ee02b" target="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" constraints="daf26d39-b617-4bde-b863-a24267b87d66 b8df933c-339e-4634-a63a-8c652cca413a">
       <typeArrow href="wm.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
     </arrows>
     <arrows id="97842f7d-b012-4fb8-98bf-e8635144db6a" name="(Sample Label File*)" source="9de17b96-7755-489f-8fb9-4fc6226ffd54" target="29f73fde-88f1-42a7-88d5-565d92c57366" constraints="67cb4a15-c8d1-499e-b9cc-64553cf6db03">
@@ -901,20 +901,6 @@
       </arrowMapping>
     </mappings>
   </constraints>
-  <constraints id="dce3a3ed-2f18-4b1d-a4cf-617c1467bccd" nodes="1e7b2f79-cc2f-45f6-8bbd-4786c8d77611 f7d55798-5218-4d50-9c54-04fa8f9ee02b" arrows="99e147d1-1193-4ab9-ad54-320a284f633e">
-    <predicate href="platform:/resource/DefaultSpecification.xmi#p-surjective"/>
-    <mappings>
-      <nodeMapping value="1e7b2f79-cc2f-45f6-8bbd-4786c8d77611">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-surjective-node-0"/>
-      </nodeMapping>
-      <nodeMapping value="f7d55798-5218-4d50-9c54-04fa8f9ee02b">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-surjective-node-1"/>
-      </nodeMapping>
-      <arrowMapping value="99e147d1-1193-4ab9-ad54-320a284f633e">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-surjective-edge-0"/>
-      </arrowMapping>
-    </mappings>
-  </constraints>
   <constraints id="2b98d957-fc01-49f0-a86b-ad1f83c197b4" nodes="d9a78a5c-d325-475a-9bac-9dcfc30788c7 1e7b2f79-cc2f-45f6-8bbd-4786c8d77611" arrows="64f52dd1-58aa-416c-9adb-b6a1f8ceb65b">
     <predicate href="platform:/resource/DefaultSpecification.xmi#p-surjective"/>
     <mappings>
@@ -1219,58 +1205,12 @@
       </nodeMapping>
     </mappings>
   </constraints>
-  <constraints id="03aa3bed-d1de-46ea-a3eb-137bf2af924d" nodes="f7d55798-5218-4d50-9c54-04fa8f9ee02b 64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" arrows="7fd9e824-1e21-4096-adce-a8ade219db0b">
-    <predicate href="platform:/resource/DefaultSpecification.xmi#p-surjective"/>
-    <mappings>
-      <nodeMapping value="f7d55798-5218-4d50-9c54-04fa8f9ee02b">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-surjective-node-0"/>
-      </nodeMapping>
-      <nodeMapping value="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-surjective-node-1"/>
-      </nodeMapping>
-      <arrowMapping value="7fd9e824-1e21-4096-adce-a8ade219db0b">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-surjective-edge-0"/>
-      </arrowMapping>
-    </mappings>
-  </constraints>
   <constraints id="d1e117fc-26e8-49c0-afa1-15523766d0eb" nodes="29f73fde-88f1-42a7-88d5-565d92c57366">
     <predicate href="w.sig#3a6a6abd-2cfd-4fc7-92ba-2558635b2bd8"/>
     <mappings>
       <nodeMapping value="29f73fde-88f1-42a7-88d5-565d92c57366">
         <key href="w.sig#49905441-33fc-4c8a-a055-f6d91fac9d9f"/>
       </nodeMapping>
-    </mappings>
-  </constraints>
-  <constraints id="b779f6af-4f59-45ab-b3b2-7d6d3985e761" nodes="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871 d9a78a5c-d325-475a-9bac-9dcfc30788c7 f7d55798-5218-4d50-9c54-04fa8f9ee02b aa76d568-3fa9-41c8-a8f0-8d070e9b1597 da7ee3ad-6714-4e0c-bb6b-fe2b956ed1de" arrows="4a57cd19-6568-43b2-9a3c-fd30c653aeb8 1d786cd6-3dfc-4e81-9e4c-3f2b3912aead dfe56f69-9808-487c-8a55-13bea9444ef2 71c7d75b-2497-4239-b3af-d6708c3124a0">
-    <predicate href="platform:/resource/DefaultSpecification.xmi#p-xor4"/>
-    <mappings>
-      <nodeMapping value="d9a78a5c-d325-475a-9bac-9dcfc30788c7">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-xor4-node-1"/>
-      </nodeMapping>
-      <nodeMapping value="f7d55798-5218-4d50-9c54-04fa8f9ee02b">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-xor4-node-2"/>
-      </nodeMapping>
-      <nodeMapping value="aa76d568-3fa9-41c8-a8f0-8d070e9b1597">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-xor4-node-3"/>
-      </nodeMapping>
-      <nodeMapping value="da7ee3ad-6714-4e0c-bb6b-fe2b956ed1de">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-xor4-node-4"/>
-      </nodeMapping>
-      <nodeMapping value="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-xor4-node-0"/>
-      </nodeMapping>
-      <arrowMapping value="4a57cd19-6568-43b2-9a3c-fd30c653aeb8">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-xor4-edge-0"/>
-      </arrowMapping>
-      <arrowMapping value="1d786cd6-3dfc-4e81-9e4c-3f2b3912aead">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-xor4-edge-1"/>
-      </arrowMapping>
-      <arrowMapping value="dfe56f69-9808-487c-8a55-13bea9444ef2">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-xor4-edge-2"/>
-      </arrowMapping>
-      <arrowMapping value="71c7d75b-2497-4239-b3af-d6708c3124a0">
-        <key href="platform:/resource/DefaultSpecification.xmi#p-xor4-edge-3"/>
-      </arrowMapping>
     </mappings>
   </constraints>
   <constraints id="daf26d39-b617-4bde-b863-a24267b87d66" nodes="f7d55798-5218-4d50-9c54-04fa8f9ee02b 64ec3ce3-56ff-43ab-8db1-3b8bb5c34871 1e7b2f79-cc2f-45f6-8bbd-4786c8d77611" arrows="7fd9e824-1e21-4096-adce-a8ade219db0b 99e147d1-1193-4ab9-ad54-320a284f633e">
@@ -1504,6 +1444,80 @@
       </arrowMapping>
       <arrowMapping value="e4a5233d-ccc4-4017-871b-bd8c28292795">
         <key href="w.sig#36457a74-35bb-4109-b989-cc9d1ae749b4"/>
+      </arrowMapping>
+    </mappings>
+  </constraints>
+  <constraints id="b8df933c-339e-4634-a63a-8c652cca413a" nodes="f7d55798-5218-4d50-9c54-04fa8f9ee02b f731d862-9267-4623-ac07-842f8a112cd0 64ec3ce3-56ff-43ab-8db1-3b8bb5c34871" arrows="03fd7edb-f022-42c8-b441-c4886209a5d2 7fd9e824-1e21-4096-adce-a8ade219db0b">
+    <predicate href="platform:/resource/DefaultSpecification.xmi#p-xor"/>
+    <mappings>
+      <nodeMapping value="f731d862-9267-4623-ac07-842f8a112cd0">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-xor-node-0"/>
+      </nodeMapping>
+      <nodeMapping value="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-xor-node-1"/>
+      </nodeMapping>
+      <nodeMapping value="f7d55798-5218-4d50-9c54-04fa8f9ee02b">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-xor-node-2"/>
+      </nodeMapping>
+      <arrowMapping value="03fd7edb-f022-42c8-b441-c4886209a5d2">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-xor-edge-0"/>
+      </arrowMapping>
+      <arrowMapping value="7fd9e824-1e21-4096-adce-a8ade219db0b">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-xor-edge-1"/>
+      </arrowMapping>
+    </mappings>
+  </constraints>
+  <constraints id="160ec090-7902-4c73-a98d-6f5b463b7871" nodes="d9a78a5c-d325-475a-9bac-9dcfc30788c7" parameters="min:0;max:2">
+    <predicate href="platform:/resource/DefaultSpecification.xmi#p-multiplicity-on-node"/>
+    <mappings>
+      <nodeMapping value="d9a78a5c-d325-475a-9bac-9dcfc30788c7">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-multiplicity-on-node-node-0"/>
+      </nodeMapping>
+    </mappings>
+  </constraints>
+  <constraints id="43978d1f-52fb-42c5-ba48-d09c966b99f1" nodes="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871 da7ee3ad-6714-4e0c-bb6b-fe2b956ed1de aa76d568-3fa9-41c8-a8f0-8d070e9b1597 f7d55798-5218-4d50-9c54-04fa8f9ee02b d9a78a5c-d325-475a-9bac-9dcfc30788c7" arrows="71c7d75b-2497-4239-b3af-d6708c3124a0 dfe56f69-9808-487c-8a55-13bea9444ef2 1d786cd6-3dfc-4e81-9e4c-3f2b3912aead 4a57cd19-6568-43b2-9a3c-fd30c653aeb8">
+    <predicate href="w.sig#114ce658-f03a-4644-9ff6-96ec11914026"/>
+    <mappings>
+      <nodeMapping value="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871">
+        <key href="w.sig#d1270525-16b5-4ae5-80dc-808d110c923a"/>
+      </nodeMapping>
+      <nodeMapping value="aa76d568-3fa9-41c8-a8f0-8d070e9b1597">
+        <key href="w.sig#3d659460-f054-410f-8829-5f88931403a6"/>
+      </nodeMapping>
+      <nodeMapping value="d9a78a5c-d325-475a-9bac-9dcfc30788c7">
+        <key href="w.sig#f855c05a-6d30-4310-89bc-bc52708f2c84"/>
+      </nodeMapping>
+      <nodeMapping value="f7d55798-5218-4d50-9c54-04fa8f9ee02b">
+        <key href="w.sig#9e936878-0f81-4fb1-a755-5c9ad572de17"/>
+      </nodeMapping>
+      <nodeMapping value="da7ee3ad-6714-4e0c-bb6b-fe2b956ed1de">
+        <key href="w.sig#071a63f2-c7e3-496c-8b5e-49af545535db"/>
+      </nodeMapping>
+      <arrowMapping value="71c7d75b-2497-4239-b3af-d6708c3124a0">
+        <key href="w.sig#5d7aee22-abbb-40c2-a05c-51394c5b9257"/>
+      </arrowMapping>
+      <arrowMapping value="dfe56f69-9808-487c-8a55-13bea9444ef2">
+        <key href="w.sig#cf994d71-a8d3-48e1-9009-15cd32149928"/>
+      </arrowMapping>
+      <arrowMapping value="4a57cd19-6568-43b2-9a3c-fd30c653aeb8">
+        <key href="w.sig#306a8320-c023-4468-ab6f-3eea0c01494f"/>
+      </arrowMapping>
+      <arrowMapping value="1d786cd6-3dfc-4e81-9e4c-3f2b3912aead">
+        <key href="w.sig#cdd7c202-7a6a-4755-90ec-ed911c87a26f"/>
+      </arrowMapping>
+    </mappings>
+  </constraints>
+  <constraints id="28774f4a-4cd1-497e-92cb-5d2ff29ffebf" nodes="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871 f7d55798-5218-4d50-9c54-04fa8f9ee02b" arrows="1d786cd6-3dfc-4e81-9e4c-3f2b3912aead">
+    <predicate href="platform:/resource/DefaultSpecification.xmi#p-surjective"/>
+    <mappings>
+      <nodeMapping value="64ec3ce3-56ff-43ab-8db1-3b8bb5c34871">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-surjective-node-0"/>
+      </nodeMapping>
+      <nodeMapping value="f7d55798-5218-4d50-9c54-04fa8f9ee02b">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-surjective-node-1"/>
+      </nodeMapping>
+      <arrowMapping value="1d786cd6-3dfc-4e81-9e4c-3f2b3912aead">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-surjective-edge-0"/>
       </arrowMapping>
     </mappings>
   </constraints>
