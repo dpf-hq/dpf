@@ -243,7 +243,7 @@
           <nameOffset offset="10 -3" len="16"/>
         </dArrows>
       </dGraph>
-      <visualization type="ArrowToArrow" target="7ecca8be-0ea1-4c46-8965-ab33202eff7e"/>
+      <visualization type="ArrowToArrow" target="7d01dc41-bc48-4038-b75e-dfad6822f30d"/>
     </dPredicates>
     <dPredicates id="7fd03d9e-c3cd-4eb1-a8aa-e05ac3c01da1" predicate="4c58d0c9-208c-4cec-bf22-67c07c5a001a">
       <dGraph graph="/1/@predicates.21/@shape">
@@ -257,7 +257,43 @@
           <nameOffset offset="10 -3" len="16"/>
         </dArrows>
       </dGraph>
-      <visualization type="ArrowToArrow" target="36457a74-35bb-4109-b989-cc9d1ae749b4"/>
+      <visualization type="ArrowToArrow" target="10a83edc-e5c8-4a85-84df-2bf319ab6184"/>
+    </dPredicates>
+    <dPredicates id="7b350d6c-c8ae-4a0f-88b9-46d5a45173ac" predicate="ff8acea3-4e84-4dbf-afda-113fe7c6067f">
+      <dGraph graph="/1/@predicates.22/@shape">
+        <dNodes id="2d982cb5-4d63-478d-9188-62c56d45dbdd" node="d6c64939-623f-4a9c-8d8b-02a0bb501212" dOutgoings="b62b75c0-7c34-4043-890f-6abd69d2b3de 7a5df555-2e69-41f0-9fba-f4a5130a59dd" location="50 50" size="38 42"/>
+        <dNodes id="d3baa90f-86a3-4ed7-8cd9-5faee1699309" node="797ee299-7df2-461d-9035-4b279eb008b7" dIncomings="b62b75c0-7c34-4043-890f-6abd69d2b3de" location="200 50" size="38 42"/>
+        <dNodes id="044e7ad6-0384-481d-910a-2d5b8ca09287" node="7acf98b4-0b0e-4a2e-8513-102cc4ae2263" dIncomings="7a5df555-2e69-41f0-9fba-f4a5130a59dd" location="200 100" size="38 42"/>
+        <dArrows id="b62b75c0-7c34-4043-890f-6abd69d2b3de" arrow="90bd4aa5-5951-4638-b77e-44b5f25a1336" dSource="2d982cb5-4d63-478d-9188-62c56d45dbdd" dTarget="d3baa90f-86a3-4ed7-8cd9-5faee1699309">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="7a5df555-2e69-41f0-9fba-f4a5130a59dd" arrow="948c0b98-1716-4a07-b25a-2e1818a6cdec" dSource="2d982cb5-4d63-478d-9188-62c56d45dbdd" dTarget="044e7ad6-0384-481d-910a-2d5b8ca09287">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="72659546-d220-447f-a45d-ff3268ca2fff" predicate="47a646f4-d285-4231-a8d2-058c65906788">
+      <dGraph graph="/1/@predicates.23/@shape">
+        <dNodes id="e6b4fd94-04ab-493e-bbbb-1b625abff467" node="f9cdad5d-9a9d-4e73-916c-8e5612b6d300" dOutgoings="82b09d35-4fc2-42a4-b426-2cb387f3a7e3 c1f074fa-3c06-436a-b1c9-2d705b71188c 0c5115ac-b840-4a7d-b82a-b0cbda4362c4 7563ece1-8d58-4dd9-9e62-a6530a4ef68a" location="50 50" size="38 42"/>
+        <dNodes id="e7f87b13-e03f-4a03-a37a-d4177b375f98" node="20730e44-a975-4a83-84fc-839aa8401427" dIncomings="82b09d35-4fc2-42a4-b426-2cb387f3a7e3" location="200 50" size="38 42"/>
+        <dNodes id="59db3308-703e-4be4-90b0-b7b95cb090bb" node="d3c55164-b3cc-446b-99ec-60544d1f277a" dIncomings="0c5115ac-b840-4a7d-b82a-b0cbda4362c4" location="140 143" size="38 42"/>
+        <dNodes id="5e67f9b7-f21e-4740-9446-4ed45e472e3b" node="ec79c4c5-c818-4b40-ab19-1465d855a046" dIncomings="c1f074fa-3c06-436a-b1c9-2d705b71188c" location="200 100" size="38 42"/>
+        <dNodes id="0349cb6a-d7b8-47ec-bf64-430b1bbdb9f0" node="c199f969-6f61-4b8c-92be-271fa9e5df07" dIncomings="7563ece1-8d58-4dd9-9e62-a6530a4ef68a" location="27 140" size="82 42"/>
+        <dArrows id="82b09d35-4fc2-42a4-b426-2cb387f3a7e3" arrow="cb80b3ec-0c78-4f4d-9e2e-0c568040994e" dSource="e6b4fd94-04ab-493e-bbbb-1b625abff467" dTarget="e7f87b13-e03f-4a03-a37a-d4177b375f98">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="c1f074fa-3c06-436a-b1c9-2d705b71188c" arrow="1105b3d5-99f5-42ec-80f7-b5efb29e4e6b" dSource="e6b4fd94-04ab-493e-bbbb-1b625abff467" dTarget="5e67f9b7-f21e-4740-9446-4ed45e472e3b">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="0c5115ac-b840-4a7d-b82a-b0cbda4362c4" arrow="b07d78a7-0c9a-4954-a1c9-15534b735dc3" dSource="e6b4fd94-04ab-493e-bbbb-1b625abff467" dTarget="59db3308-703e-4be4-90b0-b7b95cb090bb">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="7563ece1-8d58-4dd9-9e62-a6530a4ef68a" arrow="05637892-c099-4be8-ae79-f9620aa5f472" dSource="e6b4fd94-04ab-493e-bbbb-1b625abff467" dTarget="0349cb6a-d7b8-47ec-bf64-430b1bbdb9f0">
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+      </dGraph>
+      <visualization type="ArrowToArrow"/>
     </dPredicates>
   </diagram:DSignature>
   <core:Signature>
@@ -357,7 +393,7 @@
       </shape>
       <validator type="ALLOY" validator="all x:$Y1$ | let e1 = (some e : $XY1$ | e.trg = x), &#xD;&#xA;e2 = (some e : $XY2$ | e.trg = x)| not e1 or e2"/>
     </predicates>
-    <predicates id="19a6dcbc-93fc-4427-ba61-2e8fc8ce84a5" symbol="xor3" parameters="">
+    <predicates id="19a6dcbc-93fc-4427-ba61-2e8fc8ce84a5" symbol="xor3-split" parameters="">
       <shape>
         <nodes id="ba81f1be-2886-46eb-833c-b1c53f7feeeb" name="X" outgoings="aa0b82a5-731d-4f07-8e22-644c6bbd7285 1b2f796e-0bae-42a2-8ff8-44610e7e3d88 85b187e8-ecd9-4dce-9086-ca647649e6c2"/>
         <nodes id="6e0d09ef-b485-4efb-bc97-d57822e44d34" name="Y1" incomings="aa0b82a5-731d-4f07-8e22-644c6bbd7285"/>
@@ -456,6 +492,30 @@
         <arrows id="36457a74-35bb-4109-b989-cc9d1ae749b4" name="XY2" source="90682978-edea-4c59-844d-f1bc1285bf80" target="9d5f331f-e805-4c7b-8cd6-68baade465f0"/>
       </shape>
       <validator type="JAVA" validator="import java.util.List;&#xA;import java.util.Map;&#xA;import no.hib.dpf.core.Arrow;&#xA;import no.hib.dpf.core.Graph;&#xA;import no.hib.dpf.core.Node;&#xA;import no.hib.dpf.utils.Checker;&#xA;public class CheckInstance implements Checker{&#xA;&#x9;@Override&#xA;&#x9;public boolean check(Map&lt;String, String> paras, Graph graph, Map&lt;Node, List&lt;Node>> nodeMap,&#xA;&#x9;&#x9;&#x9;Map&lt;Arrow, List&lt;Arrow>> arrowMap) {&#xA;&#x9;&#x9;return true;&#xA;&#x9;}&#xA;}&#xA;"/>
+    </predicates>
+    <predicates id="ff8acea3-4e84-4dbf-afda-113fe7c6067f" symbol="xor-split">
+      <shape>
+        <nodes id="d6c64939-623f-4a9c-8d8b-02a0bb501212" name="X1" outgoings="90bd4aa5-5951-4638-b77e-44b5f25a1336 948c0b98-1716-4a07-b25a-2e1818a6cdec"/>
+        <nodes id="797ee299-7df2-461d-9035-4b279eb008b7" name="Y1" incomings="90bd4aa5-5951-4638-b77e-44b5f25a1336"/>
+        <nodes id="7acf98b4-0b0e-4a2e-8513-102cc4ae2263" name="Y2" incomings="948c0b98-1716-4a07-b25a-2e1818a6cdec"/>
+        <arrows id="90bd4aa5-5951-4638-b77e-44b5f25a1336" name="XY1" source="d6c64939-623f-4a9c-8d8b-02a0bb501212" target="797ee299-7df2-461d-9035-4b279eb008b7"/>
+        <arrows id="948c0b98-1716-4a07-b25a-2e1818a6cdec" name="XY2" source="d6c64939-623f-4a9c-8d8b-02a0bb501212" target="7acf98b4-0b0e-4a2e-8513-102cc4ae2263"/>
+      </shape>
+      <validator type="ALLOY" validator="all x:$X$ | let e1 = (some e : $XY1$ | e.src = x), &#xD;&#xA;e2 = (some e : $XY2$ | e.src = x)|&#xD;&#xA;not (e1 and e2)"/>
+    </predicates>
+    <predicates id="47a646f4-d285-4231-a8d2-058c65906788" symbol="xor4-split" parameters="">
+      <shape>
+        <nodes id="f9cdad5d-9a9d-4e73-916c-8e5612b6d300" name="X" outgoings="cb80b3ec-0c78-4f4d-9e2e-0c568040994e 1105b3d5-99f5-42ec-80f7-b5efb29e4e6b b07d78a7-0c9a-4954-a1c9-15534b735dc3 05637892-c099-4be8-ae79-f9620aa5f472"/>
+        <nodes id="20730e44-a975-4a83-84fc-839aa8401427" name="Y1" incomings="cb80b3ec-0c78-4f4d-9e2e-0c568040994e"/>
+        <nodes id="d3c55164-b3cc-446b-99ec-60544d1f277a" name="Y3" incomings="b07d78a7-0c9a-4954-a1c9-15534b735dc3"/>
+        <nodes id="ec79c4c5-c818-4b40-ab19-1465d855a046" name="Y2" incomings="1105b3d5-99f5-42ec-80f7-b5efb29e4e6b"/>
+        <nodes id="c199f969-6f61-4b8c-92be-271fa9e5df07" name="Y4" incomings="05637892-c099-4be8-ae79-f9620aa5f472"/>
+        <arrows id="cb80b3ec-0c78-4f4d-9e2e-0c568040994e" name="XY1" source="f9cdad5d-9a9d-4e73-916c-8e5612b6d300" target="20730e44-a975-4a83-84fc-839aa8401427"/>
+        <arrows id="1105b3d5-99f5-42ec-80f7-b5efb29e4e6b" name="XY2" source="f9cdad5d-9a9d-4e73-916c-8e5612b6d300" target="ec79c4c5-c818-4b40-ab19-1465d855a046"/>
+        <arrows id="b07d78a7-0c9a-4954-a1c9-15534b735dc3" name="XY3" source="f9cdad5d-9a9d-4e73-916c-8e5612b6d300" target="d3c55164-b3cc-446b-99ec-60544d1f277a"/>
+        <arrows id="05637892-c099-4be8-ae79-f9620aa5f472" name="XY4" source="f9cdad5d-9a9d-4e73-916c-8e5612b6d300" target="c199f969-6f61-4b8c-92be-271fa9e5df07"/>
+      </shape>
+      <validator type="ALLOY" validator="all x:$X$ | let e1 = (some e : $XY1$ | e.src = x), &#xD;&#xA;e2 = (some e : $XY2$ | e.src = x), &#xD;&#xA;e3 = (some e : $XY3$ | e.src = x), &#xD;&#xA;e4 = (some e : $XY4$ | e.src = x)|&#xD;&#xA;not (e1 and e2) and not (e1 and e3) and not (e2 and e3) and not (e1 and e4) and not (e2 and e4) and not (e4 and e3)"/>
     </predicates>
   </core:Signature>
 </xmi:XMI>
