@@ -20,6 +20,7 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.draw2d.text.TextFlow;
+import org.eclipse.swt.graphics.Font;
 
 /**
  * A customized Label based on the label used in the flow example. 
@@ -39,7 +40,7 @@ public class EditableLabel extends FlowPage
 		setHorizontalAligment(PositionConstants.CENTER);
 		setOpaque(false);
 		text = new TextFlow(label);
-		add(text);		
+		add(text);	
 	}
 	
 	private Rectangle getSelectionRectangle()
@@ -49,6 +50,16 @@ public class EditableLabel extends FlowPage
 		translateToParent(bounds);
 		bounds.intersect(getBounds());
 		return bounds;
+	}
+	
+	public void setFont(Font f){
+		Font font = getFont();
+		if (font != f) {
+			super.setFont(f);
+			if(!text.getText().isEmpty())
+				text.setSize(text.getPreferredSize());
+		}
+		
 	}
 
 	

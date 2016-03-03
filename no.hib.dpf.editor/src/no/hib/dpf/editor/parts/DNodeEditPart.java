@@ -67,7 +67,7 @@ import org.eclipse.jface.viewers.TextCellEditor;
  * @author Elias Volanakis
  */
 public class DNodeEditPart extends GraphicalEditPartWithListener implements
-		NodeEditPart {
+NodeEditPart {
 
 	private Map<NodeEditPart, List<ConnectionAnchor>> anchors = new HashMap<NodeEditPart, List<ConnectionAnchor>>();
 
@@ -87,15 +87,10 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements
 
 	public ConnectionAnchor createConnectionAnchor(
 			ConnectionEditPart connection, boolean b, DNodeEditPart owner) {
-		ConnectionAnchor anchor = null;
-		anchor = createAnchorUseConfigure();
-		if (anchor == null)
-			anchor = new ChopboxAnchor(getFigure());
-		return anchor;
-		// ConnectionAnchor anchor = owner.createAnchorUseConfigure();
-		// if(anchor != null)
-		// return anchor;
-		// return getConnectionAnchor(connection, b);
+		ConnectionAnchor anchor = owner.createAnchorUseConfigure();
+		if(anchor != null)
+			return anchor;
+		return getConnectionAnchor(connection, b);
 	}
 
 	protected void createEditPolicies() {
@@ -128,7 +123,6 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements
 		return (DNodeEditPart) connection.getTarget();
 	}
 
-	@SuppressWarnings("unused")
 	private ConnectionAnchor getConnectionAnchor(ConnectionEditPart connection,
 			boolean isSourceAnchor) {
 		NodeEditPart oppositeEnd = getOppositeEnd(connection, isSourceAnchor);
@@ -249,7 +243,7 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements
 						.getConfigurationElement(name);
 				if (configure != null)
 					nodePaint = (INodePainting) configure
-							.createExecutableExtension(FigureConfigureManager.PAINT_ATT);
+					.createExecutableExtension(FigureConfigureManager.PAINT_ATT);
 			} catch (CoreException e) {
 				e.printStackTrace();
 			}
@@ -438,9 +432,9 @@ public class DNodeEditPart extends GraphicalEditPartWithListener implements
 	protected void fireTargetConnectionAdded(ConnectionEditPart connection,
 			int index) {
 		super.fireTargetConnectionAdded(connection, index);
-		if (connection.getModel() instanceof DArrow)
-			verifyOnArrowChange(getDPFNode(), null,
-					((DArrow) connection.getModel()).getArrow());
+		//		if (connection.getModel() instanceof DArrow)
+		//			verifyOnArrowChange(getDPFNode(), null,
+		//					((DArrow) connection.getModel()).getArrow());
 	}
 
 	protected void fireRemovingSourceConnection(ConnectionEditPart connection,

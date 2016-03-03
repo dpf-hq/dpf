@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core">
+  <graph>
+    <type href="wa1.xmi#/0/@graph"/>
+    <nodes id="3f74a885-aa26-4d90-875a-19c708c8e02b" name="Collect Blood" outgoings="6531f2bd-9eae-44da-8d57-84bcebcd7fa8" incomings="c0160d33-d35b-4d8f-9e46-ae8daa4fb1a8">
+      <typeNode href="wa1.xmi#ced95f24-957c-41a9-8613-202f5f00ec06"/>
+    </nodes>
+    <nodes id="54bf1d73-e345-4e9c-8ad3-34cdd86fabb6" name="Collect Sample">
+      <typeNode href="wa1.xmi#7ceb2213-3ce2-424a-bcb6-1feb0820b9fa"/>
+    </nodes>
+    <nodes id="a4395ac7-34a0-4353-b66d-c226e5b94a1d" name="Order Blood0" incomings="f26ac1e3-bc22-48f3-be7a-7697b7653534">
+      <typeNode href="wa1.xmi#3362c442-c5f6-4b8a-a900-d9875f418557"/>
+    </nodes>
+    <nodes id="5b850e3c-bb99-4b4c-a864-55d89be4f389" name="Order Blood1" incomings="3fe427e2-101f-4c0a-bf27-8dcd987b8397">
+      <typeNode href="wa1.xmi#3362c442-c5f6-4b8a-a900-d9875f418557"/>
+    </nodes>
+    <nodes id="62f4811f-7191-4881-80e3-9a04b46380c0" name="Order Blood2" incomings="dfe44b34-8fdf-4bba-a4c1-b6f089b43fc6">
+      <typeNode href="wa1.xmi#3362c442-c5f6-4b8a-a900-d9875f418557"/>
+    </nodes>
+    <nodes id="fcc4469d-97b1-4da4-a1ca-2f0c55476e34" name="Scan Blood Product" incomings="6531f2bd-9eae-44da-8d57-84bcebcd7fa8">
+      <typeNode href="wa1.xmi#d9a78a5c-d325-475a-9bac-9dcfc30788c7"/>
+    </nodes>
+    <nodes id="36013f6d-ae2a-4269-a220-9c595fda33b5" name="Send Sample0" outgoings="c0160d33-d35b-4d8f-9e46-ae8daa4fb1a8">
+      <typeNode href="wa1.xmi#3aa78c0e-5877-49c4-bbe2-0b702ae2cad1"/>
+    </nodes>
+    <nodes id="79350421-4022-4899-aee8-69edf5b7a10c" name="Send Sample1" outgoings="f26ac1e3-bc22-48f3-be7a-7697b7653534">
+      <typeNode href="wa1.xmi#3aa78c0e-5877-49c4-bbe2-0b702ae2cad1"/>
+    </nodes>
+    <nodes id="67a6279c-98c3-4344-b8d8-5c4da0723df6" name="Send Sample Order0" outgoings="3fe427e2-101f-4c0a-bf27-8dcd987b8397">
+      <typeNode href="wa1.xmi#9de17b96-7755-489f-8fb9-4fc6226ffd54"/>
+    </nodes>
+    <nodes id="b25975cf-a1c1-4b40-b873-82c85c1d2b78" name="Send Sample Order1" outgoings="dfe44b34-8fdf-4bba-a4c1-b6f089b43fc6">
+      <typeNode href="wa1.xmi#9de17b96-7755-489f-8fb9-4fc6226ffd54"/>
+    </nodes>
+    <arrows id="dfe44b34-8fdf-4bba-a4c1-b6f089b43fc6" name="Blood have not been ordered0" source="b25975cf-a1c1-4b40-b873-82c85c1d2b78" target="62f4811f-7191-4881-80e3-9a04b46380c0">
+      <typeArrow href="wa1.xmi#12db690a-9c6d-4c58-97cc-795bffb9c00d"/>
+    </arrows>
+    <arrows id="3fe427e2-101f-4c0a-bf27-8dcd987b8397" name="Blood have not been ordered1" source="67a6279c-98c3-4344-b8d8-5c4da0723df6" target="5b850e3c-bb99-4b4c-a864-55d89be4f389">
+      <typeArrow href="wa1.xmi#12db690a-9c6d-4c58-97cc-795bffb9c00d"/>
+    </arrows>
+    <arrows id="f26ac1e3-bc22-48f3-be7a-7697b7653534" name="Blood have not been ordered0" source="79350421-4022-4899-aee8-69edf5b7a10c" target="a4395ac7-34a0-4353-b66d-c226e5b94a1d">
+      <typeArrow href="wa1.xmi#dfdb967c-c3f7-4b83-9d5d-ce21fea8d9d1"/>
+    </arrows>
+    <arrows id="c0160d33-d35b-4d8f-9e46-ae8daa4fb1a8" name="" source="36013f6d-ae2a-4269-a220-9c595fda33b5" target="3f74a885-aa26-4d90-875a-19c708c8e02b">
+      <typeArrow href="wa1.xmi#20f1d0ae-2cf3-4e67-9632-6f0a3b77b0d5"/>
+    </arrows>
+    <arrows id="6531f2bd-9eae-44da-8d57-84bcebcd7fa8" name="out time less than 4h4" source="3f74a885-aa26-4d90-875a-19c708c8e02b" target="fcc4469d-97b1-4da4-a1ca-2f0c55476e34">
+      <typeArrow href="wa1.xmi#90d432e4-4b28-4467-aa0e-5a1e32c1f343"/>
+    </arrows>
+  </graph>
+  <type href="wa1.xmi#/0"/>
+</core:Specification>

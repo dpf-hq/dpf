@@ -1,5 +1,6 @@
 package no.hib.dpf.editor.verification;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,13 +12,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import no.hib.dpf.core.Arrow;
-import no.hib.dpf.diagram.DArrow;
-import no.hib.dpf.diagram.DConstraint;
-import no.hib.dpf.diagram.DSpecification;
-import no.hib.dpf.editor.DPFEditor;
-import no.hib.dpf.editor.DPFUtils;
-
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IContainer;
@@ -26,13 +20,14 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -46,6 +41,11 @@ import edu.mit.csail.sdg.alloy4compiler.parser.CompUtil;
 import edu.mit.csail.sdg.alloy4compiler.translator.A4Options;
 import edu.mit.csail.sdg.alloy4compiler.translator.A4Solution;
 import edu.mit.csail.sdg.alloy4compiler.translator.TranslateAlloyToKodkod;
+import no.hib.dpf.core.Arrow;
+import no.hib.dpf.diagram.DConstraint;
+import no.hib.dpf.diagram.DSpecification;
+import no.hib.dpf.editor.DPFEditor;
+import no.hib.dpf.editor.DPFUtils;
 
 
 
@@ -69,7 +69,7 @@ public class RedundantCheckHandler extends ValidateModelHandler {
 						if(i == j) continue;
 						writer.write(" and " + preds[j] + "[]");
 					}
-					writer.write("} for 5"+ LINE);
+					writer.write("} for 3"+ LINE);
 				}
 			}
 		};
@@ -126,8 +126,8 @@ public class RedundantCheckHandler extends ValidateModelHandler {
 					 */
 					for(int index = 0; index < world.getAllCommands().size(); index++){
 						Command command = world.getAllCommands().get(index);
+						System.out.println("" + index + ":" + command);
 						A4Solution ans = TranslateAlloyToKodkod.execute_commandFromBook(rep, world.getAllReachableSigs(), command, options);
-						IFile instanceFile = createDPFInstanceFile(folder, dpfFileName, index);
 						if(!ans.satisfiable()) {
 							List<String> ucs = new ArrayList<String>();
 							List<String> ats = new ArrayList<String>();
@@ -150,14 +150,8 @@ public class RedundantCheckHandler extends ValidateModelHandler {
 								}else{
 									dialogMessage += "[" + splits.get(0) + "] on "; 
 									String ele = splits.get(1);
-									Arrow arrow = (Arrow) translate.sig2DPF.get(Integer.parseInt(ele.substring(1)));
-									DArrow edge = null;
-									for(DArrow dn : dpf.getDGraph().getDArrows())
-										if(dn.getArrow() == arrow) {
-											edge = dn; 
-											break;
-										}
-									dialogMessage += edge.getName() + ":"  + edge.getDSource().getName() + "->" + edge.getDTarget().getName();
+									Arrow arrow = (Arrow) translate.sig2DPF.get(ele);
+									dialogMessage += arrow.getName() + ":"  + arrow.getSource().getName() + "->" + arrow.getTarget().getName();
 								}
 							}else
 								dialogMessage += preds[index];
@@ -167,10 +161,13 @@ public class RedundantCheckHandler extends ValidateModelHandler {
 								dialogMessage += iter + "\t";
 
 							dialogMessage +=  DPF2Alloy.LINE;
+							if(dialogMessage.startsWith("[xor] on Arrows{bloodtype is unknown or screening is not done or invalid(screen is valid within 4 days)"))
+								break;
+							dialogMessage = "";
 							continue;
 						}
-						DSpecification instance = GenerateInstanceFromAlloy.generateDSpecificationFromAlloy(ans, translate.model, translate.sig2DPF);
-						DPFUtils.saveDSpecification((ResourceSetImpl) translate.model.eResource().getResourceSet(), instance, URI.createFileURI(instanceFile.getLocation().toOSString()));
+//						DSpecification instance = GenerateInstanceFromAlloy.generateDSpecificationFromAlloy(ans, translate.model, translate.sig2DPF);
+//						DPFUtils.saveDSpecification((ResourceSetImpl) translate.model.eResource().getResourceSet(), instance, URI.createFileURI(instanceFile.getLocation().toOSString()));
 					}
 					if(!dialogMessage.isEmpty()){
 						MessageDialog dialog = new MessageDialog(graphicalViewer.getControl().getShell(), 
@@ -182,7 +179,20 @@ public class RedundantCheckHandler extends ValidateModelHandler {
 									setShellStyle(SWT.SHELL_TRIM);
 								}
 							};
+							protected Control createMessageArea(Composite parent) {
+								Control result = super.createMessageArea(parent);
+								if(messageLabel != null)
+									messageLabel.setFont(new Font(messageLabel.getDisplay(), "Arial", 12, SWT.BOLD));
+								return result;
+							}
+							protected int getMessageLabelStyle(){
+								return super.getMessageLabelStyle() | SWT.V_SCROLL;
+							}
 						};
+						String report = folder.getLocation().toString() + "/report.txt";
+						BufferedWriter writer = new BufferedWriter(new FileWriter(new File(report)));
+						writer.write(dialogMessage);
+						writer.close();
 						dialog.open();
 					}
 					folder.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
