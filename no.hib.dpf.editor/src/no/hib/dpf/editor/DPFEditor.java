@@ -15,7 +15,6 @@
  *******************************************************************************/
 package no.hib.dpf.editor;
 
-import static no.hib.dpf.diagram.util.DPFConstants.DEFAULT_DSIGNATURE;
 import static no.hib.dpf.diagram.util.DPFConstants.REFLEXIVE_DSPECIFICATION;
 
 import java.util.ArrayList;
@@ -354,16 +353,16 @@ public class DPFEditor extends GraphicalEditorWithFlyoutPalette {
 		resourceSet.getURIResourceMap().put(newURI, diagram);
 		resourceSet.getURIResourceMap().put(modelFileURI, model);
 		DSpecification iter = newSpec;
-		while(iter != REFLEXIVE_DSPECIFICATION){
+		if(iter != REFLEXIVE_DSPECIFICATION){
 			updateMetaModelReference(iter, oldURI, newURI);
 			diagram.getContents().add(iter);
 			model.getContents().add(iter.getSpecification());
-			if(iter.getDSignature() != null && iter.getDSignature() != DEFAULT_DSIGNATURE){
-				updateSignatureReference(iter.getDSignature(), newURI);
-				diagram.getContents().add(iter.getDSignature());
-				model.getContents().add(iter.getDSignature().getSignature());
-			}
-			iter = iter.getDType();
+//			if(iter.getDSignature() != null && iter.getDSignature() != DEFAULT_DSIGNATURE){
+//				updateSignatureReference(iter.getDSignature(), newURI);
+//				diagram.getContents().add(iter.getDSignature());
+//				model.getContents().add(iter.getDSignature().getSignature());
+//			}
+//			iter = iter.getDType();
 		}
 	}		
 

@@ -41,17 +41,17 @@ public class GenerateDiagramFromModel {
 		dGraph.setGraph(graph);
 		dGraph.setDType(dType);
 		boolean isTypeReflexive = dType == DPFConstants.REFLEXIVE_TYPE_DGRAPH;
-		Map<String, DNode> typeMap = new HashMap<String, DNode>();
+		Map<Node, DNode> typeMap = new HashMap<Node, DNode>();
 		if(!isTypeReflexive)
 			for(DNode dNode : dType.getDNodes()){
 				if(dNode instanceof DConstraintNode)
 					continue;
-				typeMap.put(dNode.getNode().getId(), dNode);
+				typeMap.put(dNode.getNode(), dNode);
 			}
 		int x = START_X, y = START_Y;
 		int column = (int) Math.sqrt(graph.getNodes().size());
 		for(Node node : graph.getNodes()){
-			DNode dNode = createDNodeFromNode(node, isTypeReflexive ? DPFConstants.REFLEXIVE_TYPE_DNODE : typeMap.get(node.getTypeNode().getId()));
+			DNode dNode = createDNodeFromNode(node, isTypeReflexive ? DPFConstants.REFLEXIVE_TYPE_DNODE : typeMap.get(node.getTypeNode()));
 			dNode.setLocation(new Point(x, y));
 			x += NEXT_X;
 			if(column < x / NEXT_X ) {
@@ -61,12 +61,12 @@ public class GenerateDiagramFromModel {
 			dGraph.getDNodes().add(dNode);
 			nodeMaps.put(node, dNode);
 		}
-		Map<String, DArrow> typeArrowMap = new HashMap<String, DArrow>();
+		Map<Arrow, DArrow> typeArrowMap = new HashMap<Arrow, DArrow>();
 		for(DArrow dArrow : dType.getDArrows())
-			typeArrowMap.put(dArrow.getArrow().getId(), dArrow);
+			typeArrowMap.put(dArrow.getArrow(), dArrow);
 		for(Arrow arrow : graph.getArrows()){
 			DArrow dArrow = createDArrowFromArrow(arrow, nodeMaps.get(arrow.getSource()), nodeMaps.get(arrow.getTarget()), 
-					isTypeReflexive ? DPFConstants.REFLEXIVE_TYPE_DARROW : typeArrowMap.get(arrow.getTypeArrow().getId()));
+					isTypeReflexive ? DPFConstants.REFLEXIVE_TYPE_DARROW : typeArrowMap.get(arrow.getTypeArrow()));
 			arrowMaps.put(arrow, dArrow);
 			dGraph.getDArrows().add(dArrow);
 		}
