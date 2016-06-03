@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ASCII"?>
+<core:Specification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:core="http://no.hib.dpf.core" metaFile="AB.xmi" signatureFile="w.sig">
+  <graph>
+    <nodes id="03e7296b-c83a-4ce5-be0b-2e5b03120ed9" name="Node00" outgoings="99943310-b256-4a85-adf2-8d1fdcaf1094" constraints="d73c7ea4-6adb-48ef-83c3-478dfa4ad2a8">
+      <typeNode href="AB.xmi#190d702d-942f-4243-9ed1-cd11d8748353"/>
+    </nodes>
+    <nodes id="a43ddd94-68ef-4eb8-bc90-bb2bca70651f" name="Node10" incomings="99943310-b256-4a85-adf2-8d1fdcaf1094" constraints="d73c7ea4-6adb-48ef-83c3-478dfa4ad2a8">
+      <typeNode href="AB.xmi#cd3af807-c7e7-49b3-bf0a-adb5c5209a76"/>
+    </nodes>
+    <arrows id="99943310-b256-4a85-adf2-8d1fdcaf1094" name="Arrow00" source="03e7296b-c83a-4ce5-be0b-2e5b03120ed9" target="a43ddd94-68ef-4eb8-bc90-bb2bca70651f" constraints="d73c7ea4-6adb-48ef-83c3-478dfa4ad2a8">
+      <typeArrow href="AB.xmi#0e3bcaa5-e742-43d0-a511-2c17075b797b"/>
+    </arrows>
+  </graph>
+  <constraints id="d73c7ea4-6adb-48ef-83c3-478dfa4ad2a8" nodes="03e7296b-c83a-4ce5-be0b-2e5b03120ed9 a43ddd94-68ef-4eb8-bc90-bb2bca70651f" arrows="99943310-b256-4a85-adf2-8d1fdcaf1094">
+    <predicate href="platform:/resource/DefaultSpecification.xmi#p-injective"/>
+    <mappings>
+      <nodeMapping value="a43ddd94-68ef-4eb8-bc90-bb2bca70651f">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-injective-node-1"/>
+      </nodeMapping>
+      <nodeMapping value="03e7296b-c83a-4ce5-be0b-2e5b03120ed9">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-injective-node-0"/>
+      </nodeMapping>
+      <arrowMapping value="99943310-b256-4a85-adf2-8d1fdcaf1094">
+        <key href="platform:/resource/DefaultSpecification.xmi#p-injective-edge-0"/>
+      </arrowMapping>
+    </mappings>
+  </constraints>
+  <type href="AB.xmi#/"/>
+</core:Specification>

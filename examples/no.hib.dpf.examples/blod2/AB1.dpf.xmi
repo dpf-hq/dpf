@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false" metaFile="AB.dpf" signatureFile="w.sig">
+  <dType href="AB.dpf#/"/>
+  <dGraph>
+    <dType href="AB.dpf#//@dGraph"/>
+    <dNodes id="e19c1d60-bd28-40c7-b926-bfd6bd89d55c" dOutgoings="ed6a046a-260d-4109-a5f3-53e4b9988a24" dConstraints="//@dConstraints.0" location="477 188" size="98 42">
+      <dType href="AB.dpf#74022c17-35b1-4bf0-9fb8-fd85b78d8066"/>
+      <node href="AB1.xmi#03e7296b-c83a-4ce5-be0b-2e5b03120ed9"/>
+    </dNodes>
+    <dNodes id="c164a1d4-0bbd-4cc0-8743-e84b1ee703f1" dIncomings="ed6a046a-260d-4109-a5f3-53e4b9988a24" dConstraints="//@dConstraints.0" location="535 300" size="98 42">
+      <dType href="AB.dpf#84805cb3-c197-49d2-ba51-4161c02bc9e2"/>
+      <node href="AB1.xmi#a43ddd94-68ef-4eb8-bc90-bb2bca70651f"/>
+    </dNodes>
+    <dArrows id="ed6a046a-260d-4109-a5f3-53e4b9988a24" dSource="e19c1d60-bd28-40c7-b926-bfd6bd89d55c" dTarget="c164a1d4-0bbd-4cc0-8743-e84b1ee703f1" dConstraints="//@dConstraints.0">
+      <dType href="AB.dpf#8fdf0eb4-1913-435f-ac01-b1b1c1d17d0b"/>
+      <arrow href="AB1.xmi#99943310-b256-4a85-adf2-8d1fdcaf1094"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <graph href="AB1.xmi#//@graph"/>
+  </dGraph>
+  <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="e19c1d60-bd28-40c7-b926-bfd6bd89d55c c164a1d4-0bbd-4cc0-8743-e84b1ee703f1" dArrows="ed6a046a-260d-4109-a5f3-53e4b9988a24" source="ed6a046a-260d-4109-a5f3-53e4b9988a24">
+    <constraint href="AB1.xmi#d73c7ea4-6adb-48ef-83c3-478dfa4ad2a8"/>
+    <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-injective"/>
+    <offset offset="10 -3" len="16"/>
+  </dConstraints>
+  <specification href="AB1.xmi#/"/>
+  <dSignature href="w.sig#/0"/>
+</diagram:DSpecification>

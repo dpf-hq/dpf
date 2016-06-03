@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:DSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://no.hib.dpf.diagram" gridVisible="false">
+  <dGraph>
+    <dNodes id="74022c17-35b1-4bf0-9fb8-fd85b78d8066" dOutgoings="8fdf0eb4-1913-435f-ac01-b1b1c1d17d0b" location="287 123" size="84 42">
+      <node href="AB.xmi#190d702d-942f-4243-9ed1-cd11d8748353"/>
+    </dNodes>
+    <dNodes id="84805cb3-c197-49d2-ba51-4161c02bc9e2" dIncomings="8fdf0eb4-1913-435f-ac01-b1b1c1d17d0b" location="451 135" size="84 42">
+      <node href="AB.xmi#cd3af807-c7e7-49b3-bf0a-adb5c5209a76"/>
+    </dNodes>
+    <dArrows id="8fdf0eb4-1913-435f-ac01-b1b1c1d17d0b" dSource="74022c17-35b1-4bf0-9fb8-fd85b78d8066" dTarget="84805cb3-c197-49d2-ba51-4161c02bc9e2">
+      <arrow href="AB.xmi#0e3bcaa5-e742-43d0-a511-2c17075b797b"/>
+      <nameOffset offset="10 -3" len="16"/>
+    </dArrows>
+    <graph href="AB.xmi#//@graph"/>
+  </dGraph>
+  <specification href="AB.xmi#/"/>
+</diagram:DSpecification>

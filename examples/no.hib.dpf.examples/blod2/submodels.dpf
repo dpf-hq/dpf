@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:core="http://no.hib.dpf.core" xmlns:diagram="http://no.hib.dpf.diagram">
+  <diagram:DSpecification dType="/2" dSignature="/1" metaFile="wm.dpf" signatureFile="w.sig">
+    <dGraph dType="/2/@dGraph">
+      <dNodes id="3fd89677-37f1-4c53-a71c-c013ea336548" constraintsTo="/0/@dConstraints.0/@children.0" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dIncomings="e91dadb0-d084-4f03-a4af-7d11d45d20eb" dConstraints="/0/@dConstraints.0 /0/@dConstraints.2 /0/@dConstraints.6" location="24 12" size="85 49">
+        <node href="submodels.xmi#0edfdf20-1bf9-445b-aa2d-ed703e9160e4"/>
+      </dNodes>
+      <dNodes xsi:type="diagram:DConstraintNode" id="38c9af57-fbec-477e-8215-ee50f7c5a799" constraintsFrom="/0/@dConstraints.0/@children.0" location="7 109" dConstraint="/0/@dConstraints.0"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="7230a27f-03ff-4b55-9aa5-478525c650cb" constraintsFrom="/0/@dConstraints.1/@children.0" location="218 109" dConstraint="/0/@dConstraints.1"/>
+      <dNodes id="77f942ab-c52f-47ff-b454-c9911e19c047" constraintsTo="/0/@dConstraints.1/@children.0" dType="fbdbc796-9b1c-47cf-9d77-beebf3fed332" configureString="Blueservice" dOutgoings="e91dadb0-d084-4f03-a4af-7d11d45d20eb 0cfc9833-7616-41f2-ad8a-31266b901d3b" dConstraints="/0/@dConstraints.1 /0/@dConstraints.2 /0/@dConstraints.4 /0/@dConstraints.5 /0/@dConstraints.6" location="229 12" size="97 49">
+        <node href="submodels.xmi#3120873c-c197-4389-baae-3ebb6dd203dc"/>
+      </dNodes>
+      <dNodes id="bf14fe8a-f109-4111-98eb-c466cfc7b902" constraintsTo="/0/@dConstraints.3/@children.0" dType="985a00a4-3616-4c08-802f-24a7fc07eda6" dIncomings="0cfc9833-7616-41f2-ad8a-31266b901d3b" dConstraints="/0/@dConstraints.3 /0/@dConstraints.4 /0/@dConstraints.5 /0/@dConstraints.6" location="447 12" size="84 49">
+        <node href="submodels.xmi#6b3f94f6-4c6d-4234-810e-629813e1eb13"/>
+      </dNodes>
+      <dNodes xsi:type="diagram:DConstraintNode" id="62f92281-24e5-4ad4-8cc8-9d9b8b4811b4" constraintsFrom="/0/@dConstraints.3/@children.0" location="430 109" dConstraint="/0/@dConstraints.3"/>
+      <dNodes xsi:type="diagram:DConstraintNode" id="46143b0e-8f9f-41cd-92f3-32c3b3402b5b" constraintsFrom="/0/@dConstraints.6/@children.0 /0/@dConstraints.6/@children.1" location="377 75" dConstraint="/0/@dConstraints.6"/>
+      <dArrows id="e91dadb0-d084-4f03-a4af-7d11d45d20eb" constraintsTo="/0/@dConstraints.6/@children.0" dType="ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dSource="77f942ab-c52f-47ff-b454-c9911e19c047" dTarget="3fd89677-37f1-4c53-a71c-c013ea336548" dConstraints="/0/@dConstraints.2 /0/@dConstraints.6">
+        <arrow href="submodels.xmi#351b3290-422c-4b9d-8666-bfca37c42905"/>
+        <nameOffset offset="-160 -11" len="-231" index="1"/>
+        <bendpoints offset="1 59" len="-235"/>
+        <bendpoints offset="-206 52" len="-207" index="1"/>
+      </dArrows>
+      <dArrows id="0cfc9833-7616-41f2-ad8a-31266b901d3b" constraintsTo="/0/@dConstraints.6/@children.1" dType="88cf0414-b553-4dee-923a-5e66cbcf013f" configureString="GreenDashedArrow" dSource="77f942ab-c52f-47ff-b454-c9911e19c047" dTarget="bf14fe8a-f109-4111-98eb-c466cfc7b902" dConstraints="/0/@dConstraints.4 /0/@dConstraints.5 /0/@dConstraints.6">
+        <arrow href="submodels.xmi#9f5a9f69-4f45-44cd-831f-9a71b7eb566d"/>
+        <nameOffset offset="64 -19" len="212"/>
+      </dArrows>
+      <graph href="submodels.xmi#/0/@graph"/>
+    </dGraph>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="3fd89677-37f1-4c53-a71c-c013ea336548" fakeNode="38c9af57-fbec-477e-8215-ee50f7c5a799">
+      <constraint href="submodels.xmi#245a6b45-5955-4ab6-9e88-79bcb88b07dd"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-multiplicity-on-node"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="38c9af57-fbec-477e-8215-ee50f7c5a799" target="3fd89677-37f1-4c53-a71c-c013ea336548"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="77f942ab-c52f-47ff-b454-c9911e19c047" fakeNode="7230a27f-03ff-4b55-9aa5-478525c650cb">
+      <constraint href="submodels.xmi#0e422537-63ce-49ae-b581-77d4845709ec"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-multiplicity-on-node"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="7230a27f-03ff-4b55-9aa5-478525c650cb" target="77f942ab-c52f-47ff-b454-c9911e19c047"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="77f942ab-c52f-47ff-b454-c9911e19c047 3fd89677-37f1-4c53-a71c-c013ea336548" dArrows="e91dadb0-d084-4f03-a4af-7d11d45d20eb" source="e91dadb0-d084-4f03-a4af-7d11d45d20eb">
+      <constraint href="submodels.xmi#30eb4985-05d4-47c2-9a26-3bad5a37ebd6"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-multiplicity"/>
+      <offset offset="61 42" len="52"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="bf14fe8a-f109-4111-98eb-c466cfc7b902" fakeNode="62f92281-24e5-4ad4-8cc8-9d9b8b4811b4">
+      <constraint href="submodels.xmi#8dbc1772-d770-4a47-9269-47f3f4b606ac"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-multiplicity-on-node"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="62f92281-24e5-4ad4-8cc8-9d9b8b4811b4" target="bf14fe8a-f109-4111-98eb-c466cfc7b902"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="77f942ab-c52f-47ff-b454-c9911e19c047 bf14fe8a-f109-4111-98eb-c466cfc7b902" dArrows="0cfc9833-7616-41f2-ad8a-31266b901d3b" source="0cfc9833-7616-41f2-ad8a-31266b901d3b">
+      <constraint href="submodels.xmi#3751adaf-5497-4f26-9251-8f70c7ef26d9"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+      <offset offset="129 13" len="212"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="77f942ab-c52f-47ff-b454-c9911e19c047 bf14fe8a-f109-4111-98eb-c466cfc7b902" dArrows="0cfc9833-7616-41f2-ad8a-31266b901d3b" source="0cfc9833-7616-41f2-ad8a-31266b901d3b">
+      <constraint href="submodels.xmi#8286a6a8-7d2f-46db-9eb4-5405c2c75281"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-multiplicity"/>
+      <offset offset="61 9" len="212"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DComposedConstraint" dNodes="77f942ab-c52f-47ff-b454-c9911e19c047 3fd89677-37f1-4c53-a71c-c013ea336548 bf14fe8a-f109-4111-98eb-c466cfc7b902" dArrows="e91dadb0-d084-4f03-a4af-7d11d45d20eb 0cfc9833-7616-41f2-ad8a-31266b901d3b" fakeNode="46143b0e-8f9f-41cd-92f3-32c3b3402b5b">
+      <constraint href="submodels.xmi#06ce7d26-c4e2-45e3-b836-c3d3e7858d35"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-xor"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="46143b0e-8f9f-41cd-92f3-32c3b3402b5b" target="e91dadb0-d084-4f03-a4af-7d11d45d20eb"/>
+      <children xsi:type="diagram:DGenericArrowConstraint" source="46143b0e-8f9f-41cd-92f3-32c3b3402b5b" target="0cfc9833-7616-41f2-ad8a-31266b901d3b"/>
+    </dConstraints>
+    <specification href="submodels.xmi#/0"/>
+  </diagram:DSpecification>
+  <diagram:DSignature>
+    <signature href="submodels.xmi#/1"/>
+    <dPredicates id="c20a3782-bcb2-40ea-b793-5cdad160d975" simpleName="@APP">
+      <predicate href="submodels.xmi#0646538c-d43d-4b40-9e4d-34f9a2f3116f"/>
+      <dGraph>
+        <dNodes id="7783a76e-e8fa-4025-88d2-e87afc05a3dc" location="50 50" size="19 27">
+          <node href="wa.xmi#3170a0b2-c9c1-4014-b572-c0cd6922cd9b"/>
+        </dNodes>
+        <graph href="wa.xmi#/1/@predicates.0/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="75d964f2-9b01-44d4-8661-961fb2c45e7b" simpleName="@DIPS">
+      <predicate href="submodels.xmi#beb4f2fd-c413-4ca4-8347-acc5310a15fd"/>
+      <dGraph>
+        <dNodes id="147e2a47-99c8-4033-97ae-e41e88f8376a" location="50 50" size="100 30">
+          <node href="wa.xmi#5ea8eb5d-3f2d-4ea2-bdf7-dfb0d1cd1862"/>
+        </dNodes>
+        <graph href="wa.xmi#/1/@predicates.1/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="778b488b-f6fd-40e4-b939-5fbdd0561fbe" simpleName="@Maunel">
+      <predicate href="submodels.xmi#7b415f4c-a1c8-4f08-b0de-41c945ac435a"/>
+      <dGraph>
+        <dNodes id="18bba545-dd52-4793-a3d1-ea38f7cf14fb" location="50 50" size="100 30">
+          <node href="wa.xmi#b60382ef-ff84-4be2-b289-b71aed9bf69c"/>
+        </dNodes>
+        <graph href="wa.xmi#/1/@predicates.2/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="8e8310b3-dbba-41de-9f28-44f3b2486c80" simpleName="nand3">
+      <predicate href="submodels.xmi#8365a336-e2c3-4fef-917e-8a50ed395199"/>
+      <dGraph>
+        <dNodes id="c7738a43-79bf-4d60-95cc-cd30063dd59f" dOutgoings="97c2f6e4-a6b5-406a-a06a-d874dab0cb75 d89b30c1-0bd0-4fe7-a223-97e08cfcff6d a0a8ac0c-f2ad-4471-92e2-00216469d7b1" location="78 50" size="102 42">
+          <node href="wa.xmi#828b4845-5b20-4343-963a-99d8bf6ffea5"/>
+        </dNodes>
+        <dNodes id="59a5919c-8b87-47a0-8c07-b63c60dc2cb5" dIncomings="97c2f6e4-a6b5-406a-a06a-d874dab0cb75" location="289 39" size="100 42">
+          <node href="wa.xmi#6dc7d5be-8e39-4b5f-8dc8-9bf98ab42e2c"/>
+        </dNodes>
+        <dNodes id="31ddd6f0-9394-4da0-8ecf-6ee737761eb7" dIncomings="d89b30c1-0bd0-4fe7-a223-97e08cfcff6d" location="282 120" size="100 42">
+          <node href="wa.xmi#3a916f0c-7244-4f5d-bdfb-f8bbece6987b"/>
+        </dNodes>
+        <dNodes id="325c38d1-7f92-41a7-93fa-1865a055c605" dIncomings="a0a8ac0c-f2ad-4471-92e2-00216469d7b1" location="97 129" size="110 42">
+          <node href="wa.xmi#e345d2c8-9284-4c4a-b6d3-635c554f6703"/>
+        </dNodes>
+        <dArrows id="97c2f6e4-a6b5-406a-a06a-d874dab0cb75" dSource="c7738a43-79bf-4d60-95cc-cd30063dd59f" dTarget="59a5919c-8b87-47a0-8c07-b63c60dc2cb5">
+          <arrow href="wa.xmi#b700c557-064c-4dac-8903-c6ed9da88474"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="d89b30c1-0bd0-4fe7-a223-97e08cfcff6d" dSource="c7738a43-79bf-4d60-95cc-cd30063dd59f" dTarget="31ddd6f0-9394-4da0-8ecf-6ee737761eb7">
+          <arrow href="wa.xmi#7ff4372d-11cf-4074-a58d-0f163fb24929"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="a0a8ac0c-f2ad-4471-92e2-00216469d7b1" dSource="c7738a43-79bf-4d60-95cc-cd30063dd59f" dTarget="325c38d1-7f92-41a7-93fa-1865a055c605">
+          <arrow href="wa.xmi#d2b2cf8d-a764-4b72-8a87-e8a384361754"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="wa.xmi#/1/@predicates.3/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="d78aaa93-06d6-4fdb-af68-fba078bf5885" simpleName="xorsurj">
+      <predicate href="submodels.xmi#ddabb8ce-2a40-48f8-98cd-58c78e574e58"/>
+      <dGraph>
+        <dNodes id="cb3f8c91-3fa2-45a3-9eec-481ca446541f" dOutgoings="d1752a7c-9768-458d-87f9-3f6819204f03" location="112 88" size="102 42">
+          <node href="wa.xmi#bd7b2a7a-ef19-4e6a-9663-45e05eed8b97"/>
+        </dNodes>
+        <dNodes id="3154c887-1a68-4d93-bec2-6b20dae1da12" dOutgoings="ff236514-edd2-4d40-ae82-30ab9b81cd59" location="126 212" size="100 42">
+          <node href="wa.xmi#292fede4-0827-4a8b-a866-1e9403cd0050"/>
+        </dNodes>
+        <dNodes id="15627f76-a24c-4001-870c-952a5afc2722" dIncomings="d1752a7c-9768-458d-87f9-3f6819204f03 ff236514-edd2-4d40-ae82-30ab9b81cd59" location="328 141" size="100 42">
+          <node href="wa.xmi#282d0e8f-2132-4565-b3db-850503a967d4"/>
+        </dNodes>
+        <dArrows id="d1752a7c-9768-458d-87f9-3f6819204f03" dSource="cb3f8c91-3fa2-45a3-9eec-481ca446541f" dTarget="15627f76-a24c-4001-870c-952a5afc2722">
+          <arrow href="wa.xmi#5861dd71-62c0-46e0-a140-8cf18051b80d"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="ff236514-edd2-4d40-ae82-30ab9b81cd59" dSource="3154c887-1a68-4d93-bec2-6b20dae1da12" dTarget="15627f76-a24c-4001-870c-952a5afc2722">
+          <arrow href="wa.xmi#2045c6a7-418f-4b02-9cdf-c269880f9f4e"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="wa.xmi#/1/@predicates.4/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="ee0195b3-6c8f-4dd0-892b-19c8b2b975be" simpleName="@UniLab">
+      <predicate href="submodels.xmi#9fd75e90-53a2-4831-863d-03d81705c217"/>
+      <dGraph>
+        <dNodes id="e14a64b5-ae71-4bbf-a81e-7e52a7c786fc" location="50 50" size="26 42">
+          <node href="wa.xmi#b12179da-2424-469f-a703-372178853ff6"/>
+        </dNodes>
+        <graph href="wa.xmi#/1/@predicates.5/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="9009c0d4-8611-4176-ad7a-7ae734cc1773" simpleName="@Printer">
+      <predicate href="submodels.xmi#3a6a6abd-2cfd-4fc7-92ba-2558635b2bd8"/>
+      <dGraph>
+        <dNodes id="3d2dcbc3-d11a-4664-80dd-76279859d895" location="50 50" size="19 27">
+          <node href="wa.xmi#49905441-33fc-4c8a-a055-f6d91fac9d9f"/>
+        </dNodes>
+        <graph href="wa.xmi#/1/@predicates.6/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="85a8262e-d867-4281-bfee-7acabb924a25" simpleName="@Prosang">
+      <predicate href="submodels.xmi#31b70dd9-2c2b-4aec-b57b-fce0c9938f31"/>
+      <dGraph>
+        <dNodes id="71a5e3b3-3638-4d6b-b9bc-41d256a9fe83" location="50 50" size="19 27">
+          <node href="wa.xmi#c370ffc0-2de3-4ea2-b425-11800d61f545"/>
+        </dNodes>
+        <graph href="wa.xmi#/1/@predicates.7/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="e715caf0-9e21-4ff8-949b-4c4f9c35ac5a" simpleName="@Meona">
+      <predicate href="submodels.xmi#f881ac75-ec38-40ed-9179-eb27248a846e"/>
+      <dGraph>
+        <dNodes id="e50399db-edc2-4be1-8754-cf4dce7fc273" location="50 50" size="19 27">
+          <node href="wa.xmi#2bd92ef5-688d-4bba-a780-05100fcb8d1d"/>
+        </dNodes>
+        <graph href="wa.xmi#/1/@predicates.8/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="e1d4ca20-f7ec-4b6a-8d29-906144b4e8a2" simpleName="andsurj">
+      <predicate href="submodels.xmi#0e653995-c063-47d0-9d32-792f1f0bb967"/>
+      <dGraph>
+        <dNodes id="8c95b1c7-2550-4ef2-b4f6-4e04c088f3f8" dOutgoings="7d4fdcd0-a14d-4b38-8455-e56af0c75db2" location="50 50" size="26 27">
+          <node href="wa.xmi#05bc9fbc-5975-45d2-9557-42c322ad5c75"/>
+        </dNodes>
+        <dNodes id="1bc01ab2-1e9c-4e9c-968d-cf8ab553c366" dIncomings="7d4fdcd0-a14d-4b38-8455-e56af0c75db2 25c24cdc-77d7-415b-af32-69734cb735d5" location="200 50" size="25 27">
+          <node href="wa.xmi#62b245c1-0494-4459-b370-0dd119e10899"/>
+        </dNodes>
+        <dNodes id="b4c2980b-5ff2-402f-a0dc-f71e7476ce86" dOutgoings="25c24cdc-77d7-415b-af32-69734cb735d5" location="50 100" size="26 27">
+          <node href="wa.xmi#70e212ef-54cd-47ce-8ad6-a5a1f6b384a8"/>
+        </dNodes>
+        <dArrows id="7d4fdcd0-a14d-4b38-8455-e56af0c75db2" dSource="8c95b1c7-2550-4ef2-b4f6-4e04c088f3f8" dTarget="1bc01ab2-1e9c-4e9c-968d-cf8ab553c366">
+          <arrow href="wa.xmi#12e1cc0e-09e0-4806-b787-b0e09e180ad6"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="25c24cdc-77d7-415b-af32-69734cb735d5" dSource="b4c2980b-5ff2-402f-a0dc-f71e7476ce86" dTarget="1bc01ab2-1e9c-4e9c-968d-cf8ab553c366">
+          <arrow href="wa.xmi#a3b302d0-d883-451e-948f-82658a35a21b"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="wa.xmi#/1/@predicates.9/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="10b80b69-c977-4699-8bbd-5e5f28bbf304" simpleName="xor3surj">
+      <predicate href="submodels.xmi#5d6f618b-97ef-4a35-8833-5ed786862196"/>
+      <dGraph>
+        <dNodes id="a9f36739-9909-4822-894e-b0347b6f10e1" dOutgoings="490d897a-332b-4a15-8ee1-6798bc6fe4a9" location="52 49" size="48 27">
+          <node href="wa.xmi#96c8ce3f-9102-481b-a269-f380e4d2ff9e"/>
+        </dNodes>
+        <dNodes id="b1561bd3-63af-4829-89be-a0a50d7ca35f" dOutgoings="ee1a69e3-ef29-4cd9-b11c-bd502f570c39" location="151 52" size="48 27">
+          <node href="wa.xmi#a2f4ac36-c258-4113-8227-af5f92c1c458"/>
+        </dNodes>
+        <dNodes id="75d97cf5-795d-483e-a5a7-456e9136b717" dOutgoings="96454cc2-3029-45ec-a5f6-07b1fd104ac3" location="237 47" size="48 27">
+          <node href="wa.xmi#24eda018-8bf7-4ec4-99e8-9334a7ff7606"/>
+        </dNodes>
+        <dNodes id="a64ba7cf-34ad-4b62-a4f8-21770f805eca" dIncomings="490d897a-332b-4a15-8ee1-6798bc6fe4a9 ee1a69e3-ef29-4cd9-b11c-bd502f570c39 96454cc2-3029-45ec-a5f6-07b1fd104ac3" location="158 135" size="48 27">
+          <node href="wa.xmi#18642b21-2524-4bd3-92e1-8a49fb30d8ba"/>
+        </dNodes>
+        <dArrows id="490d897a-332b-4a15-8ee1-6798bc6fe4a9" dSource="a9f36739-9909-4822-894e-b0347b6f10e1" dTarget="a64ba7cf-34ad-4b62-a4f8-21770f805eca">
+          <arrow href="wa.xmi#5f33ae54-5fd5-479c-93de-28141e95641d"/>
+          <nameOffset offset="41 14" len="136"/>
+        </dArrows>
+        <dArrows id="ee1a69e3-ef29-4cd9-b11c-bd502f570c39" dSource="b1561bd3-63af-4829-89be-a0a50d7ca35f" dTarget="a64ba7cf-34ad-4b62-a4f8-21770f805eca">
+          <arrow href="wa.xmi#a3d2b79f-1f64-43be-bf09-55ce24b1cef1"/>
+          <nameOffset offset="25 7" len="83"/>
+        </dArrows>
+        <dArrows id="96454cc2-3029-45ec-a5f6-07b1fd104ac3" dSource="75d97cf5-795d-483e-a5a7-456e9136b717" dTarget="a64ba7cf-34ad-4b62-a4f8-21770f805eca">
+          <arrow href="wa.xmi#45c1bbaf-64e9-475f-b3b7-074da98f722e"/>
+          <nameOffset offset="-52 -11" len="-119"/>
+        </dArrows>
+        <graph href="wa.xmi#/1/@predicates.10/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="4105aa6a-59ec-4eb8-8ef1-beac2d504261" simpleName="imply">
+      <predicate href="submodels.xmi#69cc880c-d212-42ed-9b67-2f33ab927260"/>
+      <dGraph>
+        <dNodes id="158a070b-ba89-4a94-8c9c-15d11c75ce0d" dOutgoings="402a164e-9240-44ed-a1bf-3c9a406c2c11" location="32 27" size="68 29">
+          <node href="wa.xmi#47d1f64f-2190-49c2-ae41-dd6d28cdc12b"/>
+        </dNodes>
+        <dNodes id="8606f2e4-3f95-4497-ad36-33b936678675" dIncomings="402a164e-9240-44ed-a1bf-3c9a406c2c11 032bfb17-d70a-42b2-bec4-46a8c5b68ee3" location="186 36" size="76 35">
+          <node href="wa.xmi#8e0b41ef-86d2-4fe8-9960-fbc8ed23b012"/>
+        </dNodes>
+        <dNodes id="52e11c83-fc15-4f9b-9a2d-8359830f1861" dOutgoings="032bfb17-d70a-42b2-bec4-46a8c5b68ee3" location="33 71" size="70 27">
+          <node href="wa.xmi#24cf9e37-026e-4529-902b-744c66a417e4"/>
+        </dNodes>
+        <dArrows id="402a164e-9240-44ed-a1bf-3c9a406c2c11" dSource="158a070b-ba89-4a94-8c9c-15d11c75ce0d" dTarget="8606f2e4-3f95-4497-ad36-33b936678675">
+          <arrow href="wa.xmi#f51de3fc-9601-4834-8ba5-9a1536e9c901"/>
+          <nameOffset offset="57 -24" len="162"/>
+        </dArrows>
+        <dArrows id="032bfb17-d70a-42b2-bec4-46a8c5b68ee3" dSource="52e11c83-fc15-4f9b-9a2d-8359830f1861" dTarget="8606f2e4-3f95-4497-ad36-33b936678675">
+          <arrow href="wa.xmi#81b0e845-aea1-4efb-8751-dbedfd9d68a0"/>
+          <nameOffset offset="62 5" len="159"/>
+        </dArrows>
+        <graph href="wa.xmi#/1/@predicates.11/@shape"/>
+      </dGraph>
+      <visualization type="ArrowToArrow">
+        <target xsi:type="core:Arrow" href="submodels.xmi#81b0e845-aea1-4efb-8751-dbedfd9d68a0"/>
+      </visualization>
+    </dPredicates>
+    <dPredicates id="d32b517e-6c11-420f-8adc-9f1c224006fa" simpleName="xor3">
+      <predicate href="submodels.xmi#19a6dcbc-93fc-4427-ba61-2e8fc8ce84a5"/>
+      <dGraph>
+        <dNodes id="102ade7d-255e-497d-b0ff-80b5289758ee" dOutgoings="2d6409bf-9dd3-465f-9798-ddf0167be0cf 91e36c8f-feff-4692-9e87-38e6805a3380 5192cc32-b426-41bf-a463-771ce090f119" location="73 85" size="160 42">
+          <node href="wa.xmi#ba81f1be-2886-46eb-833c-b1c53f7feeeb"/>
+        </dNodes>
+        <dNodes id="d9d90055-a953-421c-bdf2-e1ef8e4cd217" dIncomings="2d6409bf-9dd3-465f-9798-ddf0167be0cf" location="299 87" size="160 42">
+          <node href="wa.xmi#6e0d09ef-b485-4efb-bc97-d57822e44d34"/>
+        </dNodes>
+        <dNodes id="83855efc-5cbd-42d8-b2dc-686f3e0c0ad4" dIncomings="5192cc32-b426-41bf-a463-771ce090f119" location="288 192" size="160 42">
+          <node href="wa.xmi#ac82994f-54ee-4296-a798-e2dce6a8c327"/>
+        </dNodes>
+        <dNodes id="c4b838d9-e815-495e-99da-a3a9b40dd04d" dIncomings="91e36c8f-feff-4692-9e87-38e6805a3380" location="108 203" size="160 42">
+          <node href="wa.xmi#f2bb4763-3349-4775-9295-3dfaf3ab09e2"/>
+        </dNodes>
+        <dArrows id="2d6409bf-9dd3-465f-9798-ddf0167be0cf" dSource="102ade7d-255e-497d-b0ff-80b5289758ee" dTarget="d9d90055-a953-421c-bdf2-e1ef8e4cd217">
+          <arrow href="wa.xmi#aa0b82a5-731d-4f07-8e22-644c6bbd7285"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="91e36c8f-feff-4692-9e87-38e6805a3380" dSource="102ade7d-255e-497d-b0ff-80b5289758ee" dTarget="c4b838d9-e815-495e-99da-a3a9b40dd04d">
+          <arrow href="wa.xmi#1b2f796e-0bae-42a2-8ff8-44610e7e3d88"/>
+          <nameOffset offset="51 27" len="123"/>
+        </dArrows>
+        <dArrows id="5192cc32-b426-41bf-a463-771ce090f119" dSource="102ade7d-255e-497d-b0ff-80b5289758ee" dTarget="83855efc-5cbd-42d8-b2dc-686f3e0c0ad4">
+          <arrow href="wa.xmi#85b187e8-ecd9-4dce-9086-ca647649e6c2"/>
+          <nameOffset offset="124 -20" len="240"/>
+        </dArrows>
+        <graph href="wa.xmi#/1/@predicates.12/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="2792c1a9-5e5b-45d5-a8e0-f14bf1b8da8d" simpleName="special">
+      <predicate href="submodels.xmi#3c3a5963-99e5-4a17-87ee-ccfa9c746384"/>
+      <dGraph>
+        <dNodes id="520b6550-8fdf-4b47-9da0-a1237c4aff6b" dIncomings="46495781-fb6a-4834-9fd2-d821eec7427d 5d309ff4-92f1-4b9a-9041-9bf9e08b92a7" location="270 125" size="160 42">
+          <node href="wa.xmi#dc2449bc-4a61-45ec-8b4a-d5597712ba08"/>
+        </dNodes>
+        <dNodes id="a0a42ccc-19b2-4ff7-8e97-e5d08c435575" dOutgoings="46495781-fb6a-4834-9fd2-d821eec7427d" location="57 52" size="160 42">
+          <node href="wa.xmi#7352575e-c1ea-4ea5-be5e-567746a41992"/>
+        </dNodes>
+        <dNodes id="876a4e04-8f7b-4d0f-8f28-72e9f79f13e6" dOutgoings="5d309ff4-92f1-4b9a-9041-9bf9e08b92a7" location="62 214" size="160 42">
+          <node href="wa.xmi#17e943c0-f490-4049-888b-43601ef591b0"/>
+        </dNodes>
+        <dArrows id="46495781-fb6a-4834-9fd2-d821eec7427d" dSource="a0a42ccc-19b2-4ff7-8e97-e5d08c435575" dTarget="520b6550-8fdf-4b47-9da0-a1237c4aff6b">
+          <arrow href="wa.xmi#713ccd2b-5ff7-4ba4-ae96-0473fb508937"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="5d309ff4-92f1-4b9a-9041-9bf9e08b92a7" dSource="876a4e04-8f7b-4d0f-8f28-72e9f79f13e6" dTarget="520b6550-8fdf-4b47-9da0-a1237c4aff6b">
+          <arrow href="wa.xmi#311b5705-2867-4ead-b4a4-0e1a4f0186b5"/>
+          <nameOffset offset="81 0" len="226"/>
+        </dArrows>
+        <graph href="wa.xmi#/1/@predicates.13/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="cbbc7e7e-06b8-4bfa-9b49-8a1ef77d7585" simpleName="iff">
+      <predicate href="submodels.xmi#7766d2ef-7fe7-46e0-b155-992914600f87"/>
+      <dGraph>
+        <dNodes id="9c0e0d04-9c86-4322-8de0-1e393f3930f3" dOutgoings="909b75f0-0c1f-46ef-86b5-02d9ca634cf5" location="44 41" size="116 42">
+          <node href="wa.xmi#6110c302-edc5-4f95-8e40-49d9b20b5a4f"/>
+        </dNodes>
+        <dNodes id="8c1734c7-12f1-4bd7-b40a-a07bf3eb4e9f" dOutgoings="da2f15bc-9546-4a83-8dd5-eea82d818918" dIncomings="909b75f0-0c1f-46ef-86b5-02d9ca634cf5" location="200 50" size="114 42">
+          <node href="wa.xmi#0d7203ec-17d8-4b25-b873-b7720b53d16a"/>
+        </dNodes>
+        <dNodes id="d15ce1cd-3d4f-455d-b499-86e1a314d864" dIncomings="da2f15bc-9546-4a83-8dd5-eea82d818918" location="212 167" size="114 42">
+          <node href="wa.xmi#26ce8ddb-32a2-4861-b48e-eb9f317c869a"/>
+        </dNodes>
+        <dArrows id="909b75f0-0c1f-46ef-86b5-02d9ca634cf5" dSource="9c0e0d04-9c86-4322-8de0-1e393f3930f3" dTarget="8c1734c7-12f1-4bd7-b40a-a07bf3eb4e9f">
+          <arrow href="wa.xmi#cf9ee934-c95e-425b-9f6e-f4874ce251bc"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="da2f15bc-9546-4a83-8dd5-eea82d818918" dSource="8c1734c7-12f1-4bd7-b40a-a07bf3eb4e9f" dTarget="d15ce1cd-3d4f-455d-b499-86e1a314d864">
+          <arrow href="wa.xmi#4a5f5edc-0ca3-407d-93ec-0ab7b41074fe"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="wa.xmi#/1/@predicates.14/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="7528a0d6-d150-4c57-89c9-1f4252931361" simpleName="iff2">
+      <predicate href="submodels.xmi#27a760d6-6086-45fc-a3bb-b03e9a88c79b"/>
+      <dGraph>
+        <dNodes id="5fd50ae8-0cc8-49b4-8671-319f7b95569d" dOutgoings="c33fb227-59ac-4828-8803-a652d3ca1a71" location="50 50" size="116 42">
+          <node href="wa.xmi#a99f01a3-e0f4-48ce-a42c-65326869828a"/>
+        </dNodes>
+        <dNodes id="a5d34b68-92df-4d51-b95c-a370d4c394aa" dIncomings="c33fb227-59ac-4828-8803-a652d3ca1a71" location="200 50" size="114 42">
+          <node href="wa.xmi#40c9457f-ea18-4131-a52d-ffdeef51619c"/>
+        </dNodes>
+        <dNodes id="179a6c4d-4f30-4ac6-99ac-6094ff941103" dOutgoings="ed549a12-2ca8-4269-895b-fa4782ef1355" location="50 100" size="116 42">
+          <node href="wa.xmi#ea09bc30-d0bf-4968-9b17-ec61e1196d28"/>
+        </dNodes>
+        <dNodes id="ac78fde0-b58a-4d12-9b78-55f864e30cca" dIncomings="ed549a12-2ca8-4269-895b-fa4782ef1355" location="200 100" size="114 42">
+          <node href="wa.xmi#9e77a45c-45c1-45db-a2a4-a672e0978d41"/>
+        </dNodes>
+        <dArrows id="c33fb227-59ac-4828-8803-a652d3ca1a71" dSource="5fd50ae8-0cc8-49b4-8671-319f7b95569d" dTarget="a5d34b68-92df-4d51-b95c-a370d4c394aa">
+          <arrow href="wa.xmi#280e079d-7240-45ab-a924-6ea4b0a92157"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="ed549a12-2ca8-4269-895b-fa4782ef1355" dSource="179a6c4d-4f30-4ac6-99ac-6094ff941103" dTarget="ac78fde0-b58a-4d12-9b78-55f864e30cca">
+          <arrow href="wa.xmi#4d33fafb-0e52-4493-a462-b4d8a1a1b179"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="wa.xmi#/1/@predicates.15/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="467939dc-b105-401d-acd1-842597e4c8bb" simpleName="imply2">
+      <predicate href="submodels.xmi#adef3a0c-5b83-4a81-baa9-0cd498ddc347"/>
+      <dGraph>
+        <dNodes id="2fd2fe2d-fb4f-4245-9ed7-8b3776e2a79d" dOutgoings="04df4e56-ab3b-4bce-98d4-5c2573259ec9" location="50 50" size="40 42">
+          <node href="wa.xmi#4ec9aedf-acd4-4191-9207-b39a19d74d9b"/>
+        </dNodes>
+        <dNodes id="c46f7fea-d997-4fcc-9803-a5617af1c8d5" dIncomings="04df4e56-ab3b-4bce-98d4-5c2573259ec9" location="200 50" size="38 42">
+          <node href="wa.xmi#d03c9bab-2807-45a7-9a3d-e7f63b10447b"/>
+        </dNodes>
+        <dNodes id="a60dc3ca-45d3-42d0-9d79-c63536746608" dOutgoings="bf3a4f76-fab9-4050-ab50-eee99add270f" location="50 100" size="40 42">
+          <node href="wa.xmi#ce2da3b3-abb2-4f10-b4b5-7220d65f881f"/>
+        </dNodes>
+        <dNodes id="cd8b28ef-80da-403d-8580-117b36e7e877" dIncomings="bf3a4f76-fab9-4050-ab50-eee99add270f" location="200 100" size="38 42">
+          <node href="wa.xmi#1b5670e2-e75a-4346-85e2-74fed83967fb"/>
+        </dNodes>
+        <dArrows id="04df4e56-ab3b-4bce-98d4-5c2573259ec9" dSource="2fd2fe2d-fb4f-4245-9ed7-8b3776e2a79d" dTarget="c46f7fea-d997-4fcc-9803-a5617af1c8d5">
+          <arrow href="wa.xmi#4a3d3dce-8df6-4ac2-b3cc-7549d99884d2"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="bf3a4f76-fab9-4050-ab50-eee99add270f" dSource="a60dc3ca-45d3-42d0-9d79-c63536746608" dTarget="cd8b28ef-80da-403d-8580-117b36e7e877">
+          <arrow href="wa.xmi#1c9aeebe-ead1-47b2-b5a2-3cb506e41f32"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="wa.xmi#/1/@predicates.16/@shape"/>
+      </dGraph>
+      <visualization type="ArrowToArrow">
+        <target xsi:type="core:Arrow" href="submodels.xmi#1c9aeebe-ead1-47b2-b5a2-3cb506e41f32"/>
+      </visualization>
+    </dPredicates>
+    <dPredicates id="48f4a25a-de5b-4a51-affa-5366af33a5bf" simpleName="@PorterCom">
+      <predicate href="submodels.xmi#772a8c8d-8195-4998-aef5-c1c9d09faf69"/>
+      <dGraph>
+        <dNodes id="008bd304-6938-4aed-ab78-d9438d7b9aa0" location="50 50" size="26 42">
+          <node href="wa.xmi#97c17d80-f5a7-410e-ac5d-bf48c529da9a"/>
+        </dNodes>
+        <graph href="wa.xmi#/1/@predicates.17/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+    <dPredicates id="dddc1db8-cd13-4150-8ffd-e1e67d5e988e" simpleName="xor4">
+      <predicate href="submodels.xmi#114ce658-f03a-4644-9ff6-96ec11914026"/>
+      <dGraph>
+        <dNodes id="db480ac9-27c7-4ae5-b3fd-b150e650b251" dOutgoings="f33b407c-512b-4755-867f-bde5d02ed851 f971010b-14f9-44b1-b5d6-f88ed503dac5 5ba6dc81-1e8f-445e-b7a8-69cf3f6cf253 cfa54dcd-bb6d-4bd7-91a2-e511ae855634" location="50 50" size="26 42">
+          <node href="wa.xmi#d1270525-16b5-4ae5-80dc-808d110c923a"/>
+        </dNodes>
+        <dNodes id="1baaa1fb-41b2-412e-b63b-845704aae99b" dIncomings="f33b407c-512b-4755-867f-bde5d02ed851" location="210 56" size="82 42">
+          <node href="wa.xmi#071a63f2-c7e3-496c-8b5e-49af545535db"/>
+        </dNodes>
+        <dNodes id="d4c2772a-589d-4873-a747-4def00a3b651" dIncomings="f971010b-14f9-44b1-b5d6-f88ed503dac5" location="206 143" size="82 42">
+          <node href="wa.xmi#3d659460-f054-410f-8829-5f88931403a6"/>
+        </dNodes>
+        <dNodes id="1ad68ded-3e7e-409f-8c2e-a57c09a3baf0" dIncomings="5ba6dc81-1e8f-445e-b7a8-69cf3f6cf253" location="149 219" size="82 42">
+          <node href="wa.xmi#9e936878-0f81-4fb1-a755-5c9ad572de17"/>
+        </dNodes>
+        <dNodes id="88c215a3-347f-49d2-8726-1175f625846e" dIncomings="cfa54dcd-bb6d-4bd7-91a2-e511ae855634" location="48 225" size="82 42">
+          <node href="wa.xmi#f855c05a-6d30-4310-89bc-bc52708f2c84"/>
+        </dNodes>
+        <dArrows id="f33b407c-512b-4755-867f-bde5d02ed851" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="1baaa1fb-41b2-412e-b63b-845704aae99b">
+          <arrow href="wa.xmi#5d7aee22-abbb-40c2-a05c-51394c5b9257"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="f971010b-14f9-44b1-b5d6-f88ed503dac5" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="d4c2772a-589d-4873-a747-4def00a3b651">
+          <arrow href="wa.xmi#cf994d71-a8d3-48e1-9009-15cd32149928"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="5ba6dc81-1e8f-445e-b7a8-69cf3f6cf253" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="1ad68ded-3e7e-409f-8c2e-a57c09a3baf0">
+          <arrow href="wa.xmi#cdd7c202-7a6a-4755-90ec-ed911c87a26f"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <dArrows id="cfa54dcd-bb6d-4bd7-91a2-e511ae855634" dSource="db480ac9-27c7-4ae5-b3fd-b150e650b251" dTarget="88c215a3-347f-49d2-8726-1175f625846e">
+          <arrow href="wa.xmi#306a8320-c023-4468-ab6f-3eea0c01494f"/>
+          <nameOffset offset="10 -3" len="16"/>
+        </dArrows>
+        <graph href="wa.xmi#/1/@predicates.18/@shape"/>
+      </dGraph>
+      <visualization type="Composed"/>
+    </dPredicates>
+    <dPredicates id="e455755a-11eb-421f-9cde-72448f26056f" simpleName="@system">
+      <predicate href="submodels.xmi#02fb1287-a33e-4866-9da8-f1ca69c26a28"/>
+      <dGraph>
+        <dNodes id="bb708d93-d7fa-49df-a636-085841c6be73" location="50 50" size="26 42">
+          <node href="wa.xmi#98da7453-4275-4b0c-b9a2-c4cff131f489"/>
+        </dNodes>
+        <graph href="wa.xmi#/1/@predicates.19/@shape"/>
+      </dGraph>
+      <visualization type="OnNode"/>
+    </dPredicates>
+  </diagram:DSignature>
+  <diagram:DSpecification zoom="2.0" gridVisible="false" dSignature="/3" signatureFile="wm.sig">
+    <dGraph>
+      <dNodes id="985a00a4-3616-4c08-802f-24a7fc07eda6" dOutgoings="2566c557-f9f8-46e9-bc49-73551fed69a6 4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dIncomings="2566c557-f9f8-46e9-bc49-73551fed69a6 88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dConstraints="/2/@dConstraints.0 /2/@dConstraints.1" location="24 72" size="85 35">
+        <node href="submodels.xmi#4282ad3b-6663-47b5-9a26-80f0c4248ec5"/>
+      </dNodes>
+      <dNodes id="fbdbc796-9b1c-47cf-9d77-beebf3fed332" configureString="Blueservice" dOutgoings="88cf0414-b553-4dee-923a-5e66cbcf013f ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" dIncomings="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dConstraints="/2/@dConstraints.0 /2/@dConstraints.1" location="204 71" size="73 36">
+        <node href="submodels.xmi#266e1f3f-51ed-44c8-a1e9-abc779055975"/>
+      </dNodes>
+      <dArrows id="2566c557-f9f8-46e9-bc49-73551fed69a6" dSource="985a00a4-3616-4c08-802f-24a7fc07eda6" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
+        <arrow href="submodels.xmi#0e2df415-99cc-4bf7-8a9b-8e5657c0076a"/>
+        <nameOffset offset="22 -20" len="44" index="1"/>
+        <bendpoints offset="-45 3" len="35"/>
+        <bendpoints offset="-44 -41" len="35" index="1"/>
+      </dArrows>
+      <dArrows id="ee6d71cf-48a9-42c4-87d6-7c22feeb16ea" configureString="RedDashedArrow" dSource="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
+        <arrow href="submodels.xmi#09816f1d-ca1a-491c-a454-57749fa9927e"/>
+        <nameOffset offset="-13 -29" len="-94" index="1"/>
+        <bendpoints offset="-76 -37" len="-162"/>
+      </dArrows>
+      <dArrows id="88cf0414-b553-4dee-923a-5e66cbcf013f" configureString="GreenDashedArrow" dSource="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dTarget="985a00a4-3616-4c08-802f-24a7fc07eda6">
+        <arrow href="submodels.xmi#422d4560-0458-4308-8953-fc4bb69505a5"/>
+        <nameOffset offset="-107 -5" len="-90"/>
+        <bendpoints offset="-84 31" len="-174"/>
+      </dArrows>
+      <dArrows id="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" dSource="985a00a4-3616-4c08-802f-24a7fc07eda6" dTarget="fbdbc796-9b1c-47cf-9d77-beebf3fed332" dConstraints="/2/@dConstraints.0 /2/@dConstraints.1">
+        <arrow href="submodels.xmi#e36d3c66-9cd8-450d-892d-4f14d2057a27"/>
+        <nameOffset offset="44 -8" len="162"/>
+      </dArrows>
+      <graph href="wm.xmi#//@graph"/>
+    </dGraph>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="985a00a4-3616-4c08-802f-24a7fc07eda6 fbdbc796-9b1c-47cf-9d77-beebf3fed332" dArrows="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" source="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c">
+      <constraint href="wm.xmi#6ebb29d0-2fa5-46fa-b374-667835be3ee9"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-surjective"/>
+      <offset offset="85 -18" len="162"/>
+    </dConstraints>
+    <dConstraints xsi:type="diagram:DArrowLabelConstraint" dNodes="985a00a4-3616-4c08-802f-24a7fc07eda6 fbdbc796-9b1c-47cf-9d77-beebf3fed332" dArrows="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c" source="4e5f6ff6-6f21-4e8b-9c50-3884f8ff2a7c">
+      <constraint href="wm.xmi#711bc3fb-5f32-4eb5-9d7c-5044ed6d7edf"/>
+      <dPredicate href="platform:/resource/DefaultDSpecification.dpf#diagram-p-multiplicity"/>
+      <offset offset="85 -1" len="162"/>
+    </dConstraints>
+    <specification href="submodels.xmi#/2"/>
+  </diagram:DSpecification>
+  <diagram:DSignature>
+    <signature href="submodels.xmi#/3"/>
+  </diagram:DSignature>
+</xmi:XMI>

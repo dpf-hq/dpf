@@ -1,0 +1,35 @@
+[xor] on Arrows{bloodtype is unknown or screening is not done or invalid(screen is valid within 4 days):Show Patient Info->Order Sample, :Show Patient Info->Order Blood} can be derived by
+	[imply2] on Arrows{Blood have not been ordered:Send Sample->Order Blood, bloodtype is unknown or screening is not done or invalid(screen is valid within 4 days):Show Patient Info->Order Sample}
+	[multi1 (min:0;max:2)] on Nodes{Scan Nurse Card, }
+	[multi1 (min:1;max:1)] on Nodes{Init, }
+	[multi1 (min:2;max:2)] on Nodes{Send Sample, }
+	[multi1 (min:0;max:2)] on Nodes{Scan Sample, }
+	[imply2] on Arrows{Blood have not been ordered:Send Sample Order->Order Blood, bloodtype is unknown or screening is not done or invalid(screen is valid within 4 days):Show Patient Info->Order Sample}
+	[multi1 (min:0;max:2)] on Nodes{Scan Patient Wristband, }
+	[xorsurj] on Arrows{bloodtype is unknown or screening is not done or invalid(screen is valid within 4 days):Show Patient Info->Order Sample, Samples have not been ordered:Send Blood Order->Order Sample}
+	[surj] on Arrows{(Sample):Get Sample Info->Scann Patient Wristband, }
+	[surj] on Arrows{(Department):Select Department->Send Blood Order, }
+	[xorsurj] on Arrows{Patient is not found:Get Patient Info->Scan Patient Wristband, :Show Nurse Info->Scan Patient Wristband}
+	[surj] on Arrows{(Sample Label File*):Send Sample Order->Print Sample Label, }
+	[surj] on Arrows{:Order Sample->Select Book pre-examination, }
+	[surj] on Arrows{:Order Blood->Select Blood Product, }
+	[surj] on Arrows{(Patient{name, ID, gender, blodtype, screening}):Get Patient Info->Show Patient Info, }
+	[surj] on Arrows{(Barcode):Scan Nurse Card->Get Nurse Info, }
+	[xor] on Arrows{Patient is not found:Get Patient Info->Scan Patient Wristband, (Patient{name, ID, gender, blodtype, screening}):Get Patient Info->Show Patient Info}
+	[surj] on Arrows{(Barcode):Scan Sample->Get Sample Info, }
+	[surj] on Arrows{(Barcode):Select Blood Product->Get Doctor Info, }
+	[surj] on Arrows{(Barcode):Scann Patient Wristband->Get Patient Info, }
+	[surj] on Arrows{(BloodOrder{quantity, expectTime}):Send Blood Order->Order Blood Product, }
+	[xorsurj] on Arrows{:Init->Scan Nurse Card, Nurse is not found:Get Nurse Info->Scan Nurse Card}
+	[surj] on Arrows{(Nurse{name}):Get Nurse Info->Show Nurse Info, }
+	[surj] on Arrows{(Blood*):Order Blood Product->Collect Blood, }
+	[surj] on Arrows{:Select Book pre-examination->Send Sample Order, }
+	[xor] on Arrows{:Send Sample->Collect Blood, Blood have not been ordered:Send Sample->Order Blood}
+	[xorsurj] on Arrows{Sample is not for the patient:Get Patient Info->Scan Sample, :Collect Sample->Scan Sample}
+	[xor3surj] on Arrows{Blood have not been ordered:Send Sample->Order Blood, Blood have not been ordered:Send Sample Order->Order Blood:Show Patient Info->Order Blood}
+	[surj] on Arrows{(Barcode):Scan Patient Wristband->Get Patient Info, }
+	[xor] on Arrows{Nurse is not found:Get Nurse Info->Scan Nurse Card, (Nurse{name}):Get Nurse Info->Show Nurse Info}
+	[surj] on Arrows{(Doctor):Get Doctor Info->Select Department, }
+	[xor] on Arrows{(Patient):Get Patient Info->Send Sample, Sample is not for the patient:Get Patient Info->Scan Sample}
+	[surj] on Arrows{(Patient):Get Patient Info->Send Sample, }
+	[surj] on Arrows{(Label*):Print Sample Label->Collect Sample, }

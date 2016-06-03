@@ -432,9 +432,9 @@ NodeEditPart {
 	protected void fireTargetConnectionAdded(ConnectionEditPart connection,
 			int index) {
 		super.fireTargetConnectionAdded(connection, index);
-		if (connection.getModel() instanceof DArrow)
-			verifyOnArrowChange(getDPFNode(), null,
-					((DArrow) connection.getModel()).getArrow());
+		//		if (connection.getModel() instanceof DArrow)
+		//			verifyOnArrowChange(getDPFNode(), null,
+		//					((DArrow) connection.getModel()).getArrow());
 	}
 
 	protected void fireRemovingSourceConnection(ConnectionEditPart connection,

@@ -218,28 +218,28 @@ public class ValidateModelHandler extends AbstractHandler {
 		for(String ele : elements){
 			if(ele.startsWith("N")){
 				DNode node = null;
-				if(ele.matches("N\\d*")){
-					Node cur = (Node) translate.sig2DPF.get(Integer.parseInt(ele.substring(1)));
+//				if(ele.matches("N\\d*")){
+					Node cur = (Node) translate.sig2DPF.get(ele);
 					for(DNode dn : graph.getDNodes())
 						if(dn.getNode() == cur) {node = dn; break;}
-				}else{
-					for(DNode dn : graph.getDNodes())
-						if(dn.getName().equals(ele.substring(1))) {node = dn; break;}
-				}
+//				}else{
+//					for(DNode dn : graph.getDNodes())
+//						if(dn.getName().equals(ele.substring(1))) {node = dn; break;}
+//				}
 				if(node != null){
 					ds.add(node);
 					isNode = true;
 				}
 			}else{
 				DArrow edge = null;
-				if(ele.matches("E\\d*")){
-					Arrow cur = (Arrow) translate.sig2DPF.get(Integer.parseInt(ele.substring(1)));
+//				if(ele.matches("E\\d*")){
+					Arrow cur = (Arrow) translate.sig2DPF.get(ele);
 					for(DArrow dn : graph.getDArrows())
 						if(dn.getArrow() == cur) {edge = dn; break;}
-				}else{
-					for(DArrow dn : graph.getDArrows())
-						if(dn.getName().equals(ele.substring(1))) {edge = dn; break;}
-				}
+//				}else{
+//					for(DArrow dn : graph.getDArrows())
+//						if(dn.getName().equals(ele.substring(1))) {edge = dn; break;}
+//				}
 				if(edge != null){
 					ds.add(edge);
 					isNode = false;

@@ -29,6 +29,7 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 
 
 public class DComposedNodePart extends GraphicalEditPartWithListener  implements NodeEditPart{
@@ -155,6 +156,15 @@ public class DComposedNodePart extends GraphicalEditPartWithListener  implements
 				boolean changed = !getText().equals(s);
 				super.setText(s);
 				if(changed) setSize(getMinimumSize());
+			}
+			public void setFont(Font f){
+				Font font = getFont();
+				if (font != f) {
+					super.setFont(f);
+					if(!getText().isEmpty())
+						setSize(getPreferredSize());
+				}
+				
 			}
 		};
 		label.setOpaque(true);
